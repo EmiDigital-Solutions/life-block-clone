@@ -8,7 +8,7 @@ import ToleranceNotation from "@/components/ToleranceNotation";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Check, Plus, Minus, Activity, AlertTriangle, TrendingUp, TrendingDown, Clock, Wifi, Database, Settings, BarChart3, Shield, Zap } from "lucide-react";
+import { ArrowRight, Check, Plus, Minus, Eye, BarChart3, TrendingUp, Users, MapPin, ClipboardCheck, Target, GitCompare, LineChart, Calendar, Shield, Search } from "lucide-react";
 import HeroSquaresAnimation from "@/components/HeroSquaresAnimation";
 
 // Window Chrome Component for mockups
@@ -28,231 +28,83 @@ const WindowChrome = ({ title, children }: { title: string; children: React.Reac
   </div>
 );
 
-// Live Monitoring Dashboard Mockup
-const LiveMonitoringMockup = () => {
-  const [activeMetric, setActiveMetric] = useState(0);
-  const [liveValues, setLiveValues] = useState([98.2, 94.7, 87.3, 92.1]);
+// Supplier Comparison Matrix Mockup
+const SupplierComparisonMockup = () => {
+  const [highlightedRow, setHighlightedRow] = useState(0);
   
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveMetric((prev) => (prev + 1) % 4);
-      setLiveValues(prev => prev.map(v => Math.min(100, Math.max(70, v + (Math.random() - 0.5) * 3))));
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const suppliers = [
-    { name: "Precision Parts GmbH", location: "Germany", status: "healthy", score: liveValues[0] },
-    { name: "TechMetal Industries", location: "Poland", status: "warning", score: liveValues[1] },
-    { name: "Apex Components Ltd", location: "UK", status: "healthy", score: liveValues[2] },
-    { name: "Global Fasteners Co", location: "Italy", status: "healthy", score: liveValues[3] },
-  ];
-
-  return (
-    <WindowChrome title="Ground Intelligence — Live Monitoring">
-      <div className="h-full flex text-[10px] bg-[#f8f9fa]">
-        {/* Sidebar */}
-        <div className="w-14 bg-white border-r border-gray-100 p-2 flex flex-col gap-2">
-          {[Activity, BarChart3, AlertTriangle, Settings].map((Icon, i) => (
-            <div key={i} className={`p-2 rounded ${i === 0 ? 'bg-primary/10 text-primary' : 'text-gray-400 hover:bg-gray-50'}`}>
-              <Icon className="w-4 h-4 mx-auto" />
-            </div>
-          ))}
-        </div>
-        
-        {/* Main Content */}
-        <div className="flex-1 p-3 overflow-hidden">
-          {/* Header Stats */}
-          <div className="grid grid-cols-4 gap-2 mb-3">
-            {[
-              { label: "Active Suppliers", value: "24", icon: Database, color: "text-primary" },
-              { label: "Avg. Health", value: `${liveValues[0].toFixed(1)}%`, icon: Activity, color: "text-green-500" },
-              { label: "Alerts", value: "3", icon: AlertTriangle, color: "text-amber-500" },
-              { label: "Uptime", value: "99.9%", icon: Wifi, color: "text-primary" },
-            ].map((stat, i) => (
-              <motion.div 
-                key={i} 
-                className="bg-white rounded-lg p-2 border border-gray-100"
-                animate={{ scale: activeMetric === i ? 1.02 : 1 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="flex items-center gap-1 mb-1">
-                  <stat.icon className={`w-3 h-3 ${stat.color}`} />
-                  <span className="text-gray-400 text-[8px]">{stat.label}</span>
-                </div>
-                <motion.div 
-                  className="text-sm font-bold text-gray-900"
-                  key={stat.value}
-                  initial={{ opacity: 0.5 }}
-                  animate={{ opacity: 1 }}
-                >
-                  {stat.value}
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Supplier List */}
-          <div className="bg-white rounded-lg border border-gray-100 overflow-hidden">
-            <div className="px-3 py-2 border-b border-gray-100 flex items-center justify-between">
-              <span className="font-semibold text-gray-900">Supplier Network</span>
-              <span className="text-[8px] text-gray-400 flex items-center gap-1">
-                <motion.div 
-                  className="w-1.5 h-1.5 rounded-full bg-green-500"
-                  animate={{ opacity: [1, 0.5, 1] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                />
-                Live
-              </span>
-            </div>
-            <div className="divide-y divide-gray-50">
-              {suppliers.map((supplier, i) => (
-                <motion.div 
-                  key={i} 
-                  className="px-3 py-2 flex items-center justify-between hover:bg-gray-50"
-                  animate={{ 
-                    backgroundColor: activeMetric === i ? 'rgba(10, 127, 165, 0.05)' : 'transparent'
-                  }}
-                >
-                  <div className="flex items-center gap-2">
-                    <div className={`w-2 h-2 rounded-full ${supplier.status === 'healthy' ? 'bg-green-500' : 'bg-amber-500'}`} />
-                    <div>
-                      <div className="font-medium text-gray-900">{supplier.name}</div>
-                      <div className="text-[8px] text-gray-400">{supplier.location}</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-16 h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                      <motion.div 
-                        className="h-full bg-primary rounded-full"
-                        animate={{ width: `${supplier.score}%` }}
-                        transition={{ duration: 0.5 }}
-                      />
-                    </div>
-                    <motion.span 
-                      className="text-[9px] font-medium text-gray-600 w-8 text-right"
-                      key={supplier.score}
-                      initial={{ opacity: 0.5 }}
-                      animate={{ opacity: 1 }}
-                    >
-                      {supplier.score.toFixed(1)}%
-                    </motion.span>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </WindowChrome>
-  );
-};
-
-// Risk Scoring Mockup
-const RiskScoringMockup = () => {
-  const [animationStep, setAnimationStep] = useState(0);
-  
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setAnimationStep((prev) => (prev + 1) % 4);
+      setHighlightedRow((prev) => (prev + 1) % 4);
     }, 2500);
     return () => clearInterval(interval);
   }, []);
 
-  const riskFactors = [
-    { name: "Delivery Performance", score: 92, trend: "up", weight: 25 },
-    { name: "Quality Metrics", score: 88, trend: "stable", weight: 30 },
-    { name: "Financial Stability", score: 76, trend: "down", weight: 20 },
-    { name: "Compliance Status", score: 95, trend: "up", weight: 25 },
+  const suppliers = [
+    { name: "Precision Parts GmbH", location: "DE", capacity: 94, quality: 97, delivery: 91, overall: 94, verified: true },
+    { name: "TechMetal Industries", location: "PL", capacity: 78, quality: 85, delivery: 88, overall: 83, verified: true },
+    { name: "Apex Components Ltd", location: "UK", capacity: 89, quality: 92, delivery: 82, overall: 87, verified: false },
+    { name: "Global Fasteners Co", location: "IT", capacity: 91, quality: 88, delivery: 95, overall: 91, verified: true },
   ];
 
+  const getScoreColor = (score: number) => {
+    if (score >= 90) return "text-green-600 bg-green-50";
+    if (score >= 80) return "text-amber-600 bg-amber-50";
+    return "text-red-600 bg-red-50";
+  };
+
   return (
-    <WindowChrome title="Ground Intelligence — AI Risk Analysis">
+    <WindowChrome title="Ground Intelligence — Supplier Comparison Matrix">
       <div className="h-full flex text-[10px] bg-[#f8f9fa]">
-        {/* Sidebar */}
         <div className="w-14 bg-white border-r border-gray-100 p-2 flex flex-col gap-2">
-          {[Shield, BarChart3, AlertTriangle, Settings].map((Icon, i) => (
+          {[GitCompare, BarChart3, TrendingUp, Search].map((Icon, i) => (
             <div key={i} className={`p-2 rounded ${i === 0 ? 'bg-primary/10 text-primary' : 'text-gray-400 hover:bg-gray-50'}`}>
               <Icon className="w-4 h-4 mx-auto" />
             </div>
           ))}
         </div>
         
-        {/* Main Content */}
         <div className="flex-1 p-3 overflow-hidden">
-          {/* Overall Risk Score */}
-          <div className="bg-white rounded-lg p-3 border border-gray-100 mb-3">
-            <div className="flex items-center justify-between mb-2">
-              <span className="font-semibold text-gray-900">TechMetal Industries — Risk Assessment</span>
-              <motion.div 
-                className="flex items-center gap-1 text-[8px] px-2 py-0.5 rounded-full bg-amber-100 text-amber-700"
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <AlertTriangle className="w-2.5 h-2.5" />
-                Medium Risk
-              </motion.div>
-            </div>
-            <div className="flex items-center gap-3">
-              <motion.div 
-                className="text-3xl font-bold text-primary"
-                animate={{ opacity: [0.7, 1, 0.7] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                78
-              </motion.div>
-              <div className="flex-1">
-                <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-                  <motion.div 
-                    className="h-full rounded-full"
-                    style={{ background: 'linear-gradient(90deg, #ef4444, #f59e0b, #22c55e)' }}
-                    animate={{ width: ['0%', '78%'] }}
-                    transition={{ duration: 1.5, delay: 0.5 }}
-                  />
-                </div>
-                <div className="flex justify-between text-[8px] text-gray-400 mt-0.5">
-                  <span>High Risk</span>
-                  <span>Low Risk</span>
-                </div>
-              </div>
-            </div>
+          <div className="flex items-center justify-between mb-3">
+            <span className="font-semibold text-gray-900 text-[11px]">Verified Supplier Comparison</span>
+            <span className="text-[8px] text-primary font-medium px-2 py-0.5 rounded-full bg-primary/10">Based on on-site audits</span>
           </div>
 
-          {/* Risk Factors */}
           <div className="bg-white rounded-lg border border-gray-100 overflow-hidden">
-            <div className="px-3 py-2 border-b border-gray-100">
-              <span className="font-semibold text-gray-900">Risk Factor Analysis</span>
+            {/* Header */}
+            <div className="grid grid-cols-6 px-3 py-2 bg-gray-50 border-b border-gray-100 font-medium text-gray-500 text-[8px]">
+              <div className="col-span-2">Supplier</div>
+              <div className="text-center">Capacity</div>
+              <div className="text-center">Quality</div>
+              <div className="text-center">Delivery</div>
+              <div className="text-center">Overall</div>
             </div>
-            <div className="p-2 space-y-2">
-              {riskFactors.map((factor, i) => (
-                <motion.div 
-                  key={i}
-                  className="p-2 rounded bg-gray-50"
-                  animate={{ 
-                    backgroundColor: animationStep === i ? 'rgba(10, 127, 165, 0.08)' : 'rgb(249, 250, 251)'
-                  }}
-                >
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="font-medium text-gray-700">{factor.name}</span>
-                    <div className="flex items-center gap-1">
-                      {factor.trend === 'up' && <TrendingUp className="w-3 h-3 text-green-500" />}
-                      {factor.trend === 'down' && <TrendingDown className="w-3 h-3 text-red-500" />}
-                      <span className={`font-bold ${factor.score >= 90 ? 'text-green-600' : factor.score >= 80 ? 'text-amber-600' : 'text-red-600'}`}>
-                        {factor.score}
-                      </span>
-                    </div>
+            {/* Rows */}
+            {suppliers.map((s, i) => (
+              <motion.div 
+                key={i}
+                className="grid grid-cols-6 px-3 py-2 items-center border-b border-gray-50 last:border-0"
+                animate={{ backgroundColor: highlightedRow === i ? 'rgba(79, 195, 247, 0.06)' : 'transparent' }}
+              >
+                <div className="col-span-2 flex items-center gap-1.5">
+                  {s.verified && <Shield className="w-3 h-3 text-primary flex-shrink-0" />}
+                  <div>
+                    <div className="font-medium text-gray-900 truncate">{s.name}</div>
+                    <div className="text-[8px] text-gray-400">{s.location}</div>
                   </div>
-                  <div className="h-1 bg-gray-200 rounded-full overflow-hidden">
-                    <motion.div 
-                      className={`h-full rounded-full ${factor.score >= 90 ? 'bg-green-500' : factor.score >= 80 ? 'bg-amber-500' : 'bg-red-500'}`}
-                      initial={{ width: 0 }}
-                      animate={{ width: `${factor.score}%` }}
-                      transition={{ duration: 0.8, delay: i * 0.2 }}
-                    />
+                </div>
+                {[s.capacity, s.quality, s.delivery, s.overall].map((score, j) => (
+                  <div key={j} className="flex justify-center">
+                    <motion.span 
+                      className={`px-1.5 py-0.5 rounded text-[9px] font-bold ${getScoreColor(score)}`}
+                      animate={highlightedRow === i ? { scale: [1, 1.08, 1] } : {}}
+                      transition={{ duration: 0.5, delay: j * 0.1 }}
+                    >
+                      {score}
+                    </motion.span>
                   </div>
-                </motion.div>
-              ))}
-            </div>
+                ))}
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>
@@ -260,103 +112,85 @@ const RiskScoringMockup = () => {
   );
 };
 
-// ERP Integration Mockup
-const ERPIntegrationMockup = () => {
-  const [syncStep, setSyncStep] = useState(0);
-  
+// Audit Trend Dashboard Mockup
+const AuditTrendMockup = () => {
+  const [activePoint, setActivePoint] = useState(0);
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setSyncStep((prev) => (prev + 1) % 5);
-    }, 1500);
+      setActivePoint((prev) => (prev + 1) % 6);
+    }, 2000);
     return () => clearInterval(interval);
   }, []);
 
-  const integrations = [
-    { name: "SAP S/4HANA", status: "connected", lastSync: "2 min ago", records: "12,847" },
-    { name: "Oracle ERP", status: "connected", lastSync: "5 min ago", records: "8,392" },
-    { name: "Microsoft Dynamics", status: "syncing", lastSync: "Now", records: "5,621" },
+  const trendData = [
+    { quarter: "Q1'24", score: 72, audits: 2 },
+    { quarter: "Q2'24", score: 78, audits: 1 },
+    { quarter: "Q3'24", score: 81, audits: 3 },
+    { quarter: "Q4'24", score: 85, audits: 2 },
+    { quarter: "Q1'25", score: 89, audits: 2 },
+    { quarter: "Q2'25", score: 92, audits: 1 },
   ];
 
-  const dataFlows = [
-    { from: "SAP", to: "Ground Intelligence", type: "Supplier Master Data" },
-    { from: "Ground Intelligence", to: "QMS", type: "Risk Scores" },
-    { from: "IoT Sensors", to: "Ground Intelligence", type: "Real-time Metrics" },
+  const topics = [
+    { name: "Process Capability", trend: "+12%", status: "improving" },
+    { name: "Capacity Utilization", trend: "+8%", status: "improving" },
+    { name: "Quality Systems", trend: "+15%", status: "improving" },
+    { name: "Delivery Reliability", trend: "−3%", status: "declining" },
   ];
 
   return (
-    <WindowChrome title="Ground Intelligence — System Integrations">
+    <WindowChrome title="Ground Intelligence — Audit Trend Analysis">
       <div className="h-full flex text-[10px] bg-[#f8f9fa]">
-        {/* Sidebar */}
         <div className="w-14 bg-white border-r border-gray-100 p-2 flex flex-col gap-2">
-          {[Zap, Database, Settings, Activity].map((Icon, i) => (
+          {[LineChart, Calendar, ClipboardCheck, Target].map((Icon, i) => (
             <div key={i} className={`p-2 rounded ${i === 0 ? 'bg-primary/10 text-primary' : 'text-gray-400 hover:bg-gray-50'}`}>
               <Icon className="w-4 h-4 mx-auto" />
             </div>
           ))}
         </div>
-        
-        {/* Main Content */}
+
         <div className="flex-1 p-3 overflow-hidden">
-          {/* Integration Status */}
-          <div className="bg-white rounded-lg border border-gray-100 mb-3 overflow-hidden">
-            <div className="px-3 py-2 border-b border-gray-100 flex items-center justify-between">
-              <span className="font-semibold text-gray-900">Connected Systems</span>
-              <span className="text-[8px] text-green-600 font-medium">3 Active</span>
+          <div className="flex items-center justify-between mb-3">
+            <div>
+              <div className="font-semibold text-gray-900 text-[11px]">Precision Parts GmbH</div>
+              <div className="text-[8px] text-gray-400">18 months audit history · 11 on-site visits</div>
             </div>
-            <div className="divide-y divide-gray-50">
-              {integrations.map((int, i) => (
-                <div key={i} className="px-3 py-2 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <motion.div 
-                      className={`w-2 h-2 rounded-full ${int.status === 'syncing' ? 'bg-amber-500' : 'bg-green-500'}`}
-                      animate={int.status === 'syncing' ? { opacity: [1, 0.4, 1] } : {}}
-                      transition={{ duration: 1, repeat: Infinity }}
-                    />
-                    <div>
-                      <div className="font-medium text-gray-900">{int.name}</div>
-                      <div className="text-[8px] text-gray-400">{int.records} records</div>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className={`text-[8px] ${int.status === 'syncing' ? 'text-amber-600' : 'text-green-600'}`}>
-                      {int.status === 'syncing' ? 'Syncing...' : 'Connected'}
-                    </div>
-                    <div className="text-[8px] text-gray-400">{int.lastSync}</div>
-                  </div>
+            <div className="flex items-center gap-1 text-green-600 text-[9px] font-medium">
+              <TrendingUp className="w-3 h-3" /> +20pts
+            </div>
+          </div>
+
+          {/* Mini chart */}
+          <div className="bg-white rounded-lg border border-gray-100 p-3 mb-3">
+            <div className="flex items-end justify-between h-16 gap-1">
+              {trendData.map((d, i) => (
+                <div key={i} className="flex-1 flex flex-col items-center gap-1">
+                  <motion.div
+                    className="w-full rounded-t"
+                    style={{ backgroundColor: activePoint === i ? 'hsl(199, 91%, 64%)' : '#e5e7eb' }}
+                    animate={{ height: `${(d.score / 100) * 48}px` }}
+                    transition={{ duration: 0.4 }}
+                  />
+                  <span className="text-[7px] text-gray-400">{d.quarter}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Data Flow Visualization */}
+          {/* Topic breakdown */}
           <div className="bg-white rounded-lg border border-gray-100 overflow-hidden">
-            <div className="px-3 py-2 border-b border-gray-100">
-              <span className="font-semibold text-gray-900">Live Data Flows</span>
+            <div className="px-3 py-1.5 border-b border-gray-100 font-semibold text-gray-900 text-[10px]">
+              Topic Performance Trends
             </div>
-            <div className="p-3 space-y-2">
-              {dataFlows.map((flow, i) => (
-                <motion.div 
-                  key={i}
-                  className="flex items-center gap-2 p-2 rounded bg-gray-50"
-                  animate={{ 
-                    backgroundColor: syncStep === i ? 'rgba(10, 127, 165, 0.08)' : 'rgb(249, 250, 251)'
-                  }}
-                >
-                  <div className="text-[9px] font-medium text-gray-700 w-20 truncate">{flow.from}</div>
-                  <div className="flex-1 flex items-center justify-center relative">
-                    <div className="w-full h-0.5 bg-gray-200 rounded-full" />
-                    <motion.div 
-                      className="absolute w-2 h-2 rounded-full bg-primary"
-                      animate={{ 
-                        x: syncStep === i ? ['-100%', '100%'] : 0,
-                        opacity: syncStep === i ? [0, 1, 1, 0] : 0
-                      }}
-                      transition={{ duration: 1.5, ease: "easeInOut" }}
-                    />
-                    <ArrowRight className="absolute w-3 h-3 text-gray-400 right-0" />
-                  </div>
-                  <div className="text-[9px] font-medium text-gray-700 w-24 truncate text-right">{flow.to}</div>
-                </motion.div>
+            <div className="divide-y divide-gray-50">
+              {topics.map((t, i) => (
+                <div key={i} className="px-3 py-1.5 flex items-center justify-between">
+                  <span className="text-gray-700">{t.name}</span>
+                  <span className={`font-bold ${t.status === 'improving' ? 'text-green-600' : 'text-red-500'}`}>
+                    {t.trend}
+                  </span>
+                </div>
               ))}
             </div>
           </div>
@@ -366,9 +200,79 @@ const ERPIntegrationMockup = () => {
   );
 };
 
-const GroundIntelligence = () => {
-  const [activeFeature, setActiveFeature] = useState(0);
+// On-Demand Verification Mockup
+const OnDemandVerificationMockup = () => {
+  const [step, setStep] = useState(0);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setStep((prev) => (prev + 1) % 4);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const steps = [
+    { label: "Select topic", detail: "Capacity verification for CNC 5-axis", icon: Target },
+    { label: "Assign auditor", detail: "Expert matched: 12yr automotive exp.", icon: Users },
+    { label: "On-site visit", detail: "Scheduled: 3 business days", icon: MapPin },
+    { label: "Verified report", detail: "Standardized score + evidence photos", icon: ClipboardCheck },
+  ];
+
+  return (
+    <WindowChrome title="Ground Intelligence — On-Demand Verification">
+      <div className="h-full flex text-[10px] bg-[#f8f9fa]">
+        <div className="w-14 bg-white border-r border-gray-100 p-2 flex flex-col gap-2">
+          {[Eye, Target, MapPin, ClipboardCheck].map((Icon, i) => (
+            <div key={i} className={`p-2 rounded ${i === 0 ? 'bg-primary/10 text-primary' : 'text-gray-400 hover:bg-gray-50'}`}>
+              <Icon className="w-4 h-4 mx-auto" />
+            </div>
+          ))}
+        </div>
+
+        <div className="flex-1 p-3 overflow-hidden">
+          <div className="flex items-center justify-between mb-3">
+            <span className="font-semibold text-gray-900 text-[11px]">Verification Request</span>
+            <span className="text-[8px] text-primary font-medium">New Request</span>
+          </div>
+
+          <div className="space-y-2">
+            {steps.map((s, i) => {
+              const isActive = step === i;
+              const isDone = step > i;
+              return (
+                <motion.div
+                  key={i}
+                  className="bg-white rounded-lg border border-gray-100 p-3 flex items-start gap-3"
+                  animate={{
+                    borderColor: isActive ? 'hsl(199, 91%, 64%)' : '#f3f4f6',
+                    backgroundColor: isDone ? 'rgba(79, 195, 247, 0.04)' : 'white',
+                  }}
+                >
+                  <motion.div
+                    className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 ${
+                      isDone ? 'bg-primary text-white' : isActive ? 'bg-primary/20 text-primary' : 'bg-gray-100 text-gray-400'
+                    }`}
+                    animate={isActive ? { scale: [1, 1.1, 1] } : {}}
+                    transition={{ duration: 1, repeat: Infinity }}
+                  >
+                    {isDone ? <Check className="w-3.5 h-3.5" /> : <s.icon className="w-3.5 h-3.5" />}
+                  </motion.div>
+                  <div>
+                    <div className={`font-medium ${isDone || isActive ? 'text-gray-900' : 'text-gray-400'}`}>{s.label}</div>
+                    <div className="text-[8px] text-gray-400 mt-0.5">{s.detail}</div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </WindowChrome>
+  );
+};
+
+
+const GroundIntelligence = () => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -379,36 +283,50 @@ const GroundIntelligence = () => {
     }
   };
 
-  const benefits = [
+  const pillars = [
     {
-      title: "Centralize supplier data",
-      description: "Store all supplier information, risk scores, performance metrics, and audit history in one secure platform."
+      icon: Eye,
+      title: "Verify",
+      subtitle: "On-demand expert evaluation",
+      description: "Send qualified auditors to any supplier, anytime — to evaluate the specific topics you care about. No generic checklists. Real answers to your real questions.",
     },
     {
-      title: "Real-time monitoring",
-      description: "Track supplier performance continuously with IoT sensors and AI-powered analytics for instant visibility."
+      icon: GitCompare,
+      title: "Benchmark",
+      subtitle: "Compare with standardized scores",
+      description: "Compare suppliers objectively using standardized scores derived from real audit data. Not self-reported surveys — verified ground truth from on-site visits.",
     },
     {
-      title: "Predictive intelligence",
-      description: "Leverage AI insights on risk patterns and capacity trends to make proactive decisions."
-    }
+      icon: TrendingUp,
+      title: "Predict",
+      subtitle: "Trend analysis from audit history",
+      description: "Track how suppliers develop over time. Identify improvement trajectories or early warning signals based on historical audit results, not scraped news feeds.",
+    },
+  ];
+
+  const differentiators = [
+    { desk: "Supplier self-assessment", ground: "Independent on-site verification" },
+    { desk: "News-feed risk alerts", ground: "Expert evaluation of specific topics" },
+    { desk: "Outdated database info", ground: "Fresh data from recent auditor visits" },
+    { desk: "Generic compliance badges", ground: "Standardized scores with evidence photos" },
+    { desk: "One-size-fits-all reports", ground: "Custom topic deep-dives on your request" },
   ];
 
   const features = [
     {
-      title: "Live monitoring dashboard",
-      description: "Monitor all your suppliers in real-time with our centralized dashboard. Track performance metrics, risk indicators, and capacity utilization across your entire supply network.",
-      mockup: <LiveMonitoringMockup />
+      title: "On-demand verification visits",
+      description: "Define what you need verified — capacity, process capability, quality systems, working conditions — and we dispatch a matched expert auditor within days. You receive a standardized, evidence-backed report.",
+      mockup: <OnDemandVerificationMockup />
     },
     {
-      title: "AI-powered risk scoring",
-      description: "Our AI continuously analyzes supplier data to provide accurate risk scores. Identify potential issues before they impact your operations with predictive analytics.",
-      mockup: <RiskScoringMockup />
+      title: "Supplier comparison matrix",
+      description: "Compare your shortlisted suppliers side-by-side using scores that come from real on-site evaluations. Capacity, quality, delivery reliability — all verified by independent auditors, not algorithms.",
+      mockup: <SupplierComparisonMockup />
     },
     {
-      title: "Seamless ERP integrations",
-      description: "Connect Ground Intelligence with your existing ERP, MES, and QMS systems. Keep your source of truth intact while gaining enhanced visibility.",
-      mockup: <ERPIntegrationMockup />
+      title: "Audit history & trend prediction",
+      description: "Every audit builds your supplier intelligence over time. Track improvement trajectories, spot declining performance early, and make data-driven decisions backed by ground truth.",
+      mockup: <AuditTrendMockup />
     }
   ];
 
@@ -418,48 +336,48 @@ const GroundIntelligence = () => {
       label: "General",
       faqs: [
         {
-          question: "How does Ground Intelligence monitor suppliers in real-time?",
-          answer: "Ground Intelligence combines IoT sensor data, system integrations, and AI analytics to provide continuous visibility into supplier operations. Data is collected from multiple sources and processed in real-time to detect anomalies and predict potential issues."
+          question: "How is Ground Intelligence different from Prewave or other data providers?",
+          answer: "Unlike data-scraping platforms that monitor news feeds and public records, Ground Intelligence is based on physical verification. We send expert auditors on-site to evaluate specific topics you define. The result is verified ground truth — not assumptions based on web data."
         },
         {
-          question: "How long does implementation take?",
-          answer: "Most teams are operational within 2-4 weeks. The pilot program focuses on a single critical supplier, with full network deployment following. Our team provides comprehensive support throughout the implementation process."
+          question: "What topics can I request for verification?",
+          answer: "Anything that matters for your sourcing decision: capacity verification, process capability (Cpk), quality management systems, machine park evaluation, working conditions, environmental compliance, logistics capabilities, and more. You define the scope."
         },
         {
-          question: "What are the key benefits of using Ground Intelligence?",
-          answer: "Ground Intelligence reduces issue detection lead time by up to 85%, achieves 92% accuracy in delay prediction, and enables 3.2x faster response to supplier risks. The platform transforms reactive supplier management into proactive supply chain optimization."
-        },
-      ],
-    },
-    {
-      id: "integrations",
-      label: "Integrations",
-      faqs: [
-        {
-          question: "Does Ground Intelligence integrate with existing systems?",
-          answer: "Yes. Ground Intelligence provides open APIs and pre-built connectors for major ERP, MES, and QMS systems. Your existing source of truth remains intact while gaining enhanced real-time visibility."
-        },
-        {
-          question: "What data sources can be connected?",
-          answer: "We support IoT sensors, ERP systems (SAP, Oracle, Microsoft Dynamics), MES platforms, QMS tools, and custom data feeds via our REST API. Data syncs continuously for real-time monitoring."
-        },
-        {
-          question: "How long does integration setup take?",
-          answer: "Standard ERP integrations can be configured in 1-2 days. IoT sensor deployment typically takes 1-2 weeks depending on supplier locations. Our integration team provides full support throughout."
+          question: "How quickly can an auditor visit a supplier?",
+          answer: "Typically within 3–5 business days. We have 850+ qualified auditors in 47 countries, so there's almost always a local expert available near your supplier."
         },
       ],
     },
     {
-      id: "security",
-      label: "Security",
+      id: "methodology",
+      label: "Methodology",
       faqs: [
         {
-          question: "How is supplier data protected?",
-          answer: "All data is encrypted at rest (AES-256) and in transit (TLS 1.3). We maintain SOC 2 Type II certification, GDPR compliance, and undergo regular third-party security audits."
+          question: "How are the standardized scores calculated?",
+          answer: "Scores are based on a proprietary evaluation framework applied consistently by all auditors. Each topic has defined criteria, evidence requirements, and scoring rubrics. This ensures comparability across suppliers, industries, and geographies."
         },
         {
-          question: "Who has access to the intelligence data?",
-          answer: "Access is controlled through role-based permissions. You define who can view supplier data, risk scores, and analytics. All access is logged and auditable."
+          question: "What evidence do I receive with each report?",
+          answer: "Every report includes standardized scores, written assessments, geo-tagged evidence photos, and auditor commentary. For process capability topics, you receive actual measurement data and Cpk values."
+        },
+        {
+          question: "Can I track supplier development over time?",
+          answer: "Yes. Each audit adds to a supplier's historical profile. You can visualize trends per topic, compare improvement trajectories across suppliers, and identify patterns that predict future performance."
+        },
+      ],
+    },
+    {
+      id: "pricing",
+      label: "Pricing",
+      faqs: [
+        {
+          question: "How much does a verification visit cost?",
+          answer: "A standard single-topic verification starts at €700. Multi-topic deep-dives and comprehensive audits are priced based on scope and location. All pricing is transparent — no hidden fees."
+        },
+        {
+          question: "Is there a subscription model?",
+          answer: "Yes. For organizations that need regular supplier monitoring, we offer subscription plans with scheduled verification visits, continuous benchmark updates, and predictive analytics. Contact us for a tailored plan."
         },
       ],
     },
@@ -506,7 +424,7 @@ const GroundIntelligence = () => {
       <div className="relative">
       <Navigation />
       
-      {/* Hero Section - Clean white background like Archlet */}
+      {/* Hero Section */}
       <section
         data-nav-theme="light"
         className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background"
@@ -529,8 +447,8 @@ const GroundIntelligence = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground mb-8"
           >
-            One place for all<br />
-            supplier intelligence
+            Truth you can<br />
+            send someone for
           </motion.h1>
 
           <motion.p
@@ -539,7 +457,7 @@ const GroundIntelligence = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg sm:text-xl text-muted-foreground max-w-2xl mb-10"
           >
-            Monitor supplier performance, risk, and capacity in one integrated intelligence platform.
+            Not scraped data. Not self-reported surveys. Verified intelligence from expert auditors who visit your suppliers on-site — evaluating exactly what you need to know.
           </motion.p>
 
           <motion.div
@@ -554,24 +472,41 @@ const GroundIntelligence = () => {
         </div>
       </section>
 
-      {/* DIN annotation — grid 4→6 */}
+      {/* DIN annotation */}
       <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
         <TechnicalAnnotation label="1200" from={4} to={6} />
       </div>
 
-      {/* Section cut marker A—A */}
       <div className="mx-auto max-w-[1400px] px-4 md:px-8">
         <SectionCutMarker section="A" from={0} to={5} />
       </div>
 
-      {/* Benefits Section - 3 columns with accent bars */}
+      {/* Three Pillars: Verify · Benchmark · Predict */}
       <section
         data-nav-theme="light"
         className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background border-t border-border"
       >
         <div className="mx-auto max-w-[1400px] px-8">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="section-eyebrow mb-4"
+          >
+            The three pillars
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.05 }}
+            className="section-headline text-foreground mb-16"
+          >
+            Intelligence built on<br />ground truth
+          </motion.h2>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
-            {benefits.map((benefit, index) => (
+            {pillars.map((pillar, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
@@ -580,13 +515,17 @@ const GroundIntelligence = () => {
                 transition={{ delay: index * 0.1 }}
                 className="space-y-4"
               >
-                {/* Accent bar - using primary color */}
-                <div className="w-16 h-1.5 bg-primary rounded-full" />
-                <h3 className="text-xl lg:text-2xl font-semibold text-foreground">
-                  {benefit.title}
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <pillar.icon className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-2xl lg:text-3xl font-semibold text-foreground">
+                  {pillar.title}
                 </h3>
+                <p className="text-sm font-medium text-primary tracking-wide">
+                  {pillar.subtitle}
+                </p>
                 <p className="text-muted-foreground text-base lg:text-lg leading-relaxed">
-                  {benefit.description}
+                  {pillar.description}
                 </p>
               </motion.div>
             ))}
@@ -594,10 +533,68 @@ const GroundIntelligence = () => {
         </div>
       </section>
 
-      {/* Feature Showcase Section - Tabbed with images */}
+      {/* Desk Research vs. Ground Truth */}
       <section
         data-nav-theme="light"
         className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-muted/30"
+      >
+        <div className="mx-auto max-w-[1400px] px-8">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="section-eyebrow mb-4"
+          >
+            The difference
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.05 }}
+            className="section-headline text-foreground mb-16"
+          >
+            Desk research vs.<br />on-site reality
+          </motion.h2>
+
+          <div className="bg-background border border-border overflow-hidden">
+            {/* Table header */}
+            <div className="grid grid-cols-2 border-b border-border">
+              <div className="px-6 lg:px-8 py-4 bg-muted/50">
+                <span className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Typical data providers</span>
+              </div>
+              <div className="px-6 lg:px-8 py-4 bg-primary/5">
+                <span className="text-sm font-semibold text-primary uppercase tracking-wider">YVOO Ground Intelligence</span>
+              </div>
+            </div>
+            {/* Table rows */}
+            {differentiators.map((d, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
+                className="grid grid-cols-2 border-b border-border last:border-0"
+              >
+                <div className="px-6 lg:px-8 py-5 flex items-center gap-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/30 flex-shrink-0" />
+                  <span className="text-muted-foreground text-sm lg:text-base">{d.desk}</span>
+                </div>
+                <div className="px-6 lg:px-8 py-5 flex items-center gap-3 bg-primary/[0.03]">
+                  <Check className="w-4 h-4 text-primary flex-shrink-0" strokeWidth={2.5} />
+                  <span className="text-foreground text-sm lg:text-base font-medium">{d.ground}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Feature Showcase - Three animated mockups */}
+      <section
+        data-nav-theme="light"
+        className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background"
         id="features"
       >
         <div className="mx-auto max-w-[1400px] px-8">
@@ -633,14 +630,13 @@ const GroundIntelligence = () => {
         </div>
       </section>
 
-      {/* DIN annotation — grid 0→3 */}
+      {/* DIN annotation */}
       <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
         <TechnicalAnnotation label="700" from={0} to={3} />
       </div>
 
-      {/* Dimension line — risk detection speed */}
       <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-        <DimensionLine from="72" to="4" unit=" h" gridFrom={1} gridTo={5} />
+        <DimensionLine from="Desk" to="Ground" unit="" gridFrom={1} gridTo={5} />
       </div>
 
       {/* Results Section */}
@@ -657,117 +653,51 @@ const GroundIntelligence = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl lg:text-5xl font-medium tracking-tight text-foreground">
-              Proven results
+              Verified results
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-12">
             {[
-              { metric: "−85%", label: "Lead time for issue detection" },
-              { metric: "92%", label: "Accuracy in delay prediction" },
-              { metric: "3.2x", label: "Faster response to supplier risks" }
+              { metric: "850+", label: "Expert auditors worldwide" },
+              { metric: "47", label: "Countries covered" },
+              { metric: "3 days", label: "Avg. time to on-site visit" },
+              { metric: "€700", label: "Starting price per verification" }
             ].map((item, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.15 }}
-                className="text-center p-8"
+                transition={{ delay: index * 0.1 }}
+                className="text-center p-6"
               >
-                <div className="text-5xl lg:text-6xl xl:text-7xl font-bold text-primary mb-4">
+                <div className="text-4xl lg:text-5xl xl:text-6xl font-bold text-primary mb-3">
                   {item.metric}
                 </div>
-                <p className="text-muted-foreground text-lg">{item.label}</p>
+                <p className="text-muted-foreground text-base">{item.label}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section 
-        data-nav-theme="light" 
-        className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-muted/30"
-        id="pricing"
-      >
-        <div className="mx-auto max-w-[1400px] px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl lg:text-5xl font-medium tracking-tight text-foreground">
-              Pricing plans
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            {[
-              { 
-                name: "Pilot", 
-                description: "Single-supplier deployment",
-                features: ["Monitor one critical supplier", "6-month engagement", "Training included"]
-              },
-              { 
-                name: "Network", 
-                description: "Multi-supplier program",
-                features: ["Up to 10 suppliers", "Comparative analytics", "Dedicated analyst"],
-                highlighted: true
-              },
-              { 
-                name: "Enterprise", 
-                description: "Organization-wide intelligence",
-                features: ["Unlimited suppliers", "Custom integrations", "Strategic advisory"]
-              }
-            ].map((plan, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className={`p-8 lg:p-10 ${
-                  plan.highlighted 
-                    ? 'bg-[#ebebeb] border-2 border-primary' 
-                    : 'bg-[#ebebeb]'
-                } hover:bg-[#e3e3e3] transition-colors duration-300`}
-              >
-                <h3 className="text-2xl font-semibold text-foreground mb-2">{plan.name}</h3>
-                <p className="text-muted-foreground mb-8">{plan.description}</p>
-                <ul className="space-y-4">
-                  {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-3 text-foreground">
-                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" strokeWidth={2} />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* DIN annotation — grid 2→5 */}
+      {/* DIN annotation */}
       <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
         <TechnicalAnnotation label="Ø 800" from={2} to={5} />
       </div>
 
-      {/* Tolerance notation — monitoring accuracy */}
       <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-        <ToleranceNotation nominal="97.8" tolerance="0.5" unit="%" label="Detection Rate" gridColumn={3} />
+        <ToleranceNotation nominal="97.8" tolerance="0.5" unit="%" label="Verification Accuracy" gridColumn={3} />
       </div>
 
-      {/* FAQ Section - Homepage style */}
+      {/* FAQ Section */}
       <section 
         data-nav-theme="light" 
-        className="py-24 md:py-32 bg-white"
+        className="py-24 md:py-32 bg-background"
         id="faq"
       >
         <div className="mx-auto max-w-[1400px] px-8">
-          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -779,7 +709,6 @@ const GroundIntelligence = () => {
             </h2>
           </motion.div>
 
-          {/* Category Tabs - matching homepage */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -802,7 +731,6 @@ const GroundIntelligence = () => {
             ))}
           </motion.div>
 
-          {/* FAQ List — shifted one grid column right */}
           <div className="grid grid-cols-1 lg:grid-cols-6 gap-0">
             <div className="hidden lg:block lg:col-span-1" />
             <motion.div
@@ -853,7 +781,7 @@ const GroundIntelligence = () => {
         </div>
       </section>
 
-      {/* Related Products Section */}
+      {/* Related Products */}
       <section 
         data-nav-theme="light" 
         className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-muted/30"
@@ -896,17 +824,16 @@ const GroundIntelligence = () => {
         </div>
       </section>
 
-      {/* DIN annotation — grid 3→6 */}
+      {/* DIN annotation */}
       <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
         <TechnicalAnnotation label="950" from={3} to={6} />
       </div>
 
-      {/* Section cut marker B—B */}
       <div className="mx-auto max-w-[1400px] px-4 md:px-8">
         <SectionCutMarker section="B" from={2} to={6} />
       </div>
 
-      {/* Final CTA Section */}
+      {/* Final CTA */}
       <section 
         data-nav-theme="light" 
         className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background border-t border-border"
@@ -920,11 +847,11 @@ const GroundIntelligence = () => {
             className="space-y-8"
           >
             <h2 className="text-4xl lg:text-5xl xl:text-6xl font-medium tracking-tight text-foreground">
-              Ready to transform supplier intelligence?
+              Stop guessing. Start verifying.
             </h2>
 
             <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
-              See how Ground Intelligence gives you real-time visibility into your entire supply network.
+              See how Ground Intelligence gives you verified supplier data from real on-site evaluations — not scraped feeds.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
