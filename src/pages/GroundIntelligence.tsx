@@ -533,7 +533,7 @@ const GroundIntelligence = () => {
         {/* ═══════════════════════════════════════════════════
             HOW IT WORKS — Topic Verification Flow
         ═══════════════════════════════════════════════════ */}
-        <section className="relative overflow-hidden bg-muted pt-20 md:pt-28 lg:pt-32 pb-12 md:pb-16">
+        <section className="relative overflow-hidden bg-white pt-20 md:pt-28 lg:pt-32 pb-12 md:pb-16">
           <div className="mx-auto max-w-[1400px] px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
