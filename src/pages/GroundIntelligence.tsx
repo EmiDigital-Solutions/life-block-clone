@@ -251,14 +251,14 @@ const GroundIntelligence = () => {
         {/* ═══════════════════════════════════════════════════
             COMPARISON — Desk Research vs. On-Site Reality
         ═══════════════════════════════════════════════════ */}
-        <section data-nav-theme="light" className="pt-24 pb-12 md:pt-32 md:pb-16 bg-white">
+        <section data-nav-theme="light" className="py-24 md:py-32 bg-white">
           <div className="mx-auto max-w-[1400px] px-8">
             {/* Header */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="max-w-3xl mb-12"
+              className="max-w-3xl mb-16"
             >
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-px bg-foreground" />
@@ -269,7 +269,7 @@ const GroundIntelligence = () => {
               </h2>
             </motion.div>
 
-            {/* Old vs New Comparison - Auditors style */}
+            {/* Old vs New Comparison */}
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
               {/* Old Way - Desk Research */}
               <motion.div
@@ -277,18 +277,18 @@ const GroundIntelligence = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: 0.1 }}
-                className="bg-[#ebebeb] p-10 hover:bg-[#e3e3e3] transition-colors duration-300"
+                className="bg-[#ebebeb] p-10 md:p-14 hover:bg-[#e3e3e3] transition-colors duration-300"
               >
-                <p className="text-sm font-medium tracking-[0.2em] text-muted-foreground uppercase mb-8">
+                <p className="text-sm font-medium tracking-[0.2em] text-muted-foreground uppercase mb-10">
                   Typical data providers
                 </p>
-                <div className="space-y-5">
+                <div className="space-y-6">
                   {differentiators.map((d, idx) => (
-                    <div key={idx} className="flex items-center gap-4">
-                      <div className="w-6 h-6 rounded-lg bg-destructive/10 flex items-center justify-center flex-shrink-0">
-                        <X className="w-3 h-3 text-destructive" />
+                    <div key={idx} className="flex items-start gap-4">
+                      <div className="w-7 h-7 rounded-lg bg-destructive/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <X className="w-3.5 h-3.5 text-destructive" />
                       </div>
-                      <span className="text-muted-foreground">{d.desk}</span>
+                      <span className="text-foreground/60 text-base md:text-lg leading-relaxed">{d.desk}</span>
                     </div>
                   ))}
                 </div>
@@ -300,18 +300,18 @@ const GroundIntelligence = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: 0.2 }}
-                className="bg-[#0a0a0a] p-10"
+                className="bg-[#0a0a0a] p-10 md:p-14"
               >
-                <p className="text-sm font-medium tracking-[0.2em] text-white/40 uppercase mb-8">
+                <p className="text-sm font-medium tracking-[0.2em] text-white/40 uppercase mb-10">
                   YVOO Supplier Intelligence
                 </p>
-                <div className="space-y-5">
+                <div className="space-y-6">
                   {differentiators.map((d, idx) => (
-                    <div key={idx} className="flex items-center gap-4">
-                      <div className="w-6 h-6 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
-                        <Check className="w-3 h-3 text-primary" />
+                    <div key={idx} className="flex items-start gap-4">
+                      <div className="w-7 h-7 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <Check className="w-3.5 h-3.5 text-primary" />
                       </div>
-                      <span className="text-white/80">{d.ground}</span>
+                      <span className="text-white text-base md:text-lg leading-relaxed">{d.ground}</span>
                     </div>
                   ))}
                 </div>
