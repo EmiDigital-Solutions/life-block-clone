@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Plus, Minus, ArrowRight, Check, X } from "lucide-react";
 import GroundIntelligenceFeatureModal, { groundIntelligenceFeatures, type GroundIntelligenceFeature } from "@/components/GroundIntelligenceFeatureModal";
 import CheckpointModal, { checkpointData, type CheckpointData } from "@/components/CheckpointModal";
@@ -32,6 +32,60 @@ const GroundIntelligence = () => {
   const [hoveredStepIndex, setHoveredStepIndex] = useState<number | null>(null);
   const howItWorksRef = useRef(null);
   const howItWorksInView = useInView(howItWorksRef, { once: true, amount: 0.1 });
+
+  // JSON-LD structured data for SEO
+  useEffect(() => {
+    const serviceSchema = {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "YVOO Ground Intelligence — On-Site Supplier Verification",
+      "description": "Independent on-site supplier evaluation covering machine park, measurement systems, process capability, capacity, material traceability, HSE compliance, and equipment intelligence. Conducted by 850+ certified industry-specialized auditors in 45+ countries.",
+      "provider": {
+        "@type": "Organization",
+        "name": "YVOO",
+        "url": "https://www.yvoo.io"
+      },
+      "serviceType": "Supplier Audit & Verification",
+      "areaServed": "Worldwide",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "On-Site Checkpoints",
+        "itemListElement": checkpointData.map((cp, idx) => ({
+          "@type": "Offer",
+          "position": idx + 1,
+          "itemOffered": {
+            "@type": "Service",
+            "name": cp.modal.headline,
+            "description": cp.modal.overview
+          }
+        }))
+      }
+    };
+
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": checkpointData.map(cp => ({
+        "@type": "Question",
+        "name": `What does ${cp.modal.headline} verify at a supplier?`,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": `${cp.modal.overview} ${cp.modal.whyItMatters}`
+        }
+      }))
+    };
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = "ground-intelligence-jsonld";
+    script.textContent = JSON.stringify([serviceSchema, faqSchema]);
+    document.head.appendChild(script);
+
+    return () => {
+      const el = document.getElementById("ground-intelligence-jsonld");
+      if (el) el.remove();
+    };
+  }, []);
 
   const toggleFaq = (index: number) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
