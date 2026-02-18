@@ -1,9 +1,4 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import ROICalculator from "./ROICalculator";
 
 const stats = [
   { category: "Move faster", value: "72%", description: "Faster audit lead times compared to traditional methods" },
@@ -13,7 +8,6 @@ const stats = [
 ];
 
 const WhyYVOOSection = () => {
-  const [showROIModal, setShowROIModal] = useState(false);
 
   return (
     <section className="py-16 md:py-24 bg-white">
@@ -74,29 +68,12 @@ const WhyYVOOSection = () => {
             <p className="text-lg md:text-xl lg:text-2xl font-light text-foreground/80 leading-relaxed tracking-tight mb-6">
               "Our AI Auditor Agent continuously searches LinkedIn, ISO registries, VDA/IATF certification bodies, and professional networks worldwide. The auditors already exist — certified, experienced. We connect them on-demand. Every auditor undergoes background verification, Atlas AI training, and quality certification before activation."
             </p>
-            <p className="text-sm font-medium text-foreground/50 tracking-wide mb-8">
+            <p className="text-sm font-medium text-foreground/50 tracking-wide">
               — YVOO Founders
             </p>
-            <Button
-              size="lg"
-              className="h-16 px-12 font-mono text-lg"
-              onClick={() => setShowROIModal(true)}
-            >
-              Calculate Your Savings
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
           </div>
         </motion.div>
       </div>
-
-      <Dialog open={showROIModal} onOpenChange={setShowROIModal}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-bold">Calculate Your Savings</DialogTitle>
-          </DialogHeader>
-          <ROICalculator />
-        </DialogContent>
-      </Dialog>
     </section>
   );
 };
