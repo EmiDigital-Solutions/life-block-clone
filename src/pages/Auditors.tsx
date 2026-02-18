@@ -12,6 +12,7 @@ import {
   Play
 } from "lucide-react";
 import PageGridOverlay from "@/components/PageGridOverlay";
+import PageSEO from "@/components/PageSEO";
 import TechnicalAnnotation from "@/components/TechnicalAnnotation";
 import DimensionLine from "@/components/DimensionLine";
 import SectionCutMarker from "@/components/SectionCutMarker";
@@ -92,6 +93,17 @@ const Auditors = () => {
 
   return (
     <div className="min-h-screen relative">
+      <PageSEO
+        title="Join YVOO's Auditor Network — Certified Experts Worldwide"
+        description="Become part of 850+ certified industry-specialized auditors across 45+ countries. Earn competitive rates for on-site supplier evaluations in automotive, aerospace, pharma, and more."
+        canonical="/auditors"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "YVOO Auditor Network",
+          "description": "Join 850+ certified auditors worldwide. Flexible scheduling, competitive pay, industry specialization."
+        }}
+      />
       <PageGridOverlay />
       <div className="relative">
       <Navigation />

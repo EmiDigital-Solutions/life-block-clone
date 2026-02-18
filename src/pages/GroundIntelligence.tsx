@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { Plus, Minus, ArrowRight, Check, X } from "lucide-react";
 import GroundIntelligenceFeatureModal, { groundIntelligenceFeatures, type GroundIntelligenceFeature } from "@/components/GroundIntelligenceFeatureModal";
 import CheckpointModal, { checkpointData, type CheckpointData } from "@/components/CheckpointModal";
+import PageSEO from "@/components/PageSEO";
 import { useInView } from "framer-motion";
 import PageGridOverlay from "@/components/PageGridOverlay";
 import TechnicalAnnotation from "@/components/TechnicalAnnotation";
@@ -33,18 +34,13 @@ const GroundIntelligence = () => {
   const howItWorksRef = useRef(null);
   const howItWorksInView = useInView(howItWorksRef, { once: true, amount: 0.1 });
 
-  // JSON-LD structured data for SEO
-  useEffect(() => {
-    const serviceSchema = {
+  const groundIntelligenceJsonLd = [
+    {
       "@context": "https://schema.org",
       "@type": "Service",
       "name": "YVOO Ground Intelligence — On-Site Supplier Verification",
       "description": "Independent on-site supplier evaluation covering machine park, measurement systems, process capability, capacity, material traceability, HSE compliance, and equipment intelligence. Conducted by 850+ certified industry-specialized auditors in 45+ countries.",
-      "provider": {
-        "@type": "Organization",
-        "name": "YVOO",
-        "url": "https://www.yvoo.io"
-      },
+      "provider": { "@type": "Organization", "name": "YVOO", "url": "https://www.yvoo.io" },
       "serviceType": "Supplier Audit & Verification",
       "areaServed": "Worldwide",
       "hasOfferCatalog": {
@@ -53,39 +49,20 @@ const GroundIntelligence = () => {
         "itemListElement": checkpointData.map((cp, idx) => ({
           "@type": "Offer",
           "position": idx + 1,
-          "itemOffered": {
-            "@type": "Service",
-            "name": cp.modal.headline,
-            "description": cp.modal.overview
-          }
+          "itemOffered": { "@type": "Service", "name": cp.modal.headline, "description": cp.modal.overview }
         }))
       }
-    };
-
-    const faqSchema = {
+    },
+    {
       "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": checkpointData.map(cp => ({
         "@type": "Question",
         "name": `What does ${cp.modal.headline} verify at a supplier?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `${cp.modal.overview} ${cp.modal.whyItMatters}`
-        }
+        "acceptedAnswer": { "@type": "Answer", "text": `${cp.modal.overview} ${cp.modal.whyItMatters}` }
       }))
-    };
-
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.id = "ground-intelligence-jsonld";
-    script.textContent = JSON.stringify([serviceSchema, faqSchema]);
-    document.head.appendChild(script);
-
-    return () => {
-      const el = document.getElementById("ground-intelligence-jsonld");
-      if (el) el.remove();
-    };
-  }, []);
+    }
+  ];
 
   const toggleFaq = (index: number) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
@@ -161,6 +138,12 @@ const GroundIntelligence = () => {
 
   return (
     <div className="min-h-screen relative">
+      <PageSEO
+        title="Ground Intelligence — On-Site Supplier Verification | YVOO"
+        description="Verified supplier intelligence through physical on-site evaluation. Machine park, measurement systems, process capability, capacity, material traceability, HSE, and equipment intelligence — assessed by certified industry experts."
+        canonical="/ground-intelligence"
+        jsonLd={groundIntelligenceJsonLd}
+      />
       <PageGridOverlay />
       <div className="relative">
         <Navigation />

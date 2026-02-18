@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import PageGridOverlay from "@/components/PageGridOverlay";
+import PageSEO from "@/components/PageSEO";
 import TechnicalAnnotation from "@/components/TechnicalAnnotation";
 import DimensionLine from "@/components/DimensionLine";
 import SectionCutMarker from "@/components/SectionCutMarker";
@@ -331,6 +332,19 @@ const Features = () => {
 
   return (
     <div className="min-h-screen bg-white relative" data-nav-theme="light">
+      <PageSEO
+        title="Platform Features — SearchPro+, ScanPro+, Ground Intelligence | YVOO"
+        description="Explore YVOO's complete feature set: AI-powered supplier search, on-site audit management, equipment intelligence, ERP integrations, and predictive risk scoring."
+        canonical="/features"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "YVOO Platform",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Web",
+          "description": "AI-powered supplier audit and discovery platform with SearchPro+, ScanPro+, and Ground Intelligence modules."
+        }}
+      />
       <PageGridOverlay />
       <div className="relative">
       <Navigation />

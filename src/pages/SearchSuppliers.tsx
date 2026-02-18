@@ -1,6 +1,7 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Check, ArrowRight, X } from "lucide-react";
 import PageGridOverlay from "@/components/PageGridOverlay";
+import PageSEO from "@/components/PageSEO";
 import TechnicalAnnotation from "@/components/TechnicalAnnotation";
 import DimensionLine from "@/components/DimensionLine";
 import SectionCutMarker from "@/components/SectionCutMarker";
@@ -1895,6 +1896,18 @@ const ComparisonMockup = () => {
 
   return (
     <div className="min-h-screen bg-white relative">
+      <PageSEO
+        title="SearchPro+ — AI-Powered Supplier Discovery | YVOO"
+        description="Find and evaluate suppliers with AI-powered search, intelligent matching, and real-time company intelligence. Access verified supplier profiles across all manufacturing sectors worldwide."
+        canonical="/search-suppliers"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "YVOO SearchPro+",
+          "applicationCategory": "BusinessApplication",
+          "description": "AI-powered supplier discovery platform with intelligent matching, real-time enrichment, and multi-agent search."
+        }}
+      />
       <PageGridOverlay />
       <div className="relative">
       <Navigation />

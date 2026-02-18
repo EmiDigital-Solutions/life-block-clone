@@ -1,3 +1,4 @@
+import PageSEO from "@/components/PageSEO";
 import PageGridOverlay from "@/components/PageGridOverlay";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -115,6 +116,22 @@ const AboutUs = () => {
 
   return (
     <div className="min-h-screen bg-background relative">
+      <PageSEO
+        title="About YVOO — Transforming Supplier Audits with AI"
+        description="Founded in 2023, YVOO combines AI technology with 850+ certified auditors to deliver on-site supplier verification across 45+ countries. 70% cost reduction, 80% time savings."
+        canonical="/about-us"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          "mainEntity": {
+            "@type": "Organization",
+            "name": "YVOO",
+            "foundingDate": "2023",
+            "url": "https://www.yvoo.io",
+            "description": "AI-powered supplier audit and verification platform."
+          }
+        }}
+      />
       <PageGridOverlay />
       <div className="relative">
       <Navigation />
