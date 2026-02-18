@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Plus, Minus, ArrowRight, Check } from "lucide-react";
+import { Plus, Minus, ArrowRight, Check, X } from "lucide-react";
 import GroundIntelligenceFeatureModal, { groundIntelligenceFeatures, type GroundIntelligenceFeature } from "@/components/GroundIntelligenceFeatureModal";
 import PageGridOverlay from "@/components/PageGridOverlay";
 import TechnicalAnnotation from "@/components/TechnicalAnnotation";
@@ -253,57 +253,69 @@ const GroundIntelligence = () => {
         ═══════════════════════════════════════════════════ */}
         <section data-nav-theme="light" className="pt-24 pb-12 md:pt-32 md:pb-16 bg-white">
           <div className="mx-auto max-w-[1400px] px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-6 gap-8 mb-12">
+            {/* Header */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="max-w-3xl mb-12"
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-px bg-foreground" />
+                <span className="section-eyebrow">The difference</span>
+              </div>
+              <h2 className="section-headline text-foreground">
+                Desk research vs.<br />on-site reality
+              </h2>
+            </motion.div>
+
+            {/* Old vs New Comparison - Auditors style */}
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
+              {/* Old Way - Desk Research */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="lg:col-span-3"
+                transition={{ duration: 0.7, delay: 0.1 }}
+                className="bg-[#ebebeb] p-10 hover:bg-[#e3e3e3] transition-colors duration-300"
               >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-16 h-px bg-foreground/30" />
-                  <span className="section-eyebrow">The difference</span>
+                <p className="text-sm font-medium tracking-[0.2em] text-muted-foreground uppercase mb-8">
+                  Typical data providers
+                </p>
+                <div className="space-y-5">
+                  {differentiators.map((d, idx) => (
+                    <div key={idx} className="flex items-center gap-4">
+                      <div className="w-6 h-6 rounded-lg bg-destructive/10 flex items-center justify-center flex-shrink-0">
+                        <X className="w-3 h-3 text-destructive" />
+                      </div>
+                      <span className="text-muted-foreground">{d.desk}</span>
+                    </div>
+                  ))}
                 </div>
-                <h2 className="section-headline text-foreground font-semibold">
-                  Desk research vs.<br />on-site reality
-                </h2>
               </motion.div>
 
-              <div className="lg:col-span-2 lg:col-start-5 flex flex-col justify-end">
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  Data providers scrape the web. We send qualified experts to the factory floor.
+              {/* New Way - YVOO */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                className="bg-[#0a0a0a] p-10"
+              >
+                <p className="text-sm font-medium tracking-[0.2em] text-white/40 uppercase mb-8">
+                  YVOO Supplier Intelligence
                 </p>
-              </div>
-            </div>
-
-            <div className="bg-background border border-border overflow-hidden">
-              <div className="grid grid-cols-2 border-b border-border">
-                <div className="px-6 lg:px-8 py-4 bg-muted/50">
-                  <span className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Typical data providers</span>
+                <div className="space-y-5">
+                  {differentiators.map((d, idx) => (
+                    <div key={idx} className="flex items-center gap-4">
+                      <div className="w-6 h-6 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <Check className="w-3 h-3 text-primary" />
+                      </div>
+                      <span className="text-white/80">{d.ground}</span>
+                    </div>
+                  ))}
                 </div>
-                <div className="px-6 lg:px-8 py-4 bg-primary/5">
-                  <span className="text-sm font-semibold text-primary uppercase tracking-wider">YVOO Supplier Intelligence</span>
-                </div>
-              </div>
-              {differentiators.map((d, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.08 }}
-                  className="grid grid-cols-2 border-b border-border last:border-0"
-                >
-                  <div className="px-6 lg:px-8 py-5 flex items-center gap-3">
-                    <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/30 flex-shrink-0" />
-                    <span className="text-muted-foreground text-sm lg:text-base">{d.desk}</span>
-                  </div>
-                  <div className="px-6 lg:px-8 py-5 flex items-center gap-3 bg-primary/[0.03]">
-                    <Check className="w-4 h-4 text-primary flex-shrink-0" strokeWidth={2.5} />
-                    <span className="text-foreground text-sm lg:text-base font-medium">{d.ground}</span>
-                  </div>
-                </motion.div>
-              ))}
+              </motion.div>
             </div>
           </div>
         </section>
