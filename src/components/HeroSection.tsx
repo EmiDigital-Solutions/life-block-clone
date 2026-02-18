@@ -106,7 +106,7 @@ const HeroSection = () => {
                     { bold: "New supplier base in weeks", rest: "not years. Unlimited audits running simultaneously" },
                     { bold: "Your checklists, AI-enhanced", rest: "your templates & requirements, elevated with AI" },
                     { bold: "Maximum objectivity", rest: "AI-guided execution eliminates bias" },
-                    { bold: "On-site verified intelligence", rest: "real supplier data with predictive insights" },
+                    { bold: "Verified facts, not claims", rest: "on-site data, risk alerts, predictions, decision-ready reports" },
                     { bold: "AI-driven CAPA & close-out", rest: "every finding tracked, escalated, and resolved digitally" },
                   ].map((item, i) => (
                     <p key={i} className="text-sm md:text-base text-foreground/60 whitespace-nowrap">
