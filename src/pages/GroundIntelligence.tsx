@@ -588,7 +588,7 @@ const GroundIntelligence = () => {
         {/* ═══════════════════════════════════════════════════
             RESULTS — Stats
         ═══════════════════════════════════════════════════ */}
-        <section data-nav-theme="light" className="relative py-20 lg:py-28 bg-white">
+        <section data-nav-theme="light" className="relative py-20 lg:py-28 bg-muted">
           <div className="mx-auto max-w-[1400px] px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -596,7 +596,7 @@ const GroundIntelligence = () => {
               viewport={{ once: true }}
               className="mb-16"
             >
-              <h2 className="section-headline text-foreground">
+              <h2 className="section-headline text-primary">
                 Verified results
               </h2>
             </motion.div>
@@ -616,7 +616,7 @@ const GroundIntelligence = () => {
                   transition={{ delay: index * 0.1 }}
                   className="border-b md:border-b-0 md:border-r border-foreground/10 last:border-r-0 p-8 md:p-10"
                 >
-                  <div className="text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground mb-3 tracking-[-0.02em]">
+                  <div className="text-4xl lg:text-5xl xl:text-6xl font-bold text-primary mb-3 tracking-[-0.02em]">
                     {item.metric}
                   </div>
                   <p className="text-muted-foreground text-sm">{item.label}</p>
@@ -693,7 +693,7 @@ const GroundIntelligence = () => {
         {/* ═══════════════════════════════════════════════════
             FAQ
         ═══════════════════════════════════════════════════ */}
-        <section data-nav-theme="light" className="py-24 md:py-32 bg-muted">
+        <section data-nav-theme="light" className="py-24 md:py-32 bg-white">
           <div className="mx-auto max-w-[1400px] px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
