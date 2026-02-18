@@ -94,8 +94,8 @@ const HeroSection = () => {
                 }}>
                   See Platform Demo →
                 </Button>
-                <Button variant="outline" size="lg" className="w-full sm:w-auto text-lg">
-                  View Sample Report →
+                <Button variant="outline" size="lg" className="w-full sm:w-auto text-lg" onClick={() => setShowROIModal(true)}>
+                  Calculate Your Savings →
                 </Button>
               </motion.div>
             </div>
