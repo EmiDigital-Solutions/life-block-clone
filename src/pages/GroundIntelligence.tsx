@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useState, useRef } from "react";
 import { Plus, Minus, ArrowRight, Check, X } from "lucide-react";
 import GroundIntelligenceFeatureModal, { groundIntelligenceFeatures, type GroundIntelligenceFeature } from "@/components/GroundIntelligenceFeatureModal";
+import CheckpointModal, { checkpointData, type CheckpointData } from "@/components/CheckpointModal";
 import { useInView } from "framer-motion";
 import PageGridOverlay from "@/components/PageGridOverlay";
 import TechnicalAnnotation from "@/components/TechnicalAnnotation";
@@ -27,6 +28,7 @@ const GroundIntelligence = () => {
   const [activeFaqCategory, setActiveFaqCategory] = useState("general");
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   const [selectedFeature, setSelectedFeature] = useState<GroundIntelligenceFeature | null>(null);
+  const [selectedCheckpoint, setSelectedCheckpoint] = useState<CheckpointData | null>(null);
   const [hoveredStepIndex, setHoveredStepIndex] = useState<number | null>(null);
   const howItWorksRef = useRef(null);
   const howItWorksInView = useInView(howItWorksRef, { once: true, amount: 0.1 });
@@ -420,40 +422,35 @@ const GroundIntelligence = () => {
             </motion.div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
-              {[
-                { src: evidenceCnc, alt: "CNC machine capability verification", label: "Machine park evaluation", detail: "Capacity, age, maintenance logs" },
-                { src: evidenceCmm, alt: "CMM coordinate measurement during audit", label: "Measurement systems", detail: "CMM, gauges, calibration records" },
-                { src: evidenceAssembly, alt: "Assembly station process verification", label: "Process capability", detail: "Cpk values, SPC, process flow" },
-                { src: evidenceCapacity, alt: "Real capacity assessment on factory floor", label: "Capacity assessment", detail: "Throughput, shift models, bottleneck analysis" },
-                { src: evidenceIncomingWarehouse, alt: "Material stock inspection in warehouse", label: "Material stock inspection", detail: "Goods receipt checks, storage conditions, traceability" },
-                { src: evidenceHse, alt: "HSE inspection on production site", label: "HSE inspection", detail: "Safety protocols, environmental compliance, PPE" },
-                { src: cncMachine, alt: "Advanced CNC turning center evaluation", label: "Equipment intelligence", detail: "OEM specs, utilization rate, condition" },
-                { src: auditorEuropean, alt: "Auditor on factory floor during evaluation", label: "Expert on-site", detail: "Certified auditor, geo-tagged evidence" },
-              ].map((item, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.05 }}
-                  className="relative aspect-square overflow-hidden group"
-                >
-                  <img
-                    src={item.src}
-                    alt={item.alt}
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                    loading="lazy"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-3 md:p-4">
-                    <span className="text-white text-xs md:text-sm font-semibold tracking-wide block">
-                      {item.label}
-                    </span>
-                    <span className="text-white/60 text-[10px] md:text-xs mt-0.5 block">
-                      {item.detail}
-                    </span>
-                  </div>
-                </motion.div>
-              ))}
+              {(() => {
+                const images = [evidenceCnc, evidenceCmm, evidenceAssembly, evidenceCapacity, evidenceIncomingWarehouse, evidenceHse, cncMachine, auditorEuropean];
+                return checkpointData.map((item, i) => (
+                  <motion.button
+                    key={i}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.05 }}
+                    onClick={() => setSelectedCheckpoint(item)}
+                    className="relative aspect-square overflow-hidden group cursor-pointer text-left"
+                  >
+                    <img
+                      src={images[i]}
+                      alt={item.alt}
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                      loading="lazy"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-3 md:p-4">
+                      <span className="text-white text-xs md:text-sm font-semibold tracking-wide block">
+                        {item.label}
+                      </span>
+                      <span className="text-white/60 text-[10px] md:text-xs mt-0.5 block">
+                        {item.detail}
+                      </span>
+                    </div>
+                  </motion.button>
+                ));
+              })()}
             </div>
           </div>
         </section>
@@ -835,6 +832,10 @@ const GroundIntelligence = () => {
       <GroundIntelligenceFeatureModal
         feature={selectedFeature}
         onClose={() => setSelectedFeature(null)}
+      />
+      <CheckpointModal
+        checkpoint={selectedCheckpoint}
+        onClose={() => setSelectedCheckpoint(null)}
       />
     </div>
   );
