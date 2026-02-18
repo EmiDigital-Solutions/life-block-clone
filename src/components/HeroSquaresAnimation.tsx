@@ -67,23 +67,23 @@ const formations = {
     { x: UNIT * 3.5, y: UNIT * 2 },
     { x: UNIT * 3.5, y: UNIT * 3 },
   ],
-  // Checkmark — diamonds (45° rotated squares) along diagonal lines
+  // Checkmark — diagonal staircase: 2-square short leg + vertex + 4-square long leg
   checkmark: [
-    // Short leg (2 squares, going down-right to vertex)
-    { x: UNIT * 0.5, y: UNIT * 1.5, rotate: 45 },
-    { x: UNIT * 1.5, y: UNIT * 2.5, rotate: 45 },
+    // Short leg (2 squares, down-right to vertex)
+    { x: 0, y: UNIT * 2 },
+    { x: UNIT, y: UNIT * 3 },
     // Vertex (bottom point)
-    { x: UNIT * 2.5, y: UNIT * 3.5, rotate: 45 },
-    // Long leg (4 squares, going up-right from vertex)
-    { x: UNIT * 3.5, y: UNIT * 2.5, rotate: 45 },
-    { x: UNIT * 4.5, y: UNIT * 1.5, rotate: 45 },
-    { x: UNIT * 5.5, y: UNIT * 0.5, rotate: 45 },
-    { x: UNIT * 6.5, y: -UNIT * 0.5, rotate: 45 },
+    { x: UNIT * 2, y: UNIT * 4 },
+    // Long leg (4 squares, up-right from vertex)
+    { x: UNIT * 3, y: UNIT * 3 },
+    { x: UNIT * 4, y: UNIT * 2 },
+    { x: UNIT * 5, y: UNIT },
+    { x: UNIT * 6, y: 0 },
     // Hidden (to keep 11 squares)
-    { x: UNIT * 10, y: UNIT * 10, opacity: 0, rotate: 45 },
-    { x: UNIT * 11, y: UNIT * 10, opacity: 0, rotate: 45 },
-    { x: UNIT * 12, y: UNIT * 10, opacity: 0, rotate: 45 },
-    { x: UNIT * 13, y: UNIT * 10, opacity: 0, rotate: 45 },
+    { x: UNIT * 3, y: UNIT * 3, opacity: 0 },
+    { x: UNIT * 4, y: UNIT * 2, opacity: 0 },
+    { x: UNIT * 5, y: UNIT, opacity: 0 },
+    { x: UNIT * 6, y: 0, opacity: 0 },
   ],
 };
 
@@ -141,7 +141,6 @@ const HeroSquaresAnimation = ({ className = "" }: HeroSquaresAnimationProps) => 
               x: pos.x,
               y: pos.y,
               opacity: (pos as any).opacity !== undefined ? (pos as any).opacity : 1,
-              rotate: (pos as any).rotate || 0,
             }}
             initial={false}
             transition={{
