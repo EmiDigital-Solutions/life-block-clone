@@ -33,13 +33,13 @@ const propositions = [
 
 const ValuePropositionsSection = () => {
   return (
-    <section className="py-20 md:py-32 bg-foreground text-background">
+    <section className="py-20 md:py-32 bg-white">
       <div className="mx-auto max-w-[1400px] px-8">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-[-0.03em] leading-[1.1] mb-16 md:mb-20 max-w-3xl"
+          className="section-headline text-foreground mb-16 md:mb-20 max-w-3xl"
         >
           What makes YVOO different
         </motion.h2>
@@ -54,17 +54,17 @@ const ValuePropositionsSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.04 }}
-                className="border-t border-background/15 py-6 md:py-8 grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-12 items-baseline"
+                className="border-t border-foreground/10 py-6 md:py-8 grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-12 items-baseline"
               >
-                <p className="text-lg md:text-xl lg:text-2xl font-semibold tracking-[-0.01em] leading-snug">
+                <p className="text-lg md:text-xl lg:text-2xl font-semibold text-foreground tracking-[-0.01em] leading-snug">
                   {item.lead}
                 </p>
-                <p className="text-background/60 text-sm md:text-base leading-relaxed">
+                <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
                   {item.detail}
                 </p>
               </motion.div>
             ))}
-            <div className="border-t border-background/15" />
+            <div className="border-t border-foreground/10" />
           </div>
         </div>
       </div>
