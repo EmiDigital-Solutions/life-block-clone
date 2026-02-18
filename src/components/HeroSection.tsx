@@ -79,7 +79,7 @@ const HeroSection = () => {
                     {/* DIN drawing reference callout */}
                     <span className="relative flex items-center flex-shrink-0 mt-[2px]">
                       <span className="font-mono text-[10px] tracking-[0.12em] text-foreground/30 border-b border-foreground/20 pb-0.5 leading-none whitespace-nowrap">
-                        DIN {100 + i + 1}-{String.fromCharCode(65 + i)}
+                        DIN {100 + i + 1}
                       </span>
                       <span className="w-4 h-px bg-foreground/20 ml-1" />
                     </span>
