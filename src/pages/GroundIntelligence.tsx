@@ -24,6 +24,14 @@ import evidenceIncomingWarehouse from "@/assets/evidence-incoming-warehouse.jpg"
 import evidenceHse from "@/assets/evidence-hse-inspection.jpg";
 import cncMachine from "@/assets/cnc-machine-dmg-nlx.jpg";
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
+import checkpointMachinePark from "@/assets/checkpoint-machine-park.jpg";
+import checkpointMeasurement from "@/assets/checkpoint-measurement-systems.jpg";
+import checkpointProcess from "@/assets/checkpoint-process-capability.jpg";
+import checkpointCapacity from "@/assets/checkpoint-capacity-assessment.jpg";
+import checkpointMaterial from "@/assets/checkpoint-material-stock.jpg";
+import checkpointHse from "@/assets/checkpoint-hse-inspection.jpg";
+import checkpointEquipment from "@/assets/checkpoint-equipment-intelligence.jpg";
+import checkpointExpert from "@/assets/checkpoint-expert-onsite.jpg";
 
 const GroundIntelligence = () => {
   const [activeFaqCategory, setActiveFaqCategory] = useState("general");
@@ -460,7 +468,7 @@ const GroundIntelligence = () => {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
               {(() => {
-                const images = [evidenceCnc, evidenceCmm, evidenceAssembly, evidenceCapacity, evidenceIncomingWarehouse, evidenceHse, cncMachine, auditorEuropean];
+                const images = [checkpointMachinePark, checkpointMeasurement, checkpointProcess, checkpointCapacity, checkpointMaterial, checkpointHse, checkpointEquipment, checkpointExpert];
                 return checkpointData.map((item, i) => (
                   <motion.button
                     key={i}
