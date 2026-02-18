@@ -65,26 +65,15 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="space-y-0 mb-6 md:mb-8"
+                className="space-y-2.5 mb-6 md:mb-8"
               >
-                {[
-                  { lead: "72-hour mobilization", detail: "Any country, any industry" },
-                  { lead: "From €700 per audit", detail: "Not €15,000–25,000" },
-                  { lead: "New supplier base in weeks", detail: "Enter new markets, qualify 100+ suppliers in parallel" },
-                  { lead: "Your standards, AI-enhanced", detail: "We audit using your templates, elevated with AI" },
-                  { lead: "Maximum objectivity", detail: "AI-guided execution eliminates bias" },
-                  { lead: "On-site verified intelligence", detail: "Real supplier data, not questionnaires" },
-                  { lead: "Automated follow-up & close-out", detail: "No finding ever dies in a spreadsheet" },
-                ].map((item, i) => (
-                  <div key={i} className="border-t border-foreground/10 py-3 md:py-4">
-                    <p className="text-sm md:text-base text-foreground leading-snug">
-                      <span className="font-semibold">{item.lead}</span>
-                      <span className="text-foreground/40 mx-2">—</span>
-                      <span className="text-foreground/50 font-normal">{item.detail}</span>
-                    </p>
-                  </div>
-                ))}
-                <div className="border-t border-foreground/10" />
+                <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">72-hour mobilization</span> — any country, any industry</p>
+                <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">From €700 per audit</span> — not €15,000–25,000</p>
+                <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">New supplier base in weeks</span> — qualify 100+ in parallel</p>
+                <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">Your standards, AI-enhanced</span> — your templates, elevated with AI</p>
+                <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">Maximum objectivity</span> — AI-guided execution eliminates bias</p>
+                <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">On-site verified intelligence</span> — real data, not questionnaires</p>
+                <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">Automated follow-up</span> — no finding ever dies in a spreadsheet</p>
               </motion.div>
 
               <motion.div
