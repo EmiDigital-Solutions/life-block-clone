@@ -58,35 +58,49 @@ const HeroSection = () => {
               audits in days, not weeks
             </motion.h1>
 
-            {/* Value Props + CTAs - right-offset Archlet style */}
-            <div className="mt-8 md:mt-12 lg:mt-16 ml-[28%] md:ml-[30%] lg:ml-[50%] max-w-xl">
+            {/* Value Props + CTAs - snapped to 4th grid line (50%) */}
+            <div className="mt-8 md:mt-12 lg:mt-16 ml-[50%] max-w-xl relative">
+              {/* DIN label above the dimension line */}
+              <span className="absolute -left-14 -top-6 font-mono text-[9px] tracking-[0.2em] text-foreground/[0.12] select-none" aria-hidden="true">
+                DIN EN ISO
+              </span>
+
+              {/* Surface roughness symbol (Ra) — positioned top-right of value props */}
+              <div className="absolute -right-4 md:right-0 -top-8 text-foreground/[0.12]" aria-hidden="true">
+                <svg width="36" height="28" viewBox="0 0 36 28" fill="none">
+                  <path d="M0 24 L6 24 L10 8 L14 24 L18 24" stroke="currentColor" strokeWidth="0.8" fill="none" />
+                  <line x1="6" y1="6" x2="18" y2="6" stroke="currentColor" strokeWidth="0.5" />
+                  <text x="20" y="18" fill="currentColor" fontSize="7" fontFamily="monospace" letterSpacing="0.05em">Ra 1.6</text>
+                </svg>
+              </div>
+
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="space-y-2 mb-6 md:mb-8"
               >
-                <div className="relative pl-8">
-                  {/* Vertical DIN dimension line */}
-                  <div className="absolute left-0 top-1 bottom-1 flex flex-col items-center text-foreground/[0.15]" aria-hidden="true">
+                <div className="relative pl-6">
+                  {/* Vertical DIN dimension line — before the 4th grid line */}
+                  <div className="absolute -left-3 top-0 bottom-0 flex flex-col items-center text-foreground/[0.12]" aria-hidden="true">
                     {/* Top tick + arrow */}
-                    <div className="w-3 h-px bg-current" />
-                    <svg width="8" height="5" viewBox="0 0 8 5" fill="none" className="flex-shrink-0 -mt-px">
-                      <path d="M0 5 L4 0 L8 5" stroke="currentColor" strokeWidth="0.8" fill="none" />
+                    <div className="w-2.5 h-px bg-current" />
+                    <svg width="7" height="5" viewBox="0 0 7 5" fill="none" className="flex-shrink-0">
+                      <path d="M0 5 L3.5 0 L7 5" stroke="currentColor" strokeWidth="0.7" fill="none" />
                     </svg>
                     {/* Vertical line */}
                     <div className="flex-1 w-px bg-current" />
                     {/* Label */}
-                    <span className="font-mono text-[8px] tracking-[0.15em] select-none whitespace-nowrap py-1 -rotate-90 origin-center">
+                    <span className="font-mono text-[7px] tracking-[0.15em] select-none whitespace-nowrap py-0.5 -rotate-90 origin-center">
                       210
                     </span>
                     {/* Vertical line */}
                     <div className="flex-1 w-px bg-current" />
                     {/* Bottom arrow + tick */}
-                    <svg width="8" height="5" viewBox="0 0 8 5" fill="none" className="flex-shrink-0 -mb-px">
-                      <path d="M0 0 L4 5 L8 0" stroke="currentColor" strokeWidth="0.8" fill="none" />
+                    <svg width="7" height="5" viewBox="0 0 7 5" fill="none" className="flex-shrink-0">
+                      <path d="M0 0 L3.5 5 L7 0" stroke="currentColor" strokeWidth="0.7" fill="none" />
                     </svg>
-                    <div className="w-3 h-px bg-current" />
+                    <div className="w-2.5 h-px bg-current" />
                   </div>
 
                   {[
