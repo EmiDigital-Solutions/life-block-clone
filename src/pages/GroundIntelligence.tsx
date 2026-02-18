@@ -136,8 +136,8 @@ const GroundIntelligence = () => {
                   transition={{ duration: 0.8, delay: 0.2 }}
                   className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
                 >
-                  One place for all<br />
-                  supplier intelligence
+                  On-site data.<br />
+                  Scored. Tracked.
                 </motion.h1>
 
                 {/* Value Props — aligned to 4th grid line */}
