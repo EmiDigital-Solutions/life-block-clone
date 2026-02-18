@@ -67,23 +67,23 @@ const formations = {
     { x: UNIT * 3.5, y: UNIT * 2 },
     { x: UNIT * 3.5, y: UNIT * 3 },
   ],
-  // Checkmark — diagonal staircase: 2-square short leg + vertex + 4-square long leg
+  // Checkmark — diagonal: short leg (2) down-right + vertex + long leg (4) up-right
   checkmark: [
-    // Short leg (2 squares, down-right to vertex)
-    { x: 0, y: UNIT * 2 },
-    { x: UNIT, y: UNIT * 3 },
+    // Short leg (2 squares, going down-right to vertex)
+    { x: UNIT * 0, y: UNIT * 1.5 },
+    { x: UNIT * 0.85, y: UNIT * 2.35 },
     // Vertex (bottom point)
-    { x: UNIT * 2, y: UNIT * 4 },
-    // Long leg (4 squares, up-right from vertex)
-    { x: UNIT * 3, y: UNIT * 3 },
-    { x: UNIT * 4, y: UNIT * 2 },
-    { x: UNIT * 5, y: UNIT },
-    { x: UNIT * 6, y: 0 },
-    // Hidden (off-screen, to keep 11 squares)
-    { x: UNIT * 8, y: UNIT * 6, opacity: 0 },
-    { x: UNIT * 9, y: UNIT * 6, opacity: 0 },
-    { x: UNIT * 10, y: UNIT * 6, opacity: 0 },
-    { x: UNIT * 11, y: UNIT * 6, opacity: 0 },
+    { x: UNIT * 1.7, y: UNIT * 3.2 },
+    // Long leg (4 squares, going up-right from vertex)
+    { x: UNIT * 2.55, y: UNIT * 2.35 },
+    { x: UNIT * 3.4, y: UNIT * 1.5 },
+    { x: UNIT * 4.25, y: UNIT * 0.65 },
+    { x: UNIT * 5.1, y: -UNIT * 0.2 },
+    // Hidden (to keep 11 squares)
+    { x: UNIT * 8, y: UNIT * 8, opacity: 0 },
+    { x: UNIT * 9, y: UNIT * 8, opacity: 0 },
+    { x: UNIT * 10, y: UNIT * 8, opacity: 0 },
+    { x: UNIT * 11, y: UNIT * 8, opacity: 0 },
   ],
 };
 
