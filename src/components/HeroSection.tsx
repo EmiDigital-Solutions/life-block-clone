@@ -59,7 +59,7 @@ const HeroSection = () => {
             </motion.h1>
 
             {/* Value Props + CTAs - snapped to 4th grid line (50%) */}
-            <div className="mt-8 md:mt-12 lg:mt-16 ml-[50%] max-w-xl relative">
+            <div className="mt-8 md:mt-12 lg:mt-16 relative" style={{ marginLeft: 'calc(50% - 8px)' }}>
               {/* DIN label above the dimension line */}
               <span className="absolute -left-14 -top-6 font-mono text-[9px] tracking-[0.2em] text-foreground/[0.12] select-none" aria-hidden="true">
                 DIN EN ISO
@@ -119,7 +119,7 @@ const HeroSection = () => {
                 </div>
                 <p className="text-sm md:text-base whitespace-nowrap flex items-baseline gap-2.5 mt-3">
                   <span className="font-mono text-xs text-primary/60">{String(8).padStart(2, '0')}</span>
-                  <span><span className="font-semibold text-primary">Fast-mover advantage</span> — get 30% off your first audit · <a href="https://calendly.com/yvoo/demo-yvoo" target="_blank" rel="noopener noreferrer" className="underline text-primary hover:text-primary/80 font-semibold">Book Now →</a></span>
+                  <span><span className="font-semibold text-foreground">Fast-mover advantage</span> — get 30% off your first audit · <a href="https://calendly.com/yvoo/demo-yvoo" target="_blank" rel="noopener noreferrer" className="underline font-semibold" style={{ color: '#6EA996' }}>Book Now →</a></span>
                 </p>
               </motion.div>
 
