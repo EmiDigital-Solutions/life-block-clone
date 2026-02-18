@@ -251,7 +251,7 @@ const GroundIntelligence = () => {
         {/* ═══════════════════════════════════════════════════
             COMPARISON — Desk Research vs. On-Site Reality
         ═══════════════════════════════════════════════════ */}
-        <section data-nav-theme="light" className="pt-24 pb-12 md:pt-32 md:pb-16 bg-muted">
+        <section data-nav-theme="light" className="pt-24 pb-12 md:pt-32 md:pb-16 bg-white">
           <div className="mx-auto max-w-[1400px] px-8">
             <div className="grid grid-cols-1 lg:grid-cols-6 gap-8 mb-12">
               <motion.div
