@@ -80,23 +80,19 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="space-y-2 mb-6 md:mb-8"
               >
-                <div className="relative pl-6">
+                <div className="relative">
                   {/* Vertical DIN dimension line — before the 4th grid line */}
-                  <div className="absolute -left-3 top-0 bottom-0 flex flex-col items-center text-foreground/[0.12]" aria-hidden="true">
+                  <div className="absolute -left-5 top-0 bottom-0 flex flex-col items-center text-foreground/[0.12]" aria-hidden="true">
                     {/* Top tick + arrow */}
                     <div className="w-2.5 h-px bg-current" />
                     <svg width="7" height="5" viewBox="0 0 7 5" fill="none" className="flex-shrink-0">
                       <path d="M0 5 L3.5 0 L7 5" stroke="currentColor" strokeWidth="0.7" fill="none" />
                     </svg>
-                    {/* Vertical line */}
                     <div className="flex-1 w-px bg-current" />
-                    {/* Label */}
                     <span className="font-mono text-[7px] tracking-[0.15em] select-none whitespace-nowrap py-0.5 -rotate-90 origin-center">
                       210
                     </span>
-                    {/* Vertical line */}
                     <div className="flex-1 w-px bg-current" />
-                    {/* Bottom arrow + tick */}
                     <svg width="7" height="5" viewBox="0 0 7 5" fill="none" className="flex-shrink-0">
                       <path d="M0 0 L3.5 5 L7 0" stroke="currentColor" strokeWidth="0.7" fill="none" />
                     </svg>
@@ -118,7 +114,7 @@ const HeroSection = () => {
                   ))}
                 </div>
                 <p className="text-sm md:text-base whitespace-nowrap flex items-baseline mt-3">
-                  <span><span className="font-semibold text-primary">Fast-mover advantage</span> — get 30% off your first audit · <a href="https://calendly.com/yvoo/demo-yvoo" target="_blank" rel="noopener noreferrer" className="underline font-semibold" style={{ color: '#6EA996' }}>Book Now →</a></span>
+                  <span><span className="font-semibold text-primary">Fast-mover advantage</span> — get 30% off your first audit · <a href="https://calendly.com/yvoo/demo-yvoo" target="_blank" rel="noopener noreferrer" className="underline font-semibold text-primary hover:text-primary/80">Book Now →</a></span>
                 </p>
               </motion.div>
 
