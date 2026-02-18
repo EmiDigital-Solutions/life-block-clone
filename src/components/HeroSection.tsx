@@ -6,18 +6,17 @@ import ROICalculator from "./ROICalculator";
 import HeroSquaresAnimation from "./HeroSquaresAnimation";
 
 const marqueeItems = [
-  "Built for high‑performance B2B Supply Chains",
-  "Automotive",
-  "Aerospace",
-  "Medical Devices",
-  "Pharma",
-  "Electronics",
-  "Energy",
-  "Chemical",
-  "Industrial Manufacturing",
-  "Precision Engineering",
-  "Defense",
-  "Rail & Transport",
+  { label: "Automotive", standard: "IATF 16949" },
+  { label: "Aerospace", standard: "AS9100" },
+  { label: "Medical Devices", standard: "ISO 13485" },
+  { label: "Pharma", standard: "GMP / GDP" },
+  { label: "Electronics", standard: "IPC / REACH" },
+  { label: "Energy", standard: "ISO 50001" },
+  { label: "Chemical", standard: "REACH / ISO 14001" },
+  { label: "Industrial Manufacturing", standard: "ISO 9001" },
+  { label: "Precision Engineering", standard: "VDA 6.3" },
+  { label: "Defense", standard: "AQAP 2110" },
+  { label: "Rail & Transport", standard: "IRIS / ISO 22163" },
 ];
 
 const HeroSection = () => {
@@ -65,16 +64,26 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="space-y-2.5 mb-6 md:mb-8"
+                className="space-y-2 mb-6 md:mb-8"
               >
-                <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">72-hour mobilization</span> — any country, any industry</p>
-                <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">60% lower cost, 70% faster</span> — than traditional audit programs</p>
-                <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">New supplier base in weeks</span> — not years. Unlimited audits running simultaneously</p>
-                <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">Your checklists, AI-enhanced</span> — your templates & requirements, elevated with AI</p>
-                <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">Maximum objectivity</span> — AI-guided execution eliminates bias</p>
-                <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">On-site verified intelligence</span> — real supplier data with predictive insights</p>
-                <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">AI-driven CAPA & close-out</span> — every finding tracked, escalated, and resolved digitally</p>
-                <p className="text-sm md:text-base whitespace-nowrap">▸ <span className="font-semibold text-primary">Fast-mover advantage</span> — get 30% off your first audit · <a href="https://calendly.com/yvoo/demo-yvoo" target="_blank" rel="noopener noreferrer" className="underline text-primary hover:text-primary/80 font-semibold">Book Now →</a></p>
+                {[
+                  { bold: "72-hour mobilization", rest: "any country, any industry" },
+                  { bold: "60% lower cost, 70% faster", rest: "than traditional audit programs" },
+                  { bold: "New supplier base in weeks", rest: "not years. Unlimited audits running simultaneously" },
+                  { bold: "Your checklists, AI-enhanced", rest: "your templates & requirements, elevated with AI" },
+                  { bold: "Maximum objectivity", rest: "AI-guided execution eliminates bias" },
+                  { bold: "On-site verified intelligence", rest: "real supplier data with predictive insights" },
+                  { bold: "AI-driven CAPA & close-out", rest: "every finding tracked, escalated, and resolved digitally" },
+                ].map((item, i) => (
+                  <p key={i} className="text-sm md:text-base text-foreground/60 whitespace-nowrap flex items-baseline gap-2.5">
+                    <span className="font-mono text-xs text-foreground/30">{String(i + 1).padStart(2, '0')}</span>
+                    <span><span className="font-semibold text-foreground">{item.bold}</span> — {item.rest}</span>
+                  </p>
+                ))}
+                <p className="text-sm md:text-base whitespace-nowrap flex items-baseline gap-2.5 mt-3">
+                  <span className="font-mono text-xs text-primary/60">{String(8).padStart(2, '0')}</span>
+                  <span><span className="font-semibold text-primary">Fast-mover advantage</span> — get 30% off your first audit · <a href="https://calendly.com/yvoo/demo-yvoo" target="_blank" rel="noopener noreferrer" className="underline text-primary hover:text-primary/80 font-semibold">Book Now →</a></span>
+                </p>
               </motion.div>
 
               <motion.div
@@ -109,13 +118,10 @@ const HeroSection = () => {
           {[...marqueeItems, ...marqueeItems].map((item, i) => (
             <span
               key={i}
-              className={`mx-4 md:mx-10 text-xs md:text-base tracking-widest uppercase ${
-                item.startsWith("Built")
-                  ? "font-bold text-foreground"
-                  : "font-bold text-foreground/80"
-              }`}
+              className="mx-4 md:mx-10 text-xs md:text-base tracking-widest uppercase font-bold text-foreground/80"
             >
-              {item}
+              {item.label}
+              <span className="ml-1.5 font-normal text-foreground/40 normal-case tracking-normal text-[0.7em]">({item.standard})</span>
               <span className="ml-6 md:ml-10 text-foreground/20">·</span>
             </span>
           ))}
