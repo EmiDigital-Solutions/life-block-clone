@@ -126,7 +126,7 @@ const GroundIntelligence = () => {
                   transition={{ duration: 0.6, delay: 0.1 }}
                   className="text-sm md:text-base text-foreground/50 font-mono tracking-[0.25em] uppercase mb-4 md:mb-6"
                 >
-                  Audit data, evidence & on-demand evaluation — combined.
+                   Supplier Intelligence
                 </motion.p>
 
                 {/* Headline */}
@@ -136,8 +136,8 @@ const GroundIntelligence = () => {
                   transition={{ duration: 0.8, delay: 0.2 }}
                   className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
                 >
-                   Supplier intelligence.<br />
-                   Data from the factory floor.
+                   Data from the<br />
+                   factory floor.
                 </motion.h1>
 
                 {/* Value Props — aligned to 4th grid line */}
