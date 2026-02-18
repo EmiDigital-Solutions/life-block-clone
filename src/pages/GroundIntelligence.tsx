@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Plus, Minus, ArrowRight, Check } from "lucide-react";
+import GroundIntelligenceFeatureModal, { groundIntelligenceFeatures, type GroundIntelligenceFeature } from "@/components/GroundIntelligenceFeatureModal";
 import PageGridOverlay from "@/components/PageGridOverlay";
 import TechnicalAnnotation from "@/components/TechnicalAnnotation";
 import DimensionLine from "@/components/DimensionLine";
@@ -24,6 +25,7 @@ import auditorEuropean from "@/assets/auditor-real-european.jpg";
 const GroundIntelligence = () => {
   const [activeFaqCategory, setActiveFaqCategory] = useState("general");
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+  const [selectedFeature, setSelectedFeature] = useState<GroundIntelligenceFeature | null>(null);
 
   const toggleFaq = (index: number) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
@@ -635,6 +637,60 @@ const GroundIntelligence = () => {
         </div>
 
         {/* ═══════════════════════════════════════════════════
+            FEATURES — Clickable grid with modals
+        ═══════════════════════════════════════════════════ */}
+        <section className="py-20 px-6 bg-white border-t border-foreground/10">
+          <div className="mx-auto max-w-[1400px] px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="space-y-6 mb-16"
+            >
+              <h2 className="section-headline text-foreground">
+                Supplier Intelligence features
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
+                Every feature is designed to give you verified, actionable supplier data — from on-demand audits to trend tracking and custom evaluation frameworks.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0"
+            >
+              {groundIntelligenceFeatures.map((feature, index) => (
+                <motion.button
+                  key={feature.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.05 * index }}
+                  onClick={() => setSelectedFeature(feature)}
+                  className="text-left py-8 pr-8 border-t border-foreground/10 group hover:bg-muted/30 transition-colors cursor-pointer pl-4"
+                >
+                  <span className="text-xs font-mono text-foreground/40 tracking-wider mb-2 block">
+                    {feature.number}
+                  </span>
+                  <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
+                    {feature.title}
+                  </h3>
+                  <p className="text-foreground/60 text-sm leading-relaxed">
+                    {feature.description}
+                  </p>
+                  <span className="inline-flex items-center gap-1 text-xs font-medium text-primary mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                    Learn more <ArrowRight className="w-3 h-3" />
+                  </span>
+                </motion.button>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════
             FAQ
         ═══════════════════════════════════════════════════ */}
         <section data-nav-theme="light" className="py-24 md:py-32 bg-white">
@@ -749,6 +805,12 @@ const GroundIntelligence = () => {
 
         <Footer />
       </div>
+
+      {/* Feature Modal */}
+      <GroundIntelligenceFeatureModal
+        feature={selectedFeature}
+        onClose={() => setSelectedFeature(null)}
+      />
     </div>
   );
 };
