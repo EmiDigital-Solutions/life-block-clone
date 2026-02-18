@@ -142,10 +142,7 @@ const HeroSection = () => {
       </div>
 
       {/* Scrolling Industry Band */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1 }}
+      <div
         className="relative z-10 border-t border-foreground/10 overflow-hidden py-3 md:py-5 shrink-0"
       >
         <div className="flex animate-marquee whitespace-nowrap">
@@ -160,7 +157,7 @@ const HeroSection = () => {
             </span>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
 
     {/* ROI Calculator Modal */}
