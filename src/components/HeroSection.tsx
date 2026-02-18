@@ -121,7 +121,7 @@ const HeroSection = () => {
               className="mx-4 md:mx-10 text-xs md:text-base tracking-widest uppercase font-bold text-foreground/80"
             >
               {item.label}
-              <span className="ml-1.5 font-normal text-foreground/40 normal-case tracking-normal text-[0.7em]">({item.standard})</span>
+              <span className="ml-1.5 font-normal text-foreground/40 normal-case tracking-normal text-[0.85em]">({item.standard})</span>
               <span className="ml-6 md:ml-10 text-foreground/20">·</span>
             </span>
           ))}
