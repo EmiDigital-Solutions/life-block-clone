@@ -181,14 +181,14 @@ const GroundIntelligence = () => {
 
                       <div className="space-y-2">
                         {[
-                          { bold: "On-demand expert visits", rest: "send auditors to evaluate any topic, anytime, anywhere" },
-                          { bold: "Verified data, not scraped feeds", rest: "on-site evidence, photos, measurements — not web crawlers" },
-                          { bold: "Benchmark across suppliers", rest: "standardized scores from real audits, not self-reported surveys" },
-                          { bold: "Track performance over time", rest: "audit history, trend analysis, early warning signals" },
-                          { bold: "Topic-specific deep-dives", rest: "capacity, process capability, quality systems — you define the scope" },
-                          { bold: "850+ auditors in 47 countries", rest: "local experts, on-site within days, no travel costs" },
+                          { bold: "On-demand expert visits", rest: "any topic, anytime, anywhere" },
+                          { bold: "Verified data, not scraped feeds", rest: "on-site evidence, photos, measurements" },
+                          { bold: "Benchmark across suppliers", rest: "standardized scores from real audits" },
+                          { bold: "Track performance over time", rest: "audit history, trends, early warnings" },
+                          { bold: "Topic-specific deep-dives", rest: "capacity, process capability, quality systems" },
+                          { bold: "850+ auditors in 47 countries", rest: "local experts, on-site within days" },
                         ].map((item, i) => (
-                          <p key={i} className="text-sm md:text-base text-foreground/60 whitespace-nowrap">
+                          <p key={i} className="text-sm md:text-base text-foreground/60">
                             <span className="font-semibold text-foreground">{item.bold}</span> — {item.rest}
                           </p>
                         ))}
