@@ -452,10 +452,10 @@ const GroundIntelligence = () => {
               className="max-w-2xl mb-16"
             >
               <h2 className="section-headline text-foreground mb-6">
-                Intelligence that comes from the factory floor
+                What you get — and what changes
               </h2>
               <p className="text-lg text-muted-foreground">
-                We combine three data sources no other platform has: structured audit data, physical evidence from on-site visits, and expert evaluations on the topics you define.
+                Stop relying on supplier self-assessments and desktop research. Get verified, on-site intelligence that directly impacts your decisions.
               </p>
             </motion.div>
 
@@ -464,10 +464,10 @@ const GroundIntelligence = () => {
               <div className="hidden lg:block lg:col-span-1" />
               <div className="lg:col-span-5 grid md:grid-cols-2 gap-x-12">
                 {[
-                  { category: "Audit data", value: "97.8%", description: "Standardized scores, checklists, and compliance assessments from certified auditors" },
-                  { category: "Physical evidence", value: "50+", description: "Geo-tagged photos, equipment measurements, process documentation per visit" },
-                  { category: "Expert evaluation", value: "3 days", description: "On-demand topic-specific deep-dives by matched industry specialists" },
-                  { category: "Trend intelligence", value: "18mo", description: "Historical performance tracking, supplier development trajectories, early warnings" },
+                  { category: "Supplier qualification", value: "60%", suffix: "faster", description: "Qualify new suppliers in days instead of weeks — with verified data, not guesswork" },
+                  { category: "Risk reduction", value: "3×", suffix: "earlier", description: "Spot quality issues, capacity gaps, and compliance risks before they become costly problems" },
+                  { category: "Audit cost", value: "€40k", suffix: "saved/yr", description: "Replace expensive one-off audit trips with on-demand local experts at a fraction of the cost" },
+                  { category: "Decision confidence", value: "100%", suffix: "verified", description: "Every score, photo, and assessment comes from a certified auditor who was physically on-site" },
                 ].map((stat, index) => (
                   <motion.div
                     key={index}
@@ -481,9 +481,14 @@ const GroundIntelligence = () => {
                       {stat.category}
                     </p>
                     <div className="border-t border-foreground/20 pt-4">
-                      <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
-                        {stat.value}
-                      </p>
+                      <div className="flex items-baseline gap-3 mb-4">
+                        <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground tracking-[-0.02em]">
+                          {stat.value}
+                        </p>
+                        <span className="text-lg md:text-xl text-accent font-medium">
+                          {stat.suffix}
+                        </span>
+                      </div>
                       <p className="text-foreground/60 leading-relaxed text-sm">
                         {stat.description}
                       </p>
