@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import { ArrowRight, Check, User, Building2, Award, Image, BarChart3, Eye, Users, TrendingUp, MessageSquare, Mail, FileText, Star, Clock, Plus, Minus } from "lucide-react";
+import PageSEO from "@/components/PageSEO";
 import PageGridOverlay from "@/components/PageGridOverlay";
 import TechnicalAnnotation from "@/components/TechnicalAnnotation";
 import DimensionLine from "@/components/DimensionLine";
@@ -608,6 +609,17 @@ const BeFoundFAQ = () => {
 const BeFound = () => {
   return (
     <div className="min-h-screen bg-white relative">
+      <PageSEO
+        title="SalesPro+ — Get Found by Enterprise Buyers | YVOO"
+        description="Increase your supplier visibility to 7M+ B2B decision-makers. Build verified profiles, showcase certifications, and receive qualified RFQ leads from enterprise procurement teams."
+        canonical="/be-found"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "name": "YVOO SalesPro+",
+          "description": "Supplier visibility platform reaching 7M+ B2B decision-makers worldwide. Verified profiles, lead generation, and enterprise buyer connections."
+        }}
+      />
       <PageGridOverlay />
       <div className="relative">
       <Navigation />

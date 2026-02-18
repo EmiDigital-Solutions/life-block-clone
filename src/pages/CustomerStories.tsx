@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Play, Plus, Minus } from "lucide-react";
+import PageSEO from "@/components/PageSEO";
 import PageGridOverlay from "@/components/PageGridOverlay";
 import TechnicalAnnotation from "@/components/TechnicalAnnotation";
 import DimensionLine from "@/components/DimensionLine";
@@ -140,6 +141,17 @@ const CustomerStories = () => {
 
   return (
     <div className="min-h-screen bg-white relative" data-nav-theme="light">
+      <PageSEO
+        title="Customer Stories — Real Results from YVOO Users"
+        description="See how companies achieve 60% faster supplier qualification, €2.4M annual savings, and 94% reduction in supplier-related incidents with YVOO's on-site verification platform."
+        canonical="/customer-stories"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "YVOO Customer Stories",
+          "description": "Case studies and success stories from enterprise customers using YVOO for supplier audit and verification."
+        }}
+      />
       <PageGridOverlay />
       <div className="relative">
       <Navigation />

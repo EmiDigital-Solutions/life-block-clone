@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import React from "react";
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
 import PageGridOverlay from "@/components/PageGridOverlay";
+import PageSEO from "@/components/PageSEO";
 import TechnicalAnnotation from "@/components/TechnicalAnnotation";
 import DimensionLine from "@/components/DimensionLine";
 import SectionCutMarker from "@/components/SectionCutMarker";
@@ -2130,6 +2131,18 @@ const ScanProPlus = () => {
 
   return (
     <div className="min-h-screen relative">
+      <PageSEO
+        title="ScanPro+ — AI-Powered Audit Execution Platform | YVOO"
+        description="Conduct on-site supplier audits with AI copilot guidance, equipment intelligence, dynamic scoring, and real-time progress tracking. From €700 per audit with certified experts."
+        canonical="/scanpro-plus"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "YVOO ScanPro+",
+          "applicationCategory": "BusinessApplication",
+          "description": "AI-powered audit execution platform with flexible templates, equipment intelligence, and predictive risk scoring."
+        }}
+      />
       <PageGridOverlay />
       <div className="relative">
       <Navigation />

@@ -1,3 +1,4 @@
+import PageSEO from "@/components/PageSEO";
 import PageGridOverlay from "@/components/PageGridOverlay";
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
@@ -22,6 +23,32 @@ import Footer from "@/components/Footer";
 const Index = () => {
   return (
     <div className="min-h-screen relative">
+      <PageSEO
+        title="YVOO — On-Site Supplier Audits in Days, Not Months"
+        description="Physical factory assessments from €700. AI-powered supplier verification with 850+ certified auditors across 45+ countries. 70% cost reduction, 80% time savings."
+        canonical="/"
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "YVOO",
+            "url": "https://www.yvoo.io",
+            "description": "AI-powered supplier audit and verification platform with 850+ certified auditors in 45+ countries.",
+            "serviceType": "Supplier Audit & Verification"
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "YVOO",
+            "url": "https://www.yvoo.io",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://www.yvoo.io/search-suppliers?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          }
+        ]}
+      />
       <PageGridOverlay />
       <div className="relative">
         <Navigation />
