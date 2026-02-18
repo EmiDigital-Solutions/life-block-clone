@@ -75,8 +75,14 @@ const HeroSection = () => {
                   { bold: "On-site verified intelligence", rest: "real supplier data with predictive insights" },
                   { bold: "AI-driven CAPA & close-out", rest: "every finding tracked, escalated, and resolved digitally" },
                 ].map((item, i) => (
-                  <p key={i} className="text-sm md:text-base text-foreground/60 whitespace-nowrap flex items-baseline gap-2.5">
-                    <span className="font-mono text-xs text-foreground/30">{String(i + 1).padStart(2, '0')}</span>
+                  <p key={i} className="text-sm md:text-base text-foreground/60 whitespace-nowrap flex items-start gap-3">
+                    {/* DIN drawing reference callout */}
+                    <span className="relative flex items-center flex-shrink-0 mt-[3px]">
+                      <span className="font-mono text-[8px] tracking-[0.15em] text-foreground/20 border-b border-foreground/15 pb-px leading-none">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <span className="w-3 h-px bg-foreground/15 ml-0.5" />
+                    </span>
                     <span><span className="font-semibold text-foreground">{item.bold}</span> — {item.rest}</span>
                   </p>
                 ))}
