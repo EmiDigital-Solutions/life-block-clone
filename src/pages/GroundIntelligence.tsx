@@ -739,7 +739,7 @@ const GroundIntelligence = () => {
         {/* ═══════════════════════════════════════════════════
             FINAL CTA
         ═══════════════════════════════════════════════════ */}
-        <section data-nav-theme="dark" className="relative py-20 lg:py-28 bg-[hsl(0,0%,8%)]">
+        <section data-nav-theme="light" className="relative py-20 lg:py-28 bg-muted">
           <div className="mx-auto max-w-[1400px] px-8 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -747,10 +747,10 @@ const GroundIntelligence = () => {
               viewport={{ once: true }}
               className="space-y-8"
             >
-              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-medium tracking-tight text-white">
+              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-medium tracking-tight text-foreground">
                 Stop guessing. Start verifying.
               </h2>
-              <p className="text-lg lg:text-xl text-white/60 max-w-2xl mx-auto">
+              <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
                 Verified supplier data from real on-site evaluations — not scraped feeds, not self-assessments.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
