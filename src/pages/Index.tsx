@@ -1,6 +1,7 @@
 import PageGridOverlay from "@/components/PageGridOverlay";
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
+import ValuePropositionsSection from "@/components/ValuePropositionsSection";
 import WhyYVOOSection from "@/components/WhyYVOOSection";
 import AtlasAISection from "@/components/AtlasAISection";
 import AuditDifferenceSection from "@/components/AuditDifferenceSection";
@@ -26,6 +27,7 @@ const Index = () => {
       <div className="relative">
         <Navigation />
         <HeroSection />
+        <ValuePropositionsSection />
 
         {/* DIN annotation — grid 4→6 */}
         <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
