@@ -79,11 +79,11 @@ const formations = {
     { x: UNIT * 4, y: UNIT * 2 },
     { x: UNIT * 5, y: UNIT },
     { x: UNIT * 6, y: 0 },
-    // Hidden (to keep 11 squares)
-    { x: UNIT * 3, y: UNIT * 3, opacity: 0 },
-    { x: UNIT * 4, y: UNIT * 2, opacity: 0 },
-    { x: UNIT * 5, y: UNIT, opacity: 0 },
-    { x: UNIT * 6, y: 0, opacity: 0 },
+    // Hidden (off-screen, to keep 11 squares)
+    { x: UNIT * 8, y: UNIT * 6, opacity: 0 },
+    { x: UNIT * 9, y: UNIT * 6, opacity: 0 },
+    { x: UNIT * 10, y: UNIT * 6, opacity: 0 },
+    { x: UNIT * 11, y: UNIT * 6, opacity: 0 },
   ],
 };
 
