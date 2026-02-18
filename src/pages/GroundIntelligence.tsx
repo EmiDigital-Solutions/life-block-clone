@@ -302,7 +302,7 @@ const GroundIntelligence = () => {
                 transition={{ duration: 0.7, delay: 0.2 }}
                 className="bg-[#0a0a0a] p-10 md:p-14"
               >
-                <p className="text-sm font-medium tracking-[0.2em] text-white/40 uppercase mb-10">
+                <p className="text-sm font-medium tracking-[0.2em] text-white/80 uppercase mb-10">
                   YVOO Supplier Intelligence
                 </p>
                 <div className="space-y-6">
