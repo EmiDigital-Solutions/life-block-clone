@@ -67,23 +67,22 @@ const formations = {
     { x: UNIT * 3.5, y: UNIT * 2 },
     { x: UNIT * 3.5, y: UNIT * 3 },
   ],
-  // Checkmark — diagonal staircase: 2-square short leg + vertex + 4-square long leg
+  // Checkmark — diamonds (45° rotated squares) along two diagonal arms
   checkmark: [
-    // Short leg (2 squares, down-right to vertex)
-    { x: 0, y: UNIT * 2 },
-    { x: UNIT, y: UNIT * 3 },
-    // Vertex (bottom point)
-    { x: UNIT * 2, y: UNIT * 4 },
-    // Long leg (4 squares, up-right from vertex)
-    { x: UNIT * 3, y: UNIT * 3 },
-    { x: UNIT * 4, y: UNIT * 2 },
-    { x: UNIT * 5, y: UNIT },
-    { x: UNIT * 6, y: 0 },
+    // Short arm (3 diamonds, down-right to vertex)
+    { x: 0, y: SQUARE_SIZE * 2, rotate: 45 },
+    { x: SQUARE_SIZE, y: SQUARE_SIZE * 3, rotate: 45 },
+    { x: SQUARE_SIZE * 2, y: SQUARE_SIZE * 4, rotate: 45 },
+    // Long arm (4 diamonds, up-right from vertex)
+    { x: SQUARE_SIZE * 3, y: SQUARE_SIZE * 3, rotate: 45 },
+    { x: SQUARE_SIZE * 4, y: SQUARE_SIZE * 2, rotate: 45 },
+    { x: SQUARE_SIZE * 5, y: SQUARE_SIZE, rotate: 45 },
+    { x: SQUARE_SIZE * 6, y: 0, rotate: 45 },
     // Hidden (to keep 11 squares)
-    { x: UNIT * 3, y: UNIT * 3, opacity: 0 },
-    { x: UNIT * 4, y: UNIT * 2, opacity: 0 },
-    { x: UNIT * 5, y: UNIT, opacity: 0 },
-    { x: UNIT * 6, y: 0, opacity: 0 },
+    { x: SQUARE_SIZE * 3, y: SQUARE_SIZE * 3, opacity: 0 },
+    { x: SQUARE_SIZE * 4, y: SQUARE_SIZE * 2, opacity: 0 },
+    { x: SQUARE_SIZE * 5, y: SQUARE_SIZE, opacity: 0 },
+    { x: SQUARE_SIZE * 6, y: 0, opacity: 0 },
   ],
 };
 
@@ -140,6 +139,7 @@ const HeroSquaresAnimation = ({ className = "" }: HeroSquaresAnimationProps) => 
             animate={{
               x: pos.x,
               y: pos.y,
+              rotate: (pos as any).rotate || 0,
               opacity: (pos as any).opacity !== undefined ? (pos as any).opacity : 1,
             }}
             initial={false}
