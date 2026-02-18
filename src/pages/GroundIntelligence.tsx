@@ -251,7 +251,7 @@ const GroundIntelligence = () => {
         {/* ═══════════════════════════════════════════════════
             COMPARISON — Desk Research vs. On-Site Reality
         ═══════════════════════════════════════════════════ */}
-        <section data-nav-theme="light" className="pt-24 pb-12 md:pt-32 md:pb-16 bg-white">
+        <section data-nav-theme="light" className="pt-24 pb-12 md:pt-32 md:pb-16 bg-muted">
           <div className="mx-auto max-w-[1400px] px-8">
             <div className="grid grid-cols-1 lg:grid-cols-6 gap-8 mb-12">
               <motion.div
@@ -383,7 +383,7 @@ const GroundIntelligence = () => {
         {/* ═══════════════════════════════════════════════════
             ON-SITE CHECKPOINTS — What auditors actually verify
         ═══════════════════════════════════════════════════ */}
-        <section className="py-16 md:py-24 bg-white">
+        <section className="py-16 md:py-24 bg-[hsl(0,0%,8%)]">
           <div className="mx-auto max-w-[1400px] px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -392,13 +392,13 @@ const GroundIntelligence = () => {
               className="mb-10"
             >
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-px bg-foreground/30" />
-                <span className="section-eyebrow">What we verify on-site</span>
+                <div className="w-16 h-px bg-white/30" />
+                <span className="text-sm font-medium tracking-[0.15em] text-white/50 uppercase">What we verify on-site</span>
               </div>
-              <h2 className="section-headline text-foreground max-w-4xl mb-4">
+              <h2 className="section-headline text-white max-w-4xl mb-4">
                 Real checkpoints, not spreadsheet assumptions.
               </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl">
+              <p className="text-lg text-white/60 max-w-2xl">
                 Every intelligence report is built from physical evidence — collected by certified auditors inside the supplier's facility.
               </p>
             </motion.div>
@@ -533,7 +533,7 @@ const GroundIntelligence = () => {
         {/* ═══════════════════════════════════════════════════
             HOW IT WORKS — Topic Verification Flow
         ═══════════════════════════════════════════════════ */}
-        <section className="relative overflow-hidden bg-white pt-20 md:pt-28 lg:pt-32 pb-12 md:pb-16">
+        <section className="relative overflow-hidden bg-muted pt-20 md:pt-28 lg:pt-32 pb-12 md:pb-16">
           <div className="mx-auto max-w-[1400px] px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -588,7 +588,7 @@ const GroundIntelligence = () => {
         {/* ═══════════════════════════════════════════════════
             RESULTS — Stats
         ═══════════════════════════════════════════════════ */}
-        <section data-nav-theme="light" className="relative py-20 lg:py-28 bg-white">
+        <section data-nav-theme="dark" className="relative py-20 lg:py-28 bg-[hsl(0,0%,8%)]">
           <div className="mx-auto max-w-[1400px] px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -596,12 +596,12 @@ const GroundIntelligence = () => {
               viewport={{ once: true }}
               className="mb-16"
             >
-              <h2 className="section-headline text-foreground">
+              <h2 className="section-headline text-white">
                 Verified results
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border-t border-foreground/10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border-t border-white/10">
               {[
                 { metric: "850+", label: "Expert auditors worldwide" },
                 { metric: "47", label: "Countries covered" },
@@ -614,12 +614,12 @@ const GroundIntelligence = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="border-b md:border-b-0 md:border-r border-foreground/10 last:border-r-0 p-8 md:p-10"
+                  className="border-b md:border-b-0 md:border-r border-white/10 last:border-r-0 p-8 md:p-10"
                 >
-                  <div className="text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground mb-3 tracking-[-0.02em]">
+              <div className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-3 tracking-[-0.02em]">
                     {item.metric}
                   </div>
-                  <p className="text-muted-foreground text-sm">{item.label}</p>
+                  <p className="text-white/50 text-sm">{item.label}</p>
                 </motion.div>
               ))}
             </div>
@@ -693,7 +693,7 @@ const GroundIntelligence = () => {
         {/* ═══════════════════════════════════════════════════
             FAQ
         ═══════════════════════════════════════════════════ */}
-        <section data-nav-theme="light" className="py-24 md:py-32 bg-white">
+        <section data-nav-theme="light" className="py-24 md:py-32 bg-muted">
           <div className="mx-auto max-w-[1400px] px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -777,7 +777,7 @@ const GroundIntelligence = () => {
         {/* ═══════════════════════════════════════════════════
             FINAL CTA
         ═══════════════════════════════════════════════════ */}
-        <section data-nav-theme="light" className="relative py-20 lg:py-28 bg-white border-t border-border">
+        <section data-nav-theme="dark" className="relative py-20 lg:py-28 bg-[hsl(0,0%,8%)]">
           <div className="mx-auto max-w-[1400px] px-8 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -785,10 +785,10 @@ const GroundIntelligence = () => {
               viewport={{ once: true }}
               className="space-y-8"
             >
-              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-medium tracking-tight text-foreground">
+              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-medium tracking-tight text-white">
                 Stop guessing. Start verifying.
               </h2>
-              <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-lg lg:text-xl text-white/60 max-w-2xl mx-auto">
                 Verified supplier data from real on-site evaluations — not scraped feeds, not self-assessments.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
