@@ -33,40 +33,41 @@ const HeroSection = () => {
       {/* Main Content */}
       <div className="flex-1 flex items-center relative z-10 pt-[106px] md:pt-[154px] lg:pt-[186px] min-h-0">
         <div className="px-8 w-full max-w-[1400px] mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            {/* Eyebrow */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+            {/* Left: Headline */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-sm md:text-base text-foreground/50 font-mono tracking-wide mb-4 md:mb-6"
+              transition={{ duration: 0.8 }}
             >
-              On-demand supplier verification
-            </motion.p>
-
-            {/* Headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
-            >
-              On-site supplier<br />
-              audits in days, not weeks
-            </motion.h1>
-
-            {/* Subtitle + CTA - right-offset on mobile like Archlet */}
-            <div className="mt-8 md:mt-12 lg:mt-16 ml-[28%] md:ml-[30%] lg:ml-[50%] max-w-xl">
-                <motion.div
+              <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="space-y-0 mb-6 md:mb-8"
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-sm md:text-base text-foreground/50 font-mono tracking-wide mb-4 md:mb-6"
               >
+                On-demand supplier verification
+              </motion.p>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground"
+              >
+                On-site supplier<br />
+                audits in days, not weeks
+              </motion.h1>
+            </motion.div>
+
+            {/* Right: Value Props + CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="lg:pt-8"
+            >
+              <div className="space-y-0 mb-8">
                 {[
                   { lead: "72-hour mobilization", detail: "Any country, any industry" },
                   { lead: "From €700 per audit", detail: "Not €15,000–25,000" },
@@ -82,14 +83,9 @@ const HeroSection = () => {
                   </div>
                 ))}
                 <div className="border-t border-foreground/10" />
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-                className="flex flex-col sm:flex-row gap-4"
-              >
+              <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="w-full sm:w-auto text-lg" onClick={() => {
                   const demoSection = document.getElementById('platform-demo');
                   if (demoSection) demoSection.scrollIntoView({ behavior: 'smooth' });
@@ -99,9 +95,9 @@ const HeroSection = () => {
                 <Button variant="outline" size="lg" className="w-full sm:w-auto text-lg" onClick={() => setShowROIModal(true)}>
                   Calculate Your Savings →
                 </Button>
-              </motion.div>
-            </div>
-          </motion.div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
 
