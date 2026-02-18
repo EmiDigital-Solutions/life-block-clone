@@ -10,6 +10,14 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import HeroSquaresAnimation from "@/components/HeroSquaresAnimation";
+import auditorEuropean from "@/assets/auditor-real-european.jpg";
+import auditorAsian from "@/assets/auditor-real-asian.jpg";
+import auditorAfrican from "@/assets/auditor-real-african.jpg";
+import auditorLatin from "@/assets/auditor-real-latin.jpg";
+import auditorMiddleEast from "@/assets/auditor-real-middle-east.jpg";
+import auditorSouthAsian from "@/assets/auditor-real-south-asian.jpg";
+import evidenceInspector from "@/assets/evidence-inspector.jpg";
+import evidenceCnc from "@/assets/evidence-cnc-machine.jpg";
 
 const GroundIntelligence = () => {
   const [activeFaqCategory, setActiveFaqCategory] = useState("general");
@@ -367,6 +375,58 @@ const GroundIntelligence = () => {
         <div className="mx-auto max-w-[1400px] px-4 md:px-8">
           <DimensionLine from="Desk" to="Ground" unit="" gridFrom={0} gridTo={4} />
         </div>
+
+        {/* ═══════════════════════════════════════════════════
+            AUDITOR PORTRAITS — Visual evidence strip
+        ═══════════════════════════════════════════════════ */}
+        <section className="py-16 md:py-24 bg-white">
+          <div className="mx-auto max-w-[1400px] px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-10"
+            >
+              <p className="text-sm text-foreground/50 font-medium tracking-wide">
+                Our auditors are on-site — verifying what others only assume.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
+              {[
+                { src: auditorEuropean, alt: "Auditor conducting on-site inspection in Europe", label: "Germany" },
+                { src: evidenceInspector, alt: "Auditor documenting evidence during factory visit", label: "On-site evidence" },
+                { src: auditorAsian, alt: "Certified auditor in Asia-Pacific region", label: "South Korea" },
+                { src: evidenceCnc, alt: "CNC machine evaluation during audit", label: "Equipment verification" },
+                { src: auditorAfrican, alt: "Expert auditor operating in Africa", label: "Nigeria" },
+                { src: auditorMiddleEast, alt: "Qualified auditor in Middle East region", label: "UAE" },
+                { src: auditorLatin, alt: "Certified auditor in Latin America", label: "Mexico" },
+                { src: auditorSouthAsian, alt: "Industry specialist auditor in South Asia", label: "India" },
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05 }}
+                  className="relative aspect-square overflow-hidden group"
+                >
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3 md:p-4">
+                    <span className="text-white/90 text-xs md:text-sm font-medium tracking-wide">
+                      {item.label}
+                    </span>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* ═══════════════════════════════════════════════════
             WHAT WE COMBINE — Evidence + Audit Data + Evaluation
