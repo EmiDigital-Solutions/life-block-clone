@@ -608,12 +608,12 @@ const GroundIntelligence = () => {
               viewport={{ once: true }}
               className="mb-16"
             >
-              <h2 className="section-headline text-primary">
+              <h2 className="section-headline text-foreground">
                 Verified results
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border-t border-foreground/10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border-t-2 border-primary">
               {[
                 { metric: "850+", label: "Expert auditors worldwide" },
                 { metric: "47", label: "Countries covered" },
@@ -628,7 +628,7 @@ const GroundIntelligence = () => {
                   transition={{ delay: index * 0.1 }}
                   className="border-b md:border-b-0 md:border-r border-foreground/10 last:border-r-0 p-8 md:p-10"
                 >
-                  <div className="text-4xl lg:text-5xl xl:text-6xl font-bold text-primary mb-3 tracking-[-0.02em]">
+                  <div className="text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground mb-3 tracking-[-0.02em]">
                     {item.metric}
                   </div>
                   <p className="text-muted-foreground text-sm">{item.label}</p>
