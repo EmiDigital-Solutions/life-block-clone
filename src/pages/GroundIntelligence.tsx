@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Plus, Minus, ArrowRight, Check, X } from "lucide-react";
 import GroundIntelligenceFeatureModal, { groundIntelligenceFeatures, type GroundIntelligenceFeature } from "@/components/GroundIntelligenceFeatureModal";
+import { useInView } from "framer-motion";
 import PageGridOverlay from "@/components/PageGridOverlay";
 import TechnicalAnnotation from "@/components/TechnicalAnnotation";
 import DimensionLine from "@/components/DimensionLine";
@@ -26,6 +27,9 @@ const GroundIntelligence = () => {
   const [activeFaqCategory, setActiveFaqCategory] = useState("general");
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   const [selectedFeature, setSelectedFeature] = useState<GroundIntelligenceFeature | null>(null);
+  const [hoveredStepIndex, setHoveredStepIndex] = useState<number | null>(null);
+  const howItWorksRef = useRef(null);
+  const howItWorksInView = useInView(howItWorksRef, { once: true, amount: 0.1 });
 
   const toggleFaq = (index: number) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
@@ -545,50 +549,109 @@ const GroundIntelligence = () => {
         {/* ═══════════════════════════════════════════════════
             HOW IT WORKS — Topic Verification Flow
         ═══════════════════════════════════════════════════ */}
-        <section className="relative overflow-hidden bg-white pt-20 md:pt-28 lg:pt-32 pb-12 md:pb-16">
+        <section ref={howItWorksRef} className="py-24 lg:py-32 bg-white overflow-hidden">
           <div className="mx-auto max-w-[1400px] px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mb-12 md:mb-16"
-            >
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-px bg-foreground/30" />
-                <span className="section-eyebrow">How it works</span>
-              </div>
-              <h2 className="section-headline text-foreground max-w-4xl">
-                From question to verified answer in days.
-              </h2>
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border-t border-foreground/10">
-              {[
-                { step: "01", title: "Define your topic", description: "Tell us what you need verified — capacity, process capability, quality systems, working conditions. You set the scope." },
-                { step: "02", title: "We match an expert", description: "AI matches a certified auditor with relevant industry experience, located near your supplier. Ready in days, not weeks." },
-                { step: "03", title: "On-site evaluation", description: "The auditor visits the factory, collects evidence, runs standardized assessments, and documents everything with photos and measurements." },
-                { step: "04", title: "Intelligence delivered", description: "You receive standardized scores, evidence photos, expert commentary, and benchmark data — all in a structured, comparable format." },
-              ].map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="border-b lg:border-b-0 lg:border-r border-foreground/10 last:border-r-0 p-8 md:p-10"
-                >
-                  <span className="text-sm font-medium tracking-[0.15em] uppercase text-foreground/50 mb-3 block">
-                    {item.step}
-                  </span>
-                  <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">
-                    {item.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {item.description}
-                  </p>
-                </motion.div>
-              ))}
+            
+            {/* Header */}
+            <div className="grid grid-cols-1 lg:grid-cols-6 gap-8 mb-20 md:mb-28">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={howItWorksInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.7 }}
+                className="lg:col-span-3"
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-px bg-foreground" />
+                  <span className="section-eyebrow">How it works</span>
+                </div>
+                <h2 className="section-headline text-foreground">
+                  From question to<br />verified answer
+                </h2>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={howItWorksInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.7, delay: 0.15 }}
+                className="lg:col-span-2 lg:col-start-5 flex flex-col justify-end"
+              >
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Define your topic, we handle the rest — verified intelligence delivered in days, not weeks.
+                </p>
+              </motion.div>
             </div>
+
+            {/* Steps - Horizontal Accordion */}
+            <div className="relative">
+              <div className="absolute top-0 left-0 right-0 h-px bg-border" />
+              
+              <div className="flex flex-col md:flex-row">
+                {[
+                  { number: "01", title: "Define", subtitle: "Set your topic", description: "Tell us what you need verified — capacity, process capability, quality systems, working conditions. You define the scope." },
+                  { number: "02", title: "Match", subtitle: "Local expert assigned", description: "AI matches a certified auditor with relevant industry experience, located near your supplier. Ready in days, not weeks." },
+                  { number: "03", title: "Evaluate", subtitle: "On-site verification", description: "The auditor visits the factory, collects evidence, runs standardized assessments, and documents everything with photos and measurements." },
+                  { number: "04", title: "Deliver", subtitle: "Intelligence report", description: "You receive standardized scores, evidence photos, expert commentary, and benchmark data — all in a structured, comparable format." },
+                ].map((step, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0 }}
+                    animate={howItWorksInView ? { opacity: 1 } : {}}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    onMouseEnter={() => setHoveredStepIndex(index)}
+                    onMouseLeave={() => setHoveredStepIndex(null)}
+                    className={`group relative border-b md:border-b-0 md:border-r border-border last:border-r-0 cursor-pointer transition-all duration-500 ease-out ${
+                      hoveredStepIndex === index 
+                        ? 'md:flex-[2.5]' 
+                        : hoveredStepIndex !== null 
+                          ? 'md:flex-[0.8]' 
+                          : 'md:flex-1'
+                    }`}
+                  >
+                    <div className="py-10 md:py-16 px-6 md:px-8 h-full flex flex-col">
+                      {/* Number */}
+                      <div className="flex items-start justify-between mb-auto">
+                        <span className={`text-6xl md:text-7xl font-extralight transition-all duration-300 ${
+                          hoveredStepIndex === index ? 'text-foreground' : 'text-foreground/40'
+                        }`}>
+                          {step.number}
+                        </span>
+                      </div>
+                      
+                      {/* Content */}
+                      <div className="mt-12 md:mt-20">
+                        <span className={`text-sm tracking-[0.15em] uppercase transition-colors duration-300 ${
+                          hoveredStepIndex === index ? 'text-foreground' : 'text-muted-foreground/60'
+                        }`}>
+                          {step.subtitle}
+                        </span>
+                        <h3 className="text-2xl md:text-3xl font-medium text-foreground mt-2 mb-4">
+                          {step.title}
+                        </h3>
+                        
+                        {/* Description - Only visible on hover */}
+                        <motion.p
+                          initial={false}
+                          animate={{ 
+                            opacity: hoveredStepIndex === index ? 1 : 0,
+                            height: hoveredStepIndex === index ? 'auto' : 0,
+                          }}
+                          transition={{ duration: 0.3 }}
+                          className="text-lg text-muted-foreground leading-relaxed overflow-hidden"
+                        >
+                          {step.description}
+                        </motion.p>
+                      </div>
+                      
+                      {/* Hover indicator line */}
+                      <div className={`absolute bottom-0 left-0 h-[2px] bg-foreground transition-all duration-500 ${
+                        hoveredStepIndex === index ? 'w-full' : 'w-0'
+                      }`} />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
           </div>
         </section>
 
