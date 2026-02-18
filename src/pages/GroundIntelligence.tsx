@@ -383,7 +383,7 @@ const GroundIntelligence = () => {
         {/* ═══════════════════════════════════════════════════
             ON-SITE CHECKPOINTS — What auditors actually verify
         ═══════════════════════════════════════════════════ */}
-        <section className="py-16 md:py-24 bg-[hsl(0,0%,8%)]">
+        <section className="py-16 md:py-24 bg-muted">
           <div className="mx-auto max-w-[1400px] px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -392,13 +392,13 @@ const GroundIntelligence = () => {
               className="mb-10"
             >
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-px bg-white/30" />
-                <span className="text-sm font-medium tracking-[0.15em] text-white/50 uppercase">What we verify on-site</span>
+                <div className="w-16 h-px bg-foreground/30" />
+                <span className="section-eyebrow">What we verify on-site</span>
               </div>
-              <h2 className="section-headline text-white max-w-4xl mb-4">
+              <h2 className="section-headline text-foreground max-w-4xl mb-4">
                 Real checkpoints, not spreadsheet assumptions.
               </h2>
-              <p className="text-lg text-white/60 max-w-2xl">
+              <p className="text-lg text-muted-foreground max-w-2xl">
                 Every intelligence report is built from physical evidence — collected by certified auditors inside the supplier's facility.
               </p>
             </motion.div>
