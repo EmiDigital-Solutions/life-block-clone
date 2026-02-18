@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { Plus, Minus, ArrowRight, Check } from "lucide-react";
 import PageGridOverlay from "@/components/PageGridOverlay";
 import TechnicalAnnotation from "@/components/TechnicalAnnotation";
 import DimensionLine from "@/components/DimensionLine";
@@ -8,301 +9,20 @@ import ToleranceNotation from "@/components/ToleranceNotation";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Check, Plus, Minus, Eye, BarChart3, TrendingUp, Users, MapPin, ClipboardCheck, Target, GitCompare, LineChart, Calendar, Shield, Search } from "lucide-react";
 import HeroSquaresAnimation from "@/components/HeroSquaresAnimation";
 
-// Window Chrome Component for mockups
-const WindowChrome = ({ title, children }: { title: string; children: React.ReactNode }) => (
-  <div className="w-full h-full bg-[#fafafa] rounded-lg overflow-hidden flex flex-col shadow-xl border border-gray-200">
-    <div className="h-8 bg-white flex items-center px-3 border-b border-gray-200 flex-shrink-0">
-      <div className="flex gap-1.5 mr-3">
-        <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
-        <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
-        <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
-      </div>
-      <span className="text-[10px] text-gray-500 font-medium">{title}</span>
-    </div>
-    <div className="flex-1 overflow-hidden">
-      {children}
-    </div>
-  </div>
-);
-
-// Supplier Comparison Matrix Mockup
-const SupplierComparisonMockup = () => {
-  const [highlightedRow, setHighlightedRow] = useState(0);
-  
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setHighlightedRow((prev) => (prev + 1) % 4);
-    }, 2500);
-    return () => clearInterval(interval);
-  }, []);
-
-  const suppliers = [
-    { name: "Precision Parts GmbH", location: "DE", capacity: 94, quality: 97, delivery: 91, overall: 94, verified: true },
-    { name: "TechMetal Industries", location: "PL", capacity: 78, quality: 85, delivery: 88, overall: 83, verified: true },
-    { name: "Apex Components Ltd", location: "UK", capacity: 89, quality: 92, delivery: 82, overall: 87, verified: false },
-    { name: "Global Fasteners Co", location: "IT", capacity: 91, quality: 88, delivery: 95, overall: 91, verified: true },
-  ];
-
-  const getScoreColor = (score: number) => {
-    if (score >= 90) return "text-green-600 bg-green-50";
-    if (score >= 80) return "text-amber-600 bg-amber-50";
-    return "text-red-600 bg-red-50";
-  };
-
-  return (
-    <WindowChrome title="Ground Intelligence — Supplier Comparison Matrix">
-      <div className="h-full flex text-[10px] bg-[#f8f9fa]">
-        <div className="w-14 bg-white border-r border-gray-100 p-2 flex flex-col gap-2">
-          {[GitCompare, BarChart3, TrendingUp, Search].map((Icon, i) => (
-            <div key={i} className={`p-2 rounded ${i === 0 ? 'bg-primary/10 text-primary' : 'text-gray-400 hover:bg-gray-50'}`}>
-              <Icon className="w-4 h-4 mx-auto" />
-            </div>
-          ))}
-        </div>
-        
-        <div className="flex-1 p-3 overflow-hidden">
-          <div className="flex items-center justify-between mb-3">
-            <span className="font-semibold text-gray-900 text-[11px]">Verified Supplier Comparison</span>
-            <span className="text-[8px] text-primary font-medium px-2 py-0.5 rounded-full bg-primary/10">Based on on-site audits</span>
-          </div>
-
-          <div className="bg-white rounded-lg border border-gray-100 overflow-hidden">
-            {/* Header */}
-            <div className="grid grid-cols-6 px-3 py-2 bg-gray-50 border-b border-gray-100 font-medium text-gray-500 text-[8px]">
-              <div className="col-span-2">Supplier</div>
-              <div className="text-center">Capacity</div>
-              <div className="text-center">Quality</div>
-              <div className="text-center">Delivery</div>
-              <div className="text-center">Overall</div>
-            </div>
-            {/* Rows */}
-            {suppliers.map((s, i) => (
-              <motion.div 
-                key={i}
-                className="grid grid-cols-6 px-3 py-2 items-center border-b border-gray-50 last:border-0"
-                animate={{ backgroundColor: highlightedRow === i ? 'rgba(79, 195, 247, 0.06)' : 'transparent' }}
-              >
-                <div className="col-span-2 flex items-center gap-1.5">
-                  {s.verified && <Shield className="w-3 h-3 text-primary flex-shrink-0" />}
-                  <div>
-                    <div className="font-medium text-gray-900 truncate">{s.name}</div>
-                    <div className="text-[8px] text-gray-400">{s.location}</div>
-                  </div>
-                </div>
-                {[s.capacity, s.quality, s.delivery, s.overall].map((score, j) => (
-                  <div key={j} className="flex justify-center">
-                    <motion.span 
-                      className={`px-1.5 py-0.5 rounded text-[9px] font-bold ${getScoreColor(score)}`}
-                      animate={highlightedRow === i ? { scale: [1, 1.08, 1] } : {}}
-                      transition={{ duration: 0.5, delay: j * 0.1 }}
-                    >
-                      {score}
-                    </motion.span>
-                  </div>
-                ))}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </WindowChrome>
-  );
-};
-
-// Audit Trend Dashboard Mockup
-const AuditTrendMockup = () => {
-  const [activePoint, setActivePoint] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActivePoint((prev) => (prev + 1) % 6);
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const trendData = [
-    { quarter: "Q1'24", score: 72, audits: 2 },
-    { quarter: "Q2'24", score: 78, audits: 1 },
-    { quarter: "Q3'24", score: 81, audits: 3 },
-    { quarter: "Q4'24", score: 85, audits: 2 },
-    { quarter: "Q1'25", score: 89, audits: 2 },
-    { quarter: "Q2'25", score: 92, audits: 1 },
-  ];
-
-  const topics = [
-    { name: "Process Capability", trend: "+12%", status: "improving" },
-    { name: "Capacity Utilization", trend: "+8%", status: "improving" },
-    { name: "Quality Systems", trend: "+15%", status: "improving" },
-    { name: "Delivery Reliability", trend: "−3%", status: "declining" },
-  ];
-
-  return (
-    <WindowChrome title="Ground Intelligence — Audit Trend Analysis">
-      <div className="h-full flex text-[10px] bg-[#f8f9fa]">
-        <div className="w-14 bg-white border-r border-gray-100 p-2 flex flex-col gap-2">
-          {[LineChart, Calendar, ClipboardCheck, Target].map((Icon, i) => (
-            <div key={i} className={`p-2 rounded ${i === 0 ? 'bg-primary/10 text-primary' : 'text-gray-400 hover:bg-gray-50'}`}>
-              <Icon className="w-4 h-4 mx-auto" />
-            </div>
-          ))}
-        </div>
-
-        <div className="flex-1 p-3 overflow-hidden">
-          <div className="flex items-center justify-between mb-3">
-            <div>
-              <div className="font-semibold text-gray-900 text-[11px]">Precision Parts GmbH</div>
-              <div className="text-[8px] text-gray-400">18 months audit history · 11 on-site visits</div>
-            </div>
-            <div className="flex items-center gap-1 text-green-600 text-[9px] font-medium">
-              <TrendingUp className="w-3 h-3" /> +20pts
-            </div>
-          </div>
-
-          {/* Mini chart */}
-          <div className="bg-white rounded-lg border border-gray-100 p-3 mb-3">
-            <div className="flex items-end justify-between h-16 gap-1">
-              {trendData.map((d, i) => (
-                <div key={i} className="flex-1 flex flex-col items-center gap-1">
-                  <motion.div
-                    className="w-full rounded-t"
-                    style={{ backgroundColor: activePoint === i ? 'hsl(199, 91%, 64%)' : '#e5e7eb' }}
-                    animate={{ height: `${(d.score / 100) * 48}px` }}
-                    transition={{ duration: 0.4 }}
-                  />
-                  <span className="text-[7px] text-gray-400">{d.quarter}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Topic breakdown */}
-          <div className="bg-white rounded-lg border border-gray-100 overflow-hidden">
-            <div className="px-3 py-1.5 border-b border-gray-100 font-semibold text-gray-900 text-[10px]">
-              Topic Performance Trends
-            </div>
-            <div className="divide-y divide-gray-50">
-              {topics.map((t, i) => (
-                <div key={i} className="px-3 py-1.5 flex items-center justify-between">
-                  <span className="text-gray-700">{t.name}</span>
-                  <span className={`font-bold ${t.status === 'improving' ? 'text-green-600' : 'text-red-500'}`}>
-                    {t.trend}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </WindowChrome>
-  );
-};
-
-// On-Demand Verification Mockup
-const OnDemandVerificationMockup = () => {
-  const [step, setStep] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setStep((prev) => (prev + 1) % 4);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const steps = [
-    { label: "Select topic", detail: "Capacity verification for CNC 5-axis", icon: Target },
-    { label: "Assign auditor", detail: "Expert matched: 12yr automotive exp.", icon: Users },
-    { label: "On-site visit", detail: "Scheduled: 3 business days", icon: MapPin },
-    { label: "Verified report", detail: "Standardized score + evidence photos", icon: ClipboardCheck },
-  ];
-
-  return (
-    <WindowChrome title="Ground Intelligence — On-Demand Verification">
-      <div className="h-full flex text-[10px] bg-[#f8f9fa]">
-        <div className="w-14 bg-white border-r border-gray-100 p-2 flex flex-col gap-2">
-          {[Eye, Target, MapPin, ClipboardCheck].map((Icon, i) => (
-            <div key={i} className={`p-2 rounded ${i === 0 ? 'bg-primary/10 text-primary' : 'text-gray-400 hover:bg-gray-50'}`}>
-              <Icon className="w-4 h-4 mx-auto" />
-            </div>
-          ))}
-        </div>
-
-        <div className="flex-1 p-3 overflow-hidden">
-          <div className="flex items-center justify-between mb-3">
-            <span className="font-semibold text-gray-900 text-[11px]">Verification Request</span>
-            <span className="text-[8px] text-primary font-medium">New Request</span>
-          </div>
-
-          <div className="space-y-2">
-            {steps.map((s, i) => {
-              const isActive = step === i;
-              const isDone = step > i;
-              return (
-                <motion.div
-                  key={i}
-                  className="bg-white rounded-lg border border-gray-100 p-3 flex items-start gap-3"
-                  animate={{
-                    borderColor: isActive ? 'hsl(199, 91%, 64%)' : '#f3f4f6',
-                    backgroundColor: isDone ? 'rgba(79, 195, 247, 0.04)' : 'white',
-                  }}
-                >
-                  <motion.div
-                    className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 ${
-                      isDone ? 'bg-primary text-white' : isActive ? 'bg-primary/20 text-primary' : 'bg-gray-100 text-gray-400'
-                    }`}
-                    animate={isActive ? { scale: [1, 1.1, 1] } : {}}
-                    transition={{ duration: 1, repeat: Infinity }}
-                  >
-                    {isDone ? <Check className="w-3.5 h-3.5" /> : <s.icon className="w-3.5 h-3.5" />}
-                  </motion.div>
-                  <div>
-                    <div className={`font-medium ${isDone || isActive ? 'text-gray-900' : 'text-gray-400'}`}>{s.label}</div>
-                    <div className="text-[8px] text-gray-400 mt-0.5">{s.detail}</div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </WindowChrome>
-  );
-};
-
-
 const GroundIntelligence = () => {
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-    }
+  const [activeFaqCategory, setActiveFaqCategory] = useState("general");
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+
+  const toggleFaq = (index: number) => {
+    setOpenFaqIndex(openFaqIndex === index ? null : index);
   };
 
-  const pillars = [
-    {
-      icon: Eye,
-      title: "Verify",
-      subtitle: "On-demand expert evaluation",
-      description: "Send qualified auditors to any supplier, anytime — to evaluate the specific topics you care about. No generic checklists. Real answers to your real questions.",
-    },
-    {
-      icon: GitCompare,
-      title: "Benchmark",
-      subtitle: "Compare with standardized scores",
-      description: "Compare suppliers objectively using standardized scores derived from real audit data. Not self-reported surveys — verified ground truth from on-site visits.",
-    },
-    {
-      icon: TrendingUp,
-      title: "Predict",
-      subtitle: "Trend analysis from audit history",
-      description: "Track how suppliers develop over time. Identify improvement trajectories or early warning signals based on historical audit results, not scraped news feeds.",
-    },
-  ];
+  const handleFaqCategoryChange = (categoryId: string) => {
+    setActiveFaqCategory(categoryId);
+    setOpenFaqIndex(0);
+  };
 
   const differentiators = [
     { desk: "Supplier self-assessment", ground: "Independent on-site verification" },
@@ -312,32 +32,14 @@ const GroundIntelligence = () => {
     { desk: "One-size-fits-all reports", ground: "Custom topic deep-dives on your request" },
   ];
 
-  const features = [
-    {
-      title: "On-demand verification visits",
-      description: "Define what you need verified — capacity, process capability, quality systems, working conditions — and we dispatch a matched expert auditor within days. You receive a standardized, evidence-backed report.",
-      mockup: <OnDemandVerificationMockup />
-    },
-    {
-      title: "Supplier comparison matrix",
-      description: "Compare your shortlisted suppliers side-by-side using scores that come from real on-site evaluations. Capacity, quality, delivery reliability — all verified by independent auditors, not algorithms.",
-      mockup: <SupplierComparisonMockup />
-    },
-    {
-      title: "Audit history & trend prediction",
-      description: "Every audit builds your supplier intelligence over time. Track improvement trajectories, spot declining performance early, and make data-driven decisions backed by ground truth.",
-      mockup: <AuditTrendMockup />
-    }
-  ];
-
   const faqCategories = [
     {
       id: "general",
       label: "General",
       faqs: [
         {
-          question: "How is Ground Intelligence different from Prewave or other data providers?",
-          answer: "Unlike data-scraping platforms that monitor news feeds and public records, Ground Intelligence is based on physical verification. We send expert auditors on-site to evaluate specific topics you define. The result is verified ground truth — not assumptions based on web data."
+          question: "How is this different from Prewave or other data providers?",
+          answer: "Unlike data-scraping platforms that monitor news feeds and public records, our intelligence is based on physical verification. We send expert auditors on-site to evaluate specific topics you define. The result is verified data — not assumptions based on web scraping."
         },
         {
           question: "What topics can I request for verification?",
@@ -383,491 +85,592 @@ const GroundIntelligence = () => {
     },
   ];
 
-  const [activeFaqCategory, setActiveFaqCategory] = useState("general");
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
-
   const activeFaqs = faqCategories.find((cat) => cat.id === activeFaqCategory)?.faqs || [];
 
-  const toggleFaq = (index: number) => {
-    setOpenFaqIndex(openFaqIndex === index ? null : index);
-  };
-
-  const handleFaqCategoryChange = (categoryId: string) => {
-    setActiveFaqCategory(categoryId);
-    setOpenFaqIndex(0);
-  };
-
-  const relatedProducts = [
-    {
-      title: "Search",
-      description: "Find and evaluate new suppliers with AI-powered discovery and due diligence.",
-      link: "/search-suppliers",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80"
-    },
-    {
-      title: "ScanPro+",
-      description: "Conduct comprehensive supplier audits with AI-assisted inspection and documentation.",
-      link: "/scanpro-plus",
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80"
-    },
-    {
-      title: "Be Found",
-      description: "Help suppliers get discovered by enterprise buyers through verified profiles.",
-      link: "/be-found",
-      image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=80"
-    }
-  ];
-
   return (
-    <div className="min-h-screen bg-background relative">
+    <div className="min-h-screen relative">
       <PageGridOverlay />
       <div className="relative">
-      <Navigation />
-      
-      {/* Hero Section */}
-      <section
-        data-nav-theme="light"
-        className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background"
-        id="hero"
-      >
-        <HeroSquaresAnimation className="top-24 right-8 md:top-28 md:right-20 lg:top-32 lg:right-24" />
-        <div className="mx-auto max-w-[1400px] px-8">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-muted-foreground text-sm font-mono tracking-wider mb-6"
-          >
-            Ground Intelligence
-          </motion.p>
-          
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground mb-8"
-          >
-            Truth you can<br />
-            send someone for
-          </motion.h1>
+        <Navigation />
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg sm:text-xl text-muted-foreground max-w-2xl mb-10"
-          >
-            Not scraped data. Not self-reported surveys. Verified intelligence from expert auditors who visit your suppliers on-site — evaluating exactly what you need to know.
-          </motion.p>
+        {/* ═══════════════════════════════════════════════════
+            HERO — Homepage-style asymmetric layout
+        ═══════════════════════════════════════════════════ */}
+        <section
+          data-nav-theme="light"
+          className="relative min-h-[100dvh] flex flex-col bg-white"
+        >
+          <HeroSquaresAnimation className="top-[100px] right-8 md:top-[91px] md:right-20 lg:top-[103px] lg:right-24" />
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <Button size="lg" onClick={() => scrollToSection('cta')}>
-              Request a demo
-            </Button>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* DIN annotation */}
-      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
-        <TechnicalAnnotation label="1200" from={4} to={6} />
-      </div>
-
-      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-        <SectionCutMarker section="A" from={0} to={5} />
-      </div>
-
-      {/* Three Pillars: Verify · Benchmark · Predict */}
-      <section
-        data-nav-theme="light"
-        className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background border-t border-border"
-      >
-        <div className="mx-auto max-w-[1400px] px-8">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="section-eyebrow mb-4"
-          >
-            The three pillars
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.05 }}
-            className="section-headline text-foreground mb-16"
-          >
-            Intelligence built on<br />ground truth
-          </motion.h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
-            {pillars.map((pillar, index) => (
+          <div className="flex-1 flex items-center relative z-10 pt-[106px] md:pt-[154px] lg:pt-[186px] min-h-0">
+            <div className="px-8 w-full max-w-[1400px] mx-auto">
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="space-y-4"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
               >
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <pillar.icon className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-2xl lg:text-3xl font-semibold text-foreground">
-                  {pillar.title}
-                </h3>
-                <p className="text-sm font-medium text-primary tracking-wide">
-                  {pillar.subtitle}
-                </p>
-                <p className="text-muted-foreground text-base lg:text-lg leading-relaxed">
-                  {pillar.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Desk Research vs. Ground Truth */}
-      <section
-        data-nav-theme="light"
-        className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-muted/30"
-      >
-        <div className="mx-auto max-w-[1400px] px-8">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="section-eyebrow mb-4"
-          >
-            The difference
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.05 }}
-            className="section-headline text-foreground mb-16"
-          >
-            Desk research vs.<br />on-site reality
-          </motion.h2>
-
-          <div className="bg-background border border-border overflow-hidden">
-            {/* Table header */}
-            <div className="grid grid-cols-2 border-b border-border">
-              <div className="px-6 lg:px-8 py-4 bg-muted/50">
-                <span className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Typical data providers</span>
-              </div>
-              <div className="px-6 lg:px-8 py-4 bg-primary/5">
-                <span className="text-sm font-semibold text-primary uppercase tracking-wider">YVOO Ground Intelligence</span>
-              </div>
-            </div>
-            {/* Table rows */}
-            {differentiators.map((d, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className="grid grid-cols-2 border-b border-border last:border-0"
-              >
-                <div className="px-6 lg:px-8 py-5 flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/30 flex-shrink-0" />
-                  <span className="text-muted-foreground text-sm lg:text-base">{d.desk}</span>
-                </div>
-                <div className="px-6 lg:px-8 py-5 flex items-center gap-3 bg-primary/[0.03]">
-                  <Check className="w-4 h-4 text-primary flex-shrink-0" strokeWidth={2.5} />
-                  <span className="text-foreground text-sm lg:text-base font-medium">{d.ground}</span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Feature Showcase - Three animated mockups */}
-      <section
-        data-nav-theme="light"
-        className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background"
-        id="features"
-      >
-        <div className="mx-auto max-w-[1400px] px-8">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className={`mb-24 last:mb-0 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}
-            >
-              <div className="space-y-6 mb-8">
-                <h2 className="text-3xl lg:text-4xl font-semibold text-foreground">
-                  {feature.title}
-                </h2>
-                <p className="text-muted-foreground text-lg max-w-2xl">
-                  {feature.description}
-                </p>
-              </div>
-              
-              <motion.div
-                initial={{ opacity: 0, scale: 0.98 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="overflow-hidden border border-border bg-background h-[400px] lg:h-[450px]"
-              >
-                {feature.mockup}
-              </motion.div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* DIN annotation */}
-      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
-        <TechnicalAnnotation label="700" from={0} to={3} />
-      </div>
-
-      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-        <DimensionLine from="Desk" to="Ground" unit="" gridFrom={1} gridTo={5} />
-      </div>
-
-      {/* Results Section */}
-      <section 
-        data-nav-theme="light" 
-        className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background"
-        id="results"
-      >
-        <div className="mx-auto max-w-[1400px] px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl lg:text-5xl font-medium tracking-tight text-foreground">
-              Verified results
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-12">
-            {[
-              { metric: "850+", label: "Expert auditors worldwide" },
-              { metric: "47", label: "Countries covered" },
-              { metric: "3 days", label: "Avg. time to on-site visit" },
-              { metric: "€700", label: "Starting price per verification" }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="text-center p-6"
-              >
-                <div className="text-4xl lg:text-5xl xl:text-6xl font-bold text-primary mb-3">
-                  {item.metric}
-                </div>
-                <p className="text-muted-foreground text-base">{item.label}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* DIN annotation */}
-      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
-        <TechnicalAnnotation label="Ø 800" from={2} to={5} />
-      </div>
-
-      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-        <ToleranceNotation nominal="97.8" tolerance="0.5" unit="%" label="Verification Accuracy" gridColumn={3} />
-      </div>
-
-      {/* FAQ Section */}
-      <section 
-        data-nav-theme="light" 
-        className="py-24 md:py-32 bg-background"
-        id="faq"
-      >
-        <div className="mx-auto max-w-[1400px] px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-12"
-          >
-            <h2 className="section-headline text-foreground">
-              Questions about Ground Intelligence
-            </h2>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="flex flex-wrap gap-3 mb-12"
-          >
-            {faqCategories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => handleFaqCategoryChange(category.id)}
-                className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
-                  activeFaqCategory === category.id
-                    ? "bg-foreground text-white"
-                    : "bg-[#e5e5e5] text-foreground hover:bg-[#d5d5d5]"
-                }`}
-              >
-                {category.label}
-              </button>
-            ))}
-          </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-6 gap-0">
-            <div className="hidden lg:block lg:col-span-1" />
-            <motion.div
-              key={activeFaqCategory}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-              className="lg:col-span-5"
-            >
-              {activeFaqs.map((faq, index) => (
-                <div
-                  key={index}
-                  className="border-t border-[#d5d5d5]"
+                {/* Eyebrow */}
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="text-sm md:text-base text-foreground/50 font-mono tracking-[0.25em] uppercase mb-4 md:mb-6"
                 >
-                  <button
-                    onClick={() => toggleFaq(index)}
-                    className="w-full py-6 flex items-start justify-between gap-6 text-left group"
-                  >
-                    <span className="text-lg md:text-xl text-foreground font-medium leading-snug">
-                      {faq.question}
-                    </span>
-                    <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[#d5d5d5] flex items-center justify-center transition-colors duration-200 group-hover:bg-[#c5c5c5]">
-                      {openFaqIndex === index ? (
-                        <Minus className="w-5 h-5 text-foreground" strokeWidth={1.5} />
-                      ) : (
-                        <Plus className="w-5 h-5 text-foreground" strokeWidth={1.5} />
-                      )}
-                    </div>
-                  </button>
-                  
+                  Audit data, evidence & on-demand evaluation — combined.
+                </motion.p>
+
+                {/* Headline */}
+                <motion.h1
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
+                >
+                  One place for all<br />
+                  supplier intelligence
+                </motion.h1>
+
+                {/* Value Props — aligned to 4th grid line */}
+                <div className="mt-8 md:mt-12 lg:mt-16 ml-[50%] relative">
+                  <span className="absolute -left-14 -top-6 font-mono text-[9px] tracking-[0.2em] text-foreground/[0.12] select-none" aria-hidden="true">
+                    DIN EN ISO
+                  </span>
+
+                  {/* Surface roughness symbol */}
+                  <div className="absolute -right-4 md:right-0 -top-8 text-foreground/[0.12]" aria-hidden="true">
+                    <svg width="36" height="28" viewBox="0 0 36 28" fill="none">
+                      <path d="M0 24 L6 24 L10 8 L14 24 L18 24" stroke="currentColor" strokeWidth="0.8" fill="none" />
+                      <line x1="6" y1="6" x2="18" y2="6" stroke="currentColor" strokeWidth="0.5" />
+                      <text x="20" y="18" fill="currentColor" fontSize="7" fontFamily="monospace" letterSpacing="0.05em">Ra 1.6</text>
+                    </svg>
+                  </div>
+
                   <motion.div
-                    initial={false}
-                    animate={{
-                      height: openFaqIndex === index ? "auto" : 0,
-                      opacity: openFaqIndex === index ? 1 : 0,
-                    }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                    className="overflow-hidden"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                    className="space-y-5 mb-6 md:mb-8"
                   >
-                    <p className="text-[#888888] text-base md:text-lg leading-relaxed pb-6 pr-16">
-                      {faq.answer}
+                    <div className="relative">
+                      {/* Vertical DIN dimension line */}
+                      <div className="absolute -left-5 top-0 bottom-0 flex flex-col items-center text-foreground/[0.12]" aria-hidden="true">
+                        <div className="w-2.5 h-px bg-current" />
+                        <svg width="7" height="5" viewBox="0 0 7 5" fill="none" className="flex-shrink-0">
+                          <path d="M0 5 L3.5 0 L7 5" stroke="currentColor" strokeWidth="0.7" fill="none" />
+                        </svg>
+                        <div className="flex-1 w-px bg-current" />
+                        <span className="font-mono text-[7px] tracking-[0.15em] select-none whitespace-nowrap py-0.5 -rotate-90 origin-center">
+                          180
+                        </span>
+                        <div className="flex-1 w-px bg-current" />
+                        <svg width="7" height="5" viewBox="0 0 7 5" fill="none" className="flex-shrink-0">
+                          <path d="M0 0 L3.5 5 L7 0" stroke="currentColor" strokeWidth="0.7" fill="none" />
+                        </svg>
+                        <div className="w-2.5 h-px bg-current" />
+                      </div>
+
+                      <div className="space-y-2">
+                        {[
+                          { bold: "On-demand expert visits", rest: "send auditors to evaluate any topic, anytime, anywhere" },
+                          { bold: "Verified data, not scraped feeds", rest: "on-site evidence, photos, measurements — not web crawlers" },
+                          { bold: "Benchmark across suppliers", rest: "standardized scores from real audits, not self-reported surveys" },
+                          { bold: "Track performance over time", rest: "audit history, trend analysis, early warning signals" },
+                          { bold: "Topic-specific deep-dives", rest: "capacity, process capability, quality systems — you define the scope" },
+                          { bold: "850+ auditors in 47 countries", rest: "local experts, on-site within days, no travel costs" },
+                        ].map((item, i) => (
+                          <p key={i} className="text-sm md:text-base text-foreground/60 whitespace-nowrap">
+                            <span className="font-semibold text-foreground">{item.bold}</span> — {item.rest}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+                    <p className="text-sm md:text-base whitespace-nowrap flex items-baseline mt-2">
+                      <span><span className="font-semibold text-primary">Starting at €700</span> per verification · <a href="https://calendly.com/yvoo/demo-yvoo" target="_blank" rel="noopener noreferrer" className="underline font-semibold text-primary hover:text-primary/80">Book a Demo →</a></span>
                     </p>
                   </motion.div>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-      </section>
 
-      {/* Related Products */}
-      <section 
-        data-nav-theme="light" 
-        className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-muted/30"
-      >
-        <div className="mx-auto max-w-[1400px] px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            {relatedProducts.map((product, index) => (
-              <motion.a
-                key={index}
-                href={product.link}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                    className="flex flex-col sm:flex-row gap-4"
+                  >
+                    <Button size="lg" className="w-full sm:w-auto text-lg" asChild>
+                      <a href="https://calendly.com/yvoo/demo-yvoo" target="_blank" rel="noopener noreferrer">
+                        Request a Demo →
+                      </a>
+                    </Button>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Scrolling Band */}
+          <div className="relative z-10 border-t border-foreground/10 overflow-hidden py-3 md:py-5 shrink-0">
+            <div className="flex animate-marquee whitespace-nowrap">
+              {[...Array(2)].flatMap((_, rep) => [
+                { label: "Verify", detail: "On-demand evaluation" },
+                { label: "Benchmark", detail: "Standardized scores" },
+                { label: "Predict", detail: "Trend analysis" },
+                { label: "Evidence", detail: "Photos & measurements" },
+                { label: "Compare", detail: "Side-by-side matrix" },
+                { label: "Track", detail: "Supplier development" },
+                { label: "Evaluate", detail: "Topic deep-dives" },
+              ].map((item, i) => (
+                <span
+                  key={`${rep}-${i}`}
+                  className="mx-4 md:mx-10 text-xs md:text-base tracking-widest uppercase font-bold text-foreground/80"
+                >
+                  {item.label}
+                  <span className="ml-1.5 font-normal text-foreground/40 normal-case tracking-normal text-[0.85em]">({item.detail})</span>
+                  <span className="ml-6 md:ml-10 text-foreground/20">·</span>
+                </span>
+              )))}
+            </div>
+          </div>
+        </section>
+
+        {/* DIN annotation */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+          <TechnicalAnnotation label="1200" from={4} to={6} />
+        </div>
+
+        {/* ═══════════════════════════════════════════════════
+            COMPARISON — Desk Research vs. On-Site Reality
+        ═══════════════════════════════════════════════════ */}
+        <section data-nav-theme="light" className="pt-24 pb-12 md:pt-32 md:pb-16 bg-white">
+          <div className="mx-auto max-w-[1400px] px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-6 gap-8 mb-12">
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group block"
+                className="lg:col-span-3"
               >
-                <div className="overflow-hidden bg-[#ebebeb] hover:bg-[#e3e3e3] transition-all duration-300">
-                  <div className="aspect-[16/10] overflow-hidden">
-                    <img 
-                      src={product.image} 
-                      alt={product.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                      {product.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm mb-4">
-                      {product.description}
-                    </p>
-                    <span className="inline-flex items-center gap-1 text-primary font-medium text-sm group-hover:gap-2 transition-all">
-                      Learn more <ArrowRight className="w-4 h-4" />
-                    </span>
-                  </div>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-16 h-px bg-foreground/30" />
+                  <span className="section-eyebrow">The difference</span>
                 </div>
-              </motion.a>
-            ))}
-          </div>
-        </div>
-      </section>
+                <h2 className="section-headline text-foreground font-semibold">
+                  Desk research vs.<br />on-site reality
+                </h2>
+              </motion.div>
 
-      {/* DIN annotation */}
-      <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
-        <TechnicalAnnotation label="950" from={3} to={6} />
-      </div>
-
-      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-        <SectionCutMarker section="B" from={2} to={6} />
-      </div>
-
-      {/* Final CTA */}
-      <section 
-        data-nav-theme="light" 
-        className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-12 xl:px-24 bg-background border-t border-border"
-        id="cta"
-      >
-        <div className="mx-auto max-w-[1400px] px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="space-y-8"
-          >
-            <h2 className="text-4xl lg:text-5xl xl:text-6xl font-medium tracking-tight text-foreground">
-              Stop guessing. Start verifying.
-            </h2>
-
-            <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
-              See how Ground Intelligence gives you verified supplier data from real on-site evaluations — not scraped feeds.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg">
-                Request a demo
-                <ArrowRight className="w-5 h-5" />
-              </Button>
-              <Button variant="outline" size="lg">
-                Contact sales
-              </Button>
+              <div className="lg:col-span-2 lg:col-start-5 flex flex-col justify-end">
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Data providers scrape the web. We send qualified experts to the factory floor.
+                </p>
+              </div>
             </div>
-          </motion.div>
-        </div>
-      </section>
 
-      <Footer />
+            <div className="bg-background border border-border overflow-hidden">
+              <div className="grid grid-cols-2 border-b border-border">
+                <div className="px-6 lg:px-8 py-4 bg-muted/50">
+                  <span className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Typical data providers</span>
+                </div>
+                <div className="px-6 lg:px-8 py-4 bg-primary/5">
+                  <span className="text-sm font-semibold text-primary uppercase tracking-wider">YVOO Supplier Intelligence</span>
+                </div>
+              </div>
+              {differentiators.map((d, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }}
+                  className="grid grid-cols-2 border-b border-border last:border-0"
+                >
+                  <div className="px-6 lg:px-8 py-5 flex items-center gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/30 flex-shrink-0" />
+                    <span className="text-muted-foreground text-sm lg:text-base">{d.desk}</span>
+                  </div>
+                  <div className="px-6 lg:px-8 py-5 flex items-center gap-3 bg-primary/[0.03]">
+                    <Check className="w-4 h-4 text-primary flex-shrink-0" strokeWidth={2.5} />
+                    <span className="text-foreground text-sm lg:text-base font-medium">{d.ground}</span>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Section cut marker A—A */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+          <SectionCutMarker section="A" from={0} to={6} />
+        </div>
+
+        {/* ═══════════════════════════════════════════════════
+            THREE PILLARS — Verify · Benchmark · Predict
+        ═══════════════════════════════════════════════════ */}
+        <section className="relative overflow-hidden bg-white pt-20 md:pt-28 lg:pt-32 pb-6 md:pb-8">
+          <div className="mx-auto max-w-[1400px] px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="mb-12 md:mb-16"
+            >
+              <h2 className="section-headline text-foreground max-w-4xl">
+                The three dimensions of supplier intelligence.
+              </h2>
+            </motion.div>
+
+            <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-0 border-t border-foreground/10">
+              {[
+                {
+                  phase: "Verify",
+                  title: "On-Demand Evaluation",
+                  description: "Send qualified auditors to any supplier, anytime — to evaluate the specific topics you care about. No generic checklists. Real answers to your real questions",
+                },
+                {
+                  phase: "Benchmark",
+                  title: "Standardized Comparison",
+                  description: "Compare suppliers objectively using standardized scores from real audit data. Not self-reported surveys — verified measurements from on-site visits",
+                },
+                {
+                  phase: "Predict",
+                  title: "Trend Analysis",
+                  description: "Track how suppliers develop over time. Identify improvement trajectories or early warning signals based on historical audit results, not scraped news feeds",
+                },
+              ].map((cap, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="lg:col-span-2 border-b md:border-b-0 md:border-r border-foreground/10 last:border-r-0"
+                >
+                  <div className="group block h-full p-8 md:p-10">
+                    <div className="relative">
+                      <span className="text-sm font-medium tracking-[0.15em] uppercase text-foreground/50 mb-3 block">
+                        {cap.phase}
+                      </span>
+                      <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">
+                        {cap.title}
+                      </h3>
+                    </div>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {cap.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Dimension line */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+          <DimensionLine from="Desk" to="Ground" unit="" gridFrom={0} gridTo={4} />
+        </div>
+
+        {/* ═══════════════════════════════════════════════════
+            WHAT WE COMBINE — Evidence + Audit Data + Evaluation
+        ═══════════════════════════════════════════════════ */}
+        <section className="py-16 md:py-24 bg-white">
+          <div className="mx-auto max-w-[1400px] px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="max-w-2xl mb-16"
+            >
+              <h2 className="section-headline text-foreground mb-6">
+                Intelligence that comes from the factory floor
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                We combine three data sources no other platform has: structured audit data, physical evidence from on-site visits, and expert evaluations on the topics you define.
+              </p>
+            </motion.div>
+
+            {/* 2x2 KPI grid — shifted one grid right (homepage pattern) */}
+            <div className="grid grid-cols-1 lg:grid-cols-6 gap-0 mb-20">
+              <div className="hidden lg:block lg:col-span-1" />
+              <div className="lg:col-span-5 grid md:grid-cols-2 gap-x-12">
+                {[
+                  { category: "Audit data", value: "97.8%", description: "Standardized scores, checklists, and compliance assessments from certified auditors" },
+                  { category: "Physical evidence", value: "50+", description: "Geo-tagged photos, equipment measurements, process documentation per visit" },
+                  { category: "Expert evaluation", value: "3 days", description: "On-demand topic-specific deep-dives by matched industry specialists" },
+                  { category: "Trend intelligence", value: "18mo", description: "Historical performance tracking, supplier development trajectories, early warnings" },
+                ].map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.05 }}
+                    className="pb-12"
+                  >
+                    <p className="text-sm text-foreground/50 font-medium tracking-wide mb-2">
+                      {stat.category}
+                    </p>
+                    <div className="border-t border-foreground/20 pt-4">
+                      <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
+                        {stat.value}
+                      </p>
+                      <p className="text-foreground/60 leading-relaxed text-sm">
+                        {stat.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Quote */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="grid grid-cols-1 lg:grid-cols-6 gap-0"
+            >
+              <div className="hidden lg:block lg:col-span-1" />
+              <div className="lg:col-span-5 border-l-2 border-accent pl-8 md:pl-12">
+                <p className="text-lg md:text-xl lg:text-2xl font-light text-foreground/80 leading-relaxed tracking-tight mb-6">
+                  "The difference between data intelligence and supplier intelligence is simple: we don't scrape the internet — we send someone to the factory. Every score, every photo, every assessment comes from a qualified auditor who was physically on-site."
+                </p>
+                <p className="text-sm font-medium text-foreground/50 tracking-wide">
+                  — YVOO Founders
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* DIN annotation */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
+          <TechnicalAnnotation label="950" from={3} to={6} />
+        </div>
+
+        {/* Section cut marker B—B */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+          <SectionCutMarker section="B" from={1} to={5} />
+        </div>
+
+        {/* ═══════════════════════════════════════════════════
+            HOW IT WORKS — Topic Verification Flow
+        ═══════════════════════════════════════════════════ */}
+        <section className="relative overflow-hidden bg-white pt-20 md:pt-28 lg:pt-32 pb-12 md:pb-16">
+          <div className="mx-auto max-w-[1400px] px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-12 md:mb-16"
+            >
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-16 h-px bg-foreground/30" />
+                <span className="section-eyebrow">How it works</span>
+              </div>
+              <h2 className="section-headline text-foreground max-w-4xl">
+                From question to verified answer in days.
+              </h2>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border-t border-foreground/10">
+              {[
+                { step: "01", title: "Define your topic", description: "Tell us what you need verified — capacity, process capability, quality systems, working conditions. You set the scope." },
+                { step: "02", title: "We match an expert", description: "AI matches a certified auditor with relevant industry experience, located near your supplier. Ready in days, not weeks." },
+                { step: "03", title: "On-site evaluation", description: "The auditor visits the factory, collects evidence, runs standardized assessments, and documents everything with photos and measurements." },
+                { step: "04", title: "Intelligence delivered", description: "You receive standardized scores, evidence photos, expert commentary, and benchmark data — all in a structured, comparable format." },
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="border-b lg:border-b-0 lg:border-r border-foreground/10 last:border-r-0 p-8 md:p-10"
+                >
+                  <span className="text-sm font-medium tracking-[0.15em] uppercase text-foreground/50 mb-3 block">
+                    {item.step}
+                  </span>
+                  <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">
+                    {item.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {item.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Tolerance notation */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+          <ToleranceNotation nominal="99.7" tolerance="0.02" unit="%" label="Verification Accuracy" gridColumn={4} />
+        </div>
+
+        {/* ═══════════════════════════════════════════════════
+            RESULTS — Stats
+        ═══════════════════════════════════════════════════ */}
+        <section data-nav-theme="light" className="relative py-20 lg:py-28 bg-white">
+          <div className="mx-auto max-w-[1400px] px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-16"
+            >
+              <h2 className="section-headline text-foreground">
+                Verified results
+              </h2>
+            </motion.div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border-t border-foreground/10">
+              {[
+                { metric: "850+", label: "Expert auditors worldwide" },
+                { metric: "47", label: "Countries covered" },
+                { metric: "3 days", label: "Avg. time to on-site visit" },
+                { metric: "€700", label: "Starting price per verification" }
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="border-b md:border-b-0 md:border-r border-foreground/10 last:border-r-0 p-8 md:p-10"
+                >
+                  <div className="text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground mb-3 tracking-[-0.02em]">
+                    {item.metric}
+                  </div>
+                  <p className="text-muted-foreground text-sm">{item.label}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Dimension line */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+          <DimensionLine from="14" to="3" unit=" Tage" gridFrom={2} gridTo={6} />
+        </div>
+
+        {/* Section cut marker C—C */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+          <SectionCutMarker section="C" from={0} to={3} />
+        </div>
+
+        {/* ═══════════════════════════════════════════════════
+            FAQ
+        ═══════════════════════════════════════════════════ */}
+        <section data-nav-theme="light" className="py-24 md:py-32 bg-white">
+          <div className="mx-auto max-w-[1400px] px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-12"
+            >
+              <h2 className="section-headline text-foreground">
+                Questions & answers
+              </h2>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="flex flex-wrap gap-3 mb-12"
+            >
+              {faqCategories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => handleFaqCategoryChange(category.id)}
+                  className={`px-5 py-2.5 text-sm font-medium transition-all duration-200 ${
+                    activeFaqCategory === category.id
+                      ? "bg-foreground text-white"
+                      : "bg-muted text-foreground hover:bg-muted/80"
+                  }`}
+                >
+                  {category.label}
+                </button>
+              ))}
+            </motion.div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-6 gap-0">
+              <div className="hidden lg:block lg:col-span-1" />
+              <motion.div
+                key={activeFaqCategory}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+                className="lg:col-span-5"
+              >
+                {activeFaqs.map((faq, index) => (
+                  <div key={index} className="border-t border-border">
+                    <button
+                      onClick={() => toggleFaq(index)}
+                      className="w-full py-6 flex items-start justify-between gap-6 text-left group"
+                    >
+                      <span className="text-lg md:text-xl text-foreground font-medium leading-snug">
+                        {faq.question}
+                      </span>
+                      <div className="flex-shrink-0 w-10 h-10 bg-muted flex items-center justify-center transition-colors duration-200 group-hover:bg-muted/80">
+                        {openFaqIndex === index ? (
+                          <Minus className="w-5 h-5 text-foreground" strokeWidth={1.5} />
+                        ) : (
+                          <Plus className="w-5 h-5 text-foreground" strokeWidth={1.5} />
+                        )}
+                      </div>
+                    </button>
+                    <motion.div
+                      initial={false}
+                      animate={{
+                        height: openFaqIndex === index ? "auto" : 0,
+                        opacity: openFaqIndex === index ? 1 : 0,
+                      }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <p className="text-muted-foreground text-base md:text-lg leading-relaxed pb-6 pr-16">
+                        {faq.answer}
+                      </p>
+                    </motion.div>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════
+            FINAL CTA
+        ═══════════════════════════════════════════════════ */}
+        <section data-nav-theme="light" className="relative py-20 lg:py-28 bg-white border-t border-border">
+          <div className="mx-auto max-w-[1400px] px-8 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-medium tracking-tight text-foreground">
+                Stop guessing. Start verifying.
+              </h2>
+              <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
+                Verified supplier data from real on-site evaluations — not scraped feeds, not self-assessments.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button size="lg" asChild>
+                  <a href="https://calendly.com/yvoo/demo-yvoo" target="_blank" rel="noopener noreferrer">
+                    Request a Demo
+                    <ArrowRight className="w-5 h-5 ml-2" />
+                  </a>
+                </Button>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        <Footer />
       </div>
     </div>
   );
