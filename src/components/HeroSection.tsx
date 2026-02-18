@@ -105,7 +105,7 @@ const HeroSection = () => {
                     { bold: "60% lower cost, 70% faster", rest: "than traditional audit programs" },
                     { bold: "New supplier base in weeks", rest: "not years. Unlimited audits running simultaneously" },
                     { bold: "Your checklists, AI-enhanced", rest: "your templates & requirements, elevated with AI" },
-                    { bold: "Maximum objectivity", rest: "less subjectivity, more comparable results" },
+                    { bold: "Maximum objectivity", rest: "AI-driven, less subjectivity, more comparable results" },
                     { bold: "Verified facts, not claims", rest: "on-site data, risk alerts, predictions, decision-ready reports" },
                     { bold: "AI-driven CAPA & close-out", rest: "every finding tracked, escalated, and resolved digitally" },
                   ].map((item, i) => (
