@@ -54,8 +54,8 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
             >
-              On-site supplier<br />
-              audits in days, not weeks
+               On-site supplier<br />
+               audits in 72h, not weeks
             </motion.h1>
 
             {/* Value Props + CTAs - snapped to 4th grid line (50%) */}
