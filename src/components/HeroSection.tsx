@@ -66,26 +66,43 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="space-y-2 mb-6 md:mb-8"
               >
-                {[
-                  { bold: "72-hour mobilization", rest: "any country, any industry" },
-                  { bold: "60% lower cost, 70% faster", rest: "than traditional audit programs" },
-                  { bold: "New supplier base in weeks", rest: "not years. Unlimited audits running simultaneously" },
-                  { bold: "Your checklists, AI-enhanced", rest: "your templates & requirements, elevated with AI" },
-                  { bold: "Maximum objectivity", rest: "AI-guided execution eliminates bias" },
-                  { bold: "On-site verified intelligence", rest: "real supplier data with predictive insights" },
-                  { bold: "AI-driven CAPA & close-out", rest: "every finding tracked, escalated, and resolved digitally" },
-                ].map((item, i) => (
-                  <p key={i} className="text-sm md:text-base text-foreground/60 whitespace-nowrap flex items-start gap-3">
-                    {/* DIN drawing reference callout */}
-                    <span className="relative flex items-center flex-shrink-0 mt-[2px]">
-                      <span className="font-mono text-[10px] tracking-[0.12em] text-foreground/30 border-b border-foreground/20 pb-0.5 leading-none whitespace-nowrap">
-                        DIN {String.fromCharCode(65 + i)}
-                      </span>
-                      <span className="w-4 h-px bg-foreground/20 ml-1" />
+                <div className="relative pl-8">
+                  {/* Vertical DIN dimension line */}
+                  <div className="absolute left-0 top-1 bottom-1 flex flex-col items-center text-foreground/[0.15]" aria-hidden="true">
+                    {/* Top tick + arrow */}
+                    <div className="w-3 h-px bg-current" />
+                    <svg width="8" height="5" viewBox="0 0 8 5" fill="none" className="flex-shrink-0 -mt-px">
+                      <path d="M0 5 L4 0 L8 5" stroke="currentColor" strokeWidth="0.8" fill="none" />
+                    </svg>
+                    {/* Vertical line */}
+                    <div className="flex-1 w-px bg-current" />
+                    {/* Label */}
+                    <span className="font-mono text-[8px] tracking-[0.15em] select-none whitespace-nowrap py-1 -rotate-90 origin-center">
+                      210
                     </span>
-                    <span><span className="font-semibold text-foreground">{item.bold}</span> — {item.rest}</span>
-                  </p>
-                ))}
+                    {/* Vertical line */}
+                    <div className="flex-1 w-px bg-current" />
+                    {/* Bottom arrow + tick */}
+                    <svg width="8" height="5" viewBox="0 0 8 5" fill="none" className="flex-shrink-0 -mb-px">
+                      <path d="M0 0 L4 5 L8 0" stroke="currentColor" strokeWidth="0.8" fill="none" />
+                    </svg>
+                    <div className="w-3 h-px bg-current" />
+                  </div>
+
+                  {[
+                    { bold: "72-hour mobilization", rest: "any country, any industry" },
+                    { bold: "60% lower cost, 70% faster", rest: "than traditional audit programs" },
+                    { bold: "New supplier base in weeks", rest: "not years. Unlimited audits running simultaneously" },
+                    { bold: "Your checklists, AI-enhanced", rest: "your templates & requirements, elevated with AI" },
+                    { bold: "Maximum objectivity", rest: "AI-guided execution eliminates bias" },
+                    { bold: "On-site verified intelligence", rest: "real supplier data with predictive insights" },
+                    { bold: "AI-driven CAPA & close-out", rest: "every finding tracked, escalated, and resolved digitally" },
+                  ].map((item, i) => (
+                    <p key={i} className="text-sm md:text-base text-foreground/60 whitespace-nowrap">
+                      <span className="font-semibold text-foreground">{item.bold}</span> — {item.rest}
+                    </p>
+                  ))}
+                </div>
                 <p className="text-sm md:text-base whitespace-nowrap flex items-baseline gap-2.5 mt-3">
                   <span className="font-mono text-xs text-primary/60">{String(8).padStart(2, '0')}</span>
                   <span><span className="font-semibold text-primary">Fast-mover advantage</span> — get 30% off your first audit · <a href="https://calendly.com/yvoo/demo-yvoo" target="_blank" rel="noopener noreferrer" className="underline text-primary hover:text-primary/80 font-semibold">Book Now →</a></span>
