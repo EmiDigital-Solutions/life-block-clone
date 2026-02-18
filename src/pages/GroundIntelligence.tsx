@@ -186,7 +186,7 @@ const GroundIntelligence = () => {
                           { bold: "Benchmark across suppliers", rest: "standardized scores from real audits" },
                           { bold: "Track performance over time", rest: "audit history, trends, early warnings" },
                           { bold: "Topic-specific deep-dives", rest: "capacity, process capability, quality systems" },
-                          { bold: "850+ auditors in 47 countries", rest: "local experts, on-site within days" },
+                          { bold: "850+ auditors, 47 countries", rest: "local experts, on-site within days" },
                         ].map((item, i) => (
                           <p key={i} className="text-sm md:text-base text-foreground/60">
                             <span className="font-semibold text-foreground">{item.bold}</span> — {item.rest}
