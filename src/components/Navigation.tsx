@@ -109,7 +109,7 @@ const Navigation = () => {
               </Link>
               <Link to="/ground-intelligence" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
                 <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">Ground Intelligence</span>
-                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">Real-time factory insights</span>
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">Verified supplier intelligence</span>
               </Link>
               <Link to="/auditors" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
                 <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">For Auditors</span>
