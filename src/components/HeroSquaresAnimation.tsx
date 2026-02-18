@@ -67,24 +67,29 @@ const formations = {
     { x: UNIT * 3.5, y: UNIT * 2 },
     { x: UNIT * 3.5, y: UNIT * 3 },
   ],
-  // Checkmark — diamonds (45° rotated squares) along two diagonal legs
-  checkmark: [
-    // Short leg (2 diamonds, down-right to vertex)
-    { x: 0, y: UNIT * 2, diamond: true },
-    { x: UNIT, y: UNIT * 3, diamond: true },
-    // Vertex (bottom point)
-    { x: UNIT * 2, y: UNIT * 4, diamond: true },
-    // Long leg (4 diamonds, up-right from vertex)
-    { x: UNIT * 3, y: UNIT * 3, diamond: true },
-    { x: UNIT * 4, y: UNIT * 2, diamond: true },
-    { x: UNIT * 5, y: UNIT, diamond: true },
-    { x: UNIT * 6, y: 0, diamond: true },
-    // Hidden (to keep 11 squares)
-    { x: UNIT * 3, y: UNIT * 3, opacity: 0 },
-    { x: UNIT * 4, y: UNIT * 2, opacity: 0 },
-    { x: UNIT * 5, y: UNIT, opacity: 0 },
-    { x: UNIT * 6, y: 0, opacity: 0 },
-  ],
+  // Checkmark — diamonds (45° rotated) with 3px edge gap along diagonals
+  // Diamond edge-to-edge gap of 3px → center spacing = (28+3)/√2 ≈ 21.9px
+  checkmark: (() => {
+    const D = (SQUARE_SIZE + 3) / Math.SQRT2; // ~21.9px diagonal step
+    const vx = D * 2, vy = D * 4; // vertex position
+    return [
+      // Short leg (2 diamonds, down-right to vertex)
+      { x: vx - D * 2, y: vy - D * 2, diamond: true },
+      { x: vx - D, y: vy - D, diamond: true },
+      // Vertex (bottom point)
+      { x: vx, y: vy, diamond: true },
+      // Long leg (4 diamonds, up-right from vertex)
+      { x: vx + D, y: vy - D, diamond: true },
+      { x: vx + D * 2, y: vy - D * 2, diamond: true },
+      { x: vx + D * 3, y: vy - D * 3, diamond: true },
+      { x: vx + D * 4, y: vy - D * 4, diamond: true },
+      // Hidden (to keep 11 squares)
+      { x: vx + D, y: vy - D, opacity: 0 },
+      { x: vx + D * 2, y: vy - D * 2, opacity: 0 },
+      { x: vx + D * 3, y: vy - D * 3, opacity: 0 },
+      { x: vx + D * 4, y: vy - D * 4, opacity: 0 },
+    ];
+  })(),
 };
 
 type Formation = keyof typeof formations;
