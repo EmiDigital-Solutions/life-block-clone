@@ -2,6 +2,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { X, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import PageGridOverlay from "@/components/PageGridOverlay";
 
 export interface CheckpointData {
   label: string;
@@ -375,9 +376,12 @@ const CheckpointModal = ({ checkpoint, onClose }: CheckpointModalProps) => {
   return (
     <Dialog open={!!checkpoint} onOpenChange={() => onClose()}>
       <DialogContent className="max-w-full w-full h-full max-h-full m-0 p-0 rounded-none border-none bg-white overflow-y-auto [&>button]:hidden">
+        {/* Grid overlay */}
+        <PageGridOverlay />
+
         {/* Top bar */}
         <div className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-border">
-          <div className="mx-auto max-w-[1400px] px-8 py-4 flex items-center justify-between">
+          <div className="mx-auto max-w-[1400px] px-4 md:px-8 py-4 flex items-center justify-between">
             <button onClick={onClose} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
               <ArrowRight className="w-4 h-4 rotate-180" />
               Back
@@ -389,46 +393,49 @@ const CheckpointModal = ({ checkpoint, onClose }: CheckpointModalProps) => {
           </div>
         </div>
 
-        <div className="mx-auto max-w-[1400px] px-8 py-16 md:py-24">
-          {/* Hero */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-16 md:mb-24">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-foreground tracking-tight mb-6">
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8 py-16 md:py-24">
+          {/* Hero — spans 4/6 columns */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-16 md:mb-24" style={{ maxWidth: '66.67%' }}>
+            <span className="section-eyebrow mb-4 block">On-Site Checkpoint</span>
+            <h1 className="section-headline text-foreground mb-6">
               {m.headline}
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl">
+            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
               {m.overview}
             </p>
           </motion.div>
 
-          {/* Audience-specific perspectives */}
+          {/* Audience-specific perspectives — 2-col on 6-col grid */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }} className="mb-16 md:mb-24">
-            <div className="grid lg:grid-cols-2 gap-0">
-              <div className="border border-border p-8 md:p-12">
+            <div className="grid grid-cols-1 lg:grid-cols-6 gap-0">
+              <div className="lg:col-span-3 border border-border p-6 md:p-10">
                 <span className="text-xs font-mono tracking-[0.2em] uppercase text-muted-foreground mb-4 block">For Engineers & Quality</span>
                 <p className="text-foreground/80 leading-relaxed">{m.forEngineers}</p>
               </div>
-              <div className="border border-border border-l-0 max-lg:border-l max-lg:border-t-0 p-8 md:p-12">
+              <div className="lg:col-span-3 border border-border lg:border-l-0 max-lg:border-t-0 p-6 md:p-10">
                 <span className="text-xs font-mono tracking-[0.2em] uppercase text-muted-foreground mb-4 block">For Procurement & Supply Chain</span>
                 <p className="text-foreground/80 leading-relaxed">{m.forProcurement}</p>
               </div>
             </div>
           </motion.div>
 
-          {/* Why it matters */}
+          {/* Why it matters — offset 1 col, span 4 */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="mb-16 md:mb-24">
-            <div className="border-l-2 border-foreground pl-8 md:pl-12">
-              <span className="text-xs font-mono tracking-[0.2em] uppercase text-muted-foreground mb-4 block">Why it matters</span>
-              <p className="text-lg md:text-xl text-foreground leading-relaxed">
-                {m.whyItMatters}
-              </p>
+            <div className="grid grid-cols-1 lg:grid-cols-6">
+              <div className="lg:col-start-2 lg:col-span-4 border-l-2 border-foreground pl-6 md:pl-10">
+                <span className="text-xs font-mono tracking-[0.2em] uppercase text-muted-foreground mb-4 block">Why it matters</span>
+                <p className="text-lg md:text-xl text-foreground leading-relaxed">
+                  {m.whyItMatters}
+                </p>
+              </div>
             </div>
           </motion.div>
 
-          {/* Old Way vs YVOO */}
+          {/* Old Way vs YVOO — 3+3 columns */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="mb-16 md:mb-24">
             <h2 className="text-2xl md:text-3xl font-medium text-foreground mb-8">The difference</h2>
-            <div className="grid lg:grid-cols-2 gap-0">
-              <div className="bg-muted p-8 md:p-10">
+            <div className="grid grid-cols-1 lg:grid-cols-6 gap-0">
+              <div className="lg:col-span-3 bg-muted p-6 md:p-10">
                 <p className="text-xs font-mono tracking-[0.2em] text-muted-foreground uppercase mb-6">Traditional approach</p>
                 <div className="space-y-4">
                   {m.oldWay.map((item, idx) => (
@@ -439,7 +446,7 @@ const CheckpointModal = ({ checkpoint, onClose }: CheckpointModalProps) => {
                   ))}
                 </div>
               </div>
-              <div className="bg-[hsl(0,0%,8%)] p-8 md:p-10">
+              <div className="lg:col-span-3 bg-[hsl(0,0%,8%)] p-6 md:p-10">
                 <p className="text-xs font-mono tracking-[0.2em] text-white/50 uppercase mb-6">With YVOO</p>
                 <div className="space-y-4">
                   {m.withYvoo.map((item, idx) => (
@@ -453,12 +460,12 @@ const CheckpointModal = ({ checkpoint, onClose }: CheckpointModalProps) => {
             </div>
           </motion.div>
 
-          {/* Industry Examples */}
+          {/* Industry Examples — 3x2 on 6-col grid */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="mb-16 md:mb-24">
             <h2 className="text-2xl md:text-3xl font-medium text-foreground mb-8">Industry examples</h2>
-            <div className="grid md:grid-cols-3 gap-0 border-t border-foreground/10">
+            <div className="grid grid-cols-1 md:grid-cols-6 gap-0 border-t border-foreground/10">
               {m.industryExamples.map((ex, idx) => (
-                <div key={idx} className="border-b md:border-b-0 md:border-r border-foreground/10 last:border-r-0 p-8">
+                <div key={idx} className="md:col-span-2 border-b md:border-b-0 md:border-r border-foreground/10 last:border-r-0 p-6 md:p-8">
                   <span className="text-xs font-mono tracking-[0.15em] uppercase text-muted-foreground mb-3 block">{ex.industry}</span>
                   <p className="text-foreground/70 leading-relaxed text-sm">{ex.scenario}</p>
                 </div>
@@ -466,12 +473,12 @@ const CheckpointModal = ({ checkpoint, onClose }: CheckpointModalProps) => {
             </div>
           </motion.div>
 
-          {/* Cost & Damage Prevention */}
+          {/* Cost & Damage Prevention — 3x2 on 6-col grid */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }} className="mb-16 md:mb-24">
             <h2 className="text-2xl md:text-3xl font-medium text-foreground mb-8">Cost & damage prevention</h2>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-6 gap-6 md:gap-0">
               {m.costPrevention.map((item, idx) => (
-                <div key={idx} className="space-y-3">
+                <div key={idx} className="md:col-span-2 md:pr-8 space-y-3">
                   <h3 className="font-medium text-foreground">{item.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
                 </div>
@@ -479,25 +486,25 @@ const CheckpointModal = ({ checkpoint, onClose }: CheckpointModalProps) => {
             </div>
           </motion.div>
 
-          {/* Supply Chain Impact & Performance */}
+          {/* Supply Chain Impact & Performance — 3+3 */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="mb-16 md:mb-24">
-            <div className="grid lg:grid-cols-2 gap-0">
-              <div className="border border-foreground/10 p-8 md:p-10">
+            <div className="grid grid-cols-1 lg:grid-cols-6 gap-0">
+              <div className="lg:col-span-3 border border-foreground/10 p-6 md:p-10">
                 <h3 className="text-xs font-mono tracking-[0.2em] uppercase text-muted-foreground mb-4">Supply chain impact</h3>
                 <p className="text-foreground/80 leading-relaxed">{m.supplyChainImpact}</p>
               </div>
-              <div className="border border-foreground/10 border-l-0 max-lg:border-l max-lg:border-t-0 p-8 md:p-10">
+              <div className="lg:col-span-3 border border-foreground/10 lg:border-l-0 max-lg:border-t-0 p-6 md:p-10">
                 <h3 className="text-xs font-mono tracking-[0.2em] uppercase text-muted-foreground mb-4">Performance effect</h3>
                 <p className="text-foreground/80 leading-relaxed">{m.performanceEffect}</p>
               </div>
             </div>
           </motion.div>
 
-          {/* Stats */}
+          {/* Stats — 3x2 on 6-col grid */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }} className="mb-16 md:mb-24">
-            <div className="grid grid-cols-3 gap-0 border-t-2 border-foreground">
+            <div className="grid grid-cols-1 md:grid-cols-6 gap-0 border-t-2 border-foreground">
               {m.stats.map((stat, idx) => (
-                <div key={idx} className="border-r border-foreground/10 last:border-r-0 p-8 md:p-10">
+                <div key={idx} className="md:col-span-2 border-b md:border-b-0 md:border-r border-foreground/10 last:border-r-0 p-6 md:p-10">
                   <p className="text-xs font-mono text-muted-foreground mb-2 tracking-wider uppercase">{stat.label}</p>
                   <p className="text-4xl md:text-5xl font-medium text-foreground tracking-tight mb-2">{stat.value}</p>
                   <p className="text-sm text-muted-foreground leading-relaxed">{stat.description}</p>
@@ -506,17 +513,21 @@ const CheckpointModal = ({ checkpoint, onClose }: CheckpointModalProps) => {
             </div>
           </motion.div>
 
-          {/* CTA */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="text-center py-8">
-            <h3 className="text-2xl md:text-3xl font-medium text-foreground mb-6">
-              Want to verify this at your supplier?
-            </h3>
-            <Button size="lg" asChild>
-              <a href="https://calendly.com/yvoo/demo-yvoo" target="_blank" rel="noopener noreferrer">
-                Request a Demo
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </a>
-            </Button>
+          {/* CTA — centered, offset to middle 4 cols */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
+            <div className="grid grid-cols-1 lg:grid-cols-6">
+              <div className="lg:col-start-2 lg:col-span-4 text-center py-8">
+                <h3 className="text-2xl md:text-3xl font-medium text-foreground mb-6">
+                  Want to verify this at your supplier?
+                </h3>
+                <Button size="lg" asChild>
+                  <a href="https://calendly.com/yvoo/demo-yvoo" target="_blank" rel="noopener noreferrer">
+                    Request a Demo
+                    <ArrowRight className="w-5 h-5 ml-2" />
+                  </a>
+                </Button>
+              </div>
+            </div>
           </motion.div>
         </div>
       </DialogContent>
