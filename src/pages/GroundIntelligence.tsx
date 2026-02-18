@@ -588,7 +588,7 @@ const GroundIntelligence = () => {
         {/* ═══════════════════════════════════════════════════
             RESULTS — Stats
         ═══════════════════════════════════════════════════ */}
-        <section data-nav-theme="dark" className="relative py-20 lg:py-28 bg-[hsl(0,0%,8%)]">
+        <section data-nav-theme="light" className="relative py-20 lg:py-28 bg-white">
           <div className="mx-auto max-w-[1400px] px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -596,12 +596,12 @@ const GroundIntelligence = () => {
               viewport={{ once: true }}
               className="mb-16"
             >
-              <h2 className="section-headline text-white">
+              <h2 className="section-headline text-foreground">
                 Verified results
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border-t border-white/10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border-t border-foreground/10">
               {[
                 { metric: "850+", label: "Expert auditors worldwide" },
                 { metric: "47", label: "Countries covered" },
@@ -614,12 +614,12 @@ const GroundIntelligence = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="border-b md:border-b-0 md:border-r border-white/10 last:border-r-0 p-8 md:p-10"
+                  className="border-b md:border-b-0 md:border-r border-foreground/10 last:border-r-0 p-8 md:p-10"
                 >
-              <div className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-3 tracking-[-0.02em]">
+                  <div className="text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground mb-3 tracking-[-0.02em]">
                     {item.metric}
                   </div>
-                  <p className="text-white/50 text-sm">{item.label}</p>
+                  <p className="text-muted-foreground text-sm">{item.label}</p>
                 </motion.div>
               ))}
             </div>
