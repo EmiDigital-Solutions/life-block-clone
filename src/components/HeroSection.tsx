@@ -61,26 +61,28 @@ const HeroSection = () => {
 
             {/* Subtitle + CTA - right-offset on mobile like Archlet */}
             <div className="mt-8 md:mt-12 lg:mt-16 ml-[28%] md:ml-[30%] lg:ml-[50%] max-w-xl">
-                <motion.p
+                <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-foreground/60 text-base md:text-lg lg:text-xl mb-4 md:mb-6 leading-relaxed"
+                className="space-y-0 mb-6 md:mb-8"
               >
-                Most companies do the bare minimum — not because they don't care, but because audits are expensive and operationally heavy. YVOO makes on-site verification affordable and scalable with qualified local auditors and AI-guided execution.
-              </motion.p>
-
-              <motion.ul
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-foreground/60 text-sm md:text-base mb-6 md:mb-8 space-y-1.5"
-              >
-                <li>▸ On-site in ~3 days, globally</li>
-                <li>▸ Standardized scoring (ISO / IATF aligned)</li>
-                <li>▸ 1 to 100+ audits in parallel</li>
-                <li>▸ Up to 60% lower cost vs. traditional rollouts</li>
-              </motion.ul>
+                {[
+                  { lead: "72-hour mobilization", detail: "Any country, any industry" },
+                  { lead: "From €700 per audit", detail: "Not €15,000–25,000" },
+                  { lead: "New supplier base in weeks", detail: "Enter new markets, qualify 100+ suppliers in parallel" },
+                  { lead: "Your standards, AI-enhanced", detail: "We audit using your templates, elevated with AI" },
+                  { lead: "Maximum objectivity", detail: "AI-guided execution eliminates bias" },
+                  { lead: "On-site verified intelligence", detail: "Real supplier data, not questionnaires" },
+                  { lead: "Automated follow-up & close-out", detail: "No finding ever dies in a spreadsheet" },
+                ].map((item, i) => (
+                  <div key={i} className="border-t border-foreground/10 py-3 md:py-4">
+                    <p className="text-sm md:text-base font-semibold text-foreground leading-snug">{item.lead}</p>
+                    <p className="text-xs md:text-sm text-foreground/50 mt-0.5">{item.detail}</p>
+                  </div>
+                ))}
+                <div className="border-t border-foreground/10" />
+              </motion.div>
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
