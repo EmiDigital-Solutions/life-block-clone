@@ -73,7 +73,7 @@ const HeroSection = () => {
                 <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">Your standards, AI-enhanced</span> — your templates, elevated with AI</p>
                 <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">Maximum objectivity</span> — AI-guided execution eliminates bias</p>
                 <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">On-site verified intelligence</span> — real data, not questionnaires</p>
-                <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">Automated follow-up</span> — no finding ever dies in a spreadsheet</p>
+                <p className="text-sm md:text-base text-foreground/60 whitespace-nowrap">▸ <span className="font-semibold text-foreground">AI-driven CAPA & close-out</span> — every finding tracked, escalated, and resolved digitally</p>
               </motion.div>
 
               <motion.div
