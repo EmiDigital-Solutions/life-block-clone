@@ -375,9 +375,20 @@ const CheckpointModal = ({ checkpoint, onClose }: CheckpointModalProps) => {
 
   return (
     <Dialog open={!!checkpoint} onOpenChange={() => onClose()}>
-      <DialogContent className="max-w-full w-full h-full max-h-full m-0 p-0 rounded-none border-none bg-white overflow-y-auto [&>button]:hidden">
-        {/* Grid overlay */}
-        <PageGridOverlay />
+      <DialogContent className="relative max-w-full w-full h-full max-h-full m-0 p-0 rounded-none border-none bg-white overflow-y-auto [&>button]:hidden">
+        {/* Grid overlay — absolute so it spans full scrollable height */}
+        <div className="absolute inset-0 z-[2] pointer-events-none" aria-hidden="true">
+          <div className="mx-auto max-w-[1400px] h-full px-4 md:px-8">
+            <div className="relative h-full">
+              {[...Array(5)].map((_, i) => (
+                <div key={`m-${i}`} className="absolute top-0 bottom-0 w-px bg-foreground/[0.07] md:hidden" style={{ left: `${(i / 4) * 100}%` }} />
+              ))}
+              {[...Array(7)].map((_, i) => (
+                <div key={`d-${i}`} className="absolute top-0 bottom-0 w-px bg-foreground/[0.07] hidden md:block" style={{ left: `${(i / 6) * 100}%` }} />
+              ))}
+            </div>
+          </div>
+        </div>
 
         {/* Top bar */}
         <div className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-border">
