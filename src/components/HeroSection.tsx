@@ -99,6 +99,7 @@ const HeroSection = () => {
                     <div className="w-2.5 h-px bg-current" />
                   </div>
 
+                  <div className="space-y-5">
                   {[
                     { bold: "72-hour mobilization", rest: "any country, any industry" },
                     { bold: "60% lower cost, 70% faster", rest: "than traditional audit programs" },
@@ -112,6 +113,7 @@ const HeroSection = () => {
                       <span className="font-semibold text-foreground">{item.bold}</span> — {item.rest}
                     </p>
                   ))}
+                  </div>
                 </div>
                 <p className="text-sm md:text-base whitespace-nowrap flex items-baseline mt-5">
                   <span><span className="font-semibold text-primary">Fast-mover advantage</span> — get 30% off your first audit · <a href="https://calendly.com/yvoo/demo-yvoo" target="_blank" rel="noopener noreferrer" className="underline font-semibold text-primary hover:text-primary/80">Book Now →</a></span>
