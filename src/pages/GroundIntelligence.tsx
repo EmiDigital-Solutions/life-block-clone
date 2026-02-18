@@ -10,14 +10,14 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import HeroSquaresAnimation from "@/components/HeroSquaresAnimation";
-import auditorEuropean from "@/assets/auditor-real-european.jpg";
-import auditorAsian from "@/assets/auditor-real-asian.jpg";
-import auditorAfrican from "@/assets/auditor-real-african.jpg";
-import auditorLatin from "@/assets/auditor-real-latin.jpg";
-import auditorMiddleEast from "@/assets/auditor-real-middle-east.jpg";
-import auditorSouthAsian from "@/assets/auditor-real-south-asian.jpg";
-import evidenceInspector from "@/assets/evidence-inspector.jpg";
+import evidenceAssembly from "@/assets/evidence-assembly-station.jpg";
+import evidenceCmm from "@/assets/evidence-cmm-measurement.jpg";
 import evidenceCnc from "@/assets/evidence-cnc-machine.jpg";
+import evidenceControlPlan from "@/assets/evidence-control-plan.jpg";
+import evidenceInspector from "@/assets/evidence-inspector.jpg";
+import evidenceCertification from "@/assets/evidence-certification.jpg";
+import cncMachine from "@/assets/cnc-machine-dmg-nlx.jpg";
+import auditorEuropean from "@/assets/auditor-real-european.jpg";
 
 const GroundIntelligence = () => {
   const [activeFaqCategory, setActiveFaqCategory] = useState("general");
@@ -377,7 +377,7 @@ const GroundIntelligence = () => {
         </div>
 
         {/* ═══════════════════════════════════════════════════
-            AUDITOR PORTRAITS — Visual evidence strip
+            ON-SITE CHECKPOINTS — What auditors actually verify
         ═══════════════════════════════════════════════════ */}
         <section className="py-16 md:py-24 bg-white">
           <div className="mx-auto max-w-[1400px] px-8">
@@ -387,21 +387,28 @@ const GroundIntelligence = () => {
               viewport={{ once: true }}
               className="mb-10"
             >
-              <p className="text-sm text-foreground/50 font-medium tracking-wide">
-                Our auditors are on-site — verifying what others only assume.
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-16 h-px bg-foreground/30" />
+                <span className="section-eyebrow">What we verify on-site</span>
+              </div>
+              <h2 className="section-headline text-foreground max-w-4xl mb-4">
+                Real checkpoints, not spreadsheet assumptions.
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl">
+                Every intelligence report is built from physical evidence — collected by certified auditors inside the supplier's facility.
               </p>
             </motion.div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
               {[
-                { src: auditorEuropean, alt: "Auditor conducting on-site inspection in Europe", label: "Germany" },
-                { src: evidenceInspector, alt: "Auditor documenting evidence during factory visit", label: "On-site evidence" },
-                { src: auditorAsian, alt: "Certified auditor in Asia-Pacific region", label: "South Korea" },
-                { src: evidenceCnc, alt: "CNC machine evaluation during audit", label: "Equipment verification" },
-                { src: auditorAfrican, alt: "Expert auditor operating in Africa", label: "Nigeria" },
-                { src: auditorMiddleEast, alt: "Qualified auditor in Middle East region", label: "UAE" },
-                { src: auditorLatin, alt: "Certified auditor in Latin America", label: "Mexico" },
-                { src: auditorSouthAsian, alt: "Industry specialist auditor in South Asia", label: "India" },
+                { src: evidenceCnc, alt: "CNC machine capability verification", label: "Machine park evaluation", detail: "Capacity, age, maintenance logs" },
+                { src: evidenceCmm, alt: "CMM coordinate measurement during audit", label: "Measurement systems", detail: "CMM, gauges, calibration records" },
+                { src: evidenceAssembly, alt: "Assembly station process verification", label: "Process capability", detail: "Cpk values, SPC, process flow" },
+                { src: evidenceControlPlan, alt: "Control plan documentation review", label: "Quality documentation", detail: "Control plans, FMEA, work instructions" },
+                { src: evidenceInspector, alt: "Auditor conducting incoming inspection check", label: "Incoming inspection", detail: "Sampling plans, reject rates, traceability" },
+                { src: evidenceCertification, alt: "Certification and compliance verification", label: "Certifications & compliance", detail: "ISO, IATF, environmental standards" },
+                { src: cncMachine, alt: "Advanced CNC turning center evaluation", label: "Equipment intelligence", detail: "OEM specs, utilization rate, condition" },
+                { src: auditorEuropean, alt: "Auditor on factory floor during evaluation", label: "Expert on-site", detail: "Certified auditor, geo-tagged evidence" },
               ].map((item, i) => (
                 <motion.div
                   key={i}
@@ -417,9 +424,12 @@ const GroundIntelligence = () => {
                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                     loading="lazy"
                   />
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3 md:p-4">
-                    <span className="text-white/90 text-xs md:text-sm font-medium tracking-wide">
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-3 md:p-4">
+                    <span className="text-white text-xs md:text-sm font-semibold tracking-wide block">
                       {item.label}
+                    </span>
+                    <span className="text-white/60 text-[10px] md:text-xs mt-0.5 block">
+                      {item.detail}
                     </span>
                   </div>
                 </motion.div>
