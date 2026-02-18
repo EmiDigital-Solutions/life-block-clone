@@ -404,9 +404,9 @@ const GroundIntelligence = () => {
                 { src: evidenceCnc, alt: "CNC machine capability verification", label: "Machine park evaluation", detail: "Capacity, age, maintenance logs" },
                 { src: evidenceCmm, alt: "CMM coordinate measurement during audit", label: "Measurement systems", detail: "CMM, gauges, calibration records" },
                 { src: evidenceAssembly, alt: "Assembly station process verification", label: "Process capability", detail: "Cpk values, SPC, process flow" },
-                { src: evidenceControlPlan, alt: "Control plan documentation review", label: "Quality documentation", detail: "Control plans, FMEA, work instructions" },
-                { src: evidenceInspector, alt: "Auditor conducting incoming inspection check", label: "Incoming inspection", detail: "Sampling plans, reject rates, traceability" },
-                { src: evidenceCertification, alt: "Certification and compliance verification", label: "Certifications & compliance", detail: "ISO, IATF, environmental standards" },
+                { src: evidenceControlPlan, alt: "Real capacity assessment on factory floor", label: "Capacity assessment", detail: "Throughput, shift models, bottleneck analysis" },
+                { src: evidenceInspector, alt: "Incoming warehouse inspection verification", label: "Incoming warehouse inspection", detail: "Goods receipt checks, storage conditions, traceability" },
+                { src: evidenceCertification, alt: "HSE inspection on production site", label: "HSE inspection", detail: "Safety protocols, environmental compliance, PPE" },
                 { src: cncMachine, alt: "Advanced CNC turning center evaluation", label: "Equipment intelligence", detail: "OEM specs, utilization rate, condition" },
                 { src: auditorEuropean, alt: "Auditor on factory floor during evaluation", label: "Expert on-site", detail: "Certified auditor, geo-tagged evidence" },
               ].map((item, i) => (
