@@ -13,6 +13,7 @@ import { useState, useEffect } from "react";
 const SQUARE_SIZE = 28;
 const GAP = 3;
 const UNIT = SQUARE_SIZE + GAP;
+const CHECK_UNIT = SQUARE_SIZE + 2; // tighter 2px gap for checkmark diamonds
 
 // Formation definitions — each square gets {x, y} offsets and opacity
 const formations = {
@@ -70,19 +71,19 @@ const formations = {
   // Checkmark — diamonds (45° rotated squares) along two diagonal arms
   checkmark: [
     // Short arm (3 diamonds, down-right to vertex)
-    { x: 0, y: UNIT * 2, rotate: 45 },
-    { x: UNIT, y: UNIT * 3, rotate: 45 },
-    { x: UNIT * 2, y: UNIT * 4, rotate: 45 },
+    { x: 0, y: CHECK_UNIT * 2, rotate: 45 },
+    { x: CHECK_UNIT, y: CHECK_UNIT * 3, rotate: 45 },
+    { x: CHECK_UNIT * 2, y: CHECK_UNIT * 4, rotate: 45 },
     // Long arm (4 diamonds, up-right from vertex)
-    { x: UNIT * 3, y: UNIT * 3, rotate: 45 },
-    { x: UNIT * 4, y: UNIT * 2, rotate: 45 },
-    { x: UNIT * 5, y: UNIT, rotate: 45 },
-    { x: UNIT * 6, y: 0, rotate: 45 },
+    { x: CHECK_UNIT * 3, y: CHECK_UNIT * 3, rotate: 45 },
+    { x: CHECK_UNIT * 4, y: CHECK_UNIT * 2, rotate: 45 },
+    { x: CHECK_UNIT * 5, y: CHECK_UNIT, rotate: 45 },
+    { x: CHECK_UNIT * 6, y: 0, rotate: 45 },
     // Hidden (to keep 11 squares)
-    { x: UNIT * 3, y: UNIT * 3, opacity: 0 },
-    { x: UNIT * 4, y: UNIT * 2, opacity: 0 },
-    { x: UNIT * 5, y: UNIT, opacity: 0 },
-    { x: UNIT * 6, y: 0, opacity: 0 },
+    { x: CHECK_UNIT * 3, y: CHECK_UNIT * 3, opacity: 0 },
+    { x: CHECK_UNIT * 4, y: CHECK_UNIT * 2, opacity: 0 },
+    { x: CHECK_UNIT * 5, y: CHECK_UNIT, opacity: 0 },
+    { x: CHECK_UNIT * 6, y: 0, opacity: 0 },
   ],
 };
 
