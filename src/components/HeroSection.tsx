@@ -78,7 +78,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="space-y-3.5 mb-6 md:mb-8"
+                className="space-y-5 mb-6 md:mb-8"
               >
                 <div className="relative">
                   {/* Vertical DIN dimension line — before the 4th grid line */}
