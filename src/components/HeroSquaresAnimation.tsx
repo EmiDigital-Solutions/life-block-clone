@@ -70,19 +70,19 @@ const formations = {
   // Checkmark — diamonds (45° rotated squares) along two diagonal arms
   checkmark: [
     // Short arm (3 diamonds, down-right to vertex)
-    { x: 0, y: SQUARE_SIZE * 2, rotate: 45 },
-    { x: SQUARE_SIZE, y: SQUARE_SIZE * 3, rotate: 45 },
-    { x: SQUARE_SIZE * 2, y: SQUARE_SIZE * 4, rotate: 45 },
+    { x: 0, y: UNIT * 2, rotate: 45 },
+    { x: UNIT, y: UNIT * 3, rotate: 45 },
+    { x: UNIT * 2, y: UNIT * 4, rotate: 45 },
     // Long arm (4 diamonds, up-right from vertex)
-    { x: SQUARE_SIZE * 3, y: SQUARE_SIZE * 3, rotate: 45 },
-    { x: SQUARE_SIZE * 4, y: SQUARE_SIZE * 2, rotate: 45 },
-    { x: SQUARE_SIZE * 5, y: SQUARE_SIZE, rotate: 45 },
-    { x: SQUARE_SIZE * 6, y: 0, rotate: 45 },
+    { x: UNIT * 3, y: UNIT * 3, rotate: 45 },
+    { x: UNIT * 4, y: UNIT * 2, rotate: 45 },
+    { x: UNIT * 5, y: UNIT, rotate: 45 },
+    { x: UNIT * 6, y: 0, rotate: 45 },
     // Hidden (to keep 11 squares)
-    { x: SQUARE_SIZE * 3, y: SQUARE_SIZE * 3, opacity: 0 },
-    { x: SQUARE_SIZE * 4, y: SQUARE_SIZE * 2, opacity: 0 },
-    { x: SQUARE_SIZE * 5, y: SQUARE_SIZE, opacity: 0 },
-    { x: SQUARE_SIZE * 6, y: 0, opacity: 0 },
+    { x: UNIT * 3, y: UNIT * 3, opacity: 0 },
+    { x: UNIT * 4, y: UNIT * 2, opacity: 0 },
+    { x: UNIT * 5, y: UNIT, opacity: 0 },
+    { x: UNIT * 6, y: 0, opacity: 0 },
   ],
 };
 
