@@ -38,16 +38,16 @@ const LNGInspection = () => {
   return (
     <div className="min-h-screen relative">
       <PageSEO
-        title="LNG & GPP Field Inspection — AI-Driven EPC Quality | RACI"
+        title="LNG & GPP Field Inspection — AI-Driven EPC Quality | RCA"
         description="AI-powered field inspection platform for LNG plants and gas processing facilities. ASME, API, EN compliant. Reduce project overruns by 15-20% through intelligent quality management."
         canonical="/lng-inspection"
         jsonLd={[
           {
             "@context": "https://schema.org",
             "@type": "Service",
-            "name": "RACI LNG & GPP Field Inspection Platform",
+            "name": "RCA LNG & GPP Field Inspection Platform",
             "description": "AI-driven inspection for large-scale LNG facilities and gas processing plants covering engineering, procurement, construction, and commissioning phases.",
-            "provider": { "@type": "Organization", "name": "RACI" },
+            "provider": { "@type": "Organization", "name": "RCA" },
             "serviceType": "EPC Quality Inspection & Verification"
           }
         ]}
@@ -474,7 +474,7 @@ const LNGInspection = () => {
                 Capital hemorrhage<br />stops here
               </h2>
               <p className="text-base md:text-lg text-background/40 mt-6 max-w-xl">
-                Every EPC project bleeds money through three invisible pipes. RACI plugs all three.
+                Every EPC project bleeds money through three invisible pipes. RCA plugs all three.
               </p>
             </motion.div>
 
@@ -521,7 +521,7 @@ const LNGInspection = () => {
                       <p className="text-sm text-background/50 mt-1">{leak.problem}</p>
                     </div>
                     <div>
-                      <span className="text-[10px] font-bold text-[#6EA996] uppercase tracking-wider">RACI Solution</span>
+                      <span className="text-[10px] font-bold text-[#6EA996] uppercase tracking-wider">RCA Solution</span>
                       <p className="text-sm text-background/50 mt-1">{leak.solution}</p>
                     </div>
                   </div>
