@@ -271,13 +271,13 @@ const LNGInspection = () => {
             >
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-px bg-foreground" />
-                <span className="text-xs font-mono tracking-[0.25em] uppercase text-foreground/50">Atlas AI · NCR Investigation</span>
+                <span className="text-xs font-mono tracking-[0.25em] uppercase text-foreground/50">Atlas AI · Inspector Autopilot</span>
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground">
-                From defect detection<br />to claim recovery
+                AI guides your inspector<br />through every hold point
               </h2>
               <p className="text-base md:text-lg text-foreground/50 mt-6 max-w-xl">
-                Watch Atlas AI investigate a real NCR — predict repair outcomes, generate a qualified claim letter, and prevent capital hemorrhage. All in minutes, not weeks.
+                Watch Atlas AI execute a complete ITP for a Deethanizer Condenser — dimensional checks, weld inspection, NDT, coating, hydrostatic test. From first measurement to claim recovery.
               </p>
             </motion.div>
 
