@@ -276,17 +276,17 @@ const formatCurrency = (v: number) => `$${(v / 1000000).toFixed(2)}M`;
 const formatK = (v: number) => v >= 1000000 ? `$${(v / 1000000).toFixed(1)}M` : `$${(v / 1000).toFixed(0)}K`;
 
 const statusConfig: Record<ClaimStatus, { label: string; color: string; bg: string }> = {
-  "open": { label: "Open", color: "text-[#F5A623]", bg: "bg-[#F5A623]/10 border-[#F5A623]/30" },
-  "submitted": { label: "Submitted", color: "text-[#6EA996]", bg: "bg-[#6EA996]/10 border-[#6EA996]/30" },
-  "disputed": { label: "Disputed", color: "text-[#AE3D3D]", bg: "bg-[#AE3D3D]/10 border-[#AE3D3D]/30" },
-  "resolved": { label: "Resolved", color: "text-[#6EA996]", bg: "bg-[#6EA996]/15 border-[#6EA996]/40" },
-  "client-fault": { label: "Client Fault", color: "text-[#7B68EE]", bg: "bg-[#7B68EE]/10 border-[#7B68EE]/30" },
+  "open": { label: "Open", color: "text-warning", bg: "bg-warning/10 border-warning/30" },
+  "submitted": { label: "Submitted", color: "text-accent", bg: "bg-accent/10 border-accent/30" },
+  "disputed": { label: "Disputed", color: "text-destructive", bg: "bg-destructive/10 border-destructive/30" },
+  "resolved": { label: "Resolved", color: "text-accent", bg: "bg-accent/15 border-accent/40" },
+  "client-fault": { label: "Client Fault", color: "text-primary", bg: "bg-primary/10 border-primary/30" },
 };
 
 const severityConfig: Record<Severity, { color: string }> = {
-  critical: { color: "text-[#AE3D3D]" },
-  major: { color: "text-[#F5A623]" },
-  minor: { color: "text-[#6EA996]" },
+  critical: { color: "text-destructive" },
+  major: { color: "text-warning" },
+  minor: { color: "text-accent" },
 };
 
 const auditTypeIcons: Record<string, typeof FileText> = {
@@ -304,37 +304,37 @@ const ClaimDetailModal = ({ claim, onClose }: { claim: ClaimCase; onClose: () =>
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-foreground/40 backdrop-blur-sm"
       onClick={onClose}>
       <motion.div initial={{ opacity: 0, y: 20, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 20 }}
-        className="bg-[hsl(220,18%,13%)] border border-white/10 rounded-xl w-full max-w-[1100px] max-h-[90vh] overflow-hidden flex flex-col"
+        className="bg-background border border-border rounded-xl w-full max-w-[1100px] max-h-[90vh] overflow-hidden flex flex-col"
         onClick={e => e.stopPropagation()}>
 
         {/* Header */}
-        <div className="flex items-start justify-between px-6 py-5 border-b border-white/[0.06]">
+        <div className="flex items-start justify-between px-6 py-5 border-b border-border">
           <div className="flex gap-4 items-start">
             <img src={claim.image} alt={claim.title} className="w-16 h-16 rounded-lg object-cover flex-shrink-0" />
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <span className="text-[10px] font-mono text-white/30">{claim.id}</span>
+                <span className="text-[10px] font-mono text-muted-foreground">{claim.id}</span>
                 <span className={`text-[9px] font-bold uppercase px-2 py-0.5 rounded border ${sc.bg} ${sc.color}`}>{sc.label}</span>
                 <span className={`text-[9px] font-bold uppercase ${severityConfig[claim.severity].color}`}>{claim.severity}</span>
               </div>
-              <h3 className="text-lg font-bold text-white">{claim.title}</h3>
-              <div className="text-[11px] text-white/40 mt-1">{claim.equipment} · {claim.supplier}</div>
+              <h3 className="text-lg font-bold text-foreground">{claim.title}</h3>
+              <div className="text-[11px] text-muted-foreground mt-1">{claim.equipment} · {claim.supplier}</div>
             </div>
           </div>
-          <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/10 transition-colors">
-            <X className="w-4 h-4 text-white/40" />
+          <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-muted transition-colors">
+            <X className="w-4 h-4 text-muted-foreground" />
           </button>
         </div>
 
         {/* Tabs */}
-        <div className="flex border-b border-white/[0.06] px-6">
+        <div className="flex border-b border-border px-6">
           {(["overview", "evidence", "penalty", "audit"] as const).map(t => (
             <button key={t} onClick={() => setTab(t)}
               className={`px-4 py-3 text-[11px] font-bold uppercase tracking-wider transition-colors border-b-2 ${
-                tab === t ? "text-white border-[#6EA996]" : "text-white/30 border-transparent hover:text-white/50"
+                tab === t ? "text-foreground border-accent" : "text-muted-foreground border-transparent hover:text-foreground/70"
               }`}>{t}</button>
           ))}
         </div>
@@ -344,33 +344,33 @@ const ClaimDetailModal = ({ claim, onClose }: { claim: ClaimCase; onClose: () =>
           {tab === "overview" && (
             <div className="space-y-6">
               <div>
-                <div className="text-[10px] text-white/30 uppercase tracking-wider font-bold mb-2">Description</div>
-                <p className="text-[13px] text-white/60 leading-relaxed">{claim.description}</p>
+                <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-bold mb-2">Description</div>
+                <p className="text-[13px] text-foreground/60 leading-relaxed">{claim.description}</p>
               </div>
 
               {claim.clientFaultReason && (
-                <div className="bg-[#7B68EE]/10 border border-[#7B68EE]/30 rounded-lg p-4">
+                <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
                   <div className="flex items-center gap-2 mb-2">
-                    <AlertTriangle className="w-4 h-4 text-[#7B68EE]" />
-                    <span className="text-[11px] font-bold text-[#7B68EE] uppercase tracking-wider">Client Responsibility</span>
+                    <AlertTriangle className="w-4 h-4 text-primary" />
+                    <span className="text-[11px] font-bold text-primary uppercase tracking-wider">Client Responsibility</span>
                   </div>
-                  <p className="text-[12px] text-white/50 leading-relaxed">{claim.clientFaultReason}</p>
+                  <p className="text-[12px] text-foreground/50 leading-relaxed">{claim.clientFaultReason}</p>
                 </div>
               )}
 
               <div>
-                <div className="text-[10px] text-white/30 uppercase tracking-wider font-bold mb-2">Legal Basis</div>
-                <p className="text-[12px] text-white/50 leading-relaxed">{claim.legalBasis}</p>
-                <span className="text-[10px] font-mono text-[#6EA996] mt-1 block">{claim.contractClause}</span>
+                <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-bold mb-2">Legal Basis</div>
+                <p className="text-[12px] text-foreground/50 leading-relaxed">{claim.legalBasis}</p>
+                <span className="text-[10px] font-mono text-accent mt-1 block">{claim.contractClause}</span>
               </div>
 
               <div>
-                <div className="text-[10px] text-white/30 uppercase tracking-wider font-bold mb-2">Findings</div>
+                <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-bold mb-2">Findings</div>
                 <div className="space-y-1.5">
                   {claim.findings.map((f, i) => (
                     <div key={i} className="flex items-start gap-2">
-                      <div className="w-1.5 h-1.5 bg-[#AE3D3D] mt-1.5 flex-shrink-0 rounded-full" />
-                      <span className="text-[12px] text-white/50">{f}</span>
+                      <div className="w-1.5 h-1.5 bg-destructive mt-1.5 flex-shrink-0 rounded-full" />
+                      <span className="text-[12px] text-foreground/50">{f}</span>
                     </div>
                   ))}
                 </div>
@@ -379,13 +379,13 @@ const ClaimDetailModal = ({ claim, onClose }: { claim: ClaimCase; onClose: () =>
               {/* Quick Financials */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {[
-                  { label: "Direct Claim", value: formatK(claim.claimAmount), color: claim.faultParty === "client" ? "text-white/30" : "text-[#F5A623]" },
-                  { label: "Liquidated Damages", value: formatK(claim.liquidatedDamages), color: "text-[#AE3D3D]" },
-                  { label: "Penalty Rate", value: `$${(claim.penaltyPerDay / 1000).toFixed(0)}K/day`, color: "text-white/60" },
-                  { label: "Delay Days", value: `${claim.delayDays}d`, color: "text-[#F5A623]" },
+                  { label: "Direct Claim", value: formatK(claim.claimAmount), color: claim.faultParty === "client" ? "text-muted-foreground" : "text-warning" },
+                  { label: "Liquidated Damages", value: formatK(claim.liquidatedDamages), color: "text-destructive" },
+                  { label: "Penalty Rate", value: `$${(claim.penaltyPerDay / 1000).toFixed(0)}K/day`, color: "text-foreground/60" },
+                  { label: "Delay Days", value: `${claim.delayDays}d`, color: "text-warning" },
                 ].map((item, i) => (
-                  <div key={i} className="bg-white/[0.03] border border-white/[0.06] rounded-lg p-3">
-                    <div className="text-[9px] text-white/30 uppercase tracking-wider font-bold">{item.label}</div>
+                  <div key={i} className="bg-muted/50 border border-border rounded-lg p-3">
+                    <div className="text-[9px] text-muted-foreground uppercase tracking-wider font-bold">{item.label}</div>
                     <div className={`text-lg font-bold ${item.color} mt-1`}>{item.value}</div>
                   </div>
                 ))}
@@ -396,18 +396,18 @@ const ClaimDetailModal = ({ claim, onClose }: { claim: ClaimCase; onClose: () =>
           {tab === "evidence" && (
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-[11px] text-white/40 font-bold uppercase tracking-wider">{claim.evidenceCount} Evidence Files</span>
-                <span className="text-[11px] text-[#6EA996] font-bold">{claim.ncrCount} NCRs Issued</span>
+                <span className="text-[11px] text-muted-foreground font-bold uppercase tracking-wider">{claim.evidenceCount} Evidence Files</span>
+                <span className="text-[11px] text-accent font-bold">{claim.ncrCount} NCRs Issued</span>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 <div className="aspect-video rounded-lg overflow-hidden">
                   <img src={claim.image} alt="Primary evidence" className="w-full h-full object-cover" />
                 </div>
                 {Array.from({ length: Math.min(claim.evidenceCount - 1, 5) }).map((_, i) => (
-                  <div key={i} className="aspect-video bg-white/[0.03] border border-white/[0.06] rounded-lg flex items-center justify-center">
+                  <div key={i} className="aspect-video bg-muted/50 border border-border rounded-lg flex items-center justify-center">
                     <div className="text-center">
-                      <Camera className="w-5 h-5 text-white/20 mx-auto mb-1" />
-                      <span className="text-[10px] text-white/20">{["RT Film", "Thermal Scan", "DFT Reading", "MPI Photo", "Video"][i % 5]}</span>
+                      <Camera className="w-5 h-5 text-muted-foreground/40 mx-auto mb-1" />
+                      <span className="text-[10px] text-muted-foreground/40">{["RT Film", "Thermal Scan", "DFT Reading", "MPI Photo", "Video"][i % 5]}</span>
                     </div>
                   </div>
                 ))}
@@ -417,38 +417,38 @@ const ClaimDetailModal = ({ claim, onClose }: { claim: ClaimCase; onClose: () =>
 
           {tab === "penalty" && (
             <div className="space-y-6">
-              <div className="text-[10px] text-white/30 uppercase tracking-wider font-bold mb-3">Penalty Calculation</div>
+              <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-bold mb-3">Penalty Calculation</div>
 
-              <div className="bg-white/[0.03] border border-white/[0.06] rounded-lg p-5 space-y-4">
-                <div className="flex justify-between items-center pb-3 border-b border-white/[0.05]">
-                  <span className="text-[12px] text-white/50">Contractual Delivery Date</span>
-                  <span className="text-[12px] text-white font-mono">{claim.auditTrail[0]?.date || "—"}</span>
+              <div className="bg-muted/30 border border-border rounded-lg p-5 space-y-4">
+                <div className="flex justify-between items-center pb-3 border-b border-border">
+                  <span className="text-[12px] text-foreground/50">Contractual Delivery Date</span>
+                  <span className="text-[12px] text-foreground font-mono">{claim.auditTrail[0]?.date || "—"}</span>
                 </div>
-                <div className="flex justify-between items-center pb-3 border-b border-white/[0.05]">
-                  <span className="text-[12px] text-white/50">Penalty Rate</span>
-                  <span className="text-[12px] text-white font-mono font-bold">${claim.penaltyPerDay.toLocaleString()} / day</span>
+                <div className="flex justify-between items-center pb-3 border-b border-border">
+                  <span className="text-[12px] text-foreground/50">Penalty Rate</span>
+                  <span className="text-[12px] text-foreground font-mono font-bold">${claim.penaltyPerDay.toLocaleString()} / day</span>
                 </div>
-                <div className="flex justify-between items-center pb-3 border-b border-white/[0.05]">
-                  <span className="text-[12px] text-white/50">Delay Duration</span>
-                  <span className="text-[12px] text-[#F5A623] font-mono font-bold">{claim.delayDays} days</span>
+                <div className="flex justify-between items-center pb-3 border-b border-border">
+                  <span className="text-[12px] text-foreground/50">Delay Duration</span>
+                  <span className="text-[12px] text-warning font-mono font-bold">{claim.delayDays} days</span>
                 </div>
-                <div className="flex justify-between items-center pb-3 border-b border-white/[0.05]">
-                  <span className="text-[12px] text-white/50">Liquidated Damages (LD)</span>
-                  <span className="text-[14px] text-[#AE3D3D] font-mono font-bold">{formatK(claim.liquidatedDamages)}</span>
+                <div className="flex justify-between items-center pb-3 border-b border-border">
+                  <span className="text-[12px] text-foreground/50">Liquidated Damages (LD)</span>
+                  <span className="text-[14px] text-destructive font-mono font-bold">{formatK(claim.liquidatedDamages)}</span>
                 </div>
-                <div className="flex justify-between items-center pb-3 border-b border-white/[0.05]">
-                  <span className="text-[12px] text-white/50">Direct Repair / Re-work Cost</span>
-                  <span className="text-[14px] text-[#F5A623] font-mono font-bold">{formatK(claim.claimAmount)}</span>
+                <div className="flex justify-between items-center pb-3 border-b border-border">
+                  <span className="text-[12px] text-foreground/50">Direct Repair / Re-work Cost</span>
+                  <span className="text-[14px] text-warning font-mono font-bold">{formatK(claim.claimAmount)}</span>
                 </div>
                 <div className="flex justify-between items-center pt-2">
-                  <span className="text-[13px] text-white font-bold">Total Exposure</span>
-                  <span className="text-[18px] text-[#AE3D3D] font-bold font-mono">{formatK(claim.claimAmount + claim.liquidatedDamages)}</span>
+                  <span className="text-[13px] text-foreground font-bold">Total Exposure</span>
+                  <span className="text-[18px] text-destructive font-bold font-mono">{formatK(claim.claimAmount + claim.liquidatedDamages)}</span>
                 </div>
               </div>
 
               {claim.faultParty === "client" && (
-                <div className="bg-[#7B68EE]/10 border border-[#7B68EE]/30 rounded-lg p-4">
-                  <span className="text-[11px] font-bold text-[#7B68EE]">⚠ Client bears full liability for this exposure per FIDIC Cl. 13.1/8.4</span>
+                <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
+                  <span className="text-[11px] font-bold text-primary">⚠ Client bears full liability for this exposure per FIDIC Cl. 13.1/8.4</span>
                 </div>
               )}
             </div>
@@ -456,27 +456,27 @@ const ClaimDetailModal = ({ claim, onClose }: { claim: ClaimCase; onClose: () =>
 
           {tab === "audit" && (
             <div className="space-y-1">
-              <div className="text-[10px] text-white/30 uppercase tracking-wider font-bold mb-4">Full Audit Trail — {claim.auditTrail.length} entries</div>
+              <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-bold mb-4">Full Audit Trail — {claim.auditTrail.length} entries</div>
               {claim.auditTrail.map((entry, i) => {
                 const Icon = auditTypeIcons[entry.type] || FileText;
                 const typeColors: Record<string, string> = {
-                  inspection: "text-[#6EA996] bg-[#6EA996]/10",
-                  legal: "text-[#7B68EE] bg-[#7B68EE]/10",
-                  evidence: "text-[#F5A623] bg-[#F5A623]/10",
-                  penalty: "text-[#AE3D3D] bg-[#AE3D3D]/10",
-                  response: "text-white/50 bg-white/5",
+                  inspection: "text-accent bg-accent/10",
+                  legal: "text-primary bg-primary/10",
+                  evidence: "text-warning bg-warning/10",
+                  penalty: "text-destructive bg-destructive/10",
+                  response: "text-muted-foreground bg-muted",
                 };
                 return (
-                  <div key={i} className="flex gap-3 py-2.5 border-b border-white/[0.03] last:border-none">
-                    <div className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 ${typeColors[entry.type]?.split(" ")[1] || "bg-white/5"}`}>
-                      <Icon className={`w-3.5 h-3.5 ${typeColors[entry.type]?.split(" ")[0] || "text-white/30"}`} />
+                  <div key={i} className="flex gap-3 py-2.5 border-b border-border/50 last:border-none">
+                    <div className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 ${typeColors[entry.type]?.split(" ")[1] || "bg-muted"}`}>
+                      <Icon className={`w-3.5 h-3.5 ${typeColors[entry.type]?.split(" ")[0] || "text-muted-foreground"}`} />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="text-[11px] text-white/60">{entry.action}</div>
+                      <div className="text-[11px] text-foreground/60">{entry.action}</div>
                       <div className="flex items-center gap-2 mt-0.5">
-                        <span className="text-[10px] font-mono text-white/25">{entry.date}</span>
-                        <span className="text-[10px] text-white/20">·</span>
-                        <span className="text-[10px] text-white/30">{entry.by}</span>
+                        <span className="text-[10px] font-mono text-muted-foreground/60">{entry.date}</span>
+                        <span className="text-[10px] text-muted-foreground/40">·</span>
+                        <span className="text-[10px] text-muted-foreground">{entry.by}</span>
                       </div>
                     </div>
                   </div>
@@ -487,18 +487,18 @@ const ClaimDetailModal = ({ claim, onClose }: { claim: ClaimCase; onClose: () =>
         </div>
 
         {/* Actions */}
-        <div className="px-6 py-4 border-t border-white/[0.06] flex items-center justify-between">
+        <div className="px-6 py-4 border-t border-border flex items-center justify-between">
           <div className="flex gap-2">
-            <button className="px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-[11px] text-white/50 font-medium transition-colors">Export PDF</button>
-            <button className="px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-[11px] text-white/50 font-medium transition-colors">Share</button>
+            <button className="px-4 py-2 bg-muted hover:bg-muted/80 border border-border rounded-lg text-[11px] text-muted-foreground font-medium transition-colors">Export PDF</button>
+            <button className="px-4 py-2 bg-muted hover:bg-muted/80 border border-border rounded-lg text-[11px] text-muted-foreground font-medium transition-colors">Share</button>
           </div>
           <div className="flex gap-2">
             {claim.faultParty !== "client" && (
-              <button className="px-4 py-2 bg-[#AE3D3D]/20 hover:bg-[#AE3D3D]/30 border border-[#AE3D3D]/40 rounded-lg text-[11px] text-[#AE3D3D] font-bold transition-colors">
+              <button className="px-4 py-2 bg-destructive/10 hover:bg-destructive/20 border border-destructive/30 rounded-lg text-[11px] text-destructive font-bold transition-colors">
                 Issue Legal Notice
               </button>
             )}
-            <button className="px-4 py-2 bg-[#6EA996] hover:bg-[#6EA996]/80 rounded-lg text-[11px] text-white font-bold transition-colors">
+            <button className="px-4 py-2 bg-accent hover:bg-accent/80 rounded-lg text-[11px] text-accent-foreground font-bold transition-colors">
               {claim.faultParty === "client" ? "File EOT Claim" : "Submit Claim"}
             </button>
           </div>
@@ -521,21 +521,21 @@ export default function LNGSupplierClaimsDashboard() {
   return (
     <div className="w-full">
       {/* KPI Bar */}
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-px bg-white/[0.06] rounded-xl overflow-hidden mb-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-px bg-border rounded-xl overflow-hidden mb-6">
         {[
-          { label: "Total Claims", value: kpi.total.toString(), icon: FileText, color: "text-white" },
-          { label: "Total Exposure", value: formatCurrency(kpi.totalClaimValue), icon: TrendingDown, color: "text-[#AE3D3D]" },
-          { label: "Supplier Liability", value: formatCurrency(kpi.supplierLiability), icon: Scale, color: "text-[#F5A623]" },
-          { label: "Client Exposure", value: formatCurrency(kpi.clientExposure), icon: AlertTriangle, color: "text-[#7B68EE]" },
-          { label: "Supplier Fault", value: kpi.supplierFault.toString(), icon: TrendingUp, color: "text-[#F5A623]" },
-          { label: "Client Fault", value: kpi.clientFault.toString(), icon: Shield, color: "text-[#7B68EE]" },
-          { label: "Evidence Files", value: kpi.totalEvidence.toString(), icon: Camera, color: "text-[#6EA996]" },
-          { label: "Delay Days", value: `${kpi.totalDelay}d`, icon: Clock, color: "text-[#AE3D3D]" },
+          { label: "Total Claims", value: kpi.total.toString(), icon: FileText, color: "text-foreground" },
+          { label: "Total Exposure", value: formatCurrency(kpi.totalClaimValue), icon: TrendingDown, color: "text-destructive" },
+          { label: "Supplier Liability", value: formatCurrency(kpi.supplierLiability), icon: Scale, color: "text-warning" },
+          { label: "Client Exposure", value: formatCurrency(kpi.clientExposure), icon: AlertTriangle, color: "text-primary" },
+          { label: "Supplier Fault", value: kpi.supplierFault.toString(), icon: TrendingUp, color: "text-warning" },
+          { label: "Client Fault", value: kpi.clientFault.toString(), icon: Shield, color: "text-primary" },
+          { label: "Evidence Files", value: kpi.totalEvidence.toString(), icon: Camera, color: "text-accent" },
+          { label: "Delay Days", value: `${kpi.totalDelay}d`, icon: Clock, color: "text-destructive" },
         ].map((item, i) => (
-          <div key={i} className="bg-[hsl(220,18%,13%)] p-4 flex flex-col items-center text-center">
+          <div key={i} className="bg-background p-4 flex flex-col items-center text-center">
             <item.icon className={`w-4 h-4 ${item.color} mb-2 opacity-60`} />
             <div className={`text-lg md:text-xl font-bold ${item.color}`}>{item.value}</div>
-            <div className="text-[9px] text-white/30 uppercase tracking-wider font-bold mt-1">{item.label}</div>
+            <div className="text-[9px] text-muted-foreground uppercase tracking-wider font-bold mt-1">{item.label}</div>
           </div>
         ))}
       </div>
@@ -546,14 +546,14 @@ export default function LNGSupplierClaimsDashboard() {
           <button key={f} onClick={() => setFilter(f)}
             className={`px-4 py-2 rounded-lg text-[11px] font-bold uppercase tracking-wider transition-all border ${
               filter === f
-                ? "bg-white/10 border-white/20 text-white"
-                : "bg-transparent border-white/[0.06] text-white/30 hover:text-white/50 hover:border-white/15"
+                ? "bg-foreground text-background border-foreground"
+                : "bg-transparent border-border text-muted-foreground hover:text-foreground hover:border-foreground/30"
             }`}>
             {f === "all" ? "All Cases" : f === "supplier" ? "Supplier Fault" : "Client Fault"}
           </button>
         ))}
         <div className="flex-1" />
-        <span className="text-[11px] text-white/20 font-mono">{filtered.length} cases</span>
+        <span className="text-[11px] text-muted-foreground font-mono">{filtered.length} cases</span>
       </div>
 
       {/* Claim Cards */}
@@ -565,60 +565,60 @@ export default function LNGSupplierClaimsDashboard() {
               initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }} transition={{ delay: i * 0.05 }}
               onClick={() => setSelectedClaim(claim)}
-              className="bg-[hsl(220,18%,13%)] border border-white/[0.06] rounded-xl overflow-hidden cursor-pointer group hover:border-white/15 transition-all">
+              className="bg-background border border-border rounded-xl overflow-hidden cursor-pointer group hover:border-foreground/20 hover:shadow-lg transition-all">
 
               {/* Image */}
               <div className="relative h-[140px] overflow-hidden">
                 <img src={claim.image} alt={claim.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[hsl(220,18%,13%)] via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
                 <div className="absolute top-3 left-3 flex gap-1.5">
                   <span className={`text-[8px] font-bold uppercase px-2 py-1 rounded border ${sc.bg} ${sc.color}`}>{sc.label}</span>
-                  <span className={`text-[8px] font-bold uppercase px-2 py-1 rounded border border-white/10 bg-white/5 ${severityConfig[claim.severity].color}`}>{claim.severity}</span>
+                  <span className={`text-[8px] font-bold uppercase px-2 py-1 rounded border border-border bg-background/80 ${severityConfig[claim.severity].color}`}>{claim.severity}</span>
                 </div>
-                <span className="absolute top-3 right-3 text-[9px] font-mono text-white/40 bg-black/40 px-2 py-0.5 rounded">{claim.id}</span>
+                <span className="absolute top-3 right-3 text-[9px] font-mono text-foreground/50 bg-background/70 px-2 py-0.5 rounded">{claim.id}</span>
               </div>
 
               {/* Content */}
               <div className="p-4">
-                <h4 className="text-[13px] font-bold text-white mb-1 line-clamp-1">{claim.title}</h4>
-                <div className="text-[10px] text-white/30 mb-3">{claim.equipment}</div>
+                <h4 className="text-[13px] font-bold text-foreground mb-1 line-clamp-1">{claim.title}</h4>
+                <div className="text-[10px] text-muted-foreground mb-3">{claim.equipment}</div>
 
                 {/* Financials */}
                 <div className="grid grid-cols-2 gap-2 mb-3">
-                  <div className="bg-white/[0.03] rounded-lg p-2">
-                    <div className="text-[8px] text-white/25 uppercase tracking-wider font-bold">Claim</div>
-                    <div className="text-[13px] font-bold text-[#F5A623]">{formatK(claim.claimAmount + claim.liquidatedDamages)}</div>
+                  <div className="bg-muted/50 rounded-lg p-2">
+                    <div className="text-[8px] text-muted-foreground uppercase tracking-wider font-bold">Claim</div>
+                    <div className="text-[13px] font-bold text-warning">{formatK(claim.claimAmount + claim.liquidatedDamages)}</div>
                   </div>
-                  <div className="bg-white/[0.03] rounded-lg p-2">
-                    <div className="text-[8px] text-white/25 uppercase tracking-wider font-bold">LD Penalty</div>
-                    <div className="text-[13px] font-bold text-[#AE3D3D]">{formatK(claim.liquidatedDamages)}</div>
+                  <div className="bg-muted/50 rounded-lg p-2">
+                    <div className="text-[8px] text-muted-foreground uppercase tracking-wider font-bold">LD Penalty</div>
+                    <div className="text-[13px] font-bold text-destructive">{formatK(claim.liquidatedDamages)}</div>
                   </div>
                 </div>
 
                 {/* Delay + Evidence + Fault */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <span className="text-[10px] text-white/30"><Clock className="w-3 h-3 inline mr-1" />{claim.delayDays}d</span>
-                    <span className="text-[10px] text-white/30"><Camera className="w-3 h-3 inline mr-1" />{claim.evidenceCount}</span>
-                    <span className="text-[10px] text-white/30"><FileText className="w-3 h-3 inline mr-1" />{claim.ncrCount} NCR</span>
+                    <span className="text-[10px] text-muted-foreground"><Clock className="w-3 h-3 inline mr-1" />{claim.delayDays}d</span>
+                    <span className="text-[10px] text-muted-foreground"><Camera className="w-3 h-3 inline mr-1" />{claim.evidenceCount}</span>
+                    <span className="text-[10px] text-muted-foreground"><FileText className="w-3 h-3 inline mr-1" />{claim.ncrCount} NCR</span>
                   </div>
-                  <ChevronRight className="w-4 h-4 text-white/15 group-hover:text-white/40 transition-colors" />
+                  <ChevronRight className="w-4 h-4 text-muted-foreground/30 group-hover:text-foreground/50 transition-colors" />
                 </div>
 
                 {/* Fault party bar */}
-                <div className={`mt-3 pt-3 border-t border-white/[0.04] flex items-center gap-2`}>
+                <div className="mt-3 pt-3 border-t border-border flex items-center gap-2">
                   <div className={`w-2 h-2 rounded-full ${
-                    claim.faultParty === "client" ? "bg-[#7B68EE]" :
-                    claim.faultParty === "supplier" ? "bg-[#AE3D3D]" : "bg-[#F5A623]"
+                    claim.faultParty === "client" ? "bg-primary" :
+                    claim.faultParty === "supplier" ? "bg-destructive" : "bg-warning"
                   }`} />
                   <span className={`text-[10px] font-bold uppercase tracking-wider ${
-                    claim.faultParty === "client" ? "text-[#7B68EE]" :
-                    claim.faultParty === "supplier" ? "text-[#AE3D3D]" : "text-[#F5A623]"
+                    claim.faultParty === "client" ? "text-primary" :
+                    claim.faultParty === "supplier" ? "text-destructive" : "text-warning"
                   }`}>
                     {claim.faultParty === "client" ? "Client Fault" :
                      claim.faultParty === "supplier" ? "Supplier Fault" : "Shared Liability"}
                   </span>
-                  <span className="text-[9px] text-white/20 ml-auto">{claim.supplier}</span>
+                  <span className="text-[9px] text-muted-foreground ml-auto">{claim.supplier}</span>
                 </div>
               </div>
             </motion.div>
