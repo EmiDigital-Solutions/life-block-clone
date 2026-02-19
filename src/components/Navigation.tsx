@@ -51,31 +51,29 @@ const Navigation = () => {
             <span className="text-2xl md:text-3xl font-black tracking-tight text-foreground">RACI</span>
           </Link>
 
-          <div className="flex items-center gap-2 md:gap-3">
-            {/* Demo Button */}
-            <Link
-              to="/lng-inspection"
-              className="px-4 md:px-5 py-1.5 md:py-2 bg-foreground text-background text-xs md:text-sm font-semibold rounded-full hover:bg-foreground/90 transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Demo
-            </Link>
+          {/* Hamburger Menu Button - centered */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center p-2 md:p-2.5 hover:bg-foreground/5 transition-colors rounded-full"
+          >
+            {isMenuOpen ? (
+              <X className="w-4 h-4 md:w-5 md:h-5 text-foreground" />
+            ) : (
+              <div className="flex flex-col justify-center items-center gap-[3px] md:gap-[4px]">
+                <span className="w-[16px] md:w-[18px] h-[2px] bg-foreground rounded-full block" />
+                <span className="w-[16px] md:w-[18px] h-[2px] bg-foreground rounded-full block" />
+              </div>
+            )}
+          </button>
 
-            {/* Hamburger Menu Button */}
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="flex items-center justify-center p-2 md:p-2.5 hover:bg-foreground/5 transition-colors rounded-full"
-            >
-              {isMenuOpen ? (
-                <X className="w-4 h-4 md:w-5 md:h-5 text-foreground" />
-              ) : (
-                <div className="flex flex-col justify-center items-center gap-[3px] md:gap-[4px]">
-                  <span className="w-[16px] md:w-[18px] h-[2px] bg-foreground rounded-full block" />
-                  <span className="w-[16px] md:w-[18px] h-[2px] bg-foreground rounded-full block" />
-                </div>
-              )}
-            </button>
-          </div>
+          {/* Demo Button */}
+          <Link
+            to="/lng-inspection"
+            className="px-4 md:px-5 py-1.5 md:py-2 bg-foreground text-background text-xs md:text-sm font-semibold rounded-full hover:bg-foreground/90 transition-colors"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Demo
+          </Link>
         </div>
 
         {/* Dropdown Menu */}
