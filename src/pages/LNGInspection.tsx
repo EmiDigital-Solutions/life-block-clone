@@ -13,6 +13,7 @@ import LNGAtlasDemo from "@/components/LNGAtlasDemo";
 import LNGInspectionDashboard from "@/components/LNGInspectionDashboard";
 import LNGSupplierClaimsDashboard from "@/components/LNGSupplierClaimsDashboard";
 import LNGFullLifecycleDemo from "@/components/LNGFullLifecycleDemo";
+import LNGSupplierPortal from "@/components/LNGSupplierPortal";
 import ScrollPinnedZoom from "@/components/ScrollPinnedZoom";
 
 import lngPlantHero from "@/assets/lng-plant-hero.jpg";
@@ -485,6 +486,33 @@ const LNGInspection = () => {
             </motion.div>
 
             <LNGSupplierClaimsDashboard />
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════
+            SUPPLIER PORTAL VIEW
+        ═══════════════════════════════════════════════════ */}
+        <section data-nav-theme="light" className="py-24 md:py-32 bg-[hsl(220,10%,96%)]">
+          <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="max-w-3xl mb-12"
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-px bg-foreground" />
+                <span className="text-xs font-mono tracking-[0.25em] uppercase text-foreground/50">Supplier Portal</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground">
+                What the supplier<br />sees & must accept
+              </h2>
+              <p className="text-base md:text-lg text-foreground/50 mt-6 max-w-xl">
+                Suppliers receive AI-generated formal claims with full evidence chains. They review findings, download evidence packages, and must formally accept or dispute — all within the platform.
+              </p>
+            </motion.div>
+
+            <LNGSupplierPortal />
           </div>
         </section>
 
