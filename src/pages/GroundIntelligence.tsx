@@ -359,23 +359,6 @@ const GroundIntelligence = () => {
               </div>
             </div>
 
-            {/* Quote */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="grid grid-cols-1 lg:grid-cols-6 gap-0"
-            >
-              <div className="hidden lg:block lg:col-span-1" />
-              <div className="lg:col-span-5 border-l-2 border-accent pl-8 md:pl-12">
-                <p className="text-lg md:text-xl lg:text-2xl font-light text-foreground/80 leading-relaxed tracking-tight mb-6">
-                  "The difference between document review and construction intelligence is simple: we don't review MDR packages remotely — we send a certified inspector to the fabrication shop. Every measurement, every NDE result, every test witness comes from someone who was physically present."
-                </p>
-                <p className="text-sm font-medium text-foreground/50 tracking-wide">
-                  — RCA Engineering Team
-                </p>
-              </div>
-            </motion.div>
           </div>
         </section>
 
