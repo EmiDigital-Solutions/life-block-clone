@@ -80,18 +80,6 @@ const Navigation = () => {
         {isMenuOpen && (
           <div className="px-4 md:px-10 pb-6 md:pb-10 pt-3 md:pt-6 animate-fade-in overflow-y-auto" style={{ maxHeight: 'calc(85vh - 50px)' }}>
             <nav className="space-y-2 md:space-y-4">
-              <Link to="/features" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
-                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">Features</span>
-                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">Complete feature overview</span>
-              </Link>
-              <Link to="/search-suppliers" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
-                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">Search Suppliers</span>
-                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">Find verified suppliers worldwide</span>
-              </Link>
-              <Link to="/scanpro-plus" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
-                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">ScanPro+</span>
-                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">AI-powered audit intelligence</span>
-              </Link>
               <Link to="/ground-intelligence" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
                 <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">Ground Intelligence</span>
                 <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">Verified supplier intelligence</span>
@@ -99,10 +87,6 @@ const Navigation = () => {
               <Link to="/lng-inspection" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
                 <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">LNG Inspection</span>
                 <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">EPC quality management</span>
-              </Link>
-              <Link to="/about-us" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
-                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">About Us</span>
-                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">Our mission & team</span>
               </Link>
             </nav>
           </div>
