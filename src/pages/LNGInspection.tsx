@@ -141,9 +141,6 @@ const LNGInspection = () => {
                       </div>
                     </div>
                     <p className="text-sm md:text-base whitespace-nowrap flex items-baseline mt-2">
-                      <span>
-                        <span className="font-semibold text-primary">Save $750M–$1B on a $5B plant</span>
-                      </span>
                     </p>
                   </motion.div>
 
@@ -194,12 +191,11 @@ const LNGInspection = () => {
                 <span className="text-xs font-mono tracking-[0.25em] uppercase text-foreground/40">Evidence Architecture</span>
               </div>
               <h2 className="section-headline text-foreground">
-                Tamper-proof evidence chain
+                Protected evidence chain
               </h2>
               <p className="text-base md:text-lg text-foreground/50 mt-6 max-w-2xl leading-relaxed">
-                RCA captures data at every inspection point automatically. 
-                Each record has a timestamp, GPS location, and digital signature. 
-                No more searching for proof — it takes 40–120 man-hours per claim today. With RCA: zero.
+                RCA records all inspection data automatically. Every record has a timestamp, GPS location, and digital signature. 
+                Data cannot be changed or deleted after capture. Today, teams spend 40–120 hours per claim searching for proof. With RCA: zero.
               </p>
             </motion.div>
 
@@ -256,19 +252,7 @@ const LNGInspection = () => {
                   </div>
                 </div>
 
-                {/* Proposition box (right) */}
-                <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }} transition={{ delay: 0.4 }}
-                  className="w-[260px] flex-shrink-0 self-center border-[3px] border-foreground p-6 space-y-4 ml-4">
-                  <div>
-                    <div className="text-xs font-bold text-foreground uppercase tracking-wider mb-1">The Proposition:</div>
-                    <div className="text-lg font-bold text-foreground leading-tight">Phase 1 Pilot<br />Investment:<br />€200,000</div>
-                  </div>
-                  <div className="border-t border-foreground/20 pt-4">
-                    <div className="text-xs font-bold text-[hsl(24,90%,50%)] uppercase tracking-wider mb-1">The Return:</div>
-                    <div className="text-lg font-bold text-[hsl(24,90%,50%)] leading-tight">Projected Net Value:<br />~XX Million RUB<br />over 3 Years</div>
-                  </div>
-                </motion.div>
+
               </div>
 
               {/* Mobile layout */}
@@ -306,17 +290,6 @@ const LNGInspection = () => {
                   ))}
                 </div>
 
-                {/* Proposition */}
-                <div className="border-[3px] border-foreground p-5 space-y-3">
-                  <div>
-                    <div className="text-[10px] font-bold text-foreground uppercase tracking-wider mb-1">The Proposition:</div>
-                    <div className="text-base font-bold text-foreground">Phase 1 Pilot Investment: €200,000</div>
-                  </div>
-                  <div className="border-t border-foreground/20 pt-3">
-                    <div className="text-[10px] font-bold text-[hsl(24,90%,50%)] uppercase tracking-wider mb-1">The Return:</div>
-                    <div className="text-base font-bold text-[hsl(24,90%,50%)]">Projected Net Value: ~XX Million RUB over 3 Years</div>
-                  </div>
-                </div>
               </div>
             </motion.div>
           </div>
@@ -564,10 +537,10 @@ const LNGInspection = () => {
               className="max-w-3xl mb-16">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-px bg-foreground" />
-                <span className="text-xs font-mono tracking-[0.25em] uppercase text-foreground/50">Who benefits</span>
+                <span className="text-xs font-mono tracking-[0.25em] uppercase text-foreground/50">Users</span>
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground">
-                Target clients
+                Users
               </h2>
             </motion.div>
 
@@ -575,7 +548,6 @@ const LNGInspection = () => {
               {[
                 {
                   title: "Owners & Operators",
-                  companies: "Shell · TotalEnergies · Saudi Aramco · Qatargas · Cheniere",
                   benefits: [
                     "Remote monitoring — less people on site needed",
                     "Clear delay attribution with evidence for claims",
@@ -585,7 +557,6 @@ const LNGInspection = () => {
                 },
                 {
                   title: "EPC Contractors",
-                  companies: "TechnipFMC · Saipem · Chiyoda · Samsung Engineering · Linde",
                   benefits: [
                     "40% fewer NCRs through AI-based prevention",
                     "Automatic CAPA generation and tracking",
@@ -595,7 +566,6 @@ const LNGInspection = () => {
                 },
                 {
                   title: "Third-Party Inspectors",
-                  companies: "ABS · Bureau Veritas · DNV · Lloyd's Register · TÜV",
                   benefits: [
                     "50% faster inspections with AI support",
                     "AI pre-screening of weld images",
@@ -608,8 +578,7 @@ const LNGInspection = () => {
                   initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }} transition={{ delay: i * 0.1 }}
                   className="bg-white p-8 md:p-12">
-                  <h3 className="text-xl font-bold text-foreground mb-2">{client.title}</h3>
-                  <p className="text-xs text-foreground/40 font-mono mb-6">{client.companies}</p>
+                  <h3 className="text-xl font-bold text-foreground mb-6">{client.title}</h3>
                   <div className="space-y-3">
                     {client.benefits.map((b, j) => (
                       <div key={j} className="flex items-start gap-2">
@@ -645,10 +614,9 @@ const LNGInspection = () => {
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-px">
+            <div className="grid grid-cols-3 gap-px">
               {[
                 { value: "15–20%", label: "Less project cost overrun" },
-                { value: "$750M", label: "Saved on a $5B plant" },
                 { value: "50%", label: "Faster inspection time" },
                 { value: "95%+", label: "Defect detection rate" },
               ].map((stat, i) => (
