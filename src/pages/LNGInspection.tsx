@@ -10,6 +10,7 @@ import SectionCutMarker from "@/components/SectionCutMarker";
 import ToleranceNotation from "@/components/ToleranceNotation";
 import { Button } from "@/components/ui/button";
 import LNGInspectionDemo from "@/components/LNGInspectionDemo";
+import LNGAtlasDemo from "@/components/LNGAtlasDemo";
 import ScrollPinnedZoom from "@/components/ScrollPinnedZoom";
 
 import lngPlantHero from "@/assets/lng-plant-hero.jpg";
@@ -256,6 +257,111 @@ const LNGInspection = () => {
         <div className="mx-auto max-w-[1400px] px-4 md:px-8">
           <SectionCutMarker section="B" from={1} to={5} />
         </div>
+
+        {/* ═══════════════════════════════════════════════════
+            ATLAS AI — NCR INVESTIGATION DEMO
+        ═══════════════════════════════════════════════════ */}
+        <section id="lng-atlas-demo" data-nav-theme="light" className="py-24 md:py-32 bg-white">
+          <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="max-w-3xl mb-12"
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-px bg-foreground" />
+                <span className="text-xs font-mono tracking-[0.25em] uppercase text-foreground/50">Atlas AI · NCR Investigation</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground">
+                From defect detection<br />to claim recovery
+              </h2>
+              <p className="text-base md:text-lg text-foreground/50 mt-6 max-w-xl">
+                Watch Atlas AI investigate a real NCR — predict repair outcomes, generate a qualified claim letter, and prevent capital hemorrhage. All in minutes, not weeks.
+              </p>
+            </motion.div>
+
+            {/* Demo */}
+            <div className="aspect-[16/10] w-full">
+              <LNGAtlasDemo />
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════
+            CAPITAL HEMORRHAGE — THE LEAK
+        ═══════════════════════════════════════════════════ */}
+        <section data-nav-theme="dark" className="py-24 md:py-32 bg-foreground text-background">
+          <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-3xl mb-16">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-px bg-background" />
+                <span className="text-xs font-mono tracking-[0.25em] uppercase text-background/50">The Leak</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.03em] leading-[0.95] text-background">
+                Capital hemorrhage<br />stops here
+              </h2>
+              <p className="text-base md:text-lg text-background/40 mt-6 max-w-xl">
+                Every EPC project bleeds money through three invisible pipes. YVOO plugs all three.
+              </p>
+            </motion.div>
+
+            <div className="grid lg:grid-cols-3 gap-px">
+              {[
+                {
+                  title: "Uncontested Supplier Claims",
+                  subtitle: "Paying for errors we cannot disprove",
+                  problem: "Without evidence-based inspection data, fabricator defects become your cost. No documentation = no recovery.",
+                  solution: "AI generates qualified claim letters with root cause analysis, cost quantification, and legal basis — in minutes.",
+                  stat: "€76K–€118K",
+                  statLabel: "recovered per NCR",
+                  color: "bg-[#AE3D3D]",
+                },
+                {
+                  title: "Uncollected Penalties",
+                  subtitle: "Inability to attribute delays",
+                  problem: "Multi-party EPC projects make delay attribution nearly impossible manually. Contractors dispute responsibility.",
+                  solution: "AI reconstructs evidence-based timelines with automated responsibility attribution across all parties.",
+                  stat: "$500K–$2M",
+                  statLabel: "per day delay cost protected",
+                  color: "bg-[#F5A623]",
+                },
+                {
+                  title: "Late Detection Costs",
+                  subtitle: "The 10× multiplier rule",
+                  problem: "Defects found during commissioning cost 10× more than during fabrication. Late detection = exponential cost.",
+                  solution: "Computer vision + predictive analytics catch defects during manufacturing, before they reach site.",
+                  stat: "95%+",
+                  statLabel: "defect detection at source",
+                  color: "bg-[#6EA996]",
+                },
+              ].map((leak, i) => (
+                <motion.div key={leak.title}
+                  initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                  className="p-8 md:p-12 border border-background/10">
+                  <div className={`w-3 h-3 ${leak.color} mb-6`} />
+                  <h3 className="text-xl font-bold text-background mb-1">{leak.title}</h3>
+                  <p className="text-sm text-background/40 mb-6 italic">{leak.subtitle}</p>
+                  <div className="space-y-4 mb-8">
+                    <div>
+                      <span className="text-[10px] font-bold text-[#AE3D3D] uppercase tracking-wider">Problem</span>
+                      <p className="text-sm text-background/50 mt-1">{leak.problem}</p>
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-bold text-[#6EA996] uppercase tracking-wider">YVOO Solution</span>
+                      <p className="text-sm text-background/50 mt-1">{leak.solution}</p>
+                    </div>
+                  </div>
+                  <div className="pt-6 border-t border-background/10">
+                    <div className="text-3xl font-bold text-accent">{leak.stat}</div>
+                    <div className="text-xs text-background/40 mt-1">{leak.statLabel}</div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* ═══════════════════════════════════════════════════
             TARGET CLIENTS
