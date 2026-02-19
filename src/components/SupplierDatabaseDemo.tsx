@@ -5,6 +5,7 @@ import {
   MapPin, BarChart3, Globe, Zap, CheckCircle2,
   Factory, Flame, Gauge, Wrench, Box, Cable
 } from "lucide-react";
+import SupplierBenchmarkModal from "./SupplierBenchmarkModal";
 
 const categoryData = [
   { 
@@ -64,6 +65,7 @@ const SupplierDatabaseDemo = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [hoveredRow, setHoveredRow] = useState<number | null>(null);
+  const [benchmarkOpen, setBenchmarkOpen] = useState(false);
 
   const filteredSuppliers = supplierRows.filter(s => {
     const matchesSearch = !searchQuery || 
@@ -244,6 +246,7 @@ const SupplierDatabaseDemo = () => {
                       transition={{ delay: i * 0.03 }}
                       onMouseEnter={() => setHoveredRow(i)}
                       onMouseLeave={() => setHoveredRow(null)}
+                      onClick={() => setBenchmarkOpen(true)}
                       className={`border-b border-white/5 cursor-pointer transition-all ${
                         hoveredRow === i ? 'bg-[hsl(var(--accent))]/5' : ''
                       }`}
@@ -313,6 +316,11 @@ const SupplierDatabaseDemo = () => {
           </div>
         </motion.div>
       </div>
+
+      <SupplierBenchmarkModal
+        open={benchmarkOpen}
+        onOpenChange={setBenchmarkOpen}
+      />
     </section>
   );
 };

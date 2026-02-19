@@ -3,7 +3,7 @@ import { useState } from "react";
 import { X } from "lucide-react";
 import PlatformDemoAnimation from "./PlatformDemoAnimation";
 import MobilePlatformDemo from "./MobilePlatformDemo";
-import { Button } from "@/components/ui/button";
+
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -37,26 +37,8 @@ const TestimonialSection = () => {
               </div>
             )}
 
-            {/* Below video text */}
-            <h3 className="text-xl font-medium text-foreground text-center mt-8 mb-4">
-              From Search to Intelligence. All in One Platform.
-            </h3>
-            <p className="text-base text-muted-foreground text-center mb-8">
-              AI-powered supplier discovery, on-demand audits, real-time intelligence
-            </p>
 
-            {/* CTA Button */}
-            <div className="text-center">
-              <Button asChild size="lg">
-                <a
-                  href="https://calendly.com/yvoo/demo-yvoo"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Experience the Platform
-                </a>
-              </Button>
-            </div>
+
           </motion.div>
 
       </div>
