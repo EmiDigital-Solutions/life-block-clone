@@ -7,7 +7,7 @@ const capabilities = [
     phase: "Search",
     title: "Find Suppliers",
     description: "Describe what you need. AI finds matching suppliers by capability, certification, and capacity — worldwide, in seconds",
-    
+    highlight: "Free",
     cta: "Try Supplier Search",
     link: "/search-suppliers"
   },
@@ -53,19 +53,32 @@ const CapabilityOverviewSection = () => {
                 transition={{ delay: index * 0.1 }}
                 className="lg:col-span-2 border-b md:border-b-0 md:border-r border-foreground/10 last:border-r-0"
               >
-                <div className="block h-full p-8 md:p-10">
-                   <div className="relative">
-                     <span className="text-sm font-medium tracking-[0.15em] uppercase text-foreground/50 mb-3 block">
-                       {cap.phase}
-                     </span>
-                     <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">
-                       {cap.title}
-                     </h3>
-                   </div>
-                   <p className="text-muted-foreground leading-relaxed">
-                     {cap.description}
-                   </p>
-                 </div>
+                <Link
+                  to={cap.link}
+                  className="group block h-full p-8 md:p-10 hover:bg-secondary/20 transition-colors"
+                >
+                  <div className="relative">
+                    <div className="absolute -left-8 md:-left-10 top-0 bottom-0 w-1 bg-foreground scale-y-0 group-hover:scale-y-100 transition-transform origin-top" />
+                    <span className="text-sm font-medium tracking-[0.15em] uppercase text-foreground/50 mb-3 block">
+                      {cap.phase}
+                    </span>
+                    <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">
+                      {cap.title}
+                    </h3>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed mb-6">
+                    {cap.description}
+                    {cap.highlight && (
+                      <span className="inline-block ml-1.5 px-2.5 py-0.5 bg-foreground/10 text-foreground text-xs font-bold tracking-wide uppercase rounded-sm">
+                        {cap.highlight}
+                      </span>
+                    )}
+                  </p>
+                  <div className="flex items-center gap-2 text-foreground font-medium group-hover:text-foreground/70 transition-colors">
+                    <span className="text-sm">{cap.cta}</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </Link>
               </motion.div>
             ))}
           </div>
