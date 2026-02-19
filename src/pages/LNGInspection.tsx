@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import LNGInspectionDemo from "@/components/LNGInspectionDemo";
 import LNGAtlasDemo from "@/components/LNGAtlasDemo";
 import LNGInspectionDashboard from "@/components/LNGInspectionDashboard";
+import LNGSupplierClaimsDashboard from "@/components/LNGSupplierClaimsDashboard";
 import ScrollPinnedZoom from "@/components/ScrollPinnedZoom";
 
 import lngPlantHero from "@/assets/lng-plant-hero.jpg";
@@ -435,6 +436,33 @@ const LNGInspection = () => {
             </motion.div>
 
             <LNGInspectionDashboard />
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════
+            SUPPLIER & CONTRACTOR CLAIMS DASHBOARD
+        ═══════════════════════════════════════════════════ */}
+        <section data-nav-theme="dark" className="py-24 md:py-32 bg-[hsl(220,18%,10%)]">
+          <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="max-w-3xl mb-12"
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-px bg-white/30" />
+                <span className="text-xs font-mono tracking-[0.25em] uppercase text-white/40">Supplier & Contractor View</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.03em] leading-[0.95] text-white">
+                Claims, penalties &<br />liquidated damages
+              </h2>
+              <p className="text-base md:text-lg text-white/35 mt-6 max-w-xl">
+                Full audit trail from inspection finding to legal notification. Automated penalty calculation with LD enforcement. Includes cases where client is at fault due to late specifications or mid-fabrication requirement changes.
+              </p>
+            </motion.div>
+
+            <LNGSupplierClaimsDashboard />
           </div>
         </section>
 
