@@ -23,10 +23,10 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 0%;
 
-    --primary: 199 91% 64%; /* Ion Blue #4FC3F7 */
+    --primary: 188 42% 46%; /* Ion Blue #4FC3F7 */
     --primary-foreground: 0 0% 0%;
 
-    --secondary: 188 31% 62%; /* BlueGrey Light #ACC5D9 */
+    --secondary: 161 25.5411% 54.7059%; /* BlueGrey Light #ACC5D9 */
     --secondary-foreground: 0 0% 0%;
 
     --muted: 0 0% 96%; /* Snow White #F5F5F5 */
