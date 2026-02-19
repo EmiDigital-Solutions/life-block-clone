@@ -17,6 +17,7 @@ import SearchSuppliers from "./pages/SearchSuppliers";
 import Features from "./pages/Features";
 import CustomerStories from "./pages/CustomerStories";
 import CustomerStoryDetail from "./pages/CustomerStoryDetail";
+import LNGInspection from "./pages/LNGInspection";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/lng-inspection" element={<LNGInspection />} />
             <Route path="/be-found" element={<BeFound />} />
             <Route path="/ground-intelligence" element={<GroundIntelligence />} />
             <Route path="/scanpro-plus" element={<ScanProPlus />} />
