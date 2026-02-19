@@ -64,9 +64,6 @@ const Index = () => {
           <DimensionLine from="15.000" to="700" unit="€" gridFrom={0} gridTo={4} />
         </div>
 
-        {/* SearchPro+ Demo — LNG supplier search */}
-        <LNGSearchDemo />
-
         {/* Section cut marker B—B */}
         <div className="mx-auto max-w-[1400px] px-4 md:px-8">
           <SectionCutMarker section="B" from={1} to={5} />
@@ -74,6 +71,9 @@ const Index = () => {
 
         {/* Platform Demo */}
         <TestimonialSection />
+
+        {/* SearchPro+ Demo — LNG supplier search */}
+        <LNGSearchDemo />
 
         {/* Tolerance notation */}
         <div className="mx-auto max-w-[1400px] px-4 md:px-8">
