@@ -219,7 +219,7 @@ const AtlasAIDemoAnimation = () => {
             <div className="w-2.5 h-2.5 rounded-full bg-[#6EA996]" />
             <span className="text-[12px] text-white/40 font-medium tracking-wider uppercase">Live Audit</span>
           </div>
-          <span className="text-[14px] font-bold text-white tracking-wide">Atlas AI · Capacity Inspection</span>
+          <span className="text-[14px] font-bold text-white tracking-wide">Atlas AI · Konar Audit</span>
           <div className="flex items-center gap-3">
             <span className="text-[12px] text-white/30 hidden md:inline">Progress 45%</span>
             <div className="w-20 h-2 bg-white/8 rounded-full overflow-hidden">
