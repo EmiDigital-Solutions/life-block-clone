@@ -185,8 +185,8 @@ export const HowItWorksSection = () => {
                 See what in 3 days looks like
               </h3>
               <Button asChild size="lg">
-                <a 
-                  href="https://calendly.com/yvoo/demo-yvoo"
+                 <a 
+                   href="https://calendly.com/yvoo/demo-yvoo"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

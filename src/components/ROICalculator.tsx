@@ -224,7 +224,7 @@ const ROICalculator = () => {
           className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-5 bg-white rounded-lg"
         >
           <div>
-            <p className="text-sm text-muted-foreground mb-1">YVOO ScanPro+ ({selectedRegionData?.label})</p>
+            <p className="text-sm text-muted-foreground mb-1">RCA ScanPro+ ({selectedRegionData?.label})</p>
             <p className="text-foreground font-medium">{auditsPerYear} × {formatCurrency(yvooCost)}</p>
           </div>
           <div className="text-2xl sm:text-3xl font-semibold text-primary mt-2 sm:mt-0">

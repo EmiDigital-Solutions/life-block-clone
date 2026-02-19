@@ -44,7 +44,7 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-sm md:text-base text-foreground/50 font-mono tracking-[0.25em] uppercase mb-4 md:mb-6"
             >
-              While others coordinate, you audit — unlimited, worldwide.
+              Find · Verify · Audit · Improve — one platform
             </motion.p>
 
             {/* Headline */}
@@ -54,8 +54,8 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
             >
-               On-site supplier<br />
-               audits in 72h, not weeks
+               Supplier audits<br />
+               in 72h, not weeks
             </motion.h1>
 
             {/* Value Props + CTAs - snapped to 4th grid line (50%) */}
@@ -102,12 +102,12 @@ const HeroSection = () => {
                   <div className="space-y-2">
                   {[
                     { bold: "72-hour mobilization", rest: "any country, any industry" },
-                    { bold: "60% lower cost, 70% faster", rest: "than traditional audit programs" },
-                    { bold: "New supplier base in weeks", rest: "not years. Unlimited audits running simultaneously" },
-                    { bold: "Your checklists, AI-enhanced", rest: "your templates & requirements, elevated with AI" },
-                    { bold: "Maximum objectivity", rest: "AI-driven, subjectivity eliminated, results you can compare" },
-                    { bold: "Verified facts, not claims", rest: "on-site data, risk alerts, predictions, decision-ready reports" },
-                    { bold: "AI-driven CAPA & close-out", rest: "every finding tracked, escalated, and resolved digitally" },
+                    { bold: "60% lower cost", rest: "local auditors, no travel expenses" },
+                    { bold: "Unlimited parallel audits", rest: "build a new supplier base in weeks" },
+                    { bold: "Your checklists, AI-enhanced", rest: "your templates, elevated with Atlas AI" },
+                    { bold: "Objective results", rest: "AI-driven scoring, comparable across all suppliers" },
+                    { bold: "Verified data, not claims", rest: "on-site evidence, risk alerts, decision-ready reports" },
+                    { bold: "AI-driven CAPA", rest: "every finding tracked, escalated, resolved digitally" },
                   ].map((item, i) => (
                     <p key={i} className="text-sm md:text-base text-foreground/60 whitespace-nowrap">
                       <span className="font-semibold text-foreground">{item.bold}</span> — {item.rest}
@@ -115,9 +115,6 @@ const HeroSection = () => {
                   ))}
                   </div>
                 </div>
-                <p className="text-sm md:text-base whitespace-nowrap flex items-baseline mt-2">
-                  <span><span className="font-semibold text-primary">Fast-mover advantage</span> — get 30% off your first audit · <a href="https://calendly.com/yvoo/demo-yvoo" target="_blank" rel="noopener noreferrer" className="underline font-semibold text-primary hover:text-primary/80">Book Now →</a></span>
-                </p>
               </motion.div>
 
               <motion.div

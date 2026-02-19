@@ -37,8 +37,8 @@ const FinalCTASection = () => {
               if (demoSection) demoSection.scrollIntoView({ behavior: 'smooth' });
             }}
           >
-            See How YVOO Works
-            <ArrowRight className="ml-2 w-5 h-5" />
+             See How RCA Works
+             <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">

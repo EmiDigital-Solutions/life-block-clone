@@ -38,12 +38,12 @@ const faqCategories = [
     label: "Integrations",
     faqs: [
       {
-        question: "Does YVOO integrate with our existing ERP/PLM systems?",
-        answer: "Yes, YVOO offers native integrations with SAP, Oracle, Microsoft Dynamics, and other major ERP systems. We also provide a REST API for custom integrations. Data syncs automatically, eliminating manual data entry.",
+         question: "Does RCA integrate with our existing ERP/PLM systems?",
+         answer: "Yes, RCA offers native integrations with SAP, Oracle, Microsoft Dynamics, and other major ERP systems. We also provide a REST API for custom integrations. Data syncs automatically, eliminating manual data entry.",
       },
       {
-        question: "Can we connect YVOO to our supplier management platform?",
-        answer: "Absolutely. We integrate with leading SRM platforms including Ariba, Coupa, Jaggaer, and GEP. Audit results flow directly into your supplier scorecards and risk dashboards.",
+         question: "Can we connect RCA to our supplier management platform?",
+         answer: "Absolutely. We integrate with leading SRM platforms including Ariba, Coupa, Jaggaer, and GEP. Audit results flow directly into your supplier scorecards and risk dashboards.",
       },
       {
         question: "Is there an API for custom integrations?",
