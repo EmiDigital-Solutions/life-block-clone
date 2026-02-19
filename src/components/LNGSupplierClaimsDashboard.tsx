@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronRight, AlertTriangle, FileText, Camera, Scale, Clock, TrendingUp, TrendingDown, Shield, Gavel } from "lucide-react";
+import { X, ChevronRight, AlertTriangle, FileText, Camera, Scale, Clock, TrendingUp, TrendingDown, Shield, Gavel, File, BarChart3, Ruler, Thermometer, Video, Microscope, Download } from "lucide-react";
 
 import claimWeldDefect from "@/assets/claim-weld-defect.jpg";
 import claimCoatingFailure from "@/assets/claim-coating-failure.jpg";
@@ -19,6 +19,19 @@ interface AuditEntry {
   action: string;
   by: string;
   type: "inspection" | "legal" | "evidence" | "penalty" | "response";
+}
+
+type EvidenceType = "photo" | "report" | "measurement" | "video" | "document" | "scan" | "certificate";
+
+interface EvidenceFile {
+  name: string;
+  type: EvidenceType;
+  size: string;
+  date: string;
+  by: string;
+  description: string;
+  hasImage?: boolean;
+  measurements?: { label: string; actual: string; spec: string; status: "pass" | "fail" }[];
 }
 
 interface ClaimCase {
@@ -43,7 +56,18 @@ interface ClaimCase {
   auditTrail: AuditEntry[];
   findings: string[];
   clientFaultReason?: string;
+  evidenceFiles: EvidenceFile[];
 }
+
+const evidenceTypeConfig: Record<EvidenceType, { icon: typeof FileText; color: string; bg: string }> = {
+  photo: { icon: Camera, color: "text-accent", bg: "bg-accent/10" },
+  report: { icon: FileText, color: "text-primary", bg: "bg-primary/10" },
+  measurement: { icon: Ruler, color: "text-warning", bg: "bg-warning/10" },
+  video: { icon: Video, color: "text-destructive", bg: "bg-destructive/10" },
+  document: { icon: File, color: "text-muted-foreground", bg: "bg-muted" },
+  scan: { icon: Microscope, color: "text-accent", bg: "bg-accent/10" },
+  certificate: { icon: Shield, color: "text-primary", bg: "bg-primary/10" },
+};
 
 const claimCases: ClaimCase[] = [
   {
@@ -83,6 +107,24 @@ const claimCases: ClaimCase[] = [
       "Undercut 0.8mm exceeds 0.5mm limit",
       "Incomplete WPS/PQR documentation",
     ],
+    evidenceFiles: [
+      { name: "VT-Report-E05-LS-001.pdf", type: "report", size: "2.4 MB", date: "2024-10-15", by: "Inspector A. Petrov", description: "Visual Testing Report — longitudinal seam weld toe crack, 40mm indication with macro photos at 5× magnification", hasImage: true },
+      { name: "MPI-Film-HAZ-Zone-A.jpg", type: "photo", size: "8.1 MB", date: "2024-10-15", by: "NDT Level II K. Smirnov", description: "Magnetic Particle Inspection photo — linear indication fluorescent under UV, crack propagation into HAZ clearly visible", hasImage: true },
+      { name: "RT-Film-LS-001-Scan.dcm", type: "scan", size: "34.2 MB", date: "2024-10-16", by: "RT Operator M. Chen", description: "Digitized radiographic film — linear indication 42mm, density variation confirms incomplete fusion at root", hasImage: true },
+      { name: "Weld-Measurement-Report.pdf", type: "measurement", size: "1.8 MB", date: "2024-10-15", by: "QC Engineer P. Singh", description: "Dimensional measurement of weld reinforcement and undercut depths at 12 locations along seam",
+        measurements: [
+          { label: "Weld Reinforcement", actual: "4.2 mm", spec: "≤3.0 mm", status: "fail" },
+          { label: "Undercut Depth", actual: "0.8 mm", spec: "≤0.5 mm", status: "fail" },
+          { label: "Weld Width", actual: "18.3 mm", spec: "15–20 mm", status: "pass" },
+          { label: "Root Penetration", actual: "1.1 mm", spec: "≥1.5 mm", status: "fail" },
+        ]
+      },
+      { name: "NCR-2024-0312.pdf", type: "document", size: "520 KB", date: "2024-10-17", by: "QC Manager D. Fischer", description: "Non-Conformance Report — critical severity, references GOST-34347 §5.2 violation, hydrostatic test hold" },
+      { name: "WPS-PQR-Audit-Checklist.xlsx", type: "document", size: "340 KB", date: "2024-10-17", by: "Welding Engineer", description: "WPS/PQR compliance checklist — 3 of 7 required documents missing from supplier package" },
+      { name: "Hydro-Test-Hold-Notice.pdf", type: "document", size: "180 KB", date: "2024-10-18", by: "Project Engineer R. Kumar", description: "Formal hold notification — hydrostatic test suspended pending weld repair and re-inspection" },
+      { name: "Crack-Propagation-Video.mp4", type: "video", size: "127 MB", date: "2024-10-15", by: "Inspector A. Petrov", description: "4K video walkthrough of crack indication under UV light showing full extent of HAZ damage" },
+      { name: "EN-10204-3.2-Certificate.pdf", type: "certificate", size: "890 KB", date: "2024-09-01", by: "Volga QA Dept.", description: "Material test certificate EN 10204 Type 3.2 — base material SA-516 Gr.70, mill Magnitogorsk" },
+    ],
   },
   {
     id: "CLM-2024-002",
@@ -114,6 +156,20 @@ const claimCases: ClaimCase[] = [
       "Surface preparation Sa 2.0 — below Sa 2.5 minimum",
       "DFT primer 62μm — below 60μm lower tolerance",
       "3 pinholes/m² detected by holiday test",
+    ],
+    evidenceFiles: [
+      { name: "Blast-Profile-Comparison.pdf", type: "report", size: "3.6 MB", date: "2024-11-05", by: "Coating Inspector T. Kowalski", description: "Side-by-side comparison photos: achieved Sa 2.0 vs reference Sa 2.5 per ISO 8501-1", hasImage: true },
+      { name: "DFT-Readings-Report.xlsx", type: "measurement", size: "420 KB", date: "2024-11-05", by: "Coating Inspector T. Kowalski", description: "Dry Film Thickness readings — 48 measurement points across pump casing",
+        measurements: [
+          { label: "DFT Primer (avg)", actual: "62 μm", spec: "75±15 μm", status: "fail" },
+          { label: "DFT Primer (min)", actual: "48 μm", spec: "≥60 μm", status: "fail" },
+          { label: "Surface Profile", actual: "45 μm", spec: "50–75 μm", status: "fail" },
+          { label: "Anchor Pattern", actual: "Sa 2.0", spec: "Sa 2.5", status: "fail" },
+        ]
+      },
+      { name: "Holiday-Test-Map.pdf", type: "scan", size: "5.2 MB", date: "2024-11-06", by: "QC Inspector Y. Tanaka", description: "Holiday detection map — pinhole locations marked on development drawing, 3 defects per m² average", hasImage: true },
+      { name: "NCR-2024-0398.pdf", type: "document", size: "480 KB", date: "2024-11-07", by: "QC Manager D. Fischer", description: "Non-Conformance Report — full re-blast and re-coat ordered, supplier to bear all costs" },
+      { name: "ISO-12944-Compliance-Check.pdf", type: "certificate", size: "1.1 MB", date: "2024-11-05", by: "Coating Inspector T. Kowalski", description: "ISO 12944-8 §4.3 compliance verification — multiple non-conformances documented" },
     ],
   },
   {
@@ -147,6 +203,21 @@ const claimCases: ClaimCase[] = [
     findings: [
       "Nozzle N1 projection 252.5mm — exceeds +2mm tolerance",
       "Drawing revision dispute: Rev.04 vs Rev.05 transmittal timing",
+    ],
+    evidenceFiles: [
+      { name: "Laser-Scan-Nozzle-N1.pdf", type: "measurement", size: "12.4 MB", date: "2024-09-20", by: "Inspector M. Volkov", description: "3D laser scan point cloud — nozzle N1 projection deviation mapped against IFC model",
+        measurements: [
+          { label: "Nozzle N1 Projection", actual: "252.5 mm", spec: "250±2 mm", status: "fail" },
+          { label: "Nozzle N1 Orientation", actual: "0.3°", spec: "±0.5°", status: "pass" },
+          { label: "Shell OD at Nozzle", actual: "1524.2 mm", spec: "1524±1.5 mm", status: "pass" },
+          { label: "Flange Face Flatness", actual: "0.15 mm", spec: "≤0.25 mm", status: "pass" },
+        ]
+      },
+      { name: "IFC-Drawing-Rev05-Markup.pdf", type: "document", size: "4.8 MB", date: "2024-09-21", by: "QC Engineer P. Singh", description: "IFC drawing Rev.05 with redline markup showing specified 250mm projection vs as-built 252.5mm", hasImage: true },
+      { name: "Transmittal-Log-Rev04-Rev05.pdf", type: "document", size: "320 KB", date: "2024-10-01", by: "Document Control", description: "Transmittal log proving Rev.05 was issued 3 weeks before fabrication commencement — timestamped" },
+      { name: "NCR-2024-0267.pdf", type: "document", size: "560 KB", date: "2024-09-22", by: "QC Manager D. Fischer", description: "NCR for dimensional non-conformance — disposition pending drawing revision dispute resolution" },
+      { name: "Piping-Stress-Impact-Analysis.pdf", type: "report", size: "2.1 MB", date: "2024-09-25", by: "Piping Engineer", description: "Stress analysis showing impact of 2.5mm over-projection on piping alignment and field-fit requirements" },
+      { name: "3D-Scan-Overlay-Video.mp4", type: "video", size: "89 MB", date: "2024-09-20", by: "Inspector M. Volkov", description: "3D point cloud overlay animation — as-built vs design model deviation heat map" },
     ],
   },
   {
@@ -185,6 +256,23 @@ const claimCases: ClaimCase[] = [
       "Material procurement could not start without approved spec",
       "Contractor entitled to EOT per FIDIC Cl. 8.4",
     ],
+    evidenceFiles: [
+      { name: "Contract-Schedule-Baseline.pdf", type: "document", size: "1.8 MB", date: "2024-03-15", by: "Project Controls", description: "Contractual baseline schedule showing spec delivery deadline 15-Mar-2024 — Activity ID ENG-CRYO-001" },
+      { name: "Reminder-Letters-Bundle.pdf", type: "document", size: "2.2 MB", date: "2024-05-10", by: "Legal Counsel J. Weber", description: "Compiled bundle of 3 formal reminder letters with timestamps, registered mail receipts, and read confirmations" },
+      { name: "Daily-Idle-Time-Log.xlsx", type: "measurement", size: "680 KB", date: "2024-05-31", by: "Contract Admin L. Santos", description: "Day-by-day idle time log — 70 days × workforce of 45 men, equipment standby costs, crane rental idle charges",
+        measurements: [
+          { label: "Total Idle Days", actual: "70 days", spec: "0 days", status: "fail" },
+          { label: "Workforce Idle", actual: "45 men/day", spec: "Productive", status: "fail" },
+          { label: "Daily Idle Cost", actual: "$40,000", spec: "$0", status: "fail" },
+          { label: "Total Idle Cost", actual: "$2,800,000", spec: "$0", status: "fail" },
+        ]
+      },
+      { name: "FIDIC-Cl20.1-Notice.pdf", type: "document", size: "420 KB", date: "2024-05-10", by: "Legal Counsel J. Weber", description: "Formal notice of claim per FIDIC Cl. 20.1 — within 28-day notification window" },
+      { name: "EOT-Claim-Submission.pdf", type: "report", size: "8.4 MB", date: "2024-06-05", by: "Claims Manager", description: "Full EOT claim package — 70 days extension + $2.8M prolongation costs with supporting schedules" },
+      { name: "Spec-Receipt-Timestamp.pdf", type: "document", size: "140 KB", date: "2024-05-31", by: "Document Control", description: "Timestamped receipt confirmation — specification received 31-May-2024, 77 days after deadline" },
+      { name: "Workforce-Mobilization-Records.pdf", type: "document", size: "3.1 MB", date: "2024-03-10", by: "HR / Site Admin", description: "Mobilization records proving workforce deployed per original schedule — travel, accommodation, tool shipping" },
+      { name: "Client-Acknowledgment-Email.pdf", type: "document", size: "220 KB", date: "2024-06-15", by: "Client PM", description: "Email chain where client acknowledges late issuance — key admission for claim enforcement" },
+    ],
   },
   {
     id: "CLM-2024-005",
@@ -221,6 +309,22 @@ const claimCases: ClaimCase[] = [
       "12-week re-procurement lead time for SA-387 Gr.22",
       "65 days total delay attributed to client variation",
     ],
+    evidenceFiles: [
+      { name: "Variation-Order-VO-2024-018.pdf", type: "document", size: "1.4 MB", date: "2024-07-18", by: "Client Engineering", description: "Official Variation Order — material grade change from SA-516 Gr.70 to SA-387 Gr.22 Cl.2, signed by client engineering manager" },
+      { name: "Fabrication-Progress-Photos.pdf", type: "photo", size: "18.6 MB", date: "2024-07-10", by: "Fabrication Supervisor", description: "Photo package showing shell plates already cut (4 plates) and rolled (2 plates) — fabrication 30% complete at time of change", hasImage: true },
+      { name: "Material-Scrap-Assessment.xlsx", type: "measurement", size: "520 KB", date: "2024-07-20", by: "Procurement", description: "Detailed scrap assessment — 28 tonnes SA-516 plate at $4,200/tonne, residual value analysis",
+        measurements: [
+          { label: "Material Scrapped", actual: "28 tonnes", spec: "0 tonnes", status: "fail" },
+          { label: "Unit Cost", actual: "$4,200/t", spec: "—", status: "fail" },
+          { label: "Total Scrap Value", actual: "$117,600", spec: "$0", status: "fail" },
+          { label: "Re-procurement Lead", actual: "12 weeks", spec: "0 weeks", status: "fail" },
+        ]
+      },
+      { name: "MTO-Rev02-Approved.pdf", type: "document", size: "2.8 MB", date: "2024-06-15", by: "Project Engineering", description: "Approved Material Take-Off Rev.02 specifying SA-516 Gr.70 — basis for original procurement" },
+      { name: "Fabrication-STOP-Notice.pdf", type: "document", size: "280 KB", date: "2024-07-19", by: "Project Manager K. Müller", description: "Formal fabrication stop notification — all work halted pending new material procurement" },
+      { name: "FIDIC-Cl13.3-Claim.pdf", type: "report", size: "6.2 MB", date: "2024-07-28", by: "Claims Manager", description: "Formal variation claim per FIDIC Cl. 13.3 — $1,950,000 total (scrap + delay + re-procurement)" },
+      { name: "Client-Acceptance-Email.pdf", type: "document", size: "180 KB", date: "2024-08-15", by: "Client Commercial", description: "Client email accepting variation liability — cost negotiation commenced" },
+    ],
   },
   {
     id: "CLM-2024-006",
@@ -255,6 +359,28 @@ const claimCases: ClaimCase[] = [
       "First re-balance failed — 7.8 mm/s still above limit",
       "Root cause: suspected rotor mass imbalance at 3rd stage",
       "Supplier requests 60-day extension — LD clock running",
+    ],
+    evidenceFiles: [
+      { name: "FAT-Vibration-Report.pdf", type: "measurement", size: "4.8 MB", date: "2024-11-01", by: "Inspector V. Popov", description: "Factory Acceptance Test vibration measurement report — proximity probes at all bearing locations",
+        measurements: [
+          { label: "Vibration @ Rated Speed", actual: "8.2 mm/s", spec: "≤6.4 mm/s", status: "fail" },
+          { label: "Vibration @ Trip", actual: "9.1 mm/s", spec: "≤8.0 mm/s", status: "fail" },
+          { label: "Bearing #1 Temp", actual: "78°C", spec: "≤85°C", status: "pass" },
+          { label: "Oil Pressure", actual: "2.8 bar", spec: "2.5–3.5 bar", status: "pass" },
+          { label: "Axial Displacement", actual: "0.12 mm", spec: "≤0.15 mm", status: "pass" },
+        ]
+      },
+      { name: "Vibration-Spectrum-Analysis.pdf", type: "scan", size: "6.2 MB", date: "2024-11-01", by: "Rotating Eq. Engineer", description: "FFT spectrum analysis — dominant 1× frequency confirms mass imbalance, no sub-synchronous activity", hasImage: true },
+      { name: "Re-Balance-Attempt-1.pdf", type: "report", size: "2.1 MB", date: "2024-11-03", by: "Nevsky Workshop", description: "First rotor re-balance report — trial weights at 120° and 240°, residual imbalance still excessive" },
+      { name: "Re-Test-Results-7.8mms.pdf", type: "measurement", size: "3.4 MB", date: "2024-11-05", by: "Inspector V. Popov", description: "Post-rebalance vibration re-test — 7.8 mm/s still exceeds API 617 §4.9 limit of 6.4 mm/s",
+        measurements: [
+          { label: "Vibration (re-test)", actual: "7.8 mm/s", spec: "≤6.4 mm/s", status: "fail" },
+          { label: "Improvement", actual: "5%", spec: "≥22%", status: "fail" },
+        ]
+      },
+      { name: "NCR-2024-0445.pdf", type: "document", size: "620 KB", date: "2024-11-08", by: "QC Manager D. Fischer", description: "NCR for FAT failure — compressor cannot ship until vibration within API limits" },
+      { name: "API-617-Compliance-Matrix.xlsx", type: "certificate", size: "380 KB", date: "2024-11-01", by: "Rotating Eq. Engineer", description: "Full API 617 §4.9 compliance matrix — 2 of 12 parameters failed, 10 passed" },
+      { name: "FAT-Video-Full-Speed.mp4", type: "video", size: "245 MB", date: "2024-11-01", by: "Inspector V. Popov", description: "4K video of compressor FAT at rated speed — audible vibration anomaly at 3rd stage" },
     ],
   },
 ];
@@ -394,23 +520,78 @@ const ClaimDetailModal = ({ claim, onClose }: { claim: ClaimCase; onClose: () =>
           )}
 
           {tab === "evidence" && (
-            <div className="space-y-4">
+            <div className="space-y-6">
+              {/* Summary bar */}
               <div className="flex items-center justify-between">
-                <span className="text-[11px] text-muted-foreground font-bold uppercase tracking-wider">{claim.evidenceCount} Evidence Files</span>
-                <span className="text-[11px] text-accent font-bold">{claim.ncrCount} NCRs Issued</span>
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                <div className="aspect-video rounded-lg overflow-hidden">
-                  <img src={claim.image} alt="Primary evidence" className="w-full h-full object-cover" />
+                <span className="text-[11px] text-muted-foreground font-bold uppercase tracking-wider">{claim.evidenceFiles.length} Evidence Files</span>
+                <div className="flex items-center gap-3">
+                  <span className="text-[11px] text-accent font-bold">{claim.ncrCount} NCRs</span>
+                  <span className="text-[10px] text-muted-foreground">·</span>
+                  <span className="text-[11px] text-muted-foreground">{claim.evidenceFiles.filter(e => e.measurements).length} Measurement Reports</span>
                 </div>
-                {Array.from({ length: Math.min(claim.evidenceCount - 1, 5) }).map((_, i) => (
-                  <div key={i} className="aspect-video bg-muted/50 border border-border rounded-lg flex items-center justify-center">
-                    <div className="text-center">
-                      <Camera className="w-5 h-5 text-muted-foreground/40 mx-auto mb-1" />
-                      <span className="text-[10px] text-muted-foreground/40">{["RT Film", "Thermal Scan", "DFT Reading", "MPI Photo", "Video"][i % 5]}</span>
+              </div>
+
+              {/* Primary photo */}
+              <div className="rounded-lg overflow-hidden h-[180px]">
+                <img src={claim.image} alt="Primary evidence" className="w-full h-full object-cover" />
+              </div>
+
+              {/* Evidence files list */}
+              <div className="space-y-2">
+                {claim.evidenceFiles.map((ev, i) => {
+                  const cfg = evidenceTypeConfig[ev.type];
+                  const Icon = cfg.icon;
+                  return (
+                    <div key={i} className="border border-border rounded-lg overflow-hidden">
+                      {/* File header */}
+                      <div className="flex items-start gap-3 p-3">
+                        <div className={`w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 ${cfg.bg}`}>
+                          <Icon className={`w-4 h-4 ${cfg.color}`} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-0.5">
+                            <span className="text-[12px] font-bold text-foreground truncate">{ev.name}</span>
+                            <span className={`text-[8px] font-bold uppercase px-1.5 py-0.5 rounded ${cfg.bg} ${cfg.color}`}>{ev.type}</span>
+                          </div>
+                          <p className="text-[11px] text-foreground/50 leading-relaxed">{ev.description}</p>
+                          <div className="flex items-center gap-2 mt-1.5">
+                            <span className="text-[9px] font-mono text-muted-foreground">{ev.date}</span>
+                            <span className="text-[9px] text-muted-foreground/40">·</span>
+                            <span className="text-[9px] text-muted-foreground">{ev.by}</span>
+                            <span className="text-[9px] text-muted-foreground/40">·</span>
+                            <span className="text-[9px] text-muted-foreground">{ev.size}</span>
+                          </div>
+                        </div>
+                        <button className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-muted transition-colors flex-shrink-0">
+                          <Download className="w-3.5 h-3.5 text-muted-foreground" />
+                        </button>
+                      </div>
+
+                      {/* Measurement table if present */}
+                      {ev.measurements && (
+                        <div className="border-t border-border bg-muted/30 px-3 py-2">
+                          <div className="text-[9px] text-muted-foreground uppercase tracking-wider font-bold mb-2 flex items-center gap-1.5">
+                            <BarChart3 className="w-3 h-3" /> Measurement Data
+                          </div>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-1.5">
+                            {ev.measurements.map((m, mi) => (
+                              <div key={mi} className="flex items-center justify-between bg-background rounded px-2.5 py-1.5 border border-border/50">
+                                <span className="text-[10px] text-foreground/60">{m.label}</span>
+                                <div className="flex items-center gap-2">
+                                  <span className={`text-[10px] font-mono font-bold ${m.status === "fail" ? "text-destructive" : "text-accent"}`}>{m.actual}</span>
+                                  <span className="text-[9px] text-muted-foreground/50">spec: {m.spec}</span>
+                                  <span className={`text-[8px] font-bold uppercase px-1.5 py-0.5 rounded ${
+                                    m.status === "fail" ? "bg-destructive/10 text-destructive" : "bg-accent/10 text-accent"
+                                  }`}>{m.status}</span>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           )}
