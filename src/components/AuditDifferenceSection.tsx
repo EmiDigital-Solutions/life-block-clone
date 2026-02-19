@@ -207,23 +207,6 @@ const AuditDifferenceSection = () => {
         </div>
 
         {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 1, duration: 0.6 }}
-          className="mt-12 md:mt-16 flex justify-center"
-        >
-          <Button asChild size="lg" className="bg-foreground text-background hover:bg-foreground/90">
-            <a
-              href="https://calendly.com/yvoo/demo-yvoo"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="font-mono tracking-wide font-medium">See It in Action</span>
-              <ArrowRight className="w-5 h-5" />
-            </a>
-          </Button>
-        </motion.div>
       </div>
     </section>
   );
