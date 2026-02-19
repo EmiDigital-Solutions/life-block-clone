@@ -11,6 +11,7 @@ import ToleranceNotation from "@/components/ToleranceNotation";
 import { Button } from "@/components/ui/button";
 import LNGInspectionDemo from "@/components/LNGInspectionDemo";
 import LNGAtlasDemo from "@/components/LNGAtlasDemo";
+import LNGInspectionDashboard from "@/components/LNGInspectionDashboard";
 import ScrollPinnedZoom from "@/components/ScrollPinnedZoom";
 
 import lngPlantHero from "@/assets/lng-plant-hero.jpg";
@@ -285,6 +286,33 @@ const LNGInspection = () => {
             <div className="aspect-[16/10] w-full">
               <LNGAtlasDemo />
             </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════
+            INSPECTION DASHBOARD — ALL CASES
+        ═══════════════════════════════════════════════════ */}
+        <section data-nav-theme="light" className="py-24 md:py-32 bg-white">
+          <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="max-w-3xl mb-12"
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-px bg-foreground" />
+                <span className="text-xs font-mono tracking-[0.25em] uppercase text-foreground/50">Inspection Dashboard</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground">
+                Every inspection case.<br />Full audit trail.
+              </h2>
+              <p className="text-base md:text-lg text-foreground/50 mt-6 max-w-xl">
+                Each card represents a completed equipment inspection with AI-generated prediction reports and claim letters. Click to view the full analysis.
+              </p>
+            </motion.div>
+
+            <LNGInspectionDashboard />
           </div>
         </section>
 
