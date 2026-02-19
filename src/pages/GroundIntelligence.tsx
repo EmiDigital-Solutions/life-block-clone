@@ -73,8 +73,8 @@ const GroundIntelligence = () => {
                   transition={{ duration: 0.8, delay: 0.2 }}
                   className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
                 >
-                   Verify what's really<br />
-                   being fabricated.
+                   FIDIC-ready evidence<br />
+                   within 72 hours.
                 </motion.h1>
 
                 {/* Value Props — aligned to 4th grid line */}
@@ -328,7 +328,7 @@ const GroundIntelligence = () => {
                   { category: "Defect detection", value: "3×", suffix: "earlier", description: "Catch weld defects, dimensional deviations, and material non-conformances at fabrication — not at site delivery" },
                   { category: "ITP compliance", value: "100%", suffix: "witnessed", description: "Every hold point and witness point verified by certified inspector with protected evidence chain" },
                   { category: "Claims enforcement", value: "72h", suffix: "evidence", description: "FIDIC-ready evidence packages with timestamped photos, measurements, and digital signatures within 72 hours" },
-                  { category: "Code compliance", value: "ASME", suffix: "API · EN", description: "Full traceability against applicable construction codes — ASME B31.3, API 6D, EN 13480, PED 2014/68/EU" },
+                  { category: "Code compliance", value: "GOST", suffix: "API · EN", description: "Full traceability against applicable construction codes — GOST R, API 6D, EN 13480, PED 2014/68/EU" },
                 ].map((stat, index) => (
                   <motion.div
                     key={index}
