@@ -15,6 +15,7 @@ import LNGSupplierClaimsDashboard from "@/components/LNGSupplierClaimsDashboard"
 import LNGFullLifecycleDemo from "@/components/LNGFullLifecycleDemo";
 import LNGSupplierPortal from "@/components/LNGSupplierPortal";
 import LNGITLandscape from "@/components/LNGITLandscape";
+import FragmentationTrapSection from "@/components/FragmentationTrapSection";
 import ScrollPinnedZoom from "@/components/ScrollPinnedZoom";
 
 import lngPlantHero from "@/assets/lng-plant-hero.jpg";
@@ -516,6 +517,11 @@ const LNGInspection = () => {
             <LNGSupplierPortal />
           </div>
         </section>
+
+        {/* ═══════════════════════════════════════════════════
+            FRAGMENTATION TRAP — CURRENT PAIN
+        ═══════════════════════════════════════════════════ */}
+        <FragmentationTrapSection />
 
         {/* ═══════════════════════════════════════════════════
             IT LANDSCAPE ARCHITECTURE
