@@ -6,17 +6,16 @@ import ROICalculator from "./ROICalculator";
 import HeroSquaresAnimation from "./HeroSquaresAnimation";
 
 const marqueeItems = [
-  { label: "Automotive", standard: "IATF 16949" },
-  { label: "Aerospace", standard: "AS9100" },
-  { label: "Medical Devices", standard: "ISO 13485" },
-  { label: "Pharma", standard: "GMP / GDP" },
-  { label: "Electronics", standard: "IPC / REACH" },
-  { label: "Energy", standard: "ISO 50001" },
-  { label: "Chemical", standard: "REACH / ISO 14001" },
-  { label: "Industrial Manufacturing", standard: "ISO 9001" },
-  { label: "Precision Engineering", standard: "VDA 6.3" },
-  { label: "Defense", standard: "AQAP 2110" },
-  { label: "Rail & Transport", standard: "IRIS / ISO 22163" },
+  { label: "LNG Liquefaction", standard: "API 620" },
+  { label: "Gas Processing", standard: "ASME B31.3" },
+  { label: "Cryogenic Systems", standard: "EN 13445" },
+  { label: "Pressure Vessels", standard: "ASME Sec VIII" },
+  { label: "Rotating Equipment", standard: "API 617/618" },
+  { label: "Storage Tanks", standard: "API 650" },
+  { label: "Piping Systems", standard: "ASME B31.3" },
+  { label: "Fire & Gas", standard: "IEC 61511" },
+  { label: "Electrical", standard: "IECEx/ATEX" },
+  { label: "Coatings", standard: "NACE/ISO 12944" },
 ];
 
 const HeroSection = () => {
