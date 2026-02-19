@@ -16,9 +16,7 @@ import SectionCutMarker from "@/components/SectionCutMarker";
 import TestimonialSection from "@/components/TestimonialSection";
 import { HowItWorksSection } from "@/components/HowItWorksSection";
 
-import TestimonialsCarouselSection from "@/components/TestimonialsCarouselSection";
 import FAQSection from "@/components/FAQSection";
-import FinalCTASection from "@/components/FinalCTASection";
 
 const Index = () => {
   return (
@@ -107,20 +105,7 @@ const Index = () => {
 
         <HowItWorksSection />
 
-        {/* Section cut marker C—C */}
-        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-          <SectionCutMarker section="C" from={0} to={3} />
-        </div>
-
-        <TestimonialsCarouselSection />
-
-        {/* Tolerance notation for delivery performance */}
-        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-          <ToleranceNotation nominal="48" tolerance="4" unit="h" label="Deployment" gridColumn={5} />
-        </div>
-
         <FAQSection />
-        <FinalCTASection />
       </div>
     </div>
   );

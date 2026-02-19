@@ -149,56 +149,6 @@ export const HowItWorksSection = () => {
 
       </div>
     </section>
-    
-    {/* Stats Section with Video Background - Separate Section */}
-    <section className="py-16 lg:py-24 bg-white">
-      <div className="mx-auto max-w-[1400px] px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="relative rounded-lg p-12 lg:p-16 overflow-hidden"
-        >
-          {/* Video Background - Full Card */}
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover object-[center_25%] z-0"
-          >
-            <source src="/videos/auditors-hero-background.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-foreground/50 z-[1]" />
-          
-          {/* Content */}
-          <div className="relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="text-center py-8"
-            >
-              <h3 className="text-2xl md:text-4xl lg:text-5xl text-white font-semibold mb-8">
-                See what in 3 days looks like
-              </h3>
-              <Button asChild size="lg">
-                 <a 
-                   href="https://calendly.com/yvoo/demo-yvoo"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Book a Demo
-                  <ArrowRight className="w-5 h-5" />
-                </a>
-              </Button>
-            </motion.div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
     </>
   );
 };
