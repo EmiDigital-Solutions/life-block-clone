@@ -20,11 +20,11 @@ const LNGSearchDemo = () => {
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-px bg-foreground" />
             <span className="text-sm font-medium tracking-[0.15em] uppercase text-foreground/50">
-              SearchPro+
+              Supplier Search
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground">
-            Find verified suppliers<br />in seconds, not months
+            Find verified suppliers<br />in seconds, not days
           </h2>
           <p className="text-lg text-foreground/50 mt-6">
             AI-powered supplier discovery for LNG, gas processing, and energy infrastructure. Describe what you need — get matched suppliers with verified capabilities.
