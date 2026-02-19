@@ -1,9 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
+import LNGSupplierDetailModal, { suppliersData, type LNGSupplier } from "./LNGSupplierDetailModal";
 
 // LNG-adapted 3-Window Demo: Chatbot → Search Results → Supplier Profile
 const LNGSearchDemo = () => {
+  const [selectedSupplier, setSelectedSupplier] = useState<LNGSupplier | null>(null);
+
   return (
     <section data-nav-theme="light" className="py-20 md:py-28 bg-white">
       <div className="mx-auto max-w-[1400px] px-8">
@@ -33,14 +36,20 @@ const LNGSearchDemo = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
         >
-          <LNGSearchDemoWindows />
+          <LNGSearchDemoWindows onSupplierClick={setSelectedSupplier} />
         </motion.div>
       </div>
+
+      <LNGSupplierDetailModal
+        supplier={selectedSupplier}
+        open={!!selectedSupplier}
+        onOpenChange={(open) => !open && setSelectedSupplier(null)}
+      />
     </section>
   );
 };
 
-const LNGSearchDemoWindows = () => {
+const LNGSearchDemoWindows = ({ onSupplierClick }: { onSupplierClick: (s: LNGSupplier) => void }) => {
   const [activeWindow, setActiveWindow] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -103,7 +112,7 @@ const LNGSearchDemoWindows = () => {
           className="absolute inset-0 overflow-hidden"
         >
           {activeWindow === 0 && <LNGDemoChatbot />}
-          {activeWindow === 1 && <LNGDemoResults />}
+          {activeWindow === 1 && <LNGDemoResults onSupplierClick={onSupplierClick} />}
           {activeWindow === 2 && <LNGDemoProfile />}
         </motion.div>
       </div>
@@ -249,14 +258,15 @@ const LNGDemoChatbot = () => {
 };
 
 // Window 2: LNG Search Results
-const LNGDemoResults = () => {
-  const results = [
-    { name: "CryoValve Engineering AG", location: "Zurich, Switzerland", match: 97, certs: ["ASME B16.34", "API 6D", "PED"], capacity: "800 units/yr", speciality: "Cryogenic ball valves for LNG" },
-    { name: "Petro-Valve Industries LLC", location: "Abu Dhabi, UAE", match: 94, certs: ["API 6D", "NACE MR0175"], capacity: "1,200 units/yr", speciality: "LNG storage tank isolation valves" },
-    { name: "Nippon Cryo Systems Co.", location: "Osaka, Japan", match: 91, certs: ["ASME B16.34", "JIS B 2073"], capacity: "600 units/yr", speciality: "Triple-offset butterfly valves" },
-    { name: "Arctic Flow Solutions", location: "Houston, TX, USA", match: 88, certs: ["API 6D", "Fire Safe 607"], capacity: "900 units/yr", speciality: "Emergency shutdown valves" },
-    { name: "KryoTech Armaturen GmbH", location: "Düsseldorf, Germany", match: 85, certs: ["PED", "ATEX", "SIL 3"], capacity: "500 units/yr", speciality: "SIL-rated cryogenic gate valves" },
-  ];
+const LNGDemoResults = ({ onSupplierClick }: { onSupplierClick: (s: LNGSupplier) => void }) => {
+  const results = suppliersData.map(s => ({
+    name: s.name,
+    location: s.location,
+    match: s.match,
+    certs: s.certs.slice(0, 3),
+    capacity: s.capacity,
+    speciality: s.speciality,
+  }));
 
   const menuItems = ["Dashboard", "Search", "Saved Lists", "RFQ Manager", "Audit Orders", "Reports"];
 
@@ -312,7 +322,7 @@ const LNGDemoResults = () => {
           <div className="flex-1 p-2.5 space-y-1.5">
             <div className="p-2.5 bg-[hsl(0,0%,88%)] border border-[hsl(0,0%,78%)] mb-1.5">
               <p className="text-[10px] text-[hsl(0,0%,30%)] leading-relaxed">
-                <span className="font-bold text-primary">Match Score</span> — AI-calculated fit based on code compliance, cryogenic capability, test certifications, and project references.
+                <span className="font-bold text-primary">Match Score</span> — AI-calculated fit based on code compliance, cryogenic capability, test certifications, and project references. <span className="font-semibold text-primary">Click a supplier for full details.</span>
               </p>
             </div>
 
@@ -322,7 +332,8 @@ const LNGDemoResults = () => {
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.15 }}
-                className="p-3 bg-white/70 backdrop-blur-md border border-white/80 flex items-start gap-2.5"
+                onClick={() => onSupplierClick(suppliersData[i])}
+                className="p-3 bg-white/70 backdrop-blur-md border border-white/80 flex items-start gap-2.5 cursor-pointer hover:bg-white/90 transition-colors"
               >
                 <div className="w-6 h-6 bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
                   <span className="text-[11px] font-bold text-white">{i + 1}</span>
