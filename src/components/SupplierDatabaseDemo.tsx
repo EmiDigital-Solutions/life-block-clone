@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  Database, Search, Filter, ChevronDown, ChevronRight, Star, Shield, 
-  MapPin, Award, TrendingUp, Eye, BarChart3, Globe, Zap, CheckCircle2,
+  Database, Search, ChevronDown, ChevronRight, Shield, 
+  MapPin, BarChart3, Globe, Zap, CheckCircle2,
   Factory, Flame, Gauge, Wrench, Box, Cable
 } from "lucide-react";
 
@@ -40,23 +40,23 @@ const categoryData = [
 ];
 
 const supplierRows = [
-  { name: "KSB SE & Co. KGaA", country: "Germany", category: "Rotating Equipment", rating: 4.8, audits: 12, risk: "Low", certifications: ["ISO 9001", "API Q1", "PED"], lastAudit: "2025-11", fitScore: 97 },
-  { name: "Emerson Automation", country: "USA", category: "Instrumentation", rating: 4.7, audits: 8, risk: "Low", certifications: ["ISO 9001", "IECEx", "SIL 3"], lastAudit: "2025-10", fitScore: 94 },
-  { name: "Chart Industries", country: "USA", category: "Cryogenic Equipment", rating: 4.6, audits: 15, risk: "Low", certifications: ["ASME U", "ASME U2", "NB"], lastAudit: "2026-01", fitScore: 96 },
-  { name: "Burckhardt Compression", country: "Switzerland", category: "Rotating Equipment", rating: 4.5, audits: 6, risk: "Low", certifications: ["ISO 9001", "API 618", "PED"], lastAudit: "2025-09", fitScore: 91 },
-  { name: "Dresser-Rand (Siemens)", country: "Germany", category: "Rotating Equipment", rating: 4.7, audits: 18, risk: "Low", certifications: ["API 617", "ISO 9001", "ATEX"], lastAudit: "2026-02", fitScore: 95 },
-  { name: "Velan Inc.", country: "Canada", category: "Cryogenic Valves", rating: 4.4, audits: 9, risk: "Medium", certifications: ["API 6D", "ASME B16.34", "PED"], lastAudit: "2025-08", fitScore: 88 },
-  { name: "BHGE (Baker Hughes)", country: "Italy", category: "Rotating Equipment", rating: 4.6, audits: 22, risk: "Low", certifications: ["API 617", "API 618", "ISO 9001"], lastAudit: "2026-01", fitScore: 93 },
-  { name: "Linde Engineering", country: "Germany", category: "Cryogenic Equipment", rating: 4.8, audits: 14, risk: "Low", certifications: ["EN 13445", "AD 2000", "PED"], lastAudit: "2025-12", fitScore: 98 },
-  { name: "Sumitomo SHI FW", country: "Finland", category: "Pressure Vessels", rating: 4.3, audits: 7, risk: "Medium", certifications: ["ASME U", "PED", "ISO 3834"], lastAudit: "2025-07", fitScore: 85 },
-  { name: "IMI Critical Engineering", country: "UK", category: "Control Valves", rating: 4.5, audits: 11, risk: "Low", certifications: ["API 6A", "PED", "SIL 3"], lastAudit: "2025-11", fitScore: 92 },
+  { name: "KSB SE & Co. KGaA", country: "Germany", category: "Rotating Equipment", rating: 4.8, audits: 12, risk: "Low", certifications: ["ISO 9001", "API Q1", "PED"], fitScore: 97 },
+  { name: "Emerson Automation", country: "USA", category: "Instrumentation", rating: 4.7, audits: 8, risk: "Low", certifications: ["ISO 9001", "IECEx", "SIL 3"], fitScore: 94 },
+  { name: "Chart Industries", country: "USA", category: "Cryogenic Equipment", rating: 4.6, audits: 15, risk: "Low", certifications: ["ASME U", "ASME U2", "NB"], fitScore: 96 },
+  { name: "Burckhardt Compression", country: "Switzerland", category: "Rotating Equipment", rating: 4.5, audits: 6, risk: "Low", certifications: ["ISO 9001", "API 618", "PED"], fitScore: 91 },
+  { name: "Dresser-Rand (Siemens)", country: "Germany", category: "Rotating Equipment", rating: 4.7, audits: 18, risk: "Low", certifications: ["API 617", "ISO 9001", "ATEX"], fitScore: 95 },
+  { name: "Velan Inc.", country: "Canada", category: "Cryogenic Valves", rating: 4.4, audits: 9, risk: "Medium", certifications: ["API 6D", "ASME B16.34", "PED"], fitScore: 88 },
+  { name: "BHGE (Baker Hughes)", country: "Italy", category: "Rotating Equipment", rating: 4.6, audits: 22, risk: "Low", certifications: ["API 617", "API 618", "ISO 9001"], fitScore: 93 },
+  { name: "Linde Engineering", country: "Germany", category: "Cryogenic Equipment", rating: 4.8, audits: 14, risk: "Low", certifications: ["EN 13445", "AD 2000", "PED"], fitScore: 98 },
+  { name: "Sumitomo SHI FW", country: "Finland", category: "Pressure Vessels", rating: 4.3, audits: 7, risk: "Medium", certifications: ["ASME U", "PED", "ISO 3834"], fitScore: 85 },
+  { name: "IMI Critical Engineering", country: "UK", category: "Control Valves", rating: 4.5, audits: 11, risk: "Low", certifications: ["API 6A", "PED", "SIL 3"], fitScore: 92 },
 ];
 
 const stats = [
-  { label: "Verified Suppliers", value: "11,270+", icon: Shield },
-  { label: "Countries Covered", value: "84", icon: Globe },
-  { label: "Audits Completed", value: "28,400+", icon: CheckCircle2 },
-  { label: "Product Categories", value: "340+", icon: Database },
+  { label: "Suppliers indexed", value: "11,270+", icon: Shield },
+  { label: "Countries", value: "84", icon: Globe },
+  { label: "Completed Audits", value: "28,400+", icon: CheckCircle2 },
+  { label: "Product Groups", value: "340+", icon: Database },
 ];
 
 const SupplierDatabaseDemo = () => {
@@ -77,7 +77,6 @@ const SupplierDatabaseDemo = () => {
 
   return (
     <section className="py-24 md:py-32 bg-[hsl(var(--hero-background))] relative overflow-hidden">
-      {/* Subtle grid background */}
       <div className="absolute inset-0 opacity-[0.03]" style={{
         backgroundImage: 'linear-gradient(hsl(var(--accent)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--accent)) 1px, transparent 1px)',
         backgroundSize: '60px 60px'
@@ -89,22 +88,29 @@ const SupplierDatabaseDemo = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-6"
         >
           <p className="section-eyebrow text-[hsl(var(--accent))] mb-4 font-mono tracking-[0.2em]">
-            RCA SUPPLIER DATABASE
+            VISION — RCA SUPPLIER DATABASE
           </p>
           <h2 className="section-headline text-white mb-6">
-            Every EPC Supplier.<br />
-            <span className="text-[hsl(var(--accent))]">One Intelligence Layer.</span>
+            Full EPC Supplier Coverage.<br />
+            <span className="text-[hsl(var(--accent))]">One Integrated Data Layer.</span>
           </h2>
           <p className="text-[hsl(var(--slate))] text-lg max-w-3xl mx-auto">
-            The most comprehensive verified supplier database for Oil & Gas, LNG, and Energy — 
-            combining search intelligence, on-site audit data, and AI-powered portfolio matching in one platform.
+            Structured supplier data for Oil & Gas, LNG, and Energy — 
+            search results, audit findings, and technical portfolio analysis in one system.
           </p>
         </motion.div>
 
-        {/* Stats Bar */}
+        {/* Vision Label */}
+        <div className="flex items-center justify-center gap-3 mb-12">
+          <div className="h-px flex-1 max-w-[80px] bg-[hsl(var(--accent))]/30" />
+          <span className="text-[10px] font-mono text-[hsl(var(--accent))]/60 uppercase tracking-[0.3em]">Target Architecture</span>
+          <div className="h-px flex-1 max-w-[80px] bg-[hsl(var(--accent))]/30" />
+        </div>
+
+        {/* Stats */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -121,7 +127,7 @@ const SupplierDatabaseDemo = () => {
           ))}
         </motion.div>
 
-        {/* Main Demo Area */}
+        {/* Demo Table */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -137,15 +143,15 @@ const SupplierDatabaseDemo = () => {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search suppliers, products, certifications..."
+                placeholder="Search by supplier, product group, certification..."
                 className="w-full bg-white/5 border border-white/10 rounded-sm pl-10 pr-4 py-2.5 text-sm text-white placeholder:text-[hsl(var(--slate))] focus:outline-none focus:border-[hsl(var(--accent))]/50"
               />
             </div>
             <div className="flex gap-2">
               {[
-                { key: "all", label: "All Suppliers" },
+                { key: "all", label: "All" },
                 { key: "low-risk", label: "Low Risk" },
-                { key: "high-fit", label: "High Fit (90+)" },
+                { key: "high-fit", label: "Fit ≥ 90%" },
               ].map(f => (
                 <button
                   key={f.key}
@@ -163,9 +169,9 @@ const SupplierDatabaseDemo = () => {
           </div>
 
           <div className="flex flex-col lg:flex-row">
-            {/* Left: Category Navigator */}
+            {/* Left: Categories */}
             <div className="lg:w-72 border-b lg:border-b-0 lg:border-r border-white/10 p-4">
-              <p className="text-xs text-[hsl(var(--slate))] uppercase tracking-wider mb-3 font-mono">Product Categories</p>
+              <p className="text-xs text-[hsl(var(--slate))] uppercase tracking-wider mb-3 font-mono">Product Groups</p>
               <div className="space-y-1">
                 {categoryData.map((cat, i) => (
                   <div key={i}>
@@ -221,11 +227,11 @@ const SupplierDatabaseDemo = () => {
                 <thead>
                   <tr className="border-b border-white/10">
                     <th className="text-left p-3 text-[10px] text-[hsl(var(--slate))] uppercase tracking-wider font-mono font-normal">Supplier</th>
-                    <th className="text-left p-3 text-[10px] text-[hsl(var(--slate))] uppercase tracking-wider font-mono font-normal hidden md:table-cell">Category</th>
+                    <th className="text-left p-3 text-[10px] text-[hsl(var(--slate))] uppercase tracking-wider font-mono font-normal hidden md:table-cell">Product Group</th>
                     <th className="text-center p-3 text-[10px] text-[hsl(var(--slate))] uppercase tracking-wider font-mono font-normal">Rating</th>
                     <th className="text-center p-3 text-[10px] text-[hsl(var(--slate))] uppercase tracking-wider font-mono font-normal hidden lg:table-cell">Audits</th>
                     <th className="text-center p-3 text-[10px] text-[hsl(var(--slate))] uppercase tracking-wider font-mono font-normal hidden md:table-cell">Risk</th>
-                    <th className="text-center p-3 text-[10px] text-[hsl(var(--slate))] uppercase tracking-wider font-mono font-normal">Fit Score</th>
+                    <th className="text-center p-3 text-[10px] text-[hsl(var(--slate))] uppercase tracking-wider font-mono font-normal">Fit</th>
                     <th className="text-left p-3 text-[10px] text-[hsl(var(--slate))] uppercase tracking-wider font-mono font-normal hidden xl:table-cell">Certifications</th>
                   </tr>
                 </thead>
@@ -287,15 +293,15 @@ const SupplierDatabaseDemo = () => {
                 </tbody>
               </table>
 
-              {/* Bottom Bar */}
+              {/* Status Bar */}
               <div className="border-t border-white/10 p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
                 <div className="text-xs text-[hsl(var(--slate))]">
-                  Showing <span className="text-white font-mono">{filteredSuppliers.length}</span> of <span className="text-white font-mono">11,270</span> suppliers
+                  Showing <span className="text-white font-mono">{filteredSuppliers.length}</span> of <span className="text-white font-mono">11,270</span> records
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="flex items-center gap-2 text-xs text-[hsl(var(--slate))]">
                     <Zap className="w-3 h-3 text-[hsl(var(--accent))]" />
-                    AI Portfolio Match active
+                    Portfolio matching active
                   </div>
                   <div className="flex items-center gap-2 text-xs text-[hsl(var(--slate))]">
                     <BarChart3 className="w-3 h-3 text-[hsl(var(--accent))]" />
@@ -305,23 +311,6 @@ const SupplierDatabaseDemo = () => {
               </div>
             </div>
           </div>
-        </motion.div>
-
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          className="mt-16 text-center"
-        >
-          <p className="text-[hsl(var(--slate))] text-sm mb-6 max-w-2xl mx-auto">
-            Every data point verified through on-site audits. Every rating backed by evidence. 
-            Every recommendation powered by AI analysis of 28,400+ completed inspections.
-          </p>
-          <button className="bg-[hsl(var(--accent))] text-black px-8 py-3 rounded-sm font-mono text-sm uppercase tracking-wider hover:bg-[hsl(var(--accent))]/90 transition-colors">
-            Request Database Access
-          </button>
         </motion.div>
       </div>
     </section>
