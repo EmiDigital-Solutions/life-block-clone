@@ -301,8 +301,20 @@ const LNGSupplierPortal = () => {
   const totalExposure = supplierClaims.reduce((s, c) => s + c.claimAmount + c.liquidatedDamages, 0);
   const pendingCount = supplierClaims.filter(c => c.status === "pending-review").length;
 
+  const portalRef = useRef<HTMLDivElement>(null);
+
+  const handleSubmitResponse = () => {
+    if (selectedResponse === null) return;
+    const scrollY = window.scrollY;
+    setResponseSubmitted(true);
+    // Prevent browser from scrolling due to content height change
+    requestAnimationFrame(() => {
+      window.scrollTo(0, scrollY);
+    });
+  };
+
   return (
-    <div className="border-2 border-foreground/10 bg-white">
+    <div ref={portalRef} className="border-2 border-foreground/10 bg-white">
 
       {/* ── SUPPLIER PORTAL HEADER ── */}
       <div className="border-b border-foreground/10 bg-foreground/[0.02]">
@@ -611,7 +623,7 @@ const LNGSupplierPortal = () => {
 
               {/* ── RESPOND ── */}
               {activeTab === "respond" && (
-                <motion.div key="respond" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="p-6">
+                <motion.div key="respond" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="p-6 min-h-[500px]">
                   {!responseSubmitted ? (
                     <>
                       <div className="mb-6">
@@ -659,7 +671,7 @@ const LNGSupplierPortal = () => {
 
                       <div className="flex items-center gap-3">
                         <button
-                          onClick={() => selectedResponse !== null && setResponseSubmitted(true)}
+                          onClick={handleSubmitResponse}
                           disabled={selectedResponse === null}
                           className={`flex items-center gap-2 px-6 py-3 font-bold text-sm rounded transition-all ${
                             selectedResponse !== null
