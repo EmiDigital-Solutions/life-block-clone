@@ -1,7 +1,5 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
 import AtlasAIDemoAnimation from "./AtlasAIDemoAnimation";
 
 const atlasFeatures = [
@@ -51,16 +49,9 @@ const AtlasAISection = () => {
             <h2 className="section-headline text-foreground mb-6">
               See what's really happening<br />at your supplier.
             </h2>
-            <p className="text-lg text-muted-foreground max-w-xl mb-8">
+            <p className="text-lg text-muted-foreground max-w-xl">
               Atlas turns every site visit into structured intelligence. It understands what to look for, captures evidence systematically, and tells you what's really going on — before problems reach your project.
             </p>
-            <Link
-              to="/features"
-              className="inline-flex items-center justify-center gap-2 bg-primary text-white h-16 py-5 font-mono text-lg font-medium hover:bg-primary/90 transition-colors tracking-wide w-[calc(100%/5)]"
-            >
-              Explore Atlas AI
-              <ArrowRight className="w-5 h-5" />
-            </Link>
           </motion.div>
 
           {/* Features — 5 columns (line 1–6), 4 items inside */}
