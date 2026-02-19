@@ -4,6 +4,7 @@ import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
 import PainPointsSection from "@/components/PainPointsSection";
 import AtlasAISection from "@/components/AtlasAISection";
+import AuditDifferenceSection from "@/components/AuditDifferenceSection";
 import CapabilityOverviewSection from "@/components/CapabilityOverviewSection";
 import LNGSearchDemo from "@/components/LNGSearchDemo";
 import EmailComparisonSection from "@/components/EmailComparisonSection";
@@ -82,6 +83,9 @@ const Index = () => {
 
         {/* Atlas AI */}
         <AtlasAISection />
+
+        {/* How an Atlas audit works */}
+        <AuditDifferenceSection />
 
         {/* DIN annotation */}
         <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
