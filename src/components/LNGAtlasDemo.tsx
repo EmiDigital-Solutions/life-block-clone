@@ -74,7 +74,7 @@ const inspectionDetails: InspectionDetail[] = [
   {
     stepId: "1",
     title: "Document Review — MTRs & Welding Records",
-    aiGuidance: "Verify mill test reports match MTO. Cross-check heat numbers against PMI plan. Confirm WPS/PQR approved for material grade.",
+    aiGuidance: "Open the MTR package first. Check each mill cert against the MTO line items — match heat numbers to the PMI plan. Look for EN 10204 certification level — you need 3.2 with third-party witness signature. Then pull the WPS register and verify every procedure has a backing PQR. Flag any gaps before moving to physical inspection.",
     measurements: [
       { param: "Mill Certs (MTR)", spec: "EN 10204 3.2", actual: "3.1 only", pass: false },
       { param: "WPS Count", spec: "6 required", actual: "4 submitted", pass: false },
@@ -82,19 +82,19 @@ const inspectionDetails: InspectionDetail[] = [
       { param: "Drawing Rev.", spec: "Rev. 05", actual: "Rev. 05 ✓", pass: true },
     ],
     findings: [
-      { severity: "MAJOR", text: "MTR grade 3.1 instead of 3.2 — third-party witness missing" },
-      { severity: "MAJOR", text: "2 WPS without backing PQR — welder qualification gap" },
+      { severity: "MAJOR", text: "MTR grade 3.1 instead of 3.2 — request supplier to provide upgraded certification" },
+      { severity: "MAJOR", text: "2 WPS without backing PQR — ask welding engineer to locate qualification records" },
     ],
     evidenceFiles: [
       { name: "MTR_package_scan.pdf", type: "doc", status: "verified" },
       { name: "WPS_register.jpg", type: "img", status: "review" },
     ],
-    voiceNote: "Document review complete. Two major findings: MTR certification level insufficient, and two welding procedures lack qualification records.",
+    voiceNote: "Start with the MTR package. You're looking for 3.2 certs with witness stamps. Then cross-reference the WPS register — every procedure needs a PQR behind it.",
   },
   {
     stepId: "2",
     title: "Material Verification — Positive Material Identification",
-    aiGuidance: "Perform handheld XRF on shell plates, tube bundle, channel heads, and nozzle forgings. Verify alloy composition against MTR and MTO.",
+    aiGuidance: "Connect the XRF analyzer and calibrate against the reference coupon. Take readings on shell plates at three locations minimum. Then move to the channel head — focus on Ni content, the spec calls for ≥0.40%. Scan each nozzle forging. Compare every reading against the MTR values you just reviewed.",
     measurements: [
       { param: "Shell (SA-516 Gr.70)", spec: "C≤0.27, Mn≤1.20", actual: "C=0.22, Mn=1.05", pass: true },
       { param: "Tubes (SA-179)", spec: "C≤0.18", actual: "C=0.14 ✓", pass: true },
@@ -102,14 +102,14 @@ const inspectionDetails: InspectionDetail[] = [
       { param: "Nozzle N1 (A105)", spec: "C≤0.35", actual: "C=0.29 ✓", pass: true },
     ],
     findings: [
-      { severity: "MAJOR", text: "Channel head Ni content 0.38% — below spec minimum 0.40%" },
-      { severity: "OK", text: "Shell, tubes, nozzles all within specification" },
+      { severity: "MAJOR", text: "Channel head Ni at 0.38% — take two more readings at different spots to confirm. If consistent, escalate to materials engineer" },
+      { severity: "OK", text: "Shell, tubes, nozzles within specification — proceed to next checkpoint" },
     ],
     evidenceFiles: [
       { name: "PMI_shell_XRF_001.jpg", type: "img", status: "verified" },
       { name: "PMI_channel_XRF_002.jpg", type: "img", status: "verified" },
     ],
-    voiceNote: "PMI complete. Channel head nickel content marginally below specification at 0.38 percent.",
+    voiceNote: "XRF is connected. Start with the shell plates — three spots each. Then the channel head, watch the nickel level closely. Photograph each reading.",
     iotSensors: [
       { sensor: "XRF Analyzer", value: "Connected", status: "ok" },
       { sensor: "Temp Probe", value: "22.4°C", status: "ok" },
@@ -118,7 +118,7 @@ const inspectionDetails: InspectionDetail[] = [
   {
     stepId: "3",
     title: "Dimensional Inspection — Shell & Nozzle Orientation",
-    aiGuidance: "Measure shell OD at 3 cross-sections (ends + mid), overall length, nozzle projection, and flange face flatness.",
+    aiGuidance: "Set up the laser scanner at the shell center. Take OD readings at three cross-sections: both ends and mid-span. Measure overall length between tubesheet faces. For nozzle N1, measure projection from shell OD to flange face — the drawing calls for 250 ±2mm. Check flange face flatness with a straightedge and feeler gauge.",
     measurements: [
       { param: "Shell OD (top)", spec: "1200 ±3mm", actual: "1201.2mm ✓", pass: true },
       { param: "Shell OD (mid)", spec: "1200 ±3mm", actual: "1199.5mm ✓", pass: true },
@@ -127,15 +127,15 @@ const inspectionDetails: InspectionDetail[] = [
       { param: "Flange Flatness", spec: "≤0.25mm", actual: "0.18mm ✓", pass: true },
     ],
     findings: [
-      { severity: "OK", text: "Shell dimensions within tolerance — roundness acceptable" },
-      { severity: "MAJOR", text: "Nozzle N1 projection 252.5mm exceeds +2mm tolerance" },
+      { severity: "OK", text: "Shell dimensions within tolerance — note the readings and move on" },
+      { severity: "MAJOR", text: "Nozzle N1 projection reads 252.5mm — re-measure to confirm, check from the opposite side as well" },
     ],
     evidenceFiles: [
       { name: "dim_shell_laser.jpg", type: "img", status: "verified" },
       { name: "dim_nozzle_proj.mp4", type: "video", status: "verified" },
       { name: "dim_flange_flat.jpg", type: "img", status: "verified" },
     ],
-    voiceNote: "Dimensional check done. Nozzle N1 projection out of tolerance by half a millimeter.",
+    voiceNote: "Laser scanner is set. Measure OD at both ends and midpoint first. Then go to Nozzle N1 and verify the projection distance carefully.",
     iotSensors: [
       { sensor: "Laser Scanner", value: "Active", status: "ok" },
       { sensor: "Digital Caliper", value: "Synced", status: "ok" },
@@ -145,18 +145,18 @@ const inspectionDetails: InspectionDetail[] = [
   {
     stepId: "4",
     title: "Weld Visual Inspection — Seam & Circumferential",
-    aiGuidance: "Inspect all longitudinal seam welds, circ. welds, nozzle-to-shell welds per GOST-34347-2017. Check reinforcement, undercut, porosity, cracks.",
+    aiGuidance: "Start at the top longitudinal seam. Use a weld gauge to measure reinforcement height — you're looking for ≤3mm per GOST. Run your fingers along the toe line, feel for undercut. Move to each circumferential weld systematically. At any crack indication, stop — photograph it, mark it with paint stick, and call for MPI confirmation before continuing.",
     measurements: [
       { param: "Long. Seam Reinforc.", spec: "≤3mm", actual: "4.2mm", pass: false },
       { param: "Circ. Weld Undercut", spec: "≤0.5mm", actual: "0.8mm", pass: false },
-      { param: "Weld Surface Cracks", spec: "None allowed", actual: "Crack found", pass: false },
+      { param: "Weld Surface Cracks", spec: "None allowed", actual: "Indication found", pass: false },
       { param: "Weld Spatter", spec: "Removed", actual: "Present", pass: false },
     ],
     findings: [
-      { severity: "CRITICAL", text: "Surface crack from weld toe — 40mm into HAZ, zero tolerance per GOST §5.2" },
-      { severity: "CRITICAL", text: "Longitudinal crack in seam weld — 4mm visible, may extend deeper" },
-      { severity: "MAJOR", text: "Underfilled weld: 0.8mm depth × 7mm — stress concentration risk" },
-      { severity: "MAJOR", text: "Excessive reinforcement 4.2mm (max 3mm) — grinding required" },
+      { severity: "CRITICAL", text: "Possible crack indication at weld toe — do NOT grind. Mark location, request MPI to confirm extent and depth" },
+      { severity: "CRITICAL", text: "Linear indication on longitudinal seam — mark both ends, measure visible length, request RT of this zone" },
+      { severity: "MAJOR", text: "Undercut 0.8mm at circumferential weld — measure depth at three points along the length" },
+      { severity: "MAJOR", text: "Reinforcement 4.2mm exceeds 3mm limit — note location for potential grinding" },
     ],
     evidenceFiles: [
       { name: "weld_crack_HAZ.jpg", type: "img", status: "verified" },
@@ -164,7 +164,7 @@ const inspectionDetails: InspectionDetail[] = [
       { name: "weld_thermal_scan.jpg", type: "thermal", status: "verified" },
       { name: "weld_inspection.mp4", type: "video", status: "verified" },
     ],
-    voiceNote: "CRITICAL — Two surface cracks identified in weld zone. Longitudinal crack requires immediate RT confirmation. Hydrostatic test must be blocked.",
+    voiceNote: "Pause here. There's a possible crack indication at the weld toe — don't touch it. Mark it with a paint stick and photograph from two angles. We need MPI before going further.",
     iotSensors: [
       { sensor: "Weld Gauge", value: "4.2mm", status: "crit" },
       { sensor: "Magnetic Particle", value: "Indication+", status: "crit" },
@@ -174,7 +174,7 @@ const inspectionDetails: InspectionDetail[] = [
   {
     stepId: "5",
     title: "NDT — Radiography (RT) on Seam Welds",
-    aiGuidance: "Review 100% RT films for longitudinal and circ. seams. AI digitization — check for slag, porosity, lack of fusion, cracks per ASME Sec V.",
+    aiGuidance: "Review the digitized RT films on screen. Start with the longitudinal seam — look for linear indications, they'll appear as dark lines along the weld axis. On circumferential welds, check for rounded indications (porosity) and irregular shapes (slag). Compare each film against the acceptance criteria in ASME Sec V, Table T-276. If you see anything borderline, flag it for Level III review.",
     measurements: [
       { param: "Long. Seam RT", spec: "Accept per ASME V", actual: "Linear indication", pass: false },
       { param: "Circ. Weld #1 RT", spec: "Accept", actual: "Slag 12mm", pass: false },
@@ -182,15 +182,15 @@ const inspectionDetails: InspectionDetail[] = [
       { param: "Circ. Weld #3 RT", spec: "Accept", actual: "Porosity cluster", pass: false },
     ],
     findings: [
-      { severity: "CRITICAL", text: "RT confirms linear indication (crack) in long. seam — matches visual" },
-      { severity: "MAJOR", text: "Slag inclusion 12mm in circ. weld #1 — exceeds ASME acceptance" },
-      { severity: "MAJOR", text: "Porosity cluster in circ. weld #3 — requires repair + re-RT" },
+      { severity: "CRITICAL", text: "Linear indication on long. seam RT film — correlates with visual finding. Request TOFD scan for depth sizing" },
+      { severity: "MAJOR", text: "Slag inclusion 12mm on circ. weld #1 — exceeds acceptance. Mark for excavation and re-weld" },
+      { severity: "MAJOR", text: "Porosity cluster on circ. weld #3 — measure aggregate area against Table T-276 limits" },
     ],
     evidenceFiles: [
       { name: "RT_film_digitized.jpg", type: "img", status: "verified" },
       { name: "RT_circ1_slag.jpg", type: "img", status: "verified" },
     ],
-    voiceNote: "NDT radiography confirms crack in longitudinal seam. Slag and porosity in circumferential welds. Three of four zones rejected.",
+    voiceNote: "Pull up the RT films now. Focus on the longitudinal seam first — you're looking for any linear dark lines. Then check each circumferential weld zone by zone.",
     iotSensors: [
       { sensor: "RT Source", value: "Ir-192", status: "warn" },
       { sensor: "Dosimeter", value: "0.12 mSv/h", status: "ok" },
@@ -198,19 +198,19 @@ const inspectionDetails: InspectionDetail[] = [
   },
   {
     stepId: "8",
-    title: "Hydrostatic Pressure Test — BLOCKED",
-    aiGuidance: "Test pressure: 42.0 barg. Hold 30 min. HOLD POINT — do not proceed until weld repairs complete.",
+    title: "Hydrostatic Pressure Test — ON HOLD",
+    aiGuidance: "Do not pressurize. Multiple weld indications are still open from previous checkpoints. Before this test can proceed, confirm: all weld repairs are complete, repair welds have passed RT re-examination, and the welding engineer has signed off. Once cleared, fill with clean water, vent all high points, and pressurize slowly to 42.0 barg. Hold for 30 minutes and walk the vessel checking for leaks.",
     measurements: [
-      { param: "Test Pressure", spec: "42.0 barg", actual: "— BLOCKED —", pass: false },
-      { param: "Hold Time", spec: "30 min", actual: "— BLOCKED —", pass: false },
+      { param: "Test Pressure", spec: "42.0 barg", actual: "— ON HOLD —", pass: false },
+      { param: "Hold Time", spec: "30 min", actual: "— ON HOLD —", pass: false },
       { param: "Ambient Temp", spec: ">5°C", actual: "12°C ✓", pass: true },
     ],
     findings: [
-      { severity: "CRITICAL", text: "HYDRO TEST BLOCKED — 5 weld defects must be repaired before pressurization" },
-      { severity: "CRITICAL", text: "Crack in pressure boundary — catastrophic failure risk" },
+      { severity: "CRITICAL", text: "Hydro test cannot proceed — open weld repair items must be closed first. Verify with welding engineer." },
+      { severity: "CRITICAL", text: "Pressure boundary integrity not yet confirmed — do not fill or pressurize" },
     ],
     evidenceFiles: [],
-    voiceNote: "HYDRO TEST BLOCKED. Five weld defects in pressure boundary. Catastrophic failure risk if tested.",
+    voiceNote: "This test is on hold. Do not fill or pressurize until all weld repairs are confirmed complete and re-examined. Check back with the welding engineer.",
     iotSensors: [
       { sensor: "Pressure A", value: "0.0 barg", status: "ok" },
       { sensor: "Pressure B", value: "0.0 barg", status: "ok" },
@@ -220,7 +220,7 @@ const inspectionDetails: InspectionDetail[] = [
   {
     stepId: "9",
     title: "Coating / Painting Inspection",
-    aiGuidance: "Verify surface prep Sa 2.5. Measure DFT at 5 spots per m². Check adhesion. Holiday test.",
+    aiGuidance: "Check the surface preparation grade first — compare against the Sa 2.5 reference panel visually. If it looks lighter or has visible mill scale remnants, it's likely under-prepared. Next, take DFT readings in a grid pattern: 5 spots per square meter. Use the holiday detector at the specified voltage for the coating system. Mark any pinhole locations with chalk.",
     measurements: [
       { param: "Surface Prep.", spec: "Sa 2.5", actual: "Sa 2.0", pass: false },
       { param: "DFT Primer", spec: "75 ±15 μm", actual: "62μm", pass: false },
@@ -228,15 +228,15 @@ const inspectionDetails: InspectionDetail[] = [
       { param: "Holiday Test", spec: "No pinholes", actual: "3 holidays", pass: false },
     ],
     findings: [
-      { severity: "MAJOR", text: "Surface preparation Sa 2.0 — does not meet Sa 2.5 minimum" },
-      { severity: "MAJOR", text: "3 holidays (pinholes) detected — corrosion initiation points" },
+      { severity: "MAJOR", text: "Surface prep looks under-blasted — compare again with reference panel and photograph side-by-side" },
+      { severity: "MAJOR", text: "3 pinhole locations detected — mark each with chalk, photograph, and note positions on the coating map" },
     ],
     evidenceFiles: [
       { name: "coating_DFT.jpg", type: "img", status: "verified" },
       { name: "holiday_test.jpg", type: "img", status: "verified" },
       { name: "surface_prep.mp4", type: "video", status: "review" },
     ],
-    voiceNote: "Coating: surface prep only Sa 2.0, below requirement. Three pinholes detected by holiday test.",
+    voiceNote: "Start with the blast comparison panel. Hold it next to the surface and photograph both. Then take DFT readings in a grid. Run the holiday detector last.",
     iotSensors: [
       { sensor: "DFT Gauge", value: "235μm", status: "warn" },
       { sensor: "Holiday Det.", value: "3 found", status: "crit" },
@@ -247,9 +247,9 @@ const inspectionDetails: InspectionDetail[] = [
 
 /* ── Voice alert parts for TTS ── */
 const voiceAlertParts = [
-  "Critical weld defects detected on Deethanizer Condenser.",
-  "Two surface cracks in heat affected zone. Hydrostatic test blocked.",
-  "Equipment status: Rejected. Return to fabricator recommended.",
+  "Attention inspector. Multiple weld indications require your review on the Deethanizer Condenser.",
+  "Proceed to the longitudinal seam first. There is a possible crack indication at the weld toe — photograph it and request magnetic particle inspection to confirm.",
+  "Hydrostatic test is on hold until weld repairs are verified. Check with the welding engineer before proceeding.",
 ];
 
 const LNGAtlasDemo = () => {
@@ -540,9 +540,9 @@ const LNGAtlasDemo = () => {
             {/* ITP Summary */}
             <div className="px-4 py-3 border-t border-white/[0.05]">
               <div className="flex items-center justify-between mb-1">
-                <span className="text-[10px] text-white/40 uppercase tracking-wider font-bold">Result</span>
-                <span className={`text-[12px] font-bold ${step >= 16 ? "text-[#AE3D3D]" : "text-white/30"}`}>
-                  {step >= 16 ? "REJECTED" : "In Progress..."}
+                <span className="text-[10px] text-white/40 uppercase tracking-wider font-bold">Status</span>
+                <span className={`text-[12px] font-bold ${step >= 16 ? "text-[#F5A623]" : "text-white/30"}`}>
+                  {step >= 16 ? "ACTION REQUIRED" : "In Progress..."}
                 </span>
               </div>
               <div className="flex gap-3 text-[10px]">
@@ -598,7 +598,7 @@ const LNGAtlasDemo = () => {
                   className="bg-[#6EA996]/8 border border-[#6EA996]/20 rounded-lg p-4">
                   <div className="text-[11px] text-[#6EA996] font-bold mb-1">Atlas AI — Inspector Autopilot Activated</div>
                   <p className="text-[10px] text-white/50 leading-relaxed">
-                    Beginning FAT inspection of Deethanizer Condenser G1-22E05. Design: 28 barg / 180°C. Following ITP with 7 hold points. Camera, IoT sensors, and voice copilot ready.
+                    Starting inspection sequence for Deethanizer Condenser G1-22E05. Design: 28 barg / 180°C. You have 11 checkpoints with 7 hold points. Camera, IoT sensors, and voice copilot are connected. Begin with the document package — I'll guide you through each step.
                   </p>
                 </motion.div>
               )}
@@ -676,9 +676,9 @@ const LNGAtlasDemo = () => {
                 {step >= 17 && (
                   <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
                     className="bg-[#6EA996]/8 border border-[#6EA996]/20 rounded-lg p-4">
-                    <div className="text-[12px] font-bold text-white mb-2">Inspection Complete — AI Summary</div>
+                    <div className="text-[12px] font-bold text-white mb-2">Inspection Walkthrough Complete — Next Steps</div>
                     <p className="text-[10px] text-white/45 leading-[1.6]">
-                      11-point ITP executed. 7 hold points inspected. {criticalCount} critical and {totalFindings - criticalCount} major NCRs identified. Hydrostatic test BLOCKED. Equipment REJECTED. {allEvidence.length} evidence files captured. IoT sensor data logged. Voice transcripts archived.
+                      11-point ITP walkthrough finished. {totalFindings} findings documented across {getVisibleDetails().length} checkpoints. {criticalCount} items need immediate attention — prioritize weld repair verification before scheduling hydro test. {allEvidence.length} evidence files captured for your review. Discuss open items with the welding engineer and materials team before finalizing disposition.
                     </p>
                   </motion.div>
                 )}
