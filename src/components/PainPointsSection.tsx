@@ -1,30 +1,30 @@
 import { motion } from "framer-motion";
-import { Clock, DollarSign, AlertTriangle, Users } from "lucide-react";
+import { Search, Clock, FileX, AlertTriangle } from "lucide-react";
 
 const painPoints = [
   {
+    icon: Search,
+    metric: "Weeks",
+    title: "Finding the right supplier",
+    description: "Trade fairs, cold calls, outdated databases. You spend weeks searching before you even know if a supplier can deliver what you need.",
+  },
+  {
     icon: Clock,
-    metric: "10+ weeks",
-    title: "Time to complete one audit",
-    description: "Scheduling, travel coordination, supplier availability, report writing. One audit takes 10 weeks minimum — and you have hundreds of suppliers to verify.",
+    metric: "3–6 months",
+    title: "Qualification takes too long",
+    description: "Collecting certificates, checking capacity, validating references. By the time you qualify a supplier, the project timeline is already at risk.",
   },
   {
-    icon: DollarSign,
-    metric: "€15,000+",
-    title: "Cost per traditional audit",
-    description: "International flights, hotels, per diems, consultant day rates. Two auditors for one week on-site. Finance questions every single request.",
-  },
-  {
-    icon: Users,
-    metric: "10–12",
-    title: "Audits per year maximum",
-    description: "Your quality team has limited capacity. You can audit 10–12 suppliers per year. The other 90+ suppliers? Unverified risk in your supply chain.",
+    icon: FileX,
+    metric: "Scattered",
+    title: "Audit data lives in silos",
+    description: "Reports in email, photos on phones, findings in spreadsheets. No single source of truth. Every audit starts from zero.",
   },
   {
     icon: AlertTriangle,
-    metric: "No standard",
-    title: "Inconsistent audit quality",
-    description: "Different auditors, different checklists, different scoring. Results depend on who shows up. Impossible to compare suppliers objectively.",
+    metric: "0%",
+    title: "Follow-up that never happens",
+    description: "Corrective actions assigned but never tracked. No close-out verification. The same defects appear again in the next audit.",
   },
 ];
 
@@ -45,10 +45,10 @@ const PainPointsSection = () => {
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground">
-            Why traditional audits<br />do not scale
+            Why supplier management<br />is still broken
           </h2>
           <p className="text-lg text-foreground/50 mt-6">
-            Most companies can only audit a fraction of their suppliers. The rest stays unverified — a risk nobody talks about.
+            From search to close-out — every step is manual, slow, and disconnected. That is why most companies only manage a fraction of their supply chain risk.
           </p>
         </motion.div>
 

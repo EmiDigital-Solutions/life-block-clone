@@ -7,33 +7,33 @@ import { Button } from "@/components/ui/button";
 const steps = [
   {
     number: "01",
-    title: "Submit",
-    subtitle: "Request audit",
-    description: "Select suppliers, choose audit standards, set your timeline, upload documents—then confirm and order. Done.",
+    title: "Search",
+    subtitle: "Find the right supplier",
+    description: "Describe what you need. AI scans thousands of suppliers worldwide — by capability, certification, capacity. Results in seconds.",
   },
   {
     number: "02",
-    title: "Match",
-    subtitle: "Local auditor assigned",
-    description: "Our AI matches a certified auditor near your supplier—no travel costs, no waiting.",
+    title: "Qualify",
+    subtitle: "Verify before you contact",
+    description: "Automated certificate checks, capacity validation, risk scoring. Know if a supplier is worth your time before the first call.",
   },
   {
     number: "03",
-    title: "Track",
-    subtitle: "Watch it happen",
-    description: "Real-time updates during the audit. Chat directly with the auditor. Know exactly what's happening.",
+    title: "Audit",
+    subtitle: "On-site in 72 hours",
+    description: "Local certified auditor deployed near the supplier. AI-guided checklists. Real-time progress tracking. No travel required from your side.",
   },
   {
     number: "04",
-    title: "Receive",
-    subtitle: "Report delivered",
-    description: "Complete digital report in 24h—findings, photos, scores, action items. Ready for your QMS.",
+    title: "Report",
+    subtitle: "Decision-ready in 24h",
+    description: "Standardized findings with photo evidence, risk scores, and benchmarks. Same format for every supplier, every country.",
   },
   {
     number: "05",
-    title: "Follow up",
-    subtitle: "Track improvements",
-    description: "Track corrective actions, schedule follow-up audits, and monitor supplier improvements over time.",
+    title: "Improve",
+    subtitle: "CAPA & close-out",
+    description: "Corrective actions generated automatically. Deadlines, responsibilities, evidence re-verification. Every finding tracked until resolved.",
   },
 ];
 
@@ -59,13 +59,13 @@ export const HowItWorksSection = () => {
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-px bg-foreground" />
               <span className="section-eyebrow">
-                The Process
+                The Lifecycle
               </span>
             </div>
             <h2 className="section-headline text-foreground">
-              From request
+              From search
               <br />
-              to report
+              to close-out
             </h2>
           </motion.div>
           
@@ -76,7 +76,7 @@ export const HowItWorksSection = () => {
             className="lg:col-span-2 lg:col-start-5 flex flex-col justify-end"
           >
             <p className="text-lg text-muted-foreground leading-relaxed">
-              A streamlined process designed for procurement teams who value their time.
+              Five steps. One platform. Full visibility from supplier discovery to corrective action close-out.
             </p>
           </motion.div>
         </div>
