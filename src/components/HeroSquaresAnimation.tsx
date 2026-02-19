@@ -95,8 +95,8 @@ const formations = {
 type Formation = keyof typeof formations;
 const formationOrder: Formation[] = ["triangle", "person", "atlasAI", "checkmark"];
 const formationLabels: Record<Formation, string> = {
-  triangle: "Unlimited Capacity",
-  person: "Local Auditors",
+  triangle: "High Speed",
+  person: "Local Inspector",
   atlasAI: "Atlas Copilot",
   checkmark: "Verified Supplier",
 };
