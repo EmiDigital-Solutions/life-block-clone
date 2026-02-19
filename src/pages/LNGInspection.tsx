@@ -184,16 +184,138 @@ const LNGInspection = () => {
         </div>
 
         {/* ═══════════════════════════════════════════════════
-            SCROLL PINNED ZOOM — LNG Plant
+            IMMUTABLE CHAIN OF EVIDENCE
         ═══════════════════════════════════════════════════ */}
-        <ScrollPinnedZoom imageSrc={lngPlantHero} imageAlt="LNG liquefaction plant at dusk">
-          <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold text-white tracking-[-0.03em] leading-[0.95] max-w-4xl">
-            $5B+ mega-projects<br />demand mega-precision
-          </h2>
-          <p className="text-base md:text-xl text-white/70 mt-6 max-w-xl">
-            Every weld, every vessel, every cryogenic system — verified by AI-enhanced field inspection across all EPC phases.
-          </p>
-        </ScrollPinnedZoom>
+        <section data-nav-theme="light" className="py-24 md:py-32 bg-[hsl(220,10%,96%)]">
+          <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+              className="max-w-4xl mb-16">
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground">
+                Establishing an Immutable<br />Chain of Evidence
+              </h2>
+              <p className="text-base md:text-lg text-foreground/50 mt-4 max-w-2xl">
+                Deep Navy AI Quality Platform: Stopping financial leakage through verifiable data integrity.
+              </p>
+            </motion.div>
+
+            {/* Diagram */}
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+              className="relative w-full">
+
+              {/* Desktop layout */}
+              <div className="hidden lg:flex items-stretch gap-0 relative min-h-[360px]">
+
+                {/* Project Budget block */}
+                <div className="w-[120px] flex-shrink-0 flex items-center justify-center bg-foreground/20 border border-foreground/10 self-center h-[200px]">
+                  <span className="text-sm font-bold text-foreground/60 text-center leading-tight">Project<br />Budget</span>
+                </div>
+
+                {/* Flow area */}
+                <div className="flex-1 relative">
+                  {/* Value arrow (top) — navy */}
+                  <div className="absolute top-0 left-0 right-[30%] h-[80px]">
+                    <svg className="w-full h-full" viewBox="0 0 800 80" preserveAspectRatio="none" fill="none">
+                      <path d="M0,60 L0,20 C200,18 500,15 700,12 L700,0 L800,40 L700,80 L700,68 C500,65 200,62 0,60 Z" fill="hsl(220,50%,20%)" />
+                    </svg>
+                    <span className="absolute right-[calc(30%+16px)] top-1/2 -translate-y-1/2 text-[11px] font-bold text-white/80 tracking-wider uppercase">Value</span>
+                  </div>
+
+                  {/* Financial Leakage stream (bottom) — orange */}
+                  <div className="absolute top-[70px] left-0 right-[10%] h-[110px]">
+                    <svg className="w-full h-full" viewBox="0 0 900 110" preserveAspectRatio="none" fill="none">
+                      <path d="M0,10 C200,10 300,10 900,30 L900,80 C300,100 200,100 0,100 Z" fill="hsl(24,90%,55%)" fillOpacity="0.85" />
+                    </svg>
+                    <span className="absolute left-[40%] top-1/2 -translate-y-1/2 text-sm font-bold text-white tracking-wide">Financial Leakage</span>
+                  </div>
+
+                  {/* Three rivers */}
+                  <div className="absolute bottom-0 left-[15%] right-[25%] flex justify-between">
+                    {[
+                      { river: "River 1", title: "Uncontested\nSupplier Claims", loss: "Millions / Year", cause: "(Lack of Evidence)" },
+                      { river: "River 2", title: "Uncollected\nPenalties", loss: "Millions / Year", cause: "(Weak Documentation)" },
+                      { river: "River 3", title: "Late Detection\nCosts", loss: "Millions / Year", cause: "(Schedule Delays)" },
+                    ].map((r, i) => (
+                      <motion.div key={r.river} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }} transition={{ delay: 0.2 + i * 0.1 }}
+                        className="text-center w-[30%]">
+                        {/* Arrow down */}
+                        <svg className="w-10 h-10 mx-auto mb-2" viewBox="0 0 40 40" fill="none">
+                          <path d="M20,0 L20,25 M10,18 L20,30 L30,18" stroke="hsl(24,90%,55%)" strokeWidth="3" fill="none" />
+                        </svg>
+                        <div className="text-xs font-bold text-foreground uppercase tracking-wider">{r.river}:</div>
+                        <div className="text-xs font-bold text-foreground mt-0.5 whitespace-pre-line leading-tight">{r.title}</div>
+                        <div className="text-[10px] text-foreground/40 mt-1">Loss: {r.loss}</div>
+                        <div className="text-[10px] text-foreground/40">{r.cause}</div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Proposition box (right) */}
+                <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }} transition={{ delay: 0.4 }}
+                  className="w-[260px] flex-shrink-0 self-center border-[3px] border-foreground p-6 space-y-4 ml-4">
+                  <div>
+                    <div className="text-xs font-bold text-foreground uppercase tracking-wider mb-1">The Proposition:</div>
+                    <div className="text-lg font-bold text-foreground leading-tight">Phase 1 Pilot<br />Investment:<br />€200,000</div>
+                  </div>
+                  <div className="border-t border-foreground/20 pt-4">
+                    <div className="text-xs font-bold text-[hsl(24,90%,50%)] uppercase tracking-wider mb-1">The Return:</div>
+                    <div className="text-lg font-bold text-[hsl(24,90%,50%)] leading-tight">Projected Net Value:<br />~XX Million RUB<br />over 3 Years</div>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Mobile layout */}
+              <div className="lg:hidden space-y-8">
+                {/* Project Budget + arrows */}
+                <div className="flex items-center gap-4">
+                  <div className="w-20 h-20 flex-shrink-0 flex items-center justify-center bg-foreground/20 border border-foreground/10">
+                    <span className="text-xs font-bold text-foreground/60 text-center leading-tight">Project<br />Budget</span>
+                  </div>
+                  <div className="flex-1 space-y-2">
+                    <div className="h-8 bg-[hsl(220,50%,20%)] flex items-center justify-end pr-3 rounded-r">
+                      <span className="text-[10px] font-bold text-white/80 uppercase tracking-wider">Value →</span>
+                    </div>
+                    <div className="h-8 bg-[hsl(24,90%,55%)]/85 flex items-center justify-center rounded-r">
+                      <span className="text-[10px] font-bold text-white">Financial Leakage →</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Three rivers */}
+                <div className="grid grid-cols-3 gap-3">
+                  {[
+                    { river: "River 1", title: "Uncontested Supplier Claims", loss: "Millions/Year", cause: "(Lack of Evidence)" },
+                    { river: "River 2", title: "Uncollected Penalties", loss: "Millions/Year", cause: "(Weak Docs)" },
+                    { river: "River 3", title: "Late Detection Costs", loss: "Millions/Year", cause: "(Schedule Delays)" },
+                  ].map((r) => (
+                    <div key={r.river} className="text-center">
+                      <svg className="w-6 h-6 mx-auto mb-1" viewBox="0 0 24 24" fill="none">
+                        <path d="M12,2 L12,16 M6,12 L12,20 L18,12" stroke="hsl(24,90%,55%)" strokeWidth="2" />
+                      </svg>
+                      <div className="text-[10px] font-bold text-foreground">{r.river}</div>
+                      <div className="text-[10px] text-foreground/60 mt-0.5 leading-tight">{r.title}</div>
+                      <div className="text-[9px] text-foreground/30 mt-1">{r.loss}</div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Proposition */}
+                <div className="border-[3px] border-foreground p-5 space-y-3">
+                  <div>
+                    <div className="text-[10px] font-bold text-foreground uppercase tracking-wider mb-1">The Proposition:</div>
+                    <div className="text-base font-bold text-foreground">Phase 1 Pilot Investment: €200,000</div>
+                  </div>
+                  <div className="border-t border-foreground/20 pt-3">
+                    <div className="text-[10px] font-bold text-[hsl(24,90%,50%)] uppercase tracking-wider mb-1">The Return:</div>
+                    <div className="text-base font-bold text-[hsl(24,90%,50%)]">Projected Net Value: ~XX Million RUB over 3 Years</div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
 
         {/* Section cut marker */}
         <div className="mx-auto max-w-[1400px] px-4 md:px-8">
