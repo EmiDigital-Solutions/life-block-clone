@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, useRef } from "react";
-import { Plus, Minus, ArrowRight, Check, X } from "lucide-react";
+import { ArrowRight, Check, X } from "lucide-react";
 import GroundIntelligenceFeatureModal, { groundIntelligenceFeatures, type GroundIntelligenceFeature } from "@/components/GroundIntelligenceFeatureModal";
 import CheckpointModal, { checkpointData, type CheckpointData } from "@/components/CheckpointModal";
 import PageSEO from "@/components/PageSEO";
@@ -11,19 +11,7 @@ import DimensionLine from "@/components/DimensionLine";
 import SectionCutMarker from "@/components/SectionCutMarker";
 import ToleranceNotation from "@/components/ToleranceNotation";
 import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
 import HeroSquaresAnimation from "@/components/HeroSquaresAnimation";
-import evidenceAssembly from "@/assets/evidence-assembly-station.jpg";
-import evidenceCmm from "@/assets/evidence-cmm-measurement.jpg";
-import evidenceCnc from "@/assets/evidence-cnc-machine.jpg";
-import evidenceControlPlan from "@/assets/evidence-control-plan.jpg";
-import evidenceInspector from "@/assets/evidence-inspector.jpg";
-import evidenceCapacity from "@/assets/evidence-capacity-assessment.jpg";
-import evidenceIncomingWarehouse from "@/assets/evidence-incoming-warehouse.jpg";
-import evidenceHse from "@/assets/evidence-hse-inspection.jpg";
-import cncMachine from "@/assets/cnc-machine-dmg-nlx.jpg";
-import auditorEuropean from "@/assets/auditor-real-european.jpg";
 import checkpointMachinePark from "@/assets/checkpoint-machine-park.jpg";
 import checkpointMeasurement from "@/assets/checkpoint-measurement-systems.jpg";
 import checkpointProcess from "@/assets/checkpoint-process-capability.jpg";
@@ -34,130 +22,33 @@ import checkpointEquipment from "@/assets/checkpoint-equipment-intelligence.jpg"
 import checkpointExpert from "@/assets/checkpoint-expert-onsite.jpg";
 
 const GroundIntelligence = () => {
-  const [activeFaqCategory, setActiveFaqCategory] = useState("general");
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   const [selectedFeature, setSelectedFeature] = useState<GroundIntelligenceFeature | null>(null);
   const [selectedCheckpoint, setSelectedCheckpoint] = useState<CheckpointData | null>(null);
   const [hoveredStepIndex, setHoveredStepIndex] = useState<number | null>(null);
   const howItWorksRef = useRef(null);
   const howItWorksInView = useInView(howItWorksRef, { once: true, amount: 0.1 });
 
-  const groundIntelligenceJsonLd = [
-    {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "YVOO Ground Intelligence — On-Site Supplier Verification",
-      "description": "Independent on-site supplier evaluation covering machine park, measurement systems, process capability, capacity, material traceability, HSE compliance, and equipment intelligence. Conducted by 850+ certified industry-specialized auditors in 45+ countries.",
-      "provider": { "@type": "Organization", "name": "YVOO", "url": "https://www.yvoo.io" },
-      "serviceType": "Supplier Audit & Verification",
-      "areaServed": "Worldwide",
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "On-Site Checkpoints",
-        "itemListElement": checkpointData.map((cp, idx) => ({
-          "@type": "Offer",
-          "position": idx + 1,
-          "itemOffered": { "@type": "Service", "name": cp.modal.headline, "description": cp.modal.overview }
-        }))
-      }
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": checkpointData.map(cp => ({
-        "@type": "Question",
-        "name": `What does ${cp.modal.headline} verify at a supplier?`,
-        "acceptedAnswer": { "@type": "Answer", "text": `${cp.modal.overview} ${cp.modal.whyItMatters}` }
-      }))
-    }
-  ];
-
-  const toggleFaq = (index: number) => {
-    setOpenFaqIndex(openFaqIndex === index ? null : index);
-  };
-
-  const handleFaqCategoryChange = (categoryId: string) => {
-    setActiveFaqCategory(categoryId);
-    setOpenFaqIndex(0);
-  };
-
   const differentiators = [
-    { desk: "Supplier self-assessment", ground: "Independent on-site verification" },
-    { desk: "News-feed risk alerts", ground: "Expert evaluation of specific topics" },
-    { desk: "Outdated database info", ground: "Fresh data from recent auditor visits" },
-    { desk: "Generic compliance badges", ground: "Standardized scores with evidence photos" },
-    { desk: "One-size-fits-all reports", ground: "Custom topic deep-dives on your request" },
+    { desk: "Supplier self-assessment questionnaires", ground: "Independent on-site code compliance verification" },
+    { desk: "News-feed risk alerts", ground: "Expert NDE & dimensional inspection at fabrication shop" },
+    { desk: "Outdated database certifications", ground: "Live witness of hydrostatic & cryogenic testing" },
+    { desk: "Generic compliance badges", ground: "ASME / API / EN evidence with geo-tagged photos" },
+    { desk: "One-size-fits-all reports", ground: "ITP hold-point verification per engineering specification" },
   ];
-
-  const faqCategories = [
-    {
-      id: "general",
-      label: "General",
-      faqs: [
-        {
-          question: "How is this different from Prewave or other data providers?",
-          answer: "Unlike data-scraping platforms that monitor news feeds and public records, our intelligence is based on physical verification. We send expert auditors on-site to evaluate specific topics you define. The result is verified data — not assumptions based on web scraping."
-        },
-        {
-          question: "What topics can I request for verification?",
-          answer: "Anything that matters for your sourcing decision: capacity verification, process capability (Cpk), quality management systems, machine park evaluation, working conditions, environmental compliance, logistics capabilities, and more. You define the scope."
-        },
-        {
-          question: "How quickly can an auditor visit a supplier?",
-          answer: "Typically within 3–5 business days. We have 850+ qualified auditors in 47 countries, so there's almost always a local expert available near your supplier."
-        },
-      ],
-    },
-    {
-      id: "methodology",
-      label: "Methodology",
-      faqs: [
-        {
-          question: "How are the standardized scores calculated?",
-          answer: "Scores are based on a proprietary evaluation framework applied consistently by all auditors. Each topic has defined criteria, evidence requirements, and scoring rubrics. This ensures comparability across suppliers, industries, and geographies."
-        },
-        {
-          question: "What evidence do I receive with each report?",
-          answer: "Every report includes standardized scores, written assessments, geo-tagged evidence photos, and auditor commentary. For process capability topics, you receive actual measurement data and Cpk values."
-        },
-        {
-          question: "Can I track supplier development over time?",
-          answer: "Yes. Each audit adds to a supplier's historical profile. You can visualize trends per topic, compare improvement trajectories across suppliers, and identify patterns that predict future performance."
-        },
-      ],
-    },
-    {
-      id: "pricing",
-      label: "Pricing",
-      faqs: [
-        {
-          question: "How much does a verification visit cost?",
-          answer: "A standard single-topic verification starts at €700. Multi-topic deep-dives and comprehensive audits are priced based on scope and location. All pricing is transparent — no hidden fees."
-        },
-        {
-          question: "Is there a subscription model?",
-          answer: "Yes. For organizations that need regular supplier monitoring, we offer subscription plans with scheduled verification visits, continuous benchmark updates, and predictive analytics. Contact us for a tailored plan."
-        },
-      ],
-    },
-  ];
-
-  const activeFaqs = faqCategories.find((cat) => cat.id === activeFaqCategory)?.faqs || [];
 
   return (
     <div className="min-h-screen relative">
       <PageSEO
-        title="Ground Intelligence — On-Site Supplier Verification | YVOO"
-        description="Verified supplier intelligence through physical on-site evaluation. Machine park, measurement systems, process capability, capacity, material traceability, HSE, and equipment intelligence — assessed by certified industry experts."
+        title="Ground Intelligence — EPC Construction Integrity Verification | RCA"
+        description="On-site fabrication integrity verification for LNG & Gas Processing Plants. Weld inspection, NDE compliance, dimensional control, pressure testing — assessed by certified inspectors per ASME, API, and EN codes."
         canonical="/ground-intelligence"
-        jsonLd={groundIntelligenceJsonLd}
       />
       <PageGridOverlay />
       <div className="relative">
         <Navigation />
 
         {/* ═══════════════════════════════════════════════════
-            HERO — Homepage-style asymmetric layout
+            HERO
         ═══════════════════════════════════════════════════ */}
         <section
           data-nav-theme="light"
@@ -179,7 +70,7 @@ const GroundIntelligence = () => {
                   transition={{ duration: 0.6, delay: 0.1 }}
                   className="text-sm md:text-base text-foreground/50 font-mono tracking-[0.25em] uppercase mb-4 md:mb-6"
                 >
-                   Supplier Intelligence
+                   Construction Integrity Verification
                 </motion.p>
 
                 {/* Headline */}
@@ -189,14 +80,14 @@ const GroundIntelligence = () => {
                   transition={{ duration: 0.8, delay: 0.2 }}
                   className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
                 >
-                   See what's really happening<br />
-                   at your supplier.
+                   Verify what's really<br />
+                   being fabricated.
                 </motion.h1>
 
                 {/* Value Props — aligned to 4th grid line */}
                 <div className="mt-8 md:mt-12 lg:mt-16 ml-[50%] relative">
                   <span className="absolute -left-14 -top-6 font-mono text-[9px] tracking-[0.2em] text-foreground/[0.12] select-none" aria-hidden="true">
-                    DIN EN ISO
+                    ASME B31.3
                   </span>
 
                   {/* Surface roughness symbol */}
@@ -234,12 +125,12 @@ const GroundIntelligence = () => {
 
                       <div className="space-y-2">
                         {[
-                          { bold: "On-demand expert visits", rest: "any topic, anytime, anywhere" },
-                          { bold: "Verified data, not scraped feeds", rest: "on-site evidence, photos, measurements" },
-                          { bold: "Benchmark across suppliers", rest: "standardized scores from real audits" },
-                          { bold: "Track performance over time", rest: "audit history, trends, early warnings" },
-                          { bold: "Topic-specific deep-dives", rest: "capacity, process capability, quality systems" },
-                          { bold: "850+ auditors, 47 countries", rest: "local experts, on-site within days" },
+                          { bold: "On-site weld inspection", rest: "RT, UT, MT, PT per ASME V & API 577" },
+                          { bold: "Dimensional verification", rest: "laser tracker, CMM vs. engineering drawings" },
+                          { bold: "Pressure & leak testing witness", rest: "hydrostatic, pneumatic, helium leak per ASME PCC-2" },
+                          { bold: "Material traceability audit", rest: "MTR verification, EN 10204 3.2 compliance" },
+                          { bold: "ITP hold-point enforcement", rest: "witness mandatory stages, sign-off or reject" },
+                          { bold: "Protected evidence chain", rest: "timestamped, GPS-tagged, digitally signed" },
                         ].map((item, i) => (
                           <p key={i} className="text-sm md:text-base text-foreground/60">
                             <span className="font-semibold text-foreground">{item.bold}</span> — {item.rest}
@@ -247,22 +138,6 @@ const GroundIntelligence = () => {
                         ))}
                       </div>
                     </div>
-                    <p className="text-sm md:text-base whitespace-nowrap flex items-baseline mt-2">
-                      <span><span className="font-semibold text-primary">Starting at €700</span> per verification · <a href="https://calendly.com/yvoo/demo-yvoo" target="_blank" rel="noopener noreferrer" className="underline font-semibold text-primary hover:text-primary/80">Book a Demo →</a></span>
-                    </p>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
-                    className="flex flex-col sm:flex-row gap-4"
-                  >
-                    <Button size="lg" className="w-full sm:w-auto text-lg" asChild>
-                      <a href="https://calendly.com/yvoo/demo-yvoo" target="_blank" rel="noopener noreferrer">
-                        Request a Demo →
-                      </a>
-                    </Button>
                   </motion.div>
                 </div>
               </motion.div>
@@ -273,13 +148,13 @@ const GroundIntelligence = () => {
           <div className="relative z-10 border-t border-foreground/10 overflow-hidden py-3 md:py-5 shrink-0">
             <div className="flex animate-marquee whitespace-nowrap">
               {[...Array(2)].flatMap((_, rep) => [
-                { label: "Verify", detail: "On-demand evaluation" },
-                { label: "Benchmark", detail: "Standardized scores" },
-                { label: "Predict", detail: "Trend analysis" },
-                { label: "Evidence", detail: "Photos & measurements" },
-                { label: "Compare", detail: "Side-by-side matrix" },
-                { label: "Track", detail: "Supplier development" },
-                { label: "Evaluate", detail: "Topic deep-dives" },
+                { label: "Weld NDE", detail: "RT / UT / MT / PT" },
+                { label: "Dimensional", detail: "Laser tracker & CMM" },
+                { label: "Pressure Test", detail: "Hydrostatic witness" },
+                { label: "Material", detail: "MTR & PMI verification" },
+                { label: "ITP Hold Points", detail: "Mandatory witness" },
+                { label: "Coating", detail: "DFT & adhesion testing" },
+                { label: "Cryogenic", detail: "LN₂ test field audit" },
               ].map((item, i) => (
                 <span
                   key={`${rep}-${i}`}
@@ -300,11 +175,10 @@ const GroundIntelligence = () => {
         </div>
 
         {/* ═══════════════════════════════════════════════════
-            COMPARISON — Desk Research vs. On-Site Reality
+            COMPARISON — Desktop Reports vs. On-Site Verification
         ═══════════════════════════════════════════════════ */}
         <section data-nav-theme="light" className="py-24 md:py-32 bg-white">
           <div className="mx-auto max-w-[1400px] px-8">
-            {/* Header */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -316,13 +190,12 @@ const GroundIntelligence = () => {
                 <span className="section-eyebrow">The difference</span>
               </div>
               <h2 className="section-headline text-foreground">
-                Desk research vs.<br />on-site reality
+                Desktop reports vs.<br />on-site verification
               </h2>
             </motion.div>
 
-            {/* Old vs New Comparison */}
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
-              {/* Old Way - Desk Research */}
+              {/* Old Way */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -331,7 +204,7 @@ const GroundIntelligence = () => {
                 className="bg-[#ebebeb] p-10 md:p-14 hover:bg-[#e3e3e3] transition-colors duration-300"
               >
                 <p className="text-sm font-medium tracking-[0.2em] text-muted-foreground uppercase mb-10">
-                  Typical data providers
+                  Typical oversight approach
                 </p>
                 <div className="space-y-6">
                   {differentiators.map((d, idx) => (
@@ -345,7 +218,7 @@ const GroundIntelligence = () => {
                 </div>
               </motion.div>
 
-              {/* New Way - YVOO */}
+              {/* New Way - RCA */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -354,7 +227,7 @@ const GroundIntelligence = () => {
                 className="bg-[#0a0a0a] p-10 md:p-14"
               >
                 <p className="text-sm font-medium tracking-[0.2em] text-white/80 uppercase mb-10">
-                  YVOO Supplier Intelligence
+                  RCA Construction Intelligence
                 </p>
                 <div className="space-y-6">
                   {differentiators.map((d, idx) => (
@@ -377,7 +250,7 @@ const GroundIntelligence = () => {
         </div>
 
         {/* ═══════════════════════════════════════════════════
-            THREE PILLARS — Verify · Benchmark · Predict
+            THREE PILLARS — Inspect · Verify · Enforce
         ═══════════════════════════════════════════════════ */}
         <section className="relative overflow-hidden bg-white pt-20 md:pt-28 lg:pt-32 pb-6 md:pb-8">
           <div className="mx-auto max-w-[1400px] px-8">
@@ -389,26 +262,26 @@ const GroundIntelligence = () => {
               className="mb-12 md:mb-16"
             >
               <h2 className="section-headline text-foreground max-w-4xl">
-                The three dimensions of supplier intelligence.
+                Three dimensions of construction integrity.
               </h2>
             </motion.div>
 
             <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-0 border-t border-foreground/10">
               {[
                 {
+                  phase: "Inspect",
+                  title: "On-Site Fabrication Control",
+                  description: "Deploy certified inspectors to fabrication shops worldwide to witness critical manufacturing stages — weld procedures, NDE execution, pressure testing, and dimensional verification per ASME, API, and EN codes",
+                },
+                {
                   phase: "Verify",
-                  title: "On-Demand Evaluation",
-                  description: "Send qualified auditors to any supplier, anytime — to evaluate the specific topics you care about. No generic checklists. Real answers to your real questions",
+                  title: "Code Compliance Verification",
+                  description: "Validate that every weld map, MTR, NDE report, and test certificate matches engineering specifications and applicable construction codes. Compare as-built vs. as-designed with measurable evidence",
                 },
                 {
-                  phase: "Benchmark",
-                  title: "Standardized Comparison",
-                  description: "Compare suppliers objectively using standardized scores from real audit data. Not self-reported surveys — verified measurements from on-site visits",
-                },
-                {
-                  phase: "Predict",
-                  title: "Trend Analysis",
-                  description: "Track how suppliers develop over time. Identify improvement trajectories or early warning signals based on historical audit results, not scraped news feeds",
+                  phase: "Enforce",
+                  title: "ITP & Claims Enforcement",
+                  description: "Enforce Inspection & Test Plan hold points with mandatory witness sign-off. Protected evidence chain supports FIDIC-based claims, liquidated damages, and variation management",
                 },
               ].map((cap, index) => (
                 <motion.div
@@ -440,11 +313,11 @@ const GroundIntelligence = () => {
 
         {/* Dimension line */}
         <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-          <DimensionLine from="Desk" to="Ground" unit="" gridFrom={0} gridTo={4} />
+          <DimensionLine from="Desktop" to="On-Site" unit="" gridFrom={0} gridTo={4} />
         </div>
 
         {/* ═══════════════════════════════════════════════════
-            ON-SITE CHECKPOINTS — What auditors actually verify
+            ON-SITE CHECKPOINTS
         ═══════════════════════════════════════════════════ */}
         <section className="py-16 md:py-24 bg-muted">
           <div className="mx-auto max-w-[1400px] px-8">
@@ -462,7 +335,7 @@ const GroundIntelligence = () => {
                 Real checkpoints, not spreadsheet assumptions.
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl">
-                Every intelligence report is built from physical evidence — collected by certified auditors inside the supplier's facility.
+                Every intelligence report is built from physical evidence — collected by certified inspectors inside the fabrication facility.
               </p>
             </motion.div>
 
@@ -501,7 +374,7 @@ const GroundIntelligence = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════════
-            WHAT WE COMBINE — Evidence + Audit Data + Evaluation
+            WHAT YOU GET — KPIs & Quote
         ═══════════════════════════════════════════════════ */}
         <section className="py-16 md:py-24 bg-white">
           <div className="mx-auto max-w-[1400px] px-8">
@@ -515,19 +388,19 @@ const GroundIntelligence = () => {
                 What you get — and what changes
               </h2>
               <p className="text-lg text-muted-foreground">
-                Stop relying on supplier self-assessments and desktop research. Get verified, on-site intelligence that directly impacts your decisions.
+                Stop relying on supplier MDR submissions and desktop document reviews. Get verified, on-site construction intelligence.
               </p>
             </motion.div>
 
-            {/* 2x2 KPI grid — shifted one grid right (homepage pattern) */}
+            {/* 2x2 KPI grid */}
             <div className="grid grid-cols-1 lg:grid-cols-6 gap-0 mb-20">
               <div className="hidden lg:block lg:col-span-1" />
               <div className="lg:col-span-5 grid md:grid-cols-2 gap-x-12">
                 {[
-                  { category: "Supplier qualification", value: "60%", suffix: "faster", description: "Qualify new suppliers in days instead of weeks — with verified data, not guesswork" },
-                  { category: "Risk reduction", value: "3×", suffix: "earlier", description: "Spot quality issues, capacity gaps, and compliance risks before they become costly problems" },
-                  { category: "Audit cost", value: "€40k", suffix: "saved/yr", description: "Replace expensive one-off audit trips with on-demand local experts at a fraction of the cost" },
-                  { category: "Decision confidence", value: "100%", suffix: "verified", description: "Every score, photo, and assessment comes from a certified auditor who was physically on-site" },
+                  { category: "Defect detection", value: "3×", suffix: "earlier", description: "Catch weld defects, dimensional deviations, and material non-conformances at fabrication — not at site delivery" },
+                  { category: "ITP compliance", value: "100%", suffix: "witnessed", description: "Every hold point and witness point verified by certified inspector with protected evidence chain" },
+                  { category: "Claims enforcement", value: "72h", suffix: "evidence", description: "FIDIC-ready evidence packages with timestamped photos, measurements, and digital signatures within 72 hours" },
+                  { category: "Code compliance", value: "ASME", suffix: "API · EN", description: "Full traceability against applicable construction codes — ASME B31.3, API 6D, EN 13480, PED 2014/68/EU" },
                 ].map((stat, index) => (
                   <motion.div
                     key={index}
@@ -568,10 +441,10 @@ const GroundIntelligence = () => {
               <div className="hidden lg:block lg:col-span-1" />
               <div className="lg:col-span-5 border-l-2 border-accent pl-8 md:pl-12">
                 <p className="text-lg md:text-xl lg:text-2xl font-light text-foreground/80 leading-relaxed tracking-tight mb-6">
-                  "The difference between data intelligence and supplier intelligence is simple: we don't scrape the internet — we send someone to the factory. Every score, every photo, every assessment comes from a qualified auditor who was physically on-site."
+                  "The difference between document review and construction intelligence is simple: we don't review MDR packages remotely — we send a certified inspector to the fabrication shop. Every measurement, every NDE result, every test witness comes from someone who was physically present."
                 </p>
                 <p className="text-sm font-medium text-foreground/50 tracking-wide">
-                  — YVOO Founders
+                  — RCA Engineering Team
                 </p>
               </div>
             </motion.div>
@@ -589,7 +462,7 @@ const GroundIntelligence = () => {
         </div>
 
         {/* ═══════════════════════════════════════════════════
-            HOW IT WORKS — Topic Verification Flow
+            HOW IT WORKS — Inspection Flow
         ═══════════════════════════════════════════════════ */}
         <section ref={howItWorksRef} className="py-24 lg:py-32 bg-white overflow-hidden">
           <div className="mx-auto max-w-[1400px] px-8">
@@ -607,7 +480,7 @@ const GroundIntelligence = () => {
                   <span className="section-eyebrow">How it works</span>
                 </div>
                 <h2 className="section-headline text-foreground">
-                  From question to<br />verified answer
+                  From ITP to<br />verified evidence
                 </h2>
               </motion.div>
               
@@ -618,7 +491,7 @@ const GroundIntelligence = () => {
                 className="lg:col-span-2 lg:col-start-5 flex flex-col justify-end"
               >
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Define your topic, we handle the rest — verified intelligence delivered in days, not weeks.
+                  Define the ITP, we deploy the inspector — verified construction intelligence delivered within the fabrication cycle.
                 </p>
               </motion.div>
             </div>
@@ -629,10 +502,10 @@ const GroundIntelligence = () => {
               
               <div className="flex flex-col md:flex-row">
                 {[
-                  { number: "01", title: "Define", subtitle: "Set your topic", description: "Tell us what you need verified — capacity, process capability, quality systems, working conditions. You define the scope." },
-                  { number: "02", title: "Match", subtitle: "Local expert assigned", description: "AI matches a certified auditor with relevant industry experience, located near your supplier. Ready in days, not weeks." },
-                  { number: "03", title: "Evaluate", subtitle: "On-site verification", description: "The auditor visits the factory, collects evidence, runs standardized assessments, and documents everything with photos and measurements." },
-                  { number: "04", title: "Deliver", subtitle: "Intelligence report", description: "You receive standardized scores, evidence photos, expert commentary, and benchmark data — all in a structured, comparable format." },
+                  { number: "01", title: "Define", subtitle: "Set ITP scope", description: "Upload engineering specifications, P&IDs, and ITP. Define hold points, witness points, and review points per applicable construction codes." },
+                  { number: "02", title: "Deploy", subtitle: "Inspector assigned", description: "Atlas AI matches a certified inspector with relevant code qualifications (ASME, API, CSWIP, FROSIO) located near the fabrication shop." },
+                  { number: "03", title: "Inspect", subtitle: "On-site verification", description: "The inspector witnesses critical fabrication stages — weld procedures, NDE execution, pressure testing, dimensional checks — collecting timestamped evidence." },
+                  { number: "04", title: "Report", subtitle: "Evidence package", description: "Protected evidence chain with measurements, NDE results, test certificates, and inspector sign-off. Ready for FIDIC claims or project close-out documentation." },
                 ].map((step, index) => (
                   <motion.div
                     key={index}
@@ -650,7 +523,6 @@ const GroundIntelligence = () => {
                     }`}
                   >
                     <div className="py-10 md:py-16 px-6 md:px-8 h-full flex flex-col">
-                      {/* Number */}
                       <div className="flex items-start justify-between mb-auto">
                         <span className={`text-6xl md:text-7xl font-extralight transition-all duration-300 ${
                           hoveredStepIndex === index ? 'text-foreground' : 'text-foreground/40'
@@ -659,7 +531,6 @@ const GroundIntelligence = () => {
                         </span>
                       </div>
                       
-                      {/* Content */}
                       <div className="mt-12 md:mt-20">
                         <span className={`text-sm tracking-[0.15em] uppercase transition-colors duration-300 ${
                           hoveredStepIndex === index ? 'text-foreground' : 'text-muted-foreground/60'
@@ -670,7 +541,6 @@ const GroundIntelligence = () => {
                           {step.title}
                         </h3>
                         
-                        {/* Description - Only visible on hover */}
                         <motion.p
                           initial={false}
                           animate={{ 
@@ -684,7 +554,6 @@ const GroundIntelligence = () => {
                         </motion.p>
                       </div>
                       
-                      {/* Hover indicator line */}
                       <div className={`absolute bottom-0 left-0 h-[2px] bg-foreground transition-all duration-500 ${
                         hoveredStepIndex === index ? 'w-full' : 'w-0'
                       }`} />
@@ -699,9 +568,8 @@ const GroundIntelligence = () => {
 
         {/* Tolerance notation */}
         <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-          <ToleranceNotation nominal="99.7" tolerance="0.02" unit="%" label="Verification Accuracy" gridColumn={4} />
+          <ToleranceNotation nominal="99.7" tolerance="0.02" unit="%" label="Inspection Accuracy" gridColumn={4} />
         </div>
-
 
         {/* ═══════════════════════════════════════════════════
             FEATURES — Clickable grid with modals
@@ -715,10 +583,10 @@ const GroundIntelligence = () => {
               className="space-y-6 mb-16"
             >
               <h2 className="section-headline text-foreground">
-                Supplier Intelligence features
+                Construction intelligence features
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
-                Every feature is designed to give you verified, actionable supplier data — from on-demand audits to trend tracking and custom evaluation frameworks.
+                Every feature is designed to give you verified, code-compliant construction data — from weld inspection to ITP enforcement and FIDIC claims support.
               </p>
             </motion.div>
 
@@ -756,121 +624,6 @@ const GroundIntelligence = () => {
             </motion.div>
           </div>
         </section>
-
-        {/* ═══════════════════════════════════════════════════
-            FAQ
-        ═══════════════════════════════════════════════════ */}
-        <section data-nav-theme="light" className="py-24 md:py-32 bg-white">
-          <div className="mx-auto max-w-[1400px] px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mb-12"
-            >
-              <h2 className="section-headline text-foreground">
-                Questions & answers
-              </h2>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="flex flex-wrap gap-3 mb-12"
-            >
-              {faqCategories.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => handleFaqCategoryChange(category.id)}
-                  className={`px-5 py-2.5 text-sm font-medium transition-all duration-200 ${
-                    activeFaqCategory === category.id
-                      ? "bg-foreground text-white"
-                      : "bg-muted text-foreground hover:bg-muted/80"
-                  }`}
-                >
-                  {category.label}
-                </button>
-              ))}
-            </motion.div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-6 gap-0">
-              <div className="hidden lg:block lg:col-span-1" />
-              <motion.div
-                key={activeFaqCategory}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-                className="lg:col-span-5"
-              >
-                {activeFaqs.map((faq, index) => (
-                  <div key={index} className="border-t border-border">
-                    <button
-                      onClick={() => toggleFaq(index)}
-                      className="w-full py-6 flex items-start justify-between gap-6 text-left group"
-                    >
-                      <span className="text-lg md:text-xl text-foreground font-medium leading-snug">
-                        {faq.question}
-                      </span>
-                      <div className="flex-shrink-0 w-10 h-10 bg-muted flex items-center justify-center transition-colors duration-200 group-hover:bg-muted/80">
-                        {openFaqIndex === index ? (
-                          <Minus className="w-5 h-5 text-foreground" strokeWidth={1.5} />
-                        ) : (
-                          <Plus className="w-5 h-5 text-foreground" strokeWidth={1.5} />
-                        )}
-                      </div>
-                    </button>
-                    <motion.div
-                      initial={false}
-                      animate={{
-                        height: openFaqIndex === index ? "auto" : 0,
-                        opacity: openFaqIndex === index ? 1 : 0,
-                      }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="overflow-hidden"
-                    >
-                      <p className="text-muted-foreground text-base md:text-lg leading-relaxed pb-6 pr-16">
-                        {faq.answer}
-                      </p>
-                    </motion.div>
-                  </div>
-                ))}
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════════
-            FINAL CTA
-        ═══════════════════════════════════════════════════ */}
-        <section data-nav-theme="light" className="relative py-20 lg:py-28 bg-muted">
-          <div className="mx-auto max-w-[1400px] px-8 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="space-y-8"
-            >
-              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-medium tracking-tight text-foreground">
-                Stop guessing. Start verifying.
-              </h2>
-              <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
-                Verified supplier data from real on-site evaluations — not scraped feeds, not self-assessments.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" asChild>
-                  <a href="https://calendly.com/yvoo/demo-yvoo" target="_blank" rel="noopener noreferrer">
-                    Request a Demo
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </a>
-                </Button>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        <Footer />
       </div>
 
       {/* Feature Modal */}
