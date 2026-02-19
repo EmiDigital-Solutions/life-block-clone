@@ -62,7 +62,7 @@ interface Props {
 }
 
 const scoreColor = (score: number, isReference: boolean) => {
-  if (isReference) return "text-[hsl(var(--slate))]";
+  if (isReference) return "text-muted-foreground";
   if (score >= 5) return "text-[hsl(var(--accent))] font-bold";
   if (score >= 4) return "text-[hsl(var(--accent))]";
   if (score >= 3) return "text-[hsl(var(--warning))]";
@@ -72,18 +72,18 @@ const scoreColor = (score: number, isReference: boolean) => {
 const SupplierBenchmarkModal = ({ open, onOpenChange }: Props) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-[95vw] xl:max-w-7xl max-h-[90vh] overflow-y-auto p-0 gap-0 bg-[hsl(0,0%,4%)] border-white/10">
+      <DialogContent className="max-w-[95vw] xl:max-w-7xl max-h-[90vh] overflow-y-auto p-0 gap-0 bg-background border-border">
         {/* Header */}
-        <div className="p-6 pb-4 border-b border-white/10">
+        <div className="p-6 pb-4 border-b border-border">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-[10px] font-mono text-[hsl(var(--accent))] uppercase tracking-[0.2em] mb-2">
                 Supplier Benchmark — Pipe Supports for LNG
               </p>
-              <h2 className="text-2xl font-medium text-white">
+              <h2 className="text-2xl font-medium text-foreground">
                 Technical Comparison — 5 Suppliers
               </h2>
-              <p className="text-sm text-[hsl(var(--slate))] mt-1">
+              <p className="text-sm text-muted-foreground mt-1">
                 Reference: {referenceSupplier} (sanctioned) · Weighted scoring across 12 criteria
               </p>
             </div>
@@ -94,39 +94,39 @@ const SupplierBenchmarkModal = ({ open, onOpenChange }: Props) => {
         <div className="overflow-x-auto">
           <table className="w-full text-sm border-collapse">
             <thead>
-              <tr className="border-b border-white/10">
-                <th className="text-left p-3 text-[10px] text-[hsl(var(--slate))] uppercase tracking-wider font-mono font-normal sticky left-0 bg-[hsl(0,0%,4%)] min-w-[180px] z-10">
+              <tr className="border-b border-border">
+                <th className="text-left p-3 text-[10px] text-muted-foreground uppercase tracking-wider font-mono font-normal sticky left-0 bg-background min-w-[180px] z-10">
                   Criterion
                 </th>
                 {suppliers.map((s, i) => (
                   <th key={i} className="text-center p-3 min-w-[120px]">
-                    <div className={`text-xs font-medium ${i === 0 ? 'text-[hsl(var(--slate))]' : 'text-white'}`}>
+                    <div className={`text-xs font-medium ${i === 0 ? 'text-muted-foreground' : 'text-foreground'}`}>
                       {s.name}
                     </div>
-                    <div className="text-[10px] text-[hsl(var(--slate))] font-mono mt-0.5">{s.country}</div>
+                    <div className="text-[10px] text-muted-foreground font-mono mt-0.5">{s.country}</div>
                     {i === 0 && (
-                      <span className="inline-block mt-1 px-2 py-0.5 text-[9px] font-mono bg-[hsl(var(--destructive))]/20 text-[hsl(var(--destructive))] uppercase">
+                      <span className="inline-block mt-1 px-2 py-0.5 text-[9px] font-mono bg-[hsl(var(--destructive))]/10 text-[hsl(var(--destructive))] uppercase">
                         Reference
                       </span>
                     )}
                     {i === 1 && (
-                      <span className="inline-block mt-1 px-2 py-0.5 text-[9px] font-mono bg-[hsl(var(--accent))]/20 text-[hsl(var(--accent))] uppercase">
+                      <span className="inline-block mt-1 px-2 py-0.5 text-[9px] font-mono bg-[hsl(var(--accent))]/15 text-[hsl(var(--accent))] uppercase">
                         Recommended
                       </span>
                     )}
                   </th>
                 ))}
-                <th className="text-left p-3 text-[10px] text-[hsl(var(--slate))] uppercase tracking-wider font-mono font-normal min-w-[200px]">
+                <th className="text-left p-3 text-[10px] text-muted-foreground uppercase tracking-wider font-mono font-normal min-w-[200px]">
                   Notes
                 </th>
               </tr>
             </thead>
             <tbody>
               {criteria.map((c, ci) => (
-                <tr key={ci} className="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
-                  <td className="p-3 sticky left-0 bg-[hsl(0,0%,4%)] z-10">
-                    <div className="text-xs text-white font-medium">{c.name}</div>
-                    <div className="text-[10px] text-[hsl(var(--slate))] font-mono">weight: {c.weight}</div>
+                <tr key={ci} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                  <td className="p-3 sticky left-0 bg-background z-10">
+                    <div className="text-xs text-foreground font-medium">{c.name}</div>
+                    <div className="text-[10px] text-muted-foreground font-mono">weight: {c.weight}</div>
                   </td>
                   {c.scores.map((score, si) => (
                     <td key={si} className="p-3 text-center">
@@ -135,21 +135,21 @@ const SupplierBenchmarkModal = ({ open, onOpenChange }: Props) => {
                       </span>
                     </td>
                   ))}
-                  <td className="p-3 text-[10px] text-[hsl(var(--slate))] leading-relaxed">
+                  <td className="p-3 text-[10px] text-muted-foreground leading-relaxed">
                     {c.notes}
                   </td>
                 </tr>
               ))}
 
               {/* Weighted Total */}
-              <tr className="border-t-2 border-white/20 bg-white/[0.03]">
-                <td className="p-3 sticky left-0 bg-[hsl(0,0%,6%)] z-10">
-                  <div className="text-xs text-white font-bold uppercase">Weighted Total</div>
-                  <div className="text-[10px] text-[hsl(var(--slate))] font-mono">out of {maxTotal}</div>
+              <tr className="border-t-2 border-border bg-muted/30">
+                <td className="p-3 sticky left-0 bg-muted/50 z-10">
+                  <div className="text-xs text-foreground font-bold uppercase">Weighted Total</div>
+                  <div className="text-[10px] text-muted-foreground font-mono">out of {maxTotal}</div>
                 </td>
                 {totals.map((t, i) => (
                   <td key={i} className="p-3 text-center">
-                    <span className={`text-xl font-mono font-bold ${i === 0 ? 'text-[hsl(var(--slate))]' : 'text-white'}`}>
+                    <span className={`text-xl font-mono font-bold ${i === 0 ? 'text-muted-foreground' : 'text-foreground'}`}>
                       {t}
                     </span>
                   </td>
@@ -158,9 +158,9 @@ const SupplierBenchmarkModal = ({ open, onOpenChange }: Props) => {
               </tr>
 
               {/* Sanctions */}
-              <tr className="border-b border-white/5">
-                <td className="p-3 sticky left-0 bg-[hsl(0,0%,4%)] z-10">
-                  <div className="text-xs text-white font-medium">Sanctions Feasibility</div>
+              <tr className="border-b border-border/50">
+                <td className="p-3 sticky left-0 bg-background z-10">
+                  <div className="text-xs text-foreground font-medium">Sanctions Feasibility</div>
                 </td>
                 {sanctionsFeasibility.map((s, i) => (
                   <td key={i} className="p-3 text-center">
@@ -177,9 +177,9 @@ const SupplierBenchmarkModal = ({ open, onOpenChange }: Props) => {
               </tr>
 
               {/* Overall Rating */}
-              <tr className="bg-white/[0.03]">
-                <td className="p-3 sticky left-0 bg-[hsl(0,0%,6%)] z-10">
-                  <div className="text-xs text-white font-bold uppercase">Overall Rating</div>
+              <tr className="bg-muted/30">
+                <td className="p-3 sticky left-0 bg-muted/50 z-10">
+                  <div className="text-xs text-foreground font-bold uppercase">Overall Rating</div>
                 </td>
                 {overallRatings.map((r, i) => (
                   <td key={i} className="p-3 text-center">
@@ -195,8 +195,8 @@ const SupplierBenchmarkModal = ({ open, onOpenChange }: Props) => {
         </div>
 
         {/* Recommendation */}
-        <div className="p-6 border-t border-white/10">
-          <div className="bg-[hsl(var(--accent))]/5 border border-[hsl(var(--accent))]/20 p-5">
+        <div className="p-6 border-t border-border">
+          <div className="bg-[hsl(var(--accent))]/5 border border-[hsl(var(--accent))]/20 p-5 rounded-sm">
             <p className="text-[10px] font-mono text-[hsl(var(--accent))] uppercase tracking-[0.2em] mb-3">
               AI Recommendation
             </p>
@@ -204,8 +204,8 @@ const SupplierBenchmarkModal = ({ open, onOpenChange }: Props) => {
               <div className="flex items-start gap-3">
                 <CheckCircle2 className="w-4 h-4 text-[hsl(var(--accent))] mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-sm text-white font-medium">Bergen PS India (BPSI) — Primary recommendation</p>
-                  <p className="text-xs text-[hsl(var(--slate))] mt-1">
+                  <p className="text-sm text-foreground font-medium">Bergen PS India (BPSI) — Primary recommendation</p>
+                  <p className="text-xs text-muted-foreground mt-1">
                     Highest weighted score (50/{maxTotal}) among feasible suppliers. Hill & Smith PLC backing provides financial stability. 
                     Bergatherm product line is closest technical equivalent to LISEGA HIPAC. 
                     40–60% cost reduction vs European reference. In-house PTFE manufacturing and PSL CAD software.
@@ -215,8 +215,8 @@ const SupplierBenchmarkModal = ({ open, onOpenChange }: Props) => {
               <div className="flex items-start gap-3">
                 <ArrowRight className="w-4 h-4 text-[hsl(var(--accent))] mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-sm text-white font-medium">Next steps</p>
-                  <p className="text-xs text-[hsl(var(--slate))] mt-1">
+                  <p className="text-sm text-foreground font-medium">Next steps</p>
+                  <p className="text-xs text-muted-foreground mt-1">
                     1. Request BPSI technical submittal for 44 kN spring hangers with cryogenic springs · 
                     2. Schedule on-site audit at Pune facility (capacity + QMS verification) · 
                     3. Obtain Jianeng/Wintech pricing as backup for cost negotiation leverage · 
@@ -227,8 +227,8 @@ const SupplierBenchmarkModal = ({ open, onOpenChange }: Props) => {
               <div className="flex items-start gap-3">
                 <AlertTriangle className="w-4 h-4 text-[hsl(var(--warning))] mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-sm text-white font-medium">Risk note</p>
-                  <p className="text-xs text-[hsl(var(--slate))] mt-1">
+                  <p className="text-sm text-foreground font-medium">Risk note</p>
+                  <p className="text-xs text-muted-foreground mt-1">
                     No alternative supplier currently holds TR CU 010/2011 (Russian certification). 
                     All candidates require qualification if Russian market scope is maintained.
                   </p>
