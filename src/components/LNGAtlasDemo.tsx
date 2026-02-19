@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronUp, ChevronDown, Pause, Play, Camera, Wifi, Volume2, VolumeX, FileImage, Radio } from "lucide-react";
+import { ChevronUp, ChevronDown, Pause, Play, Camera, Wifi, Radio } from "lucide-react";
 
 /* ── Scroll Nav ── */
 const ScrollNav = ({ scrollRef }: { scrollRef: React.RefObject<HTMLDivElement> }) => {
@@ -15,7 +15,9 @@ const ScrollNav = ({ scrollRef }: { scrollRef: React.RefObject<HTMLDivElement> }
     };
     check();
     el.addEventListener("scroll", check);
-    return () => el.removeEventListener("scroll", check);
+    const obs = new MutationObserver(check);
+    obs.observe(el, { childList: true, subtree: true });
+    return () => { el.removeEventListener("scroll", check); obs.disconnect(); };
   }, [scrollRef]);
   const scroll = (dir: "up" | "down") => {
     scrollRef.current?.scrollBy({ top: dir === "up" ? -120 : 120, behavior: "smooth" });
@@ -63,10 +65,9 @@ interface InspectionDetail {
   aiGuidance: string;
   measurements?: { param: string; spec: string; actual: string; pass: boolean }[];
   findings?: { severity: "OK" | "MAJOR" | "CRITICAL"; text: string }[];
-  evidenceCapture?: string[];
+  evidenceFiles?: { name: string; type: "img" | "doc" | "thermal" | "video"; status: "verified" | "review" }[];
   voiceNote?: string;
   iotSensors?: { sensor: string; value: string; status: "ok" | "warn" | "crit" }[];
-  cameraCapture?: { filename: string; type: "photo" | "video" | "thermal" }[];
 }
 
 const inspectionDetails: InspectionDetail[] = [
@@ -84,9 +85,11 @@ const inspectionDetails: InspectionDetail[] = [
       { severity: "MAJOR", text: "MTR grade 3.1 instead of 3.2 — third-party witness missing" },
       { severity: "MAJOR", text: "2 WPS without backing PQR — welder qualification gap" },
     ],
-    evidenceCapture: ["MTR_package_scan.pdf", "WPS_register_screenshot.jpg"],
+    evidenceFiles: [
+      { name: "MTR_package_scan.pdf", type: "doc", status: "verified" },
+      { name: "WPS_register.jpg", type: "img", status: "review" },
+    ],
     voiceNote: "Document review complete. Two major findings: MTR certification level insufficient, and two welding procedures lack qualification records.",
-    cameraCapture: [{ filename: "DOC_MTR_stamp.jpg", type: "photo" }],
   },
   {
     stepId: "2",
@@ -102,25 +105,23 @@ const inspectionDetails: InspectionDetail[] = [
       { severity: "MAJOR", text: "Channel head Ni content 0.38% — below spec minimum 0.40%" },
       { severity: "OK", text: "Shell, tubes, nozzles all within specification" },
     ],
-    evidenceCapture: ["PMI_shell_XRF_001.jpg", "PMI_channel_XRF_002.jpg"],
+    evidenceFiles: [
+      { name: "PMI_shell_XRF_001.jpg", type: "img", status: "verified" },
+      { name: "PMI_channel_XRF_002.jpg", type: "img", status: "verified" },
+    ],
     voiceNote: "PMI complete. Channel head nickel content marginally below specification at 0.38 percent.",
     iotSensors: [
       { sensor: "XRF Analyzer", value: "Connected", status: "ok" },
       { sensor: "Temp Probe", value: "22.4°C", status: "ok" },
     ],
-    cameraCapture: [
-      { filename: "PMI_XRF_shell.jpg", type: "photo" },
-      { filename: "PMI_XRF_channel.jpg", type: "photo" },
-    ],
   },
   {
     stepId: "3",
     title: "Dimensional Inspection — Shell & Nozzle Orientation",
-    aiGuidance: "Measure shell OD at 3 cross-sections (ends + mid), overall length, nozzle projection, and flange face flatness. Tolerance per ASME Sec VIII Div 1.",
+    aiGuidance: "Measure shell OD at 3 cross-sections (ends + mid), overall length, nozzle projection, and flange face flatness.",
     measurements: [
       { param: "Shell OD (top)", spec: "1200 ±3mm", actual: "1201.2mm ✓", pass: true },
       { param: "Shell OD (mid)", spec: "1200 ±3mm", actual: "1199.5mm ✓", pass: true },
-      { param: "Shell OD (btm)", spec: "1200 ±3mm", actual: "1200.8mm ✓", pass: true },
       { param: "Overall Length", spec: "6400 ±5mm", actual: "6403mm ✓", pass: true },
       { param: "Nozzle N1 Proj.", spec: "250 ±2mm", actual: "252.5mm", pass: false },
       { param: "Flange Flatness", spec: "≤0.25mm", actual: "0.18mm ✓", pass: true },
@@ -129,26 +130,25 @@ const inspectionDetails: InspectionDetail[] = [
       { severity: "OK", text: "Shell dimensions within tolerance — roundness acceptable" },
       { severity: "MAJOR", text: "Nozzle N1 projection 252.5mm exceeds +2mm tolerance" },
     ],
-    evidenceCapture: ["dim_shell_OD_laser.jpg", "dim_nozzle_projection.jpg", "dim_flange_flatness.jpg"],
+    evidenceFiles: [
+      { name: "dim_shell_laser.jpg", type: "img", status: "verified" },
+      { name: "dim_nozzle_proj.mp4", type: "video", status: "verified" },
+      { name: "dim_flange_flat.jpg", type: "img", status: "verified" },
+    ],
     voiceNote: "Dimensional check done. Nozzle N1 projection out of tolerance by half a millimeter.",
     iotSensors: [
       { sensor: "Laser Scanner", value: "Active", status: "ok" },
       { sensor: "Digital Caliper", value: "Synced", status: "ok" },
       { sensor: "Inclinometer", value: "0.02°", status: "ok" },
     ],
-    cameraCapture: [
-      { filename: "DIM_shell_OD_laser_scan.jpg", type: "photo" },
-      { filename: "DIM_nozzle_projection.mp4", type: "video" },
-    ],
   },
   {
     stepId: "4",
-    title: "Weld Visual Inspection — All Seam & Circumferential Welds",
-    aiGuidance: "Inspect all longitudinal seam welds, circumferential welds, and nozzle-to-shell welds per GOST-34347-2017. Check reinforcement height, undercut, porosity, cracks.",
+    title: "Weld Visual Inspection — Seam & Circumferential",
+    aiGuidance: "Inspect all longitudinal seam welds, circ. welds, nozzle-to-shell welds per GOST-34347-2017. Check reinforcement, undercut, porosity, cracks.",
     measurements: [
       { param: "Long. Seam Reinforc.", spec: "≤3mm", actual: "4.2mm", pass: false },
       { param: "Circ. Weld Undercut", spec: "≤0.5mm", actual: "0.8mm", pass: false },
-      { param: "Nozzle Weld Profile", spec: "Smooth blend", actual: "Irregular", pass: false },
       { param: "Weld Surface Cracks", spec: "None allowed", actual: "Crack found", pass: false },
       { param: "Weld Spatter", spec: "Removed", actual: "Present", pass: false },
     ],
@@ -157,26 +157,24 @@ const inspectionDetails: InspectionDetail[] = [
       { severity: "CRITICAL", text: "Longitudinal crack in seam weld — 4mm visible, may extend deeper" },
       { severity: "MAJOR", text: "Underfilled weld: 0.8mm depth × 7mm — stress concentration risk" },
       { severity: "MAJOR", text: "Excessive reinforcement 4.2mm (max 3mm) — grinding required" },
-      { severity: "MAJOR", text: "Rust contamination on saddle support — preservation failure" },
     ],
-    evidenceCapture: ["weld_crack_HAZ_40mm.jpg", "weld_underfill_seam.jpg", "weld_long_crack.jpg", "rust_saddle.jpg"],
-    voiceNote: "CRITICAL — Two surface cracks identified in weld zone. Longitudinal crack in seam weld requires immediate RT confirmation. Hydrostatic test must be blocked.",
+    evidenceFiles: [
+      { name: "weld_crack_HAZ.jpg", type: "img", status: "verified" },
+      { name: "weld_long_crack.jpg", type: "img", status: "verified" },
+      { name: "weld_thermal_scan.jpg", type: "thermal", status: "verified" },
+      { name: "weld_inspection.mp4", type: "video", status: "verified" },
+    ],
+    voiceNote: "CRITICAL — Two surface cracks identified in weld zone. Longitudinal crack requires immediate RT confirmation. Hydrostatic test must be blocked.",
     iotSensors: [
-      { sensor: "Weld Gauge", value: "4.2mm reinf.", status: "crit" },
+      { sensor: "Weld Gauge", value: "4.2mm", status: "crit" },
       { sensor: "Magnetic Particle", value: "Indication+", status: "crit" },
       { sensor: "Surface Temp", value: "18.6°C", status: "ok" },
-    ],
-    cameraCapture: [
-      { filename: "WELD_crack_HAZ_closeup.jpg", type: "photo" },
-      { filename: "WELD_long_crack_seam.jpg", type: "photo" },
-      { filename: "WELD_thermal_scan.jpg", type: "thermal" },
-      { filename: "WELD_inspection_video.mp4", type: "video" },
     ],
   },
   {
     stepId: "5",
     title: "NDT — Radiography (RT) on Seam Welds",
-    aiGuidance: "Review 100% RT films for longitudinal and circumferential seams. AI digitization of RT films — check for slag, porosity, lack of fusion, cracks per ASME Sec V.",
+    aiGuidance: "Review 100% RT films for longitudinal and circ. seams. AI digitization — check for slag, porosity, lack of fusion, cracks per ASME Sec V.",
     measurements: [
       { param: "Long. Seam RT", spec: "Accept per ASME V", actual: "Linear indication", pass: false },
       { param: "Circ. Weld #1 RT", spec: "Accept", actual: "Slag 12mm", pass: false },
@@ -188,73 +186,70 @@ const inspectionDetails: InspectionDetail[] = [
       { severity: "MAJOR", text: "Slag inclusion 12mm in circ. weld #1 — exceeds ASME acceptance" },
       { severity: "MAJOR", text: "Porosity cluster in circ. weld #3 — requires repair + re-RT" },
     ],
-    evidenceCapture: ["RT_film_long_seam_digitized.jpg", "RT_film_circ1_slag.jpg"],
-    voiceNote: "NDT radiography confirms crack in longitudinal seam. Slag and porosity in circumferential welds. Three out of four weld zones rejected.",
-    iotSensors: [
-      { sensor: "RT Source", value: "Ir-192 Active", status: "warn" },
-      { sensor: "Dosimeter", value: "0.12 mSv/h", status: "ok" },
-      { sensor: "Film Densitometer", value: "D=2.4", status: "ok" },
+    evidenceFiles: [
+      { name: "RT_film_digitized.jpg", type: "img", status: "verified" },
+      { name: "RT_circ1_slag.jpg", type: "img", status: "verified" },
     ],
-    cameraCapture: [
-      { filename: "RT_film_digitized_AI.jpg", type: "photo" },
-      { filename: "RT_setup_photo.jpg", type: "photo" },
+    voiceNote: "NDT radiography confirms crack in longitudinal seam. Slag and porosity in circumferential welds. Three of four zones rejected.",
+    iotSensors: [
+      { sensor: "RT Source", value: "Ir-192", status: "warn" },
+      { sensor: "Dosimeter", value: "0.12 mSv/h", status: "ok" },
     ],
   },
   {
     stepId: "8",
-    title: "Hydrostatic Pressure Test — 1.5× Design Pressure",
-    aiGuidance: "Test pressure: 42.0 barg (1.5 × 28.0 barg design). Hold 30 min. Monitor all gauges, check for leaks at welds, flanges, nozzle connections. HOLD POINT — do not proceed until weld repairs complete.",
+    title: "Hydrostatic Pressure Test — BLOCKED",
+    aiGuidance: "Test pressure: 42.0 barg. Hold 30 min. HOLD POINT — do not proceed until weld repairs complete.",
     measurements: [
       { param: "Test Pressure", spec: "42.0 barg", actual: "— BLOCKED —", pass: false },
       { param: "Hold Time", spec: "30 min", actual: "— BLOCKED —", pass: false },
       { param: "Ambient Temp", spec: ">5°C", actual: "12°C ✓", pass: true },
-      { param: "Test Medium", spec: "Clean water", actual: "Available ✓", pass: true },
     ],
     findings: [
       { severity: "CRITICAL", text: "HYDRO TEST BLOCKED — 5 weld defects must be repaired before pressurization" },
-      { severity: "CRITICAL", text: "Crack in pressure boundary — catastrophic failure risk if tested as-is" },
+      { severity: "CRITICAL", text: "Crack in pressure boundary — catastrophic failure risk" },
     ],
-    evidenceCapture: [],
-    voiceNote: "HYDRO TEST BLOCKED. Five weld defects in pressure boundary prevent safe pressurization. Catastrophic failure risk. All repairs must be completed and re-inspected.",
+    evidenceFiles: [],
+    voiceNote: "HYDRO TEST BLOCKED. Five weld defects in pressure boundary. Catastrophic failure risk if tested.",
     iotSensors: [
-      { sensor: "Pressure Gauge A", value: "0.0 barg", status: "ok" },
-      { sensor: "Pressure Gauge B", value: "0.0 barg", status: "ok" },
-      { sensor: "Ambient Temp", value: "12.1°C", status: "ok" },
-      { sensor: "Water Fill Level", value: "Standby", status: "warn" },
+      { sensor: "Pressure A", value: "0.0 barg", status: "ok" },
+      { sensor: "Pressure B", value: "0.0 barg", status: "ok" },
+      { sensor: "Water Fill", value: "Standby", status: "warn" },
     ],
-    cameraCapture: [],
   },
   {
     stepId: "9",
     title: "Coating / Painting Inspection",
-    aiGuidance: "Verify surface preparation to Sa 2.5 (SSPC-SP10). Measure DFT at 5 spots per m². Check primer, intermediate, and topcoat adhesion. Verify RAL color match.",
+    aiGuidance: "Verify surface prep Sa 2.5. Measure DFT at 5 spots per m². Check adhesion. Holiday test.",
     measurements: [
       { param: "Surface Prep.", spec: "Sa 2.5", actual: "Sa 2.0", pass: false },
       { param: "DFT Primer", spec: "75 ±15 μm", actual: "62μm", pass: false },
-      { param: "DFT Intermediate", spec: "100 ±20 μm", actual: "95μm ✓", pass: true },
-      { param: "DFT Topcoat", spec: "75 ±15 μm", actual: "78μm ✓", pass: true },
       { param: "Total DFT", spec: "250 ±25 μm", actual: "235μm", pass: false },
-      { param: "Holiday Test", spec: "No pinholes", actual: "3 holidays found", pass: false },
+      { param: "Holiday Test", spec: "No pinholes", actual: "3 holidays", pass: false },
     ],
     findings: [
       { severity: "MAJOR", text: "Surface preparation Sa 2.0 — does not meet Sa 2.5 minimum" },
-      { severity: "MAJOR", text: "Primer DFT 62μm below 60μm minimum — adhesion risk" },
       { severity: "MAJOR", text: "3 holidays (pinholes) detected — corrosion initiation points" },
     ],
-    evidenceCapture: ["coating_DFT_gauge.jpg", "holiday_detector_results.jpg"],
-    voiceNote: "Coating inspection: surface preparation only Sa 2.0, below Sa 2.5 requirement. Primer thickness insufficient. Three pinholes detected by holiday test.",
-    iotSensors: [
-      { sensor: "DFT Gauge", value: "235μm avg", status: "warn" },
-      { sensor: "Holiday Detector", value: "3 found", status: "crit" },
-      { sensor: "Humidity", value: "62% RH", status: "ok" },
-      { sensor: "Surface Temp", value: "19.2°C", status: "ok" },
+    evidenceFiles: [
+      { name: "coating_DFT.jpg", type: "img", status: "verified" },
+      { name: "holiday_test.jpg", type: "img", status: "verified" },
+      { name: "surface_prep.mp4", type: "video", status: "review" },
     ],
-    cameraCapture: [
-      { filename: "COAT_DFT_measurement.jpg", type: "photo" },
-      { filename: "COAT_holiday_pinhole.jpg", type: "photo" },
-      { filename: "COAT_surface_prep.mp4", type: "video" },
+    voiceNote: "Coating: surface prep only Sa 2.0, below requirement. Three pinholes detected by holiday test.",
+    iotSensors: [
+      { sensor: "DFT Gauge", value: "235μm", status: "warn" },
+      { sensor: "Holiday Det.", value: "3 found", status: "crit" },
+      { sensor: "Humidity", value: "62% RH", status: "ok" },
     ],
   },
+];
+
+/* ── Voice alert parts for TTS ── */
+const voiceAlertParts = [
+  "Critical weld defects detected on Deethanizer Condenser.",
+  "Two surface cracks in heat affected zone. Hydrostatic test blocked.",
+  "Equipment status: Rejected. Return to fabricator recommended.",
 ];
 
 const LNGAtlasDemo = () => {
@@ -263,24 +258,29 @@ const LNGAtlasDemo = () => {
   const [step, setStep] = useState(0);
   const [activeITPIndex, setActiveITPIndex] = useState(-1);
   const [itpStatuses, setItpStatuses] = useState<ITPStep["status"][]>(itpSteps.map(() => "pending"));
-  const [voiceActive, setVoiceActive] = useState(false);
-  const [activeVoiceText, setActiveVoiceText] = useState("");
-  const [cameraActive, setCameraActive] = useState(false);
-  const [iotConnected, setIotConnected] = useState(0);
+  const [photoFlash, setPhotoFlash] = useState(false);
+
+  // Voice / Copilot state
+  const [copilotSpeaking, setCopilotSpeaking] = useState(false);
+  const [copilotText, setCopilotText] = useState("");
+  const [speakerPulsing, setSpeakerPulsing] = useState(false);
 
   const leftScrollRef = useRef<HTMLDivElement>(null);
   const middleScrollRef = useRef<HTMLDivElement>(null);
   const rightScrollRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const pausedRef = useRef(false);
+  const copilotSpeakingRef = useRef(false);
   useEffect(() => { pausedRef.current = paused; }, [paused]);
+  useEffect(() => { copilotSpeakingRef.current = copilotSpeaking; }, [copilotSpeaking]);
 
-  // Scroll middle panel to bottom on step change — ONLY scroll the container, not the page
+  // Scroll middle panel only
   useEffect(() => {
     const el = middleScrollRef.current;
     if (el) setTimeout(() => el.scrollTo({ top: el.scrollHeight, behavior: "smooth" }), 200);
   }, [step]);
 
-  // Scroll left panel to active ITP — use scrollTo on container to prevent page jump
+  // Scroll left panel — container only, no page jump
   useEffect(() => {
     const el = leftScrollRef.current;
     if (el && activeITPIndex >= 0) {
@@ -289,93 +289,124 @@ const LNGAtlasDemo = () => {
       if (target) {
         const containerRect = el.getBoundingClientRect();
         const targetRect = target.getBoundingClientRect();
-        const scrollOffset = targetRect.top - containerRect.top - containerRect.height / 2 + targetRect.height / 2;
-        el.scrollBy({ top: scrollOffset, behavior: "smooth" });
+        el.scrollBy({ top: targetRect.top - containerRect.top - containerRect.height / 2 + targetRect.height / 2, behavior: "smooth" });
       }
     }
   }, [activeITPIndex]);
 
-  // Animation timeline — pure inspection, no claims
+  // Pulse speaker when visible
   useEffect(() => {
-    setStep(0);
-    setActiveITPIndex(-1);
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !copilotSpeaking) setSpeakerPulsing(true);
+    }, { threshold: 0.5 });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [copilotSpeaking]);
+  useEffect(() => { if (copilotSpeaking) setSpeakerPulsing(false); }, [copilotSpeaking]);
+
+  // TTS speak function
+  const speakAlert = useCallback(() => {
+    if (copilotSpeaking) {
+      window.speechSynthesis.cancel();
+      setCopilotSpeaking(false);
+      setCopilotText("");
+      return;
+    }
+    window.speechSynthesis.cancel();
+    const voices = window.speechSynthesis.getVoices();
+    const englishVoices = voices.filter(v => v.lang.startsWith("en"));
+    const preferred = englishVoices.find(v => v.name.includes("Google") || v.name.includes("Samantha") || v.name.includes("Daniel")) || englishVoices[0];
+    setCopilotSpeaking(true);
+    voiceAlertParts.forEach((text, i) => {
+      const u = new SpeechSynthesisUtterance(text);
+      u.rate = 0.95; u.pitch = 1.0; u.lang = "en-US";
+      if (preferred) u.voice = preferred;
+      u.onstart = () => setCopilotText(text);
+      if (i === voiceAlertParts.length - 1) {
+        u.onend = () => { setCopilotSpeaking(false); setCopilotText(""); };
+        u.onerror = () => { setCopilotSpeaking(false); setCopilotText(""); };
+      }
+      window.speechSynthesis.speak(u);
+    });
+  }, [copilotSpeaking]);
+
+  // Animation timeline
+  useEffect(() => {
+    setStep(0); setActiveITPIndex(-1);
     setItpStatuses(itpSteps.map(() => "pending"));
-    setVoiceActive(false);
-    setActiveVoiceText("");
-    setCameraActive(false);
-    setIotConnected(0);
+    setPhotoFlash(false);
+    middleScrollRef.current?.scrollTo({ top: 0 });
     const timers: number[] = [];
     const t = (delay: number, fn: () => void) => {
       timers.push(window.setTimeout(() => {
         if (!pausedRef.current) fn();
-        else {
-          const retry = () => { if (!pausedRef.current) fn(); else window.setTimeout(retry, 500); };
-          window.setTimeout(retry, 500);
-        }
+        else { const retry = () => { if (!pausedRef.current) fn(); else window.setTimeout(retry, 500); }; window.setTimeout(retry, 500); }
       }, delay));
     };
-
     const setITP = (index: number, status: ITPStep["status"]) => {
       setItpStatuses(prev => { const n = [...prev]; n[index] = status; return n; });
     };
 
-    // Step 1: Doc Review
-    t(600, () => { setStep(1); setActiveITPIndex(0); setITP(0, "active"); setCameraActive(true); });
-    t(2000, () => { setStep(2); setITP(0, "fail"); setCameraActive(false); setVoiceActive(true); setActiveVoiceText(inspectionDetails[0].voiceNote || ""); });
-    t(3000, () => { setVoiceActive(false); });
+    // Doc Review
+    t(600, () => { setStep(1); setActiveITPIndex(0); setITP(0, "active"); });
+    t(1500, () => { setPhotoFlash(true); });
+    t(1750, () => { setPhotoFlash(false); });
+    t(2000, () => { setStep(2); setITP(0, "fail"); });
 
-    // Step 2: PMI
-    t(3500, () => { setStep(3); setActiveITPIndex(1); setITP(1, "active"); setIotConnected(2); setCameraActive(true); });
-    t(5000, () => { setStep(4); setITP(1, "fail"); setCameraActive(false); setVoiceActive(true); setActiveVoiceText(inspectionDetails[1].voiceNote || ""); });
-    t(6000, () => { setVoiceActive(false); });
+    // PMI
+    t(3500, () => { setStep(3); setActiveITPIndex(1); setITP(1, "active"); });
+    t(5000, () => { setStep(4); setITP(1, "fail"); });
 
-    // Step 3: Dimensional
-    t(6500, () => { setStep(5); setActiveITPIndex(2); setITP(2, "active"); setIotConnected(3); setCameraActive(true); });
-    t(8000, () => { setStep(6); setITP(2, "fail"); setCameraActive(false); setVoiceActive(true); setActiveVoiceText(inspectionDetails[2].voiceNote || ""); });
-    t(9000, () => { setVoiceActive(false); });
+    // Dimensional
+    t(6500, () => { setStep(5); setActiveITPIndex(2); setITP(2, "active"); });
+    t(8000, () => { setStep(6); setITP(2, "fail"); });
 
-    // Step 4: Weld Visual — THE MAIN EVENT
-    t(9500, () => { setStep(7); setActiveITPIndex(3); setITP(3, "active"); setIotConnected(3); setCameraActive(true); });
+    // Weld Visual
+    t(9500, () => { setStep(7); setActiveITPIndex(3); setITP(3, "active"); });
+    t(10000, () => { setPhotoFlash(true); });
+    t(10250, () => { setPhotoFlash(false); });
     t(10500, () => setStep(8));
-    t(12000, () => { setStep(9); setITP(3, "fail"); setCameraActive(false); setVoiceActive(true); setActiveVoiceText(inspectionDetails[3].voiceNote || ""); });
-    t(13200, () => { setVoiceActive(false); });
+    t(12000, () => { setStep(9); setITP(3, "fail"); });
 
-    // Step 5: NDT RT
-    t(13500, () => { setStep(10); setActiveITPIndex(4); setITP(4, "active"); setIotConnected(3); setCameraActive(true); });
-    t(15000, () => { setStep(11); setITP(4, "fail"); setCameraActive(false); setVoiceActive(true); setActiveVoiceText(inspectionDetails[4].voiceNote || ""); });
-    t(16000, () => { setVoiceActive(false); });
+    // NDT RT
+    t(13500, () => { setStep(10); setActiveITPIndex(4); setITP(4, "active"); });
+    t(15000, () => { setStep(11); setITP(4, "fail"); });
 
-    // Skip UT/PWHT (pass for demo brevity)
-    t(16200, () => { setITP(5, "pass"); setITP(6, "pass"); });
+    // Skip UT/PWHT
+    t(15500, () => { setITP(5, "pass"); setITP(6, "pass"); });
 
-    // Step 6: Hydro BLOCKED
-    t(16500, () => { setStep(12); setActiveITPIndex(7); setITP(7, "active"); setIotConnected(4); });
-    t(18000, () => { setStep(13); setITP(7, "fail"); setVoiceActive(true); setActiveVoiceText(inspectionDetails[5].voiceNote || ""); });
-    t(19200, () => { setVoiceActive(false); });
+    // Hydro BLOCKED
+    t(16500, () => { setStep(12); setActiveITPIndex(7); setITP(7, "active"); });
+    t(18000, () => { setStep(13); setITP(7, "fail"); });
 
-    // Step 7: Coating
-    t(19500, () => { setStep(14); setActiveITPIndex(8); setITP(8, "active"); setIotConnected(4); setCameraActive(true); });
-    t(21000, () => { setStep(15); setITP(8, "fail"); setCameraActive(false); setVoiceActive(true); setActiveVoiceText(inspectionDetails[6].voiceNote || ""); });
-    t(22000, () => { setVoiceActive(false); });
+    // Coating
+    t(19500, () => { setStep(14); setActiveITPIndex(8); setITP(8, "active"); });
+    t(20000, () => { setPhotoFlash(true); });
+    t(20250, () => { setPhotoFlash(false); });
+    t(21000, () => { setStep(15); setITP(8, "fail"); });
 
-    // Skip preservation (pass for demo)
-    t(22200, () => { setITP(9, "pass"); });
+    // Preservation pass
+    t(21500, () => { setITP(9, "pass"); });
 
-    // Final Acceptance BLOCKED
-    t(22500, () => { setStep(16); setActiveITPIndex(10); setITP(10, "fail"); });
+    // Final REJECTED
+    t(22000, () => { setStep(16); setActiveITPIndex(10); setITP(10, "fail"); });
 
-    // AI Summary
+    // Summary
     t(24000, () => setStep(17));
 
     // Restart
-    t(30000, () => setLoopKey(k => k + 1));
+    t(30000, () => {
+      const wait = () => { if (copilotSpeakingRef.current) setTimeout(wait, 1000); else setLoopKey(k => k + 1); };
+      wait();
+    });
 
     return () => timers.forEach(clearTimeout);
   }, [loopKey]);
 
   const togglePause = useCallback(() => setPaused(p => !p), []);
 
-  // Map step to which inspection detail to show
   const getVisibleDetails = (): InspectionDetail[] => {
     const visible: InspectionDetail[] = [];
     if (step >= 2) visible.push(inspectionDetails[0]);
@@ -390,51 +421,35 @@ const LNGAtlasDemo = () => {
 
   const totalFindings = getVisibleDetails().reduce((sum, d) => sum + (d.findings?.filter(f => f.severity !== "OK").length || 0), 0);
   const criticalCount = getVisibleDetails().reduce((sum, d) => sum + (d.findings?.filter(f => f.severity === "CRITICAL").length || 0), 0);
-  const totalEvidence = getVisibleDetails().reduce((sum, d) => sum + (d.evidenceCapture?.length || 0) + (d.cameraCapture?.length || 0), 0);
+  const allEvidence = getVisibleDetails().flatMap(d => d.evidenceFiles || []);
 
   const TOTAL_DURATION = 30;
 
   return (
-    <div className="w-full h-full overflow-hidden">
+    <div ref={sectionRef} className="w-full h-full overflow-hidden">
       <div className="w-full h-full bg-[hsl(220,18%,13%)] rounded-[16px] md:rounded-[20px] border border-white/10 flex flex-col overflow-hidden relative">
 
+        {/* Camera Flash */}
+        <AnimatePresence>
+          {photoFlash && (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-white z-50" />
+          )}
+        </AnimatePresence>
+
         {/* Top Bar */}
-        <div className="flex items-center justify-between px-4 md:px-8 py-3 border-b border-white/[0.05]">
+        <div className="flex items-center justify-between px-6 md:px-8 py-3">
           <div className="flex items-center gap-2">
             <div className="w-2.5 h-2.5 rounded-full bg-[#6EA996] animate-pulse" />
             <span className="text-[12px] text-white/40 font-medium tracking-wider uppercase">AI Inspector Autopilot</span>
           </div>
-          <span className="text-[13px] font-bold text-white tracking-wide hidden md:block">G1-22E05 · Deethanizer Condenser · Heat Exchanger Inspection</span>
-          <div className="flex items-center gap-2">
-            {/* Feature indicators */}
-            <div className={`flex items-center gap-1 px-2 py-1 rounded border transition-all ${cameraActive ? "border-[#6EA996]/40 bg-[#6EA996]/10" : "border-white/10 bg-white/5"}`}>
-              <Camera className={`w-3 h-3 ${cameraActive ? "text-[#6EA996]" : "text-white/30"}`} />
-              {cameraActive && <span className="text-[8px] font-bold text-[#6EA996] uppercase">REC</span>}
-            </div>
-            <div className={`flex items-center gap-1 px-2 py-1 rounded border transition-all ${voiceActive ? "border-[#F5A623]/40 bg-[#F5A623]/10" : "border-white/10 bg-white/5"}`}>
-              {voiceActive ? <Volume2 className="w-3 h-3 text-[#F5A623] animate-pulse" /> : <VolumeX className="w-3 h-3 text-white/30" />}
-            </div>
-            <div className={`flex items-center gap-1 px-2 py-1 rounded border transition-all ${iotConnected > 0 ? "border-[#6EA996]/40 bg-[#6EA996]/10" : "border-white/10 bg-white/5"}`}>
-              <Wifi className={`w-3 h-3 ${iotConnected > 0 ? "text-[#6EA996]" : "text-white/30"}`} />
-              {iotConnected > 0 && <span className="text-[8px] font-bold text-[#6EA996]">{iotConnected}</span>}
-            </div>
-            <div className="flex items-center gap-1 px-2 py-1 rounded border border-white/10 bg-white/5">
-              <FileImage className="w-3 h-3 text-white/40" />
-              <span className="text-[8px] font-bold text-white/40">{totalEvidence}</span>
-            </div>
-
-            <button
-              onClick={togglePause}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-colors ml-1"
-            >
+          <span className="text-[14px] font-bold text-white tracking-wide hidden md:block">G1-22E05 · Deethanizer Condenser</span>
+          <div className="flex items-center gap-3">
+            <button onClick={togglePause} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 transition-colors">
               {paused ? <Play className="w-3 h-3 text-[#6EA996]" /> : <Pause className="w-3 h-3 text-white/50" />}
               <span className="text-[10px] font-bold text-white/50 uppercase tracking-wider">{paused ? "Play" : "Pause"}</span>
             </button>
-            <div className="w-24 h-2 bg-white/8 rounded-full overflow-hidden">
-              <motion.div
-                key={loopKey}
-                initial={{ width: 0 }}
-                animate={{ width: "100%" }}
+            <div className="w-20 h-2 bg-white/8 rounded-full overflow-hidden">
+              <motion.div key={loopKey} initial={{ width: 0 }} animate={{ width: "100%" }}
                 transition={{ duration: TOTAL_DURATION, ease: "linear" }}
                 className="h-full bg-[#6EA996] rounded-full"
                 style={paused ? { animationPlayState: "paused" } : {}}
@@ -443,56 +458,31 @@ const LNGAtlasDemo = () => {
           </div>
         </div>
 
-        {/* Voice Output Bar */}
-        <AnimatePresence>
-          {voiceActive && activeVoiceText && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              className="border-b border-[#F5A623]/20 bg-[#F5A623]/5 overflow-hidden"
-            >
-              <div className="px-4 md:px-8 py-2 flex items-center gap-3">
-                <div className="flex items-center gap-2 shrink-0">
-                  <Volume2 className="w-3.5 h-3.5 text-[#F5A623] animate-pulse" />
-                  <span className="text-[9px] font-bold text-[#F5A623] uppercase tracking-wider">Voice Output</span>
-                </div>
-                <p className="text-[10px] text-white/50 leading-relaxed truncate">{activeVoiceText}</p>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
         {/* Main 3-Column */}
         <div className="flex-1 flex overflow-hidden min-h-0">
 
-          {/* LEFT — ITP Checklist */}
+          {/* LEFT — ITP Checklist + Evidence */}
           <div className="flex-[25] border-r border-white/[0.03] flex flex-col overflow-hidden">
-            <div className="px-4 py-3 border-b border-white/[0.05]">
+            <div className="px-4 py-3">
               <span className="text-[12px] font-bold text-white/50 uppercase tracking-wider">ITP Checklist</span>
-              <div className="text-[10px] text-white/25 mt-1">Inspection & Test Plan — FAT</div>
+              <div className="text-[10px] text-white/25 mt-1">Heat Exchanger FAT · GOST-34347</div>
               <div className="flex items-center gap-2 mt-2">
-                <span className="text-[9px] px-1.5 py-0.5 bg-[#AE3D3D]/20 text-[#AE3D3D] font-bold rounded">H = Hold</span>
-                <span className="text-[9px] px-1.5 py-0.5 bg-[#F5A623]/20 text-[#F5A623] font-bold rounded">W = Witness</span>
-                <span className="text-[9px] px-1.5 py-0.5 bg-white/10 text-white/40 font-bold rounded">R = Review</span>
+                <span className="text-[9px] px-1.5 py-0.5 bg-[#AE3D3D]/20 text-[#AE3D3D] font-bold rounded">H</span>
+                <span className="text-[9px] px-1.5 py-0.5 bg-[#F5A623]/20 text-[#F5A623] font-bold rounded">W</span>
+                <span className="text-[9px] px-1.5 py-0.5 bg-white/10 text-white/40 font-bold rounded">R</span>
               </div>
             </div>
 
-            <div className="flex-1 overflow-y-auto px-3 py-3 space-y-1 relative" ref={leftScrollRef} style={{ scrollbarWidth: "none" }}>
+            <div className="flex-1 overflow-y-auto px-3 py-2 space-y-1 relative" ref={leftScrollRef} style={{ scrollbarWidth: "none" }}>
               <ScrollNav scrollRef={leftScrollRef} />
               {itpSteps.map((itp, i) => {
                 const status = itpStatuses[i];
                 const isActive = i === activeITPIndex;
                 return (
-                  <motion.div
-                    key={itp.id}
-                    data-itp-item
+                  <motion.div key={itp.id} data-itp-item
                     initial={{ opacity: 0.4 }}
-                    animate={{
-                      opacity: status !== "pending" ? 1 : 0.4,
-                      scale: isActive ? 1.02 : 1,
-                    }}
-                    className={`rounded-lg px-3 py-2.5 transition-colors ${
+                    animate={{ opacity: status !== "pending" ? 1 : 0.4, scale: isActive ? 1.02 : 1 }}
+                    className={`rounded-lg px-3 py-2 transition-colors ${
                       isActive ? "bg-[#6EA996]/10 border border-[#6EA996]/30" :
                       status === "fail" ? "bg-[#AE3D3D]/5 border border-[#AE3D3D]/15" :
                       status === "pass" ? "bg-[#6EA996]/5 border border-[#6EA996]/15" :
@@ -517,6 +507,36 @@ const LNGAtlasDemo = () => {
               })}
             </div>
 
+            {/* Evidence Section — same as homepage */}
+            <div className="px-4 py-4 border-t border-white/[0.05]">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[12px] font-bold text-white/50 uppercase tracking-wider">Evidence</span>
+                <span className={`text-[12px] font-bold ${allEvidence.length >= 5 ? "text-[#6EA996]" : "text-[#F5A623]"}`}>
+                  {allEvidence.filter(e => e.status === "verified").length} / {allEvidence.length} ✓
+                </span>
+              </div>
+              <div className="space-y-1.5 max-h-[120px] overflow-y-auto" style={{ scrollbarWidth: "none" }}>
+                {allEvidence.slice(-5).map((ev, i) => (
+                  <EvidenceItem key={i} name={ev.name} type={ev.type} status={ev.status} />
+                ))}
+                {allEvidence.length === 0 && (
+                  <div className="text-[10px] text-white/20 italic py-2">No evidence captured yet</div>
+                )}
+              </div>
+              <div className="flex gap-2 mt-3">
+                <button className="flex-1 flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 rounded-lg py-2.5 transition-colors group border border-white/8 hover:border-white/20">
+                  <Camera className="w-4 h-4 text-white/30 group-hover:text-[#6EA996] transition-colors" />
+                  <span className="text-[10px] text-white/30 group-hover:text-white/60 font-medium">Capture</span>
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 rounded-lg py-2.5 transition-colors group border border-white/8 hover:border-white/20">
+                  <svg className="w-4 h-4 text-white/30 group-hover:text-[#6EA996] transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" /><polyline points="17 8 12 3 7 8" /><line x1="12" y1="3" x2="12" y2="15" />
+                  </svg>
+                  <span className="text-[10px] text-white/30 group-hover:text-white/60 font-medium">Upload</span>
+                </button>
+              </div>
+            </div>
+
             {/* ITP Summary */}
             <div className="px-4 py-3 border-t border-white/[0.05]">
               <div className="flex items-center justify-between mb-1">
@@ -533,12 +553,13 @@ const LNGAtlasDemo = () => {
             </div>
           </div>
 
-          {/* MIDDLE — AI Inspector Guidance */}
+          {/* MIDDLE — AI Inspector View */}
           <div className="flex-[45] border-r border-white/[0.03] flex flex-col overflow-hidden">
-            <div className="px-6 py-3 border-b border-white/[0.05]">
-              <div className="flex items-center justify-between">
-                <span className="text-[12px] font-bold text-white/50 uppercase tracking-wider">AI Inspector View</span>
+            {/* Header with action icons — same as homepage */}
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="px-6 py-4">
+              <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-3">
+                  <span className="text-[12px] font-bold text-white/50 uppercase tracking-wider">AI Inspector View</span>
                   {totalFindings > 0 && (
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                       className="flex items-center gap-1 px-2 py-1 border border-[#AE3D3D]/30 rounded">
@@ -546,16 +567,29 @@ const LNGAtlasDemo = () => {
                       {criticalCount > 0 && <span className="text-[9px] text-[#AE3D3D] font-bold">({criticalCount} CRIT)</span>}
                     </motion.div>
                   )}
-                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                    className="flex items-center gap-1 px-2 py-1 border border-[#6EA996]/40 rounded">
-                    <div className="w-1.5 h-1.5 bg-[#6EA996] rounded-full animate-pulse" />
-                    <span className="text-[9px] text-[#6EA996] font-bold uppercase">Autopilot</span>
-                  </motion.div>
+                </div>
+                <div className="flex gap-2">
+                  {[
+                    { icon: "🔊", active: copilotSpeaking, onClick: speakAlert },
+                    { icon: "📷", active: photoFlash },
+                    { icon: "📎", active: false },
+                  ].map((btn, i) => (
+                    <button key={i} onClick={btn.onClick}
+                      className={`w-8 h-8 flex items-center justify-center rounded-lg transition-colors text-[14px] border ${
+                        btn.active ? "bg-[#6EA996]/15 border-[#6EA996] ring-1 ring-[#6EA996]/30" : "bg-white/5 border-transparent hover:bg-white/10 hover:border-white/10"
+                      }`}
+                    >{btn.icon}</button>
+                  ))}
                 </div>
               </div>
-            </div>
+              <div className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 bg-[#6EA996] rounded-full animate-pulse" />
+                <span className="text-[10px] text-[#6EA996] font-bold uppercase tracking-wider">Autopilot Active</span>
+              </div>
+            </motion.div>
 
-            <div ref={middleScrollRef} className="flex-1 overflow-y-auto px-6 py-4 space-y-3 relative" style={{ scrollbarWidth: "none" }}>
+            {/* AI Guidance — scrollable chat area */}
+            <div ref={middleScrollRef} className="flex-1 overflow-y-auto px-6 py-2 space-y-3 relative" style={{ scrollbarWidth: "none" }}>
               <ScrollNav scrollRef={middleScrollRef} />
 
               {/* Welcome */}
@@ -564,7 +598,7 @@ const LNGAtlasDemo = () => {
                   className="bg-[#6EA996]/8 border border-[#6EA996]/20 rounded-lg p-4">
                   <div className="text-[11px] text-[#6EA996] font-bold mb-1">Atlas AI — Inspector Autopilot Activated</div>
                   <p className="text-[10px] text-white/50 leading-relaxed">
-                    Beginning FAT inspection of Deethanizer Condenser G1-22E05. Design: 28 barg / 180°C. Material: SA-516 Gr.70 shell, SA-179 tubes. Following ITP with 7 hold points and 3 witness points. Camera, IoT sensors, and voice output ready.
+                    Beginning FAT inspection of Deethanizer Condenser G1-22E05. Design: 28 barg / 180°C. Following ITP with 7 hold points. Camera, IoT sensors, and voice copilot ready.
                   </p>
                 </motion.div>
               )}
@@ -572,48 +606,32 @@ const LNGAtlasDemo = () => {
               {/* Inspection Step Cards */}
               <AnimatePresence>
                 {getVisibleDetails().map((detail) => (
-                  <motion.div
-                    key={detail.stepId}
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 }}
-                    className="bg-white/[0.03] border border-white/[0.06] rounded-lg overflow-hidden"
-                  >
-                    {/* Step header */}
-                    <div className="px-4 py-2.5 border-b border-white/[0.05] flex items-center justify-between">
+                  <motion.div key={detail.stepId} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+                    className="bg-white/[0.03] border border-white/[0.06] rounded-lg overflow-hidden">
+                    <div className="px-4 py-2.5 border-b border-white/[0.05]">
                       <span className="text-[11px] font-bold text-white">{detail.title}</span>
                     </div>
-
-                    {/* AI Guidance */}
                     <div className="px-4 py-2 bg-[#6EA996]/5 border-b border-white/[0.05]">
                       <div className="flex items-start gap-2">
                         <span className="text-[10px] text-[#6EA996] font-bold shrink-0 mt-0.5">AI:</span>
                         <p className="text-[10px] text-white/50 leading-relaxed">{detail.aiGuidance}</p>
                       </div>
                     </div>
-
-                    {/* Measurements */}
                     {detail.measurements && (
                       <div className="px-4 py-2">
                         <div className="text-[9px] text-white/30 uppercase tracking-wider font-bold mb-1.5">Measurements</div>
                         <div className="space-y-1">
                           {detail.measurements.map((m, j) => (
-                            <motion.div key={j} initial={{ opacity: 0, x: -4 }} animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: j * 0.05 }}
-                              className="flex items-center text-[10px] gap-1">
+                            <div key={j} className="flex items-center text-[10px] gap-1">
                               <span className="text-white/40 w-[35%] truncate">{m.param}</span>
                               <span className="text-white/25 w-[25%] truncate font-mono">{m.spec}</span>
                               <span className={`w-[25%] truncate font-mono font-semibold ${m.pass ? "text-[#6EA996]" : "text-[#AE3D3D]"}`}>{m.actual}</span>
-                              <span className={`w-[15%] text-right font-bold ${m.pass ? "text-[#6EA996]" : "text-[#AE3D3D]"}`}>
-                                {m.pass ? "✓" : "✗"}
-                              </span>
-                            </motion.div>
+                              <span className={`w-[15%] text-right font-bold ${m.pass ? "text-[#6EA996]" : "text-[#AE3D3D]"}`}>{m.pass ? "✓" : "✗"}</span>
+                            </div>
                           ))}
                         </div>
                       </div>
                     )}
-
-                    {/* Findings */}
                     {detail.findings && detail.findings.length > 0 && (
                       <div className="px-4 py-2 border-t border-white/[0.05]">
                         <div className="text-[9px] text-white/30 uppercase tracking-wider font-bold mb-1.5">Findings</div>
@@ -631,39 +649,9 @@ const LNGAtlasDemo = () => {
                         </div>
                       </div>
                     )}
-
-                    {/* Evidence + Camera Captures */}
-                    {((detail.evidenceCapture && detail.evidenceCapture.length > 0) || (detail.cameraCapture && detail.cameraCapture.length > 0)) && (
-                      <div className="px-4 py-2 border-t border-white/[0.05]">
-                        <div className="text-[9px] text-white/30 uppercase tracking-wider font-bold mb-1.5">Evidence Captured</div>
-                        <div className="flex flex-wrap gap-1">
-                          {detail.evidenceCapture?.map((ev, j) => (
-                            <span key={`ev-${j}`} className="text-[9px] px-2 py-1 bg-white/5 text-white/30 rounded font-mono flex items-center gap-1">
-                              <FileImage className="w-2.5 h-2.5" /> {ev}
-                            </span>
-                          ))}
-                          {detail.cameraCapture?.map((cam, j) => (
-                            <span key={`cam-${j}`} className={`text-[9px] px-2 py-1 rounded font-mono flex items-center gap-1 ${
-                              cam.type === "thermal" ? "bg-[#F5A623]/10 text-[#F5A623]/60" :
-                              cam.type === "video" ? "bg-[#6EA996]/10 text-[#6EA996]/60" :
-                              "bg-white/5 text-white/30"
-                            }`}>
-                              <Camera className="w-2.5 h-2.5" />
-                              {cam.filename}
-                              {cam.type === "thermal" && <span className="text-[7px] uppercase">FLIR</span>}
-                              {cam.type === "video" && <span className="text-[7px] uppercase">VID</span>}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* IoT Sensors */}
+                    {/* IoT Sensors inline */}
                     {detail.iotSensors && detail.iotSensors.length > 0 && (
                       <div className="px-4 py-2 border-t border-white/[0.05]">
-                        <div className="text-[9px] text-white/30 uppercase tracking-wider font-bold mb-1.5 flex items-center gap-1">
-                          <Radio className="w-2.5 h-2.5" /> IoT Sensors
-                        </div>
                         <div className="flex flex-wrap gap-2">
                           {detail.iotSensors.map((s, j) => (
                             <div key={j} className={`flex items-center gap-1.5 text-[9px] px-2 py-1 rounded border ${
@@ -671,17 +659,9 @@ const LNGAtlasDemo = () => {
                               s.status === "warn" ? "border-[#F5A623]/30 bg-[#F5A623]/5" :
                               "border-white/10 bg-white/5"
                             }`}>
-                              <div className={`w-1.5 h-1.5 rounded-full ${
-                                s.status === "crit" ? "bg-[#AE3D3D]" :
-                                s.status === "warn" ? "bg-[#F5A623]" :
-                                "bg-[#6EA996]"
-                              }`} />
+                              <div className={`w-1.5 h-1.5 rounded-full ${s.status === "crit" ? "bg-[#AE3D3D]" : s.status === "warn" ? "bg-[#F5A623]" : "bg-[#6EA996]"}`} />
                               <span className="text-white/40">{s.sensor}</span>
-                              <span className={`font-mono font-medium ${
-                                s.status === "crit" ? "text-[#AE3D3D]" :
-                                s.status === "warn" ? "text-[#F5A623]" :
-                                "text-white/60"
-                              }`}>{s.value}</span>
+                              <span className={`font-mono font-medium ${s.status === "crit" ? "text-[#AE3D3D]" : s.status === "warn" ? "text-[#F5A623]" : "text-white/60"}`}>{s.value}</span>
                             </div>
                           ))}
                         </div>
@@ -698,99 +678,123 @@ const LNGAtlasDemo = () => {
                     className="bg-[#6EA996]/8 border border-[#6EA996]/20 rounded-lg p-4">
                     <div className="text-[12px] font-bold text-white mb-2">Inspection Complete — AI Summary</div>
                     <p className="text-[10px] text-white/45 leading-[1.6]">
-                      11-point ITP executed. 7 hold points inspected. 5 critical and 12 major NCRs identified across welding, NDT, coating, and documentation. Hydrostatic test BLOCKED pending weld repairs. Equipment REJECTED — return to fabricator recommended. {totalEvidence} evidence files captured. All IoT sensor data logged. Voice transcripts archived.
+                      11-point ITP executed. 7 hold points inspected. {criticalCount} critical and {totalFindings - criticalCount} major NCRs identified. Hydrostatic test BLOCKED. Equipment REJECTED. {allEvidence.length} evidence files captured. IoT sensor data logged. Voice transcripts archived.
                     </p>
-                    <div className="flex gap-3 mt-3">
-                      <div className="flex items-center gap-1 text-[9px] text-white/40">
-                        <FileImage className="w-3 h-3" /> {totalEvidence} Evidence Files
-                      </div>
-                      <div className="flex items-center gap-1 text-[9px] text-white/40">
-                        <Camera className="w-3 h-3" /> Camera Sessions
-                      </div>
-                      <div className="flex items-center gap-1 text-[9px] text-white/40">
-                        <Wifi className="w-3 h-3" /> IoT Data Logged
-                      </div>
-                      <div className="flex items-center gap-1 text-[9px] text-white/40">
-                        <Volume2 className="w-3 h-3" /> Voice Archived
-                      </div>
-                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
 
-            {/* Input bar */}
-            <div className="px-6 py-3 border-t border-white/[0.05]">
+            {/* Chat Input */}
+            <div className="px-6 py-4">
               <div className="flex items-center gap-2">
-                <div className="flex-1 bg-white/5 border border-white/8 rounded-lg px-4 py-2.5 flex items-center">
+                <button className="w-10 h-10 flex items-center justify-center rounded-lg shrink-0 bg-white/5 border border-white/10 hover:border-white/20 transition-all">
+                  <svg className="w-4 h-4 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                    <rect x="9" y="1" width="6" height="12" rx="3" /><path d="M5 10a7 7 0 0014 0" /><line x1="12" y1="17" x2="12" y2="21" />
+                  </svg>
+                </button>
+                <div className="flex-1 bg-white/5 border border-white/8 rounded-lg px-4 py-2.5 flex items-center hover:border-white/15 transition-colors">
                   <span className="text-[12px] text-white/25">Ask Atlas AI about this inspection...</span>
                 </div>
-                <button className="w-10 h-10 flex items-center justify-center bg-[#6EA996] rounded-lg shrink-0">
+                <button className="w-10 h-10 flex items-center justify-center bg-[#6EA996] rounded-lg shrink-0 hover:bg-[#6EA996]/80 transition-colors">
                   <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" /></svg>
                 </button>
               </div>
             </div>
           </div>
 
-          {/* RIGHT — Intelligence Panel */}
+          {/* RIGHT — Atlas Copilot + Intelligence */}
           <div className="flex-[30] flex flex-col overflow-hidden">
-            <div className="px-4 py-3 border-b border-white/[0.05]">
-              <span className="text-[12px] font-bold text-white/50 uppercase tracking-wider">Intelligence</span>
+
+            {/* Atlas Copilot Voice — big speaker, same as homepage */}
+            <div className="px-4 py-4 flex flex-col items-center min-h-[180px] overflow-visible">
+              <span className="text-[14px] font-bold text-white tracking-wide mb-3">Atlas Copilot</span>
+              <div className="relative flex items-center justify-center">
+                <AnimatePresence>
+                  {(copilotSpeaking || speakerPulsing) && (
+                    <>
+                      <motion.div initial={{ scale: 0.8, opacity: 0.4 }} animate={{ scale: 1.8, opacity: 0 }} transition={{ duration: 1.5, repeat: Infinity }} className="absolute w-16 h-16 rounded-full border border-[#6EA996]/30" />
+                      <motion.div initial={{ scale: 0.9, opacity: 0.3 }} animate={{ scale: 1.5, opacity: 0 }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.3 }} className="absolute w-16 h-16 rounded-full border border-[#6EA996]/20" />
+                      <motion.div initial={{ scale: 1.0, opacity: 0.2 }} animate={{ scale: 1.3, opacity: 0 }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.6 }} className="absolute w-16 h-16 rounded-full border border-[#6EA996]/10" />
+                    </>
+                  )}
+                </AnimatePresence>
+                <motion.button
+                  onClick={speakAlert}
+                  animate={(copilotSpeaking || speakerPulsing) ? {
+                    boxShadow: ["0 0 15px rgba(110,169,150,0.15)", "0 0 35px rgba(110,169,150,0.4)", "0 0 15px rgba(110,169,150,0.15)"],
+                    scale: [1, 1.05, 1],
+                  } : {}}
+                  transition={{ duration: 1.2, repeat: Infinity }}
+                  className={`w-14 h-14 rounded-full flex items-center justify-center transition-all cursor-pointer ${(copilotSpeaking || speakerPulsing) ? "bg-[#6EA996]/15 border-2 border-[#6EA996]" : "bg-white/5 border-2 border-white/15 hover:border-white/30"}`}
+                >
+                  <svg className={`w-6 h-6 ${copilotSpeaking ? "text-[#6EA996]" : "text-white/40"}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+                    {copilotSpeaking ? (
+                      <>
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none" />
+                        <motion.path d="M15.54 8.46a5 5 0 010 7.07" animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 0.8, repeat: Infinity }} />
+                        <motion.path d="M19.07 4.93a10 10 0 010 14.14" animate={{ opacity: [0.2, 0.8, 0.2] }} transition={{ duration: 0.8, repeat: Infinity, delay: 0.2 }} />
+                      </>
+                    ) : (
+                      <>
+                        <rect x="9" y="1" width="6" height="12" rx="3" />
+                        <path d="M5 10a7 7 0 0014 0" />
+                        <line x1="12" y1="17" x2="12" y2="21" />
+                        <line x1="8" y1="21" x2="16" y2="21" />
+                      </>
+                    )}
+                  </svg>
+                </motion.button>
+              </div>
+              <span className={`text-[12px] font-medium mt-2 ${copilotSpeaking ? "text-[#6EA996]" : speakerPulsing ? "text-[#6EA996] animate-pulse" : "text-white/30"}`}>
+                {copilotSpeaking ? "Speaking..." : speakerPulsing ? "Tap to listen" : "Tap to speak"}
+              </span>
+              {/* Waveform */}
+              <div className="flex items-center gap-0.5 mt-2 h-5">
+                {copilotSpeaking && [...Array(16)].map((_, i) => (
+                  <motion.div key={i} className="w-[3px] rounded-full bg-[#6EA996]"
+                    initial={{ height: 2 }}
+                    animate={{ height: [2, Math.random() * 16 + 4, 2] }}
+                    transition={{ duration: 0.25 + Math.random() * 0.25, repeat: Infinity, repeatType: "reverse", delay: i * 0.03 }} />
+                ))}
+              </div>
+              {/* Speech text */}
+              <div className="h-8 mt-2 flex items-start justify-center">
+                {copilotText && (
+                  <motion.p key={copilotText} initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                    className="text-[10px] text-white/40 text-center px-2 leading-[1.5] max-w-[200px]">
+                    {copilotText}
+                  </motion.p>
+                )}
+              </div>
             </div>
+
+            {/* Intelligence Cards */}
             <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3 relative" ref={rightScrollRef} style={{ scrollbarWidth: "none" }}>
               <ScrollNav scrollRef={rightScrollRef} />
 
-              {/* Equipment Info */}
-              <div className="bg-white/5 rounded-lg p-4">
-                <span className="text-[10px] text-white/30 uppercase tracking-wider font-bold">Equipment Data</span>
-                <div className="mt-2 space-y-1.5">
-                  {[
-                    { label: "Type", value: "Shell & Tube HEX" },
-                    { label: "Tag", value: "G1-22E05" },
-                    { label: "Design P/T", value: "28 barg / 180°C" },
-                    { label: "Shell Material", value: "SA-516 Gr.70" },
-                    { label: "Tube Material", value: "SA-179" },
-                    { label: "Code", value: "GOST-34347-2017" },
-                    { label: "Fabricator", value: "Shanghai Bu Hau" },
-                  ].map(d => (
-                    <div key={d.label} className="flex justify-between text-[10px]">
-                      <span className="text-white/40">{d.label}</span>
-                      <span className="text-white/70 font-medium">{d.value}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
               {/* IoT Connector Status */}
-              {iotConnected > 0 && (
+              {step >= 3 && (
                 <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-                  className="bg-[#6EA996]/8 border border-[#6EA996]/20 rounded-lg p-4">
+                  className="bg-white/5 rounded-lg p-4">
                   <span className="text-[10px] text-[#6EA996] uppercase tracking-wider font-bold flex items-center gap-1.5">
-                    <Wifi className="w-3 h-3" /> IoT Connectors Active
+                    <Wifi className="w-3 h-3" /> IoT Connectors
                   </span>
                   <div className="mt-2 space-y-1.5">
                     {getVisibleDetails().slice(-1)[0]?.iotSensors?.map((s, j) => (
                       <div key={j} className="flex justify-between text-[10px]">
                         <span className="text-white/40 flex items-center gap-1">
-                          <div className={`w-1.5 h-1.5 rounded-full ${
-                            s.status === "crit" ? "bg-[#AE3D3D] animate-pulse" :
-                            s.status === "warn" ? "bg-[#F5A623]" :
-                            "bg-[#6EA996]"
-                          }`} />
+                          <div className={`w-1.5 h-1.5 rounded-full ${s.status === "crit" ? "bg-[#AE3D3D] animate-pulse" : s.status === "warn" ? "bg-[#F5A623]" : "bg-[#6EA996]"}`} />
                           {s.sensor}
                         </span>
-                        <span className={`font-mono font-medium ${
-                          s.status === "crit" ? "text-[#AE3D3D]" :
-                          s.status === "warn" ? "text-[#F5A623]" :
-                          "text-white/60"
-                        }`}>{s.value}</span>
+                        <span className={`font-mono font-medium ${s.status === "crit" ? "text-[#AE3D3D]" : s.status === "warn" ? "text-[#F5A623]" : "text-white/60"}`}>{s.value}</span>
                       </div>
                     ))}
                   </div>
                 </motion.div>
               )}
 
-              {/* Compliance Tracker */}
+              {/* Compliance Violations */}
               {step >= 2 && (
                 <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
                   className="bg-white/5 rounded-lg p-4">
@@ -799,7 +803,6 @@ const LNGAtlasDemo = () => {
                     {step >= 2 && <ComplianceItem std="EN 10204 3.2" note="MTR grade 3.1 insufficient" />}
                     {step >= 4 && <ComplianceItem std="SA-350 LF2 Spec" note="Ni content below minimum" />}
                     {step >= 9 && <ComplianceItem std="GOST-34347 §5.2" note="Zero tolerance: cracks found" />}
-                    {step >= 9 && <ComplianceItem std="GOST-34347 §6.3" note="Underfill exceeds limit" />}
                     {step >= 11 && <ComplianceItem std="ASME Section V" note="RT: linear indication + slag" />}
                     {step >= 15 && <ComplianceItem std="ISO 8501 / Sa 2.5" note="Surface prep Sa 2.0 only" />}
                   </div>
@@ -810,14 +813,12 @@ const LNGAtlasDemo = () => {
               {step >= 9 && (
                 <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
                   className="bg-white/5 rounded-lg p-4">
-                  <span className="text-[10px] text-[#F5A623] uppercase tracking-wider font-bold">WPS Deviations Suspected</span>
+                  <span className="text-[10px] text-[#F5A623] uppercase tracking-wider font-bold">WPS Deviations</span>
                   <div className="mt-2 space-y-1.5">
                     {[
                       { param: "Preheat", spec: "150–200°C", actual: "<100°C" },
                       { param: "Interpass", spec: "<250°C", actual: ">300°C" },
                       { param: "Heat Input", spec: "1.0–1.5 kJ/mm", actual: ">2.0 kJ/mm" },
-                      { param: "Travel Speed", spec: "15–20 cm/min", actual: "Too fast" },
-                      { param: "Electrode", spec: "120°C oven", actual: "Ambient" },
                     ].map(d => (
                       <div key={d.param} className="flex items-center justify-between text-[10px]">
                         <span className="text-white/40">{d.param}</span>
@@ -829,38 +830,6 @@ const LNGAtlasDemo = () => {
                 </motion.div>
               )}
 
-              {/* Evidence Summary */}
-              {totalEvidence > 0 && (
-                <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-                  className="bg-white/5 rounded-lg p-4">
-                  <span className="text-[10px] text-white/50 uppercase tracking-wider font-bold flex items-center gap-1.5">
-                    <FileImage className="w-3 h-3" /> Evidence Chain
-                  </span>
-                  <div className="mt-3 space-y-2">
-                    <div className="flex justify-between text-[11px]">
-                      <span className="text-white/40">Total Files</span>
-                      <span className="text-white font-bold">{totalEvidence}</span>
-                    </div>
-                    <div className="flex justify-between text-[11px]">
-                      <span className="text-white/40">Photos</span>
-                      <span className="text-white font-bold">{getVisibleDetails().reduce((sum, d) => sum + (d.cameraCapture?.filter(c => c.type === "photo").length || 0), 0)}</span>
-                    </div>
-                    <div className="flex justify-between text-[11px]">
-                      <span className="text-white/40">Videos</span>
-                      <span className="text-white font-bold">{getVisibleDetails().reduce((sum, d) => sum + (d.cameraCapture?.filter(c => c.type === "video").length || 0), 0)}</span>
-                    </div>
-                    <div className="flex justify-between text-[11px]">
-                      <span className="text-white/40">Thermal</span>
-                      <span className="text-white font-bold">{getVisibleDetails().reduce((sum, d) => sum + (d.cameraCapture?.filter(c => c.type === "thermal").length || 0), 0)}</span>
-                    </div>
-                    <div className="flex justify-between text-[11px]">
-                      <span className="text-white/40">Documents</span>
-                      <span className="text-white font-bold">{getVisibleDetails().reduce((sum, d) => sum + (d.evidenceCapture?.length || 0), 0)}</span>
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-
               {/* Vendor Rating */}
               {step >= 16 && (
                 <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
@@ -868,14 +837,14 @@ const LNGAtlasDemo = () => {
                   <span className="text-[10px] text-white/50 uppercase tracking-wider font-bold">Vendor Rating</span>
                   <div className="mt-2">
                     <div className="flex justify-between text-[11px] mb-1">
-                      <span className="text-white/40">Shanghai Bu Hau Tech.</span>
+                      <span className="text-white/40">Shanghai Bu Hau</span>
                       <span className="text-[#AE3D3D] font-bold">2.1 / 10</span>
                     </div>
                     <div className="h-2 w-full bg-white/8 rounded-full overflow-hidden">
                       <motion.div initial={{ width: 0 }} animate={{ width: "21%" }} transition={{ duration: 1 }}
                         className="h-full rounded-full bg-[#AE3D3D]" />
                     </div>
-                    <div className="text-[10px] text-[#AE3D3D] font-semibold mt-1">⚠ Recommended: Probation / Debarment</div>
+                    <div className="text-[10px] text-[#AE3D3D] font-semibold mt-1">⚠ Probation / Debarment</div>
                   </div>
                 </motion.div>
               )}
@@ -906,6 +875,16 @@ const ComplianceItem = ({ std, note }: { std: string; note: string }) => (
       <div className="text-[10px] text-white/60 font-medium">{std}</div>
       <div className="text-[9px] text-white/30">{note}</div>
     </div>
+  </div>
+);
+
+const EvidenceItem = ({ name, type, status }: { name: string; type: string; status: "verified" | "review" }) => (
+  <div className={`flex items-center gap-2 rounded-lg px-3 py-1.5 ${status === "review" ? "bg-[#F5A623]/5 border border-[#F5A623]/15" : "bg-white/5 border border-transparent"}`}>
+    <span className="text-[12px]">{type === "img" ? "🖼" : type === "thermal" ? "🌡" : type === "video" ? "🎬" : "📄"}</span>
+    <span className="text-[10px] text-white/40 truncate flex-1">{name}</span>
+    <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold ${status === "verified" ? "bg-[#6EA996]/15 text-[#6EA996]" : "bg-[#F5A623]/15 text-[#F5A623]"}`}>
+      {status === "verified" ? "✓" : "⚠"}
+    </span>
   </div>
 );
 
