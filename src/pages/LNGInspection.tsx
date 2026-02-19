@@ -400,7 +400,7 @@ const LNGInspection = () => {
                 AI guides your inspector<br />through every hold point
               </h2>
               <p className="text-base md:text-lg text-foreground/50 mt-6 max-w-xl">
-                Watch Atlas AI execute a complete ITP for a Deethanizer Condenser — dimensional checks, weld inspection, NDT, coating, hydrostatic test. From first measurement to claim recovery.
+                Watch Atlas AI execute a complete ITP for a Deethanizer Condenser — with camera capture, IoT sensor integration, evidence chain, and AI voice output guiding every hold point.
               </p>
             </motion.div>
 

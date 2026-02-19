@@ -1,8 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronUp, ChevronDown, Pause, Play } from "lucide-react";
-import LNGPredictionModal from "./LNGPredictionModal";
-import LNGClaimModal from "./LNGClaimModal";
+import { ChevronUp, ChevronDown, Pause, Play, Camera, Wifi, Volume2, VolumeX, FileImage, Radio } from "lucide-react";
 
 /* ── Scroll Nav ── */
 const ScrollNav = ({ scrollRef }: { scrollRef: React.RefObject<HTMLDivElement> }) => {
@@ -58,7 +56,7 @@ const itpSteps: ITPStep[] = [
   { id: "11", code: "ITP-011", name: "Final Acceptance", type: "H", status: "pending", sub: "Data book, nameplate, FAT cert." },
 ];
 
-/* ── Inspection step details shown in middle panel ── */
+/* ── Inspection step details ── */
 interface InspectionDetail {
   stepId: string;
   title: string;
@@ -66,6 +64,9 @@ interface InspectionDetail {
   measurements?: { param: string; spec: string; actual: string; pass: boolean }[];
   findings?: { severity: "OK" | "MAJOR" | "CRITICAL"; text: string }[];
   evidenceCapture?: string[];
+  voiceNote?: string;
+  iotSensors?: { sensor: string; value: string; status: "ok" | "warn" | "crit" }[];
+  cameraCapture?: { filename: string; type: "photo" | "video" | "thermal" }[];
 }
 
 const inspectionDetails: InspectionDetail[] = [
@@ -84,6 +85,8 @@ const inspectionDetails: InspectionDetail[] = [
       { severity: "MAJOR", text: "2 WPS without backing PQR — welder qualification gap" },
     ],
     evidenceCapture: ["MTR_package_scan.pdf", "WPS_register_screenshot.jpg"],
+    voiceNote: "Document review complete. Two major findings: MTR certification level insufficient, and two welding procedures lack qualification records.",
+    cameraCapture: [{ filename: "DOC_MTR_stamp.jpg", type: "photo" }],
   },
   {
     stepId: "2",
@@ -100,6 +103,15 @@ const inspectionDetails: InspectionDetail[] = [
       { severity: "OK", text: "Shell, tubes, nozzles all within specification" },
     ],
     evidenceCapture: ["PMI_shell_XRF_001.jpg", "PMI_channel_XRF_002.jpg"],
+    voiceNote: "PMI complete. Channel head nickel content marginally below specification at 0.38 percent.",
+    iotSensors: [
+      { sensor: "XRF Analyzer", value: "Connected", status: "ok" },
+      { sensor: "Temp Probe", value: "22.4°C", status: "ok" },
+    ],
+    cameraCapture: [
+      { filename: "PMI_XRF_shell.jpg", type: "photo" },
+      { filename: "PMI_XRF_channel.jpg", type: "photo" },
+    ],
   },
   {
     stepId: "3",
@@ -118,6 +130,16 @@ const inspectionDetails: InspectionDetail[] = [
       { severity: "MAJOR", text: "Nozzle N1 projection 252.5mm exceeds +2mm tolerance" },
     ],
     evidenceCapture: ["dim_shell_OD_laser.jpg", "dim_nozzle_projection.jpg", "dim_flange_flatness.jpg"],
+    voiceNote: "Dimensional check done. Nozzle N1 projection out of tolerance by half a millimeter.",
+    iotSensors: [
+      { sensor: "Laser Scanner", value: "Active", status: "ok" },
+      { sensor: "Digital Caliper", value: "Synced", status: "ok" },
+      { sensor: "Inclinometer", value: "0.02°", status: "ok" },
+    ],
+    cameraCapture: [
+      { filename: "DIM_shell_OD_laser_scan.jpg", type: "photo" },
+      { filename: "DIM_nozzle_projection.mp4", type: "video" },
+    ],
   },
   {
     stepId: "4",
@@ -138,6 +160,18 @@ const inspectionDetails: InspectionDetail[] = [
       { severity: "MAJOR", text: "Rust contamination on saddle support — preservation failure" },
     ],
     evidenceCapture: ["weld_crack_HAZ_40mm.jpg", "weld_underfill_seam.jpg", "weld_long_crack.jpg", "rust_saddle.jpg"],
+    voiceNote: "CRITICAL — Two surface cracks identified in weld zone. Longitudinal crack in seam weld requires immediate RT confirmation. Hydrostatic test must be blocked.",
+    iotSensors: [
+      { sensor: "Weld Gauge", value: "4.2mm reinf.", status: "crit" },
+      { sensor: "Magnetic Particle", value: "Indication+", status: "crit" },
+      { sensor: "Surface Temp", value: "18.6°C", status: "ok" },
+    ],
+    cameraCapture: [
+      { filename: "WELD_crack_HAZ_closeup.jpg", type: "photo" },
+      { filename: "WELD_long_crack_seam.jpg", type: "photo" },
+      { filename: "WELD_thermal_scan.jpg", type: "thermal" },
+      { filename: "WELD_inspection_video.mp4", type: "video" },
+    ],
   },
   {
     stepId: "5",
@@ -155,6 +189,16 @@ const inspectionDetails: InspectionDetail[] = [
       { severity: "MAJOR", text: "Porosity cluster in circ. weld #3 — requires repair + re-RT" },
     ],
     evidenceCapture: ["RT_film_long_seam_digitized.jpg", "RT_film_circ1_slag.jpg"],
+    voiceNote: "NDT radiography confirms crack in longitudinal seam. Slag and porosity in circumferential welds. Three out of four weld zones rejected.",
+    iotSensors: [
+      { sensor: "RT Source", value: "Ir-192 Active", status: "warn" },
+      { sensor: "Dosimeter", value: "0.12 mSv/h", status: "ok" },
+      { sensor: "Film Densitometer", value: "D=2.4", status: "ok" },
+    ],
+    cameraCapture: [
+      { filename: "RT_film_digitized_AI.jpg", type: "photo" },
+      { filename: "RT_setup_photo.jpg", type: "photo" },
+    ],
   },
   {
     stepId: "8",
@@ -171,6 +215,14 @@ const inspectionDetails: InspectionDetail[] = [
       { severity: "CRITICAL", text: "Crack in pressure boundary — catastrophic failure risk if tested as-is" },
     ],
     evidenceCapture: [],
+    voiceNote: "HYDRO TEST BLOCKED. Five weld defects in pressure boundary prevent safe pressurization. Catastrophic failure risk. All repairs must be completed and re-inspected.",
+    iotSensors: [
+      { sensor: "Pressure Gauge A", value: "0.0 barg", status: "ok" },
+      { sensor: "Pressure Gauge B", value: "0.0 barg", status: "ok" },
+      { sensor: "Ambient Temp", value: "12.1°C", status: "ok" },
+      { sensor: "Water Fill Level", value: "Standby", status: "warn" },
+    ],
+    cameraCapture: [],
   },
   {
     stepId: "9",
@@ -190,21 +242,20 @@ const inspectionDetails: InspectionDetail[] = [
       { severity: "MAJOR", text: "3 holidays (pinholes) detected — corrosion initiation points" },
     ],
     evidenceCapture: ["coating_DFT_gauge.jpg", "holiday_detector_results.jpg"],
+    voiceNote: "Coating inspection: surface preparation only Sa 2.0, below Sa 2.5 requirement. Primer thickness insufficient. Three pinholes detected by holiday test.",
+    iotSensors: [
+      { sensor: "DFT Gauge", value: "235μm avg", status: "warn" },
+      { sensor: "Holiday Detector", value: "3 found", status: "crit" },
+      { sensor: "Humidity", value: "62% RH", status: "ok" },
+      { sensor: "Surface Temp", value: "19.2°C", status: "ok" },
+    ],
+    cameraCapture: [
+      { filename: "COAT_DFT_measurement.jpg", type: "photo" },
+      { filename: "COAT_holiday_pinhole.jpg", type: "photo" },
+      { filename: "COAT_surface_prep.mp4", type: "video" },
+    ],
   },
 ];
-
-/* ── Phase timeline for the auto-cycling ── */
-// step 0: start
-// 1-2: Doc review
-// 3-4: PMI
-// 5-6: Dimensional
-// 7-10: Weld inspection (main defects found)
-// 11-12: NDT RT
-// 13: Hydro blocked
-// 14: Coating
-// 15-16: AI Prediction analysis
-// 17-18: Claim generation
-// 19: Final summary
 
 const LNGAtlasDemo = () => {
   const [paused, setPaused] = useState(false);
@@ -212,8 +263,10 @@ const LNGAtlasDemo = () => {
   const [step, setStep] = useState(0);
   const [activeITPIndex, setActiveITPIndex] = useState(-1);
   const [itpStatuses, setItpStatuses] = useState<ITPStep["status"][]>(itpSteps.map(() => "pending"));
-  const [showPredictionModal, setShowPredictionModal] = useState(false);
-  const [showClaimModal, setShowClaimModal] = useState(false);
+  const [voiceActive, setVoiceActive] = useState(false);
+  const [activeVoiceText, setActiveVoiceText] = useState("");
+  const [cameraActive, setCameraActive] = useState(false);
+  const [iotConnected, setIotConnected] = useState(0);
 
   const leftScrollRef = useRef<HTMLDivElement>(null);
   const middleScrollRef = useRef<HTMLDivElement>(null);
@@ -221,26 +274,36 @@ const LNGAtlasDemo = () => {
   const pausedRef = useRef(false);
   useEffect(() => { pausedRef.current = paused; }, [paused]);
 
-  // Scroll middle panel to bottom on step change
+  // Scroll middle panel to bottom on step change — ONLY scroll the container, not the page
   useEffect(() => {
     const el = middleScrollRef.current;
     if (el) setTimeout(() => el.scrollTo({ top: el.scrollHeight, behavior: "smooth" }), 200);
   }, [step]);
 
-  // Scroll left panel to active ITP
+  // Scroll left panel to active ITP — use scrollTo on container to prevent page jump
   useEffect(() => {
     const el = leftScrollRef.current;
     if (el && activeITPIndex >= 0) {
       const items = el.querySelectorAll("[data-itp-item]");
-      items[activeITPIndex]?.scrollIntoView({ behavior: "smooth", block: "center" });
+      const target = items[activeITPIndex] as HTMLElement | undefined;
+      if (target) {
+        const containerRect = el.getBoundingClientRect();
+        const targetRect = target.getBoundingClientRect();
+        const scrollOffset = targetRect.top - containerRect.top - containerRect.height / 2 + targetRect.height / 2;
+        el.scrollBy({ top: scrollOffset, behavior: "smooth" });
+      }
     }
   }, [activeITPIndex]);
 
-  // Animation timeline
+  // Animation timeline — pure inspection, no claims
   useEffect(() => {
     setStep(0);
     setActiveITPIndex(-1);
     setItpStatuses(itpSteps.map(() => "pending"));
+    setVoiceActive(false);
+    setActiveVoiceText("");
+    setCameraActive(false);
+    setIotConnected(0);
     const timers: number[] = [];
     const t = (delay: number, fn: () => void) => {
       timers.push(window.setTimeout(() => {
@@ -257,56 +320,55 @@ const LNGAtlasDemo = () => {
     };
 
     // Step 1: Doc Review
-    t(600, () => { setStep(1); setActiveITPIndex(0); setITP(0, "active"); });
-    t(2000, () => { setStep(2); setITP(0, "fail"); });
+    t(600, () => { setStep(1); setActiveITPIndex(0); setITP(0, "active"); setCameraActive(true); });
+    t(2000, () => { setStep(2); setITP(0, "fail"); setCameraActive(false); setVoiceActive(true); setActiveVoiceText(inspectionDetails[0].voiceNote || ""); });
+    t(3000, () => { setVoiceActive(false); });
 
     // Step 2: PMI
-    t(3500, () => { setStep(3); setActiveITPIndex(1); setITP(1, "active"); });
-    t(5000, () => { setStep(4); setITP(1, "fail"); });
+    t(3500, () => { setStep(3); setActiveITPIndex(1); setITP(1, "active"); setIotConnected(2); setCameraActive(true); });
+    t(5000, () => { setStep(4); setITP(1, "fail"); setCameraActive(false); setVoiceActive(true); setActiveVoiceText(inspectionDetails[1].voiceNote || ""); });
+    t(6000, () => { setVoiceActive(false); });
 
     // Step 3: Dimensional
-    t(6500, () => { setStep(5); setActiveITPIndex(2); setITP(2, "active"); });
-    t(8000, () => { setStep(6); setITP(2, "fail"); });
+    t(6500, () => { setStep(5); setActiveITPIndex(2); setITP(2, "active"); setIotConnected(3); setCameraActive(true); });
+    t(8000, () => { setStep(6); setITP(2, "fail"); setCameraActive(false); setVoiceActive(true); setActiveVoiceText(inspectionDetails[2].voiceNote || ""); });
+    t(9000, () => { setVoiceActive(false); });
 
     // Step 4: Weld Visual — THE MAIN EVENT
-    t(9500, () => { setStep(7); setActiveITPIndex(3); setITP(3, "active"); });
+    t(9500, () => { setStep(7); setActiveITPIndex(3); setITP(3, "active"); setIotConnected(3); setCameraActive(true); });
     t(10500, () => setStep(8));
-    t(12000, () => { setStep(9); setITP(3, "fail"); });
+    t(12000, () => { setStep(9); setITP(3, "fail"); setCameraActive(false); setVoiceActive(true); setActiveVoiceText(inspectionDetails[3].voiceNote || ""); });
+    t(13200, () => { setVoiceActive(false); });
 
     // Step 5: NDT RT
-    t(13500, () => { setStep(10); setActiveITPIndex(4); setITP(4, "active"); });
-    t(15000, () => { setStep(11); setITP(4, "fail"); });
+    t(13500, () => { setStep(10); setActiveITPIndex(4); setITP(4, "active"); setIotConnected(3); setCameraActive(true); });
+    t(15000, () => { setStep(11); setITP(4, "fail"); setCameraActive(false); setVoiceActive(true); setActiveVoiceText(inspectionDetails[4].voiceNote || ""); });
+    t(16000, () => { setVoiceActive(false); });
 
-    // Skip UT/PWHT (pass/na for demo brevity)
-    t(15500, () => { setITP(5, "pass"); setITP(6, "pass"); });
+    // Skip UT/PWHT (pass for demo brevity)
+    t(16200, () => { setITP(5, "pass"); setITP(6, "pass"); });
 
     // Step 6: Hydro BLOCKED
-    t(16500, () => { setStep(12); setActiveITPIndex(7); setITP(7, "active"); });
-    t(18000, () => { setStep(13); setITP(7, "fail"); });
+    t(16500, () => { setStep(12); setActiveITPIndex(7); setITP(7, "active"); setIotConnected(4); });
+    t(18000, () => { setStep(13); setITP(7, "fail"); setVoiceActive(true); setActiveVoiceText(inspectionDetails[5].voiceNote || ""); });
+    t(19200, () => { setVoiceActive(false); });
 
     // Step 7: Coating
-    t(19500, () => { setStep(14); setActiveITPIndex(8); setITP(8, "active"); });
-    t(21000, () => { setStep(15); setITP(8, "fail"); });
+    t(19500, () => { setStep(14); setActiveITPIndex(8); setITP(8, "active"); setIotConnected(4); setCameraActive(true); });
+    t(21000, () => { setStep(15); setITP(8, "fail"); setCameraActive(false); setVoiceActive(true); setActiveVoiceText(inspectionDetails[6].voiceNote || ""); });
+    t(22000, () => { setVoiceActive(false); });
 
     // Skip preservation (pass for demo)
-    t(21500, () => { setITP(9, "pass"); });
+    t(22200, () => { setITP(9, "pass"); });
 
     // Final Acceptance BLOCKED
-    t(22000, () => { setStep(16); setActiveITPIndex(10); setITP(10, "fail"); });
+    t(22500, () => { setStep(16); setActiveITPIndex(10); setITP(10, "fail"); });
 
-    // AI Prediction
-    t(23500, () => setStep(17));
-    t(25000, () => setStep(18));
-
-    // AI Claim
-    t(27000, () => setStep(19));
-    t(28500, () => setStep(20));
-
-    // Summary
-    t(30000, () => setStep(21));
+    // AI Summary
+    t(24000, () => setStep(17));
 
     // Restart
-    t(35000, () => setLoopKey(k => k + 1));
+    t(30000, () => setLoopKey(k => k + 1));
 
     return () => timers.forEach(clearTimeout);
   }, [loopKey]);
@@ -316,448 +378,512 @@ const LNGAtlasDemo = () => {
   // Map step to which inspection detail to show
   const getVisibleDetails = (): InspectionDetail[] => {
     const visible: InspectionDetail[] = [];
-    if (step >= 2) visible.push(inspectionDetails[0]); // doc review
-    if (step >= 4) visible.push(inspectionDetails[1]); // PMI
-    if (step >= 6) visible.push(inspectionDetails[2]); // dimensional
-    if (step >= 9) visible.push(inspectionDetails[3]); // weld visual
-    if (step >= 11) visible.push(inspectionDetails[4]); // NDT RT
-    if (step >= 13) visible.push(inspectionDetails[5]); // hydro blocked
-    if (step >= 15) visible.push(inspectionDetails[6]); // coating
+    if (step >= 2) visible.push(inspectionDetails[0]);
+    if (step >= 4) visible.push(inspectionDetails[1]);
+    if (step >= 6) visible.push(inspectionDetails[2]);
+    if (step >= 9) visible.push(inspectionDetails[3]);
+    if (step >= 11) visible.push(inspectionDetails[4]);
+    if (step >= 13) visible.push(inspectionDetails[5]);
+    if (step >= 15) visible.push(inspectionDetails[6]);
     return visible;
   };
 
-  // Count defects
   const totalFindings = getVisibleDetails().reduce((sum, d) => sum + (d.findings?.filter(f => f.severity !== "OK").length || 0), 0);
   const criticalCount = getVisibleDetails().reduce((sum, d) => sum + (d.findings?.filter(f => f.severity === "CRITICAL").length || 0), 0);
+  const totalEvidence = getVisibleDetails().reduce((sum, d) => sum + (d.evidenceCapture?.length || 0) + (d.cameraCapture?.length || 0), 0);
 
-  const TOTAL_DURATION = 35;
+  const TOTAL_DURATION = 30;
 
   return (
-    <>
-      <div className="w-full h-full overflow-hidden">
-        <div className="w-full h-full bg-[hsl(220,18%,13%)] rounded-[16px] md:rounded-[20px] border border-white/10 flex flex-col overflow-hidden relative">
+    <div className="w-full h-full overflow-hidden">
+      <div className="w-full h-full bg-[hsl(220,18%,13%)] rounded-[16px] md:rounded-[20px] border border-white/10 flex flex-col overflow-hidden relative">
 
-          {/* Top Bar */}
-          <div className="flex items-center justify-between px-4 md:px-8 py-3 border-b border-white/[0.05]">
-            <div className="flex items-center gap-2">
-              <div className="w-2.5 h-2.5 rounded-full bg-[#6EA996] animate-pulse" />
-              <span className="text-[12px] text-white/40 font-medium tracking-wider uppercase">AI Inspector Autopilot</span>
+        {/* Top Bar */}
+        <div className="flex items-center justify-between px-4 md:px-8 py-3 border-b border-white/[0.05]">
+          <div className="flex items-center gap-2">
+            <div className="w-2.5 h-2.5 rounded-full bg-[#6EA996] animate-pulse" />
+            <span className="text-[12px] text-white/40 font-medium tracking-wider uppercase">AI Inspector Autopilot</span>
+          </div>
+          <span className="text-[13px] font-bold text-white tracking-wide hidden md:block">G1-22E05 · Deethanizer Condenser · Heat Exchanger Inspection</span>
+          <div className="flex items-center gap-2">
+            {/* Feature indicators */}
+            <div className={`flex items-center gap-1 px-2 py-1 rounded border transition-all ${cameraActive ? "border-[#6EA996]/40 bg-[#6EA996]/10" : "border-white/10 bg-white/5"}`}>
+              <Camera className={`w-3 h-3 ${cameraActive ? "text-[#6EA996]" : "text-white/30"}`} />
+              {cameraActive && <span className="text-[8px] font-bold text-[#6EA996] uppercase">REC</span>}
             </div>
-            <span className="text-[13px] font-bold text-white tracking-wide hidden md:block">G1-22E05 · Deethanizer Condenser · Heat Exchanger Inspection</span>
-            <div className="flex items-center gap-3">
-              <button
-                onClick={togglePause}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-colors"
-              >
-                {paused ? <Play className="w-3 h-3 text-[#6EA996]" /> : <Pause className="w-3 h-3 text-white/50" />}
-                <span className="text-[10px] font-bold text-white/50 uppercase tracking-wider">{paused ? "Play" : "Pause"}</span>
-              </button>
-              <div className="w-24 h-2 bg-white/8 rounded-full overflow-hidden">
-                <motion.div
-                  key={loopKey}
-                  initial={{ width: 0 }}
-                  animate={{ width: "100%" }}
-                  transition={{ duration: TOTAL_DURATION, ease: "linear" }}
-                  className="h-full bg-[#6EA996] rounded-full"
-                  style={paused ? { animationPlayState: "paused" } : {}}
-                />
+            <div className={`flex items-center gap-1 px-2 py-1 rounded border transition-all ${voiceActive ? "border-[#F5A623]/40 bg-[#F5A623]/10" : "border-white/10 bg-white/5"}`}>
+              {voiceActive ? <Volume2 className="w-3 h-3 text-[#F5A623] animate-pulse" /> : <VolumeX className="w-3 h-3 text-white/30" />}
+            </div>
+            <div className={`flex items-center gap-1 px-2 py-1 rounded border transition-all ${iotConnected > 0 ? "border-[#6EA996]/40 bg-[#6EA996]/10" : "border-white/10 bg-white/5"}`}>
+              <Wifi className={`w-3 h-3 ${iotConnected > 0 ? "text-[#6EA996]" : "text-white/30"}`} />
+              {iotConnected > 0 && <span className="text-[8px] font-bold text-[#6EA996]">{iotConnected}</span>}
+            </div>
+            <div className="flex items-center gap-1 px-2 py-1 rounded border border-white/10 bg-white/5">
+              <FileImage className="w-3 h-3 text-white/40" />
+              <span className="text-[8px] font-bold text-white/40">{totalEvidence}</span>
+            </div>
+
+            <button
+              onClick={togglePause}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-colors ml-1"
+            >
+              {paused ? <Play className="w-3 h-3 text-[#6EA996]" /> : <Pause className="w-3 h-3 text-white/50" />}
+              <span className="text-[10px] font-bold text-white/50 uppercase tracking-wider">{paused ? "Play" : "Pause"}</span>
+            </button>
+            <div className="w-24 h-2 bg-white/8 rounded-full overflow-hidden">
+              <motion.div
+                key={loopKey}
+                initial={{ width: 0 }}
+                animate={{ width: "100%" }}
+                transition={{ duration: TOTAL_DURATION, ease: "linear" }}
+                className="h-full bg-[#6EA996] rounded-full"
+                style={paused ? { animationPlayState: "paused" } : {}}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Voice Output Bar */}
+        <AnimatePresence>
+          {voiceActive && activeVoiceText && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="border-b border-[#F5A623]/20 bg-[#F5A623]/5 overflow-hidden"
+            >
+              <div className="px-4 md:px-8 py-2 flex items-center gap-3">
+                <div className="flex items-center gap-2 shrink-0">
+                  <Volume2 className="w-3.5 h-3.5 text-[#F5A623] animate-pulse" />
+                  <span className="text-[9px] font-bold text-[#F5A623] uppercase tracking-wider">Voice Output</span>
+                </div>
+                <p className="text-[10px] text-white/50 leading-relaxed truncate">{activeVoiceText}</p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Main 3-Column */}
+        <div className="flex-1 flex overflow-hidden min-h-0">
+
+          {/* LEFT — ITP Checklist */}
+          <div className="flex-[25] border-r border-white/[0.03] flex flex-col overflow-hidden">
+            <div className="px-4 py-3 border-b border-white/[0.05]">
+              <span className="text-[12px] font-bold text-white/50 uppercase tracking-wider">ITP Checklist</span>
+              <div className="text-[10px] text-white/25 mt-1">Inspection & Test Plan — FAT</div>
+              <div className="flex items-center gap-2 mt-2">
+                <span className="text-[9px] px-1.5 py-0.5 bg-[#AE3D3D]/20 text-[#AE3D3D] font-bold rounded">H = Hold</span>
+                <span className="text-[9px] px-1.5 py-0.5 bg-[#F5A623]/20 text-[#F5A623] font-bold rounded">W = Witness</span>
+                <span className="text-[9px] px-1.5 py-0.5 bg-white/10 text-white/40 font-bold rounded">R = Review</span>
+              </div>
+            </div>
+
+            <div className="flex-1 overflow-y-auto px-3 py-3 space-y-1 relative" ref={leftScrollRef} style={{ scrollbarWidth: "none" }}>
+              <ScrollNav scrollRef={leftScrollRef} />
+              {itpSteps.map((itp, i) => {
+                const status = itpStatuses[i];
+                const isActive = i === activeITPIndex;
+                return (
+                  <motion.div
+                    key={itp.id}
+                    data-itp-item
+                    initial={{ opacity: 0.4 }}
+                    animate={{
+                      opacity: status !== "pending" ? 1 : 0.4,
+                      scale: isActive ? 1.02 : 1,
+                    }}
+                    className={`rounded-lg px-3 py-2.5 transition-colors ${
+                      isActive ? "bg-[#6EA996]/10 border border-[#6EA996]/30" :
+                      status === "fail" ? "bg-[#AE3D3D]/5 border border-[#AE3D3D]/15" :
+                      status === "pass" ? "bg-[#6EA996]/5 border border-[#6EA996]/15" :
+                      "bg-white/[0.02] border border-transparent"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-0.5">
+                      <div className="flex items-center gap-2">
+                        <span className={`text-[9px] font-bold uppercase px-1.5 py-0.5 rounded ${
+                          itp.type === "H" ? "bg-[#AE3D3D]/20 text-[#AE3D3D]" :
+                          itp.type === "W" ? "bg-[#F5A623]/20 text-[#F5A623]" :
+                          "bg-white/10 text-white/40"
+                        }`}>{itp.type}</span>
+                        <span className="text-[9px] font-mono text-white/30">{itp.code}</span>
+                      </div>
+                      <StatusBadge status={status} />
+                    </div>
+                    <div className="text-[11px] font-semibold text-white">{itp.name}</div>
+                    <div className="text-[9px] text-white/30 mt-0.5">{itp.sub}</div>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* ITP Summary */}
+            <div className="px-4 py-3 border-t border-white/[0.05]">
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[10px] text-white/40 uppercase tracking-wider font-bold">Result</span>
+                <span className={`text-[12px] font-bold ${step >= 16 ? "text-[#AE3D3D]" : "text-white/30"}`}>
+                  {step >= 16 ? "REJECTED" : "In Progress..."}
+                </span>
+              </div>
+              <div className="flex gap-3 text-[10px]">
+                <span className="text-[#AE3D3D]">{itpStatuses.filter(s => s === "fail").length} Failed</span>
+                <span className="text-[#6EA996]">{itpStatuses.filter(s => s === "pass").length} Passed</span>
+                <span className="text-white/30">{itpStatuses.filter(s => s === "pending" || s === "active").length} Pending</span>
               </div>
             </div>
           </div>
 
-          {/* Main 3-Column */}
-          <div className="flex-1 flex overflow-hidden min-h-0">
-
-            {/* LEFT — ITP Checklist */}
-            <div className="flex-[25] border-r border-white/[0.03] flex flex-col overflow-hidden">
-              <div className="px-4 py-3 border-b border-white/[0.05]">
-                <span className="text-[12px] font-bold text-white/50 uppercase tracking-wider">ITP Checklist</span>
-                <div className="text-[10px] text-white/25 mt-1">Inspection & Test Plan — FAT</div>
-                <div className="flex items-center gap-2 mt-2">
-                  <span className="text-[9px] px-1.5 py-0.5 bg-[#AE3D3D]/20 text-[#AE3D3D] font-bold rounded">H = Hold</span>
-                  <span className="text-[9px] px-1.5 py-0.5 bg-[#F5A623]/20 text-[#F5A623] font-bold rounded">W = Witness</span>
-                  <span className="text-[9px] px-1.5 py-0.5 bg-white/10 text-white/40 font-bold rounded">R = Review</span>
-                </div>
-              </div>
-
-              <div className="flex-1 overflow-y-auto px-3 py-3 space-y-1 relative" ref={leftScrollRef} style={{ scrollbarWidth: "none" }}>
-                <ScrollNav scrollRef={leftScrollRef} />
-                {itpSteps.map((itp, i) => {
-                  const status = itpStatuses[i];
-                  const isActive = i === activeITPIndex;
-                  return (
-                    <motion.div
-                      key={itp.id}
-                      data-itp-item
-                      initial={{ opacity: 0.4 }}
-                      animate={{
-                        opacity: status !== "pending" ? 1 : 0.4,
-                        scale: isActive ? 1.02 : 1,
-                      }}
-                      className={`rounded-lg px-3 py-2.5 transition-colors ${
-                        isActive ? "bg-[#6EA996]/10 border border-[#6EA996]/30" :
-                        status === "fail" ? "bg-[#AE3D3D]/5 border border-[#AE3D3D]/15" :
-                        status === "pass" ? "bg-[#6EA996]/5 border border-[#6EA996]/15" :
-                        "bg-white/[0.02] border border-transparent"
-                      }`}
-                    >
-                      <div className="flex items-center justify-between mb-0.5">
-                        <div className="flex items-center gap-2">
-                          <span className={`text-[9px] font-bold uppercase px-1.5 py-0.5 rounded ${
-                            itp.type === "H" ? "bg-[#AE3D3D]/20 text-[#AE3D3D]" :
-                            itp.type === "W" ? "bg-[#F5A623]/20 text-[#F5A623]" :
-                            "bg-white/10 text-white/40"
-                          }`}>{itp.type}</span>
-                          <span className="text-[9px] font-mono text-white/30">{itp.code}</span>
-                        </div>
-                        <StatusBadge status={status} />
-                      </div>
-                      <div className="text-[11px] font-semibold text-white">{itp.name}</div>
-                      <div className="text-[9px] text-white/30 mt-0.5">{itp.sub}</div>
+          {/* MIDDLE — AI Inspector Guidance */}
+          <div className="flex-[45] border-r border-white/[0.03] flex flex-col overflow-hidden">
+            <div className="px-6 py-3 border-b border-white/[0.05]">
+              <div className="flex items-center justify-between">
+                <span className="text-[12px] font-bold text-white/50 uppercase tracking-wider">AI Inspector View</span>
+                <div className="flex items-center gap-3">
+                  {totalFindings > 0 && (
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                      className="flex items-center gap-1 px-2 py-1 border border-[#AE3D3D]/30 rounded">
+                      <span className="text-[9px] text-[#AE3D3D] font-bold">{totalFindings} NCRs</span>
+                      {criticalCount > 0 && <span className="text-[9px] text-[#AE3D3D] font-bold">({criticalCount} CRIT)</span>}
                     </motion.div>
-                  );
-                })}
-              </div>
-
-              {/* ITP Summary */}
-              <div className="px-4 py-3 border-t border-white/[0.05]">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-[10px] text-white/40 uppercase tracking-wider font-bold">Result</span>
-                  <span className={`text-[12px] font-bold ${step >= 16 ? "text-[#AE3D3D]" : "text-white/30"}`}>
-                    {step >= 16 ? "REJECTED" : "In Progress..."}
-                  </span>
-                </div>
-                <div className="flex gap-3 text-[10px]">
-                  <span className="text-[#AE3D3D]">{itpStatuses.filter(s => s === "fail").length} Failed</span>
-                  <span className="text-[#6EA996]">{itpStatuses.filter(s => s === "pass").length} Passed</span>
-                  <span className="text-white/30">{itpStatuses.filter(s => s === "pending" || s === "active").length} Pending</span>
+                  )}
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                    className="flex items-center gap-1 px-2 py-1 border border-[#6EA996]/40 rounded">
+                    <div className="w-1.5 h-1.5 bg-[#6EA996] rounded-full animate-pulse" />
+                    <span className="text-[9px] text-[#6EA996] font-bold uppercase">Autopilot</span>
+                  </motion.div>
                 </div>
               </div>
             </div>
 
-            {/* MIDDLE — AI Inspector Guidance */}
-            <div className="flex-[45] border-r border-white/[0.03] flex flex-col overflow-hidden">
-              <div className="px-6 py-3 border-b border-white/[0.05]">
-                <div className="flex items-center justify-between">
-                  <span className="text-[12px] font-bold text-white/50 uppercase tracking-wider">AI Inspector View</span>
-                  <div className="flex items-center gap-3">
-                    {totalFindings > 0 && (
-                      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                        className="flex items-center gap-1 px-2 py-1 border border-[#AE3D3D]/30 rounded">
-                        <span className="text-[9px] text-[#AE3D3D] font-bold">{totalFindings} NCRs</span>
-                        {criticalCount > 0 && <span className="text-[9px] text-[#AE3D3D] font-bold">({criticalCount} CRIT)</span>}
-                      </motion.div>
+            <div ref={middleScrollRef} className="flex-1 overflow-y-auto px-6 py-4 space-y-3 relative" style={{ scrollbarWidth: "none" }}>
+              <ScrollNav scrollRef={middleScrollRef} />
+
+              {/* Welcome */}
+              {step >= 0 && (
+                <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+                  className="bg-[#6EA996]/8 border border-[#6EA996]/20 rounded-lg p-4">
+                  <div className="text-[11px] text-[#6EA996] font-bold mb-1">Atlas AI — Inspector Autopilot Activated</div>
+                  <p className="text-[10px] text-white/50 leading-relaxed">
+                    Beginning FAT inspection of Deethanizer Condenser G1-22E05. Design: 28 barg / 180°C. Material: SA-516 Gr.70 shell, SA-179 tubes. Following ITP with 7 hold points and 3 witness points. Camera, IoT sensors, and voice output ready.
+                  </p>
+                </motion.div>
+              )}
+
+              {/* Inspection Step Cards */}
+              <AnimatePresence>
+                {getVisibleDetails().map((detail) => (
+                  <motion.div
+                    key={detail.stepId}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                    className="bg-white/[0.03] border border-white/[0.06] rounded-lg overflow-hidden"
+                  >
+                    {/* Step header */}
+                    <div className="px-4 py-2.5 border-b border-white/[0.05] flex items-center justify-between">
+                      <span className="text-[11px] font-bold text-white">{detail.title}</span>
+                    </div>
+
+                    {/* AI Guidance */}
+                    <div className="px-4 py-2 bg-[#6EA996]/5 border-b border-white/[0.05]">
+                      <div className="flex items-start gap-2">
+                        <span className="text-[10px] text-[#6EA996] font-bold shrink-0 mt-0.5">AI:</span>
+                        <p className="text-[10px] text-white/50 leading-relaxed">{detail.aiGuidance}</p>
+                      </div>
+                    </div>
+
+                    {/* Measurements */}
+                    {detail.measurements && (
+                      <div className="px-4 py-2">
+                        <div className="text-[9px] text-white/30 uppercase tracking-wider font-bold mb-1.5">Measurements</div>
+                        <div className="space-y-1">
+                          {detail.measurements.map((m, j) => (
+                            <motion.div key={j} initial={{ opacity: 0, x: -4 }} animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: j * 0.05 }}
+                              className="flex items-center text-[10px] gap-1">
+                              <span className="text-white/40 w-[35%] truncate">{m.param}</span>
+                              <span className="text-white/25 w-[25%] truncate font-mono">{m.spec}</span>
+                              <span className={`w-[25%] truncate font-mono font-semibold ${m.pass ? "text-[#6EA996]" : "text-[#AE3D3D]"}`}>{m.actual}</span>
+                              <span className={`w-[15%] text-right font-bold ${m.pass ? "text-[#6EA996]" : "text-[#AE3D3D]"}`}>
+                                {m.pass ? "✓" : "✗"}
+                              </span>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
                     )}
-                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                      className="flex items-center gap-1 px-2 py-1 border border-[#6EA996]/40 rounded">
-                      <div className="w-1.5 h-1.5 bg-[#6EA996] rounded-full animate-pulse" />
-                      <span className="text-[9px] text-[#6EA996] font-bold uppercase">Autopilot</span>
-                    </motion.div>
-                  </div>
-                </div>
-              </div>
 
-              <div ref={middleScrollRef} className="flex-1 overflow-y-auto px-6 py-4 space-y-3 relative" style={{ scrollbarWidth: "none" }}>
-                <ScrollNav scrollRef={middleScrollRef} />
+                    {/* Findings */}
+                    {detail.findings && detail.findings.length > 0 && (
+                      <div className="px-4 py-2 border-t border-white/[0.05]">
+                        <div className="text-[9px] text-white/30 uppercase tracking-wider font-bold mb-1.5">Findings</div>
+                        <div className="space-y-1">
+                          {detail.findings.map((f, j) => (
+                            <div key={j} className="flex items-start gap-2">
+                              <span className={`text-[8px] font-bold uppercase px-1 py-0.5 rounded mt-0.5 shrink-0 ${
+                                f.severity === "CRITICAL" ? "bg-[#AE3D3D]/20 text-[#AE3D3D]" :
+                                f.severity === "MAJOR" ? "bg-[#F5A623]/20 text-[#F5A623]" :
+                                "bg-[#6EA996]/20 text-[#6EA996]"
+                              }`}>{f.severity}</span>
+                              <span className="text-[10px] text-white/50">{f.text}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
 
-                {/* Welcome */}
-                {step >= 0 && (
-                  <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+                    {/* Evidence + Camera Captures */}
+                    {((detail.evidenceCapture && detail.evidenceCapture.length > 0) || (detail.cameraCapture && detail.cameraCapture.length > 0)) && (
+                      <div className="px-4 py-2 border-t border-white/[0.05]">
+                        <div className="text-[9px] text-white/30 uppercase tracking-wider font-bold mb-1.5">Evidence Captured</div>
+                        <div className="flex flex-wrap gap-1">
+                          {detail.evidenceCapture?.map((ev, j) => (
+                            <span key={`ev-${j}`} className="text-[9px] px-2 py-1 bg-white/5 text-white/30 rounded font-mono flex items-center gap-1">
+                              <FileImage className="w-2.5 h-2.5" /> {ev}
+                            </span>
+                          ))}
+                          {detail.cameraCapture?.map((cam, j) => (
+                            <span key={`cam-${j}`} className={`text-[9px] px-2 py-1 rounded font-mono flex items-center gap-1 ${
+                              cam.type === "thermal" ? "bg-[#F5A623]/10 text-[#F5A623]/60" :
+                              cam.type === "video" ? "bg-[#6EA996]/10 text-[#6EA996]/60" :
+                              "bg-white/5 text-white/30"
+                            }`}>
+                              <Camera className="w-2.5 h-2.5" />
+                              {cam.filename}
+                              {cam.type === "thermal" && <span className="text-[7px] uppercase">FLIR</span>}
+                              {cam.type === "video" && <span className="text-[7px] uppercase">VID</span>}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* IoT Sensors */}
+                    {detail.iotSensors && detail.iotSensors.length > 0 && (
+                      <div className="px-4 py-2 border-t border-white/[0.05]">
+                        <div className="text-[9px] text-white/30 uppercase tracking-wider font-bold mb-1.5 flex items-center gap-1">
+                          <Radio className="w-2.5 h-2.5" /> IoT Sensors
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                          {detail.iotSensors.map((s, j) => (
+                            <div key={j} className={`flex items-center gap-1.5 text-[9px] px-2 py-1 rounded border ${
+                              s.status === "crit" ? "border-[#AE3D3D]/30 bg-[#AE3D3D]/5" :
+                              s.status === "warn" ? "border-[#F5A623]/30 bg-[#F5A623]/5" :
+                              "border-white/10 bg-white/5"
+                            }`}>
+                              <div className={`w-1.5 h-1.5 rounded-full ${
+                                s.status === "crit" ? "bg-[#AE3D3D]" :
+                                s.status === "warn" ? "bg-[#F5A623]" :
+                                "bg-[#6EA996]"
+                              }`} />
+                              <span className="text-white/40">{s.sensor}</span>
+                              <span className={`font-mono font-medium ${
+                                s.status === "crit" ? "text-[#AE3D3D]" :
+                                s.status === "warn" ? "text-[#F5A623]" :
+                                "text-white/60"
+                              }`}>{s.value}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+
+              {/* Final Summary */}
+              <AnimatePresence>
+                {step >= 17 && (
+                  <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
                     className="bg-[#6EA996]/8 border border-[#6EA996]/20 rounded-lg p-4">
-                    <div className="text-[11px] text-[#6EA996] font-bold mb-1">Atlas AI — Inspector Autopilot Activated</div>
-                    <p className="text-[10px] text-white/50 leading-relaxed">
-                      Beginning FAT inspection of Deethanizer Condenser G1-22E05. Design: 28 barg / 180°C. Material: SA-516 Gr.70 shell, SA-179 tubes. Following ITP with 7 hold points and 3 witness points. I'll guide you through each checkpoint.
+                    <div className="text-[12px] font-bold text-white mb-2">Inspection Complete — AI Summary</div>
+                    <p className="text-[10px] text-white/45 leading-[1.6]">
+                      11-point ITP executed. 7 hold points inspected. 5 critical and 12 major NCRs identified across welding, NDT, coating, and documentation. Hydrostatic test BLOCKED pending weld repairs. Equipment REJECTED — return to fabricator recommended. {totalEvidence} evidence files captured. All IoT sensor data logged. Voice transcripts archived.
                     </p>
+                    <div className="flex gap-3 mt-3">
+                      <div className="flex items-center gap-1 text-[9px] text-white/40">
+                        <FileImage className="w-3 h-3" /> {totalEvidence} Evidence Files
+                      </div>
+                      <div className="flex items-center gap-1 text-[9px] text-white/40">
+                        <Camera className="w-3 h-3" /> Camera Sessions
+                      </div>
+                      <div className="flex items-center gap-1 text-[9px] text-white/40">
+                        <Wifi className="w-3 h-3" /> IoT Data Logged
+                      </div>
+                      <div className="flex items-center gap-1 text-[9px] text-white/40">
+                        <Volume2 className="w-3 h-3" /> Voice Archived
+                      </div>
+                    </div>
                   </motion.div>
                 )}
-
-                {/* Inspection Step Cards */}
-                <AnimatePresence>
-                  {getVisibleDetails().map((detail, i) => (
-                    <motion.div
-                      key={detail.stepId}
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.1 }}
-                      className="bg-white/[0.03] border border-white/[0.06] rounded-lg overflow-hidden"
-                    >
-                      {/* Step header */}
-                      <div className="px-4 py-2.5 border-b border-white/[0.05] flex items-center justify-between">
-                        <span className="text-[11px] font-bold text-white">{detail.title}</span>
-                      </div>
-
-                      {/* AI Guidance */}
-                      <div className="px-4 py-2 bg-[#6EA996]/5 border-b border-white/[0.05]">
-                        <div className="flex items-start gap-2">
-                          <span className="text-[10px] text-[#6EA996] font-bold shrink-0 mt-0.5">AI:</span>
-                          <p className="text-[10px] text-white/50 leading-relaxed">{detail.aiGuidance}</p>
-                        </div>
-                      </div>
-
-                      {/* Measurements */}
-                      {detail.measurements && (
-                        <div className="px-4 py-2">
-                          <div className="text-[9px] text-white/30 uppercase tracking-wider font-bold mb-1.5">Measurements</div>
-                          <div className="space-y-1">
-                            {detail.measurements.map((m, j) => (
-                              <motion.div key={j} initial={{ opacity: 0, x: -4 }} animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: j * 0.05 }}
-                                className="flex items-center text-[10px] gap-1">
-                                <span className="text-white/40 w-[35%] truncate">{m.param}</span>
-                                <span className="text-white/25 w-[25%] truncate font-mono">{m.spec}</span>
-                                <span className={`w-[25%] truncate font-mono font-semibold ${m.pass ? "text-[#6EA996]" : "text-[#AE3D3D]"}`}>{m.actual}</span>
-                                <span className={`w-[15%] text-right font-bold ${m.pass ? "text-[#6EA996]" : "text-[#AE3D3D]"}`}>
-                                  {m.pass ? "✓" : "✗"}
-                                </span>
-                              </motion.div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Findings */}
-                      {detail.findings && detail.findings.length > 0 && (
-                        <div className="px-4 py-2 border-t border-white/[0.05]">
-                          <div className="text-[9px] text-white/30 uppercase tracking-wider font-bold mb-1.5">Findings</div>
-                          <div className="space-y-1">
-                            {detail.findings.map((f, j) => (
-                              <div key={j} className="flex items-start gap-2">
-                                <span className={`text-[8px] font-bold uppercase px-1 py-0.5 rounded mt-0.5 shrink-0 ${
-                                  f.severity === "CRITICAL" ? "bg-[#AE3D3D]/20 text-[#AE3D3D]" :
-                                  f.severity === "MAJOR" ? "bg-[#F5A623]/20 text-[#F5A623]" :
-                                  "bg-[#6EA996]/20 text-[#6EA996]"
-                                }`}>{f.severity}</span>
-                                <span className="text-[10px] text-white/50">{f.text}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Evidence */}
-                      {detail.evidenceCapture && detail.evidenceCapture.length > 0 && (
-                        <div className="px-4 py-2 border-t border-white/[0.05]">
-                          <div className="flex flex-wrap gap-1">
-                            {detail.evidenceCapture.map((ev, j) => (
-                              <span key={j} className="text-[9px] px-2 py-1 bg-white/5 text-white/30 rounded font-mono">{ev}</span>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-
-                {/* Prediction Analysis */}
-                <AnimatePresence>
-                  {step >= 17 && (
-                    <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
-                      className="bg-[#F5A623]/8 border border-[#F5A623]/20 rounded-lg p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-[12px] font-bold text-[#F5A623] uppercase tracking-wider">AI Repair Prediction</span>
-                        <button onClick={() => setShowPredictionModal(true)}
-                          className="text-[9px] font-bold text-[#6EA996] border border-[#6EA996]/30 px-2 py-1 rounded hover:bg-[#6EA996]/10 transition-colors">
-                          Full Report →
-                        </button>
-                      </div>
-                      {step >= 18 && (
-                        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                          <div className="grid grid-cols-3 gap-2 mb-3">
-                            {[
-                              { label: "Best Case", value: "42d", cost: "€52K", color: "text-[#6EA996]" },
-                              { label: "Most Likely", value: "56d", cost: "€74K", color: "text-[#F5A623]" },
-                              { label: "Worst Case", value: "84d", cost: "€128K", color: "text-[#AE3D3D]" },
-                            ].map((s) => (
-                              <div key={s.label} className="text-center bg-white/[0.03] rounded p-2">
-                                <div className="text-[9px] text-white/40 uppercase">{s.label}</div>
-                                <div className={`text-lg font-bold ${s.color}`}>{s.value}</div>
-                                <div className="text-[10px] text-white/50">{s.cost}</div>
-                              </div>
-                            ))}
-                          </div>
-                          <div className="text-[10px] text-[#6EA996] font-medium">
-                            ✓ Recommendation: Return to Fabricator — 56 days, €74K, 70% success rate
-                          </div>
-                        </motion.div>
-                      )}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                {/* Claim Generation */}
-                <AnimatePresence>
-                  {step >= 19 && (
-                    <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
-                      className="bg-[#AE3D3D]/8 border border-[#AE3D3D]/20 rounded-lg p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-[12px] font-bold text-[#AE3D3D] uppercase tracking-wider">AI Claim Letter Generated</span>
-                        <button onClick={() => setShowClaimModal(true)}
-                          className="text-[9px] font-bold text-[#AE3D3D] border border-[#AE3D3D]/30 px-2 py-1 rounded hover:bg-[#AE3D3D]/10 transition-colors">
-                          View Full Claim →
-                        </button>
-                      </div>
-                      {step >= 20 && (
-                        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                          <div className="flex items-baseline gap-2 mb-2">
-                            <span className="text-2xl font-bold text-[#AE3D3D]">€76,400</span>
-                            <span className="text-sm text-white/30">—</span>
-                            <span className="text-2xl font-bold text-[#AE3D3D]">€118,000</span>
-                          </div>
-                          <div className="space-y-1 text-[10px] text-white/50">
-                            <div className="flex justify-between"><span>Direct Repair</span><span className="text-white">€34K–€57K</span></div>
-                            <div className="flex justify-between"><span>Schedule Impact</span><span className="text-white">€15K–€44K</span></div>
-                            <div className="flex justify-between"><span>Inspection & Engineering</span><span className="text-white">€12K–€19K</span></div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                {/* Final Summary */}
-                <AnimatePresence>
-                  {step >= 21 && (
-                    <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
-                      className="bg-[#6EA996]/8 border border-[#6EA996]/20 rounded-lg p-4">
-                      <div className="text-[12px] font-bold text-white mb-2">Inspection Complete — AI Summary</div>
-                      <p className="text-[10px] text-white/45 leading-[1.6]">
-                        11-point ITP executed. 7 hold points inspected. 5 critical and 12 major NCRs identified across welding, NDT, coating, and documentation. Hydrostatic test BLOCKED pending weld repairs. Equipment REJECTED — return to fabricator. Repair prediction: 56 days / €74K. Formal claim: €76K–€118K generated with full evidence chain.
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              {/* Input bar */}
-              <div className="px-6 py-3 border-t border-white/[0.05]">
-                <div className="flex items-center gap-2">
-                  <div className="flex-1 bg-white/5 border border-white/8 rounded-lg px-4 py-2.5 flex items-center">
-                    <span className="text-[12px] text-white/25">Ask Atlas AI about this inspection...</span>
-                  </div>
-                  <button className="w-10 h-10 flex items-center justify-center bg-[#6EA996] rounded-lg shrink-0">
-                    <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" /></svg>
-                  </button>
-                </div>
-              </div>
+              </AnimatePresence>
             </div>
 
-            {/* RIGHT — Intelligence Panel */}
-            <div className="flex-[30] flex flex-col overflow-hidden">
-              <div className="px-4 py-3 border-b border-white/[0.05]">
-                <span className="text-[12px] font-bold text-white/50 uppercase tracking-wider">Intelligence</span>
+            {/* Input bar */}
+            <div className="px-6 py-3 border-t border-white/[0.05]">
+              <div className="flex items-center gap-2">
+                <div className="flex-1 bg-white/5 border border-white/8 rounded-lg px-4 py-2.5 flex items-center">
+                  <span className="text-[12px] text-white/25">Ask Atlas AI about this inspection...</span>
+                </div>
+                <button className="w-10 h-10 flex items-center justify-center bg-[#6EA996] rounded-lg shrink-0">
+                  <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" /></svg>
+                </button>
               </div>
-              <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3 relative" ref={rightScrollRef} style={{ scrollbarWidth: "none" }}>
-                <ScrollNav scrollRef={rightScrollRef} />
+            </div>
+          </div>
 
-                {/* Equipment Info */}
-                <div className="bg-white/5 rounded-lg p-4">
-                  <span className="text-[10px] text-white/30 uppercase tracking-wider font-bold">Equipment Data</span>
+          {/* RIGHT — Intelligence Panel */}
+          <div className="flex-[30] flex flex-col overflow-hidden">
+            <div className="px-4 py-3 border-b border-white/[0.05]">
+              <span className="text-[12px] font-bold text-white/50 uppercase tracking-wider">Intelligence</span>
+            </div>
+            <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3 relative" ref={rightScrollRef} style={{ scrollbarWidth: "none" }}>
+              <ScrollNav scrollRef={rightScrollRef} />
+
+              {/* Equipment Info */}
+              <div className="bg-white/5 rounded-lg p-4">
+                <span className="text-[10px] text-white/30 uppercase tracking-wider font-bold">Equipment Data</span>
+                <div className="mt-2 space-y-1.5">
+                  {[
+                    { label: "Type", value: "Shell & Tube HEX" },
+                    { label: "Tag", value: "G1-22E05" },
+                    { label: "Design P/T", value: "28 barg / 180°C" },
+                    { label: "Shell Material", value: "SA-516 Gr.70" },
+                    { label: "Tube Material", value: "SA-179" },
+                    { label: "Code", value: "GOST-34347-2017" },
+                    { label: "Fabricator", value: "Shanghai Bu Hau" },
+                  ].map(d => (
+                    <div key={d.label} className="flex justify-between text-[10px]">
+                      <span className="text-white/40">{d.label}</span>
+                      <span className="text-white/70 font-medium">{d.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* IoT Connector Status */}
+              {iotConnected > 0 && (
+                <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+                  className="bg-[#6EA996]/8 border border-[#6EA996]/20 rounded-lg p-4">
+                  <span className="text-[10px] text-[#6EA996] uppercase tracking-wider font-bold flex items-center gap-1.5">
+                    <Wifi className="w-3 h-3" /> IoT Connectors Active
+                  </span>
                   <div className="mt-2 space-y-1.5">
-                    {[
-                      { label: "Type", value: "Shell & Tube HEX" },
-                      { label: "Tag", value: "G1-22E05" },
-                      { label: "Design P/T", value: "28 barg / 180°C" },
-                      { label: "Shell Material", value: "SA-516 Gr.70" },
-                      { label: "Tube Material", value: "SA-179" },
-                      { label: "Code", value: "GOST-34347-2017" },
-                      { label: "Fabricator", value: "Shanghai Bu Hau" },
-                    ].map(d => (
-                      <div key={d.label} className="flex justify-between text-[10px]">
-                        <span className="text-white/40">{d.label}</span>
-                        <span className="text-white/70 font-medium">{d.value}</span>
+                    {getVisibleDetails().slice(-1)[0]?.iotSensors?.map((s, j) => (
+                      <div key={j} className="flex justify-between text-[10px]">
+                        <span className="text-white/40 flex items-center gap-1">
+                          <div className={`w-1.5 h-1.5 rounded-full ${
+                            s.status === "crit" ? "bg-[#AE3D3D] animate-pulse" :
+                            s.status === "warn" ? "bg-[#F5A623]" :
+                            "bg-[#6EA996]"
+                          }`} />
+                          {s.sensor}
+                        </span>
+                        <span className={`font-mono font-medium ${
+                          s.status === "crit" ? "text-[#AE3D3D]" :
+                          s.status === "warn" ? "text-[#F5A623]" :
+                          "text-white/60"
+                        }`}>{s.value}</span>
                       </div>
                     ))}
                   </div>
-                </div>
+                </motion.div>
+              )}
 
-                {/* Compliance Tracker */}
-                {step >= 2 && (
-                  <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-                    className="bg-white/5 rounded-lg p-4">
-                    <span className="text-[10px] text-[#AE3D3D] uppercase tracking-wider font-bold">Compliance Violations</span>
-                    <div className="mt-2 space-y-2">
-                      {step >= 2 && <ComplianceItem std="EN 10204 3.2" note="MTR grade 3.1 insufficient" />}
-                      {step >= 4 && <ComplianceItem std="SA-350 LF2 Spec" note="Ni content below minimum" />}
-                      {step >= 9 && <ComplianceItem std="GOST-34347 §5.2" note="Zero tolerance: cracks found" />}
-                      {step >= 9 && <ComplianceItem std="GOST-34347 §6.3" note="Underfill exceeds limit" />}
-                      {step >= 11 && <ComplianceItem std="ASME Section V" note="RT: linear indication + slag" />}
-                      {step >= 15 && <ComplianceItem std="ISO 8501 / Sa 2.5" note="Surface prep Sa 2.0 only" />}
-                    </div>
-                  </motion.div>
-                )}
+              {/* Compliance Tracker */}
+              {step >= 2 && (
+                <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+                  className="bg-white/5 rounded-lg p-4">
+                  <span className="text-[10px] text-[#AE3D3D] uppercase tracking-wider font-bold">Compliance Violations</span>
+                  <div className="mt-2 space-y-2">
+                    {step >= 2 && <ComplianceItem std="EN 10204 3.2" note="MTR grade 3.1 insufficient" />}
+                    {step >= 4 && <ComplianceItem std="SA-350 LF2 Spec" note="Ni content below minimum" />}
+                    {step >= 9 && <ComplianceItem std="GOST-34347 §5.2" note="Zero tolerance: cracks found" />}
+                    {step >= 9 && <ComplianceItem std="GOST-34347 §6.3" note="Underfill exceeds limit" />}
+                    {step >= 11 && <ComplianceItem std="ASME Section V" note="RT: linear indication + slag" />}
+                    {step >= 15 && <ComplianceItem std="ISO 8501 / Sa 2.5" note="Surface prep Sa 2.0 only" />}
+                  </div>
+                </motion.div>
+              )}
 
-                {/* WPS Deviations */}
-                {step >= 9 && (
-                  <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-                    className="bg-white/5 rounded-lg p-4">
-                    <span className="text-[10px] text-[#F5A623] uppercase tracking-wider font-bold">WPS Deviations Suspected</span>
-                    <div className="mt-2 space-y-1.5">
-                      {[
-                        { param: "Preheat", spec: "150–200°C", actual: "<100°C" },
-                        { param: "Interpass", spec: "<250°C", actual: ">300°C" },
-                        { param: "Heat Input", spec: "1.0–1.5 kJ/mm", actual: ">2.0 kJ/mm" },
-                        { param: "Travel Speed", spec: "15–20 cm/min", actual: "Too fast" },
-                        { param: "Electrode", spec: "120°C oven", actual: "Ambient" },
-                      ].map(d => (
-                        <div key={d.param} className="flex items-center justify-between text-[10px]">
-                          <span className="text-white/40">{d.param}</span>
-                          <span className="text-[#6EA996] font-mono">{d.spec}</span>
-                          <span className="text-[#AE3D3D] font-mono">{d.actual}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
+              {/* WPS Deviations */}
+              {step >= 9 && (
+                <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+                  className="bg-white/5 rounded-lg p-4">
+                  <span className="text-[10px] text-[#F5A623] uppercase tracking-wider font-bold">WPS Deviations Suspected</span>
+                  <div className="mt-2 space-y-1.5">
+                    {[
+                      { param: "Preheat", spec: "150–200°C", actual: "<100°C" },
+                      { param: "Interpass", spec: "<250°C", actual: ">300°C" },
+                      { param: "Heat Input", spec: "1.0–1.5 kJ/mm", actual: ">2.0 kJ/mm" },
+                      { param: "Travel Speed", spec: "15–20 cm/min", actual: "Too fast" },
+                      { param: "Electrode", spec: "120°C oven", actual: "Ambient" },
+                    ].map(d => (
+                      <div key={d.param} className="flex items-center justify-between text-[10px]">
+                        <span className="text-white/40">{d.param}</span>
+                        <span className="text-[#6EA996] font-mono">{d.spec}</span>
+                        <span className="text-[#AE3D3D] font-mono">{d.actual}</span>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
 
-                {/* Financial Impact */}
-                {step >= 18 && (
-                  <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-                    className="bg-[#6EA996]/8 border border-[#6EA996]/20 rounded-lg p-4">
-                    <span className="text-[10px] text-[#6EA996] uppercase tracking-wider font-bold">Financial Impact</span>
-                    <div className="mt-3 space-y-2">
-                      <div className="flex justify-between text-[11px]">
-                        <span className="text-white/50">Claim Recovery</span>
-                        <span className="text-white font-bold">€76K–€118K</span>
-                      </div>
-                      <div className="flex justify-between text-[11px]">
-                        <span className="text-white/50">Schedule Protected</span>
-                        <span className="text-white font-bold">56 days</span>
-                      </div>
-                      <div className="flex justify-between text-[11px]">
-                        <span className="text-white/50">Delay Cost Avoided</span>
-                        <span className="text-[#6EA996] font-bold">$1.2M/day</span>
-                      </div>
+              {/* Evidence Summary */}
+              {totalEvidence > 0 && (
+                <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+                  className="bg-white/5 rounded-lg p-4">
+                  <span className="text-[10px] text-white/50 uppercase tracking-wider font-bold flex items-center gap-1.5">
+                    <FileImage className="w-3 h-3" /> Evidence Chain
+                  </span>
+                  <div className="mt-3 space-y-2">
+                    <div className="flex justify-between text-[11px]">
+                      <span className="text-white/40">Total Files</span>
+                      <span className="text-white font-bold">{totalEvidence}</span>
                     </div>
-                  </motion.div>
-                )}
+                    <div className="flex justify-between text-[11px]">
+                      <span className="text-white/40">Photos</span>
+                      <span className="text-white font-bold">{getVisibleDetails().reduce((sum, d) => sum + (d.cameraCapture?.filter(c => c.type === "photo").length || 0), 0)}</span>
+                    </div>
+                    <div className="flex justify-between text-[11px]">
+                      <span className="text-white/40">Videos</span>
+                      <span className="text-white font-bold">{getVisibleDetails().reduce((sum, d) => sum + (d.cameraCapture?.filter(c => c.type === "video").length || 0), 0)}</span>
+                    </div>
+                    <div className="flex justify-between text-[11px]">
+                      <span className="text-white/40">Thermal</span>
+                      <span className="text-white font-bold">{getVisibleDetails().reduce((sum, d) => sum + (d.cameraCapture?.filter(c => c.type === "thermal").length || 0), 0)}</span>
+                    </div>
+                    <div className="flex justify-between text-[11px]">
+                      <span className="text-white/40">Documents</span>
+                      <span className="text-white font-bold">{getVisibleDetails().reduce((sum, d) => sum + (d.evidenceCapture?.length || 0), 0)}</span>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
 
-                {/* Vendor Rating */}
-                {step >= 20 && (
-                  <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-                    className="bg-white/5 rounded-lg p-4">
-                    <span className="text-[10px] text-white/50 uppercase tracking-wider font-bold">Vendor Rating</span>
-                    <div className="mt-2">
-                      <div className="flex justify-between text-[11px] mb-1">
-                        <span className="text-white/40">Shanghai Bu Hau Tech.</span>
-                        <span className="text-[#AE3D3D] font-bold">2.1 / 10</span>
-                      </div>
-                      <div className="h-2 w-full bg-white/8 rounded-full overflow-hidden">
-                        <motion.div initial={{ width: 0 }} animate={{ width: "21%" }} transition={{ duration: 1 }}
-                          className="h-full rounded-full bg-[#AE3D3D]" />
-                      </div>
-                      <div className="text-[10px] text-[#AE3D3D] font-semibold mt-1">⚠ Recommended: Probation / Debarment</div>
+              {/* Vendor Rating */}
+              {step >= 16 && (
+                <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+                  className="bg-white/5 rounded-lg p-4">
+                  <span className="text-[10px] text-white/50 uppercase tracking-wider font-bold">Vendor Rating</span>
+                  <div className="mt-2">
+                    <div className="flex justify-between text-[11px] mb-1">
+                      <span className="text-white/40">Shanghai Bu Hau Tech.</span>
+                      <span className="text-[#AE3D3D] font-bold">2.1 / 10</span>
                     </div>
-                  </motion.div>
-                )}
-              </div>
+                    <div className="h-2 w-full bg-white/8 rounded-full overflow-hidden">
+                      <motion.div initial={{ width: 0 }} animate={{ width: "21%" }} transition={{ duration: 1 }}
+                        className="h-full rounded-full bg-[#AE3D3D]" />
+                    </div>
+                    <div className="text-[10px] text-[#AE3D3D] font-semibold mt-1">⚠ Recommended: Probation / Debarment</div>
+                  </div>
+                </motion.div>
+              )}
             </div>
           </div>
         </div>
       </div>
-
-      <LNGPredictionModal open={showPredictionModal} onClose={() => setShowPredictionModal(false)} />
-      <LNGClaimModal open={showClaimModal} onClose={() => setShowClaimModal(false)} />
-    </>
+    </div>
   );
 };
 
