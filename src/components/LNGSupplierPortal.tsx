@@ -16,7 +16,7 @@ interface SupplierClaim {
   equipment: string;
   tag: string;
   severity: "critical" | "major";
-  status: "pending-review" | "accepted" | "disputed" | "partially-accepted";
+  status: "pending-review" | "accepted" | "disputed" | "partially-accepted" | "change-request";
   claimAmount: number;
   liquidatedDamages: number;
   penaltyPerDay: number;
@@ -233,6 +233,172 @@ RCA Claims Management System`,
       "Request Extension",
     ],
   },
+  {
+    id: "CR-2024-005",
+    title: "Mid-Fabrication Design Change — Client Specification Rev",
+    equipment: "Cryogenic Piping Spool — Area 300",
+    tag: "SP-300-CR-12",
+    severity: "major",
+    status: "change-request",
+    claimAmount: 0,
+    liquidatedDamages: 0,
+    penaltyPerDay: 0,
+    delayDays: 0,
+    receivedDate: "2025-01-15",
+    deadline: "2025-01-29",
+    daysRemaining: 12,
+    clientName: "LNG Mega-Project Phase II",
+    projectName: "Arctic LNG-2 Train 3",
+    contractRef: "FIDIC Cl. 13.1 · Variation Order VO-2025-018",
+    findings: [
+      "Client issued Spec Rev.06 changing material from SS316L to Duplex 2205 — mid-fabrication",
+      "12 spools already fabricated per Rev.05 — must be scrapped or reworked",
+      "New material requires revised WPS/PQR qualification (6–8 weeks)",
+      "Heat treatment requirements change from solution annealing to full PWHT",
+      "All existing NDT records void — complete re-inspection required",
+    ],
+    evidence: [
+      { name: "Variation-Order-VO-2025-018.pdf", type: "document", date: "2025-01-15", by: "Client Engineering" },
+      { name: "Spec-Rev05-vs-Rev06-Comparison.pdf", type: "report", date: "2025-01-15", by: "Client Engineering" },
+      { name: "Fabricated-Spools-Inventory.xlsx", type: "measurement", date: "2025-01-16", by: "Production Manager" },
+      { name: "Material-Certificate-SS316L-Scrapped.pdf", type: "certificate", date: "2024-11-01", by: "Mill Certificate" },
+      { name: "WPS-PQR-Requalification-Plan.pdf", type: "report", date: "2025-01-17", by: "Welding Engineer" },
+      { name: "New-Duplex-2205-Procurement-Quote.pdf", type: "document", date: "2025-01-18", by: "Procurement Dept." },
+    ],
+    claimLetterText: `CHANGE REQUEST NOTIFICATION — CR-2024-005
+═══════════════════════════════════════════════
+
+To: Volga Heavy Machinery JSC — Production & Planning
+From: RCA Project Management — on behalf of Client Engineering
+Date: 2025-01-15
+Reference: Variation Order VO-2025-018 · FIDIC Cl. 13.1
+
+Subject: Mid-Fabrication Design Change — Cryogenic Piping Area 300
+         Material Change: SS316L → Duplex 2205
+
+═══════════════════════════════════════════════
+⚠ THIS IS A CLIENT-INITIATED CHANGE REQUEST
+  (Not a supplier fault — FIDIC Cl. 13.1 Variation)
+═══════════════════════════════════════════════
+
+Dear Supplier,
+
+The Client has issued Specification Revision 06, changing the
+material requirement for all cryogenic piping spools in Area 300
+from SS 316L to Duplex 2205.
+
+This change was initiated AFTER fabrication commenced on Rev.05.
+
+═══════════════════════════════════
+WHAT NEEDS TO CHANGE
+═══════════════════════════════════
+
+1. MATERIAL: SS 316L → Duplex 2205 (UNS S31803)
+   - All raw material must be re-procured
+   - 12 spools already fabricated must be scrapped
+
+2. WELDING: New WPS/PQR qualification required
+   - Duplex requires different shielding gas (Ar/N₂)
+   - Ferrite content testing mandatory (30–65% range)
+   - Different filler metal: ER2209 instead of ER316L
+
+3. HEAT TREATMENT: Solution annealing → full PWHT cycle
+   - Temperature range: 1020–1100°C (vs 1040–1080°C)
+   - Water quench rate ≥ 40°C/min required
+
+4. NDT: All existing records voided
+   - New inspection plan per ASME B31.3 for Duplex
+   - Additional ferrite scope testing at every weld
+   - PAUT replaces conventional UT
+
+═══════════════════════════════════
+AI PREDICTION — REPAIR / CHANGE FORECAST
+═══════════════════════════════════
+
+Atlas AI has analyzed your production capacity, material
+lead times, and welding requalification requirements:
+
+┌─────────────────────────────────────────────┐
+│  PREDICTED LEAD TIME BREAKDOWN              │
+├─────────────────────────────────────────────┤
+│  Material procurement (Duplex 2205):  8–12 weeks  │
+│  WPS/PQR requalification:            6–8 weeks   │
+│  Re-fabrication (12 spools):          4–6 weeks   │
+│  NDT & inspection:                    2–3 weeks   │
+│  Documentation & handover:            1 week      │
+│─────────────────────────────────────────────│
+│  TOTAL PREDICTED LEAD TIME:     14–18 WEEKS │
+│  (vs. traditional proposal cycle: 4–6 weeks │
+│   just for the proposal itself)             │
+└─────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────┐
+│  COST FORECAST (AI-Generated)               │
+├─────────────────────────────────────────────┤
+│  Scrapped material (12 spools SS316L):   $127,000  │
+│  New Duplex 2205 material:               $284,000  │
+│  WPS/PQR requalification:                $45,000   │
+│  Additional labor (re-fabrication):      $168,000   │
+│  Extended NDT scope:                     $52,000    │
+│  Heat treatment (revised cycle):         $38,000    │
+│  Project management & documentation:     $22,000    │
+│─────────────────────────────────────────────│
+│  ESTIMATED CHANGE ORDER TOTAL:      $736,000  │
+│  CONTINGENCY (15%):                 $110,400  │
+│  ─────────────────────────────────────────  │
+│  TOTAL FORECAST:                    $846,400  │
+└─────────────────────────────────────────────┘
+
+═══════════════════════════════════
+COMPARISON: AI vs TRADITIONAL PROCESS
+═══════════════════════════════════
+
+Traditional Process:
+  1. Client sends change request         → Day 0
+  2. Supplier reviews (2–3 weeks)        → Day 21
+  3. Supplier prepares cost proposal     → Day 35
+  4. Client reviews proposal             → Day 49
+  5. Negotiation rounds (2–4 weeks)      → Day 77
+  6. Variation Order signed              → Day 84
+  7. Work begins                         → Day 84+
+  TOTAL WASTED TIME: 12 WEEKS before work starts
+
+RCA AI-Accelerated Process:
+  1. Change request with AI forecast     → Day 0
+  2. Supplier reviews AI proposal        → Day 3
+  3. Adjusted proposal (if needed)       → Day 7
+  4. Variation Order signed              → Day 10
+  5. Work begins                         → Day 10
+  TOTAL TIME: 10 DAYS (vs 84 days)
+  TIME SAVED: 74 DAYS = $2.96M in delay costs
+
+═══════════════════════════════════
+REQUIRED SUPPLIER ACTION
+═══════════════════════════════════
+
+Please review the AI-generated cost forecast and lead time
+prediction above. You may:
+
+  ✓ ACCEPT the AI forecast as your proposal basis
+  ✓ ADJUST specific line items with justification
+  ✓ REQUEST clarification on spec requirements
+
+Deadline for response: 2025-01-29 (14 calendar days)
+
+Note: Since this is a CLIENT-INITIATED change (FIDIC Cl. 13.1),
+all costs are borne by the Client. No penalties apply to supplier.
+Supplier is entitled to Extension of Time per FIDIC Cl. 8.4.
+
+──────────────────────────
+RCA Claims Management System
+Atlas AI — Change Order Module v2.1`,
+    supplierOptions: [
+      "Accept AI Forecast — use as proposal basis ($846,400 / 14–18 weeks)",
+      "Adjust Forecast — modify specific line items with justification",
+      "Request Clarification — need more detail on spec requirements",
+      "Submit Counter-Proposal — provide alternative approach",
+    ],
+  },
 ];
 
 const statusConfig: Record<SupplierClaim["status"], { label: string; color: string; bg: string }> = {
@@ -240,6 +406,7 @@ const statusConfig: Record<SupplierClaim["status"], { label: string; color: stri
   "accepted": { label: "Accepted", color: "text-[#6EA996]", bg: "bg-[#6EA996]/10" },
   "disputed": { label: "Disputed", color: "text-[#AE3D3D]", bg: "bg-[#AE3D3D]/10" },
   "partially-accepted": { label: "Partially Accepted", color: "text-primary", bg: "bg-primary/10" },
+  "change-request": { label: "Change Request · Client Fault", color: "text-[#5B8DEF]", bg: "bg-[#5B8DEF]/10" },
 };
 
 /* ═══════════════════════════════════════════
@@ -395,7 +562,9 @@ const LNGSupplierPortal = () => {
                   key={claim.id}
                   onClick={() => setSelectedClaim(claim)}
                   className={`w-full text-left px-4 py-4 transition-all hover:bg-foreground/[0.02] ${
-                    selectedClaim.id === claim.id ? "bg-foreground/[0.04] border-l-2 border-[#AE3D3D]" : "border-l-2 border-transparent"
+                    selectedClaim.id === claim.id 
+                      ? `bg-foreground/[0.04] border-l-2 ${claim.status === "change-request" ? "border-[#5B8DEF]" : "border-[#AE3D3D]"}` 
+                      : "border-l-2 border-transparent"
                   }`}
                 >
                   <div className="flex items-center justify-between mb-1">
@@ -433,57 +602,97 @@ const LNGSupplierPortal = () => {
         <div className="lg:col-span-8 flex flex-col">
 
           {/* Claim Header */}
-          <div className="px-6 py-4 border-b border-foreground/10 bg-foreground/[0.01]">
+          <div className={`px-6 py-4 border-b ${selectedClaim.status === "change-request" ? "border-[#5B8DEF]/20 bg-[#5B8DEF]/[0.02]" : "border-foreground/10 bg-foreground/[0.01]"}`}>
             <div className="flex items-start justify-between">
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <span className={`px-2 py-0.5 text-[9px] font-bold uppercase rounded ${
-                    selectedClaim.severity === "critical" ? "bg-[#AE3D3D]/10 text-[#AE3D3D]" : "bg-[#F5A623]/10 text-[#F5A623]"
-                  }`}>{selectedClaim.severity}</span>
+                  {selectedClaim.status === "change-request" ? (
+                    <span className="px-2 py-0.5 text-[9px] font-bold uppercase rounded bg-[#5B8DEF]/10 text-[#5B8DEF]">Client Change Request</span>
+                  ) : (
+                    <span className={`px-2 py-0.5 text-[9px] font-bold uppercase rounded ${
+                      selectedClaim.severity === "critical" ? "bg-[#AE3D3D]/10 text-[#AE3D3D]" : "bg-[#F5A623]/10 text-[#F5A623]"
+                    }`}>{selectedClaim.severity}</span>
+                  )}
                   <span className="text-[10px] font-mono text-foreground/30">{selectedClaim.contractRef}</span>
                 </div>
                 <h3 className="text-lg font-bold text-foreground">{selectedClaim.title}</h3>
                 <p className="text-xs text-foreground/40 mt-0.5">{selectedClaim.equipment} · {selectedClaim.tag}</p>
               </div>
               <div className="text-right">
-                <div className="text-[9px] text-foreground/30 uppercase tracking-wider">Total Exposure</div>
-                <div className="text-xl font-bold text-[#AE3D3D]">{formatCurrency(selectedClaim.claimAmount + selectedClaim.liquidatedDamages)}</div>
-                <div className="flex items-center gap-1 justify-end mt-1">
-                  <Clock className="w-3 h-3 text-foreground/30" />
-                  <span className={`text-[10px] font-bold ${selectedClaim.daysRemaining <= 3 ? "text-[#AE3D3D]" : "text-foreground/40"}`}>
-                    Deadline: {selectedClaim.deadline}
-                  </span>
-                </div>
+                {selectedClaim.status === "change-request" ? (
+                  <>
+                    <div className="text-[9px] text-[#5B8DEF] uppercase tracking-wider font-bold">No Penalties Apply</div>
+                    <div className="text-xs text-foreground/40 mt-0.5">Client bears all costs</div>
+                    <div className="flex items-center gap-1 justify-end mt-1">
+                      <Clock className="w-3 h-3 text-foreground/30" />
+                      <span className="text-[10px] font-bold text-foreground/40">
+                        Respond by: {selectedClaim.deadline}
+                      </span>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="text-[9px] text-foreground/30 uppercase tracking-wider">Total Exposure</div>
+                    <div className="text-xl font-bold text-[#AE3D3D]">{formatCurrency(selectedClaim.claimAmount + selectedClaim.liquidatedDamages)}</div>
+                    <div className="flex items-center gap-1 justify-end mt-1">
+                      <Clock className="w-3 h-3 text-foreground/30" />
+                      <span className={`text-[10px] font-bold ${selectedClaim.daysRemaining <= 3 ? "text-[#AE3D3D]" : "text-foreground/40"}`}>
+                        Deadline: {selectedClaim.deadline}
+                      </span>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
 
-            {/* Mini KPIs */}
-            <div className="grid grid-cols-4 gap-3 mt-4">
-              <div className="bg-foreground/[0.02] border border-foreground/5 px-3 py-2">
-                <div className="text-[8px] text-foreground/30 uppercase">Claim</div>
-                <div className="text-sm font-bold text-foreground">{formatCurrency(selectedClaim.claimAmount)}</div>
+            {/* Mini KPIs — different for change request */}
+            {selectedClaim.status === "change-request" ? (
+              <div className="grid grid-cols-4 gap-3 mt-4">
+                <div className="bg-[#5B8DEF]/[0.03] border border-[#5B8DEF]/10 px-3 py-2">
+                  <div className="text-[8px] text-[#5B8DEF]/60 uppercase">Type</div>
+                  <div className="text-sm font-bold text-[#5B8DEF]">Variation</div>
+                </div>
+                <div className="bg-[#5B8DEF]/[0.03] border border-[#5B8DEF]/10 px-3 py-2">
+                  <div className="text-[8px] text-[#5B8DEF]/60 uppercase">AI Forecast</div>
+                  <div className="text-sm font-bold text-foreground">$846,400</div>
+                </div>
+                <div className="bg-[#5B8DEF]/[0.03] border border-[#5B8DEF]/10 px-3 py-2">
+                  <div className="text-[8px] text-[#5B8DEF]/60 uppercase">Lead Time</div>
+                  <div className="text-sm font-bold text-foreground">14–18 wk</div>
+                </div>
+                <div className="bg-[#6EA996]/[0.05] border border-[#6EA996]/10 px-3 py-2">
+                  <div className="text-[8px] text-[#6EA996]/60 uppercase">Time Saved</div>
+                  <div className="text-sm font-bold text-[#6EA996]">74 days</div>
+                </div>
               </div>
-              <div className="bg-foreground/[0.02] border border-foreground/5 px-3 py-2">
-                <div className="text-[8px] text-foreground/30 uppercase">LD Amount</div>
-                <div className="text-sm font-bold text-[#AE3D3D]">{formatCurrency(selectedClaim.liquidatedDamages)}</div>
+            ) : (
+              <div className="grid grid-cols-4 gap-3 mt-4">
+                <div className="bg-foreground/[0.02] border border-foreground/5 px-3 py-2">
+                  <div className="text-[8px] text-foreground/30 uppercase">Claim</div>
+                  <div className="text-sm font-bold text-foreground">{formatCurrency(selectedClaim.claimAmount)}</div>
+                </div>
+                <div className="bg-foreground/[0.02] border border-foreground/5 px-3 py-2">
+                  <div className="text-[8px] text-foreground/30 uppercase">LD Amount</div>
+                  <div className="text-sm font-bold text-[#AE3D3D]">{formatCurrency(selectedClaim.liquidatedDamages)}</div>
+                </div>
+                <div className="bg-foreground/[0.02] border border-foreground/5 px-3 py-2">
+                  <div className="text-[8px] text-foreground/30 uppercase">Penalty/Day</div>
+                  <div className="text-sm font-bold text-foreground">{formatCurrency(selectedClaim.penaltyPerDay)}</div>
+                </div>
+                <div className="bg-foreground/[0.02] border border-foreground/5 px-3 py-2">
+                  <div className="text-[8px] text-foreground/30 uppercase">Delay</div>
+                  <div className="text-sm font-bold text-foreground">{selectedClaim.delayDays}d</div>
+                </div>
               </div>
-              <div className="bg-foreground/[0.02] border border-foreground/5 px-3 py-2">
-                <div className="text-[8px] text-foreground/30 uppercase">Penalty/Day</div>
-                <div className="text-sm font-bold text-foreground">{formatCurrency(selectedClaim.penaltyPerDay)}</div>
-              </div>
-              <div className="bg-foreground/[0.02] border border-foreground/5 px-3 py-2">
-                <div className="text-[8px] text-foreground/30 uppercase">Delay</div>
-                <div className="text-sm font-bold text-foreground">{selectedClaim.delayDays}d</div>
-              </div>
-            </div>
+            )}
           </div>
 
           {/* Tabs */}
           <div className="flex border-b border-foreground/10">
             {([
-              { key: "claim" as const, label: "AI Claim Letter", icon: Bot },
+              { key: "claim" as const, label: selectedClaim.status === "change-request" ? "Change Order & AI Forecast" : "AI Claim Letter", icon: Bot },
               { key: "evidence" as const, label: `Evidence (${selectedClaim.evidence.length})`, icon: Camera },
-              { key: "respond" as const, label: "Your Response", icon: Scale },
+              { key: "respond" as const, label: selectedClaim.status === "change-request" ? "Submit Proposal" : "Your Response", icon: Scale },
             ]).map(tab => (
               <button
                 key={tab.key}
@@ -505,32 +714,57 @@ const LNGSupplierPortal = () => {
               {/* ── AI CLAIM LETTER ── */}
               {activeTab === "claim" && (
                 <motion.div key="claim" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col h-full">
-                  <div className="px-6 py-3 bg-[#AE3D3D]/[0.03] border-b border-[#AE3D3D]/10 flex items-center gap-3">
-                    <div className="w-7 h-7 bg-[#AE3D3D] rounded-full flex items-center justify-center">
+                  <div className={`px-6 py-3 border-b flex items-center gap-3 ${
+                    selectedClaim.status === "change-request" 
+                      ? "bg-[#5B8DEF]/[0.03] border-[#5B8DEF]/10" 
+                      : "bg-[#AE3D3D]/[0.03] border-[#AE3D3D]/10"
+                  }`}>
+                    <div className={`w-7 h-7 rounded-full flex items-center justify-center ${
+                      selectedClaim.status === "change-request" ? "bg-[#5B8DEF]" : "bg-[#AE3D3D]"
+                    }`}>
                       <Bot className="w-4 h-4 text-white" />
                     </div>
                     <div>
-                      <div className="text-xs font-bold text-foreground">RCA Atlas AI — Formal Claim</div>
-                      <div className="text-[9px] text-foreground/40">AI-generated claim with full evidence chain · You must review & respond</div>
+                      <div className="text-xs font-bold text-foreground">
+                        {selectedClaim.status === "change-request" ? "RCA Atlas AI — Change Order & Cost Forecast" : "RCA Atlas AI — Formal Claim"}
+                      </div>
+                      <div className="text-[9px] text-foreground/40">
+                        {selectedClaim.status === "change-request" 
+                          ? "AI-generated change scope with predicted lead time & cost forecast" 
+                          : "AI-generated claim with full evidence chain · You must review & respond"}
+                      </div>
                     </div>
                     <div className="ml-auto flex items-center gap-1.5">
-                      <Gavel className="w-3.5 h-3.5 text-[#AE3D3D]" />
-                      <span className="text-[9px] text-[#AE3D3D] font-bold">LEGALLY BINDING</span>
+                      {selectedClaim.status === "change-request" ? (
+                        <>
+                          <Shield className="w-3.5 h-3.5 text-[#5B8DEF]" />
+                          <span className="text-[9px] text-[#5B8DEF] font-bold">CLIENT CHANGE</span>
+                        </>
+                      ) : (
+                        <>
+                          <Gavel className="w-3.5 h-3.5 text-[#AE3D3D]" />
+                          <span className="text-[9px] text-[#AE3D3D] font-bold">LEGALLY BINDING</span>
+                        </>
+                      )}
                     </div>
                   </div>
 
                   <div ref={scrollRef} className="flex-1 overflow-auto p-6 min-h-[350px]">
                     <div className="flex gap-3">
-                      <div className="w-6 h-6 bg-[#AE3D3D]/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <Bot className="w-3.5 h-3.5 text-[#AE3D3D]" />
+                      <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${
+                        selectedClaim.status === "change-request" ? "bg-[#5B8DEF]/10" : "bg-[#AE3D3D]/10"
+                      }`}>
+                        <Bot className={`w-3.5 h-3.5 ${selectedClaim.status === "change-request" ? "text-[#5B8DEF]" : "text-[#AE3D3D]"}`} />
                       </div>
                       <div className="flex-1">
-                        <div className="text-[9px] text-foreground/30 mb-1">RCA ATLAS AI · CLAIM MODULE</div>
+                        <div className="text-[9px] text-foreground/30 mb-1">
+                          {selectedClaim.status === "change-request" ? "RCA ATLAS AI · CHANGE ORDER MODULE" : "RCA ATLAS AI · CLAIM MODULE"}
+                        </div>
                         <div className="bg-foreground/[0.02] border border-foreground/5 rounded-lg p-4">
                           <pre className="text-xs text-foreground/70 whitespace-pre-wrap font-mono leading-relaxed">
                             {botText}
                             {botText.length < selectedClaim.claimLetterText.length && (
-                              <span className="inline-block w-1.5 h-4 bg-[#AE3D3D] animate-pulse ml-0.5" />
+                              <span className={`inline-block w-1.5 h-4 animate-pulse ml-0.5 ${selectedClaim.status === "change-request" ? "bg-[#5B8DEF]" : "bg-[#AE3D3D]"}`} />
                             )}
                           </pre>
                         </div>
