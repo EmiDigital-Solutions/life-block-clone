@@ -471,7 +471,7 @@ const ClaimDetailModal = ({ claim, onClose }: { claim: ClaimCase; onClose: () =>
             <div className="space-y-6">
               <div>
                 <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-bold mb-2">Description</div>
-                <p className="text-[13px] text-foreground/60 leading-relaxed">{claim.description}</p>
+                <p className="text-[13px] text-foreground/80 leading-relaxed">{claim.description}</p>
               </div>
 
               {claim.clientFaultReason && (
@@ -480,13 +480,13 @@ const ClaimDetailModal = ({ claim, onClose }: { claim: ClaimCase; onClose: () =>
                     <AlertTriangle className="w-4 h-4 text-primary" />
                     <span className="text-[11px] font-bold text-primary uppercase tracking-wider">Client Responsibility</span>
                   </div>
-                  <p className="text-[12px] text-foreground/50 leading-relaxed">{claim.clientFaultReason}</p>
+                  <p className="text-[12px] text-foreground/70 leading-relaxed">{claim.clientFaultReason}</p>
                 </div>
               )}
 
               <div>
                 <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-bold mb-2">Legal Basis</div>
-                <p className="text-[12px] text-foreground/50 leading-relaxed">{claim.legalBasis}</p>
+                <p className="text-[12px] text-foreground/70 leading-relaxed">{claim.legalBasis}</p>
                 <span className="text-[10px] font-mono text-accent mt-1 block">{claim.contractClause}</span>
               </div>
 
@@ -496,7 +496,7 @@ const ClaimDetailModal = ({ claim, onClose }: { claim: ClaimCase; onClose: () =>
                   {claim.findings.map((f, i) => (
                     <div key={i} className="flex items-start gap-2">
                       <div className="w-1.5 h-1.5 bg-destructive mt-1.5 flex-shrink-0 rounded-full" />
-                      <span className="text-[12px] text-foreground/50">{f}</span>
+                      <span className="text-[12px] text-foreground/70">{f}</span>
                     </div>
                   ))}
                 </div>
@@ -553,13 +553,13 @@ const ClaimDetailModal = ({ claim, onClose }: { claim: ClaimCase; onClose: () =>
                             <span className="text-[12px] font-bold text-foreground truncate">{ev.name}</span>
                             <span className={`text-[8px] font-bold uppercase px-1.5 py-0.5 rounded ${cfg.bg} ${cfg.color}`}>{ev.type}</span>
                           </div>
-                          <p className="text-[11px] text-foreground/50 leading-relaxed">{ev.description}</p>
+                          <p className="text-[11px] text-foreground/70 leading-relaxed">{ev.description}</p>
                           <div className="flex items-center gap-2 mt-1.5">
-                            <span className="text-[9px] font-mono text-muted-foreground">{ev.date}</span>
-                            <span className="text-[9px] text-muted-foreground/40">·</span>
-                            <span className="text-[9px] text-muted-foreground">{ev.by}</span>
-                            <span className="text-[9px] text-muted-foreground/40">·</span>
-                            <span className="text-[9px] text-muted-foreground">{ev.size}</span>
+                            <span className="text-[9px] font-mono text-foreground/50">{ev.date}</span>
+                            <span className="text-[9px] text-foreground/30">·</span>
+                            <span className="text-[9px] text-foreground/50">{ev.by}</span>
+                            <span className="text-[9px] text-foreground/30">·</span>
+                            <span className="text-[9px] text-foreground/50">{ev.size}</span>
                           </div>
                         </div>
                         <button className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-muted transition-colors flex-shrink-0">
@@ -576,10 +576,10 @@ const ClaimDetailModal = ({ claim, onClose }: { claim: ClaimCase; onClose: () =>
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-1.5">
                             {ev.measurements.map((m, mi) => (
                               <div key={mi} className="flex items-center justify-between bg-background rounded px-2.5 py-1.5 border border-border/50">
-                                <span className="text-[10px] text-foreground/60">{m.label}</span>
+                                <span className="text-[10px] text-foreground/70">{m.label}</span>
                                 <div className="flex items-center gap-2">
                                   <span className={`text-[10px] font-mono font-bold ${m.status === "fail" ? "text-destructive" : "text-accent"}`}>{m.actual}</span>
-                                  <span className="text-[9px] text-muted-foreground/50">spec: {m.spec}</span>
+                                  <span className="text-[9px] text-foreground/50">spec: {m.spec}</span>
                                   <span className={`text-[8px] font-bold uppercase px-1.5 py-0.5 rounded ${
                                     m.status === "fail" ? "bg-destructive/10 text-destructive" : "bg-accent/10 text-accent"
                                   }`}>{m.status}</span>
@@ -602,23 +602,23 @@ const ClaimDetailModal = ({ claim, onClose }: { claim: ClaimCase; onClose: () =>
 
               <div className="bg-muted/30 border border-border rounded-lg p-5 space-y-4">
                 <div className="flex justify-between items-center pb-3 border-b border-border">
-                  <span className="text-[12px] text-foreground/50">Contractual Delivery Date</span>
+                  <span className="text-[12px] text-foreground/70">Contractual Delivery Date</span>
                   <span className="text-[12px] text-foreground font-mono">{claim.auditTrail[0]?.date || "—"}</span>
                 </div>
                 <div className="flex justify-between items-center pb-3 border-b border-border">
-                  <span className="text-[12px] text-foreground/50">Penalty Rate</span>
+                  <span className="text-[12px] text-foreground/70">Penalty Rate</span>
                   <span className="text-[12px] text-foreground font-mono font-bold">${claim.penaltyPerDay.toLocaleString()} / day</span>
                 </div>
                 <div className="flex justify-between items-center pb-3 border-b border-border">
-                  <span className="text-[12px] text-foreground/50">Delay Duration</span>
+                  <span className="text-[12px] text-foreground/70">Delay Duration</span>
                   <span className="text-[12px] text-warning font-mono font-bold">{claim.delayDays} days</span>
                 </div>
                 <div className="flex justify-between items-center pb-3 border-b border-border">
-                  <span className="text-[12px] text-foreground/50">Liquidated Damages (LD)</span>
+                  <span className="text-[12px] text-foreground/70">Liquidated Damages (LD)</span>
                   <span className="text-[14px] text-destructive font-mono font-bold">{formatK(claim.liquidatedDamages)}</span>
                 </div>
                 <div className="flex justify-between items-center pb-3 border-b border-border">
-                  <span className="text-[12px] text-foreground/50">Direct Repair / Re-work Cost</span>
+                  <span className="text-[12px] text-foreground/70">Direct Repair / Re-work Cost</span>
                   <span className="text-[14px] text-warning font-mono font-bold">{formatK(claim.claimAmount)}</span>
                 </div>
                 <div className="flex justify-between items-center pt-2">
@@ -653,11 +653,11 @@ const ClaimDetailModal = ({ claim, onClose }: { claim: ClaimCase; onClose: () =>
                       <Icon className={`w-3.5 h-3.5 ${typeColors[entry.type]?.split(" ")[0] || "text-muted-foreground"}`} />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="text-[11px] text-foreground/60">{entry.action}</div>
+                      <div className="text-[11px] text-foreground/80">{entry.action}</div>
                       <div className="flex items-center gap-2 mt-0.5">
-                        <span className="text-[10px] font-mono text-muted-foreground/60">{entry.date}</span>
-                        <span className="text-[10px] text-muted-foreground/40">·</span>
-                        <span className="text-[10px] text-muted-foreground">{entry.by}</span>
+                        <span className="text-[10px] font-mono text-foreground/50">{entry.date}</span>
+                        <span className="text-[10px] text-foreground/30">·</span>
+                        <span className="text-[10px] text-foreground/50">{entry.by}</span>
                       </div>
                     </div>
                   </div>
@@ -670,8 +670,8 @@ const ClaimDetailModal = ({ claim, onClose }: { claim: ClaimCase; onClose: () =>
         {/* Actions */}
         <div className="px-6 py-4 border-t border-border flex items-center justify-between">
           <div className="flex gap-2">
-            <button className="px-4 py-2 bg-muted hover:bg-muted/80 border border-border rounded-lg text-[11px] text-muted-foreground font-medium transition-colors">Export PDF</button>
-            <button className="px-4 py-2 bg-muted hover:bg-muted/80 border border-border rounded-lg text-[11px] text-muted-foreground font-medium transition-colors">Share</button>
+            <button className="px-4 py-2 bg-muted hover:bg-muted/80 border border-border rounded-lg text-[11px] text-foreground/60 font-medium transition-colors">Export PDF</button>
+            <button className="px-4 py-2 bg-muted hover:bg-muted/80 border border-border rounded-lg text-[11px] text-foreground/60 font-medium transition-colors">Share</button>
           </div>
           <div className="flex gap-2">
             {claim.faultParty !== "client" && (
@@ -779,9 +779,9 @@ export default function LNGSupplierClaimsDashboard() {
                 {/* Delay + Evidence + Fault */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <span className="text-[10px] text-muted-foreground"><Clock className="w-3 h-3 inline mr-1" />{claim.delayDays}d</span>
-                    <span className="text-[10px] text-muted-foreground"><Camera className="w-3 h-3 inline mr-1" />{claim.evidenceCount}</span>
-                    <span className="text-[10px] text-muted-foreground"><FileText className="w-3 h-3 inline mr-1" />{claim.ncrCount} NCR</span>
+                    <span className="text-[10px] text-foreground/60"><Clock className="w-3 h-3 inline mr-1" />{claim.delayDays}d</span>
+                    <span className="text-[10px] text-foreground/60"><Camera className="w-3 h-3 inline mr-1" />{claim.evidenceCount}</span>
+                    <span className="text-[10px] text-foreground/60"><FileText className="w-3 h-3 inline mr-1" />{claim.ncrCount} NCR</span>
                   </div>
                   <ChevronRight className="w-4 h-4 text-muted-foreground/30 group-hover:text-foreground/50 transition-colors" />
                 </div>
@@ -799,7 +799,7 @@ export default function LNGSupplierClaimsDashboard() {
                     {claim.faultParty === "client" ? "Client Fault" :
                      claim.faultParty === "supplier" ? "Supplier Fault" : "Shared Liability"}
                   </span>
-                  <span className="text-[9px] text-muted-foreground ml-auto">{claim.supplier}</span>
+                  <span className="text-[9px] text-foreground/40 ml-auto">{claim.supplier}</span>
                 </div>
               </div>
             </motion.div>
