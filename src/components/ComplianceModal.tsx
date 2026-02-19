@@ -261,7 +261,7 @@ export const ComplianceModal = ({ standard, onClose }: ComplianceModalProps) => 
           <section className="py-16 lg:py-24 bg-white">
             <div className="max-w-5xl mx-auto px-6 lg:px-8">
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 text-center">
-                Verification services covered by YVOO ScanPro+
+                Verification services covered by RCA ScanPro+
               </h2>
               <div className="grid sm:grid-cols-2 gap-4">
                 {standard.services.map((service, idx) => (
@@ -283,7 +283,7 @@ export const ComplianceModal = ({ standard, onClose }: ComplianceModalProps) => 
           <section className="py-16 lg:py-24 bg-white">
             <div className="max-w-5xl mx-auto px-6 lg:px-8">
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-10 text-center">
-                Three key benefits with YVOO ScanPro+
+                Three key benefits with RCA ScanPro+
               </h2>
               <div className="grid md:grid-cols-3 gap-6">
                 {standard.benefits.map((benefit, idx) => (
@@ -306,7 +306,7 @@ export const ComplianceModal = ({ standard, onClose }: ComplianceModalProps) => 
                 Ready to streamline your {standard.name} audits?
               </h2>
               <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
-                Get in touch with our team to discuss how YVOO ScanPro+ can help with your supplier verification needs.
+                Get in touch with our team to discuss how RCA ScanPro+ can help with your supplier verification needs.
               </p>
                <Button size="lg" variant="outline">
                 Get In Touch

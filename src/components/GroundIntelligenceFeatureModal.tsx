@@ -28,7 +28,7 @@ export const groundIntelligenceFeatures: GroundIntelligenceFeature[] = [
       forProcurement: "Qualify new suppliers before placing your first order. No more flying your team across the globe for a factory visit — get a professional, independent evaluation delivered to your desk.",
       forQuality: "Verify that quality systems, measurement equipment, and process controls are actually in place — not just documented. Every finding is backed by photographic evidence and standardized scoring.",
       forManagement: "Reduce supplier qualification timelines from months to days. Cut audit travel budgets by up to 80% while increasing coverage across your supply base.",
-      example: "A German automotive tier-1 needed to qualify 12 new machining suppliers in China within 6 weeks. Instead of sending their own team, they requested on-demand audits through YVOO. All 12 suppliers were evaluated on-site by local experts, with full reports delivered in an average of 5 business days per supplier.",
+      example: "A German automotive tier-1 needed to qualify 12 new machining suppliers in China within 6 weeks. Instead of sending their own team, they requested on-demand audits through RCA. All 12 suppliers were evaluated on-site by local experts, with full reports delivered in an average of 5 business days per supplier.",
     },
     capabilities: [
       "Custom audit scope definition",

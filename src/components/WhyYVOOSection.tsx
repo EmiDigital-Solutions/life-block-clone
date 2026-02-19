@@ -7,7 +7,7 @@ const stats = [
   { category: "Get results", value: "24h", description: "Digital reports delivered within hours" }
 ];
 
-const WhyYVOOSection = () => {
+const WhyRCASection = () => {
 
   return (
     <section className="py-16 md:py-24 bg-white">
@@ -23,7 +23,7 @@ const WhyYVOOSection = () => {
             How you audit shapes how suppliers see you
           </h2>
           <p className="text-lg text-muted-foreground">
-            85% of auditors still show up with a clipboard and fly across the world. YVOO uses Atlas AI and connects you with local certified auditors.
+            85% of auditors still show up with a clipboard and fly across the world. RCA uses Atlas AI and connects you with local certified auditors.
           </p>
         </motion.div>
 
@@ -69,7 +69,7 @@ const WhyYVOOSection = () => {
               "Our AI Auditor Agent continuously searches LinkedIn, ISO registries, VDA/IATF certification bodies, and professional networks worldwide. The auditors already exist — certified, experienced. We connect them on-demand. Every auditor undergoes background verification, Atlas AI training, and quality certification before activation."
             </p>
             <p className="text-sm font-medium text-foreground/50 tracking-wide">
-              — YVOO Founders
+              — RCA Founders
             </p>
           </div>
         </motion.div>
@@ -78,4 +78,4 @@ const WhyYVOOSection = () => {
   );
 };
 
-export default WhyYVOOSection;
+export default WhyRCASection;

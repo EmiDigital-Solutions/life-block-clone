@@ -64,8 +64,8 @@ const EmailComparisonSection = () => {
             <h2 className="section-headline text-foreground font-semibold">
               {isWithScanPro ? 'With ' : 'The '}
               <span className={`font-semibold ${isWithScanPro ? 'text-foreground' : 'text-destructive'}`}>
-                {isWithScanPro ? 'YVOO' : 'Nightmare'}
-              </span>
+                 {isWithScanPro ? 'RCA' : 'Nightmare'}
+               </span>
             </h2>
           </motion.div>
 

@@ -87,14 +87,14 @@ const UseCaseCard = ({
 };
 
 const testimonialData = {
-  quote: "YVOO reduced our audit lead time from 3 weeks to 3 days. The quality is consistent across all our global suppliers.",
+  quote: "RCA reduced our audit lead time from 3 weeks to 3 days. The quality is consistent across all our global suppliers.",
   name: "Marcus Weber",
   title: "Head of Supplier Quality",
   company: "Siemens Energy",
   image: procurementMaleEuropean,
   icon: "clock",
   challenge: "With over 2,000 global suppliers across 45 countries, Siemens Energy struggled with audit lead times averaging 3 weeks.",
-  solution: "YVOO's on-demand auditor network provided instant access to certified local auditors in every region.",
+  solution: "RCA's on-demand auditor network provided instant access to certified local auditors in every region.",
   useCases: [
     { title: "Rapid Supplier Onboarding", description: "New suppliers verified and approved within 72 hours." },
     { title: "Emergency Quality Audits", description: "Ad-hoc audits deployed within 48 hours." },
@@ -220,7 +220,7 @@ const TestimonialsCarouselSection = () => {
             
             {/* Quote */}
             <blockquote className="text-lg text-foreground leading-relaxed">
-              "YVOO reduced our audit lead time from 3 weeks to 3 days. The quality is consistent across all our global suppliers."
+              "RCA reduced our audit lead time from 3 weeks to 3 days. The quality is consistent across all our global suppliers."
             </blockquote>
             
              {/* Attribution */}

@@ -2,7 +2,8 @@ import PageSEO from "@/components/PageSEO";
 import PageGridOverlay from "@/components/PageGridOverlay";
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
-import WhyYVOOSection from "@/components/WhyYVOOSection";
+import PainPointsSection from "@/components/PainPointsSection";
+import WhyRCASection from "@/components/WhyYVOOSection";
 import AtlasAISection from "@/components/AtlasAISection";
 import AuditDifferenceSection from "@/components/AuditDifferenceSection";
 import CapabilityOverviewSection from "@/components/CapabilityOverviewSection";
@@ -18,28 +19,27 @@ import { HowItWorksSection } from "@/components/HowItWorksSection";
 import TestimonialsCarouselSection from "@/components/TestimonialsCarouselSection";
 import FAQSection from "@/components/FAQSection";
 import FinalCTASection from "@/components/FinalCTASection";
-import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
     <div className="min-h-screen relative">
       <PageSEO
-        title="YVOO — On-Site Supplier Audits in Days, Not Months"
-        description="Physical factory assessments from €700. AI-powered supplier verification with 850+ certified auditors across 45+ countries. 70% cost reduction, 80% time savings."
+        title="RCA — Supplier Audits in Days, Not Months"
+        description="On-site factory assessments from €700. AI-powered supplier verification with certified auditors across 45+ countries. 60% cost reduction, 72h mobilization."
         canonical="/"
         jsonLd={[
           {
             "@context": "https://schema.org",
             "@type": "Organization",
-            "name": "YVOO",
+            "name": "RCA",
             "url": "https://www.yvoo.io",
-            "description": "AI-powered supplier audit and verification platform with 850+ certified auditors in 45+ countries.",
+            "description": "AI-powered supplier audit and verification platform with certified auditors in 45+ countries.",
             "serviceType": "Supplier Audit & Verification"
           },
           {
             "@context": "https://schema.org",
             "@type": "WebSite",
-            "name": "YVOO",
+            "name": "RCA",
             "url": "https://www.yvoo.io",
             "potentialAction": {
               "@type": "SearchAction",
@@ -59,28 +59,37 @@ const Index = () => {
           <TechnicalAnnotation label="1200" from={4} to={6} />
         </div>
 
-        <EmailComparisonSection />
+        {/* Pain Points — why traditional audits fail */}
+        <PainPointsSection />
 
         {/* Section cut marker A—A */}
         <div className="mx-auto max-w-[1400px] px-4 md:px-8">
           <SectionCutMarker section="A" from={0} to={6} />
         </div>
 
-        <CapabilityOverviewSection />
+        <EmailComparisonSection />
 
         {/* Dimension line: cost reduction */}
         <div className="mx-auto max-w-[1400px] px-4 md:px-8">
           <DimensionLine from="15.000" to="700" unit="€" gridFrom={0} gridTo={4} />
         </div>
 
-        <TestimonialSection />
+        <CapabilityOverviewSection />
 
         {/* Tolerance notation for quality metric */}
         <div className="mx-auto max-w-[1400px] px-4 md:px-8">
           <ToleranceNotation nominal="99.7" tolerance="0.02" unit="%" label="Audit Quality" gridColumn={4} />
         </div>
 
-        <WhyYVOOSection />
+        {/* Platform Demo */}
+        <TestimonialSection />
+
+        {/* Section cut marker B—B */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+          <SectionCutMarker section="B" from={1} to={5} />
+        </div>
+
+        <WhyRCASection />
 
         {/* DIN annotation — grid 3→6 */}
         <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
@@ -88,11 +97,6 @@ const Index = () => {
         </div>
 
         <AtlasAISection />
-
-        {/* Section cut marker B—B */}
-        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-          <SectionCutMarker section="B" from={1} to={5} />
-        </div>
 
         <AuditDifferenceSection />
 
@@ -117,7 +121,6 @@ const Index = () => {
 
         <FAQSection />
         <FinalCTASection />
-        <Footer />
       </div>
     </div>
   );
