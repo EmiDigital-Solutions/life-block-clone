@@ -189,11 +189,17 @@ const LNGInspection = () => {
           <div className="mx-auto max-w-[1400px] px-4 md:px-8">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
               className="max-w-4xl mb-16">
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground">
-                Establishing an Immutable<br />Chain of Evidence
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-px bg-foreground/20" />
+                <span className="text-xs font-mono tracking-[0.25em] uppercase text-foreground/40">Evidence Architecture</span>
+              </div>
+              <h2 className="section-headline text-foreground">
+                Immutable chain of evidence
               </h2>
-              <p className="text-base md:text-lg text-foreground/50 mt-4 max-w-2xl">
-                Deep Navy AI Quality Platform: Stopping financial leakage through verifiable data integrity.
+              <p className="text-base md:text-lg text-foreground/50 mt-6 max-w-2xl leading-relaxed">
+                RCA platform enforces tamper-proof data capture at every inspection checkpoint. 
+                Each record is timestamped, geo-tagged, and cryptographically linked — eliminating 
+                the reconstruction effort that currently costs project teams 40–120 man-hours per claim.
               </p>
             </motion.div>
 

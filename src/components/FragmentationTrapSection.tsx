@@ -86,9 +86,9 @@ const FragmentationTrapSection = () => {
             The fragmentation trap
           </h2>
           <p className="text-base md:text-lg text-foreground/50 mt-6 max-w-2xl leading-relaxed">
-            In a typical EPC project, inspection data is scattered across 8+ disconnected systems. 
+            Typical EPC project: inspection data scattered across 8+ disconnected systems. 
             Every handover is manual. Every transfer is a potential evidence gap. 
-            When a claim arrives, you're doing <span className="font-bold text-foreground/70">digital archaeology</span> — not project management.
+            When a supplier files a 10M₽ claim, your team performs <span className="font-bold text-foreground/70">digital archaeology</span> — not engineering.
           </p>
         </motion.div>
 
@@ -252,12 +252,12 @@ const FragmentationTrapSection = () => {
         >
           <div className="max-w-4xl">
             <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground tracking-tight leading-[1.15]">
-              Result: <span className="text-[hsl(0,70%,45%)]">"Digital Archaeology"</span> — scrambling to find 
-              proof while the supplier demands ₽220M.
+              Result: <span className="text-[hsl(0,70%,45%)]">"Digital Archaeology"</span> — scrambling to reconstruct 
+              proof while the supplier demands 10 Million Rubles.
             </p>
             <p className="text-base md:text-lg text-foreground/45 mt-4 max-w-2xl leading-relaxed">
               24 manual transfer points. Zero traceability. Broken communication chains. 
-              When a claim lands on your desk, you spend weeks reconstructing evidence that should have been captured at source.
+              When a claim arrives, engineers spend 40–120 man-hours reconstructing evidence that should have been captured at source.
             </p>
           </div>
         </motion.div>
