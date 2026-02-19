@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
-import LNGSupplierDetailModal, { suppliersData, type LNGSupplier } from "./LNGSupplierDetailModal";
+import { suppliersData, type LNGSupplier } from "./LNGSupplierDetailModal";
+import SupplierBenchmarkModal from "./SupplierBenchmarkModal";
 
 // LNG-adapted 3-Window Demo: Chatbot → Search Results → Supplier Profile
 const LNGSearchDemo = () => {
-  const [selectedSupplier, setSelectedSupplier] = useState<LNGSupplier | null>(null);
+  const [benchmarkOpen, setBenchmarkOpen] = useState(false);
 
   return (
     <section data-nav-theme="light" className="py-20 md:py-28 bg-white">
@@ -36,20 +37,19 @@ const LNGSearchDemo = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
         >
-          <LNGSearchDemoWindows onSupplierClick={setSelectedSupplier} />
+          <LNGSearchDemoWindows onSupplierClick={() => setBenchmarkOpen(true)} />
         </motion.div>
       </div>
 
-      <LNGSupplierDetailModal
-        supplier={selectedSupplier}
-        open={!!selectedSupplier}
-        onOpenChange={(open) => !open && setSelectedSupplier(null)}
+      <SupplierBenchmarkModal
+        open={benchmarkOpen}
+        onOpenChange={setBenchmarkOpen}
       />
     </section>
   );
 };
 
-const LNGSearchDemoWindows = ({ onSupplierClick }: { onSupplierClick: (s: LNGSupplier) => void }) => {
+const LNGSearchDemoWindows = ({ onSupplierClick }: { onSupplierClick: () => void }) => {
   const [activeWindow, setActiveWindow] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -258,7 +258,7 @@ const LNGDemoChatbot = () => {
 };
 
 // Window 2: LNG Search Results
-const LNGDemoResults = ({ onSupplierClick }: { onSupplierClick: (s: LNGSupplier) => void }) => {
+const LNGDemoResults = ({ onSupplierClick }: { onSupplierClick: () => void }) => {
   const results = suppliersData.map(s => ({
     name: s.name,
     location: s.location,
@@ -332,7 +332,7 @@ const LNGDemoResults = ({ onSupplierClick }: { onSupplierClick: (s: LNGSupplier)
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.15 }}
-                onClick={() => onSupplierClick(suppliersData[i])}
+                onClick={() => onSupplierClick()}
                 className="p-3 bg-white/70 backdrop-blur-md border border-white/80 flex items-start gap-2.5 cursor-pointer hover:bg-white/90 transition-colors"
               >
                 <div className="w-6 h-6 bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
