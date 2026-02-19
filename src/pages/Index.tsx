@@ -5,6 +5,7 @@ import HeroSection from "@/components/HeroSection";
 import PainPointsSection from "@/components/PainPointsSection";
 import AtlasAISection from "@/components/AtlasAISection";
 import CapabilityOverviewSection from "@/components/CapabilityOverviewSection";
+import LNGSearchDemo from "@/components/LNGSearchDemo";
 import EmailComparisonSection from "@/components/EmailComparisonSection";
 import TechnicalAnnotation from "@/components/TechnicalAnnotation";
 import DimensionLine from "@/components/DimensionLine";
@@ -47,6 +48,9 @@ const Index = () => {
         {/* Pain Points — why the full lifecycle is broken */}
         <PainPointsSection />
 
+        {/* Old way vs RCA comparison */}
+        <EmailComparisonSection />
+
         {/* Section cut marker A—A */}
         <div className="mx-auto max-w-[1400px] px-4 md:px-8">
           <SectionCutMarker section="A" from={0} to={6} />
@@ -60,8 +64,8 @@ const Index = () => {
           <DimensionLine from="15.000" to="700" unit="€" gridFrom={0} gridTo={4} />
         </div>
 
-        {/* Old way vs RCA comparison */}
-        <EmailComparisonSection />
+        {/* SearchPro+ Demo — LNG supplier search */}
+        <LNGSearchDemo />
 
         {/* Section cut marker B—B */}
         <div className="mx-auto max-w-[1400px] px-4 md:px-8">
