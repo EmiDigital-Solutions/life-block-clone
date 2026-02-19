@@ -15,7 +15,7 @@ import SectionCutMarker from "@/components/SectionCutMarker";
 import TestimonialSection from "@/components/TestimonialSection";
 import { HowItWorksSection } from "@/components/HowItWorksSection";
 
-import FAQSection from "@/components/FAQSection";
+import SupplierDatabaseDemo from "@/components/SupplierDatabaseDemo";
 
 const Index = () => {
   return (
@@ -96,7 +96,8 @@ const Index = () => {
           <DimensionLine from="14" to="3" unit=" Tage" gridFrom={2} gridTo={6} />
         </div>
 
-        <FAQSection />
+        {/* RCA Full Supplier Database */}
+        <SupplierDatabaseDemo />
       </div>
     </div>
   );
