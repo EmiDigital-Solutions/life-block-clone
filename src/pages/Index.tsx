@@ -3,9 +3,7 @@ import PageGridOverlay from "@/components/PageGridOverlay";
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
 import PainPointsSection from "@/components/PainPointsSection";
-import WhyRCASection from "@/components/WhyYVOOSection";
 import AtlasAISection from "@/components/AtlasAISection";
-import AuditDifferenceSection from "@/components/AuditDifferenceSection";
 import CapabilityOverviewSection from "@/components/CapabilityOverviewSection";
 import EmailComparisonSection from "@/components/EmailComparisonSection";
 import TechnicalAnnotation from "@/components/TechnicalAnnotation";
@@ -22,8 +20,8 @@ const Index = () => {
   return (
     <div className="min-h-screen relative">
       <PageSEO
-        title="RCA — Supplier Audits in Days, Not Months"
-        description="On-site factory assessments from €700. AI-powered supplier verification with certified auditors across 45+ countries. 60% cost reduction, 72h mobilization."
+        title="RCA — From Supplier Search to Verified Quality"
+        description="Find, qualify, audit, and improve suppliers on one platform. AI-powered search, on-site audits in 72h, automated CAPA tracking. Full lifecycle coverage."
         canonical="/"
         jsonLd={[
           {
@@ -31,19 +29,8 @@ const Index = () => {
             "@type": "Organization",
             "name": "RCA",
             "url": "https://www.yvoo.io",
-            "description": "AI-powered supplier audit and verification platform with certified auditors in 45+ countries.",
-            "serviceType": "Supplier Audit & Verification"
-          },
-          {
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "name": "RCA",
-            "url": "https://www.yvoo.io",
-            "potentialAction": {
-              "@type": "SearchAction",
-              "target": "https://www.yvoo.io/search-suppliers?q={search_term_string}",
-              "query-input": "required name=search_term_string"
-            }
+            "description": "AI-powered supplier lifecycle platform — from search to audit to CAPA close-out.",
+            "serviceType": "Supplier Quality Management"
           }
         ]}
       />
@@ -52,12 +39,12 @@ const Index = () => {
         <Navigation />
         <HeroSection />
 
-        {/* DIN annotation — grid 4→6 */}
+        {/* DIN annotation */}
         <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
           <TechnicalAnnotation label="1200" from={4} to={6} />
         </div>
 
-        {/* Pain Points — why traditional audits fail */}
+        {/* Pain Points — why the full lifecycle is broken */}
         <PainPointsSection />
 
         {/* Section cut marker A—A */}
@@ -65,45 +52,45 @@ const Index = () => {
           <SectionCutMarker section="A" from={0} to={6} />
         </div>
 
-        <EmailComparisonSection />
+        {/* Three capabilities: Search → Verify → Improve */}
+        <CapabilityOverviewSection />
 
         {/* Dimension line: cost reduction */}
         <div className="mx-auto max-w-[1400px] px-4 md:px-8">
           <DimensionLine from="15.000" to="700" unit="€" gridFrom={0} gridTo={4} />
         </div>
 
-        <CapabilityOverviewSection />
-
-        {/* Tolerance notation for quality metric */}
-        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-          <ToleranceNotation nominal="99.7" tolerance="0.02" unit="%" label="Audit Quality" gridColumn={4} />
-        </div>
-
-        {/* Platform Demo */}
-        <TestimonialSection />
+        {/* Old way vs RCA comparison */}
+        <EmailComparisonSection />
 
         {/* Section cut marker B—B */}
         <div className="mx-auto max-w-[1400px] px-4 md:px-8">
           <SectionCutMarker section="B" from={1} to={5} />
         </div>
 
-        <WhyRCASection />
+        {/* Platform Demo */}
+        <TestimonialSection />
 
-        {/* DIN annotation — grid 3→6 */}
+        {/* Tolerance notation */}
+        <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+          <ToleranceNotation nominal="99.7" tolerance="0.02" unit="%" label="Audit Quality" gridColumn={4} />
+        </div>
+
+        {/* Atlas AI */}
+        <AtlasAISection />
+
+        {/* DIN annotation */}
         <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
           <TechnicalAnnotation label="950" from={3} to={6} />
         </div>
 
-        <AtlasAISection />
+        {/* Full Lifecycle: Search → Qualify → Audit → Report → CAPA */}
+        <HowItWorksSection />
 
-        <AuditDifferenceSection />
-
-        {/* Dimension line: time reduction */}
+        {/* Dimension line: time */}
         <div className="mx-auto max-w-[1400px] px-4 md:px-8">
           <DimensionLine from="14" to="3" unit=" Tage" gridFrom={2} gridTo={6} />
         </div>
-
-        <HowItWorksSection />
 
         <FAQSection />
       </div>

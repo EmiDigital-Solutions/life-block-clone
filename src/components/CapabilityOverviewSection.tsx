@@ -4,24 +4,24 @@ import { Link } from "react-router-dom";
 
 const capabilities = [
   {
-    phase: "Find",
-    title: "Search Suppliers",
-    description: "Type what you need. AI scans thousands of suppliers worldwide in seconds. No cold calls, no trade fairs, no guesswork",
+    phase: "Search",
+    title: "Find Suppliers",
+    description: "Describe what you need. AI finds matching suppliers by capability, certification, and capacity — worldwide, in seconds",
     highlight: "Free",
-    cta: "Start Free Supplier Discovery",
+    cta: "Try Supplier Search",
     link: "/search-suppliers"
   },
   {
     phase: "Verify",
-    title: "ScanPro+ Audit",
-    description: "One click. Local certified auditor on-site in 48 hours. AI-guided audit. Verified report in 3 days. €700 flat. Done",
+    title: "On-Site Audit",
+    description: "Local certified auditor on-site in 72 hours. AI-guided checklists, photo evidence, standardized scoring. From €700",
     cta: "Learn more",
     link: "/scanpro-plus"
   },
   {
-    phase: "Decide",
-    title: "Ground Intelligence",
-    description: "Risk scores, evidence photos, equipment analysis—all in one dashboard. No more gut feeling. Just verified data",
+    phase: "Improve",
+    title: "Reports & CAPA",
+    description: "Decision-ready reports in 24h. Corrective actions auto-generated, tracked, and verified until close-out. Full traceability",
     cta: "Learn more",
     link: "/ground-intelligence"
   }

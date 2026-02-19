@@ -44,7 +44,7 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-sm md:text-base text-foreground/50 font-mono tracking-[0.25em] uppercase mb-4 md:mb-6"
             >
-              Find · Verify · Audit · Improve — one platform
+              Search · Qualify · Audit · Report · Improve — one platform
             </motion.p>
 
             {/* Headline */}
@@ -54,8 +54,8 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
             >
-               Supplier audits<br />
-               in 72h, not weeks
+               From supplier search<br />
+               to verified quality
             </motion.h1>
 
             {/* Value Props + CTAs - snapped to 4th grid line (50%) */}
@@ -65,7 +65,7 @@ const HeroSection = () => {
                 DIN EN ISO
               </span>
 
-              {/* Surface roughness symbol (Ra) — positioned top-right of value props */}
+              {/* Surface roughness symbol (Ra) */}
               <div className="absolute -right-4 md:right-0 -top-8 text-foreground/[0.12]" aria-hidden="true">
                 <svg width="36" height="28" viewBox="0 0 36 28" fill="none">
                   <path d="M0 24 L6 24 L10 8 L14 24 L18 24" stroke="currentColor" strokeWidth="0.8" fill="none" />
@@ -81,9 +81,8 @@ const HeroSection = () => {
                 className="space-y-5 mb-6 md:mb-8"
               >
                 <div className="relative">
-                  {/* Vertical DIN dimension line — before the 4th grid line */}
+                  {/* Vertical DIN dimension line */}
                   <div className="absolute -left-5 top-0 bottom-0 flex flex-col items-center text-foreground/[0.12]" aria-hidden="true">
-                    {/* Top tick + arrow */}
                     <div className="w-2.5 h-px bg-current" />
                     <svg width="7" height="5" viewBox="0 0 7 5" fill="none" className="flex-shrink-0">
                       <path d="M0 5 L3.5 0 L7 5" stroke="currentColor" strokeWidth="0.7" fill="none" />
@@ -101,13 +100,12 @@ const HeroSection = () => {
 
                   <div className="space-y-2">
                   {[
-                    { bold: "72-hour mobilization", rest: "any country, any industry" },
-                    { bold: "60% lower cost", rest: "local auditors, no travel expenses" },
-                    { bold: "Unlimited parallel audits", rest: "build a new supplier base in weeks" },
-                    { bold: "Your checklists, AI-enhanced", rest: "your templates, elevated with Atlas AI" },
-                    { bold: "Objective results", rest: "AI-driven scoring, comparable across all suppliers" },
-                    { bold: "Verified data, not claims", rest: "on-site evidence, risk alerts, decision-ready reports" },
-                    { bold: "AI-driven CAPA", rest: "every finding tracked, escalated, resolved digitally" },
+                    { bold: "AI supplier search", rest: "find the right factory in seconds, not weeks" },
+                    { bold: "Automated qualification", rest: "certificates, capacity, risk — verified before you contact" },
+                    { bold: "On-site audit in 72h", rest: "local certified auditor, any country, any standard" },
+                    { bold: "AI-powered reports", rest: "standardized, photo-verified, decision-ready in 24h" },
+                    { bold: "CAPA tracking & close-out", rest: "every finding tracked until resolved" },
+                    { bold: "Continuous monitoring", rest: "supplier performance visible across your entire base" },
                   ].map((item, i) => (
                     <p key={i} className="text-sm md:text-base text-foreground/60 whitespace-nowrap">
                       <span className="font-semibold text-foreground">{item.bold}</span> — {item.rest}
@@ -139,9 +137,7 @@ const HeroSection = () => {
       </div>
 
       {/* Scrolling Industry Band */}
-      <div
-        className="relative z-10 border-t border-foreground/10 overflow-hidden py-3 md:py-5 shrink-0"
-      >
+      <div className="relative z-10 border-t border-foreground/10 overflow-hidden py-3 md:py-5 shrink-0">
         <div className="flex animate-marquee whitespace-nowrap">
           {[...marqueeItems, ...marqueeItems].map((item, i) => (
             <span
