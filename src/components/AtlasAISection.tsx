@@ -7,19 +7,19 @@ import AtlasAIDemoAnimation from "./AtlasAIDemoAnimation";
 const atlasFeatures = [
   {
     title: "Atlas Brain",
-    description: "Auto-generated audit context per question. Client-specific priorities, standard requirements, verification points, and evidence checklists — all in real time."
+    description: "Auto-generated inspection context per checkpoint. Supplier history, specification requirements, and verification points — prepared before you arrive on site."
   },
   {
     title: "Atlas Copilot",
-    description: "Conversational audit execution with voice input, smart evidence requests, equipment photo recognition, and AI-generated findings."
+    description: "Guided on-site inspection with voice input, smart evidence capture, equipment photo recognition, and AI-generated observations."
   },
   {
-    title: "Cross-Audit Intelligence",
-    description: "Pattern recognition from historical audits. Industry benchmarking, predictive insights, and continuous learning."
+    title: "Cross-Supplier Intelligence",
+    description: "Pattern recognition across supplier visits. Industry benchmarking, risk signals, and continuous learning from every inspection."
   },
   {
     title: "Evidence Analysis",
-    description: "Automatic evidence categorization, relevance scoring, and AI-powered acceptance recommendations."
+    description: "Automatic evidence categorization, relevance scoring, and AI-powered assessment of supplier capability indicators."
   }
 ];
 
@@ -44,15 +44,15 @@ const AtlasAISection = () => {
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-px bg-foreground" />
-              <span className="section-eyebrow">
-                Technology
+             <span className="section-eyebrow">
+                Supplier Intelligence
               </span>
             </div>
-            <h2 className="section-headline text-foreground mb-6 whitespace-nowrap">
-              Atlas: The AI that ensures audit quality
+            <h2 className="section-headline text-foreground mb-6">
+              See what's really happening<br />at your supplier.
             </h2>
             <p className="text-lg text-muted-foreground max-w-xl mb-8">
-              Atlas transforms every auditor into an expert. It understands standards, learns from patterns, and guides assessments in real time.
+              Atlas turns every site visit into structured intelligence. It understands what to look for, captures evidence systematically, and tells you what's really going on — before problems reach your project.
             </p>
             <Link
               to="/features"
