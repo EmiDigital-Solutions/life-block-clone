@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import PageSEO from "@/components/PageSEO";
 import PageGridOverlay from "@/components/PageGridOverlay";
 import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
 import HeroSquaresAnimation from "@/components/HeroSquaresAnimation";
 import TechnicalAnnotation from "@/components/TechnicalAnnotation";
 import DimensionLine from "@/components/DimensionLine";
@@ -39,16 +38,16 @@ const LNGInspection = () => {
   return (
     <div className="min-h-screen relative">
       <PageSEO
-        title="LNG & GPP Field Inspection — AI-Driven EPC Quality | YVOO"
+        title="LNG & GPP Field Inspection — AI-Driven EPC Quality | RACI"
         description="AI-powered field inspection platform for LNG plants and gas processing facilities. ASME, API, EN compliant. Reduce project overruns by 15-20% through intelligent quality management."
         canonical="/lng-inspection"
         jsonLd={[
           {
             "@context": "https://schema.org",
             "@type": "Service",
-            "name": "YVOO LNG & GPP Field Inspection Platform",
+            "name": "RACI LNG & GPP Field Inspection Platform",
             "description": "AI-driven inspection for large-scale LNG facilities and gas processing plants covering engineering, procurement, construction, and commissioning phases.",
-            "provider": { "@type": "Organization", "name": "YVOO", "url": "https://www.yvoo.io" },
+            "provider": { "@type": "Organization", "name": "RACI" },
             "serviceType": "EPC Quality Inspection & Verification"
           }
         ]}
@@ -139,7 +138,7 @@ const LNGInspection = () => {
                     </div>
                     <p className="text-sm md:text-base whitespace-nowrap flex items-baseline mt-2">
                       <span>
-                        <span className="font-semibold text-primary">Save $750M–$1B on a $5B plant</span> · <a href="https://calendly.com/yvoo/demo-yvoo" target="_blank" rel="noopener noreferrer" className="underline font-semibold text-primary hover:text-primary/80">Book a Demo →</a>
+                        <span className="font-semibold text-primary">Save $750M–$1B on a $5B plant</span>
                       </span>
                     </p>
                   </motion.div>
@@ -153,11 +152,6 @@ const LNGInspection = () => {
                       document.getElementById('lng-platform-demo')?.scrollIntoView({ behavior: 'smooth' });
                     }}>
                       See Platform Demo →
-                    </Button>
-                    <Button variant="outline" size="lg" className="w-full sm:w-auto text-lg" asChild>
-                      <a href="https://calendly.com/yvoo/demo-yvoo" target="_blank" rel="noopener noreferrer">
-                        Request a Demo →
-                      </a>
                     </Button>
                   </motion.div>
                 </div>
@@ -480,7 +474,7 @@ const LNGInspection = () => {
                 Capital hemorrhage<br />stops here
               </h2>
               <p className="text-base md:text-lg text-background/40 mt-6 max-w-xl">
-                Every EPC project bleeds money through three invisible pipes. YVOO plugs all three.
+                Every EPC project bleeds money through three invisible pipes. RACI plugs all three.
               </p>
             </motion.div>
 
@@ -527,7 +521,7 @@ const LNGInspection = () => {
                       <p className="text-sm text-background/50 mt-1">{leak.problem}</p>
                     </div>
                     <div>
-                      <span className="text-[10px] font-bold text-[#6EA996] uppercase tracking-wider">YVOO Solution</span>
+                      <span className="text-[10px] font-bold text-[#6EA996] uppercase tracking-wider">RACI Solution</span>
                       <p className="text-sm text-background/50 mt-1">{leak.solution}</p>
                     </div>
                   </div>
@@ -648,22 +642,8 @@ const LNGInspection = () => {
               ))}
             </div>
 
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mt-16 flex flex-col sm:flex-row gap-4 items-start">
-              <Button size="lg" className="text-lg" asChild>
-                <a href="https://calendly.com/yvoo/demo-yvoo" target="_blank" rel="noopener noreferrer">
-                  Schedule a Demo →
-                </a>
-              </Button>
-              <Button variant="outline" size="lg" className="text-lg border-background/30 text-background hover:bg-background/10">
-                Download Whitepaper →
-              </Button>
-            </motion.div>
           </div>
         </section>
-
-        <Footer />
       </div>
     </div>
   );
