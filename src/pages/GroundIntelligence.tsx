@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { useState, useRef } from "react";
-import { ArrowRight, Check, X } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import GroundIntelligenceFeatureModal, { groundIntelligenceFeatures, type GroundIntelligenceFeature } from "@/components/GroundIntelligenceFeatureModal";
+import AtlasAISection from "@/components/AtlasAISection";
 import CheckpointModal, { checkpointData, type CheckpointData } from "@/components/CheckpointModal";
 import PageSEO from "@/components/PageSEO";
 import { useInView } from "framer-motion";
@@ -27,14 +28,6 @@ const GroundIntelligence = () => {
   const [hoveredStepIndex, setHoveredStepIndex] = useState<number | null>(null);
   const howItWorksRef = useRef(null);
   const howItWorksInView = useInView(howItWorksRef, { once: true, amount: 0.1 });
-
-  const differentiators = [
-    { desk: "Supplier self-assessment questionnaires", ground: "Independent on-site code compliance verification" },
-    { desk: "News-feed risk alerts", ground: "Expert NDE & dimensional inspection at fabrication shop" },
-    { desk: "Outdated database certifications", ground: "Live witness of hydrostatic & cryogenic testing" },
-    { desk: "Generic compliance badges", ground: "ASME / API / EN evidence with geo-tagged photos" },
-    { desk: "One-size-fits-all reports", ground: "ITP hold-point verification per engineering specification" },
-  ];
 
   return (
     <div className="min-h-screen relative">
@@ -174,76 +167,6 @@ const GroundIntelligence = () => {
           <TechnicalAnnotation label="1200" from={4} to={6} />
         </div>
 
-        {/* ═══════════════════════════════════════════════════
-            COMPARISON — Desktop Reports vs. On-Site Verification
-        ═══════════════════════════════════════════════════ */}
-        <section data-nav-theme="light" className="py-24 md:py-32 bg-white">
-          <div className="mx-auto max-w-[1400px] px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="max-w-3xl mb-16"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-px bg-foreground" />
-                <span className="section-eyebrow">The difference</span>
-              </div>
-              <h2 className="section-headline text-foreground">
-                Desktop reports vs.<br />on-site verification
-              </h2>
-            </motion.div>
-
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
-              {/* Old Way */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.1 }}
-                className="bg-[#ebebeb] p-10 md:p-14 hover:bg-[#e3e3e3] transition-colors duration-300"
-              >
-                <p className="text-sm font-medium tracking-[0.2em] text-muted-foreground uppercase mb-10">
-                  Typical oversight approach
-                </p>
-                <div className="space-y-6">
-                  {differentiators.map((d, idx) => (
-                    <div key={idx} className="flex items-start gap-4">
-                      <div className="w-7 h-7 rounded-lg bg-destructive/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <X className="w-3.5 h-3.5 text-destructive" />
-                      </div>
-                      <span className="text-foreground/60 text-base md:text-lg leading-relaxed">{d.desk}</span>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* New Way - RCA */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.2 }}
-                className="bg-[#0a0a0a] p-10 md:p-14"
-              >
-                <p className="text-sm font-medium tracking-[0.2em] text-white/80 uppercase mb-10">
-                  RCA Construction Intelligence
-                </p>
-                <div className="space-y-6">
-                  {differentiators.map((d, idx) => (
-                    <div key={idx} className="flex items-start gap-4">
-                      <div className="w-7 h-7 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <Check className="w-3.5 h-3.5 text-primary" />
-                      </div>
-                      <span className="text-white text-base md:text-lg leading-relaxed">{d.ground}</span>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
         {/* Section cut marker A—A */}
         <div className="mx-auto max-w-[1400px] px-4 md:px-8">
           <SectionCutMarker section="A" from={0} to={6} />
@@ -372,6 +295,11 @@ const GroundIntelligence = () => {
             </div>
           </div>
         </section>
+
+        {/* ═══════════════════════════════════════════════════
+            ATLAS AI — Inspection Autopilot
+        ═══════════════════════════════════════════════════ */}
+        <AtlasAISection />
 
         {/* ═══════════════════════════════════════════════════
             WHAT YOU GET — KPIs & Quote
