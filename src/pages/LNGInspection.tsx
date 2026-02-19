@@ -316,6 +316,11 @@ const LNGInspection = () => {
           </div>
         </section>
 
+        {/* ═══════════════════════════════════════════════════
+            FRAGMENTATION TRAP — CURRENT PAIN
+        ═══════════════════════════════════════════════════ */}
+        <FragmentationTrapSection />
+
         {/* Section cut marker */}
         <div className="mx-auto max-w-[1400px] px-4 md:px-8">
           <SectionCutMarker section="A" from={0} to={6} />
@@ -518,10 +523,7 @@ const LNGInspection = () => {
           </div>
         </section>
 
-        {/* ═══════════════════════════════════════════════════
-            FRAGMENTATION TRAP — CURRENT PAIN
-        ═══════════════════════════════════════════════════ */}
-        <FragmentationTrapSection />
+
 
         {/* ═══════════════════════════════════════════════════
             IT LANDSCAPE ARCHITECTURE
