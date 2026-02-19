@@ -61,10 +61,10 @@ const flows: TrapFlow[] = [
 ];
 
 const urgencyAnnotations = [
-  { text: "Specs lived in CAD —\nnever reach the tablet", x: 1, y: 30, anchor: "start" as const, icon: <AlertTriangle size={12} className="text-[hsl(0,70%,50%)]" /> },
-  { text: "Changes agreed via chat\nNo read receipts. No audit trail.", x: 99, y: 6, anchor: "end" as const, icon: <XCircle size={12} className="text-[hsl(0,70%,50%)]" /> },
-  { text: "Version conflicts —\nwhich PDF is current?", x: 1, y: 65, anchor: "start" as const, icon: <Unlink size={12} className="text-[hsl(25,85%,50%)]" /> },
-  { text: "Progress reported\nin static PDFs. No one reads.", x: 99, y: 75, anchor: "end" as const, icon: <Clock size={12} className="text-[hsl(25,85%,50%)]" /> },
+  { text: "Specs stay in CAD —\nnever reach the field", x: 1, y: 30, anchor: "start" as const, icon: <AlertTriangle size={12} className="text-[hsl(0,70%,50%)]" /> },
+  { text: "Changes agreed in chat.\nNo confirmation. No record.", x: 99, y: 6, anchor: "end" as const, icon: <XCircle size={12} className="text-[hsl(0,70%,50%)]" /> },
+  { text: "Version problem —\nwhich PDF is the right one?", x: 1, y: 65, anchor: "start" as const, icon: <Unlink size={12} className="text-[hsl(25,85%,50%)]" /> },
+  { text: "Progress reports\nin static PDFs. Nobody reads them.", x: 99, y: 75, anchor: "end" as const, icon: <Clock size={12} className="text-[hsl(25,85%,50%)]" /> },
 ];
 
 const FragmentationTrapSection = () => {
@@ -83,12 +83,12 @@ const FragmentationTrapSection = () => {
             <span className="text-xs font-mono tracking-[0.25em] uppercase text-foreground/40">Current Reality</span>
           </div>
           <h2 className="section-headline text-foreground">
-            The fragmentation trap
+            The data chaos problem
           </h2>
           <p className="text-base md:text-lg text-foreground/50 mt-6 max-w-2xl leading-relaxed">
-            Typical EPC project: inspection data scattered across 8+ disconnected systems. 
-            Every handover is manual. Every transfer is a potential evidence gap. 
-            When a supplier files a 10M₽ claim, your team performs <span className="font-bold text-foreground/70">digital archaeology</span> — not engineering.
+            Today: inspection data is spread across 8+ separate systems. 
+            Every transfer is manual. Every handover can lose information. 
+            When a supplier sends a 10 Million Ruble claim, your engineers search for proof instead of doing <span className="font-bold text-foreground/70">engineering work</span>.
           </p>
         </motion.div>
 
@@ -252,12 +252,12 @@ const FragmentationTrapSection = () => {
         >
           <div className="max-w-4xl">
             <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground tracking-tight leading-[1.15]">
-              Result: <span className="text-[hsl(0,70%,45%)]">"Digital Archaeology"</span> — scrambling to reconstruct 
-              proof while the supplier demands 10 Million Rubles.
+              Result: <span className="text-[hsl(0,70%,45%)]">searching for proof</span> while the supplier 
+              demands 10 Million Rubles.
             </p>
             <p className="text-base md:text-lg text-foreground/45 mt-4 max-w-2xl leading-relaxed">
-              24 manual transfer points. Zero traceability. Broken communication chains. 
-              When a claim arrives, engineers spend 40–120 man-hours reconstructing evidence that should have been captured at source.
+              24 manual transfers. No traceability. Broken communication. 
+              Engineers spend 40–120 hours per claim looking for evidence that should have been recorded automatically.
             </p>
           </div>
         </motion.div>
@@ -265,10 +265,10 @@ const FragmentationTrapSection = () => {
         {/* Pain point stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
           {[
-            { stat: "8+", label: "Disconnected systems" },
-            { stat: "24", label: "Manual transfer points" },
-            { stat: "72h", label: "Avg. time to find evidence" },
-            { stat: "€0", label: "Recovered without proof" },
+            { stat: "8+", label: "Separate systems" },
+            { stat: "24", label: "Manual data transfers" },
+            { stat: "72h", label: "Average time to find proof" },
+            { stat: "€0", label: "Money recovered without proof" },
           ].map((item, i) => (
             <motion.div
               key={item.label}

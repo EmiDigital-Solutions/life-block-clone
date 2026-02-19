@@ -84,9 +84,9 @@ const LNGInspection = () => {
                   transition={{ duration: 0.8, delay: 0.2 }}
                   className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
                 >
-                  AI-driven field<br />
-                  inspection for LNG<br />
-                  mega-projects
+                   AI-powered inspection<br />
+                   for LNG & gas<br />
+                   processing plants
                 </motion.h1>
 
                 {/* Value Props — aligned to 4th grid line */}
@@ -127,12 +127,12 @@ const LNGInspection = () => {
 
                       <div className="space-y-2">
                         {[
-                          { bold: "Full EPC lifecycle coverage", rest: "engineering → procurement → construction → commissioning" },
-                          { bold: "ASME, API, EN code compliance", rest: "pressure vessels, piping, rotating equipment, storage tanks" },
-                          { bold: "Computer vision NDT analysis", rest: "RT film interpretation, UT scan validation, weld quality AI" },
-                          { bold: "Risk-based inspection intensity", rest: "dynamic RBI engine calibrated to equipment criticality" },
-                          { bold: "Multi-party delay attribution", rest: "evidence-based timeline, automated responsibility analysis" },
-                          { bold: "Predictive schedule analytics", rest: "Monte Carlo simulation, $500K–$2M/day delay cost avoidance" },
+                          { bold: "All EPC phases", rest: "engineering → procurement → construction → commissioning" },
+                          { bold: "Code compliance", rest: "ASME, API, EN — pressure vessels, piping, rotating equipment, tanks" },
+                          { bold: "AI weld analysis", rest: "RT film reading, UT scan check, automatic weld quality scoring" },
+                          { bold: "Risk-based planning", rest: "inspection intensity based on equipment criticality" },
+                          { bold: "Delay tracking", rest: "evidence-based timeline, automatic responsibility assignment" },
+                          { bold: "Schedule prediction", rest: "Monte Carlo simulation, avoid $500K–$2M/day delay costs" },
                         ].map((item, i) => (
                           <p key={i} className="text-sm md:text-base text-foreground/60">
                             <span className="font-semibold text-foreground">{item.bold}</span> — {item.rest}
@@ -194,12 +194,12 @@ const LNGInspection = () => {
                 <span className="text-xs font-mono tracking-[0.25em] uppercase text-foreground/40">Evidence Architecture</span>
               </div>
               <h2 className="section-headline text-foreground">
-                Immutable chain of evidence
+                Tamper-proof evidence chain
               </h2>
               <p className="text-base md:text-lg text-foreground/50 mt-6 max-w-2xl leading-relaxed">
-                RCA platform enforces tamper-proof data capture at every inspection checkpoint. 
-                Each record is timestamped, geo-tagged, and cryptographically linked — eliminating 
-                the reconstruction effort that currently costs project teams 40–120 man-hours per claim.
+                RCA captures data at every inspection point automatically. 
+                Each record has a timestamp, GPS location, and digital signature. 
+                No more searching for proof — it takes 40–120 man-hours per claim today. With RCA: zero.
               </p>
             </motion.div>
 
@@ -344,18 +344,18 @@ const LNGInspection = () => {
                 <span className="text-xs font-mono tracking-[0.25em] uppercase text-foreground/50">Inspection capabilities</span>
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground">
-                Six pillars of<br />intelligent inspection
+                Six core inspection<br />capabilities
               </h2>
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground/10">
               {[
-                { img: lngWeldInspection, title: "Welding & NDT", desc: "AI-powered RT film interpretation, UT scan validation, weld map generation. ASME Section VIII & B31.3 compliance verified automatically.", codes: "ASME IX · AWS D1.1 · API 1104" },
-                { img: lngDimensionalControl, title: "Dimensional Control", desc: "3D laser scanning vs. design model. Equipment setting verification, flange alignment, piping isometric validation to ±3mm tolerance.", codes: "ISO 10360 · ASME Y14.5" },
-                { img: lngRotatingEquipment, title: "Rotating Equipment", desc: "Vibration signature analysis, laser alignment verification, oil cleanliness per ISO 4406, seal system inspection per API Plans.", codes: "API 617/618 · ISO 10816" },
-                { img: lngStorageTanks, title: "Static Equipment", desc: "Pressure vessel inspection, storage tank integrity, corrosion monitoring, coating/insulation verification for cryogenic systems.", codes: "API 620/650 · ASME Sec VIII" },
-                { img: lngControlRoom, title: "E&I & Commissioning", desc: "Loop checks, interlock testing, cause-and-effect validation, functional safety verification for SIS systems per IEC 61511.", codes: "IEC 61511 · IECEx · ATEX" },
-                { img: lngPlantHero, title: "HSE & Compliance", desc: "HAZOP follow-up, fire & gas system verification, environmental compliance monitoring, permit tracking across jurisdictions.", codes: "NFPA 59A · ISO 45001 · API RP 750" },
+                { img: lngWeldInspection, title: "Welding & NDT", desc: "AI reads RT films, checks UT scans, generates weld maps. Automatic ASME VIII & B31.3 compliance check.", codes: "ASME IX · AWS D1.1 · API 1104" },
+                { img: lngDimensionalControl, title: "Dimensional Control", desc: "3D laser scan compared to design model. Flange alignment, pipe routing check, ±3mm tolerance verification.", codes: "ISO 10360 · ASME Y14.5" },
+                { img: lngRotatingEquipment, title: "Rotating Equipment", desc: "Vibration analysis, laser alignment check, oil cleanliness (ISO 4406), seal system inspection per API Plans.", codes: "API 617/618 · ISO 10816" },
+                { img: lngStorageTanks, title: "Static Equipment", desc: "Pressure vessel and tank inspection. Corrosion monitoring, coating check for cryogenic systems.", codes: "API 620/650 · ASME Sec VIII" },
+                { img: lngControlRoom, title: "E&I & Commissioning", desc: "Loop checks, interlock tests, cause-and-effect validation, safety system verification (SIS) per IEC 61511.", codes: "IEC 61511 · IECEx · ATEX" },
+                { img: lngPlantHero, title: "HSE & Compliance", desc: "HAZOP follow-up, fire & gas system check, environmental monitoring, permit tracking.", codes: "NFPA 59A · ISO 45001 · API RP 750" },
               ].map((cap, i) => (
                 <motion.div key={cap.title}
                   initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
@@ -407,10 +407,10 @@ const LNGInspection = () => {
                 <span className="text-xs font-mono tracking-[0.25em] uppercase text-foreground/50">Atlas AI · Inspector Autopilot</span>
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground">
-                AI guides your inspector<br />through every hold point
+                AI guides the inspector<br />step by step
               </h2>
               <p className="text-base md:text-lg text-foreground/50 mt-6 max-w-xl">
-                Watch Atlas AI execute a complete ITP for a Deethanizer Condenser — with camera capture, IoT sensor integration, evidence chain, and AI voice output guiding every hold point.
+                Atlas AI runs a full ITP for a Deethanizer Condenser: camera capture, IoT sensor data, evidence recording, and voice instructions at every hold point.
               </p>
             </motion.div>
 
@@ -437,10 +437,10 @@ const LNGInspection = () => {
                 <span className="text-xs font-mono tracking-[0.25em] uppercase text-foreground/50">Inspection Dashboard</span>
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground">
-                Every inspection case.<br />Full audit trail.
+                All inspection cases.<br />Complete documentation.
               </h2>
               <p className="text-base md:text-lg text-foreground/50 mt-6 max-w-xl">
-                Each card represents a completed equipment inspection with AI-generated prediction reports and claim letters. Click to view the full analysis.
+                Each card is one completed equipment inspection — with AI-generated reports and claim letters. Click any card to see the full analysis.
               </p>
             </motion.div>
 
@@ -464,10 +464,10 @@ const LNGInspection = () => {
                 <span className="text-xs font-mono tracking-[0.25em] uppercase text-foreground/50">Full Lifecycle Demo</span>
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground">
-                AI Inspection → Atlas →<br />Claims & Penalties
+                From inspection<br />to claim — one workflow
               </h2>
               <p className="text-base md:text-lg text-foreground/50 mt-6 max-w-xl">
-                Complete lifecycle from field inspection to AI-generated claim letters. Supplier fault & client fault KPIs, evidence chain, and an AI bot that writes formal claims with all details — ready for supplier acceptance.
+                Full process: field inspection → AI analysis → claim letter. Shows supplier faults and client faults. AI writes formal claims with all evidence — ready for supplier to accept or dispute.
               </p>
             </motion.div>
 
@@ -494,7 +494,7 @@ const LNGInspection = () => {
                 Claims, penalties &<br />liquidated damages
               </h2>
               <p className="text-base md:text-lg text-muted-foreground mt-6 max-w-xl">
-                Full audit trail from inspection finding to legal notification. Automated penalty calculation with LD enforcement. Includes cases where client is at fault due to late specifications or mid-fabrication requirement changes.
+                Complete trail: from inspection finding to formal notification. Automatic penalty calculation. Also covers cases where the client caused the problem (late specs, changed requirements during fabrication).
               </p>
             </motion.div>
 
@@ -518,10 +518,10 @@ const LNGInspection = () => {
                 <span className="text-xs font-mono tracking-[0.25em] uppercase text-foreground/50">Supplier Portal</span>
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground">
-                What the supplier<br />sees & must accept
+                Supplier view:<br />accept or dispute
               </h2>
               <p className="text-base md:text-lg text-foreground/50 mt-6 max-w-xl">
-                Suppliers receive AI-generated formal claims with full evidence chains. They review findings, download evidence packages, and must formally accept or dispute — all within the platform.
+                Suppliers get formal claims with all evidence attached. They can review findings, download evidence files, and must formally accept or dispute — everything happens inside the platform.
               </p>
             </motion.div>
 
@@ -543,10 +543,10 @@ const LNGInspection = () => {
                 <span className="text-xs font-mono tracking-[0.25em] uppercase text-white/40">System Architecture</span>
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.03em] leading-[0.95] text-white">
-                Enterprise IT landscape<br />for full lifecycle control
+                IT system architecture
               </h2>
               <p className="text-base md:text-lg text-white/40 mt-6 max-w-xl">
-                RCA AI sits at the center of your EPC data ecosystem — connecting ERP, engineering backbone, field operations, and compliance into a single intelligence layer.
+                RCA connects all project systems: ERP, engineering tools, field operations, and compliance — into one data layer. No more isolated systems.
               </p>
             </motion.div>
 
@@ -567,7 +567,7 @@ const LNGInspection = () => {
                 <span className="text-xs font-mono tracking-[0.25em] uppercase text-foreground/50">Who benefits</span>
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground">
-                Built for the world's<br />largest EPC projects
+                Target clients
               </h2>
             </motion.div>
 
@@ -577,30 +577,30 @@ const LNGInspection = () => {
                   title: "Owners & Operators",
                   companies: "Shell · TotalEnergies · Saudi Aramco · Qatargas · Cheniere",
                   benefits: [
-                    "Remote oversight with limited site presence",
-                    "Evidence-based delay attribution for claims",
-                    "Real-time project health dashboards",
-                    "Predictive schedule risk analysis",
+                    "Remote monitoring — less people on site needed",
+                    "Clear delay attribution with evidence for claims",
+                    "Live project status dashboards",
+                    "Schedule risk prediction",
                   ],
                 },
                 {
                   title: "EPC Contractors",
                   companies: "TechnipFMC · Saipem · Chiyoda · Samsung Engineering · Linde",
                   benefits: [
-                    "Reduce NCR rates by 40% with AI prevention",
-                    "Automated CAPA generation and tracking",
-                    "Multi-discipline coordination intelligence",
-                    "Contract position protection with evidence",
+                    "40% fewer NCRs through AI-based prevention",
+                    "Automatic CAPA generation and tracking",
+                    "Coordination across all disciplines",
+                    "Contract protection through documented evidence",
                   ],
                 },
                 {
                   title: "Third-Party Inspectors",
                   companies: "ABS · Bureau Veritas · DNV · Lloyd's Register · TÜV",
                   benefits: [
-                    "50% faster inspection with AI assistance",
-                    "Computer vision pre-screening of welds",
-                    "Standardized reporting across projects",
-                    "Digital evidence with blockchain integrity",
+                    "50% faster inspections with AI support",
+                    "AI pre-screening of weld images",
+                    "Standard reports across all projects",
+                    "Digital evidence with full traceability",
                   ],
                 },
               ].map((client, i) => (
@@ -641,16 +641,16 @@ const LNGInspection = () => {
                 <span className="text-xs font-mono tracking-[0.25em] uppercase text-background/50">Value proposition</span>
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.03em] leading-[0.95] text-background">
-                The numbers speak<br />for themselves
+                Key numbers
               </h2>
             </motion.div>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-px">
               {[
-                { value: "15–20%", label: "Project overrun reduction" },
-                { value: "$750M", label: "Saved on a $5B LNG plant" },
-                { value: "50%", label: "Faster inspection cycles" },
-                { value: "95%+", label: "Defect detection accuracy" },
+                { value: "15–20%", label: "Less project cost overrun" },
+                { value: "$750M", label: "Saved on a $5B plant" },
+                { value: "50%", label: "Faster inspection time" },
+                { value: "95%+", label: "Defect detection rate" },
               ].map((stat, i) => (
                 <motion.div key={stat.label}
                   initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
