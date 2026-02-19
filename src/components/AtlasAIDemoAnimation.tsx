@@ -61,9 +61,9 @@ const AtlasAIDemoAnimation = () => {
   const [speakerPulsing, setSpeakerPulsing] = useState(false);
 
   const riskAlertParts = [
-    "Cryogenic test field verification required per GOST 33260.",
-    "68% of valve suppliers fail pressure hold at minus 196 degrees.",
-    "Check cryo chamber log and helium leak test protocol.",
+    "Capacity assessment required per project specification.",
+    "Verify available machine hours versus committed order backlog.",
+    "Check CNC utilization rate and shift model documentation.",
   ];
 
   const speakRiskAlert = useCallback(() => {
@@ -219,7 +219,7 @@ const AtlasAIDemoAnimation = () => {
             <div className="w-2.5 h-2.5 rounded-full bg-[#6EA996]" />
             <span className="text-[12px] text-white/40 font-medium tracking-wider uppercase">Live Audit</span>
           </div>
-          <span className="text-[14px] font-bold text-white tracking-wide">Atlas AI · Konar, Russia</span>
+          <span className="text-[14px] font-bold text-white tracking-wide">Atlas AI · Capacity Inspection</span>
           <div className="flex items-center gap-3">
             <span className="text-[12px] text-white/30 hidden md:inline">Progress 45%</span>
             <div className="w-20 h-2 bg-white/8 rounded-full overflow-hidden">
@@ -235,27 +235,27 @@ const AtlasAIDemoAnimation = () => {
           <div className="flex-[25] border-r border-white/[0.03] flex flex-col overflow-hidden">
             <div className="px-4 py-3">
               <span className="text-[12px] font-bold text-white/50 uppercase tracking-wider">Checklist</span>
-              <div className="text-[10px] text-white/25 mt-1">GOST 33260 · Cryogenic Valves</div>
+              <div className="text-[10px] text-white/25 mt-1">Capacity Assessment · Machine Shop</div>
             </div>
 
             <div className="flex-1 overflow-y-auto px-4 py-3 space-y-1 relative" ref={leftScrollRef} style={{ scrollbarWidth: "none" }}>
               <ScrollNav scrollRef={leftScrollRef} />
-              <div className="text-[12px] font-bold text-white/40 mb-2">▼ 7. CRYO TEST FIELD</div>
-              <CheckItem done label="7.1 Chamber Specification" />
-              <div className="text-[12px] font-semibold text-white/35 pl-2 mt-2 mb-1">▼ 7.2 Test Protocol</div>
-              <CheckItem done label="7.2.1 LN₂ Supply System" indent />
-              <CheckItem done label="7.2.2 Temperature Sensors" indent />
+              <div className="text-[12px] font-bold text-white/40 mb-2">▼ 3. PRODUCTION CAPACITY</div>
+              <CheckItem done label="3.1 Machine Park Inventory" />
+              <div className="text-[12px] font-semibold text-white/35 pl-2 mt-2 mb-1">▼ 3.2 Utilization Analysis</div>
+              <CheckItem done label="3.2.1 Shift Model" indent />
+              <CheckItem done label="3.2.2 OEE Records" indent />
               <div className="bg-[#AE3D3D]/8 border border-[#AE3D3D]/25 rounded-lg px-3 py-2.5 ml-2 my-2">
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full bg-[#AE3D3D] animate-pulse" />
-                  <span className="text-[12px] font-bold text-white">7.2.3 Helium Leak Test</span>
+                  <span className="text-[12px] font-bold text-white">3.2.3 Backlog vs. Capacity</span>
                 </div>
                 <span className="text-[10px] px-2 py-0.5 bg-[#AE3D3D] text-white font-bold rounded ml-5 inline-block mt-1">HIGH RISK</span>
               </div>
-              <CheckItem label="7.2.4 Pressure Hold −196°C" indent pending />
-              <div className="text-[12px] font-bold text-white/40 mt-3 mb-2">▶ 8. MATERIAL CERT</div>
-              <CheckItem label="8.1 EN 10204 3.2 Certs" pending />
-              <CheckItem label="8.2 PMI Verification" pending />
+              <CheckItem label="3.2.4 Bottleneck Machines" indent pending />
+              <div className="text-[12px] font-bold text-white/40 mt-3 mb-2">▶ 4. WORKFORCE</div>
+              <CheckItem label="4.1 Operator Qualifications" pending />
+              <CheckItem label="4.2 Training Records" pending />
             </div>
 
             {/* Evidence */}
@@ -267,17 +267,17 @@ const AtlasAIDemoAnimation = () => {
                 </span>
               </div>
               <div className="space-y-2">
-                <EvidenceItem name="cryo_chamber_photo.jpg" type="img" status="verified" />
-                <EvidenceItem name="helium_leak_cert.pdf" type="doc" status={evidenceComplete ? "verified" : "review"} />
-                <EvidenceItem name="LN2_supply_nameplate.jpg" type="img" status="verified" />
+                <EvidenceItem name="machine_park_photo.jpg" type="img" status="verified" />
+                <EvidenceItem name="shift_schedule_Q1.pdf" type="doc" status={evidenceComplete ? "verified" : "review"} />
+                <EvidenceItem name="cnc_nameplate_DMG.jpg" type="img" status="verified" />
                 <AnimatePresence>
                   {evidenceComplete && (
                     <>
                       <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }}>
-                        <EvidenceItem name="pressure_hold_log.pdf" type="doc" status="verified" />
+                        <EvidenceItem name="order_backlog_list.pdf" type="doc" status="verified" />
                       </motion.div>
                       <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} transition={{ delay: 0.2 }}>
-                        <EvidenceItem name="temp_sensor_cal.jpg" type="img" status="verified" />
+                        <EvidenceItem name="oee_dashboard.jpg" type="img" status="verified" />
                       </motion.div>
                     </>
                   )}
@@ -319,7 +319,7 @@ const AtlasAIDemoAnimation = () => {
                 </div>
               </div>
               <p className="text-[18px] md:text-[20px] text-white font-medium leading-[1.5]">
-                Is the cryogenic test field capable of sustaining −196°C for valve body leak test?
+                Does the supplier have sufficient capacity to fulfill a 200-unit/month order within the committed lead time?
               </p>
             </motion.div>
 
@@ -336,7 +336,7 @@ const AtlasAIDemoAnimation = () => {
                       <span className="text-[12px] font-bold text-[#AE3D3D] uppercase tracking-wider">Risk Alert</span>
                     </div>
                     <p className="text-[12px] text-white/50 leading-[1.5]">
-                      68% of cryogenic valve suppliers fail pressure hold at −196°C. Verify chamber calibration and helium mass spectrometer sensitivity.
+                      Current order backlog exceeds 85% of available machine hours. 3-shift model not yet implemented. Risk of delivery delay for new orders.
                     </p>
                   </motion.div>
                 )}
@@ -348,7 +348,7 @@ const AtlasAIDemoAnimation = () => {
                     className="bg-white/5 rounded-lg p-4">
                     <span className="text-[12px] font-semibold text-white/45 uppercase tracking-wider">What to Check</span>
                     <div className="mt-2 space-y-2">
-                      {["LN₂ chamber reaches −196°C within spec?", "Helium leak detector calibrated (≤1×10⁻⁹ mbar·l/s)?", "Pressure hold time ≥15 min documented?"].map((q, i) => (
+                      {["Current machine utilization rate (OEE)?", "Order backlog vs. available hours per month?", "Can 3-shift model be activated if needed?"].map((q, i) => (
                         <div key={i} className="flex items-start gap-2">
                           <span className="text-[12px] text-white/60 font-bold shrink-0 mt-0.5">{i + 1}.</span>
                           <span className="text-[12px] text-white/50 leading-[1.5]">{q}</span>
@@ -365,7 +365,7 @@ const AtlasAIDemoAnimation = () => {
                     className="bg-white/5 rounded-lg p-4">
                     <span className="text-[12px] font-semibold text-[#F5A623] uppercase tracking-wider">Common Issues</span>
                     <div className="mt-2 space-y-2">
-                      {["Chamber temp drift >5°C (68%)", "Leak detector not calibrated (54%)", "No witness hold point (47%)"].map(t => (
+                      {["Backlog >80% of capacity (72%)", "No 3-shift model documented (58%)", "Bottleneck on key machines (45%)"].map(t => (
                         <div key={t} className="flex items-center gap-2">
                           <div className="w-2 h-2 rounded-full bg-[#F5A623]" />
                           <span className="text-[12px] text-white/45 leading-[1.5]">{t}</span>
@@ -407,7 +407,7 @@ const AtlasAIDemoAnimation = () => {
                           >{level}</motion.div>
                         ))}
                       </div>
-                      <p className="text-[10px] text-white/35 mt-2">Level 3 — Test field operational, calibration gaps identified</p>
+                      <p className="text-[10px] text-white/35 mt-2">Level 3 — Capacity available but constrained, shift expansion possible</p>
                     </div>
 
                     {/* Auditor selection */}
@@ -439,7 +439,7 @@ const AtlasAIDemoAnimation = () => {
                                 transition={{ delay: 0.5 }}
                                 className="text-[12px] text-white/40 italic"
                               >
-                                Helium leak detector cert expired 2024-11. Request re-calibration before valve test...
+                                2-shift model confirmed, 3rd shift feasible within 4 weeks. Bottleneck on DMG NLX 2500 lathe...
                               </motion.span>
                             </div>
                             <div className="flex justify-end mt-3">
@@ -549,27 +549,27 @@ const AtlasAIDemoAnimation = () => {
               <ScrollNav scrollRef={rightScrollRef} />
               <IntelCard title="Priority" titleColor="text-[#AE3D3D]">
                 <div className="space-y-2 text-[12px] text-white/45">
-                  <div>• Helium leak test (78%)</div>
-                  <div>• Cryo hold duration (62%)</div>
-                  <div className="text-[#6EA996] mt-1 font-medium">→ Verify test field first</div>
+                  <div>• Backlog analysis (85%)</div>
+                  <div>• Bottleneck machines (72%)</div>
+                  <div className="text-[#6EA996] mt-1 font-medium">→ Verify shift model first</div>
                 </div>
               </IntelCard>
 
               <IntelCard title="Client Focus">
                 <div className="space-y-2 text-[12px] text-white/45">
-                  <div><span className="text-[10px] px-1.5 py-0.5 bg-[#AE3D3D] text-white font-bold rounded mr-2">1</span>Cryo Test Field</div>
-                  <div><span className="text-[10px] px-1.5 py-0.5 bg-[#AE3D3D] text-white font-bold rounded mr-2">2</span>Leak Detection</div>
-                  <div><span className="text-[10px] px-1.5 py-0.5 bg-[#F5A623] text-white font-bold rounded mr-2">3</span>Material Certs</div>
+                  <div><span className="text-[10px] px-1.5 py-0.5 bg-[#AE3D3D] text-white font-bold rounded mr-2">1</span>Machine Capacity</div>
+                  <div><span className="text-[10px] px-1.5 py-0.5 bg-[#AE3D3D] text-white font-bold rounded mr-2">2</span>Shift Flexibility</div>
+                  <div><span className="text-[10px] px-1.5 py-0.5 bg-[#F5A623] text-white font-bold rounded mr-2">3</span>Workforce Skills</div>
                 </div>
               </IntelCard>
 
               <IntelCard title="Benchmark">
                 <div className="space-y-2">
-                  <div className="flex justify-between text-[12px]"><span className="text-white/40">This supplier</span><span className="text-white/60 font-bold">7.2/10</span></div>
-                  <BarRound value={72} />
-                  <div className="flex justify-between text-[12px]"><span className="text-white/40">Industry avg</span><span className="text-white/60 font-bold">8.1/10</span></div>
-                  <BarRound value={81} color="bg-white/20" />
-                  <div className="text-[12px] text-[#6EA996] font-semibold mt-2">Approved with conditions</div>
+                  <div className="flex justify-between text-[12px]"><span className="text-white/40">This supplier</span><span className="text-white/60 font-bold">6.8/10</span></div>
+                  <BarRound value={68} />
+                  <div className="flex justify-between text-[12px]"><span className="text-white/40">Industry avg</span><span className="text-white/60 font-bold">7.5/10</span></div>
+                  <BarRound value={75} color="bg-white/20" />
+                  <div className="text-[12px] text-[#F5A623] font-semibold mt-2">Conditionally approved</div>
                 </div>
               </IntelCard>
 
@@ -582,7 +582,7 @@ const AtlasAIDemoAnimation = () => {
                       <span className="text-[12px] font-bold text-white">AI Finding</span>
                       <span className="text-[#F5A623]">⚠</span>
                     </div>
-                    <p className="text-[12px] text-white/45 leading-[1.5]">Helium mass spectrometer sensitivity below threshold. Last calibration 2024-11. Request re-certification.</p>
+                    <p className="text-[12px] text-white/45 leading-[1.5]">OEE on DMG NLX 2500 at 62% — below 75% threshold. Unplanned downtime 18% in last quarter. Recommend maintenance review.</p>
                     <div className="flex gap-2 mt-3">
                       <button className="flex-1 py-2 text-[10px] font-bold text-[#6EA996] border border-[#6EA996]/25 rounded-lg bg-[#6EA996]/5 hover:bg-[#6EA996]/15 active:bg-[#6EA996]/25 uppercase tracking-wider transition-colors">Accept</button>
                       <button className="flex-1 py-2 text-[10px] font-bold text-white/35 border border-white/10 rounded-lg bg-white/5 hover:bg-white/10 active:bg-white/15 uppercase tracking-wider transition-colors">Dismiss</button>
