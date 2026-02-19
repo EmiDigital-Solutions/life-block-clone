@@ -434,11 +434,30 @@ const useTypingEffect = (text: string, speed = 6, active = false) => {
 const LNGSupplierPortal = () => {
   const [selectedClaim, setSelectedClaim] = useState<SupplierClaim>(supplierClaims[0]);
   const [activeTab, setActiveTab] = useState<"claim" | "evidence" | "respond">("claim");
-  const [botActive, setBotActive] = useState(true);
+  const [botActive, setBotActive] = useState(false);
+  const [hasBeenVisible, setHasBeenVisible] = useState(false);
   const [selectedResponse, setSelectedResponse] = useState<number | null>(null);
   const [responseSubmitted, setResponseSubmitted] = useState(false);
   const botText = useTypingEffect(selectedClaim.claimLetterText, 5, botActive);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  // Start animation only when section scrolls into view
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasBeenVisible) {
+          setHasBeenVisible(true);
+          setBotActive(true);
+        }
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [hasBeenVisible]);
 
   useEffect(() => {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -481,7 +500,7 @@ const LNGSupplierPortal = () => {
   };
 
   return (
-    <div ref={portalRef} className="border-2 border-foreground/10 bg-white">
+    <div ref={sectionRef} className="border-2 border-foreground/10 bg-white">
 
       {/* ── SUPPLIER PORTAL HEADER ── */}
       <div className="border-b border-foreground/10 bg-foreground/[0.02]">
