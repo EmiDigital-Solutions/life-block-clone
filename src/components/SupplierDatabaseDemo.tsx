@@ -6,6 +6,7 @@ import {
   Factory, Flame, Gauge, Wrench, Box, Cable
 } from "lucide-react";
 import SupplierBenchmarkModal from "./SupplierBenchmarkModal";
+import SupplierProfileModal from "./SupplierProfileModal";
 
 const categoryData = [
   { 
@@ -66,6 +67,8 @@ const SupplierDatabaseDemo = () => {
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [hoveredRow, setHoveredRow] = useState<number | null>(null);
   const [benchmarkOpen, setBenchmarkOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
+  const [selectedSupplier, setSelectedSupplier] = useState<typeof supplierRows[0] | null>(null);
 
   const filteredSuppliers = supplierRows.filter(s => {
     const matchesSearch = !searchQuery || 
@@ -246,7 +249,7 @@ const SupplierDatabaseDemo = () => {
                       transition={{ delay: i * 0.03 }}
                       onMouseEnter={() => setHoveredRow(i)}
                       onMouseLeave={() => setHoveredRow(null)}
-                      onClick={() => setBenchmarkOpen(true)}
+                      onClick={() => { setSelectedSupplier(s); setProfileOpen(true); }}
                       className={`border-b border-white/5 cursor-pointer transition-all ${
                         hoveredRow === i ? 'bg-[hsl(var(--accent))]/5' : ''
                       }`}
@@ -320,6 +323,12 @@ const SupplierDatabaseDemo = () => {
       <SupplierBenchmarkModal
         open={benchmarkOpen}
         onOpenChange={setBenchmarkOpen}
+      />
+
+      <SupplierProfileModal
+        open={profileOpen}
+        onOpenChange={setProfileOpen}
+        supplier={selectedSupplier}
       />
     </section>
   );
