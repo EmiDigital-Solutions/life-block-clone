@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronUp, ChevronDown, Pause, Play, Camera, Wifi, Radio } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 /* ── Scroll Nav ── */
 const ScrollNav = ({ scrollRef }: { scrollRef: React.RefObject<HTMLDivElement> }) => {
@@ -246,10 +247,16 @@ const inspectionDetails: InspectionDetail[] = [
 ];
 
 /* ── Voice alert parts for TTS ── */
-const voiceAlertParts = [
+const voiceAlertPartsEn = [
   "Attention inspector. Multiple weld indications require your review on the Deethanizer Condenser.",
   "Proceed to the longitudinal seam first. There is a possible crack indication at the weld toe — photograph it and request magnetic particle inspection to confirm.",
   "Hydrostatic test is on hold until weld repairs are verified. Check with the welding engineer before proceeding.",
+];
+
+const voiceAlertPartsRu = [
+  "Внимание инспектор. Множественные дефекты сварки требуют вашей проверки на конденсаторе деэтанизатора.",
+  "Перейдите сначала к продольному шву. Обнаружена возможная трещина у кромки шва — сфотографируйте и запросите магнитопорошковый контроль для подтверждения.",
+  "Гидростатическое испытание приостановлено до проверки ремонта сварки. Свяжитесь с инженером-сварщиком перед продолжением.",
 ];
 
 const LNGAtlasDemo = () => {
@@ -264,6 +271,7 @@ const LNGAtlasDemo = () => {
   const [copilotSpeaking, setCopilotSpeaking] = useState(false);
   const [copilotText, setCopilotText] = useState("");
   const [speakerPulsing, setSpeakerPulsing] = useState(false);
+  const { language } = useLanguage();
 
   const leftScrollRef = useRef<HTMLDivElement>(null);
   const middleScrollRef = useRef<HTMLDivElement>(null);
@@ -315,22 +323,28 @@ const LNGAtlasDemo = () => {
       return;
     }
     window.speechSynthesis.cancel();
+
+    const isRu = language === "ru";
+    const parts = isRu ? voiceAlertPartsRu : voiceAlertPartsEn;
+    const langCode = isRu ? "ru-RU" : "en-US";
+
     const voices = window.speechSynthesis.getVoices();
-    const englishVoices = voices.filter(v => v.lang.startsWith("en"));
-    const preferred = englishVoices.find(v => v.name.includes("Google") || v.name.includes("Samantha") || v.name.includes("Daniel")) || englishVoices[0];
+    const langVoices = voices.filter(v => v.lang.startsWith(isRu ? "ru" : "en"));
+    const preferred = langVoices.find(v => v.name.includes("Google")) || langVoices[0];
+
     setCopilotSpeaking(true);
-    voiceAlertParts.forEach((text, i) => {
+    parts.forEach((text, i) => {
       const u = new SpeechSynthesisUtterance(text);
-      u.rate = 0.95; u.pitch = 1.0; u.lang = "en-US";
+      u.rate = 0.95; u.pitch = 1.0; u.lang = langCode;
       if (preferred) u.voice = preferred;
       u.onstart = () => setCopilotText(text);
-      if (i === voiceAlertParts.length - 1) {
+      if (i === parts.length - 1) {
         u.onend = () => { setCopilotSpeaking(false); setCopilotText(""); };
         u.onerror = () => { setCopilotSpeaking(false); setCopilotText(""); };
       }
       window.speechSynthesis.speak(u);
     });
-  }, [copilotSpeaking]);
+  }, [copilotSpeaking, language]);
 
   // Animation timeline
   useEffect(() => {
