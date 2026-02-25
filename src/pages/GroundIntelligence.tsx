@@ -13,6 +13,7 @@ import SectionCutMarker from "@/components/SectionCutMarker";
 import ToleranceNotation from "@/components/ToleranceNotation";
 import Navigation from "@/components/Navigation";
 import HeroSquaresAnimation from "@/components/HeroSquaresAnimation";
+import { useLanguage } from "@/contexts/LanguageContext";
 import checkpointMachinePark from "@/assets/checkpoint-machine-park.jpg";
 import checkpointMeasurement from "@/assets/checkpoint-measurement-systems.jpg";
 import checkpointProcess from "@/assets/checkpoint-process-capability.jpg";
@@ -28,6 +29,8 @@ const GroundIntelligence = () => {
   const [hoveredStepIndex, setHoveredStepIndex] = useState<number | null>(null);
   const howItWorksRef = useRef(null);
   const howItWorksInView = useInView(howItWorksRef, { once: true, amount: 0.1 });
+  const { t } = useLanguage();
+  const gi = t.groundIntelligence;
 
   return (
     <div className="min-h-screen relative">
@@ -63,7 +66,7 @@ const GroundIntelligence = () => {
                   transition={{ duration: 0.6, delay: 0.1 }}
                   className="text-sm md:text-base text-foreground/50 font-mono tracking-[0.25em] uppercase mb-4 md:mb-6"
                 >
-                   Construction Integrity Verification
+                   {gi.heroEyebrow}
                 </motion.p>
 
                 {/* Headline */}
@@ -73,8 +76,8 @@ const GroundIntelligence = () => {
                   transition={{ duration: 0.8, delay: 0.2 }}
                   className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
                 >
-                   See what's really happening<br />
-                   at your supplier.
+                   {gi.heroHeadline1}<br />
+                   {gi.heroHeadline2}
                 </motion.h1>
 
                 {/* Value Props — aligned to 4th grid line */}
@@ -117,14 +120,7 @@ const GroundIntelligence = () => {
                       </div>
 
                       <div className="space-y-2">
-                        {[
-                          { bold: "On-site weld inspection", rest: "RT, UT, MT, PT per ASME V & API 577" },
-                          { bold: "Dimensional verification", rest: "laser tracker, CMM vs. engineering drawings" },
-                          { bold: "Pressure & leak testing witness", rest: "hydrostatic, pneumatic, helium leak per ASME PCC-2" },
-                          { bold: "Material traceability audit", rest: "MTR verification, EN 10204 3.2 compliance" },
-                          { bold: "ITP hold-point enforcement", rest: "witness mandatory stages, sign-off or reject" },
-                          { bold: "Protected evidence chain", rest: "timestamped, GPS-tagged, digitally signed" },
-                        ].map((item, i) => (
+                        {gi.valueProps.map((item, i) => (
                           <p key={i} className="text-sm md:text-base text-foreground/60">
                             <span className="font-semibold text-foreground">{item.bold}</span> — {item.rest}
                           </p>
@@ -140,15 +136,7 @@ const GroundIntelligence = () => {
           {/* Scrolling Band */}
           <div className="relative z-10 border-t border-foreground/10 overflow-hidden py-3 md:py-5 shrink-0">
             <div className="flex animate-marquee whitespace-nowrap">
-              {[...Array(2)].flatMap((_, rep) => [
-                { label: "Weld NDE", detail: "RT / UT / MT / PT" },
-                { label: "Dimensional", detail: "Laser tracker & CMM" },
-                { label: "Pressure Test", detail: "Hydrostatic witness" },
-                { label: "Material", detail: "MTR & PMI verification" },
-                { label: "ITP Hold Points", detail: "Mandatory witness" },
-                { label: "Coating", detail: "DFT & adhesion testing" },
-                { label: "Cryogenic", detail: "LN₂ test field audit" },
-              ].map((item, i) => (
+              {[...Array(2)].flatMap((_, rep) => gi.marquee.map((item, i) => (
                 <span
                   key={`${rep}-${i}`}
                   className="mx-4 md:mx-10 text-xs md:text-base tracking-widest uppercase font-bold text-foreground/80"
@@ -185,28 +173,12 @@ const GroundIntelligence = () => {
               className="mb-12 md:mb-16"
             >
               <h2 className="section-headline text-foreground max-w-4xl">
-                Three dimensions of construction integrity.
+                {gi.pillarsHeadline}
               </h2>
             </motion.div>
 
             <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-0 border-t border-foreground/10">
-              {[
-                {
-                  phase: "Inspect",
-                  title: "On-Site Fabrication Control",
-                  description: "Deploy certified inspectors to fabrication shops worldwide to witness critical manufacturing stages — weld procedures, NDE execution, pressure testing, and dimensional verification per ASME, API, and EN codes",
-                },
-                {
-                  phase: "Verify",
-                  title: "Code Compliance Verification",
-                  description: "Validate that every weld map, MTR, NDE report, and test certificate matches engineering specifications and applicable construction codes. Compare as-built vs. as-designed with measurable evidence",
-                },
-                {
-                  phase: "Enforce",
-                  title: "ITP & Claims Enforcement",
-                  description: "Enforce Inspection & Test Plan hold points with mandatory witness sign-off. Protected evidence chain supports FIDIC-based claims, liquidated damages, and variation management",
-                },
-              ].map((cap, index) => (
+              {gi.pillars.map((cap, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
@@ -252,13 +224,13 @@ const GroundIntelligence = () => {
             >
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-16 h-px bg-foreground/30" />
-                <span className="section-eyebrow">What we verify on-site</span>
+                <span className="section-eyebrow">{gi.checkpointsEyebrow}</span>
               </div>
               <h2 className="section-headline text-foreground max-w-4xl mb-4">
-                Real checkpoints, not spreadsheet assumptions.
+                {gi.checkpointsHeadline}
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl">
-                Every intelligence report is built from physical evidence — collected by certified inspectors inside the fabrication facility.
+                {gi.checkpointsSubtitle}
               </p>
             </motion.div>
 
@@ -313,10 +285,10 @@ const GroundIntelligence = () => {
               className="max-w-2xl mb-16"
             >
               <h2 className="section-headline text-foreground mb-6">
-                What you get — and what changes
+                {gi.whatYouGetHeadline}
               </h2>
               <p className="text-lg text-muted-foreground">
-                Stop relying on supplier MDR submissions and desktop document reviews. Get verified, on-site construction intelligence.
+                {gi.whatYouGetSubtitle}
               </p>
             </motion.div>
 
@@ -324,12 +296,7 @@ const GroundIntelligence = () => {
             <div className="grid grid-cols-1 lg:grid-cols-6 gap-0 mb-20">
               <div className="hidden lg:block lg:col-span-1" />
               <div className="lg:col-span-5 grid md:grid-cols-2 gap-x-12">
-                {[
-                  { category: "Defect detection", value: "3×", suffix: "earlier", description: "Catch weld defects, dimensional deviations, and material non-conformances at fabrication — not at site delivery" },
-                  { category: "ITP compliance", value: "100%", suffix: "witnessed", description: "Every hold point and witness point verified by certified inspector with protected evidence chain" },
-                  { category: "Claims enforcement", value: "72h", suffix: "evidence", description: "FIDIC-ready evidence packages with timestamped photos, measurements, and digital signatures within 72 hours" },
-                  { category: "Code compliance", value: "GOST", suffix: "API · EN", description: "Full traceability against applicable construction codes — GOST R, API 6D, EN 13480, PED 2014/68/EU" },
-                ].map((stat, index) => (
+                {gi.kpis.map((stat, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
@@ -388,10 +355,10 @@ const GroundIntelligence = () => {
               >
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-12 h-px bg-foreground" />
-                  <span className="section-eyebrow">How it works</span>
+                  <span className="section-eyebrow">{gi.howItWorksEyebrow}</span>
                 </div>
                 <h2 className="section-headline text-foreground">
-                  From ITP to<br />verified evidence
+                  {gi.howItWorksHeadline1}<br />{gi.howItWorksHeadline2}
                 </h2>
               </motion.div>
               
@@ -402,7 +369,7 @@ const GroundIntelligence = () => {
                 className="lg:col-span-2 lg:col-start-5 flex flex-col justify-end"
               >
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Define the ITP, we deploy the inspector — verified construction intelligence delivered within the fabrication cycle.
+                  {gi.howItWorksSubtitle}
                 </p>
               </motion.div>
             </div>
@@ -412,12 +379,7 @@ const GroundIntelligence = () => {
               <div className="absolute top-0 left-0 right-0 h-px bg-border" />
               
               <div className="flex flex-col md:flex-row">
-                {[
-                  { number: "01", title: "Define", subtitle: "Set ITP scope", description: "Upload engineering specifications, P&IDs, and ITP. Define hold points, witness points, and review points per applicable construction codes." },
-                  { number: "02", title: "Deploy", subtitle: "Inspector assigned", description: "Atlas AI matches a certified inspector with relevant code qualifications (ASME, API, CSWIP, FROSIO) located near the fabrication shop." },
-                  { number: "03", title: "Inspect", subtitle: "On-site verification", description: "The inspector witnesses critical fabrication stages — weld procedures, NDE execution, pressure testing, dimensional checks — collecting timestamped evidence." },
-                  { number: "04", title: "Report", subtitle: "Evidence package", description: "Protected evidence chain with measurements, NDE results, test certificates, and inspector sign-off. Ready for FIDIC claims or project close-out documentation." },
-                ].map((step, index) => (
+                {gi.steps.map((step, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0 }}
@@ -494,10 +456,10 @@ const GroundIntelligence = () => {
               className="space-y-6 mb-16"
             >
               <h2 className="section-headline text-foreground">
-                Construction intelligence features
+                {gi.featuresHeadline}
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
-                Every feature is designed to give you verified, code-compliant construction data — from weld inspection to ITP enforcement and FIDIC claims support.
+                {gi.featuresSubtitle}
               </p>
             </motion.div>
 
@@ -528,7 +490,7 @@ const GroundIntelligence = () => {
                     {feature.description}
                   </p>
                   <span className="inline-flex items-center gap-1 text-xs font-medium text-primary mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                    Learn more <ArrowRight className="w-3 h-3" />
+                    {gi.learnMore} <ArrowRight className="w-3 h-3" />
                   </span>
                 </motion.button>
               ))}
