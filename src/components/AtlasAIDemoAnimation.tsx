@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronUp, ChevronDown } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 /* ── Scroll Nav Arrows ── */
 const ScrollNav = ({ scrollRef }: { scrollRef: React.RefObject<HTMLDivElement> }) => {
@@ -60,10 +61,18 @@ const AtlasAIDemoAnimation = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [speakerPulsing, setSpeakerPulsing] = useState(false);
 
-  const riskAlertParts = [
+  const { language } = useLanguage();
+
+  const riskAlertPartsEn = [
     "Cryogenic test field audit required per EN 13458 and ASME VIII Div.1.",
     "Verify LN₂ boil-off rate measurement and vacuum insulation integrity.",
     "Check calibration certificates for temperature sensors below minus 196°C.",
+  ];
+
+  const riskAlertPartsRu = [
+    "Требуется аудит криогенного испытательного полигона по EN 13458 и ASME VIII Div.1.",
+    "Проверьте измерение скорости испарения LN₂ и целостность вакуумной изоляции.",
+    "Проверьте сертификаты калибровки датчиков температуры ниже минус 196°C.",
   ];
 
   const speakRiskAlert = useCallback(() => {
@@ -76,24 +85,26 @@ const AtlasAIDemoAnimation = () => {
 
     window.speechSynthesis.cancel();
 
+    const isRu = language === "ru";
+    const parts = isRu ? riskAlertPartsRu : riskAlertPartsEn;
+    const langCode = isRu ? "ru-RU" : "en-US";
+
     const voices = window.speechSynthesis.getVoices();
-    const englishVoices = voices.filter(v => v.lang.startsWith("en"));
-    const preferred = englishVoices.find(v => v.name.includes("Google") || v.name.includes("Samantha") || v.name.includes("Daniel")) || englishVoices[0];
+    const langVoices = voices.filter(v => v.lang.startsWith(isRu ? "ru" : "en"));
+    const preferred = langVoices.find(v => v.name.includes("Google")) || langVoices[0];
 
     setCopilotSpeaking(true);
 
-    // Queue all parts upfront — Chrome handles queued utterances reliably
-    riskAlertParts.forEach((text, i) => {
+    parts.forEach((text, i) => {
       const u = new SpeechSynthesisUtterance(text);
       u.rate = 0.95;
       u.pitch = 1.0;
-      u.lang = "en-US";
+      u.lang = langCode;
       if (preferred) u.voice = preferred;
 
       u.onstart = () => setCopilotText(text);
 
-      // Last utterance ends the speaking state
-      if (i === riskAlertParts.length - 1) {
+      if (i === parts.length - 1) {
         u.onend = () => {
           setCopilotSpeaking(false);
           setCopilotText("");
@@ -106,7 +117,7 @@ const AtlasAIDemoAnimation = () => {
 
       window.speechSynthesis.speak(u);
     });
-  }, [copilotSpeaking]);
+  }, [copilotSpeaking, language]);
 
   // Pulse speaker when section scrolls into view
   useEffect(() => {
