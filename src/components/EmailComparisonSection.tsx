@@ -1,19 +1,15 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Play, Pause, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Play, Pause } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import ROICalculator from "./ROICalculator";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const EmailComparisonSection = () => {
   const [isWithScanPro, setIsWithScanPro] = useState(false);
   const [isAutoSwitching, setIsAutoSwitching] = useState(true);
   const [showROIModal, setShowROIModal] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     if (!isAutoSwitching) return;
@@ -21,33 +17,11 @@ const EmailComparisonSection = () => {
     return () => clearInterval(interval);
   }, [isAutoSwitching]);
 
-  const withYVOOContent = [
-    { time: "Day 1", title: "One message", description: "Tell us: supplier name, country, your requirements. Done. No emails. No time zone coordination. No department approvals. No calendar checking. Just one message." },
-    { time: "Day 1", title: "Fixed transparent pricing", description: "Clear pricing. No surprise costs. No flights. No hotels. No per diems. No travel budget battles. Certified local auditor already in the supplier's region. Finance approves instantly. 60% lower cost than traditional firms." },
-    { time: "Day 2", title: "Auditor ready", description: "Certified IATF/ISO auditor matched and mobilized in 3 days. No waiting for your quality team's availability. No capacity constraints. No supplier rescheduling. Professional auditor ready to deploy." },
-    { time: "Day 3", title: "Senior certified auditor on-site", description: "IATF 16949 / ISO 9001 / VDA 6.3 certified professional. AI-powered documentation tools. Standardized checklists. Equipment photos. Process analysis. Compliance verification. No junior auditors. No clipboards. No guesswork." },
-    { time: "Day 7", title: "Complete report delivered", description: "Comprehensive verification report. AI-standardized format. Consistent data structure. No 2–4 weeks of manual typing. No lost context. No forgotten details. Everything documented, everything traceable." },
-    { time: "Day 7", title: "AI-verified documentation", description: "Equipment photos with timestamps. Process verification videos. Compliance evidence. Full traceability. Everything you need for customer audits. No gaps. No missing evidence. No incomplete notes. Complete professional documentation." },
-    { time: "The Result", title: "7 days total. 60% lower cost. Local auditors, no travel.", description: "You can audit 100 suppliers in parallel. Zero unverified risk. Full visibility." },
-  ];
-
-  const nightmareContent = [
-    { time: "Week 1", title: "50+ emails just to start", description: "Coordination chaos across time zones, departments, and suppliers. Quality schedules auditors. Procurement chases approvals. Supplier confirms facility access. Everyone's calendar is full." },
-    { time: "Week 2–3", title: "Travel budget battle", description: "International flights. Hotels. Per diems. Two senior auditors for 10 days on-site. Finance wants justification. \"Why can't we use local contractors?\" Three weeks of approvals." },
-    { time: "Week 4–6", title: "Calendar Tetris", description: "Your quality engineer's calendar is full until Q3. The supplier postpones because their production manager is on vacation. Reschedule. Repeat. Six weeks gone." },
-    { time: "Week 7–8", title: "Finally on-site", description: "Junior auditor sent instead. No AI documentation. No standardized checklist. Just a clipboard and a camera. Misses critical process weaknesses." },
-    { time: "Week 9", title: "Report? Maybe next week", description: "Quality team spends 2–4 weeks typing findings. No standardization. By then, everyone forgot the details. Context is gone. Procurement still waiting to onboard supplier." },
-    { time: "Week 10", title: "Documentation gaps", description: "Equipment photos? What photos? Missing evidence that haunts you in customer audits. No traceability. No process verification. Just incomplete notes." },
-    { time: "The Result", title: "10 weeks minimum. Expensive international travel.", description: "You can afford 10–12 audits per year. The other 90 suppliers? Unverified risk." },
-  ];
-
-  const currentContent = isWithScanPro ? withYVOOContent : nightmareContent;
+  const currentContent = isWithScanPro ? t.emailComparison.withContent : t.emailComparison.nightmareContent;
 
   return (
     <section data-nav-theme="light" className="pt-24 pb-12 md:pt-32 md:pb-16 bg-white">
       <div className="mx-auto max-w-[1400px] px-8">
-        
-        {/* Header */}
         <div className="grid grid-cols-1 lg:grid-cols-6 gap-8 mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -57,23 +31,19 @@ const EmailComparisonSection = () => {
           >
             <div className="flex items-center gap-4 mb-6">
               <div className="w-16 h-px bg-foreground/30" />
-              <span className="section-eyebrow">
-                The old way
-              </span>
+              <span className="section-eyebrow">{t.emailComparison.eyebrow}</span>
             </div>
             <h2 className="section-headline text-foreground font-semibold">
-              {isWithScanPro ? 'With ' : 'The '}
+              {isWithScanPro ? t.emailComparison.withRCA : t.emailComparison.theTraditional}
               <span className={`font-semibold ${isWithScanPro ? 'text-foreground' : 'text-destructive'}`}>
-                 {isWithScanPro ? 'RCA' : 'Traditional Way'}
+                 {isWithScanPro ? t.emailComparison.rcaLabel : t.emailComparison.traditionalLabel}
                </span>
             </h2>
           </motion.div>
 
           <div className="lg:col-span-2 lg:col-start-5 flex flex-col justify-end items-end gap-4">
             <p className="text-lg text-muted-foreground leading-relaxed">
-              {isWithScanPro 
-                ? "Upload → 3 days → Verified. No coordination required."
-                : "50+ emails. 10 weeks. €15K minimum. Sound familiar?"}
+              {isWithScanPro ? t.emailComparison.withSubtitle : t.emailComparison.traditionalSubtitle}
             </p>
             <div className="flex items-center gap-3">
               <button
@@ -108,7 +78,7 @@ const EmailComparisonSection = () => {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
         >
           {currentContent.map((item, index) => {
-            const isResult = item.time === "The Result";
+            const isResult = item.time === "The Result" || item.time === "Результат";
             return (
               <motion.div
                 key={index}
@@ -129,7 +99,7 @@ const EmailComparisonSection = () => {
                 </span>
                 <h3 className={`font-semibold text-foreground mb-3 ${isResult ? 'text-xl md:text-2xl' : 'text-xl'}`}>{item.title}</h3>
                 <p className="text-muted-foreground text-base leading-relaxed">
-                  {item.description.split('. ').filter(Boolean).map((sentence, i, arr) => (
+                  {item.description.split('. ').filter(Boolean).map((sentence, i) => (
                     <span key={i}>{i > 0 && ' · '}{sentence.endsWith('.') ? sentence.slice(0, -1) : sentence}</span>
                   ))}
                 </p>
@@ -139,11 +109,10 @@ const EmailComparisonSection = () => {
         </motion.div>
       </div>
 
-      {/* ROI Calculator Modal */}
       <Dialog open={showROIModal} onOpenChange={setShowROIModal}>
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-bold">Calculate Your ROI</DialogTitle>
+            <DialogTitle className="text-2xl font-bold">{t.hero.roiTitle}</DialogTitle>
           </DialogHeader>
           <ROICalculator />
         </DialogContent>

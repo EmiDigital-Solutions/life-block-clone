@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import SupplierBenchmarkModal from "./SupplierBenchmarkModal";
 import SupplierProfileModal from "./SupplierProfileModal";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const categoryData = [
   { 
@@ -69,7 +70,7 @@ const SupplierDatabaseDemo = () => {
   const [benchmarkOpen, setBenchmarkOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const [selectedSupplier, setSelectedSupplier] = useState<typeof supplierRows[0] | null>(null);
-
+  const { t } = useLanguage();
   const filteredSuppliers = supplierRows.filter(s => {
     const matchesSearch = !searchQuery || 
       s.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -96,22 +97,21 @@ const SupplierDatabaseDemo = () => {
           className="text-center mb-6"
         >
           <p className="section-eyebrow text-[hsl(var(--accent))] mb-4 font-mono tracking-[0.2em]">
-            VISION — RCA SUPPLIER DATABASE
+            {t.supplierDb.eyebrow}
           </p>
           <h2 className="section-headline text-white mb-6">
-            Full EPC Supplier Coverage.<br />
-            <span className="text-[hsl(var(--accent))]">One Integrated Data Layer.</span>
+            {t.supplierDb.headline1}<br />
+            <span className="text-[hsl(var(--accent))]">{t.supplierDb.headline2}</span>
           </h2>
           <p className="text-[hsl(var(--slate))] text-lg max-w-3xl mx-auto">
-            Structured supplier data for Oil & Gas, LNG, and Energy — 
-            search results, audit findings, and technical portfolio analysis in one system.
+            {t.supplierDb.subtitle}
           </p>
         </motion.div>
 
         {/* Vision Label */}
         <div className="flex items-center justify-center gap-3 mb-12">
           <div className="h-px flex-1 max-w-[80px] bg-[hsl(var(--accent))]/30" />
-          <span className="text-[10px] font-mono text-[hsl(var(--accent))]/60 uppercase tracking-[0.3em]">Target Architecture</span>
+          <span className="text-[10px] font-mono text-[hsl(var(--accent))]/60 uppercase tracking-[0.3em]">{t.supplierDb.targetArch}</span>
           <div className="h-px flex-1 max-w-[80px] bg-[hsl(var(--accent))]/30" />
         </div>
 
@@ -148,15 +148,15 @@ const SupplierDatabaseDemo = () => {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search by supplier, product group, certification..."
+                placeholder={t.supplierDb.searchPlaceholder}
                 className="w-full bg-white/5 border border-white/10 rounded-sm pl-10 pr-4 py-2.5 text-sm text-white placeholder:text-[hsl(var(--slate))] focus:outline-none focus:border-[hsl(var(--accent))]/50"
               />
             </div>
             <div className="flex gap-2">
               {[
-                { key: "all", label: "All" },
-                { key: "low-risk", label: "Low Risk" },
-                { key: "high-fit", label: "Fit ≥ 90%" },
+                { key: "all", label: t.supplierDb.filterAll },
+                { key: "low-risk", label: t.supplierDb.filterLowRisk },
+                { key: "high-fit", label: t.supplierDb.filterHighFit },
               ].map(f => (
                 <button
                   key={f.key}
@@ -176,7 +176,7 @@ const SupplierDatabaseDemo = () => {
           <div className="flex flex-col lg:flex-row">
             {/* Left: Categories */}
             <div className="lg:w-72 border-b lg:border-b-0 lg:border-r border-white/10 p-4">
-              <p className="text-xs text-[hsl(var(--slate))] uppercase tracking-wider mb-3 font-mono">Product Groups</p>
+              <p className="text-xs text-[hsl(var(--slate))] uppercase tracking-wider mb-3 font-mono">{t.supplierDb.productGroups}</p>
               <div className="space-y-1">
                 {categoryData.map((cat, i) => (
                   <div key={i}>
@@ -191,7 +191,7 @@ const SupplierDatabaseDemo = () => {
                       <cat.icon className="w-4 h-4 flex-shrink-0" />
                       <div className="flex-1 min-w-0">
                         <div className="text-sm font-medium truncate">{cat.name}</div>
-                        <div className="text-[10px] text-[hsl(var(--slate))] font-mono">{cat.suppliers} suppliers</div>
+                        <div className="text-[10px] text-[hsl(var(--slate))]">{cat.suppliers} {t.supplierDb.suppliers}</div>
                       </div>
                       {expandedCategory === i ? <ChevronDown className="w-3 h-3" /> : <ChevronRight className="w-3 h-3" />}
                     </button>
@@ -211,7 +211,7 @@ const SupplierDatabaseDemo = () => {
                             ))}
                             <div className="flex items-center gap-3 mt-2 pt-2 border-t border-white/5">
                               <div className="text-[10px] text-[hsl(var(--slate))]">
-                                <span className="text-[hsl(var(--accent))]">{cat.audited}%</span> audited
+                                <span className="text-[hsl(var(--accent))]">{cat.audited}%</span> {t.supplierDb.audited}
                               </div>
                               <div className="text-[10px] text-[hsl(var(--slate))]">
                                 Avg <span className="text-[hsl(var(--warning))]">★ {cat.avgRating}</span>
@@ -231,13 +231,13 @@ const SupplierDatabaseDemo = () => {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-white/10">
-                    <th className="text-left p-3 text-[10px] text-[hsl(var(--slate))] uppercase tracking-wider font-mono font-normal">Supplier</th>
-                    <th className="text-left p-3 text-[10px] text-[hsl(var(--slate))] uppercase tracking-wider font-mono font-normal hidden md:table-cell">Product Group</th>
-                    <th className="text-center p-3 text-[10px] text-[hsl(var(--slate))] uppercase tracking-wider font-mono font-normal">Rating</th>
-                    <th className="text-center p-3 text-[10px] text-[hsl(var(--slate))] uppercase tracking-wider font-mono font-normal hidden lg:table-cell">Audits</th>
-                    <th className="text-center p-3 text-[10px] text-[hsl(var(--slate))] uppercase tracking-wider font-mono font-normal hidden md:table-cell">Risk</th>
-                    <th className="text-center p-3 text-[10px] text-[hsl(var(--slate))] uppercase tracking-wider font-mono font-normal">Fit</th>
-                    <th className="text-left p-3 text-[10px] text-[hsl(var(--slate))] uppercase tracking-wider font-mono font-normal hidden xl:table-cell">Certifications</th>
+                    <th className="text-left p-3 text-[10px] text-[hsl(var(--slate))] uppercase tracking-wider font-mono font-normal">{t.supplierDb.thSupplier}</th>
+                    <th className="text-left p-3 text-[10px] text-[hsl(var(--slate))] uppercase tracking-wider font-mono font-normal hidden md:table-cell">{t.supplierDb.thProductGroup}</th>
+                    <th className="text-center p-3 text-[10px] text-[hsl(var(--slate))] uppercase tracking-wider font-mono font-normal">{t.supplierDb.thRating}</th>
+                    <th className="text-center p-3 text-[10px] text-[hsl(var(--slate))] uppercase tracking-wider font-mono font-normal hidden lg:table-cell">{t.supplierDb.thAudits}</th>
+                    <th className="text-center p-3 text-[10px] text-[hsl(var(--slate))] uppercase tracking-wider font-mono font-normal hidden md:table-cell">{t.supplierDb.thRisk}</th>
+                    <th className="text-center p-3 text-[10px] text-[hsl(var(--slate))] uppercase tracking-wider font-mono font-normal">{t.supplierDb.thFit}</th>
+                    <th className="text-left p-3 text-[10px] text-[hsl(var(--slate))] uppercase tracking-wider font-mono font-normal hidden xl:table-cell">{t.supplierDb.thCertifications}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -302,16 +302,16 @@ const SupplierDatabaseDemo = () => {
               {/* Status Bar */}
               <div className="border-t border-white/10 p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
                 <div className="text-xs text-[hsl(var(--slate))]">
-                  Showing <span className="text-white font-mono">{filteredSuppliers.length}</span> of <span className="text-white font-mono">11,270</span> records
+                  {t.supplierDb.showing} <span className="text-white font-mono">{filteredSuppliers.length}</span> {t.supplierDb.of} <span className="text-white font-mono">11,270</span> {t.supplierDb.records}
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="flex items-center gap-2 text-xs text-[hsl(var(--slate))]">
                     <Zap className="w-3 h-3 text-[hsl(var(--accent))]" />
-                    Portfolio matching active
+                    {t.supplierDb.portfolioMatching}
                   </div>
                   <div className="flex items-center gap-2 text-xs text-[hsl(var(--slate))]">
                     <BarChart3 className="w-3 h-3 text-[hsl(var(--accent))]" />
-                    28,400+ audit data points
+                    {t.supplierDb.auditDataPoints}
                   </div>
                 </div>
               </div>

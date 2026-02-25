@@ -1,10 +1,12 @@
 import { Menu, X } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -51,20 +53,30 @@ const Navigation = () => {
             <span className="text-2xl md:text-3xl font-black tracking-tight text-foreground">RCA</span>
           </Link>
 
-          {/* Hamburger Menu Button - centered */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center p-2 md:p-2.5 hover:bg-foreground/5 transition-colors rounded-full"
-          >
-            {isMenuOpen ? (
-              <X className="w-4 h-4 md:w-5 md:h-5 text-foreground" />
-            ) : (
-              <div className="flex flex-col justify-center items-center gap-[3px] md:gap-[4px]">
-                <span className="w-[16px] md:w-[18px] h-[2px] bg-foreground rounded-full block" />
-                <span className="w-[16px] md:w-[18px] h-[2px] bg-foreground rounded-full block" />
-              </div>
-            )}
-          </button>
+          {/* Center: Hamburger + Language Switcher */}
+          <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="flex items-center justify-center p-2 md:p-2.5 hover:bg-foreground/5 transition-colors rounded-full"
+            >
+              {isMenuOpen ? (
+                <X className="w-4 h-4 md:w-5 md:h-5 text-foreground" />
+              ) : (
+                <div className="flex flex-col justify-center items-center gap-[3px] md:gap-[4px]">
+                  <span className="w-[16px] md:w-[18px] h-[2px] bg-foreground rounded-full block" />
+                  <span className="w-[16px] md:w-[18px] h-[2px] bg-foreground rounded-full block" />
+                </div>
+              )}
+            </button>
+            
+            {/* Language Switcher */}
+            <button
+              onClick={() => setLanguage(language === "en" ? "ru" : "en")}
+              className="flex items-center justify-center px-2 py-1 text-[11px] md:text-xs font-semibold tracking-wider uppercase text-foreground/60 hover:text-foreground hover:bg-foreground/5 transition-colors rounded-full"
+            >
+              {language === "en" ? "RU" : "EN"}
+            </button>
+          </div>
 
           {/* Demo Button */}
           <Link
@@ -72,7 +84,7 @@ const Navigation = () => {
             className="px-4 md:px-5 py-1.5 md:py-2 bg-foreground text-background text-xs md:text-sm font-semibold rounded-full hover:bg-foreground/90 transition-colors"
             onClick={() => setIsMenuOpen(false)}
           >
-            Demo
+            {t.nav.demo}
           </Link>
         </div>
 
@@ -81,12 +93,12 @@ const Navigation = () => {
           <div className="px-4 md:px-10 pb-6 md:pb-10 pt-3 md:pt-6 animate-fade-in overflow-y-auto" style={{ maxHeight: 'calc(85vh - 50px)' }}>
             <nav className="space-y-2 md:space-y-4">
               <Link to="/lng-inspection" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
-                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">LNG Inspection</span>
-                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">EPC quality management</span>
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">{t.nav.lngInspection}</span>
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">{t.nav.lngInspectionDesc}</span>
               </Link>
               <Link to="/ground-intelligence" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
-                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">Ground Intelligence</span>
-                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">Verified supplier intelligence</span>
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">{t.nav.groundIntelligence}</span>
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">{t.nav.groundIntelligenceDesc}</span>
               </Link>
             </nav>
           </div>

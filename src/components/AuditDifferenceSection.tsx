@@ -1,44 +1,8 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { ArrowRight, Pause, Play } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Pause, Play } from "lucide-react";
 import auditorEuropean from "@/assets/auditor-real-european.jpg";
-
-const phases = [
-  {
-    id: "01",
-    phase: "Before arrival",
-    title: "Our auditor arrives knowing more than your own team.",
-    points: [
-      "Atlas AI analyzes your supplier's certifications, past audit history, industry benchmarks, and applicable standards — before anyone boards a plane.",
-      "A tailored audit framework is generated: risk-weighted focus areas, equipment-specific checkpoints, and compliance gaps identified from public and proprietary data sources.",
-      "Our auditor receives a structured briefing — not a generic checklist, but a precision-engineered assessment plan built for this specific supplier, this specific scope.",
-    ],
-    accent: "Every audit starts with more preparation than most audits ever get.",
-  },
-  {
-    id: "02",
-    phase: "On the shop floor",
-    title: "Human expertise, amplified by machine precision.",
-    points: [
-      "Atlas AI recognizes equipment models in real time — CNC machines, CMMs, testing rigs — and cross-references calibration records, maintenance logs, and capability data automatically.",
-      "Evidence photos are linked to findings the moment they're captured. No lost images. No ambiguity. Every observation is geo-tagged, timestamped, and traceable.",
-      "Maturity scoring runs live against industry benchmarks. Our auditor sees exactly where this supplier stands relative to peers — not based on opinion, but on data from thousands of assessments.",
-    ],
-    accent: "Audit depth that would normally require a team of three, delivered by one expert with Atlas.",
-  },
-  {
-    id: "03",
-    phase: "Within 24 hours",
-    title: "A complete audit intelligence package. Not a PDF.",
-    points: [
-      "Risk-scored findings with photo-verified evidence, supplier maturity benchmarks, and clear severity classifications — structured for immediate decision-making.",
-      "A CAPA plan is generated automatically: corrective actions assigned, deadlines set, responsibilities defined. Your team doesn't interpret findings — they act on them.",
-      "Follow-up tracking is built in. Automated reminders, evidence re-verification, and close-out confirmation — so no finding ever gets lost in a spreadsheet.",
-    ],
-    accent: "From audit to action — with full traceability, zero manual effort.",
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const AuditDifferenceSection = () => {
   const ref = useRef(null);
@@ -46,18 +10,19 @@ const AuditDifferenceSection = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const { t } = useLanguage();
+
+  const phases = t.auditDifference.phases;
 
   const advanceTab = useCallback(() => {
     setActiveTab((prev) => (prev + 1) % phases.length);
-  }, []);
+  }, [phases.length]);
 
   useEffect(() => {
     if (isPlaying && isInView) {
       intervalRef.current = setInterval(advanceTab, 7000);
     }
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
   }, [isPlaying, isInView, advanceTab]);
 
   const handleTabClick = (index: number) => {
@@ -69,13 +34,8 @@ const AuditDifferenceSection = () => {
   const active = phases[activeTab];
 
   return (
-    <section
-      ref={ref}
-      data-nav-theme="light"
-      className="py-16 md:py-24 bg-muted overflow-hidden"
-    >
+    <section ref={ref} data-nav-theme="light" className="py-16 md:py-24 bg-muted overflow-hidden">
       <div className="mx-auto max-w-[1400px] px-8">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -84,27 +44,18 @@ const AuditDifferenceSection = () => {
         >
           <div className="flex items-center gap-4 mb-6">
             <div className="w-16 h-px bg-foreground/30" />
-            <span className="section-eyebrow">
-              How an Atlas audit works
-            </span>
+            <span className="section-eyebrow">{t.auditDifference.eyebrow}</span>
           </div>
-          <h2 className="section-headline text-foreground max-w-4xl">
-            Expert-level audits. Anywhere. Every time
-          </h2>
-          <p className="mt-4 text-lg md:text-xl text-foreground/60 max-w-3xl leading-relaxed">
-            Atlas AI ensures every RCA auditor delivers the same quality as your best internal auditor — whether in Munich or Mumbai.
-          </p>
+          <h2 className="section-headline text-foreground max-w-4xl">{t.auditDifference.headline}</h2>
+          <p className="mt-4 text-lg md:text-xl text-foreground/60 max-w-3xl leading-relaxed">{t.auditDifference.subtitle}</p>
         </motion.div>
 
-        {/* Two-column layout: Content + Image */}
         <div className="grid lg:grid-cols-[1fr,380px] gap-12 lg:gap-16 items-start">
-          {/* Left: Tabs + Content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            {/* Tab Bar — stronger visual presence */}
             <div className="flex items-center gap-2 mb-10">
               <div className="flex gap-2 flex-1">
                 {phases.map((item, index) => (
@@ -117,14 +68,8 @@ const AuditDifferenceSection = () => {
                         : "bg-white/60 text-muted-foreground hover:text-foreground hover:bg-white/80 border-white/40"
                     }`}
                   >
-                    <span className={`font-mono text-xs tracking-wider ${
-                      activeTab === index ? "text-white/50" : "text-muted-foreground/40"
-                    }`}>
-                      {item.id}
-                    </span>
-                    <span className="text-sm font-medium tracking-wide">
-                      {item.phase}
-                    </span>
+                    <span className={`font-mono text-xs tracking-wider ${activeTab === index ? "text-white/50" : "text-muted-foreground/40"}`}>{item.id}</span>
+                    <span className="text-sm font-medium tracking-wide">{item.phase}</span>
                   </button>
                 ))}
               </div>
@@ -137,7 +82,6 @@ const AuditDifferenceSection = () => {
               </button>
             </div>
 
-            {/* Tab Content */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeTab}
@@ -147,43 +91,22 @@ const AuditDifferenceSection = () => {
                 transition={{ duration: 0.35, ease: "easeOut" }}
                 className="space-y-8"
               >
-                {/* Title */}
-                <h3 className="text-2xl md:text-3xl font-medium text-foreground leading-snug max-w-2xl">
-                  {active.title}
-                </h3>
-
-                {/* Detail points */}
+                <h3 className="text-2xl md:text-3xl font-medium text-foreground leading-snug max-w-2xl">{active.title}</h3>
                 <div className="space-y-5">
                   {active.points.map((point, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.1 + i * 0.1, duration: 0.4 }}
-                      className="flex gap-4"
-                    >
+                    <motion.div key={i} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 + i * 0.1, duration: 0.4 }} className="flex gap-4">
                       <div className="flex-shrink-0 w-6 h-px bg-primary mt-3" />
-                      <p className="text-base text-foreground/70 leading-relaxed">
-                        {point}
-                      </p>
+                      <p className="text-base text-foreground/70 leading-relaxed">{point}</p>
                     </motion.div>
                   ))}
                 </div>
-
-                {/* Accent line */}
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5, duration: 0.4 }}
-                  className="text-base font-medium text-foreground border-l-2 border-primary pl-5 max-w-xl"
-                >
+                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5, duration: 0.4 }} className="text-base font-medium text-foreground border-l-2 border-primary pl-5 max-w-xl">
                   {active.accent}
                 </motion.p>
               </motion.div>
             </AnimatePresence>
           </motion.div>
 
-          {/* Right: Image */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -191,22 +114,14 @@ const AuditDifferenceSection = () => {
             className="hidden lg:block sticky top-32"
           >
             <div className="relative">
-              <img
-                src={auditorEuropean}
-                alt="Quality assurance professional conducting an Atlas AI-guided audit"
-                className="w-full max-h-[480px] object-cover object-top"
-              />
-              {/* Top-right squares cluster — regular squares */}
+              <img src={auditorEuropean} alt="Quality assurance professional conducting an Atlas AI-guided audit" className="w-full max-h-[480px] object-cover object-top" />
               <div className="absolute top-[5%] right-[4%] w-[10%] aspect-square bg-primary" />
               <div className="absolute top-[5%] right-[16%] w-[10%] aspect-square bg-primary" />
               <div className="absolute top-[17%] right-[4%] w-[10%] aspect-square bg-primary" />
-              {/* Bottom — long horizontal stripe, right edge to ~50%, same height as top squares (10% of width) */}
               <div className="absolute bottom-[5%] right-0 w-[50%] h-[10%] bg-primary" />
             </div>
           </motion.div>
         </div>
-
-        {/* CTA */}
       </div>
     </section>
   );

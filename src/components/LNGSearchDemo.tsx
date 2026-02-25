@@ -3,11 +3,12 @@ import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
 import { suppliersData, type LNGSupplier } from "./LNGSupplierDetailModal";
 import SupplierBenchmarkModal from "./SupplierBenchmarkModal";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 // LNG-adapted 3-Window Demo: Chatbot → Search Results → Supplier Profile
 const LNGSearchDemo = () => {
   const [benchmarkOpen, setBenchmarkOpen] = useState(false);
-
+  const { t } = useLanguage();
   return (
     <section data-nav-theme="light" className="py-20 md:py-28 bg-white">
       <div className="mx-auto max-w-[1400px] px-8">
@@ -20,14 +21,14 @@ const LNGSearchDemo = () => {
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-px bg-foreground" />
             <span className="text-sm font-medium tracking-[0.15em] uppercase text-foreground/50">
-              Supplier Search
+              {t.lngSearch.eyebrow}
             </span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground">
-            Find verified suppliers<br />in seconds, not days
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground whitespace-pre-line">
+            {t.lngSearch.headline}
           </h2>
           <p className="text-lg text-foreground/50 mt-6">
-            AI-powered supplier discovery for LNG, gas processing, and energy infrastructure. Describe what you need — get matched suppliers with verified capabilities.
+            {t.lngSearch.subtitle}
           </p>
         </motion.div>
 
