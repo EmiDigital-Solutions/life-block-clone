@@ -395,6 +395,8 @@ const processSteps = [
 const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
   const [activeSection, setActiveSection] = useState("identity");
   const [activeProcessStep, setActiveProcessStep] = useState<number | null>(null);
+  const [activeZone, setActiveZone] = useState<number | null>(null);
+  const [lightboxImg, setLightboxImg] = useState<{ src: string; label: string } | null>(null);
 
   if (!supplier) return null;
 
@@ -1086,56 +1088,115 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
           <ProfileSection title="J) Digital Shadow of the Site (Visual)" icon={MapPin} id="profile-site-shadow">
             <p className="text-sm text-foreground/50 mb-4">Semi-visual operational map — clickable production zones, photos per area, audit route replay.</p>
             
-            {/* Workshop / Equipment Gallery */}
-            <p className="text-xs font-mono text-[hsl(var(--accent))] uppercase mb-2">Workshop & Equipment Evidence</p>
+            {/* Production zones — interactive */}
+            <p className="text-xs font-mono text-[hsl(var(--accent))] uppercase mb-2">Production Zones — Click to Explore</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
               {[
-                { src: imgDMGnlx, label: "CNC Machine (DMG NLX)", zone: "Hall 1" },
-                { src: imgAssemblyStation, label: "Assembly Station", zone: "Hall 2" },
-                { src: imgMachinePark, label: "Machine Park Overview", zone: "Hall 1–3" },
-                { src: imgMeasurementSystems, label: "Measurement Systems", zone: "Metrology" },
-                { src: imgCapacityAssessment, label: "Capacity Assessment", zone: "Planning" },
-                { src: imgProcessCapability, label: "Process Capability", zone: "QA Lab" },
-                { src: imgMaterialStock, label: "Material Stock", zone: "Warehouse" },
-                { src: imgHSEinspection, label: "HSE Inspection Point", zone: "All Halls" },
-              ].map(img => (
-                <div key={img.label} className="group relative aspect-[4/3] rounded-sm overflow-hidden border border-foreground/10 cursor-pointer hover:border-[hsl(var(--accent))]/30 transition-all">
-                  <img src={img.src} alt={img.label} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-2">
-                    <div className="text-[10px] text-white font-medium">{img.label}</div>
-                    <div className="text-[9px] text-white/60 font-mono">{img.zone}</div>
+                { zone: "Hall 1 — CNC Machining", status: "Active", photos: [{ src: imgCNCmachine, label: "CNC Turning Centre" }, { src: imgDMGnlx, label: "DMG NLX 5-Axis" }], rating: "4/5", hse: false, details: "12 CNC machines, 5-axis capability, IT6 tolerance. Probe-based in-process measurement on all centres." },
+                { zone: "Hall 2 — Welding Shop", status: "Active", photos: [{ src: imgWeldInspection, label: "GTAW Root Pass" }, { src: imgWeldDefect, label: "Weld Quality Check" }], rating: "5/5", hse: true, details: "GTAW, SMAW, SAW, FCAW. 48 qualified WPS. Fume extraction mandatory. Fire watch for all shifts." },
+                { zone: "Hall 3 — Heat Treatment", status: "Active", photos: [{ src: imgHeatTreatmentFurnace, label: "HT Furnace Bay" }, { src: imgHeatTreatmentMonitoring, label: "Temperature Monitoring" }], rating: "3/5", hse: true, details: "Single furnace — max 2 batches/day. Bottleneck risk. TUS last done 8 months ago. Burn risk zone." },
+                { zone: "Hall 4 — Assembly", status: "New (2025)", photos: [{ src: imgAssemblyStation, label: "Assembly Station" }, { src: imgRotatingEquipment, label: "Component Integration" }], rating: "4/5", hse: false, details: "New hall commissioned Q1-2025. Template-guided assembly with QC sign-off at each stage." },
+                { zone: "NDT Lab", status: "Active", photos: [{ src: imgAuditInspection, label: "NDT Inspection" }, { src: imgInspector, label: "NDT Level III" }], rating: "4/5", hse: false, details: "UT, RT, MT, PT in-house. TOFD outsourced. Single Level III — personnel bottleneck risk." },
+                { zone: "Metrology Room", status: "Active", photos: [{ src: imgCMMmeasurement, label: "CMM Measurement" }, { src: imgMeasurementSystems, label: "Measurement Systems" }], rating: "5/5", hse: false, details: "CMM with 3D scanning. Calibration current. Temperature-controlled environment." },
+                { zone: "Incoming Warehouse", status: "Active", photos: [{ src: imgIncomingWarehouse, label: "Incoming Goods" }, { src: imgMaterialStock, label: "Material Storage" }], rating: "3/5", hse: false, details: "Barcode-based tracking. Sub-tier cert verification still manual. Storage conditions adequate." },
+                { zone: "Dispatch / Packing", status: "Active", photos: [{ src: imgOutgoingWarehouse, label: "Dispatch Bay" }, { src: imgShippingStaged, label: "Staged for Shipment" }], rating: "4/5", hse: false, details: "Custom export crating. Shock indicators on all packages. Pre-booked transport slots." },
+              ].map((z, zi) => (
+                <div key={z.zone}>
+                  <div 
+                    onClick={() => setActiveZone(activeZone === zi ? null : zi)}
+                    className={`bg-white border rounded-sm p-4 cursor-pointer transition-all ${
+                      activeZone === zi 
+                        ? 'border-[hsl(var(--accent))]/50 ring-1 ring-[hsl(var(--accent))]/20' 
+                        : z.hse ? 'border-[hsl(var(--warning))]/30 hover:border-[hsl(var(--accent))]/30' : 'border-foreground/10 hover:border-[hsl(var(--accent))]/30'
+                    }`}
+                  >
+                    <div className="flex items-center gap-1.5 mb-1">
+                      <span className="text-xs text-foreground font-medium">{z.zone}</span>
+                      {z.hse && <span className="text-[9px] font-mono bg-[hsl(var(--warning))]/15 text-[hsl(var(--warning))] px-1.5 py-0.5 rounded-sm">HSE</span>}
+                    </div>
+                    <div className="flex items-center gap-2 text-[10px] text-foreground/50">
+                      <span>{z.status}</span>
+                      <Camera className="w-3 h-3" />
+                      <span>{z.photos.length}</span>
+                      <span className="text-[hsl(var(--accent))]">★ {z.rating}</span>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* Production zones */}
-            <p className="text-xs font-mono text-[hsl(var(--accent))] uppercase mb-2">Production Zones</p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
-              {[
-                { zone: "Hall 1 — CNC Machining", status: "Active", photos: 12, rating: "4/5", hse: false },
-                { zone: "Hall 2 — Welding Shop", status: "Active", photos: 18, rating: "5/5", hse: true },
-                { zone: "Hall 3 — Heat Treatment", status: "Active", photos: 8, rating: "3/5", hse: true },
-                { zone: "Hall 4 — Assembly", status: "New (2025)", photos: 6, rating: "4/5", hse: false },
-                { zone: "NDT Lab", status: "Active", photos: 5, rating: "4/5", hse: false },
-                { zone: "Metrology Room", status: "Active", photos: 4, rating: "5/5", hse: false },
-                { zone: "Incoming Warehouse", status: "Active", photos: 3, rating: "3/5", hse: false },
-                { zone: "Dispatch / Packing", status: "Active", photos: 4, rating: "4/5", hse: false },
-              ].map(z => (
-                <div key={z.zone} className={`bg-white border rounded-sm p-4 cursor-pointer hover:border-[hsl(var(--accent))]/30 transition-all ${z.hse ? 'border-[hsl(var(--warning))]/30' : 'border-foreground/10'}`}>
-                  <div className="flex items-center gap-1.5 mb-1">
-                    <span className="text-xs text-foreground font-medium">{z.zone}</span>
-                    {z.hse && <span className="text-[9px] font-mono bg-[hsl(var(--warning))]/15 text-[hsl(var(--warning))] px-1.5 py-0.5 rounded-sm">HSE</span>}
-                  </div>
-                  <div className="flex items-center gap-2 text-[10px] text-foreground/50">
-                    <span>{z.status}</span>
-                    <Camera className="w-3 h-3" />
-                    <span>{z.photos}</span>
-                    <span className="text-[hsl(var(--accent))]">★ {z.rating}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
+            {/* Expanded zone detail */}
+            <AnimatePresence>
+              {activeZone !== null && (() => {
+                const zones = [
+                  { zone: "Hall 1 — CNC Machining", photos: [{ src: imgCNCmachine, label: "CNC Turning Centre" }, { src: imgDMGnlx, label: "DMG NLX 5-Axis" }], rating: "4/5", hse: false, details: "12 CNC machines, 5-axis capability, IT6 tolerance. Probe-based in-process measurement on all centres." },
+                  { zone: "Hall 2 — Welding Shop", photos: [{ src: imgWeldInspection, label: "GTAW Root Pass" }, { src: imgWeldDefect, label: "Weld Quality Check" }], rating: "5/5", hse: true, details: "GTAW, SMAW, SAW, FCAW. 48 qualified WPS. Fume extraction mandatory. Fire watch for all shifts." },
+                  { zone: "Hall 3 — Heat Treatment", photos: [{ src: imgHeatTreatmentFurnace, label: "HT Furnace Bay" }, { src: imgHeatTreatmentMonitoring, label: "Temperature Monitoring" }], rating: "3/5", hse: true, details: "Single furnace — max 2 batches/day. Bottleneck risk. TUS last done 8 months ago. Burn risk zone." },
+                  { zone: "Hall 4 — Assembly", photos: [{ src: imgAssemblyStation, label: "Assembly Station" }, { src: imgRotatingEquipment, label: "Component Integration" }], rating: "4/5", hse: false, details: "New hall commissioned Q1-2025. Template-guided assembly with QC sign-off at each stage." },
+                  { zone: "NDT Lab", photos: [{ src: imgAuditInspection, label: "NDT Inspection" }, { src: imgInspector, label: "NDT Level III" }], rating: "4/5", hse: false, details: "UT, RT, MT, PT in-house. TOFD outsourced. Single Level III — personnel bottleneck risk." },
+                  { zone: "Metrology Room", photos: [{ src: imgCMMmeasurement, label: "CMM Measurement" }, { src: imgMeasurementSystems, label: "Measurement Systems" }], rating: "5/5", hse: false, details: "CMM with 3D scanning. Calibration current. Temperature-controlled environment." },
+                  { zone: "Incoming Warehouse", photos: [{ src: imgIncomingWarehouse, label: "Incoming Goods" }, { src: imgMaterialStock, label: "Material Storage" }], rating: "3/5", hse: false, details: "Barcode-based tracking. Sub-tier cert verification still manual. Storage conditions adequate." },
+                  { zone: "Dispatch / Packing", photos: [{ src: imgOutgoingWarehouse, label: "Dispatch Bay" }, { src: imgShippingStaged, label: "Staged for Shipment" }], rating: "4/5", hse: false, details: "Custom export crating. Shock indicators on all packages. Pre-booked transport slots." },
+                ];
+                const z = zones[activeZone];
+                return (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="overflow-hidden mb-4"
+                  >
+                    <div className="bg-white border border-[hsl(var(--accent))]/20 rounded-sm overflow-hidden">
+                      <div className="flex items-center justify-between px-5 py-3 bg-[hsl(var(--accent))]/5 border-b border-[hsl(var(--accent))]/10">
+                        <div className="flex items-center gap-3">
+                          <MapPin className="w-4 h-4 text-[hsl(var(--accent))]" />
+                          <div>
+                            <h4 className="text-sm text-foreground font-medium">{z.zone}</h4>
+                            <span className="text-xs text-foreground/50">Rating: {z.rating} {z.hse ? '· HSE Critical Zone' : ''}</span>
+                          </div>
+                        </div>
+                        <button onClick={() => setActiveZone(null)} className="text-foreground/50 hover:text-foreground transition-colors">
+                          <X className="w-4 h-4" />
+                        </button>
+                      </div>
+                      <div className="p-5 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <p className="text-xs font-mono text-[hsl(var(--accent))] uppercase mb-2">Zone Photos</p>
+                          <div className="grid grid-cols-2 gap-2">
+                            {z.photos.map((photo, pi) => (
+                              <div 
+                                key={pi} 
+                                className="group relative aspect-[4/3] rounded-sm overflow-hidden border border-foreground/10 cursor-pointer hover:border-[hsl(var(--accent))]/30"
+                                onClick={() => setLightboxImg(photo)}
+                              >
+                                <img src={photo.src} alt={photo.label} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-2">
+                                  <span className="text-[10px] text-white font-medium">{photo.label}</span>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        <div>
+                          <p className="text-xs font-mono text-[hsl(var(--accent))] uppercase mb-2">Zone Assessment</p>
+                          <p className="text-sm text-foreground/60 mb-3">{z.details}</p>
+                          <div className="space-y-2">
+                            <div className="flex items-center justify-between text-xs">
+                              <span className="text-foreground/40 uppercase">Condition Rating</span>
+                              <span className="text-[hsl(var(--accent))] font-mono">{z.rating}</span>
+                            </div>
+                            <div className="w-full h-1.5 bg-foreground/10 rounded-full overflow-hidden">
+                              <div className="h-full bg-[hsl(var(--accent))] rounded-full" style={{ width: `${parseInt(z.rating) * 20}%` }} />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })()}
+            </AnimatePresence>
 
             {/* Product / Equipment inventory images */}
             <p className="text-xs font-mono text-[hsl(var(--accent))] uppercase mb-2">Product & Equipment Reference</p>
@@ -1148,7 +1209,11 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                 { src: imgProcessCapability, label: "Process Validation" },
                 { src: imgCertification, label: "Material Certs" },
               ].map(img => (
-                <div key={img.label} className="group relative aspect-square rounded-sm overflow-hidden border border-foreground/10 cursor-pointer hover:border-[hsl(var(--accent))]/30 transition-all">
+                <div 
+                  key={img.label} 
+                  className="group relative aspect-square rounded-sm overflow-hidden border border-foreground/10 cursor-pointer hover:border-[hsl(var(--accent))]/30 transition-all"
+                  onClick={() => setLightboxImg(img)}
+                >
                   <img src={img.src} alt={img.label} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-1.5">
                     <span className="text-[10px] text-white font-medium">{img.label}</span>
@@ -1163,6 +1228,38 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
               ))}
             </div>
           </ProfileSection>
+
+          {/* ── Image Lightbox ── */}
+          <AnimatePresence>
+            {lightboxImg && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-[200] flex items-center justify-center bg-black/80 backdrop-blur-sm"
+                onClick={() => setLightboxImg(null)}
+              >
+                <motion.div
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.9, opacity: 0 }}
+                  className="relative max-w-4xl w-full max-h-[85vh] m-4"
+                  onClick={e => e.stopPropagation()}
+                >
+                  <img src={lightboxImg.src} alt={lightboxImg.label} className="w-full h-full object-contain rounded-sm" />
+                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                    <span className="text-sm text-white font-medium">{lightboxImg.label}</span>
+                  </div>
+                  <button 
+                    onClick={() => setLightboxImg(null)} 
+                    className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-sm bg-black/50 hover:bg-black/70 transition-colors"
+                  >
+                    <X className="w-4 h-4 text-white" />
+                  </button>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* ═══════════ K) FIT SIMULATOR ═══════════ */}
           <ProfileSection title="K) Supplier Fit Simulator" icon={Search} id="profile-fit-simulator">
