@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   X, Shield, MapPin, Globe, Factory, ChevronDown, ChevronRight,
@@ -7,9 +7,24 @@ import {
   Building2, Users, Gauge, Flame, Cable, Box, Star, FileText,
   ShieldCheck, Activity, DollarSign, Scale, Truck, Archive,
   Fingerprint, Cpu, Leaf, Camera, BookOpen, GitBranch, Bot,
-  RefreshCw, Search, Target, Award, Layers, Package, Play
+  RefreshCw, Search, Target, Award, Layers, Package, Play,
+  HardHat, Thermometer, CircleDot, ArrowRight
 } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+
+// Workshop / Equipment / Product images
+import workshopWelding from "@/assets/evidence-assembly-station.jpg";
+import workshopCNC from "@/assets/evidence-cnc-machine.jpg";
+import workshopCMM from "@/assets/evidence-cmm-measurement.jpg";
+import workshopWarehouse from "@/assets/evidence-incoming-warehouse.jpg";
+import workshopHSE from "@/assets/evidence-hse-inspection.jpg";
+import equipmentCNC from "@/assets/cnc-machine-dmg-nlx.jpg";
+import equipmentMachinePark from "@/assets/checkpoint-machine-park.jpg";
+import equipmentMeasurement from "@/assets/checkpoint-measurement-systems.jpg";
+import productCapacity from "@/assets/checkpoint-capacity-assessment.jpg";
+import productProcess from "@/assets/checkpoint-process-capability.jpg";
+import productMaterial from "@/assets/checkpoint-material-stock.jpg";
+import productControl from "@/assets/evidence-control-plan.jpg";
 
 interface SupplierProfile {
   name: string;
@@ -136,7 +151,7 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-[95vw] xl:max-w-7xl max-h-[95vh] overflow-hidden p-0 gap-0 bg-[hsl(var(--hero-background))] border-white/10">
+      <DialogContent className="w-[98vw] max-w-[1400px] max-h-[95vh] overflow-hidden p-0 gap-0 bg-[hsl(var(--hero-background))] border-white/10">
         {/* Header */}
         <div className="p-6 pb-4 border-b border-white/10">
           <div className="flex items-start justify-between">
@@ -453,33 +468,121 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
 
           {/* ═══════════ E) PROCESS DIGITAL TWIN ═══════════ */}
           <ProfileSection title="E) Process Digital Twin (Shopfloor)" icon={Layers} id="profile-process-twin">
-            <p className="text-[11px] text-[hsl(var(--slate))] mb-3">End-to-end process flow with bottlenecks, quality gates, rework zones, delay root causes.</p>
-            <div className="flex items-center gap-1 overflow-x-auto pb-2 mb-4">
+            <p className="text-[11px] text-[hsl(var(--slate))] mb-3">End-to-end manufacturing flow — Incoming Warehouse → Outgoing Warehouse. Bottlenecks, HSE critical areas, quality gates.</p>
+            
+            {/* ── Animated Process Flow ── */}
+            <div className="relative mb-6">
+              <p className="text-[10px] font-mono text-[hsl(var(--accent))] uppercase mb-3">Manufacturing Process Flow</p>
+              <div className="relative overflow-x-auto pb-4">
+                <div className="flex items-stretch gap-0 min-w-[900px]">
+                  {[
+                    { step: "Incoming\nWarehouse", time: "—", risk: "none" as const, icon: Archive, gate: false, hse: false },
+                    { step: "Material\nInspection", time: "2d", risk: "none" as const, icon: Search, gate: true, hse: false },
+                    { step: "Engineering\nReview", time: "3 wk", risk: "none" as const, icon: FileText, gate: false, hse: false },
+                    { step: "Cutting /\nPreparation", time: "1 wk", risk: "none" as const, icon: Wrench, gate: false, hse: true },
+                    { step: "Welding /\nFabrication", time: "3 wk", risk: "critical" as const, icon: Flame, gate: true, hse: true },
+                    { step: "Heat\nTreatment", time: "1 wk", risk: "bottleneck" as const, icon: Thermometer, gate: true, hse: true },
+                    { step: "CNC\nMachining", time: "2 wk", risk: "none" as const, icon: Cpu, gate: false, hse: false },
+                    { step: "Surface\nTreatment", time: "1 wk", risk: "none" as const, icon: Layers, gate: false, hse: true },
+                    { step: "Assembly /\nIntegration", time: "2 wk", risk: "none" as const, icon: Package, gate: true, hse: false },
+                    { step: "NDT /\nInspection", time: "2 wk", risk: "bottleneck" as const, icon: Eye, gate: true, hse: false },
+                    { step: "Pressure\nTest", time: "3d", risk: "critical" as const, icon: Gauge, gate: true, hse: true },
+                    { step: "Final QC /\nDocumentation", time: "1 wk", risk: "none" as const, icon: CheckCircle2, gate: true, hse: false },
+                    { step: "Packing /\nPreservation", time: "3d", risk: "none" as const, icon: Box, gate: false, hse: false },
+                    { step: "Outgoing\nWarehouse", time: "—", risk: "none" as const, icon: Truck, gate: false, hse: false },
+                  ].map((s, i, arr) => (
+                    <motion.div
+                      key={s.step}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.06 }}
+                      className="flex items-center"
+                    >
+                      <div className="relative flex flex-col items-center">
+                        {/* Risk / HSE badges */}
+                        <div className="flex gap-0.5 mb-1 h-4">
+                          {s.risk === "bottleneck" && (
+                            <span className="text-[7px] font-mono font-bold bg-red-600/20 text-red-400 px-1.5 py-0.5 rounded-sm border border-red-500/30 uppercase">Bottleneck</span>
+                          )}
+                          {s.risk === "critical" && (
+                            <span className="text-[7px] font-mono font-bold bg-red-600/20 text-red-400 px-1.5 py-0.5 rounded-sm border border-red-500/30 uppercase">Critical</span>
+                          )}
+                          {s.hse && (
+                            <span className="text-[7px] font-mono bg-orange-500/20 text-orange-400 px-1.5 py-0.5 rounded-sm border border-orange-500/30 uppercase">HSE</span>
+                          )}
+                        </div>
+                        {/* Process step box */}
+                        <div className={`relative w-[70px] h-[70px] flex flex-col items-center justify-center rounded-sm border text-center transition-all ${
+                          s.risk === "bottleneck" ? 'bg-red-600/15 border-red-500/40 shadow-[0_0_12px_rgba(239,68,68,0.2)]' :
+                          s.risk === "critical" ? 'bg-red-600/10 border-red-500/30' :
+                          'bg-white/5 border-white/15 hover:border-white/25'
+                        }`}>
+                          <s.icon className={`w-4 h-4 mb-1 ${
+                            s.risk === "bottleneck" || s.risk === "critical" ? 'text-red-400' : 'text-[hsl(var(--accent))]'
+                          }`} />
+                          <div className="text-[8px] text-white font-medium leading-tight whitespace-pre-line">{s.step}</div>
+                        </div>
+                        {/* Time */}
+                        <div className="text-[8px] font-mono text-[hsl(var(--slate))] mt-1">{s.time}</div>
+                        {/* Quality gate */}
+                        {s.gate && (
+                          <div className="absolute -bottom-5 left-1/2 -translate-x-1/2">
+                            <span className="text-[6px] font-mono text-[hsl(var(--accent))] bg-[hsl(var(--accent))]/10 px-1 py-0.5 rounded-sm border border-[hsl(var(--accent))]/20">QG</span>
+                          </div>
+                        )}
+                      </div>
+                      {/* Arrow connector with animated pulse for bottleneck */}
+                      {i < arr.length - 1 && (
+                        <div className="flex items-center px-0.5">
+                          <motion.div
+                            animate={s.risk !== "none" ? { opacity: [0.4, 1, 0.4] } : {}}
+                            transition={{ duration: 1.5, repeat: Infinity }}
+                          >
+                            <ArrowRight className={`w-3 h-3 ${
+                              s.risk === "bottleneck" || s.risk === "critical" ? 'text-red-400' : 'text-white/20'
+                            }`} />
+                          </motion.div>
+                        </div>
+                      )}
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+              {/* Legend */}
+              <div className="flex flex-wrap gap-3 mt-6 pt-3 border-t border-white/5">
+                <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-sm bg-red-600/15 border border-red-500/40" /><span className="text-[9px] text-[hsl(var(--slate))]">Bottleneck</span></div>
+                <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-sm bg-red-600/10 border border-red-500/30" /><span className="text-[9px] text-[hsl(var(--slate))]">Critical Area</span></div>
+                <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-sm bg-orange-500/20 border border-orange-500/30" /><span className="text-[9px] text-[hsl(var(--slate))]">HSE Critical</span></div>
+                <div className="flex items-center gap-1.5"><span className="text-[6px] font-mono text-[hsl(var(--accent))] bg-[hsl(var(--accent))]/10 px-1 py-0.5 rounded-sm border border-[hsl(var(--accent))]/20">QG</span><span className="text-[9px] text-[hsl(var(--slate))]">Quality Gate</span></div>
+              </div>
+            </div>
+
+            {/* ── Workshop / Production Images ── */}
+            <p className="text-[10px] font-mono text-[hsl(var(--accent))] uppercase mb-2">Production Area Evidence</p>
+            <div className="grid grid-cols-3 md:grid-cols-6 gap-2 mb-4">
               {[
-                { step: "Order Intake", time: "1 wk", risk: false },
-                { step: "Engineering", time: "3 wk", risk: false },
-                { step: "Planning", time: "1 wk", risk: false },
-                { step: "Procurement", time: "4 wk", risk: true },
-                { step: "Production", time: "6 wk", risk: false },
-                { step: "Inspection", time: "2 wk", risk: true },
-                { step: "Packing", time: "0.5 wk", risk: false },
-                { step: "Dispatch", time: "0.5 wk", risk: false },
-              ].map((s, i) => (
-                <div key={s.step} className="flex items-center gap-1">
-                  <div className={`px-3 py-2 rounded-sm text-center min-w-[80px] ${
-                    s.risk ? 'bg-[hsl(var(--warning))]/10 border border-[hsl(var(--warning))]/30' : 'bg-white/5 border border-white/10'
-                  }`}>
-                    <div className="text-[10px] text-white font-medium">{s.step}</div>
-                    <div className="text-[9px] font-mono text-[hsl(var(--slate))]">{s.time}</div>
+                { src: workshopWarehouse, label: "Incoming Warehouse" },
+                { src: workshopWelding, label: "Assembly / Welding" },
+                { src: workshopCNC, label: "CNC Machining" },
+                { src: workshopCMM, label: "CMM Measurement" },
+                { src: workshopHSE, label: "HSE Inspection" },
+                { src: productControl, label: "Control Plan" },
+              ].map(img => (
+                <div key={img.label} className="group relative aspect-square rounded-sm overflow-hidden border border-white/10 cursor-pointer hover:border-[hsl(var(--accent))]/30 transition-all">
+                  <img src={img.src} alt={img.label} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-1.5">
+                    <span className="text-[8px] text-white font-medium">{img.label}</span>
                   </div>
-                  {i < 7 && <span className="text-[hsl(var(--slate))] text-xs">→</span>}
                 </div>
               ))}
             </div>
+
             <div className="space-y-1">
               <DataRow label="Typical Total Lead Time" value="18 weeks" mono verification="verified" />
-              <DataRow label="Bottlenecks" value="Procurement (casting lead time), Inspection (NDT Level III)" verification="verified" />
-              <DataRow label="Quality Gates" value="6 gates defined — ITP-based" verification="verified" />
+              <DataRow label="Bottlenecks" value="HT furnace (max 2 batches/day), NDT Level III (1 person)" verification="verified" />
+              <DataRow label="Quality Gates" value="7 gates defined — ITP-based" verification="verified" />
+              <DataRow label="HSE Critical Zones" value="Welding (fume), HT (burn risk), Surface (chemical), Pressure Test (high-pressure)" verification="verified" />
               <DataRow label="Documented Weaknesses" value="Sub-tier casting traceability, rework at weld-fit-up" verification="verified" />
               <DataRow label="Delay Root Causes" value="60% material, 25% capacity, 15% documentation" verification="ai-inferred" />
               <DataRow label="Rework Zones" value="Weld-fit-up station (3.2% rework rate)" verification="verified" />
@@ -490,6 +593,7 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                 <p>• Delay risk: Medium (procurement-driven, mitigate with pre-ordering)</p>
                 <p>• Likely failure modes: Weld porosity at root pass, dimensional deviation on large bore</p>
                 <p>• Recommended controls: Stage inspection at fit-up, 100% RT on critical welds</p>
+                <p>• HSE recommendation: Mandatory PPE audit before site access, fire watch for GTAW areas</p>
               </div>
             </div>
           </ProfileSection>
@@ -619,27 +723,78 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
           {/* ═══════════ J) SITE SHADOW ═══════════ */}
           <ProfileSection title="J) Digital Shadow of the Site (Visual)" icon={MapPin} id="profile-site-shadow">
             <p className="text-[11px] text-[hsl(var(--slate))] mb-3">Semi-visual operational map — clickable production zones, photos per area, audit route replay.</p>
+            
+            {/* Workshop / Equipment Gallery */}
+            <p className="text-[10px] font-mono text-[hsl(var(--accent))] uppercase mb-2">Workshop & Equipment Evidence</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
               {[
-                { zone: "Hall 1 — CNC Machining", status: "Active", photos: 12, rating: "4/5" },
-                { zone: "Hall 2 — Welding Shop", status: "Active", photos: 18, rating: "5/5" },
-                { zone: "Hall 3 — Heat Treatment", status: "Active", photos: 8, rating: "3/5" },
-                { zone: "Hall 4 — Assembly", status: "New (2025)", photos: 6, rating: "4/5" },
-                { zone: "NDT Lab", status: "Active", photos: 5, rating: "4/5" },
-                { zone: "Metrology Room", status: "Active", photos: 4, rating: "5/5" },
-                { zone: "Incoming Warehouse", status: "Active", photos: 3, rating: "3/5" },
-                { zone: "Dispatch / Packing", status: "Active", photos: 4, rating: "4/5" },
+                { src: equipmentCNC, label: "CNC Machine (DMG NLX)", zone: "Hall 1" },
+                { src: workshopWelding, label: "Assembly Station", zone: "Hall 2" },
+                { src: equipmentMachinePark, label: "Machine Park Overview", zone: "Hall 1–3" },
+                { src: equipmentMeasurement, label: "Measurement Systems", zone: "Metrology" },
+                { src: productCapacity, label: "Capacity Assessment", zone: "Planning" },
+                { src: productProcess, label: "Process Capability", zone: "QA Lab" },
+                { src: productMaterial, label: "Material Stock", zone: "Warehouse" },
+                { src: workshopHSE, label: "HSE Inspection Point", zone: "All Halls" },
+              ].map(img => (
+                <div key={img.label} className="group relative aspect-[4/3] rounded-sm overflow-hidden border border-white/10 cursor-pointer hover:border-[hsl(var(--accent))]/30 transition-all">
+                  <img src={img.src} alt={img.label} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-2">
+                    <div className="text-[9px] text-white font-medium">{img.label}</div>
+                    <div className="text-[7px] text-white/60 font-mono">{img.zone}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Production zones */}
+            <p className="text-[10px] font-mono text-[hsl(var(--accent))] uppercase mb-2">Production Zones</p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
+              {[
+                { zone: "Hall 1 — CNC Machining", status: "Active", photos: 12, rating: "4/5", hse: false },
+                { zone: "Hall 2 — Welding Shop", status: "Active", photos: 18, rating: "5/5", hse: true },
+                { zone: "Hall 3 — Heat Treatment", status: "Active", photos: 8, rating: "3/5", hse: true },
+                { zone: "Hall 4 — Assembly", status: "New (2025)", photos: 6, rating: "4/5", hse: false },
+                { zone: "NDT Lab", status: "Active", photos: 5, rating: "4/5", hse: false },
+                { zone: "Metrology Room", status: "Active", photos: 4, rating: "5/5", hse: false },
+                { zone: "Incoming Warehouse", status: "Active", photos: 3, rating: "3/5", hse: false },
+                { zone: "Dispatch / Packing", status: "Active", photos: 4, rating: "4/5", hse: false },
               ].map(z => (
-                <div key={z.zone} className="bg-white/5 border border-white/10 rounded-sm p-3 cursor-pointer hover:border-[hsl(var(--accent))]/30 transition-all">
-                  <div className="text-[11px] text-white font-medium mb-1">{z.zone}</div>
+                <div key={z.zone} className={`bg-white/5 border rounded-sm p-3 cursor-pointer hover:border-[hsl(var(--accent))]/30 transition-all ${z.hse ? 'border-orange-500/30' : 'border-white/10'}`}>
+                  <div className="flex items-center gap-1.5 mb-1">
+                    <span className="text-[11px] text-white font-medium">{z.zone}</span>
+                    {z.hse && <span className="text-[6px] font-mono bg-orange-500/20 text-orange-400 px-1 py-0.5 rounded-sm">HSE</span>}
+                  </div>
                   <div className="flex items-center gap-2 text-[9px] text-[hsl(var(--slate))]">
                     <span>{z.status}</span>
-                    <span>📷 {z.photos}</span>
+                    <Camera className="w-2.5 h-2.5" />
+                    <span>{z.photos}</span>
                     <span className="text-[hsl(var(--accent))]">★ {z.rating}</span>
                   </div>
                 </div>
               ))}
             </div>
+
+            {/* Product / Equipment inventory images */}
+            <p className="text-[10px] font-mono text-[hsl(var(--accent))] uppercase mb-2">Product & Equipment Reference</p>
+            <div className="grid grid-cols-3 md:grid-cols-6 gap-2 mb-4">
+              {[
+                { src: workshopCNC, label: "CNC Centre" },
+                { src: workshopCMM, label: "CMM / 3D Scan" },
+                { src: productControl, label: "Control Plan" },
+                { src: productCapacity, label: "Capacity Review" },
+                { src: productProcess, label: "Process Validation" },
+                { src: productMaterial, label: "Material Certs" },
+              ].map(img => (
+                <div key={img.label} className="group relative aspect-square rounded-sm overflow-hidden border border-white/10 cursor-pointer hover:border-[hsl(var(--accent))]/30 transition-all">
+                  <img src={img.src} alt={img.label} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-1">
+                    <span className="text-[7px] text-white font-medium">{img.label}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
             <div className="flex flex-wrap gap-2">
               {["Equipment Map", "Safety Hotspots", "5S Ratings", "Quality Hotspots", "Audit Route Replay"].map(f => (
                 <span key={f} className="text-[10px] bg-white/5 text-[hsl(var(--slate))] px-2 py-1 rounded-sm border border-white/10">{f}</span>
