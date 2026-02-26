@@ -12,19 +12,32 @@ import {
 } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
-// Workshop / Equipment / Product images
-import workshopWelding from "@/assets/evidence-assembly-station.jpg";
-import workshopCNC from "@/assets/evidence-cnc-machine.jpg";
-import workshopCMM from "@/assets/evidence-cmm-measurement.jpg";
-import workshopWarehouse from "@/assets/evidence-incoming-warehouse.jpg";
-import workshopHSE from "@/assets/evidence-hse-inspection.jpg";
-import equipmentCNC from "@/assets/cnc-machine-dmg-nlx.jpg";
-import equipmentMachinePark from "@/assets/checkpoint-machine-park.jpg";
-import equipmentMeasurement from "@/assets/checkpoint-measurement-systems.jpg";
-import productCapacity from "@/assets/checkpoint-capacity-assessment.jpg";
-import productProcess from "@/assets/checkpoint-process-capability.jpg";
-import productMaterial from "@/assets/checkpoint-material-stock.jpg";
-import productControl from "@/assets/evidence-control-plan.jpg";
+// Contextual images mapped to manufacturing process stages
+import imgIncomingWarehouse from "@/assets/evidence-incoming-warehouse.jpg";
+import imgMaterialStock from "@/assets/checkpoint-material-stock.jpg";
+import imgCMMmeasurement from "@/assets/evidence-cmm-measurement.jpg";
+import imgMeasurementSystems from "@/assets/checkpoint-measurement-systems.jpg";
+import imgControlPlan from "@/assets/evidence-control-plan.jpg";
+import imgProcessCapability from "@/assets/checkpoint-process-capability.jpg";
+import imgMachinePark from "@/assets/checkpoint-machine-park.jpg";
+import imgFactoryHero from "@/assets/factory-hero-background.jpg";
+import imgWeldInspection from "@/assets/lng-weld-inspection.jpg";
+import imgWeldDefect from "@/assets/claim-weld-defect.jpg";
+import imgCryogenicValve from "@/assets/industry-cryogenic-valve.jpg";
+import imgCryogenicModern from "@/assets/industry-cryogenic-modern.jpg";
+import imgCNCmachine from "@/assets/evidence-cnc-machine.jpg";
+import imgDMGnlx from "@/assets/cnc-machine-dmg-nlx.jpg";
+import imgCoatingFailure from "@/assets/claim-coating-failure.jpg";
+import imgHSEinspection from "@/assets/evidence-hse-inspection.jpg";
+import imgAssemblyStation from "@/assets/evidence-assembly-station.jpg";
+import imgCapacityAssessment from "@/assets/checkpoint-capacity-assessment.jpg";
+import imgInspector from "@/assets/evidence-inspector.jpg";
+import imgAuditInspection from "@/assets/ai-audit-inspection.jpg";
+import imgStorageTanks from "@/assets/lng-storage-tanks.jpg";
+import imgDimensionalControl from "@/assets/lng-dimensional-control.jpg";
+import imgCertification from "@/assets/evidence-certification.jpg";
+import imgRotatingEquipment from "@/assets/lng-rotating-equipment.jpg";
+import imgEquipmentIntel from "@/assets/checkpoint-equipment-intelligence.jpg";
 
 interface SupplierProfile {
   name: string;
@@ -144,7 +157,7 @@ const processSteps = [
   {
     id: "incoming", step: "Incoming\nWarehouse", time: "—", risk: "none" as const, icon: Archive, gate: false, hse: false,
     detail: {
-      photos: [{ src: workshopWarehouse, label: "Incoming goods area" }, { src: productMaterial, label: "Material storage racks" }],
+      photos: [{ src: imgIncomingWarehouse, label: "Incoming goods area" }, { src: imgMaterialStock, label: "Material storage racks" }],
       checklist: [
         { item: "Material certificates received (EN 10204 3.1/3.2)", status: "pass" as const, note: null },
         { item: "Incoming inspection per ITP", status: "pass" as const, note: null },
@@ -161,7 +174,7 @@ const processSteps = [
   {
     id: "material-insp", step: "Material\nInspection", time: "2d", risk: "none" as const, icon: Search, gate: true, hse: false,
     detail: {
-      photos: [{ src: workshopCMM, label: "CMM dimensional check" }, { src: equipmentMeasurement, label: "Measurement systems" }],
+      photos: [{ src: imgCMMmeasurement, label: "CMM dimensional check" }, { src: imgMeasurementSystems, label: "Measurement systems" }],
       checklist: [
         { item: "PMI verification (XRF)", status: "pass" as const, note: null },
         { item: "Dimensional check on raw material", status: "pass" as const, note: null },
@@ -178,7 +191,7 @@ const processSteps = [
   {
     id: "engineering", step: "Engineering\nReview", time: "3 wk", risk: "none" as const, icon: FileText, gate: false, hse: false,
     detail: {
-      photos: [{ src: productControl, label: "Control plan review" }, { src: productProcess, label: "Process planning" }],
+      photos: [{ src: imgControlPlan, label: "Control plan review" }, { src: imgProcessCapability, label: "Process planning" }],
       checklist: [
         { item: "Drawing review & mark-up complete", status: "pass" as const, note: null },
         { item: "WPS/PQR selection per joint", status: "pass" as const, note: null },
@@ -194,7 +207,7 @@ const processSteps = [
   {
     id: "cutting", step: "Cutting /\nPreparation", time: "1 wk", risk: "none" as const, icon: Wrench, gate: false, hse: true,
     detail: {
-      photos: [{ src: workshopWelding, label: "Preparation area" }, { src: equipmentMachinePark, label: "Cutting equipment" }],
+      photos: [{ src: imgMachinePark, label: "Cutting equipment" }, { src: imgFactoryHero, label: "Preparation bay" }],
       checklist: [
         { item: "Cutting plan per nesting layout", status: "pass" as const, note: null },
         { item: "Edge preparation per WPS", status: "pass" as const, note: null },
@@ -209,7 +222,7 @@ const processSteps = [
   {
     id: "welding", step: "Welding /\nFabrication", time: "3 wk", risk: "critical" as const, icon: Flame, gate: true, hse: true,
     detail: {
-      photos: [{ src: workshopWelding, label: "GTAW root pass" }, { src: workshopHSE, label: "Welding bay HSE setup" }],
+      photos: [{ src: imgWeldInspection, label: "GTAW root pass" }, { src: imgWeldDefect, label: "Weld quality close-up" }],
       checklist: [
         { item: "Welder qualification valid for scope", status: "pass" as const, note: null },
         { item: "WPS/PQR approved and at station", status: "pass" as const, note: null },
@@ -228,7 +241,7 @@ const processSteps = [
   {
     id: "heat-treatment", step: "Heat\nTreatment", time: "1 wk", risk: "bottleneck" as const, icon: Thermometer, gate: true, hse: true,
     detail: {
-      photos: [{ src: productCapacity, label: "HT furnace capacity" }, { src: productProcess, label: "Temperature chart" }],
+      photos: [{ src: imgCryogenicModern, label: "HT furnace facility" }, { src: imgCryogenicValve, label: "Post-HT component" }],
       checklist: [
         { item: "Furnace calibration valid", status: "pass" as const, note: null },
         { item: "Thermocouple placement per procedure", status: "pass" as const, note: null },
@@ -246,7 +259,7 @@ const processSteps = [
   {
     id: "cnc", step: "CNC\nMachining", time: "2 wk", risk: "none" as const, icon: Cpu, gate: false, hse: false,
     detail: {
-      photos: [{ src: workshopCNC, label: "CNC turning centre" }, { src: equipmentCNC, label: "DMG NLX 5-axis" }],
+      photos: [{ src: imgCNCmachine, label: "CNC turning centre" }, { src: imgDMGnlx, label: "DMG NLX 5-axis" }],
       checklist: [
         { item: "CNC program verified (first article)", status: "pass" as const, note: null },
         { item: "Tool wear monitoring active", status: "pass" as const, note: null },
@@ -262,7 +275,7 @@ const processSteps = [
   {
     id: "surface", step: "Surface\nTreatment", time: "1 wk", risk: "none" as const, icon: Layers, gate: false, hse: true,
     detail: {
-      photos: [{ src: productProcess, label: "Surface treatment line" }, { src: workshopHSE, label: "Chemical storage" }],
+      photos: [{ src: imgCoatingFailure, label: "Surface treatment line" }, { src: imgHSEinspection, label: "Chemical storage area" }],
       checklist: [
         { item: "Passivation / pickling per ASTM A380", status: "pass" as const, note: null },
         { item: "Coating thickness verification (DFT)", status: "pass" as const, note: null },
@@ -277,7 +290,7 @@ const processSteps = [
   {
     id: "assembly", step: "Assembly /\nIntegration", time: "2 wk", risk: "none" as const, icon: Package, gate: true, hse: false,
     detail: {
-      photos: [{ src: workshopWelding, label: "Assembly station" }, { src: equipmentMachinePark, label: "Crane operations" }],
+      photos: [{ src: imgAssemblyStation, label: "Assembly station" }, { src: imgRotatingEquipment, label: "Component integration" }],
       checklist: [
         { item: "Sub-assembly dimensional verification", status: "pass" as const, note: null },
         { item: "Torque values per spec", status: "pass" as const, note: null },
@@ -293,7 +306,7 @@ const processSteps = [
   {
     id: "ndt", step: "NDT /\nInspection", time: "2 wk", risk: "bottleneck" as const, icon: Eye, gate: true, hse: false,
     detail: {
-      photos: [{ src: workshopCMM, label: "UT inspection" }, { src: equipmentMeasurement, label: "NDT equipment" }],
+      photos: [{ src: imgAuditInspection, label: "NDT inspection" }, { src: imgInspector, label: "NDT Level III operator" }],
       checklist: [
         { item: "RT/UT per ITP acceptance criteria", status: "pass" as const, note: null },
         { item: "MT/PT on accessible surfaces", status: "pass" as const, note: null },
@@ -311,7 +324,7 @@ const processSteps = [
   {
     id: "pressure", step: "Pressure\nTest", time: "3d", risk: "critical" as const, icon: Gauge, gate: true, hse: true,
     detail: {
-      photos: [{ src: productCapacity, label: "Test bay setup" }, { src: workshopHSE, label: "Safety exclusion zone" }],
+      photos: [{ src: imgStorageTanks, label: "Pressure test bay" }, { src: imgDimensionalControl, label: "Safety exclusion zone" }],
       checklist: [
         { item: "Test procedure approved by client/TPI", status: "pass" as const, note: null },
         { item: "Pressure gauge calibration valid", status: "pass" as const, note: null },
@@ -329,7 +342,7 @@ const processSteps = [
   {
     id: "final-qc", step: "Final QC /\nDocumentation", time: "1 wk", risk: "none" as const, icon: CheckCircle2, gate: true, hse: false,
     detail: {
-      photos: [{ src: productControl, label: "Final inspection" }, { src: workshopCMM, label: "CMM final dims" }],
+      photos: [{ src: imgCertification, label: "Final inspection report" }, { src: imgDimensionalControl, label: "CMM final dims" }],
       checklist: [
         { item: "Final dimensional report complete", status: "pass" as const, note: null },
         { item: "MDR / data book compiled", status: "pass" as const, note: null },
@@ -345,7 +358,7 @@ const processSteps = [
   {
     id: "packing", step: "Packing /\nPreservation", time: "3d", risk: "none" as const, icon: Box, gate: false, hse: false,
     detail: {
-      photos: [{ src: workshopWarehouse, label: "Export packing" }, { src: productMaterial, label: "Preservation materials" }],
+      photos: [{ src: imgEquipmentIntel, label: "Export packing" }, { src: imgCapacityAssessment, label: "Crating & preservation" }],
       checklist: [
         { item: "Preservation per client spec", status: "pass" as const, note: null },
         { item: "Export packaging (seaworthy)", status: "pass" as const, note: null },
@@ -361,7 +374,7 @@ const processSteps = [
   {
     id: "outgoing", step: "Outgoing\nWarehouse", time: "—", risk: "none" as const, icon: Truck, gate: false, hse: false,
     detail: {
-      photos: [{ src: workshopWarehouse, label: "Dispatch bay" }, { src: productMaterial, label: "Staged for shipment" }],
+      photos: [{ src: imgIncomingWarehouse, label: "Dispatch bay" }, { src: imgMaterialStock, label: "Staged for shipment" }],
       checklist: [
         { item: "Release note signed by QA", status: "pass" as const, note: null },
         { item: "Transport documentation complete", status: "pass" as const, note: null },
@@ -907,12 +920,12 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
             <p className="text-[10px] font-mono text-[hsl(var(--accent))] uppercase mb-2">Production Area Evidence</p>
             <div className="grid grid-cols-3 md:grid-cols-6 gap-2 mb-4">
               {[
-                { src: workshopWarehouse, label: "Incoming Warehouse" },
-                { src: workshopWelding, label: "Assembly / Welding" },
-                { src: workshopCNC, label: "CNC Machining" },
-                { src: workshopCMM, label: "CMM Measurement" },
-                { src: workshopHSE, label: "HSE Inspection" },
-                { src: productControl, label: "Control Plan" },
+                { src: imgIncomingWarehouse, label: "Incoming Warehouse" },
+                { src: imgWeldInspection, label: "Welding Bay" },
+                { src: imgCNCmachine, label: "CNC Machining" },
+                { src: imgCMMmeasurement, label: "CMM Measurement" },
+                { src: imgHSEinspection, label: "HSE Inspection" },
+                { src: imgControlPlan, label: "Control Plan" },
               ].map(img => (
                 <div key={img.label} className="group relative aspect-square rounded-sm overflow-hidden border border-white/10 cursor-pointer hover:border-[hsl(var(--accent))]/30 transition-all">
                   <img src={img.src} alt={img.label} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -1073,14 +1086,14 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
             <p className="text-[10px] font-mono text-[hsl(var(--accent))] uppercase mb-2">Workshop & Equipment Evidence</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
               {[
-                { src: equipmentCNC, label: "CNC Machine (DMG NLX)", zone: "Hall 1" },
-                { src: workshopWelding, label: "Assembly Station", zone: "Hall 2" },
-                { src: equipmentMachinePark, label: "Machine Park Overview", zone: "Hall 1–3" },
-                { src: equipmentMeasurement, label: "Measurement Systems", zone: "Metrology" },
-                { src: productCapacity, label: "Capacity Assessment", zone: "Planning" },
-                { src: productProcess, label: "Process Capability", zone: "QA Lab" },
-                { src: productMaterial, label: "Material Stock", zone: "Warehouse" },
-                { src: workshopHSE, label: "HSE Inspection Point", zone: "All Halls" },
+                { src: imgDMGnlx, label: "CNC Machine (DMG NLX)", zone: "Hall 1" },
+                { src: imgAssemblyStation, label: "Assembly Station", zone: "Hall 2" },
+                { src: imgMachinePark, label: "Machine Park Overview", zone: "Hall 1–3" },
+                { src: imgMeasurementSystems, label: "Measurement Systems", zone: "Metrology" },
+                { src: imgCapacityAssessment, label: "Capacity Assessment", zone: "Planning" },
+                { src: imgProcessCapability, label: "Process Capability", zone: "QA Lab" },
+                { src: imgMaterialStock, label: "Material Stock", zone: "Warehouse" },
+                { src: imgHSEinspection, label: "HSE Inspection Point", zone: "All Halls" },
               ].map(img => (
                 <div key={img.label} className="group relative aspect-[4/3] rounded-sm overflow-hidden border border-white/10 cursor-pointer hover:border-[hsl(var(--accent))]/30 transition-all">
                   <img src={img.src} alt={img.label} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -1124,12 +1137,12 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
             <p className="text-[10px] font-mono text-[hsl(var(--accent))] uppercase mb-2">Product & Equipment Reference</p>
             <div className="grid grid-cols-3 md:grid-cols-6 gap-2 mb-4">
               {[
-                { src: workshopCNC, label: "CNC Centre" },
-                { src: workshopCMM, label: "CMM / 3D Scan" },
-                { src: productControl, label: "Control Plan" },
-                { src: productCapacity, label: "Capacity Review" },
-                { src: productProcess, label: "Process Validation" },
-                { src: productMaterial, label: "Material Certs" },
+                { src: imgCNCmachine, label: "CNC Centre" },
+                { src: imgCMMmeasurement, label: "CMM / 3D Scan" },
+                { src: imgControlPlan, label: "Control Plan" },
+                { src: imgCapacityAssessment, label: "Capacity Review" },
+                { src: imgProcessCapability, label: "Process Validation" },
+                { src: imgCertification, label: "Material Certs" },
               ].map(img => (
                 <div key={img.label} className="group relative aspect-square rounded-sm overflow-hidden border border-white/10 cursor-pointer hover:border-[hsl(var(--accent))]/30 transition-all">
                   <img src={img.src} alt={img.label} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
