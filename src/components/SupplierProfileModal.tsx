@@ -139,8 +139,245 @@ const RiskCategoryCard = ({ label, score, icon: Icon, detail }: { label: string;
   </div>
 );
 
+// Process steps data with detail panels
+const processSteps = [
+  {
+    id: "incoming", step: "Incoming\nWarehouse", time: "—", risk: "none" as const, icon: Archive, gate: false, hse: false,
+    detail: {
+      photos: [{ src: workshopWarehouse, label: "Incoming goods area" }, { src: productMaterial, label: "Material storage racks" }],
+      checklist: [
+        { item: "Material certificates received (EN 10204 3.1/3.2)", status: "pass" as const, note: null },
+        { item: "Incoming inspection per ITP", status: "pass" as const, note: null },
+        { item: "Material traceability marking verified", status: "warning" as const, note: "Sub-tier castings: partial traceability" },
+        { item: "Storage conditions adequate (humidity, temp)", status: "pass" as const, note: null },
+      ],
+      risks: [
+        { category: "Material Mix-up", severity: "low" as const, detail: "Barcode-based tracking in place", mitigation: null },
+        { category: "Cert Authenticity", severity: "medium" as const, detail: "Sub-tier cert verification manual", mitigation: "Cross-check with mill source" },
+      ],
+      hseNote: "",
+    }
+  },
+  {
+    id: "material-insp", step: "Material\nInspection", time: "2d", risk: "none" as const, icon: Search, gate: true, hse: false,
+    detail: {
+      photos: [{ src: workshopCMM, label: "CMM dimensional check" }, { src: equipmentMeasurement, label: "Measurement systems" }],
+      checklist: [
+        { item: "PMI verification (XRF)", status: "pass" as const, note: null },
+        { item: "Dimensional check on raw material", status: "pass" as const, note: null },
+        { item: "Visual surface inspection", status: "pass" as const, note: null },
+        { item: "Hardness testing", status: "pass" as const, note: null },
+        { item: "Certificate cross-reference to PO", status: "warning" as const, note: "Manual process — no ERP link" },
+      ],
+      risks: [
+        { category: "Wrong Alloy", severity: "low" as const, detail: "PMI on 100% of batches", mitigation: null },
+      ],
+      hseNote: "",
+    }
+  },
+  {
+    id: "engineering", step: "Engineering\nReview", time: "3 wk", risk: "none" as const, icon: FileText, gate: false, hse: false,
+    detail: {
+      photos: [{ src: productControl, label: "Control plan review" }, { src: productProcess, label: "Process planning" }],
+      checklist: [
+        { item: "Drawing review & mark-up complete", status: "pass" as const, note: null },
+        { item: "WPS/PQR selection per joint", status: "pass" as const, note: null },
+        { item: "ITP generated and approved", status: "pass" as const, note: null },
+        { item: "Risk assessment (FMEA) for new scope", status: "warning" as const, note: "FMEA only for critical joints" },
+      ],
+      risks: [
+        { category: "Scope Misinterpretation", severity: "medium" as const, detail: "Complex specs require senior review", mitigation: "Mandatory design review meeting with client" },
+      ],
+      hseNote: "",
+    }
+  },
+  {
+    id: "cutting", step: "Cutting /\nPreparation", time: "1 wk", risk: "none" as const, icon: Wrench, gate: false, hse: true,
+    detail: {
+      photos: [{ src: workshopWelding, label: "Preparation area" }, { src: equipmentMachinePark, label: "Cutting equipment" }],
+      checklist: [
+        { item: "Cutting plan per nesting layout", status: "pass" as const, note: null },
+        { item: "Edge preparation per WPS", status: "pass" as const, note: null },
+        { item: "Traceability transfer to cut pieces", status: "pass" as const, note: null },
+      ],
+      risks: [
+        { category: "Material Waste", severity: "low" as const, detail: "Nesting software optimises yield to >92%", mitigation: null },
+      ],
+      hseNote: "Grinding and cutting: mandatory eye/ear protection, spark containment, fire extinguisher within 5m",
+    }
+  },
+  {
+    id: "welding", step: "Welding /\nFabrication", time: "3 wk", risk: "critical" as const, icon: Flame, gate: true, hse: true,
+    detail: {
+      photos: [{ src: workshopWelding, label: "GTAW root pass" }, { src: workshopHSE, label: "Welding bay HSE setup" }],
+      checklist: [
+        { item: "Welder qualification valid for scope", status: "pass" as const, note: null },
+        { item: "WPS/PQR approved and at station", status: "pass" as const, note: null },
+        { item: "Preheat temperature verified", status: "pass" as const, note: null },
+        { item: "Interpass temperature monitored", status: "warning" as const, note: "Manual monitoring — no data logger" },
+        { item: "Root pass visual + PT before fill", status: "pass" as const, note: null },
+        { item: "Filler material batch traceability", status: "fail" as const, note: "Gap: cryo filler batches not fully traced" },
+      ],
+      risks: [
+        { category: "Weld Porosity", severity: "high" as const, detail: "Root pass porosity pattern detected (3x in 12mo)", mitigation: "Mandate WPS revalidation + welder retest on Inconel" },
+        { category: "Distortion", severity: "medium" as const, detail: "Large bore fabrication prone to angular distortion", mitigation: "Stage inspection at fit-up before final weld" },
+      ],
+      hseNote: "Welding fume extraction mandatory. Fire watch required for GTAW areas. Hot work permit for each shift.",
+    }
+  },
+  {
+    id: "heat-treatment", step: "Heat\nTreatment", time: "1 wk", risk: "bottleneck" as const, icon: Thermometer, gate: true, hse: true,
+    detail: {
+      photos: [{ src: productCapacity, label: "HT furnace capacity" }, { src: productProcess, label: "Temperature chart" }],
+      checklist: [
+        { item: "Furnace calibration valid", status: "pass" as const, note: null },
+        { item: "Thermocouple placement per procedure", status: "pass" as const, note: null },
+        { item: "Temperature uniformity survey current", status: "warning" as const, note: "TUS last done 8 months ago" },
+        { item: "Heating/cooling rates recorded", status: "pass" as const, note: null },
+        { item: "Post-HT hardness verification", status: "pass" as const, note: null },
+      ],
+      risks: [
+        { category: "Capacity Bottleneck", severity: "high" as const, detail: "Single furnace — max 2 batches/day. Any breakdown stops production.", mitigation: "Pre-book HT slots, identify backup facility" },
+        { category: "Over-tempering", severity: "medium" as const, detail: "Risk on Duplex if hold time exceeded", mitigation: "Automated furnace controller with alarm" },
+      ],
+      hseNote: "Burn risk zone. Restricted access. Heat-resistant PPE mandatory. Emergency shower within 10m.",
+    }
+  },
+  {
+    id: "cnc", step: "CNC\nMachining", time: "2 wk", risk: "none" as const, icon: Cpu, gate: false, hse: false,
+    detail: {
+      photos: [{ src: workshopCNC, label: "CNC turning centre" }, { src: equipmentCNC, label: "DMG NLX 5-axis" }],
+      checklist: [
+        { item: "CNC program verified (first article)", status: "pass" as const, note: null },
+        { item: "Tool wear monitoring active", status: "pass" as const, note: null },
+        { item: "In-process measurement (probe)", status: "pass" as const, note: null },
+        { item: "Surface finish Ra verification", status: "pass" as const, note: null },
+      ],
+      risks: [
+        { category: "Dimensional Deviation", severity: "low" as const, detail: "5-axis with probing achieves IT6 consistently", mitigation: null },
+      ],
+      hseNote: "",
+    }
+  },
+  {
+    id: "surface", step: "Surface\nTreatment", time: "1 wk", risk: "none" as const, icon: Layers, gate: false, hse: true,
+    detail: {
+      photos: [{ src: productProcess, label: "Surface treatment line" }, { src: workshopHSE, label: "Chemical storage" }],
+      checklist: [
+        { item: "Passivation / pickling per ASTM A380", status: "pass" as const, note: null },
+        { item: "Coating thickness verification (DFT)", status: "pass" as const, note: null },
+        { item: "Cleanliness level ISO 15001", status: "pass" as const, note: null },
+      ],
+      risks: [
+        { category: "Chemical Handling", severity: "medium" as const, detail: "Acid pickling requires certified operators", mitigation: "Monthly refresher training" },
+      ],
+      hseNote: "Chemical hazard zone. Full face shield, acid-resistant gloves, emergency eye wash station mandatory.",
+    }
+  },
+  {
+    id: "assembly", step: "Assembly /\nIntegration", time: "2 wk", risk: "none" as const, icon: Package, gate: true, hse: false,
+    detail: {
+      photos: [{ src: workshopWelding, label: "Assembly station" }, { src: equipmentMachinePark, label: "Crane operations" }],
+      checklist: [
+        { item: "Sub-assembly dimensional verification", status: "pass" as const, note: null },
+        { item: "Torque values per spec", status: "pass" as const, note: null },
+        { item: "Gasket/seal installation verified", status: "pass" as const, note: null },
+        { item: "Pre-assembly cleanliness check", status: "pass" as const, note: null },
+      ],
+      risks: [
+        { category: "Fit-up Error", severity: "low" as const, detail: "Template-guided assembly with QC sign-off", mitigation: null },
+      ],
+      hseNote: "",
+    }
+  },
+  {
+    id: "ndt", step: "NDT /\nInspection", time: "2 wk", risk: "bottleneck" as const, icon: Eye, gate: true, hse: false,
+    detail: {
+      photos: [{ src: workshopCMM, label: "UT inspection" }, { src: equipmentMeasurement, label: "NDT equipment" }],
+      checklist: [
+        { item: "RT/UT per ITP acceptance criteria", status: "pass" as const, note: null },
+        { item: "MT/PT on accessible surfaces", status: "pass" as const, note: null },
+        { item: "NDT operator Level II/III qualified", status: "warning" as const, note: "Only 1 Level III — single point of failure" },
+        { item: "Film quality / digital UT data archived", status: "pass" as const, note: null },
+        { item: "TOFD for critical welds (outsourced)", status: "pass" as const, note: null },
+      ],
+      risks: [
+        { category: "Personnel Bottleneck", severity: "high" as const, detail: "Single NDT Level III for all interpretation", mitigation: "Cross-train Level II, contract backup Level III" },
+        { category: "Delayed Reporting", severity: "medium" as const, detail: "RT film development adds 2-3 days", mitigation: "Transition to digital RT (planned Q4)" },
+      ],
+      hseNote: "",
+    }
+  },
+  {
+    id: "pressure", step: "Pressure\nTest", time: "3d", risk: "critical" as const, icon: Gauge, gate: true, hse: true,
+    detail: {
+      photos: [{ src: productCapacity, label: "Test bay setup" }, { src: workshopHSE, label: "Safety exclusion zone" }],
+      checklist: [
+        { item: "Test procedure approved by client/TPI", status: "pass" as const, note: null },
+        { item: "Pressure gauge calibration valid", status: "pass" as const, note: null },
+        { item: "Safety exclusion zone established", status: "pass" as const, note: null },
+        { item: "Hold time per code (ASME/PED)", status: "pass" as const, note: null },
+        { item: "Leak detection method defined", status: "pass" as const, note: null },
+      ],
+      risks: [
+        { category: "Safety Incident", severity: "high" as const, detail: "High-pressure hydro test — catastrophic failure risk", mitigation: "Remote monitoring, blast shields, exclusion zone enforced" },
+        { category: "Weld Failure at Test", severity: "medium" as const, detail: "Root cause usually from upstream welding defects", mitigation: "Ensure 100% NDT acceptance before test" },
+      ],
+      hseNote: "HIGH PRESSURE ZONE. Exclusion radius 15m. Remote monitoring only during hold. Emergency stop accessible. Medical team on standby.",
+    }
+  },
+  {
+    id: "final-qc", step: "Final QC /\nDocumentation", time: "1 wk", risk: "none" as const, icon: CheckCircle2, gate: true, hse: false,
+    detail: {
+      photos: [{ src: productControl, label: "Final inspection" }, { src: workshopCMM, label: "CMM final dims" }],
+      checklist: [
+        { item: "Final dimensional report complete", status: "pass" as const, note: null },
+        { item: "MDR / data book compiled", status: "pass" as const, note: null },
+        { item: "All NCRs closed or dispositioned", status: "pass" as const, note: null },
+        { item: "Client/TPI release obtained", status: "pass" as const, note: null },
+      ],
+      risks: [
+        { category: "Documentation Delay", severity: "low" as const, detail: "Structured MDR template reduces errors", mitigation: null },
+      ],
+      hseNote: "",
+    }
+  },
+  {
+    id: "packing", step: "Packing /\nPreservation", time: "3d", risk: "none" as const, icon: Box, gate: false, hse: false,
+    detail: {
+      photos: [{ src: workshopWarehouse, label: "Export packing" }, { src: productMaterial, label: "Preservation materials" }],
+      checklist: [
+        { item: "Preservation per client spec", status: "pass" as const, note: null },
+        { item: "Export packaging (seaworthy)", status: "pass" as const, note: null },
+        { item: "Shipping marks and labels correct", status: "pass" as const, note: null },
+        { item: "Packing list matches BOM", status: "pass" as const, note: null },
+      ],
+      risks: [
+        { category: "Transport Damage", severity: "low" as const, detail: "Custom crating with shock indicators", mitigation: null },
+      ],
+      hseNote: "",
+    }
+  },
+  {
+    id: "outgoing", step: "Outgoing\nWarehouse", time: "—", risk: "none" as const, icon: Truck, gate: false, hse: false,
+    detail: {
+      photos: [{ src: workshopWarehouse, label: "Dispatch bay" }, { src: productMaterial, label: "Staged for shipment" }],
+      checklist: [
+        { item: "Release note signed by QA", status: "pass" as const, note: null },
+        { item: "Transport documentation complete", status: "pass" as const, note: null },
+        { item: "Customs / export clearance", status: "pass" as const, note: null },
+      ],
+      risks: [
+        { category: "Logistics Delay", severity: "low" as const, detail: "Pre-booked transport slots", mitigation: null },
+      ],
+      hseNote: "",
+    }
+  },
+];
+
 const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
   const [activeSection, setActiveSection] = useState("identity");
+  const [activeProcessStep, setActiveProcessStep] = useState<number | null>(null);
 
   if (!supplier) return null;
 
@@ -468,38 +705,26 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
 
           {/* ═══════════ E) PROCESS DIGITAL TWIN ═══════════ */}
           <ProfileSection title="E) Process Digital Twin (Shopfloor)" icon={Layers} id="profile-process-twin">
-            <p className="text-[11px] text-[hsl(var(--slate))] mb-3">End-to-end manufacturing flow — Incoming Warehouse → Outgoing Warehouse. Bottlenecks, HSE critical areas, quality gates.</p>
+            <p className="text-[11px] text-[hsl(var(--slate))] mb-3">End-to-end manufacturing flow — click any step for detail panel with photos, checklist, and risk assessment.</p>
             
             {/* ── Animated Process Flow ── */}
             <div className="relative mb-6">
-              <p className="text-[10px] font-mono text-[hsl(var(--accent))] uppercase mb-3">Manufacturing Process Flow</p>
+              <p className="text-[10px] font-mono text-[hsl(var(--accent))] uppercase mb-3">Manufacturing Process Flow <span className="text-[hsl(var(--slate))] normal-case">— click a step for details</span></p>
               <div className="relative overflow-x-auto pb-4">
                 <div className="flex items-stretch gap-0 min-w-[900px]">
-                  {[
-                    { step: "Incoming\nWarehouse", time: "—", risk: "none" as const, icon: Archive, gate: false, hse: false },
-                    { step: "Material\nInspection", time: "2d", risk: "none" as const, icon: Search, gate: true, hse: false },
-                    { step: "Engineering\nReview", time: "3 wk", risk: "none" as const, icon: FileText, gate: false, hse: false },
-                    { step: "Cutting /\nPreparation", time: "1 wk", risk: "none" as const, icon: Wrench, gate: false, hse: true },
-                    { step: "Welding /\nFabrication", time: "3 wk", risk: "critical" as const, icon: Flame, gate: true, hse: true },
-                    { step: "Heat\nTreatment", time: "1 wk", risk: "bottleneck" as const, icon: Thermometer, gate: true, hse: true },
-                    { step: "CNC\nMachining", time: "2 wk", risk: "none" as const, icon: Cpu, gate: false, hse: false },
-                    { step: "Surface\nTreatment", time: "1 wk", risk: "none" as const, icon: Layers, gate: false, hse: true },
-                    { step: "Assembly /\nIntegration", time: "2 wk", risk: "none" as const, icon: Package, gate: true, hse: false },
-                    { step: "NDT /\nInspection", time: "2 wk", risk: "bottleneck" as const, icon: Eye, gate: true, hse: false },
-                    { step: "Pressure\nTest", time: "3d", risk: "critical" as const, icon: Gauge, gate: true, hse: true },
-                    { step: "Final QC /\nDocumentation", time: "1 wk", risk: "none" as const, icon: CheckCircle2, gate: true, hse: false },
-                    { step: "Packing /\nPreservation", time: "3d", risk: "none" as const, icon: Box, gate: false, hse: false },
-                    { step: "Outgoing\nWarehouse", time: "—", risk: "none" as const, icon: Truck, gate: false, hse: false },
-                  ].map((s, i, arr) => (
+                  {processSteps.map((s, i) => (
                     <motion.div
-                      key={s.step}
+                      key={s.id}
                       initial={{ opacity: 0, y: 10 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.06 }}
                       className="flex items-center"
                     >
-                      <div className="relative flex flex-col items-center">
+                      <div
+                        className="relative flex flex-col items-center cursor-pointer"
+                        onClick={() => setActiveProcessStep(activeProcessStep === i ? null : i)}
+                      >
                         {/* Risk / HSE badges */}
                         <div className="flex gap-0.5 mb-1 h-4">
                           {s.risk === "bottleneck" && (
@@ -514,12 +739,15 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                         </div>
                         {/* Process step box */}
                         <div className={`relative w-[70px] h-[70px] flex flex-col items-center justify-center rounded-sm border text-center transition-all ${
-                          s.risk === "bottleneck" ? 'bg-red-600/15 border-red-500/40 shadow-[0_0_12px_rgba(239,68,68,0.2)]' :
-                          s.risk === "critical" ? 'bg-red-600/10 border-red-500/30' :
-                          'bg-white/5 border-white/15 hover:border-white/25'
+                          activeProcessStep === i
+                            ? 'bg-[hsl(var(--accent))]/15 border-[hsl(var(--accent))]/50 shadow-[0_0_16px_rgba(var(--accent-rgb),0.3)] ring-1 ring-[hsl(var(--accent))]/30'
+                            : s.risk === "bottleneck" ? 'bg-red-600/15 border-red-500/40 shadow-[0_0_12px_rgba(239,68,68,0.2)] hover:bg-red-600/20'
+                            : s.risk === "critical" ? 'bg-red-600/10 border-red-500/30 hover:bg-red-600/15'
+                            : 'bg-white/5 border-white/15 hover:border-white/30 hover:bg-white/8'
                         }`}>
                           <s.icon className={`w-4 h-4 mb-1 ${
-                            s.risk === "bottleneck" || s.risk === "critical" ? 'text-red-400' : 'text-[hsl(var(--accent))]'
+                            activeProcessStep === i ? 'text-[hsl(var(--accent))]'
+                            : s.risk === "bottleneck" || s.risk === "critical" ? 'text-red-400' : 'text-[hsl(var(--accent))]'
                           }`} />
                           <div className="text-[8px] text-white font-medium leading-tight whitespace-pre-line">{s.step}</div>
                         </div>
@@ -531,9 +759,16 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                             <span className="text-[6px] font-mono text-[hsl(var(--accent))] bg-[hsl(var(--accent))]/10 px-1 py-0.5 rounded-sm border border-[hsl(var(--accent))]/20">QG</span>
                           </div>
                         )}
+                        {/* Active indicator */}
+                        {activeProcessStep === i && (
+                          <motion.div
+                            layoutId="processIndicator"
+                            className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-b-[6px] border-l-transparent border-r-transparent border-b-[hsl(var(--accent))]/30"
+                          />
+                        )}
                       </div>
-                      {/* Arrow connector with animated pulse for bottleneck */}
-                      {i < arr.length - 1 && (
+                      {/* Arrow connector */}
+                      {i < processSteps.length - 1 && (
                         <div className="flex items-center px-0.5">
                           <motion.div
                             animate={s.risk !== "none" ? { opacity: [0.4, 1, 0.4] } : {}}
@@ -549,6 +784,116 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                   ))}
                 </div>
               </div>
+
+              {/* ── Expanded Detail Panel ── */}
+              <AnimatePresence>
+                {activeProcessStep !== null && processSteps[activeProcessStep] && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="overflow-hidden mt-8"
+                  >
+                    {(() => {
+                      const step = processSteps[activeProcessStep];
+                      return (
+                        <div className="bg-white/[0.03] border border-[hsl(var(--accent))]/20 rounded-sm overflow-hidden">
+                          {/* Detail header */}
+                          <div className="flex items-center justify-between px-4 py-3 bg-[hsl(var(--accent))]/5 border-b border-[hsl(var(--accent))]/10">
+                            <div className="flex items-center gap-3">
+                              <step.icon className={`w-5 h-5 ${step.risk !== 'none' ? 'text-red-400' : 'text-[hsl(var(--accent))]'}`} />
+                              <div>
+                                <h4 className="text-sm text-white font-medium">{step.step.replace('\n', ' ')}</h4>
+                                <span className="text-[10px] text-[hsl(var(--slate))] font-mono">Duration: {step.time} · Step {activeProcessStep + 1} of {processSteps.length}</span>
+                              </div>
+                            </div>
+                            <button onClick={() => setActiveProcessStep(null)} className="text-[hsl(var(--slate))] hover:text-white transition-colors">
+                              <X className="w-4 h-4" />
+                            </button>
+                          </div>
+
+                          <div className="p-4 grid grid-cols-1 lg:grid-cols-3 gap-4">
+                            {/* Photos */}
+                            <div>
+                              <p className="text-[10px] font-mono text-[hsl(var(--accent))] uppercase mb-2">Evidence Photos</p>
+                              <div className="grid grid-cols-2 gap-1.5">
+                                {step.detail.photos.map((photo, pi) => (
+                                  <div key={pi} className="group relative aspect-[4/3] rounded-sm overflow-hidden border border-white/10">
+                                    <img src={photo.src} alt={photo.label} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-1">
+                                      <span className="text-[7px] text-white">{photo.label}</span>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                              <div className="mt-2 text-[9px] text-[hsl(var(--slate))] italic">
+                                {step.detail.photos.length} photos · geotagged · timestamped
+                              </div>
+                            </div>
+
+                            {/* Checklist */}
+                            <div>
+                              <p className="text-[10px] font-mono text-[hsl(var(--accent))] uppercase mb-2">Inspection Checklist</p>
+                              <div className="space-y-1.5">
+                                {step.detail.checklist.map((item, ci) => (
+                                  <div key={ci} className="flex items-start gap-2">
+                                    <div className={`w-3.5 h-3.5 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5 ${
+                                      item.status === 'pass' ? 'bg-[hsl(var(--accent))]/15 text-[hsl(var(--accent))]'
+                                      : item.status === 'warning' ? 'bg-orange-500/15 text-orange-400'
+                                      : 'bg-red-500/15 text-red-400'
+                                    }`}>
+                                      {item.status === 'pass' ? <CheckCircle2 className="w-2.5 h-2.5" /> : <AlertTriangle className="w-2.5 h-2.5" />}
+                                    </div>
+                                    <div>
+                                      <span className="text-[10px] text-white">{item.item}</span>
+                                      {item.note && <p className="text-[9px] text-[hsl(var(--slate))]">{item.note}</p>}
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Risk Details */}
+                            <div>
+                              <p className="text-[10px] font-mono text-[hsl(var(--accent))] uppercase mb-2">Risk Assessment</p>
+                              <div className="space-y-2">
+                                {step.detail.risks.map((risk, ri) => (
+                                  <div key={ri} className={`p-2.5 rounded-sm border ${
+                                    risk.severity === 'high' ? 'bg-red-600/10 border-red-500/20'
+                                    : risk.severity === 'medium' ? 'bg-orange-500/10 border-orange-500/20'
+                                    : 'bg-white/[0.03] border-white/10'
+                                  }`}>
+                                    <div className="flex items-center justify-between mb-1">
+                                      <span className="text-[10px] text-white font-medium">{risk.category}</span>
+                                      <span className={`text-[8px] font-mono px-1.5 py-0.5 rounded-sm uppercase ${
+                                        risk.severity === 'high' ? 'bg-red-500/20 text-red-400'
+                                        : risk.severity === 'medium' ? 'bg-orange-500/20 text-orange-400'
+                                        : 'bg-[hsl(var(--accent))]/10 text-[hsl(var(--accent))]'
+                                      }`}>{risk.severity}</span>
+                                    </div>
+                                    <p className="text-[9px] text-[hsl(var(--slate))]">{risk.detail}</p>
+                                    {risk.mitigation && (
+                                      <p className="text-[9px] text-[hsl(var(--accent))] mt-1">↳ {risk.mitigation}</p>
+                                    )}
+                                  </div>
+                                ))}
+                              </div>
+                              {step.hse && (
+                                <div className="mt-2 p-2 bg-orange-500/10 border border-orange-500/20 rounded-sm">
+                                  <p className="text-[9px] font-mono text-orange-400 uppercase mb-1">HSE Requirements</p>
+                                  <p className="text-[9px] text-[hsl(var(--slate))]">{step.detail.hseNote}</p>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })()}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
               {/* Legend */}
               <div className="flex flex-wrap gap-3 mt-6 pt-3 border-t border-white/5">
                 <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-sm bg-red-600/15 border border-red-500/40" /><span className="text-[9px] text-[hsl(var(--slate))]">Bottleneck</span></div>
