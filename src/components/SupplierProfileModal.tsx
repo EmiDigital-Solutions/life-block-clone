@@ -96,7 +96,7 @@ const MaturityBadge = ({ score, label }: { score: number; label: string }) => {
       <span className={`text-[10px] font-mono px-2 py-0.5 rounded-sm ${colors[score - 1]}`}>
         {score}/5
       </span>
-      <span className="text-xs text-[hsl(var(--slate))]">{label}</span>
+      <span className="text-xs text-foreground/50">{label}</span>
     </div>
   );
 };
@@ -117,42 +117,42 @@ const VerificationTag = ({ status }: { status: "verified" | "partial" | "unverif
 };
 
 const DataRow = ({ label, value, verification, mono }: { label: string; value: string; verification?: "verified" | "partial" | "unverified" | "ai-inferred"; mono?: boolean }) => (
-  <div className="flex items-start justify-between py-2 border-b border-white/5 last:border-0">
-    <span className="text-[11px] text-[hsl(var(--slate))] uppercase tracking-wider">{label}</span>
+  <div className="flex items-start justify-between py-2 border-b border-foreground/5 last:border-0">
+    <span className="text-[11px] text-foreground/40 uppercase tracking-wider">{label}</span>
     <div className="flex items-center gap-2">
-      <span className={`text-sm text-white ${mono ? 'font-mono' : ''}`}>{value}</span>
+      <span className={`text-sm text-foreground ${mono ? 'font-mono' : ''}`}>{value}</span>
       {verification && <VerificationTag status={verification} />}
     </div>
   </div>
 );
 
 const ProfileSection = ({ title, icon: Icon, children, id }: { title: string; icon: any; children: React.ReactNode; id: string }) => (
-  <div id={id} className="bg-white/[0.03] border border-white/10 rounded-sm overflow-hidden">
-    <div className="flex items-center gap-3 px-5 py-3 border-b border-white/10 bg-white/[0.02]">
-      <Icon className="w-4 h-4 text-[hsl(var(--accent))]" />
-      <h3 className="text-xs font-mono text-[hsl(var(--accent))] uppercase tracking-[0.15em]">{title}</h3>
+  <div id={id} className="bg-white/70 backdrop-blur-md border border-foreground/10 overflow-hidden">
+    <div className="flex items-center gap-3 px-5 py-3 border-b border-foreground/10 bg-white/50">
+      <Icon className="w-4 h-4 text-foreground/30" />
+      <h3 className="text-xs font-medium text-foreground uppercase tracking-[0.15em]">{title}</h3>
     </div>
     <div className="p-5">{children}</div>
   </div>
 );
 
 const GraphNode = ({ label, connections }: { label: string; connections: string }) => (
-  <div className="bg-white/5 border border-white/10 rounded-sm p-2.5 text-center">
-    <div className="text-[11px] text-white font-medium">{label}</div>
-    <div className="text-[9px] text-[hsl(var(--slate))] mt-0.5">↔ {connections}</div>
+  <div className="bg-foreground/[0.03] border border-foreground/10 p-2.5 text-center">
+    <div className="text-[11px] text-foreground font-medium">{label}</div>
+    <div className="text-[9px] text-foreground/40 mt-0.5">↔ {connections}</div>
   </div>
 );
 
 const RiskCategoryCard = ({ label, score, icon: Icon, detail }: { label: string; score: string; icon: any; detail: string }) => (
-  <div className="bg-white/[0.03] border border-white/10 rounded-sm p-3">
+  <div className="bg-foreground/[0.02] border border-foreground/10 p-3">
     <div className="flex items-center gap-2 mb-1">
-      <Icon className="w-3 h-3 text-[hsl(var(--accent))]" />
-      <span className="text-xs text-white">{label}</span>
-      <span className={`text-[10px] font-mono ml-auto px-1.5 py-0.5 rounded-sm ${
+      <Icon className="w-3 h-3 text-foreground/30" />
+      <span className="text-xs text-foreground">{label}</span>
+      <span className={`text-[10px] font-mono ml-auto px-1.5 py-0.5 ${
         score === "Low" ? 'bg-[hsl(var(--accent))]/10 text-[hsl(var(--accent))]' : score === "Medium" ? 'bg-[hsl(var(--warning))]/10 text-[hsl(var(--warning))]' : 'bg-[hsl(var(--destructive))]/10 text-[hsl(var(--destructive))]'
       }`}>{score}</span>
     </div>
-    <p className="text-[10px] text-[hsl(var(--slate))]">{detail}</p>
+    <p className="text-[10px] text-foreground/50">{detail}</p>
   </div>
 );
 
@@ -405,22 +405,22 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="w-[100vw] max-w-[100vw] h-[100vh] max-h-[100vh] overflow-hidden p-0 gap-0 bg-[hsl(var(--hero-background))] border-none rounded-none" style={{ aspectRatio: '16/9' }}>
+      <DialogContent className="w-[100vw] max-w-[100vw] h-[100vh] max-h-[100vh] overflow-hidden p-0 gap-0 bg-[hsl(0,0%,85%)] border-none rounded-none">
         {/* Header */}
-        <div className="p-6 pb-4 border-b border-white/10">
+        <div className="p-6 pb-4 border-b border-foreground/10 bg-[hsl(0,0%,88%)]">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-[10px] font-mono text-[hsl(var(--accent))] uppercase tracking-[0.2em] mb-2">
+              <p className="text-[10px] font-medium uppercase tracking-[0.2em] mb-2 text-foreground/40">
                 Verified Supplier Digital Twin — AI-Native Profile
               </p>
-              <h2 className="text-2xl font-medium text-white">{supplier.name}</h2>
+              <h2 className="text-2xl font-bold text-foreground tracking-tight">{supplier.name}</h2>
               <div className="flex items-center gap-4 mt-2">
-                <span className="text-sm text-[hsl(var(--slate))] flex items-center gap-1">
+                <span className="text-sm text-foreground/50 flex items-center gap-1">
                   <MapPin className="w-3 h-3" /> {supplier.country}
                 </span>
-                <span className="text-sm text-[hsl(var(--slate))]">{supplier.category}</span>
-                <span className="text-[hsl(var(--warning))] font-mono text-sm">★ {supplier.rating}</span>
-                <span className={`text-xs font-mono px-2 py-0.5 rounded-sm ${
+                <span className="text-sm text-foreground/50">{supplier.category}</span>
+                <span className="text-[hsl(var(--warning))] text-sm">★ {supplier.rating}</span>
+                <span className={`text-xs font-medium px-2 py-0.5 ${
                   supplier.risk === "Low"
                     ? 'bg-[hsl(var(--accent))]/10 text-[hsl(var(--accent))]'
                     : 'bg-[hsl(var(--warning))]/10 text-[hsl(var(--warning))]'
@@ -428,21 +428,21 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
               </div>
             </div>
             <div className="text-right">
-              <div className="text-3xl font-mono text-[hsl(var(--accent))] font-medium">{supplier.fitScore}%</div>
-              <div className="text-[10px] text-[hsl(var(--slate))] uppercase tracking-wider">AI Fit Score</div>
+              <div className="text-3xl font-bold text-foreground tracking-tight">{supplier.fitScore}%</div>
+              <div className="text-[10px] text-foreground/40 uppercase tracking-wider">AI Fit Score</div>
             </div>
           </div>
 
           {/* Section nav */}
-          <div className="flex gap-1 mt-4 overflow-x-auto pb-1 scrollbar-hide">
+          <div className="flex gap-px mt-4 overflow-x-auto pb-1 scrollbar-hide bg-foreground/10">
             {profileSections.map(s => (
               <button
                 key={s.id}
                 onClick={() => scrollToSection(s.id)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-sm text-[10px] font-mono uppercase tracking-wider whitespace-nowrap transition-all ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 text-[10px] font-medium uppercase tracking-wider whitespace-nowrap transition-all ${
                   activeSection === s.id
-                    ? 'bg-[hsl(var(--accent))]/15 text-[hsl(var(--accent))]'
-                    : 'text-[hsl(var(--slate))] hover:bg-white/5'
+                    ? 'bg-foreground text-white'
+                    : 'bg-[hsl(0,0%,88%)] text-foreground/50 hover:text-foreground'
                 }`}
               >
                 <s.icon className="w-3 h-3" />
@@ -476,27 +476,27 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
               </div>
             </div>
             <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
-              <div className="bg-white/[0.03] border border-white/5 rounded-sm p-3">
-                <p className="text-[10px] font-mono text-[hsl(var(--accent))] mb-2">PRODUCT / SERVICE PORTFOLIO</p>
+              <div className="bg-foreground/[0.03] border border-foreground/10 p-3">
+                <p className="text-[10px] font-medium text-foreground/40 mb-2 uppercase tracking-[0.1em]">PRODUCT / SERVICE PORTFOLIO</p>
                 <div className="flex flex-wrap gap-1">
                   {["Centrifugal Compressors", "Pumps", "Turbines", "Aftermarket Services"].map(p => (
-                    <span key={p} className="text-[10px] bg-white/5 text-white px-2 py-0.5 rounded-sm">{p}</span>
+                    <span key={p} className="text-[10px] bg-foreground/[0.04] text-foreground px-2 py-0.5 border border-foreground/10">{p}</span>
                   ))}
                 </div>
               </div>
-              <div className="bg-white/[0.03] border border-white/5 rounded-sm p-3">
-                <p className="text-[10px] font-mono text-[hsl(var(--accent))] mb-2">CERTIFICATIONS</p>
+              <div className="bg-foreground/[0.03] border border-foreground/10 p-3">
+                <p className="text-[10px] font-medium text-foreground/40 mb-2 uppercase tracking-[0.1em]">CERTIFICATIONS</p>
                 <div className="flex flex-wrap gap-1">
                   {[...supplier.certifications, "ISO 14001", "ISO 3834-2", "PED"].map(c => (
-                    <span key={c} className="text-[10px] font-mono bg-[hsl(var(--accent))]/10 text-[hsl(var(--accent))] px-2 py-0.5 rounded-sm">{c}</span>
+                    <span key={c} className="text-[10px] font-mono bg-[hsl(var(--accent))]/10 text-[hsl(var(--accent))] px-2 py-0.5">{c}</span>
                   ))}
                 </div>
               </div>
-              <div className="bg-white/[0.03] border border-white/5 rounded-sm p-3">
-                <p className="text-[10px] font-mono text-[hsl(var(--accent))] mb-2">MARKETS / INDUSTRIES</p>
+              <div className="bg-foreground/[0.03] border border-foreground/10 p-3">
+                <p className="text-[10px] font-medium text-foreground/40 mb-2 uppercase tracking-[0.1em]">MARKETS / INDUSTRIES</p>
                 <div className="flex flex-wrap gap-1">
                   {["LNG/FLNG", "Offshore O&G", "Petrochemical", "Power Gen", "Hydrogen"].map(m => (
-                    <span key={m} className="text-[10px] bg-white/5 text-white px-2 py-0.5 rounded-sm">{m}</span>
+                    <span key={m} className="text-[10px] bg-foreground/[0.04] text-foreground px-2 py-0.5 border border-foreground/10">{m}</span>
                   ))}
                 </div>
               </div>
@@ -509,8 +509,8 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
 
           {/* ═══════════ LAYER 2: OPERATIONAL TWIN ═══════════ */}
           <ProfileSection title="Layer 2 — Operational Twin: How does the supplier actually work?" icon={Factory} id="profile-operational">
-            <div className="p-3 bg-[hsl(var(--accent))]/5 border border-[hsl(var(--accent))]/15 rounded-sm mb-4">
-              <p className="text-[10px] font-mono text-[hsl(var(--accent))]">USP: Not self-declared — AI-guided, on-site verified operational truth.</p>
+            <div className="p-3 bg-[hsl(var(--accent))]/5 border border-[hsl(var(--accent))]/15 mb-4">
+              <p className="text-[10px] font-medium text-[hsl(var(--accent))]">USP: Not self-declared — AI-guided, on-site verified operational truth.</p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
               {[
@@ -519,9 +519,9 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                 { label: "Current Utilization", value: "78%", status: "verified" as const },
                 { label: "Capacity Window", value: "Q3–Q4 2026", status: "partial" as const },
               ].map(m => (
-                <div key={m.label} className="bg-white/5 border border-white/10 rounded-sm p-3 text-center">
-                  <div className="text-lg font-mono text-[hsl(var(--accent))]">{m.value}</div>
-                  <div className="text-[10px] text-[hsl(var(--slate))] uppercase">{m.label}</div>
+                <div key={m.label} className="bg-foreground/[0.03] border border-foreground/10 p-3 text-center">
+                  <div className="text-lg font-mono text-foreground">{m.value}</div>
+                  <div className="text-[10px] text-foreground/40 uppercase">{m.label}</div>
                   <div className="mt-1"><VerificationTag status={m.status} /></div>
                 </div>
               ))}
@@ -532,7 +532,7 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
               <DataRow label="OTD (12-mo)" value="94.2% — trend: stable" verification="verified" />
               <DataRow label="Quality Trends" value="NCR rate declining (1.8% → 1.2%)" verification="verified" />
             </div>
-            <p className="text-[10px] font-mono text-[hsl(var(--slate))] uppercase mt-4 mb-2">Process Maturity per Step</p>
+            <p className="text-[10px] font-medium text-foreground/40 uppercase tracking-[0.1em] mt-4 mb-2">Process Maturity per Step</p>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 mb-4">
               <MaturityBadge score={5} label="Welding" />
               <MaturityBadge score={4} label="Machining" />
@@ -557,8 +557,8 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
 
           {/* ═══════════ LAYER 3: DECISION TWIN ═══════════ */}
           <ProfileSection title="Layer 3 — Decision Twin: How well does the supplier fit my need?" icon={Target} id="profile-decision">
-            <div className="p-3 bg-[hsl(var(--accent))]/5 border border-[hsl(var(--accent))]/15 rounded-sm mb-4">
-              <p className="text-[10px] font-mono text-[hsl(var(--accent))]">Game-changer: Not just a profile — a decision copilot for procurement.</p>
+            <div className="p-3 bg-[hsl(var(--accent))]/5 border border-[hsl(var(--accent))]/15 mb-4">
+              <p className="text-[10px] font-medium text-[hsl(var(--accent))]">Game-changer: Not just a profile — a decision copilot for procurement.</p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
               {[
@@ -567,10 +567,10 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                 { label: "Cost Competitiveness", value: "Top 25%", sub: "TCO hypothesis" },
                 { label: "Ramp-up Capability", value: "Medium", sub: "EPC / series start" },
               ].map(m => (
-                <div key={m.label} className="bg-white/5 border border-white/10 rounded-sm p-3 text-center">
-                  <div className="text-lg font-mono text-[hsl(var(--accent))]">{m.value}</div>
-                  <div className="text-[10px] text-white uppercase">{m.label}</div>
-                  <div className="text-[9px] text-[hsl(var(--slate))]">{m.sub}</div>
+                <div key={m.label} className="bg-foreground/[0.03] border border-foreground/10 p-3 text-center">
+                  <div className="text-lg font-mono text-foreground">{m.value}</div>
+                  <div className="text-[10px] text-foreground uppercase">{m.label}</div>
+                  <div className="text-[9px] text-foreground/40">{m.sub}</div>
                 </div>
               ))}
             </div>
@@ -582,8 +582,8 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
               <DataRow label="Best Use Cases" value="Medium-pressure rotating equipment, API scope" verification="ai-inferred" />
               <DataRow label="Limitations" value="Not recommended for ultra-cryogenic (<-196°C)" verification="ai-inferred" />
             </div>
-            <div className="mt-4 p-4 bg-[hsl(var(--accent))]/10 border border-[hsl(var(--accent))]/20 rounded-sm">
-              <p className="text-[10px] font-mono text-[hsl(var(--accent))] uppercase mb-3">AI-GENERATED RECOMMENDATION</p>
+            <div className="mt-4 p-4 bg-[hsl(var(--accent))]/10 border border-[hsl(var(--accent))]/20">
+              <p className="text-[10px] font-medium text-[hsl(var(--accent))] uppercase mb-3 tracking-[0.1em]">AI-GENERATED RECOMMENDATION</p>
               <div className="flex flex-wrap gap-2">
                 {[
                   { label: "Use", active: false },
@@ -591,14 +591,14 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                   { label: "Develop first", active: false },
                   { label: "Do not use for critical scope", active: false },
                 ].map(r => (
-                  <span key={r.label} className={`text-xs font-mono px-3 py-1.5 rounded-sm border ${
+                  <span key={r.label} className={`text-xs px-3 py-1.5 border ${
                     r.active
-                      ? 'bg-[hsl(var(--accent))] text-black border-[hsl(var(--accent))] font-bold'
-                      : 'bg-white/5 text-[hsl(var(--slate))] border-white/10'
+                      ? 'bg-foreground text-white border-foreground font-bold'
+                      : 'bg-foreground/[0.03] text-foreground/50 border-foreground/10'
                   }`}>{r.label}</span>
                 ))}
               </div>
-              <p className="text-[11px] text-[hsl(var(--slate))] mt-2 italic">
+              <p className="text-[11px] text-foreground/50 mt-2 italic">
                 Condition: Pre-qualify HT process for cryogenic scope. Recommend resident inspector for first order. FAI mandatory.
               </p>
             </div>
@@ -606,7 +606,7 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
 
           {/* ═══════════ A) KNOWLEDGE GRAPH ═══════════ */}
           <ProfileSection title="A) 360° Supplier Identity Graph (Knowledge Graph)" icon={GitBranch} id="profile-knowledge-graph">
-            <p className="text-[11px] text-[hsl(var(--slate))] mb-3">AI reasons on relationships — not just tables.</p>
+            <p className="text-[11px] text-foreground/50 mb-3">AI reasons on relationships — not just tables.</p>
             <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
               <GraphNode label="Supplier" connections="Werke, Subsupplier" />
               <GraphNode label="Werke / Sites" connections="Prozesse" />
@@ -619,14 +619,14 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
               <GraphNode label="Länder-/Regionenrisiken" connections="Lieferant" />
               <GraphNode label="Materialien / Produktfamilien" connections="Lieferant" />
             </div>
-            <div className="mt-3 p-3 bg-[hsl(var(--accent))]/5 border border-[hsl(var(--accent))]/15 rounded-sm">
-              <p className="text-[10px] font-mono text-[hsl(var(--accent))]">ADVANTAGE: AI can reason — "Can this supplier really handle this scope?" — by traversing graph relationships.</p>
+            <div className="mt-3 p-3 bg-[hsl(var(--accent))]/5 border border-[hsl(var(--accent))]/15">
+              <p className="text-[10px] font-medium text-[hsl(var(--accent))]">ADVANTAGE: AI can reason — "Can this supplier really handle this scope?" — by traversing graph relationships.</p>
             </div>
           </ProfileSection>
 
           {/* ═══════════ B) TIME MACHINE ═══════════ */}
           <ProfileSection title="B) Time Machine / Evolution Layer" icon={Clock} id="profile-time-machine">
-            <p className="text-[11px] text-[hsl(var(--slate))] mb-3">A Twin must understand time. "Supplier changed significantly in the last 12 months" → AI summarises what improved/deteriorated.</p>
+            <p className="text-[11px] text-foreground/50 mb-3">A Twin must understand time. "Supplier changed significantly in the last 12 months" → AI summarises what improved/deteriorated.</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               {[
                 { event: "Audit / Re-Assessment Timeline", detail: "Last: 2025-01-15 · Next scheduled: 2025-07", status: "verified" as const },
@@ -639,11 +639,11 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                 { event: "Sanctions / Regulations", detail: "No new exposure — monitored weekly", status: "verified" as const },
                 { event: "Commodity Exposure", detail: "Nickel +22% YoY — moderate impact", status: "ai-inferred" as const },
               ].map(e => (
-                <div key={e.event} className="flex items-start gap-3 bg-white/[0.03] border border-white/5 rounded-sm p-3">
-                  <Clock className="w-3 h-3 text-[hsl(var(--accent))] mt-1 flex-shrink-0" />
+                <div key={e.event} className="flex items-start gap-3 bg-foreground/[0.03] border border-foreground/10 p-3">
+                  <Clock className="w-3 h-3 text-foreground/30 mt-1 flex-shrink-0" />
                   <div className="flex-1">
-                    <div className="text-[11px] text-white">{e.event}</div>
-                    <div className="text-[10px] text-[hsl(var(--slate))]">{e.detail}</div>
+                    <div className="text-[11px] text-foreground">{e.event}</div>
+                    <div className="text-[10px] text-foreground/50">{e.detail}</div>
                   </div>
                   <VerificationTag status={e.status} />
                 </div>
@@ -653,8 +653,8 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
 
           {/* ═══════════ C) EVIDENCE VAULT ═══════════ */}
           <ProfileSection title="C) Evidence Vault / Ground Truth Layer" icon={Camera} id="profile-evidence">
-            <div className="p-3 bg-[hsl(var(--accent))]/5 border border-[hsl(var(--accent))]/15 rounded-sm mb-4">
-              <p className="text-[10px] font-mono text-[hsl(var(--accent))]">Not just statements — evidence. Every field has an Evidence Confidence Status.</p>
+            <div className="p-3 bg-[hsl(var(--accent))]/5 border border-[hsl(var(--accent))]/15 mb-4">
+              <p className="text-[10px] font-medium text-[hsl(var(--accent))]">Not just statements — evidence. Every field has an Evidence Confidence Status.</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-4">
               {[
@@ -669,17 +669,17 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                 { name: "Measurement / Sample Data", type: "CSV", count: "142 records", status: "verified" as const },
                 { name: "Signed Audit Evidence Package", type: "ZIP", count: "1 package", status: "verified" as const },
               ].map(doc => (
-                <div key={doc.name} className="flex items-center gap-3 bg-white/[0.03] border border-white/5 rounded-sm px-3 py-2">
-                  <FileText className="w-4 h-4 text-[hsl(var(--accent))] flex-shrink-0" />
+                <div key={doc.name} className="flex items-center gap-3 bg-foreground/[0.03] border border-foreground/10 px-3 py-2">
+                  <FileText className="w-4 h-4 text-foreground/30 flex-shrink-0" />
                   <div className="flex-1 min-w-0">
-                    <div className="text-[11px] text-white truncate">{doc.name}</div>
-                    <div className="text-[10px] text-[hsl(var(--slate))] font-mono">{doc.type} · {doc.count}</div>
+                    <div className="text-[11px] text-foreground truncate">{doc.name}</div>
+                    <div className="text-[10px] text-foreground/50 font-mono">{doc.type} · {doc.count}</div>
                   </div>
                   <VerificationTag status={doc.status} />
                 </div>
               ))}
             </div>
-            <p className="text-[10px] font-mono text-[hsl(var(--slate))] uppercase mb-2">Evidence Confidence Status Levels</p>
+            <p className="text-[10px] font-medium text-foreground/40 uppercase tracking-[0.1em] mb-2">Evidence Confidence Status Levels</p>
             <div className="flex flex-wrap gap-2">
               <VerificationTag status="unverified" />
               <VerificationTag status="partial" />
@@ -693,7 +693,7 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
 
           {/* ═══════════ D) CAPABILITY DNA ═══════════ */}
           <ProfileSection title="D) Capability DNA / Manufacturing Capability Model" icon={Gauge} id="profile-capability-dna">
-            <p className="text-[11px] text-[hsl(var(--slate))] mb-3">Not just "does welding" — how good, in what spectrum, with what risk. Maturity (1–5) + Confidence + Evidence links.</p>
+            <p className="text-[11px] text-foreground/50 mb-3">Not just "does welding" — how good, in what spectrum, with what risk. Maturity (1–5) + Confidence + Evidence links.</p>
             <div className="space-y-1 mb-4">
               <DataRow label="Materials Handled" value="CS, SS 316L, Duplex 2205, Inconel 625, Monel" verification="verified" />
               <DataRow label="Thickness Ranges" value="2mm – 120mm" mono verification="verified" />
@@ -707,7 +707,7 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
               <DataRow label="Cleanliness / Packaging" value="ISO 15001 compliant, custom export packaging" verification="partial" />
               <DataRow label="Documentation Package" value="4/5 maturity — MDR, ITP, as-built" verification="verified" />
             </div>
-            <p className="text-[10px] font-mono text-[hsl(var(--slate))] uppercase mb-2">Capability Maturity Scores</p>
+            <p className="text-[10px] font-medium text-foreground/40 uppercase tracking-[0.1em] mb-2">Capability Maturity Scores</p>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
               <MaturityBadge score={5} label="Welding (GTAW/SAW)" />
               <MaturityBadge score={4} label="CNC Machining" />
