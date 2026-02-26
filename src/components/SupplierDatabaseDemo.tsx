@@ -1,80 +1,90 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { 
+  Database, Search, ChevronDown, ChevronRight, Shield, 
+  MapPin, BarChart3, Globe, Zap, CheckCircle2,
+  Factory, Flame, Gauge, Wrench, Box, Cable
+} from "lucide-react";
 import SupplierBenchmarkModal from "./SupplierBenchmarkModal";
 import SupplierProfileModal from "./SupplierProfileModal";
 import { useLanguage } from "@/contexts/LanguageContext";
 
+const categoryData = [
+  { 
+    icon: Gauge, name: "Pressure Vessels", standard: "ASME Sec VIII", 
+    suppliers: 1847, avgRating: 4.3, audited: 72,
+    subcategories: ["Shell & Tube HX", "Columns & Towers", "Reactors", "Accumulators"]
+  },
+  { 
+    icon: Flame, name: "Cryogenic Equipment", standard: "EN 13445 / API 620", 
+    suppliers: 923, avgRating: 4.5, audited: 81,
+    subcategories: ["LNG Storage Tanks", "Cryogenic Valves", "Cold Boxes", "Vaporizers"]
+  },
+  { 
+    icon: Wrench, name: "Rotating Equipment", standard: "API 617 / 618", 
+    suppliers: 1254, avgRating: 4.1, audited: 68,
+    subcategories: ["Centrifugal Compressors", "Reciprocating Compressors", "Turbines", "Pumps"]
+  },
+  { 
+    icon: Cable, name: "Piping & Fittings", standard: "ASME B31.3", 
+    suppliers: 3412, avgRating: 4.0, audited: 55,
+    subcategories: ["Carbon Steel Pipe", "Alloy Fittings", "Flanges", "Expansion Joints"]
+  },
+  { 
+    icon: Box, name: "Structural Steel", standard: "EN 1090 / AWS D1.1", 
+    suppliers: 2156, avgRating: 3.9, audited: 48,
+    subcategories: ["Module Fabrication", "Pipe Racks", "Platforms", "Skid Packages"]
+  },
+  { 
+    icon: Factory, name: "Instrumentation & Control", standard: "IEC 61511 / ISA 84", 
+    suppliers: 1678, avgRating: 4.4, audited: 76,
+    subcategories: ["DCS Systems", "Safety PLCs", "Flow Meters", "Control Valves"]
+  },
+];
+
 const supplierRows = [
-  { name: "KSB SE & Co. KGaA", location: "Germany", description: "Rotating Equipment", certifications: ["ISO 9001", "API Q1", "PED"], capacity: "Industrial scale", fitScore: 97 },
-  { name: "Emerson Automation", location: "USA", description: "Instrumentation & Control", certifications: ["ISO 9001", "IECEx", "SIL 3"], capacity: "Global operations", fitScore: 94 },
-  { name: "Chart Industries", location: "USA", description: "Cryogenic Equipment", certifications: ["ASME U", "ASME U2", "NB"], capacity: "1,200 units/yr", fitScore: 96 },
-  { name: "Burckhardt Compression", location: "Switzerland", description: "Rotating Equipment", certifications: ["ISO 9001", "API 618", "PED"], capacity: "600 units/yr", fitScore: 91 },
-  { name: "Dresser-Rand (Siemens)", location: "Germany", description: "Rotating Equipment", certifications: ["API 617", "ISO 9001", "ATEX"], capacity: "800 units/yr", fitScore: 95 },
-  { name: "Velan Inc.", location: "Canada", description: "Cryogenic Valves", certifications: ["API 6D", "ASME B16.34", "PED"], capacity: "900 units/yr", fitScore: 88 },
-  { name: "BHGE (Baker Hughes)", location: "Italy", description: "Rotating Equipment", certifications: ["API 617", "API 618", "ISO 9001"], capacity: "Industrial scale", fitScore: 93 },
-  { name: "Linde Engineering", location: "Germany", description: "Cryogenic Equipment", certifications: ["EN 13445", "AD 2000", "PED"], capacity: "500 units/yr", fitScore: 98 },
-  { name: "Sumitomo SHI FW", location: "Finland", description: "Pressure Vessels", certifications: ["ASME U", "PED", "ISO 3834"], capacity: "700 units/yr", fitScore: 85 },
-  { name: "IMI Critical Engineering", location: "UK", description: "Control Valves", certifications: ["API 6A", "PED", "SIL 3"], capacity: "1,500 units/yr", fitScore: 92 },
-];
-
-const sidebarNav = [
-  { label: "Dashboard", active: false },
-  { label: "Search", active: true },
-  { label: "Saved Lists", active: false },
-  { label: "RFQ Manager", active: false },
-  { label: "Audit Orders", active: false },
-  { label: "Reports", active: false },
-];
-
-const filterGroups = [
-  {
-    title: "STANDARD",
-    options: [
-      { label: "ASME B16.34", checked: true },
-      { label: "API 6D", checked: false },
-      { label: "PED", checked: false },
-    ],
-  },
-  {
-    title: "REGION",
-    options: [
-      { label: "Europe", checked: true },
-      { label: "Middle East", checked: true },
-      { label: "Asia", checked: false },
-    ],
-  },
-  {
-    title: "RATING",
-    options: [
-      { label: "Cryogenic", checked: true },
-      { label: "Fire Safe", checked: false },
-    ],
-  },
+  { name: "KSB SE & Co. KGaA", country: "Germany", category: "Rotating Equipment", rating: 4.8, audits: 12, risk: "Low", certifications: ["ISO 9001", "API Q1", "PED"], fitScore: 97 },
+  { name: "Emerson Automation", country: "USA", category: "Instrumentation", rating: 4.7, audits: 8, risk: "Low", certifications: ["ISO 9001", "IECEx", "SIL 3"], fitScore: 94 },
+  { name: "Chart Industries", country: "USA", category: "Cryogenic Equipment", rating: 4.6, audits: 15, risk: "Low", certifications: ["ASME U", "ASME U2", "NB"], fitScore: 96 },
+  { name: "Burckhardt Compression", country: "Switzerland", category: "Rotating Equipment", rating: 4.5, audits: 6, risk: "Low", certifications: ["ISO 9001", "API 618", "PED"], fitScore: 91 },
+  { name: "Dresser-Rand (Siemens)", country: "Germany", category: "Rotating Equipment", rating: 4.7, audits: 18, risk: "Low", certifications: ["API 617", "ISO 9001", "ATEX"], fitScore: 95 },
+  { name: "Velan Inc.", country: "Canada", category: "Cryogenic Valves", rating: 4.4, audits: 9, risk: "Medium", certifications: ["API 6D", "ASME B16.34", "PED"], fitScore: 88 },
+  { name: "BHGE (Baker Hughes)", country: "Italy", category: "Rotating Equipment", rating: 4.6, audits: 22, risk: "Low", certifications: ["API 617", "API 618", "ISO 9001"], fitScore: 93 },
+  { name: "Linde Engineering", country: "Germany", category: "Cryogenic Equipment", rating: 4.8, audits: 14, risk: "Low", certifications: ["EN 13445", "AD 2000", "PED"], fitScore: 98 },
+  { name: "Sumitomo SHI FW", country: "Finland", category: "Pressure Vessels", rating: 4.3, audits: 7, risk: "Medium", certifications: ["ASME U", "PED", "ISO 3834"], fitScore: 85 },
+  { name: "IMI Critical Engineering", country: "UK", category: "Control Valves", rating: 4.5, audits: 11, risk: "Low", certifications: ["API 6A", "PED", "SIL 3"], fitScore: 92 },
 ];
 
 const stats = [
-  { label: "Suppliers indexed", value: "11,270+" },
-  { label: "Countries", value: "84" },
-  { label: "Completed Audits", value: "28,400+" },
-  { label: "Product Groups", value: "340+" },
+  { label: "Suppliers indexed", value: "11,270+", icon: Shield },
+  { label: "Countries", value: "84", icon: Globe },
+  { label: "Completed Audits", value: "28,400+", icon: CheckCircle2 },
+  { label: "Product Groups", value: "340+", icon: Database },
 ];
 
 const SupplierDatabaseDemo = () => {
+  const [expandedCategory, setExpandedCategory] = useState<number | null>(1);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedFilter, setSelectedFilter] = useState("all");
   const [hoveredRow, setHoveredRow] = useState<number | null>(null);
   const [benchmarkOpen, setBenchmarkOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const [selectedSupplier, setSelectedSupplier] = useState<typeof supplierRows[0] | null>(null);
   const { t } = useLanguage();
-
-  const handleSupplierClick = (supplier: typeof supplierRows[0]) => {
-    setSelectedSupplier(supplier);
-    setProfileOpen(true);
-  };
+  const filteredSuppliers = supplierRows.filter(s => {
+    const matchesSearch = !searchQuery || 
+      s.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      s.category.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesFilter = selectedFilter === "all" || 
+      (selectedFilter === "low-risk" && s.risk === "Low") ||
+      (selectedFilter === "high-fit" && s.fitScore >= 90);
+    return matchesSearch && matchesFilter;
+  });
 
   return (
     <section data-nav-theme="light" className="relative bg-white py-16 md:py-24">
       <div className="mx-auto max-w-[1400px] px-8">
-        {/* Section Header */}
+        {/* Header — matching AtlasAI / LNGSearchDemo pattern */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -96,7 +106,7 @@ const SupplierDatabaseDemo = () => {
           </p>
         </motion.div>
 
-        {/* Stats row */}
+        {/* Stats row — border-t style matching AtlasAI feature cards */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -106,157 +116,197 @@ const SupplierDatabaseDemo = () => {
         >
           {stats.map((stat, i) => (
             <div key={i} className="border-t-2 border-foreground/10 pt-6">
-              <span className="text-sm text-muted-foreground">{stat.label}</span>
+              <div className="flex items-center gap-2 mb-1">
+                <stat.icon className="w-4 h-4 text-muted-foreground" />
+                <span className="text-sm text-muted-foreground">{stat.label}</span>
+              </div>
               <div className="text-3xl md:text-4xl font-medium text-foreground tracking-tight">{stat.value}</div>
             </div>
           ))}
         </motion.div>
 
-        {/* Database UI */}
+        {/* Demo Table */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.15 }}
+          transition={{ delay: 0.2 }}
           className="border border-border overflow-hidden bg-white"
         >
-          {/* Top Bar */}
-          <div className="bg-foreground/[0.04] border-b border-border px-5 py-2.5 flex items-center justify-between">
-            <span className="text-sm text-muted-foreground tracking-wide">RCA Supplier Database — Search Results</span>
-            <div className="flex items-center gap-1">
-              {(["discover", "results", "profile"] as const).map((tab) => (
-                <span
-                  key={tab}
-                  className={`px-4 py-1.5 text-xs font-medium uppercase tracking-[0.1em] ${
-                    tab === "results"
-                      ? "bg-primary text-primary-foreground"
-                      : "text-muted-foreground"
+          {/* Toolbar */}
+          <div className="border-b border-border p-4 flex flex-col md:flex-row gap-3 items-stretch md:items-center">
+            <div className="flex-1 relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder={t.supplierDb.searchPlaceholder}
+                className="w-full bg-muted/30 border border-border rounded-none pl-10 pr-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground/30"
+              />
+            </div>
+            <div className="flex gap-px bg-border">
+              {[
+                { key: "all", label: t.supplierDb.filterAll },
+                { key: "low-risk", label: t.supplierDb.filterLowRisk },
+                { key: "high-fit", label: t.supplierDb.filterHighFit },
+              ].map(f => (
+                <button
+                  key={f.key}
+                  onClick={() => setSelectedFilter(f.key)}
+                  className={`px-4 py-2 text-xs font-medium uppercase tracking-[0.1em] transition-all ${
+                    selectedFilter === f.key 
+                      ? 'bg-foreground text-background' 
+                      : 'bg-white text-muted-foreground hover:text-foreground'
                   }`}
                 >
-                  {tab}
-                </span>
+                  {f.label}
+                </button>
               ))}
             </div>
           </div>
 
           <div className="flex flex-col lg:flex-row">
-            {/* Left Sidebar */}
-            <div className="lg:w-[180px] border-b lg:border-b-0 lg:border-r border-border flex flex-col">
-              <div className="border-b border-border">
-                <nav className="py-2">
-                  {sidebarNav.map((item) => (
-                    <div
-                      key={item.label}
-                      className={`px-4 py-1.5 text-sm cursor-default ${
-                        item.active
-                          ? "text-primary font-medium border-l-2 border-primary bg-primary/5"
-                          : "text-foreground/70"
+            {/* Left: Categories */}
+            <div className="lg:w-72 border-b lg:border-b-0 lg:border-r border-border p-4">
+              <p className="text-xs text-muted-foreground uppercase tracking-[0.15em] mb-3 font-medium">{t.supplierDb.productGroups}</p>
+              <div className="space-y-0.5">
+                {categoryData.map((cat, i) => (
+                  <div key={i}>
+                    <button
+                      onClick={() => setExpandedCategory(expandedCategory === i ? null : i)}
+                      className={`w-full flex items-center gap-3 px-3 py-2.5 text-left transition-all ${
+                        expandedCategory === i 
+                          ? 'bg-muted text-foreground' 
+                          : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
                       }`}
                     >
-                      {item.label}
-                    </div>
-                  ))}
-                </nav>
-              </div>
-
-              <div className="p-4 space-y-5">
-                <span className="text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground">Filters</span>
-                {filterGroups.map((group) => (
-                  <div key={group.title}>
-                    <p className="text-xs font-semibold text-foreground mb-2">{group.title}</p>
-                    <div className="space-y-1.5">
-                      {group.options.map((opt) => (
-                        <label key={opt.label} className="flex items-center gap-2 cursor-default">
-                          <div className={`w-3.5 h-3.5 border flex items-center justify-center ${
-                            opt.checked ? "border-primary bg-primary/10" : "border-border"
-                          }`}>
-                            {opt.checked && <span className="text-primary text-[10px]">✓</span>}
+                      <cat.icon className="w-4 h-4 flex-shrink-0 text-muted-foreground" />
+                      <div className="flex-1 min-w-0">
+                        <div className="text-sm font-medium truncate">{cat.name}</div>
+                        <div className="text-xs text-muted-foreground">{cat.suppliers} {t.supplierDb.suppliers}</div>
+                      </div>
+                      {expandedCategory === i ? <ChevronDown className="w-3 h-3" /> : <ChevronRight className="w-3 h-3" />}
+                    </button>
+                    <AnimatePresence>
+                      {expandedCategory === i && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pl-10 py-1 space-y-0.5">
+                            {cat.subcategories.map((sub, j) => (
+                              <div key={j} className="text-sm text-muted-foreground py-1 px-2 hover:text-foreground cursor-pointer transition-colors">
+                                {sub}
+                              </div>
+                            ))}
+                            <div className="flex items-center gap-3 mt-2 pt-2 border-t border-border">
+                              <div className="text-xs text-muted-foreground">
+                                <span className="text-foreground font-medium">{cat.audited}%</span> {t.supplierDb.audited}
+                              </div>
+                              <div className="text-xs text-muted-foreground">
+                                Avg <span className="text-[hsl(var(--warning))]">★ {cat.avgRating}</span>
+                              </div>
+                            </div>
                           </div>
-                          <span className="text-sm text-foreground/80">{opt.label}</span>
-                        </label>
-                      ))}
-                    </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Main Content */}
-            <div className="flex-1">
-              {/* Results Header */}
-              <div className="px-6 pt-5 pb-2 flex items-start justify-between">
-                <div>
-                  <h3 className="text-sm font-bold uppercase tracking-[0.1em] text-foreground">
-                    {supplierRows.length} Suppliers Found
-                  </h3>
-                  <p className="text-sm text-muted-foreground mt-0.5">
-                    Cryogenic Valves · LNG Storage · ASME B16.34 · API 6D
-                  </p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-xs text-muted-foreground border border-border px-3 py-1.5">Sort: Match</span>
-                  <span className="text-xs text-muted-foreground border border-border px-3 py-1.5">Export</span>
-                </div>
-              </div>
-
-              {/* Match Score hint */}
-              <div className="px-6 pb-3">
-                <p className="text-sm">
-                  <span className="text-primary font-medium">Match Score</span>
-                  <span className="text-muted-foreground"> — AI-calculated fit based on code compliance, cryogenic capability, test certifications, and project references. </span>
-                  <span className="text-primary">Click a supplier for full details.</span>
-                </p>
-              </div>
-
-              {/* Result Cards */}
-              <div className="px-6 pb-6 space-y-3">
-                {supplierRows.map((s, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                    onMouseEnter={() => setHoveredRow(i)}
-                    onMouseLeave={() => setHoveredRow(null)}
-                    onClick={() => handleSupplierClick(s)}
-                    className={`border border-border p-5 cursor-pointer transition-all flex items-start gap-5 ${
-                      hoveredRow === i ? "bg-muted/40 border-primary/30" : "bg-white"
-                    }`}
-                  >
-                    {/* Rank Number */}
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center">
-                      <span className="text-sm font-semibold text-primary">{i + 1}</span>
-                    </div>
-
-                    {/* Supplier Info */}
-                    <div className="flex-1 min-w-0">
-                      <h4 className="text-base font-semibold text-foreground">{s.name}</h4>
-                      <p className="text-sm text-muted-foreground mt-0.5">
-                        {s.location} · {s.description}
-                      </p>
-                      <div className="flex flex-wrap items-center gap-2 mt-3">
-                        {s.certifications.map((c, j) => (
-                          <span
-                            key={j}
-                            className="text-xs font-medium text-primary border border-primary/40 px-2.5 py-1"
-                          >
-                            {c}
-                          </span>
-                        ))}
-                        <span className="text-xs text-muted-foreground border border-border px-2.5 py-1">
-                          {s.capacity}
+            {/* Right: Supplier Table */}
+            <div className="flex-1 overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-border">
+                    <th className="text-left p-3 text-xs text-muted-foreground uppercase tracking-[0.15em] font-medium">{t.supplierDb.thSupplier}</th>
+                    <th className="text-left p-3 text-xs text-muted-foreground uppercase tracking-[0.15em] font-medium hidden md:table-cell">{t.supplierDb.thProductGroup}</th>
+                    <th className="text-center p-3 text-xs text-muted-foreground uppercase tracking-[0.15em] font-medium">{t.supplierDb.thRating}</th>
+                    <th className="text-center p-3 text-xs text-muted-foreground uppercase tracking-[0.15em] font-medium hidden lg:table-cell">{t.supplierDb.thAudits}</th>
+                    <th className="text-center p-3 text-xs text-muted-foreground uppercase tracking-[0.15em] font-medium hidden md:table-cell">{t.supplierDb.thRisk}</th>
+                    <th className="text-center p-3 text-xs text-muted-foreground uppercase tracking-[0.15em] font-medium">{t.supplierDb.thFit}</th>
+                    <th className="text-left p-3 text-xs text-muted-foreground uppercase tracking-[0.15em] font-medium hidden xl:table-cell">{t.supplierDb.thCertifications}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredSuppliers.map((s, i) => (
+                    <motion.tr
+                      key={i}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: i * 0.03 }}
+                      onMouseEnter={() => setHoveredRow(i)}
+                      onMouseLeave={() => setHoveredRow(null)}
+                      onClick={() => { setSelectedSupplier(s); setProfileOpen(true); }}
+                      className={`border-b border-border/50 cursor-pointer transition-all ${
+                        hoveredRow === i ? 'bg-muted/50' : ''
+                      }`}
+                    >
+                      <td className="p-3">
+                        <div className="text-foreground font-medium text-sm">{s.name}</div>
+                        <div className="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
+                          <MapPin className="w-3 h-3" /> {s.country}
+                        </div>
+                      </td>
+                      <td className="p-3 text-muted-foreground text-sm hidden md:table-cell">{s.category}</td>
+                      <td className="p-3 text-center">
+                        <span className="text-[hsl(var(--warning))] text-sm">★ {s.rating}</span>
+                      </td>
+                      <td className="p-3 text-center text-muted-foreground text-sm hidden lg:table-cell">{s.audits}</td>
+                      <td className="p-3 text-center hidden md:table-cell">
+                        <span className={`text-xs font-medium px-2 py-0.5 ${
+                          s.risk === "Low" 
+                            ? 'bg-[hsl(var(--accent))]/10 text-[hsl(var(--accent))]' 
+                            : 'bg-[hsl(var(--warning))]/10 text-[hsl(var(--warning))]'
+                        }`}>
+                          {s.risk}
                         </span>
-                      </div>
-                    </div>
+                      </td>
+                      <td className="p-3 text-center">
+                        <div className="flex items-center justify-center gap-1.5">
+                          <div className="w-12 h-1 bg-muted overflow-hidden">
+                            <div 
+                              className="h-full bg-foreground" 
+                              style={{ width: `${s.fitScore}%` }} 
+                            />
+                          </div>
+                          <span className="text-foreground text-xs">{s.fitScore}%</span>
+                        </div>
+                      </td>
+                      <td className="p-3 hidden xl:table-cell">
+                        <div className="flex flex-wrap gap-1">
+                          {s.certifications.slice(0, 3).map((c, j) => (
+                            <span key={j} className="text-xs bg-muted text-muted-foreground px-1.5 py-0.5 border border-border">
+                              {c}
+                            </span>
+                          ))}
+                        </div>
+                      </td>
+                    </motion.tr>
+                  ))}
+                </tbody>
+              </table>
 
-                    {/* Score */}
-                    <div className="flex-shrink-0 text-right pl-4">
-                      <div className="text-3xl font-bold text-primary leading-none">{s.fitScore}</div>
-                      <div className="text-[10px] font-semibold uppercase tracking-[0.15em] text-muted-foreground mt-1">Score</div>
-                      <div className="w-12 h-1 bg-primary mt-1.5 ml-auto" />
-                    </div>
-                  </motion.div>
-                ))}
+              {/* Status Bar */}
+              <div className="border-t border-border p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div className="text-sm text-muted-foreground">
+                  {t.supplierDb.showing} <span className="text-foreground font-medium">{filteredSuppliers.length}</span> {t.supplierDb.of} <span className="text-foreground font-medium">11,270</span> {t.supplierDb.records}
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Zap className="w-3 h-3 text-muted-foreground" />
+                    {t.supplierDb.portfolioMatching}
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <BarChart3 className="w-3 h-3 text-muted-foreground" />
+                    {t.supplierDb.auditDataPoints}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -271,16 +321,7 @@ const SupplierDatabaseDemo = () => {
       <SupplierProfileModal
         open={profileOpen}
         onOpenChange={setProfileOpen}
-        supplier={selectedSupplier ? {
-          name: selectedSupplier.name,
-          country: selectedSupplier.location,
-          category: selectedSupplier.description,
-          rating: 4.5,
-          audits: 8,
-          risk: "Low",
-          certifications: selectedSupplier.certifications,
-          fitScore: selectedSupplier.fitScore,
-        } : null}
+        supplier={selectedSupplier}
       />
     </section>
   );
