@@ -38,6 +38,10 @@ import imgDimensionalControl from "@/assets/lng-dimensional-control.jpg";
 import imgCertification from "@/assets/evidence-certification.jpg";
 import imgRotatingEquipment from "@/assets/lng-rotating-equipment.jpg";
 import imgEquipmentIntel from "@/assets/checkpoint-equipment-intelligence.jpg";
+import imgHeatTreatmentFurnace from "@/assets/process-heat-treatment-furnace.jpg";
+import imgHeatTreatmentMonitoring from "@/assets/process-heat-treatment-monitoring.jpg";
+import imgOutgoingWarehouse from "@/assets/process-outgoing-warehouse.jpg";
+import imgShippingStaged from "@/assets/process-shipping-staged.jpg";
 
 interface SupplierProfile {
   name: string;
@@ -241,7 +245,7 @@ const processSteps = [
   {
     id: "heat-treatment", step: "Heat\nTreatment", time: "1 wk", risk: "bottleneck" as const, icon: Thermometer, gate: true, hse: true,
     detail: {
-      photos: [{ src: imgCryogenicModern, label: "HT furnace facility" }, { src: imgCryogenicValve, label: "Post-HT component" }],
+      photos: [{ src: imgHeatTreatmentFurnace, label: "HT furnace bay" }, { src: imgHeatTreatmentMonitoring, label: "Temperature monitoring" }],
       checklist: [
         { item: "Furnace calibration valid", status: "pass" as const, note: null },
         { item: "Thermocouple placement per procedure", status: "pass" as const, note: null },
@@ -374,7 +378,7 @@ const processSteps = [
   {
     id: "outgoing", step: "Outgoing\nWarehouse", time: "—", risk: "none" as const, icon: Truck, gate: false, hse: false,
     detail: {
-      photos: [{ src: imgIncomingWarehouse, label: "Dispatch bay" }, { src: imgMaterialStock, label: "Staged for shipment" }],
+      photos: [{ src: imgOutgoingWarehouse, label: "Dispatch & loading bay" }, { src: imgShippingStaged, label: "Staged for shipment" }],
       checklist: [
         { item: "Release note signed by QA", status: "pass" as const, note: null },
         { item: "Transport documentation complete", status: "pass" as const, note: null },
