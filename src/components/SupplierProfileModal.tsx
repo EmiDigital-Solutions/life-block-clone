@@ -405,7 +405,7 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="w-[98vw] max-w-[1400px] max-h-[95vh] overflow-hidden p-0 gap-0 bg-[hsl(var(--hero-background))] border-white/10">
+      <DialogContent className="w-[100vw] max-w-[100vw] h-[100vh] max-h-[100vh] overflow-hidden p-0 gap-0 bg-[hsl(var(--hero-background))] border-none rounded-none" style={{ aspectRatio: '16/9' }}>
         {/* Header */}
         <div className="p-6 pb-4 border-b border-white/10">
           <div className="flex items-start justify-between">
