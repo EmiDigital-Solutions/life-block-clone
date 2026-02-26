@@ -84,68 +84,73 @@ const SupplierDatabaseDemo = () => {
   return (
     <section data-nav-theme="light" className="relative bg-white py-16 md:py-24">
       <div className="mx-auto max-w-[1400px] px-8">
-        {/* Header — matching AtlasAI / LNGSearchDemo pattern */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="max-w-3xl mb-12"
-        >
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-px bg-foreground" />
-            <span className="section-eyebrow">
-              {t.supplierDb.eyebrow}
-            </span>
-          </div>
-          <h2 className="section-headline text-foreground mb-6">
-            {t.supplierDb.headline1}<br />
-            <span className="text-muted-foreground">{t.supplierDb.headline2}</span>
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl">
-            {t.supplierDb.subtitle}
-          </p>
-        </motion.div>
-
-        {/* Stats row — border-t style matching AtlasAI feature cards */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-x-8 lg:gap-x-16 gap-y-8 mb-16"
-        >
-          {stats.map((stat, i) => (
-            <div key={i} className="border-t-2 border-foreground/10 pt-6">
-              <div className="flex items-center gap-2 mb-1">
-                <stat.icon className="w-4 h-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground">{stat.label}</span>
-              </div>
-              <div className="text-3xl md:text-4xl font-medium text-foreground tracking-tight">{stat.value}</div>
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-0">
+          {/* Header — matching AtlasAI grid layout */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="lg:col-start-2 lg:col-span-5 mb-20"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-px bg-foreground" />
+              <span className="section-eyebrow">
+                {t.supplierDb.eyebrow}
+              </span>
             </div>
-          ))}
-        </motion.div>
+            <h2 className="section-headline text-foreground mb-6">
+              {t.supplierDb.headline1}<br />
+              <span className="text-foreground/50">{t.supplierDb.headline2}</span>
+            </h2>
+            <p className="text-lg text-foreground/50 max-w-xl">
+              {t.supplierDb.subtitle}
+            </p>
+          </motion.div>
 
-        {/* Demo Table */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="border border-border overflow-hidden bg-white"
-        >
+          {/* Stats row — matching AtlasAI feature cards exactly */}
+          <div className="lg:col-start-2 lg:col-span-5 mb-16">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 lg:gap-x-16 gap-y-12">
+              {stats.map((stat, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="border-t-2 border-foreground/10 pt-6"
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <stat.icon className="w-4 h-4 text-foreground/40" />
+                    <span className="text-sm text-foreground/50">{stat.label}</span>
+                  </div>
+                  <div className="text-3xl md:text-4xl font-medium text-foreground tracking-tight">{stat.value}</div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Demo Table */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="lg:col-start-2 lg:col-span-5 border border-foreground/10 overflow-hidden bg-white"
+          >
           {/* Toolbar */}
-          <div className="border-b border-border p-4 flex flex-col md:flex-row gap-3 items-stretch md:items-center">
+          <div className="border-b border-foreground/10 p-4 flex flex-col md:flex-row gap-3 items-stretch md:items-center">
             <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-foreground/40" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={t.supplierDb.searchPlaceholder}
-                className="w-full bg-muted/30 border border-border rounded-none pl-10 pr-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground/30"
+                className="w-full bg-foreground/[0.03] border border-foreground/10 rounded-none pl-10 pr-4 py-2.5 text-sm text-foreground placeholder:text-foreground/30 focus:outline-none focus:border-foreground/30"
               />
             </div>
-            <div className="flex gap-px bg-border">
+            <div className="flex gap-px bg-foreground/10">
               {[
                 { key: "all", label: t.supplierDb.filterAll },
                 { key: "low-risk", label: t.supplierDb.filterLowRisk },
@@ -157,7 +162,7 @@ const SupplierDatabaseDemo = () => {
                   className={`px-4 py-2 text-xs font-medium uppercase tracking-[0.1em] transition-all ${
                     selectedFilter === f.key 
                       ? 'bg-foreground text-background' 
-                      : 'bg-white text-muted-foreground hover:text-foreground'
+                      : 'bg-white text-foreground/40 hover:text-foreground'
                   }`}
                 >
                   {f.label}
@@ -168,8 +173,8 @@ const SupplierDatabaseDemo = () => {
 
           <div className="flex flex-col lg:flex-row">
             {/* Left: Categories */}
-            <div className="lg:w-72 border-b lg:border-b-0 lg:border-r border-border p-4">
-              <p className="text-xs text-muted-foreground uppercase tracking-[0.15em] mb-3 font-medium">{t.supplierDb.productGroups}</p>
+            <div className="lg:w-72 border-b lg:border-b-0 lg:border-r border-foreground/10 p-4">
+              <p className="text-xs text-foreground/40 uppercase tracking-[0.15em] mb-3 font-medium">{t.supplierDb.productGroups}</p>
               <div className="space-y-0.5">
                 {categoryData.map((cat, i) => (
                   <div key={i}>
@@ -177,14 +182,14 @@ const SupplierDatabaseDemo = () => {
                       onClick={() => setExpandedCategory(expandedCategory === i ? null : i)}
                       className={`w-full flex items-center gap-3 px-3 py-2.5 text-left transition-all ${
                         expandedCategory === i 
-                          ? 'bg-muted text-foreground' 
-                          : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                          ? 'bg-foreground/[0.04] text-foreground' 
+                          : 'text-foreground/50 hover:text-foreground hover:bg-foreground/[0.02]'
                       }`}
                     >
-                      <cat.icon className="w-4 h-4 flex-shrink-0 text-muted-foreground" />
+                      <cat.icon className="w-4 h-4 flex-shrink-0 text-foreground/40" />
                       <div className="flex-1 min-w-0">
                         <div className="text-sm font-medium truncate">{cat.name}</div>
-                        <div className="text-xs text-muted-foreground">{cat.suppliers} {t.supplierDb.suppliers}</div>
+                        <div className="text-xs text-foreground/40">{cat.suppliers} {t.supplierDb.suppliers}</div>
                       </div>
                       {expandedCategory === i ? <ChevronDown className="w-3 h-3" /> : <ChevronRight className="w-3 h-3" />}
                     </button>
@@ -198,15 +203,15 @@ const SupplierDatabaseDemo = () => {
                         >
                           <div className="pl-10 py-1 space-y-0.5">
                             {cat.subcategories.map((sub, j) => (
-                              <div key={j} className="text-sm text-muted-foreground py-1 px-2 hover:text-foreground cursor-pointer transition-colors">
+                              <div key={j} className="text-sm text-foreground/40 py-1 px-2 hover:text-foreground cursor-pointer transition-colors">
                                 {sub}
                               </div>
                             ))}
-                            <div className="flex items-center gap-3 mt-2 pt-2 border-t border-border">
-                              <div className="text-xs text-muted-foreground">
+                            <div className="flex items-center gap-3 mt-2 pt-2 border-t border-foreground/10">
+                              <div className="text-xs text-foreground/40">
                                 <span className="text-foreground font-medium">{cat.audited}%</span> {t.supplierDb.audited}
                               </div>
-                              <div className="text-xs text-muted-foreground">
+                              <div className="text-xs text-foreground/40">
                                 Avg <span className="text-[hsl(var(--warning))]">★ {cat.avgRating}</span>
                               </div>
                             </div>
@@ -223,14 +228,14 @@ const SupplierDatabaseDemo = () => {
             <div className="flex-1 overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-border">
-                    <th className="text-left p-3 text-xs text-muted-foreground uppercase tracking-[0.15em] font-medium">{t.supplierDb.thSupplier}</th>
-                    <th className="text-left p-3 text-xs text-muted-foreground uppercase tracking-[0.15em] font-medium hidden md:table-cell">{t.supplierDb.thProductGroup}</th>
-                    <th className="text-center p-3 text-xs text-muted-foreground uppercase tracking-[0.15em] font-medium">{t.supplierDb.thRating}</th>
-                    <th className="text-center p-3 text-xs text-muted-foreground uppercase tracking-[0.15em] font-medium hidden lg:table-cell">{t.supplierDb.thAudits}</th>
-                    <th className="text-center p-3 text-xs text-muted-foreground uppercase tracking-[0.15em] font-medium hidden md:table-cell">{t.supplierDb.thRisk}</th>
-                    <th className="text-center p-3 text-xs text-muted-foreground uppercase tracking-[0.15em] font-medium">{t.supplierDb.thFit}</th>
-                    <th className="text-left p-3 text-xs text-muted-foreground uppercase tracking-[0.15em] font-medium hidden xl:table-cell">{t.supplierDb.thCertifications}</th>
+                  <tr className="border-b border-foreground/10">
+                    <th className="text-left p-3 text-xs text-foreground/40 uppercase tracking-[0.15em] font-medium">{t.supplierDb.thSupplier}</th>
+                    <th className="text-left p-3 text-xs text-foreground/40 uppercase tracking-[0.15em] font-medium hidden md:table-cell">{t.supplierDb.thProductGroup}</th>
+                    <th className="text-center p-3 text-xs text-foreground/40 uppercase tracking-[0.15em] font-medium">{t.supplierDb.thRating}</th>
+                    <th className="text-center p-3 text-xs text-foreground/40 uppercase tracking-[0.15em] font-medium hidden lg:table-cell">{t.supplierDb.thAudits}</th>
+                    <th className="text-center p-3 text-xs text-foreground/40 uppercase tracking-[0.15em] font-medium hidden md:table-cell">{t.supplierDb.thRisk}</th>
+                    <th className="text-center p-3 text-xs text-foreground/40 uppercase tracking-[0.15em] font-medium">{t.supplierDb.thFit}</th>
+                    <th className="text-left p-3 text-xs text-foreground/40 uppercase tracking-[0.15em] font-medium hidden xl:table-cell">{t.supplierDb.thCertifications}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -243,21 +248,21 @@ const SupplierDatabaseDemo = () => {
                       onMouseEnter={() => setHoveredRow(i)}
                       onMouseLeave={() => setHoveredRow(null)}
                       onClick={() => { setSelectedSupplier(s); setProfileOpen(true); }}
-                      className={`border-b border-border/50 cursor-pointer transition-all ${
-                        hoveredRow === i ? 'bg-muted/50' : ''
+                      className={`border-b border-foreground/5 cursor-pointer transition-all ${
+                        hoveredRow === i ? 'bg-foreground/[0.03]' : ''
                       }`}
                     >
                       <td className="p-3">
                         <div className="text-foreground font-medium text-sm">{s.name}</div>
-                        <div className="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
+                        <div className="text-xs text-foreground/40 flex items-center gap-1 mt-0.5">
                           <MapPin className="w-3 h-3" /> {s.country}
                         </div>
                       </td>
-                      <td className="p-3 text-muted-foreground text-sm hidden md:table-cell">{s.category}</td>
+                      <td className="p-3 text-foreground/50 text-sm hidden md:table-cell">{s.category}</td>
                       <td className="p-3 text-center">
                         <span className="text-[hsl(var(--warning))] text-sm">★ {s.rating}</span>
                       </td>
-                      <td className="p-3 text-center text-muted-foreground text-sm hidden lg:table-cell">{s.audits}</td>
+                      <td className="p-3 text-center text-foreground/50 text-sm hidden lg:table-cell">{s.audits}</td>
                       <td className="p-3 text-center hidden md:table-cell">
                         <span className={`text-xs font-medium px-2 py-0.5 ${
                           s.risk === "Low" 
@@ -269,7 +274,7 @@ const SupplierDatabaseDemo = () => {
                       </td>
                       <td className="p-3 text-center">
                         <div className="flex items-center justify-center gap-1.5">
-                          <div className="w-12 h-1 bg-muted overflow-hidden">
+                          <div className="w-12 h-1 bg-foreground/10 overflow-hidden">
                             <div 
                               className="h-full bg-foreground" 
                               style={{ width: `${s.fitScore}%` }} 
@@ -281,7 +286,7 @@ const SupplierDatabaseDemo = () => {
                       <td className="p-3 hidden xl:table-cell">
                         <div className="flex flex-wrap gap-1">
                           {s.certifications.slice(0, 3).map((c, j) => (
-                            <span key={j} className="text-xs bg-muted text-muted-foreground px-1.5 py-0.5 border border-border">
+                            <span key={j} className="text-xs bg-foreground/[0.04] text-foreground/50 px-1.5 py-0.5 border border-foreground/10">
                               {c}
                             </span>
                           ))}
@@ -293,17 +298,17 @@ const SupplierDatabaseDemo = () => {
               </table>
 
               {/* Status Bar */}
-              <div className="border-t border-border p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-                <div className="text-sm text-muted-foreground">
+              <div className="border-t border-foreground/10 p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div className="text-sm text-foreground/50">
                   {t.supplierDb.showing} <span className="text-foreground font-medium">{filteredSuppliers.length}</span> {t.supplierDb.of} <span className="text-foreground font-medium">11,270</span> {t.supplierDb.records}
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Zap className="w-3 h-3 text-muted-foreground" />
+                  <div className="flex items-center gap-2 text-sm text-foreground/40">
+                    <Zap className="w-3 h-3 text-foreground/30" />
                     {t.supplierDb.portfolioMatching}
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <BarChart3 className="w-3 h-3 text-muted-foreground" />
+                  <div className="flex items-center gap-2 text-sm text-foreground/40">
+                    <BarChart3 className="w-3 h-3 text-foreground/30" />
                     {t.supplierDb.auditDataPoints}
                   </div>
                 </div>
@@ -311,6 +316,7 @@ const SupplierDatabaseDemo = () => {
             </div>
           </div>
         </motion.div>
+        </div>
       </div>
 
       <SupplierBenchmarkModal
