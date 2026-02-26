@@ -608,16 +608,16 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
           <ProfileSection title="A) 360° Supplier Identity Graph (Knowledge Graph)" icon={GitBranch} id="profile-knowledge-graph">
             <p className="text-sm text-foreground/50 mb-4">AI reasons on relationships — not just tables.</p>
             <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
-              <GraphNode label="Supplier" connections="Werke, Subsupplier" />
-              <GraphNode label="Werke / Sites" connections="Prozesse" />
-              <GraphNode label="Prozesse" connections="Maschinen" />
-              <GraphNode label="Maschinen" connections="Toleranzen" />
-              <GraphNode label="Fähigkeiten" connections="Normen / Zert." />
-              <GraphNode label="Kundenreferenzen" connections="Lieferant" />
-              <GraphNode label="Subsupplier" connections="Lieferant" />
+              <GraphNode label="Supplier" connections="Sites, Sub-suppliers" />
+              <GraphNode label="Sites / Plants" connections="Processes" />
+              <GraphNode label="Processes" connections="Machines" />
+              <GraphNode label="Machines" connections="Tolerances" />
+              <GraphNode label="Capabilities" connections="Standards / Certs" />
+              <GraphNode label="Customer References" connections="Supplier" />
+              <GraphNode label="Sub-suppliers" connections="Supplier" />
               <GraphNode label="Incidents / NCRs" connections="Audits" />
-              <GraphNode label="Länder-/Regionenrisiken" connections="Lieferant" />
-              <GraphNode label="Materialien / Produktfamilien" connections="Lieferant" />
+              <GraphNode label="Regional Risks" connections="Supplier" />
+              <GraphNode label="Materials / Product Families" connections="Supplier" />
             </div>
             <div className="mt-4 p-4 bg-[hsl(var(--accent))]/5 border border-[hsl(var(--accent))]/15">
               <p className="text-xs font-medium text-[hsl(var(--accent))]">ADVANTAGE: AI can reason — "Can this supplier really handle this scope?" — by traversing graph relationships.</p>
@@ -998,7 +998,7 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
 
           {/* ═══════════ G) COMMERCIAL TWIN ═══════════ */}
           <ProfileSection title="G) Commercial Twin / Procurement Intelligence" icon={DollarSign} id="profile-commercial">
-            <p className="text-sm text-foreground/50 mb-4">TCO statt nur Stückpreis. Real procurement value.</p>
+            <p className="text-sm text-foreground/50 mb-4">TCO instead of unit price only. Real procurement value.</p>
             <div className="space-y-1">
               <DataRow label="Price Level Hypothesis" value="Mid-range — 10-15% below Tier-1 OEMs" verification="ai-inferred" />
               <DataRow label="Should-Cost Indicators" value="€85k–€110k per unit (range-based)" mono verification="ai-inferred" />
