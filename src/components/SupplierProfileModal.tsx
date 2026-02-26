@@ -722,11 +722,11 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
 
           {/* ═══════════ E) PROCESS DIGITAL TWIN ═══════════ */}
           <ProfileSection title="E) Process Digital Twin (Shopfloor)" icon={Layers} id="profile-process-twin">
-            <p className="text-[11px] text-[hsl(var(--slate))] mb-3">End-to-end manufacturing flow — click any step for detail panel with photos, checklist, and risk assessment.</p>
+            <p className="text-[11px] text-foreground/50 mb-3">End-to-end manufacturing flow — click any step for detail panel with photos, checklist, and risk assessment.</p>
             
             {/* ── Animated Process Flow ── */}
             <div className="relative mb-6">
-              <p className="text-[10px] font-mono text-[hsl(var(--accent))] uppercase mb-3">Manufacturing Process Flow <span className="text-[hsl(var(--slate))] normal-case">— click a step for details</span></p>
+              <p className="text-[10px] font-mono text-[hsl(var(--accent))] uppercase mb-3">Manufacturing Process Flow <span className="text-foreground/50 normal-case">— click a step for details</span></p>
               <div className="relative overflow-x-auto pb-4">
                 <div className="flex items-stretch gap-0 min-w-[900px]">
                   {processSteps.map((s, i) => (
@@ -745,31 +745,31 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                         {/* Risk / HSE badges */}
                         <div className="flex gap-0.5 mb-1 h-4">
                           {s.risk === "bottleneck" && (
-                            <span className="text-[7px] font-mono font-bold bg-red-600/20 text-red-400 px-1.5 py-0.5 rounded-sm border border-red-500/30 uppercase">Bottleneck</span>
+                            <span className="text-[7px] font-mono font-bold bg-[hsl(var(--destructive))]/20 text-[hsl(var(--destructive))] px-1.5 py-0.5 rounded-sm border border-[hsl(var(--destructive))]/30 uppercase">Bottleneck</span>
                           )}
                           {s.risk === "critical" && (
-                            <span className="text-[7px] font-mono font-bold bg-red-600/20 text-red-400 px-1.5 py-0.5 rounded-sm border border-red-500/30 uppercase">Critical</span>
+                            <span className="text-[7px] font-mono font-bold bg-[hsl(var(--destructive))]/20 text-[hsl(var(--destructive))] px-1.5 py-0.5 rounded-sm border border-[hsl(var(--destructive))]/30 uppercase">Critical</span>
                           )}
                           {s.hse && (
-                            <span className="text-[7px] font-mono bg-orange-500/20 text-orange-400 px-1.5 py-0.5 rounded-sm border border-orange-500/30 uppercase">HSE</span>
+                            <span className="text-[7px] font-mono bg-[hsl(var(--warning))]/20 text-[hsl(var(--warning))] px-1.5 py-0.5 rounded-sm border border-[hsl(var(--warning))]/30 uppercase">HSE</span>
                           )}
                         </div>
                         {/* Process step box */}
                         <div className={`relative w-[70px] h-[70px] flex flex-col items-center justify-center rounded-sm border text-center transition-all ${
                           activeProcessStep === i
-                            ? 'bg-[hsl(var(--accent))]/15 border-[hsl(var(--accent))]/50 shadow-[0_0_16px_rgba(var(--accent-rgb),0.3)] ring-1 ring-[hsl(var(--accent))]/30'
-                            : s.risk === "bottleneck" ? 'bg-red-600/15 border-red-500/40 shadow-[0_0_12px_rgba(239,68,68,0.2)] hover:bg-red-600/20'
-                            : s.risk === "critical" ? 'bg-red-600/10 border-red-500/30 hover:bg-red-600/15'
-                            : 'bg-white/5 border-white/15 hover:border-white/30 hover:bg-white/8'
+                            ? 'bg-[hsl(var(--accent))]/15 border-[hsl(var(--accent))]/50 ring-1 ring-[hsl(var(--accent))]/30'
+                            : s.risk === "bottleneck" ? 'bg-[hsl(var(--destructive))]/10 border-[hsl(var(--destructive))]/30 hover:bg-[hsl(var(--destructive))]/15'
+                            : s.risk === "critical" ? 'bg-[hsl(var(--destructive))]/8 border-[hsl(var(--destructive))]/20 hover:bg-[hsl(var(--destructive))]/12'
+                            : 'bg-foreground/[0.03] border-foreground/10 hover:border-foreground/20 hover:bg-foreground/[0.06]'
                         }`}>
                           <s.icon className={`w-4 h-4 mb-1 ${
                             activeProcessStep === i ? 'text-[hsl(var(--accent))]'
-                            : s.risk === "bottleneck" || s.risk === "critical" ? 'text-red-400' : 'text-[hsl(var(--accent))]'
+                            : s.risk === "bottleneck" || s.risk === "critical" ? 'text-[hsl(var(--destructive))]' : 'text-[hsl(var(--accent))]'
                           }`} />
-                          <div className="text-[8px] text-white font-medium leading-tight whitespace-pre-line">{s.step}</div>
+                          <div className="text-[8px] text-foreground font-medium leading-tight whitespace-pre-line">{s.step}</div>
                         </div>
                         {/* Time */}
-                        <div className="text-[8px] font-mono text-[hsl(var(--slate))] mt-1">{s.time}</div>
+                        <div className="text-[8px] font-mono text-foreground/50 mt-1">{s.time}</div>
                         {/* Quality gate */}
                         {s.gate && (
                           <div className="absolute -bottom-5 left-1/2 -translate-x-1/2">
@@ -792,7 +792,7 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                             transition={{ duration: 1.5, repeat: Infinity }}
                           >
                             <ArrowRight className={`w-3 h-3 ${
-                              s.risk === "bottleneck" || s.risk === "critical" ? 'text-red-400' : 'text-white/20'
+                              s.risk === "bottleneck" || s.risk === "critical" ? 'text-[hsl(var(--destructive))]' : 'text-foreground/20'
                             }`} />
                           </motion.div>
                         </div>
@@ -815,17 +815,17 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                     {(() => {
                       const step = processSteps[activeProcessStep];
                       return (
-                        <div className="bg-white/[0.03] border border-[hsl(var(--accent))]/20 rounded-sm overflow-hidden">
+                         <div className="bg-foreground/[0.02] border border-[hsl(var(--accent))]/20 rounded-sm overflow-hidden">
                           {/* Detail header */}
                           <div className="flex items-center justify-between px-4 py-3 bg-[hsl(var(--accent))]/5 border-b border-[hsl(var(--accent))]/10">
                             <div className="flex items-center gap-3">
-                              <step.icon className={`w-5 h-5 ${step.risk !== 'none' ? 'text-red-400' : 'text-[hsl(var(--accent))]'}`} />
+                              <step.icon className={`w-5 h-5 ${step.risk !== 'none' ? 'text-[hsl(var(--destructive))]' : 'text-[hsl(var(--accent))]'}`} />
                               <div>
-                                <h4 className="text-sm text-white font-medium">{step.step.replace('\n', ' ')}</h4>
-                                <span className="text-[10px] text-[hsl(var(--slate))] font-mono">Duration: {step.time} · Step {activeProcessStep + 1} of {processSteps.length}</span>
+                                <h4 className="text-sm text-foreground font-medium">{step.step.replace('\n', ' ')}</h4>
+                                <span className="text-[10px] text-foreground/50 font-mono">Duration: {step.time} · Step {activeProcessStep + 1} of {processSteps.length}</span>
                               </div>
                             </div>
-                            <button onClick={() => setActiveProcessStep(null)} className="text-[hsl(var(--slate))] hover:text-white transition-colors">
+                            <button onClick={() => setActiveProcessStep(null)} className="text-foreground/50 hover:text-foreground transition-colors">
                               <X className="w-4 h-4" />
                             </button>
                           </div>
@@ -836,15 +836,15 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                               <p className="text-[10px] font-mono text-[hsl(var(--accent))] uppercase mb-2">Evidence Photos</p>
                               <div className="grid grid-cols-2 gap-1.5">
                                 {step.detail.photos.map((photo, pi) => (
-                                  <div key={pi} className="group relative aspect-[4/3] rounded-sm overflow-hidden border border-white/10">
+                                  <div key={pi} className="group relative aspect-[4/3] rounded-sm overflow-hidden border border-foreground/10">
                                     <img src={photo.src} alt={photo.label} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-1">
-                                      <span className="text-[7px] text-white">{photo.label}</span>
+                                      <span className="text-[7px] text-foreground">{photo.label}</span>
                                     </div>
                                   </div>
                                 ))}
                               </div>
-                              <div className="mt-2 text-[9px] text-[hsl(var(--slate))] italic">
+                              <div className="mt-2 text-[9px] text-foreground/50 italic">
                                 {step.detail.photos.length} photos · geotagged · timestamped
                               </div>
                             </div>
@@ -855,16 +855,16 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                               <div className="space-y-1.5">
                                 {step.detail.checklist.map((item, ci) => (
                                   <div key={ci} className="flex items-start gap-2">
-                                    <div className={`w-3.5 h-3.5 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5 ${
+                                <div className={`w-3.5 h-3.5 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5 ${
                                       item.status === 'pass' ? 'bg-[hsl(var(--accent))]/15 text-[hsl(var(--accent))]'
-                                      : item.status === 'warning' ? 'bg-orange-500/15 text-orange-400'
-                                      : 'bg-red-500/15 text-red-400'
+                                      : item.status === 'warning' ? 'bg-[hsl(var(--warning))]/15 text-[hsl(var(--warning))]'
+                                      : 'bg-[hsl(var(--destructive))]/15 text-[hsl(var(--destructive))]'
                                     }`}>
                                       {item.status === 'pass' ? <CheckCircle2 className="w-2.5 h-2.5" /> : <AlertTriangle className="w-2.5 h-2.5" />}
                                     </div>
                                     <div>
-                                      <span className="text-[10px] text-white">{item.item}</span>
-                                      {item.note && <p className="text-[9px] text-[hsl(var(--slate))]">{item.note}</p>}
+                                      <span className="text-[10px] text-foreground">{item.item}</span>
+                                      {item.note && <p className="text-[9px] text-foreground/50">{item.note}</p>}
                                     </div>
                                   </div>
                                 ))}
@@ -877,19 +877,19 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                               <div className="space-y-2">
                                 {step.detail.risks.map((risk, ri) => (
                                   <div key={ri} className={`p-2.5 rounded-sm border ${
-                                    risk.severity === 'high' ? 'bg-red-600/10 border-red-500/20'
-                                    : risk.severity === 'medium' ? 'bg-orange-500/10 border-orange-500/20'
-                                    : 'bg-white/[0.03] border-white/10'
+                                    risk.severity === 'high' ? 'bg-[hsl(var(--destructive))]/8 border-[hsl(var(--destructive))]/20'
+                                    : risk.severity === 'medium' ? 'bg-[hsl(var(--warning))]/8 border-[hsl(var(--warning))]/20'
+                                    : 'bg-foreground/[0.03] border-foreground/10'
                                   }`}>
                                     <div className="flex items-center justify-between mb-1">
-                                      <span className="text-[10px] text-white font-medium">{risk.category}</span>
+                                      <span className="text-[10px] text-foreground font-medium">{risk.category}</span>
                                       <span className={`text-[8px] font-mono px-1.5 py-0.5 rounded-sm uppercase ${
-                                        risk.severity === 'high' ? 'bg-red-500/20 text-red-400'
-                                        : risk.severity === 'medium' ? 'bg-orange-500/20 text-orange-400'
+                                        risk.severity === 'high' ? 'bg-[hsl(var(--destructive))]/15 text-[hsl(var(--destructive))]'
+                                        : risk.severity === 'medium' ? 'bg-[hsl(var(--warning))]/15 text-[hsl(var(--warning))]'
                                         : 'bg-[hsl(var(--accent))]/10 text-[hsl(var(--accent))]'
                                       }`}>{risk.severity}</span>
                                     </div>
-                                    <p className="text-[9px] text-[hsl(var(--slate))]">{risk.detail}</p>
+                                    <p className="text-[9px] text-foreground/50">{risk.detail}</p>
                                     {risk.mitigation && (
                                       <p className="text-[9px] text-[hsl(var(--accent))] mt-1">↳ {risk.mitigation}</p>
                                     )}
@@ -897,9 +897,9 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                                 ))}
                               </div>
                               {step.hse && (
-                                <div className="mt-2 p-2 bg-orange-500/10 border border-orange-500/20 rounded-sm">
-                                  <p className="text-[9px] font-mono text-orange-400 uppercase mb-1">HSE Requirements</p>
-                                  <p className="text-[9px] text-[hsl(var(--slate))]">{step.detail.hseNote}</p>
+                              <div className="mt-2 p-2 bg-[hsl(var(--warning))]/8 border border-[hsl(var(--warning))]/20 rounded-sm">
+                                  <p className="text-[9px] font-mono text-[hsl(var(--warning))] uppercase mb-1">HSE Requirements</p>
+                                  <p className="text-[9px] text-foreground/50">{step.detail.hseNote}</p>
                                 </div>
                               )}
                             </div>
@@ -912,11 +912,11 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
               </AnimatePresence>
 
               {/* Legend */}
-              <div className="flex flex-wrap gap-3 mt-6 pt-3 border-t border-white/5">
-                <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-sm bg-red-600/15 border border-red-500/40" /><span className="text-[9px] text-[hsl(var(--slate))]">Bottleneck</span></div>
-                <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-sm bg-red-600/10 border border-red-500/30" /><span className="text-[9px] text-[hsl(var(--slate))]">Critical Area</span></div>
-                <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-sm bg-orange-500/20 border border-orange-500/30" /><span className="text-[9px] text-[hsl(var(--slate))]">HSE Critical</span></div>
-                <div className="flex items-center gap-1.5"><span className="text-[6px] font-mono text-[hsl(var(--accent))] bg-[hsl(var(--accent))]/10 px-1 py-0.5 rounded-sm border border-[hsl(var(--accent))]/20">QG</span><span className="text-[9px] text-[hsl(var(--slate))]">Quality Gate</span></div>
+              <div className="flex flex-wrap gap-3 mt-6 pt-3 border-t border-foreground/5">
+                <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-sm bg-[hsl(var(--destructive))]/10 border border-[hsl(var(--destructive))]/30" /><span className="text-[9px] text-foreground/50">Bottleneck</span></div>
+                <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-sm bg-[hsl(var(--destructive))]/8 border border-[hsl(var(--destructive))]/20" /><span className="text-[9px] text-foreground/50">Critical Area</span></div>
+                <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-sm bg-[hsl(var(--warning))]/15 border border-[hsl(var(--warning))]/30" /><span className="text-[9px] text-foreground/50">HSE Critical</span></div>
+                <div className="flex items-center gap-1.5"><span className="text-[6px] font-mono text-[hsl(var(--accent))] bg-[hsl(var(--accent))]/10 px-1 py-0.5 rounded-sm border border-[hsl(var(--accent))]/20">QG</span><span className="text-[9px] text-foreground/50">Quality Gate</span></div>
               </div>
             </div>
 
@@ -931,9 +931,9 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                 { src: imgHSEinspection, label: "HSE Inspection" },
                 { src: imgControlPlan, label: "Control Plan" },
               ].map(img => (
-                <div key={img.label} className="group relative aspect-square rounded-sm overflow-hidden border border-white/10 cursor-pointer hover:border-[hsl(var(--accent))]/30 transition-all">
+                <div key={img.label} className="group relative aspect-square rounded-sm overflow-hidden border border-foreground/10 cursor-pointer hover:border-[hsl(var(--accent))]/30 transition-all">
                   <img src={img.src} alt={img.label} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-1.5">
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-1.5">
                     <span className="text-[8px] text-white font-medium">{img.label}</span>
                   </div>
                 </div>
@@ -951,7 +951,7 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
             </div>
             <div className="mt-3 p-3 bg-[hsl(var(--accent))]/5 border border-[hsl(var(--accent))]/15 rounded-sm">
               <p className="text-[10px] font-mono text-[hsl(var(--accent))] mb-1">AI PREDICTIONS</p>
-              <div className="space-y-1 text-[11px] text-[hsl(var(--slate))]">
+            <div className="space-y-1 text-[11px] text-foreground/50">
                 <p>• Delay risk: Medium (procurement-driven, mitigate with pre-ordering)</p>
                 <p>• Likely failure modes: Weld porosity at root pass, dimensional deviation on large bore</p>
                 <p>• Recommended controls: Stage inspection at fit-up, 100% RT on critical welds</p>
@@ -962,7 +962,7 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
 
           {/* ═══════════ F) RISK TWIN ═══════════ */}
           <ProfileSection title="F) Risk Twin (Dynamic, Explainable)" icon={AlertTriangle} id="profile-risk-twin">
-            <p className="text-[11px] text-[hsl(var(--slate))] mb-3">Not static — dynamic. Explainable AI. Risk under your specific package.</p>
+            <p className="text-[11px] text-foreground/50 mb-3">Not static — dynamic. Explainable AI. Risk under your specific package.</p>
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 mb-4">
               <RiskCategoryCard label="Quality Risk" score="Low" icon={ShieldCheck} detail="1.2% NCR rate, declining trend" />
               <RiskCategoryCard label="Delivery Risk" score="Medium" icon={Truck} detail="OTD 94%, but HT bottleneck at scale" />
@@ -977,17 +977,17 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
               <RiskCategoryCard label="Project Execution Risk" score="Medium" icon={Activity} detail="First EPC project — learning curve" />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <div className="p-3 bg-white/[0.03] border border-white/5 rounded-sm">
+              <div className="p-3 bg-foreground/[0.02] border border-foreground/10 rounded-sm">
                 <p className="text-[10px] font-mono text-[hsl(var(--warning))] mb-1">⚠ EARLY WARNING INDICATORS</p>
-                <div className="space-y-1 text-[11px] text-[hsl(var(--slate))]">
+                <div className="space-y-1 text-[11px] text-foreground/50">
                   <p>• OTD trend deteriorating last 2 months</p>
                   <p>• 2 repeat NCR patterns detected</p>
                   <p>• Nickel price volatility (+22% YoY)</p>
                 </div>
               </div>
-              <div className="p-3 bg-white/[0.03] border border-white/5 rounded-sm">
+              <div className="p-3 bg-foreground/[0.02] border border-foreground/10 rounded-sm">
                 <p className="text-[10px] font-mono text-[hsl(var(--accent))] mb-1">MITIGATION ACTIONS</p>
-                <div className="space-y-1 text-[11px] text-[hsl(var(--slate))]">
+                <div className="space-y-1 text-[11px] text-foreground/50">
                   <p>• Pre-book HT furnace slots for critical path</p>
                   <p>• Qualify alternative casting subsupplier</p>
                   <p>• Deploy resident inspector for first order</p>
@@ -998,7 +998,7 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
 
           {/* ═══════════ G) COMMERCIAL TWIN ═══════════ */}
           <ProfileSection title="G) Commercial Twin / Procurement Intelligence" icon={DollarSign} id="profile-commercial">
-            <p className="text-[11px] text-[hsl(var(--slate))] mb-3">TCO statt nur Stückpreis. Real procurement value.</p>
+            <p className="text-[11px] text-foreground/50 mb-3">TCO statt nur Stückpreis. Real procurement value.</p>
             <div className="space-y-1">
               <DataRow label="Price Level Hypothesis" value="Mid-range — 10-15% below Tier-1 OEMs" verification="ai-inferred" />
               <DataRow label="Should-Cost Indicators" value="€85k–€110k per unit (range-based)" mono verification="ai-inferred" />
@@ -1018,7 +1018,7 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
 
           {/* ═══════════ H) COMPLIANCE TWIN ═══════════ */}
           <ProfileSection title="H) Compliance & Standards Twin" icon={ShieldCheck} id="profile-compliance">
-            <p className="text-[11px] text-[hsl(var(--slate))] mb-3">Not just a certificate list — which requirements are met, partially met, or gaps exist?</p>
+            <p className="text-[11px] text-foreground/50 mb-3">Not just a certificate list — which requirements are met, partially met, or gaps exist?</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-4">
               {[
                 { standard: "ASME Sec VIII Div 1", readiness: 95, status: "Fulfilled", gap: "None" },
@@ -1028,17 +1028,17 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                 { standard: "EN 10204 (Material Certs)", readiness: 90, status: "Fulfilled", gap: "Sub-tier partial" },
                 { standard: "NACE MR0175 (Sour Service)", readiness: 78, status: "Partial", gap: "HIC testing not routine" },
               ].map(s => (
-                <div key={s.standard} className="bg-white/[0.03] border border-white/5 rounded-sm p-3">
+                <div key={s.standard} className="bg-foreground/[0.02] border border-foreground/10 rounded-sm p-3">
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-[11px] text-white font-medium">{s.standard}</span>
+                    <span className="text-[11px] text-foreground font-medium">{s.standard}</span>
                     <span className={`text-[10px] font-mono px-2 py-0.5 rounded-sm ${
                       s.readiness >= 90 ? 'bg-[hsl(var(--accent))]/10 text-[hsl(var(--accent))]' : 'bg-[hsl(var(--warning))]/10 text-[hsl(var(--warning))]'
                     }`}>{s.readiness}%</span>
                   </div>
-                  <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden mb-1">
+                  <div className="w-full h-1.5 bg-foreground/10 rounded-full overflow-hidden mb-1">
                     <div className="h-full bg-[hsl(var(--accent))] rounded-full" style={{ width: `${s.readiness}%` }} />
                   </div>
-                  <div className="text-[9px] text-[hsl(var(--slate))]">Gap: {s.gap}</div>
+                  <div className="text-[9px] text-foreground/50">Gap: {s.gap}</div>
                 </div>
               ))}
             </div>
@@ -1051,7 +1051,7 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
 
           {/* ═══════════ I) NCR / CAPA INTELLIGENCE ═══════════ */}
           <ProfileSection title="I) NCR / CAPA Intelligence Layer" icon={RefreshCw} id="profile-ncr-capa">
-            <p className="text-[11px] text-[hsl(var(--slate))] mb-3">Predictive — not just descriptive. Pattern recognition for failure prevention.</p>
+            <p className="text-[11px] text-foreground/50 mb-3">Predictive — not just descriptive. Pattern recognition for failure prevention.</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
               {[
                 { label: "Total NCRs (24mo)", value: "14" },
@@ -1059,9 +1059,9 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                 { label: "CAPAs Closed", value: "12/14" },
                 { label: "Avg Time-to-Close", value: "28 days" },
               ].map(m => (
-                <div key={m.label} className="bg-white/5 border border-white/10 rounded-sm p-3 text-center">
+                <div key={m.label} className="bg-foreground/[0.03] border border-foreground/10 rounded-sm p-3 text-center">
                   <div className="text-lg font-mono text-[hsl(var(--accent))]">{m.value}</div>
-                  <div className="text-[10px] text-[hsl(var(--slate))] uppercase">{m.label}</div>
+                  <div className="text-[10px] text-foreground/50 uppercase">{m.label}</div>
                 </div>
               ))}
             </div>
@@ -1074,7 +1074,7 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
             </div>
             <div className="mt-3 p-3 bg-[hsl(var(--accent))]/5 border border-[hsl(var(--accent))]/15 rounded-sm">
               <p className="text-[10px] font-mono text-[hsl(var(--accent))] mb-1">AI PATTERN RECOGNITION</p>
-              <div className="space-y-1 text-[11px] text-[hsl(var(--slate))]">
+              <div className="space-y-1 text-[11px] text-foreground/50">
                 <p>• Recurring pattern: root pass porosity → linked to welder qualification gaps for GTAW on Inconel</p>
                 <p>• Preventive control: mandate WPS revalidation + welder retest before next order</p>
                 <p>• Predicted failure probability for similar scope: 8% (down from 15% after last CAPA)</p>
@@ -1084,7 +1084,7 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
 
           {/* ═══════════ J) SITE SHADOW ═══════════ */}
           <ProfileSection title="J) Digital Shadow of the Site (Visual)" icon={MapPin} id="profile-site-shadow">
-            <p className="text-[11px] text-[hsl(var(--slate))] mb-3">Semi-visual operational map — clickable production zones, photos per area, audit route replay.</p>
+            <p className="text-[11px] text-foreground/50 mb-3">Semi-visual operational map — clickable production zones, photos per area, audit route replay.</p>
             
             {/* Workshop / Equipment Gallery */}
             <p className="text-[10px] font-mono text-[hsl(var(--accent))] uppercase mb-2">Workshop & Equipment Evidence</p>
@@ -1099,9 +1099,9 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                 { src: imgMaterialStock, label: "Material Stock", zone: "Warehouse" },
                 { src: imgHSEinspection, label: "HSE Inspection Point", zone: "All Halls" },
               ].map(img => (
-                <div key={img.label} className="group relative aspect-[4/3] rounded-sm overflow-hidden border border-white/10 cursor-pointer hover:border-[hsl(var(--accent))]/30 transition-all">
+                <div key={img.label} className="group relative aspect-[4/3] rounded-sm overflow-hidden border border-foreground/10 cursor-pointer hover:border-[hsl(var(--accent))]/30 transition-all">
                   <img src={img.src} alt={img.label} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-2">
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-2">
                     <div className="text-[9px] text-white font-medium">{img.label}</div>
                     <div className="text-[7px] text-white/60 font-mono">{img.zone}</div>
                   </div>
@@ -1122,12 +1122,12 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                 { zone: "Incoming Warehouse", status: "Active", photos: 3, rating: "3/5", hse: false },
                 { zone: "Dispatch / Packing", status: "Active", photos: 4, rating: "4/5", hse: false },
               ].map(z => (
-                <div key={z.zone} className={`bg-white/5 border rounded-sm p-3 cursor-pointer hover:border-[hsl(var(--accent))]/30 transition-all ${z.hse ? 'border-orange-500/30' : 'border-white/10'}`}>
+                <div key={z.zone} className={`bg-foreground/[0.03] border rounded-sm p-3 cursor-pointer hover:border-[hsl(var(--accent))]/30 transition-all ${z.hse ? 'border-[hsl(var(--warning))]/30' : 'border-foreground/10'}`}>
                   <div className="flex items-center gap-1.5 mb-1">
-                    <span className="text-[11px] text-white font-medium">{z.zone}</span>
-                    {z.hse && <span className="text-[6px] font-mono bg-orange-500/20 text-orange-400 px-1 py-0.5 rounded-sm">HSE</span>}
+                    <span className="text-[11px] text-foreground font-medium">{z.zone}</span>
+                    {z.hse && <span className="text-[6px] font-mono bg-[hsl(var(--warning))]/15 text-[hsl(var(--warning))] px-1 py-0.5 rounded-sm">HSE</span>}
                   </div>
-                  <div className="flex items-center gap-2 text-[9px] text-[hsl(var(--slate))]">
+                  <div className="flex items-center gap-2 text-[9px] text-foreground/50">
                     <span>{z.status}</span>
                     <Camera className="w-2.5 h-2.5" />
                     <span>{z.photos}</span>
@@ -1148,9 +1148,9 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                 { src: imgProcessCapability, label: "Process Validation" },
                 { src: imgCertification, label: "Material Certs" },
               ].map(img => (
-                <div key={img.label} className="group relative aspect-square rounded-sm overflow-hidden border border-white/10 cursor-pointer hover:border-[hsl(var(--accent))]/30 transition-all">
+                <div key={img.label} className="group relative aspect-square rounded-sm overflow-hidden border border-foreground/10 cursor-pointer hover:border-[hsl(var(--accent))]/30 transition-all">
                   <img src={img.src} alt={img.label} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-1">
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-1">
                     <span className="text-[7px] text-white font-medium">{img.label}</span>
                   </div>
                 </div>
@@ -1159,14 +1159,14 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
 
             <div className="flex flex-wrap gap-2">
               {["Equipment Map", "Safety Hotspots", "5S Ratings", "Quality Hotspots", "Audit Route Replay"].map(f => (
-                <span key={f} className="text-[10px] bg-white/5 text-[hsl(var(--slate))] px-2 py-1 rounded-sm border border-white/10">{f}</span>
+                <span key={f} className="text-[10px] bg-foreground/[0.03] text-foreground/50 px-2 py-1 rounded-sm border border-foreground/10">{f}</span>
               ))}
             </div>
           </ProfileSection>
 
           {/* ═══════════ K) FIT SIMULATOR ═══════════ */}
           <ProfileSection title="K) Supplier Fit Simulator" icon={Search} id="profile-fit-simulator">
-            <p className="text-[11px] text-[hsl(var(--slate))] mb-3">Upload spec/RFQ/drawing → Twin simulates fit across all dimensions. Board-/Procurement-Decision-Support.</p>
+            <p className="text-[11px] text-foreground/50 mb-3">Upload spec/RFQ/drawing → Twin simulates fit across all dimensions. Board-/Procurement-Decision-Support.</p>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
               {[
                 { dim: "Technical Fit", score: 92, color: "accent" },
@@ -1176,28 +1176,28 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                 { dim: "Capacity Fit", score: 76, color: "warning" },
                 { dim: "Risk Fit", score: 82, color: "warning" },
               ].map(f => (
-                <div key={f.dim} className="bg-white/5 border border-white/10 rounded-sm p-3">
+                <div key={f.dim} className="bg-foreground/[0.03] border border-foreground/10 rounded-sm p-3">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-[11px] text-white">{f.dim}</span>
+                    <span className="text-[11px] text-foreground">{f.dim}</span>
                     <span className={`font-mono text-sm text-[hsl(var(--${f.color}))]`}>{f.score}%</span>
                   </div>
-                  <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                  <div className="w-full h-1.5 bg-foreground/10 rounded-full overflow-hidden">
                     <div className={`h-full bg-[hsl(var(--${f.color}))] rounded-full`} style={{ width: `${f.score}%` }} />
                   </div>
                 </div>
               ))}
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <div className="p-3 bg-white/[0.03] border border-white/5 rounded-sm">
+              <div className="p-3 bg-foreground/[0.02] border border-foreground/10 rounded-sm">
                 <p className="text-[10px] font-mono text-[hsl(var(--warning))] mb-1">CRITICAL GAPS</p>
-                <div className="space-y-1 text-[11px] text-[hsl(var(--slate))]">
+                <div className="space-y-1 text-[11px] text-foreground/50">
                   <p>• Cryo filler material traceability not fully qualified</p>
                   <p>• Capacity buffer thin at current utilization</p>
                 </div>
               </div>
-              <div className="p-3 bg-white/[0.03] border border-white/5 rounded-sm">
+              <div className="p-3 bg-foreground/[0.02] border border-foreground/10 rounded-sm">
                 <p className="text-[10px] font-mono text-[hsl(var(--accent))] mb-1">MUST-HAVE MITIGATIONS</p>
-                <div className="space-y-1 text-[11px] text-[hsl(var(--slate))]">
+                <div className="space-y-1 text-[11px] text-foreground/50">
                   <p>• Resident inspector for first article</p>
                   <p>• FAI mandatory before series release</p>
                 </div>
@@ -1235,16 +1235,16 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                   color: "accent"
                 },
               ].map(agent => (
-                <div key={agent.name} className="bg-white/[0.03] border border-white/10 rounded-sm p-4">
+                <div key={agent.name} className="bg-foreground/[0.02] border border-foreground/10 rounded-sm p-4">
                   <div className="flex items-center gap-2 mb-3">
                     <Bot className="w-4 h-4 text-[hsl(var(--accent))]" />
-                    <span className="text-xs text-white font-medium">{agent.name}</span>
+                    <span className="text-xs text-foreground font-medium">{agent.name}</span>
                   </div>
                   <div className="space-y-1.5">
                     {agent.items.map(item => (
                       <div key={item} className="flex items-center gap-2">
                         <CheckCircle2 className="w-3 h-3 text-[hsl(var(--accent))]/50" />
-                        <span className="text-[11px] text-[hsl(var(--slate))]">{item}</span>
+                        <span className="text-[11px] text-foreground/50">{item}</span>
                       </div>
                     ))}
                   </div>
@@ -1253,7 +1253,7 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
             </div>
             <div className="mt-4 p-3 bg-[hsl(var(--accent))]/5 border border-[hsl(var(--accent))]/15 rounded-sm">
               <p className="text-[10px] font-mono text-[hsl(var(--accent))] mb-1">AI CHAT WITH THE TWIN</p>
-              <div className="space-y-1 text-[11px] text-[hsl(var(--slate))] italic">
+              <div className="space-y-1 text-[11px] text-foreground/50 italic">
                 <p>"Can this supplier deliver 40 units in 12 weeks?"</p>
                 <p>"What critical risks exist for Duplex material scope?"</p>
                 <p>"What improved since the last RCA audit?"</p>
@@ -1264,12 +1264,12 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
 
           {/* ═══════════ M) TRUST & PROVENANCE ═══════════ */}
           <ProfileSection title="M) Trust, Provenance & Explainability" icon={Eye} id="profile-trust">
-            <p className="text-[11px] text-[hsl(var(--slate))] mb-3">Every insight: source · timestamp · confidence · verification · reasoning logic. Enterprise-ready.</p>
-            <div className="p-4 bg-white/[0.03] border border-white/10 rounded-sm mb-4">
+            <p className="text-[11px] text-foreground/50 mb-3">Every insight: source · timestamp · confidence · verification · reasoning logic. Enterprise-ready.</p>
+            <div className="p-4 bg-foreground/[0.02] border border-foreground/10 rounded-sm mb-4">
               <p className="text-[10px] font-mono text-[hsl(var(--warning))] mb-2">EXAMPLE — EXPLAINABLE SCORE</p>
               <div className="space-y-2 text-[11px]">
-                <p className="text-white font-medium">Delivery Risk = High (82/100)</p>
-                <div className="text-[hsl(var(--slate))] space-y-1">
+                <p className="text-foreground font-medium">Delivery Risk = High (82/100)</p>
+                <div className="text-foreground/50 space-y-1">
                   <p>Reasons: Rising utilization, OTD decline, 2 open CAPAs, subsupplier dependency on critical component</p>
                   <p>Confidence: Medium-High</p>
                   <p>Evidence: RCA audit 2026-01-14, OTD trend Q4, supplier interview</p>
@@ -1283,14 +1283,14 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
               <DataRow label="Change Log" value="Last 30d: 14 field updates, 3 document uploads" verification="verified" />
               <DataRow label="Last Audit" value="2025-01-15 · On-site · RCA Senior Auditor" verification="verified" />
             </div>
-            <div className="mt-3 p-3 bg-white/[0.03] border border-white/5 rounded-sm">
+            <div className="mt-3 p-3 bg-foreground/[0.02] border border-foreground/10 rounded-sm">
               <p className="text-[10px] font-mono text-[hsl(var(--accent))] mb-1">TRUST LEVEL</p>
               <div className="flex items-center gap-3">
-                <div className="flex-1 h-2 bg-white/10 rounded-full overflow-hidden">
+                <div className="flex-1 h-2 bg-foreground/10 rounded-full overflow-hidden">
                   <div className="h-full bg-[hsl(var(--accent))] rounded-full" style={{ width: "91%" }} />
                 </div>
                 <span className="text-sm font-mono text-[hsl(var(--accent))]">91%</span>
-                <span className="text-[10px] text-[hsl(var(--slate))]">Audit-grade digital twin</span>
+                <span className="text-[10px] text-foreground/50">Audit-grade digital twin</span>
               </div>
             </div>
           </ProfileSection>
@@ -1305,13 +1305,13 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                 { view: "Audit View", items: ["Latest audits", "Findings", "Evidence-based scoring", "Reaudit trigger", "Open actions"] },
                 { view: "AI Chat with the Twin", items: ["Scope / risk / comparison questions", "Twin-aware answers with evidence links", "Score-referenced insights", "Natural language queries"] },
               ].map(v => (
-                <div key={v.view} className="bg-white/[0.03] border border-white/10 rounded-sm p-4">
+                <div key={v.view} className="bg-foreground/[0.02] border border-foreground/10 rounded-sm p-4">
                   <p className="text-xs text-[hsl(var(--accent))] font-medium mb-2">{v.view}</p>
                   <div className="space-y-1">
                     {v.items.map(item => (
                       <div key={item} className="flex items-center gap-1.5">
                         <CheckCircle2 className="w-2.5 h-2.5 text-[hsl(var(--accent))]/50" />
-                        <span className="text-[10px] text-[hsl(var(--slate))]">{item}</span>
+                        <span className="text-[10px] text-foreground/50">{item}</span>
                       </div>
                     ))}
                   </div>
@@ -1340,14 +1340,14 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                   items: ["Knowledge graph reasoning", "Predictive risk / delay / quality forecasting", "AI onboarding plan generator", "Supplier development copilot", "Portfolio-level twin benchmarking", "Autonomous monitoring + alerts (requalification triggers)"]
                 },
               ].map(p => (
-                <div key={p.phase} className="bg-white/[0.03] border border-white/10 rounded-sm p-4">
+                <div key={p.phase} className="bg-foreground/[0.02] border border-foreground/10 rounded-sm p-4">
                   <p className="text-xs text-[hsl(var(--accent))] font-bold mb-1">{p.phase}</p>
-                  <p className="text-[9px] text-[hsl(var(--slate))] mb-3">{p.desc}</p>
+                  <p className="text-[9px] text-foreground/50 mb-3">{p.desc}</p>
                   <div className="space-y-1.5">
                     {p.items.map(item => (
                       <div key={item} className="flex items-start gap-1.5">
                         <CheckCircle2 className="w-3 h-3 text-[hsl(var(--accent))]/50 mt-0.5 flex-shrink-0" />
-                        <span className="text-[10px] text-[hsl(var(--slate))]">{item}</span>
+                        <span className="text-[10px] text-foreground/50">{item}</span>
                       </div>
                     ))}
                   </div>
@@ -1371,9 +1371,9 @@ const SupplierProfileModal = ({ open, onOpenChange, supplier }: Props) => {
                 { label: "Peer Benchmark", desc: "Anonymised, cluster-based" },
                 { label: "Board Memo Generator", desc: "1-click decision note" },
               ].map(f => (
-                <div key={f.label} className="bg-white/5 border border-white/10 rounded-sm p-3 hover:border-[hsl(var(--accent))]/30 transition-all cursor-pointer">
-                  <div className="text-[11px] text-white font-medium">{f.label}</div>
-                  <div className="text-[9px] text-[hsl(var(--slate))] mt-0.5">{f.desc}</div>
+                <div key={f.label} className="bg-foreground/[0.03] border border-foreground/10 rounded-sm p-3 hover:border-[hsl(var(--accent))]/30 transition-all cursor-pointer">
+                  <div className="text-[11px] text-foreground font-medium">{f.label}</div>
+                  <div className="text-[9px] text-foreground/50 mt-0.5">{f.desc}</div>
                 </div>
               ))}
             </div>
