@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import { X, CheckCircle2, AlertTriangle, XCircle, Star, ArrowRight } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
-// Benchmark data modeled after the Excel reference — pipe support suppliers for LNG
-const referenceSupplier = "LISEGA SE";
+// Benchmark data — rotary hammer suppliers for construction fleet procurement
+const referenceSupplier = "Hilti AG";
 
 interface BenchmarkCriterion {
   name: string;
@@ -13,26 +13,26 @@ interface BenchmarkCriterion {
 }
 
 const suppliers = [
-  { name: "LISEGA SE", country: "Germany", role: "Reference (Benchmark)", blocked: true },
-  { name: "Bergen PS India (BPSI)", country: "India", role: "#1 Priority", blocked: false },
-  { name: "Jianeng/Wintech", country: "China", role: "#2 Priority", blocked: false },
-  { name: "SeongHwa", country: "S. Korea", role: "#3 Priority", blocked: false },
-  { name: "JIMC", country: "S. Korea", role: "#4 Priority", blocked: false },
+  { name: "Hilti AG", country: "Liechtenstein", role: "Reference (Benchmark)", blocked: true },
+  { name: "Makita Corporation", country: "Japan", role: "#1 Priority", blocked: false },
+  { name: "Bosch Professional", country: "Germany", role: "#2 Priority", blocked: false },
+  { name: "DeWalt Industrial", country: "USA", role: "#3 Priority", blocked: false },
+  { name: "Milwaukee Tool", country: "USA", role: "#4 Priority", blocked: false },
 ];
 
 const criteria: BenchmarkCriterion[] = [
-  { name: "44 kN Load Capacity", weight: 5, scores: [5, 5, 5, 4, 4], notes: "All cover 44 kN; Korea/Iran need verification" },
-  { name: "Cryogenic to −100°C (springs)", weight: 5, scores: [5, 4, 2, 2, 3], notes: "BPSI Bergatherm closest to LISEGA HIPAC; verify cryo range" },
-  { name: "TR CU 010/2011 Compliance", weight: 5, scores: [2, 1, 1, 1, 1], notes: "No alternative holds Russian cert — all need qualification" },
-  { name: "LNG/Petrochemical Track Record", weight: 4, scores: [5, 5, 3, 4, 4], notes: "BPSI: published LNG Industry magazine; LNG terminal refs" },
-  { name: "Spring Rate / Travel Range", weight: 4, scores: [5, 5, 3, 3, 4], notes: "BPSI: Bergen range = 25 sizes, 5 travels to 254mm" },
-  { name: "Cold Insulation Spacers (PTFE)", weight: 3, scores: [5, 5, 2, 2, 3], notes: "BPSI manufactures PTFE sliding supports in-house" },
-  { name: "Pricing vs LISEGA (est.)", weight: 4, scores: [2, 3, 4, 3, 3], notes: "India/China 40–60% lower; Korea ~30–40% lower" },
-  { name: "Lead Time / Delivery", weight: 4, scores: [5, 4, 3, 4, 4], notes: "BPSI: established global logistics; Korea: good intl track record" },
-  { name: "After-Sales / Warranty", weight: 3, scores: [5, 4, 3, 3, 3], notes: "BPSI: Hill & Smith group global service network" },
-  { name: "3D Model / Design Software", weight: 3, scores: [5, 4, 2, 2, 2], notes: "BPSI: PSL CAD + PS Designer software" },
-  { name: "Company Scale / Stability", weight: 3, scores: [5, 5, 4, 4, 3], notes: "BPSI: Hill & Smith PLC (£800M+ group)" },
-  { name: "Sanctions Feasibility", weight: 5, scores: [1, 5, 5, 4, 4], notes: "LISEGA blocked; BPSI Indian entity = clear" },
+  { name: "Impact Energy ≥ 12 J", weight: 5, scores: [5, 5, 5, 5, 4], notes: "All cover ≥12 J SDS-Max; Milwaukee slightly below at 11.6 J" },
+  { name: "IP56 Dust/Water Rating", weight: 5, scores: [5, 5, 3, 4, 5], notes: "Makita & Milwaukee IP56 standard; Bosch IP54 needs verification" },
+  { name: "IEC 62841 Compliance", weight: 5, scores: [5, 5, 5, 4, 4], notes: "Makita & Bosch full IEC; DeWalt/Milwaukee primarily UL Listed" },
+  { name: "Fleet Mgmt / Connectivity", weight: 4, scores: [5, 3, 4, 3, 5], notes: "Milwaukee One-Key leads; Bosch Connected improving; Makita developing" },
+  { name: "Battery Platform Breadth", weight: 4, scores: [5, 5, 4, 4, 4], notes: "Makita 300+ tools on 18V LXT; Bosch ProCORE growing" },
+  { name: "Dust Extraction Integration", weight: 3, scores: [5, 5, 4, 5, 4], notes: "Makita AWS & DeWalt AirLock both excellent" },
+  { name: "Pricing vs Hilti (est.)", weight: 4, scores: [2, 4, 4, 3, 3], notes: "Makita/Bosch 30–40% lower; DeWalt ~25% lower" },
+  { name: "Lead Time / Delivery", weight: 4, scores: [5, 4, 5, 5, 4], notes: "Bosch & DeWalt fastest (3–6 weeks); Makita 4–8 weeks" },
+  { name: "After-Sales / Warranty", weight: 3, scores: [5, 4, 4, 5, 4], notes: "DeWalt 3yr + 1yr free service; Hilti fleet management best" },
+  { name: "Vibration Reduction Tech", weight: 3, scores: [5, 5, 3, 4, 4], notes: "Makita AVT system closest to Hilti Active Vibration Reduction" },
+  { name: "Company Scale / Stability", weight: 3, scores: [5, 5, 5, 4, 4], notes: "Bosch largest (€6.1B tools div.); Makita €4.8B" },
+  { name: "EU Availability & Support", weight: 5, scores: [5, 5, 5, 3, 3], notes: "Hilti/Makita/Bosch strong EU network; DeWalt/Milwaukee US-centric" },
 ];
 
 const totals = suppliers.map((_, si) => 
@@ -41,19 +41,19 @@ const totals = suppliers.map((_, si) =>
 const maxTotal = criteria.reduce((sum, c) => sum + 5 * c.weight, 0);
 
 const overallRatings = [
-  { label: "Benchmark (Blocked)", color: "text-[hsl(var(--destructive))]" },
+  { label: "Benchmark (In-house)", color: "text-[hsl(var(--destructive))]" },
   { label: "★★★★ Very High — #1 Priority", color: "text-[hsl(var(--accent))]" },
-  { label: "★★★ High — #2 Priority", color: "text-[hsl(var(--accent))]" },
+  { label: "★★★★ Very High — #2 Priority", color: "text-[hsl(var(--accent))]" },
   { label: "★★★ High — #3 Priority", color: "text-[hsl(var(--accent))]" },
   { label: "★★★ High — #4 Priority", color: "text-[hsl(var(--accent))]" },
 ];
 
-const sanctionsFeasibility = [
-  { label: "✕ Blocked", feasible: false },
-  { label: "✓ Feasible", feasible: true },
-  { label: "✓ Feasible", feasible: true },
-  { label: "✓ Feasible", feasible: true },
-  { label: "✓ Feasible", feasible: true },
+const availabilityFeasibility = [
+  { label: "✓ In-house", feasible: true },
+  { label: "✓ Available", feasible: true },
+  { label: "✓ Available", feasible: true },
+  { label: "◐ Limited EU", feasible: true },
+  { label: "◐ Limited EU", feasible: true },
 ];
 
 interface Props {
@@ -78,13 +78,13 @@ const SupplierBenchmarkModal = ({ open, onOpenChange }: Props) => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-[10px] font-mono text-[hsl(var(--accent))] uppercase tracking-[0.2em] mb-2">
-                Supplier Benchmark — Pipe Supports for LNG
+                Supplier Benchmark — Rotary Hammers for Construction Fleet
               </p>
               <h2 className="text-2xl font-medium text-foreground">
                 Technical Comparison — 5 Suppliers
               </h2>
               <p className="text-sm text-muted-foreground mt-1">
-                Reference: {referenceSupplier} (sanctioned) · Weighted scoring across 12 criteria
+                Reference: {referenceSupplier} (in-house benchmark) · Weighted scoring across 12 criteria
               </p>
             </div>
           </div>
@@ -157,12 +157,12 @@ const SupplierBenchmarkModal = ({ open, onOpenChange }: Props) => {
                 <td className="p-3" />
               </tr>
 
-              {/* Sanctions */}
+              {/* EU Availability */}
               <tr className="border-b border-border/50">
                 <td className="p-3 sticky left-0 bg-background z-10">
-                  <div className="text-xs text-foreground font-medium">Sanctions Feasibility</div>
+                  <div className="text-xs text-foreground font-medium">EU Availability</div>
                 </td>
-                {sanctionsFeasibility.map((s, i) => (
+                {availabilityFeasibility.map((s, i) => (
                   <td key={i} className="p-3 text-center">
                     <span className={`text-xs font-mono px-2 py-1 rounded-sm ${
                       s.feasible 
@@ -204,11 +204,11 @@ const SupplierBenchmarkModal = ({ open, onOpenChange }: Props) => {
               <div className="flex items-start gap-3">
                 <CheckCircle2 className="w-4 h-4 text-[hsl(var(--accent))] mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-sm text-foreground font-medium">Bergen PS India (BPSI) — Primary recommendation</p>
+                  <p className="text-sm text-foreground font-medium">Makita Corporation — Primary recommendation</p>
                   <p className="text-xs text-muted-foreground mt-1">
-                    Highest weighted score (50/{maxTotal}) among feasible suppliers. Hill & Smith PLC backing provides financial stability. 
-                    Bergatherm product line is closest technical equivalent to LISEGA HIPAC. 
-                    40–60% cost reduction vs European reference. In-house PTFE manufacturing and PSL CAD software.
+                    Highest weighted score among alternative suppliers. 300+ tools on single 18V LXT battery platform provides maximum fleet standardization.
+                    AVT vibration reduction system is closest technical equivalent to Hilti Active Vibration Reduction.
+                    30–40% cost reduction vs Hilti reference. In-house motor manufacturing and global service network.
                   </p>
                 </div>
               </div>
@@ -217,10 +217,10 @@ const SupplierBenchmarkModal = ({ open, onOpenChange }: Props) => {
                 <div>
                   <p className="text-sm text-foreground font-medium">Next steps</p>
                   <p className="text-xs text-muted-foreground mt-1">
-                    1. Request BPSI technical submittal for 44 kN spring hangers with cryogenic springs · 
-                    2. Schedule on-site audit at Pune facility (capacity + QMS verification) · 
-                    3. Obtain Jianeng/Wintech pricing as backup for cost negotiation leverage · 
-                    4. Verify SeongHwa and JIMC cryogenic spring qualification status
+                    1. Request Makita fleet pricing for SDS-Max rotary hammer package (50+ units) · 
+                    2. Schedule demo day at nearest Makita experience center for hands-on testing · 
+                    3. Obtain Bosch Professional pricing as backup for cost negotiation leverage · 
+                    4. Evaluate Milwaukee One-Key fleet management as add-on for tool tracking
                   </p>
                 </div>
               </div>
@@ -229,8 +229,8 @@ const SupplierBenchmarkModal = ({ open, onOpenChange }: Props) => {
                 <div>
                   <p className="text-sm text-foreground font-medium">Risk note</p>
                   <p className="text-xs text-muted-foreground mt-1">
-                    No alternative supplier currently holds TR CU 010/2011 (Russian certification). 
-                    All candidates require qualification if Russian market scope is maintained.
+                    No alternative supplier currently matches Hilti's integrated fleet management (ON!Track). 
+                    Milwaukee One-Key offers closest alternative but has limited EU availability.
                   </p>
                 </div>
               </div>
