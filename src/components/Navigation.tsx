@@ -50,7 +50,7 @@ const Navigation = () => {
             className="flex items-center hover:opacity-80 transition-opacity"
             onClick={() => setIsMenuOpen(false)}
           >
-            <span className="text-2xl md:text-3xl font-black tracking-tight text-foreground">RCA</span>
+            <span className="text-2xl md:text-3xl font-black tracking-tight text-foreground">HILTI</span>
           </Link>
 
           {/* Center: Hamburger + Language Switcher */}

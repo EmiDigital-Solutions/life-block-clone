@@ -22,17 +22,17 @@ const Index = () => {
   return (
     <div className="min-h-screen relative">
       <PageSEO
-        title="RCA — From Supplier Search to Verified Quality"
-        description="Find, qualify, audit, and improve suppliers on one platform. AI-powered search, on-site audits in 72h, automated CAPA tracking. Full lifecycle coverage."
+        title="Hilti — From Tool Sourcing to Verified Quality"
+        description="Find, qualify, inspect, and improve power tool suppliers on one platform. AI-powered search, on-site inspections in 72h, automated CAPA tracking. Full lifecycle coverage."
         canonical="/"
         jsonLd={[
           {
             "@context": "https://schema.org",
             "@type": "Organization",
-            "name": "RCA",
-            "url": "https://www.yvoo.io",
-            "description": "AI-powered supplier lifecycle platform — from search to audit to CAPA close-out.",
-            "serviceType": "Supplier Quality Management"
+            "name": "Hilti",
+            "url": "https://www.hilti.com",
+            "description": "AI-powered tool supplier lifecycle platform — from search to inspection to CAPA close-out.",
+            "serviceType": "Power Tool Supplier Quality Management"
           }
         ]}
       />
