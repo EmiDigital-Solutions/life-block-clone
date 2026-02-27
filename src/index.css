@@ -23,32 +23,32 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 0%;
 
-    --primary: 357 78% 49%; /* Hilti Red #DD1F26 */
-    --primary-foreground: 0 0% 100%;
+    --primary: 195 88.5714% 34.3137%; /* Hilti Red #DD1F26 */
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 357 78% 49%; /* Hilti Red */
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 161 25.5411% 54.7059%; /* Hilti Red */
+    --secondary-foreground: 0 0% 0%;
 
     --muted: 0 0% 96%; /* Snow White #F5F5F5 */
     --muted-foreground: 0 0% 45%;
 
-    --accent: 357 78% 49%; /* Hilti Red */
-    --accent-foreground: 0 0% 100%;
+    --accent: 158 23% 75%; /* Hilti Red */
+    --accent-foreground: 0 0% 0%;
 
-    --success: 145 63% 42%; /* Green for success — semantic */
-    --success-foreground: 0 0% 100%;
+    --success: 158 23% 75%; /* Green for success — semantic */
+    --success-foreground: 0 0% 0%;
 
     --warning: 37 91% 55%; /* Amber #F5A623 */
     --warning-foreground: 0 0% 0%;
 
-    --destructive: 0 48% 46%; /* Red #AE3D3D */
-    --destructive-foreground: 0 48% 46%;
+    --destructive: 0 47.8632% 45.8824%; /* Red #AE3D3D */
+    --destructive-foreground: 0 47.8632% 45.8824%;
 
     --mint: 143 18% 75%; /* Mint Light #B2CDBC */
 
     --border: 0 0% 90%;
     --input: 0 0% 90%;
-    --ring: 357 78% 49%; /* Hilti Red */
+    --ring: 160 25% 72%; /* Hilti Red */
 
     --radius: 0.25rem;
 
@@ -62,13 +62,13 @@ All colors MUST be HSL.
     /* Full-screen project section colors */
     --project-blue: 192 20% 72%; /* BlueGrey Light */
     --project-brown: 0 0% 50%;
-    --project-teal: 161 26% 55%; /* Sage Green */
+    --project-teal: 158 23% 75%; /* Sage Green */
     --project-pink: 0 0% 60%;
 
     /* How It Works section colors */
     --process-bg: 0 0% 5%;
     --content-bg: 0 0% 4%;
-    --content-accent: 357 78% 49%; /* Hilti Red */
+    --content-accent: 158 23% 75%; /* Hilti Red */
     --font-sans: Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   }
 
@@ -84,17 +84,17 @@ All colors MUST be HSL.
     --popover: 0 0% 10%;
     --popover-foreground: 0 0% 100%;
 
-    --primary: 357 78% 55%; /* Hilti Red (lighter for dark mode) */
-    --primary-foreground: 0 0% 100%;
+    --primary: 196 81.9048% 41.1765%; /* Hilti Red (lighter for dark mode) */
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 357 78% 55%; /* Hilti Red */
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 192 20% 72%; /* Hilti Red */
+    --secondary-foreground: 0 0% 0%;
 
     --muted: 0 0% 20%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 357 78% 55%; /* Hilti Red */
-    --accent-foreground: 0 0% 100%;
+    --accent: 158 23% 75%; /* Hilti Red */
+    --accent-foreground: 0 0% 0%;
 
     --success: 145 63% 42%;
     --success-foreground: 0 0% 100%;
@@ -102,14 +102,14 @@ All colors MUST be HSL.
     --warning: 37 91% 55%;
     --warning-foreground: 0 0% 0%;
 
-    --destructive: 0 48% 46%; /* Red #AE3D3D */
-    --destructive-foreground: 0 48% 46%;
+    --destructive: 4 49.7872% 53.9216%; /* Red #AE3D3D */
+    --destructive-foreground: 4 49.7872% 53.9216%;
 
     --mint: 143 18% 75%;
 
     --border: 0 0% 20%;
     --input: 0 0% 20%;
-    --ring: 357 78% 55%;
+    --ring: 160 25% 72%;
     --font-sans: Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
     --radius: 0.125rem;
   }
