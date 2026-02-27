@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   Database, Search, ChevronDown, ChevronRight, Shield, 
   MapPin, BarChart3, Globe, Zap, CheckCircle2,
-  Factory, Flame, Gauge, Wrench, Box, Cable, Check
+  Factory, Flame, Gauge, Wrench, Box, Cable, Check, Cpu
 } from "lucide-react";
 import SupplierBenchmarkModal from "./SupplierBenchmarkModal";
 import SupplierProfileModal from "./SupplierProfileModal";
@@ -11,55 +11,55 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 const categoryData = [
   { 
-    icon: Gauge, name: "Rotary Hammers", standard: "IEC 62841-2-6", 
-    suppliers: 2134, avgRating: 4.3, audited: 72,
-    subcategories: ["SDS-Plus Hammers", "SDS-Max Hammers", "Combi Hammers", "Demolition Hammers"]
+    icon: Zap, name: "Motors & Drives", standard: "IEC 60034 / IEC 62841", 
+    suppliers: 1834, avgRating: 4.4, audited: 78,
+    subcategories: ["Brushless DC Motors", "Universal Motors", "Gear Assemblies", "Motor Controllers"]
   },
   { 
-    icon: Wrench, name: "Impact Drivers & Wrenches", standard: "IEC 62841-2-2", 
-    suppliers: 1856, avgRating: 4.5, audited: 81,
-    subcategories: ["Impact Drivers", "Impact Wrenches", "Pulse Drivers", "Torque Wrenches"]
+    icon: Flame, name: "Battery Cells & Packs", standard: "UN 38.3 / IEC 62133", 
+    suppliers: 956, avgRating: 4.6, audited: 85,
+    subcategories: ["21700 Cells", "18650 Cells", "Battery Pack Assemblies", "BMS Modules"]
   },
   { 
-    icon: Cable, name: "Drilling Systems", standard: "IEC 62841-2-1", 
-    suppliers: 2890, avgRating: 4.1, audited: 68,
-    subcategories: ["Hammer Drills", "Core Drills", "Magnetic Drills", "Right-Angle Drills"]
+    icon: Gauge, name: "Housings & Casings", standard: "ISO 1043 / ASTM E505", 
+    suppliers: 2340, avgRating: 4.1, audited: 65,
+    subcategories: ["Magnesium Die-Cast", "Aluminum Die-Cast", "PA66-GF Injection", "Overmolded Grips"]
   },
   { 
-    icon: Flame, name: "Cutting & Sawing", standard: "IEC 62841-2-5", 
-    suppliers: 1645, avgRating: 4.0, audited: 55,
-    subcategories: ["Circular Saws", "Reciprocating Saws", "Angle Grinders", "Wall Chasers"]
+    icon: Cpu, name: "Electronics & PCBs", standard: "IPC-A-610 / AEC-Q100", 
+    suppliers: 1425, avgRating: 4.3, audited: 71,
+    subcategories: ["Motor Driver ICs", "Power MOSFETs", "Main PCB Assemblies", "Sensor Modules"]
   },
   { 
-    icon: Box, name: "Fastening Systems", standard: "EN 16228 / ISO 17123", 
-    suppliers: 987, avgRating: 3.9, audited: 48,
-    subcategories: ["Gas Nailers", "Powder-Actuated Tools", "Cordless Nailers", "Screw Guns"]
+    icon: Wrench, name: "Precision Components", standard: "ISO 2768 / DIN 7168", 
+    suppliers: 3120, avgRating: 4.0, audited: 58,
+    subcategories: ["Gears & Spindles", "Bearings", "Chucks & Collets", "Seals & O-Rings"]
   },
   { 
-    icon: Factory, name: "Measuring & Layout", standard: "ISO 17123 / EN 60825", 
-    suppliers: 1423, avgRating: 4.4, audited: 76,
-    subcategories: ["Laser Levels", "Total Stations", "Distance Meters", "Detection Systems"]
+    icon: Box, name: "Fasteners & Assembly", standard: "EN 15048 / VDA 6.3", 
+    suppliers: 1680, avgRating: 4.2, audited: 72,
+    subcategories: ["Thread-forming Screws", "Rivets & Inserts", "Springs & Clips", "Labels & Packaging"]
   },
 ];
 
 const supplierRows = [
-  { name: "Makita Corporation", country: "Japan", category: "Rotary Hammers", rating: 4.8, audits: 12, risk: "Low", certifications: ["IEC 62841", "EN 60745", "IP56"], fitScore: 97 },
-  { name: "Bosch Professional", country: "Germany", category: "Drilling Systems", rating: 4.7, audits: 8, risk: "Low", certifications: ["IEC 62841", "CE Mark", "GS Mark"], fitScore: 94 },
-  { name: "DeWalt Industrial", country: "USA", category: "Demolition Tools", rating: 4.6, audits: 15, risk: "Low", certifications: ["UL Listed", "CSA", "OSHA"], fitScore: 96 },
-  { name: "Milwaukee Tool", country: "USA", category: "Impact Drivers", rating: 4.5, audits: 6, risk: "Low", certifications: ["UL Listed", "IP56", "One-Key"], fitScore: 91 },
-  { name: "Husqvarna Construction", country: "Sweden", category: "Cutting & Sawing", rating: 4.7, audits: 18, risk: "Low", certifications: ["EN 60745", "CE Mark", "IP55"], fitScore: 95 },
-  { name: "Festool GmbH", country: "Germany", category: "Precision Drilling", rating: 4.4, audits: 9, risk: "Medium", certifications: ["IEC 62841", "GS Mark", "CE"], fitScore: 88 },
-  { name: "Metabo HPT", country: "Japan", category: "Rotary Hammers", rating: 4.6, audits: 22, risk: "Low", certifications: ["IEC 62841", "UL Listed", "IP56"], fitScore: 93 },
-  { name: "Stihl Professional", country: "Germany", category: "Cutting Equipment", rating: 4.8, audits: 14, risk: "Low", certifications: ["EN 60745", "CE Mark", "GS"], fitScore: 98 },
-  { name: "Wacker Neuson", country: "Austria", category: "Compaction Tools", rating: 4.3, audits: 7, risk: "Medium", certifications: ["CE Mark", "EN ISO 5765", "IP55"], fitScore: 85 },
-  { name: "Leica Geosystems", country: "Switzerland", category: "Measuring & Layout", rating: 4.5, audits: 11, risk: "Low", certifications: ["ISO 17123", "EN 60825", "IP67"], fitScore: 92 },
+  { name: "Nidec Corporation", country: "Japan", category: "Brushless Motors", rating: 4.8, audits: 14, risk: "Low", certifications: ["IEC 60034", "IATF 16949", "ISO 9001"], fitScore: 97 },
+  { name: "Samsung SDI", country: "South Korea", category: "Battery Cells", rating: 4.7, audits: 11, risk: "Low", certifications: ["UN 38.3", "IEC 62133", "ISO 14001"], fitScore: 94 },
+  { name: "Georg Fischer (GF)", country: "Switzerland", category: "Die-Cast Housings", rating: 4.7, audits: 18, risk: "Low", certifications: ["IATF 16949", "EN 9100", "ISO 9001"], fitScore: 95 },
+  { name: "Infineon Technologies", country: "Germany", category: "Motor Driver ICs", rating: 4.5, audits: 8, risk: "Medium", certifications: ["AEC-Q100", "IATF 16949", "ISO 9001"], fitScore: 89 },
+  { name: "Bossard Group", country: "Switzerland", category: "Assembly Fasteners", rating: 4.6, audits: 12, risk: "Low", certifications: ["VDA 6.3", "EN 15048", "ISO 9001"], fitScore: 93 },
+  { name: "Mabuchi Motor", country: "Japan", category: "DC Motors", rating: 4.4, audits: 9, risk: "Low", certifications: ["IEC 60034", "ISO 9001", "IATF 16949"], fitScore: 88 },
+  { name: "NSK Ltd", country: "Japan", category: "Bearings", rating: 4.8, audits: 22, risk: "Low", certifications: ["ISO 9001", "IATF 16949", "ISO 14001"], fitScore: 96 },
+  { name: "BASF Engineering", country: "Germany", category: "PA66-GF Compounds", rating: 4.5, audits: 15, risk: "Low", certifications: ["ISO 9001", "REACH", "UL 94"], fitScore: 91 },
+  { name: "Murata Manufacturing", country: "Japan", category: "Sensors & Capacitors", rating: 4.6, audits: 10, risk: "Low", certifications: ["AEC-Q200", "ISO 9001", "IATF 16949"], fitScore: 92 },
+  { name: "Johnson Electric", country: "Hong Kong", category: "Motor Assemblies", rating: 4.3, audits: 7, risk: "Medium", certifications: ["IEC 60034", "ISO 9001", "ISO 14001"], fitScore: 85 },
 ];
 
 const stats = [
-  { label: "Suppliers indexed", value: "11,935+", icon: Shield },
-  { label: "Countries", value: "72", icon: Globe },
-  { label: "Completed Audits", value: "31,200+", icon: CheckCircle2 },
-  { label: "Product Groups", value: "280+", icon: Database },
+  { label: "Component suppliers indexed", value: "11,355+", icon: Shield },
+  { label: "Countries", value: "68", icon: Globe },
+  { label: "Completed Audits", value: "28,400+", icon: CheckCircle2 },
+  { label: "Component Groups", value: "340+", icon: Database },
 ];
 
 const SupplierDatabaseDemo = () => {
@@ -184,13 +184,13 @@ const DatabaseDemoWindow = ({
   expandedCategory, setExpandedCategory, hoveredRow, setHoveredRow,
   filteredSuppliers, onSupplierClick, t
 }: DatabaseDemoWindowProps) => {
-  const menuItems = ["Dashboard", "Database", "Saved Lists", "RFQ Manager", "Fleet Orders", "Reports"];
+  const menuItems = ["Dashboard", "Database", "Saved Lists", "RFQ Manager", "Purchase Orders", "Reports"];
 
   return (
     <div className="bg-[hsl(0,0%,85%)] overflow-hidden border border-[hsl(0,0%,80%)] flex flex-col relative">
       {/* Window title bar */}
       <div className="h-8 bg-[hsl(0,0%,88%)] flex items-center px-3 border-b border-[hsl(0,0%,80%)] flex-shrink-0">
-        <span className="text-[10px] text-[hsl(0,0%,35%)] font-medium">Hilti Supplier Database — 11,935 Suppliers · 72 Countries</span>
+        <span className="text-[10px] text-[hsl(0,0%,35%)] font-medium">Hilti Component Supplier Database — 11,355 Suppliers · 68 Countries</span>
         <div className="ml-auto flex gap-1">
           {["Browse", "Search", "Analytics"].map((label, i) => (
             <button
@@ -316,7 +316,7 @@ const DatabaseDemoWindow = ({
               {/* Info bar */}
               <div className="p-2.5 bg-[hsl(0,0%,88%)] border-b border-[hsl(0,0%,78%)]">
                 <p className="text-[10px] text-[hsl(0,0%,30%)] leading-relaxed">
-                  <span className="font-bold text-primary">Fit Score</span> — AI-calculated match based on certifications, audit history, production capacity, and fleet project references. <span className="font-semibold text-primary">Click a supplier for full profile.</span>
+                  <span className="font-bold text-primary">Fit Score</span> — AI-calculated match based on certifications, audit history, production capacity, and Hilti component requirements. <span className="font-semibold text-primary">Click a supplier for full profile.</span>
                 </p>
               </div>
 
@@ -351,8 +351,10 @@ const DatabaseDemoWindow = ({
                         <span className={`px-1.5 py-0.5 text-[9px] font-bold uppercase ${
                           s.risk === "Low" 
                             ? 'bg-secondary/10 text-secondary' 
-                            : 'bg-destructive/10 text-destructive'
-                        }`}>{s.risk} risk</span>
+                            : 'bg-[hsl(var(--warning))]/10 text-[hsl(var(--warning))]'
+                        }`}>
+                          {s.risk} risk
+                        </span>
                       </div>
                     </div>
                     <div className="flex flex-col items-center flex-shrink-0 gap-0.5">

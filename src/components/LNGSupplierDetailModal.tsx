@@ -36,305 +36,309 @@ export interface LNGSupplier {
 
 const suppliersData: LNGSupplier[] = [
   {
-    name: "Makita Corporation",
-    location: "Anjo, Japan",
+    name: "Nidec Corporation",
+    location: "Kyoto, Japan",
     match: 97,
-    certs: ["IEC 62841", "EN 60745", "UL Listed", "CE Marking", "IP56 Rated", "EPTA 05/2015"],
-    capacity: "25,000 units/yr",
-    speciality: "Cordless rotary hammers & impact drivers",
-    initials: "MK",
-    established: "1915",
-    employees: "18,500",
-    revenue: "€4.8B",
-    leadTime: "4–8 weeks",
+    certs: ["ISO 9001", "IATF 16949", "IEC 60034", "UL Recognized", "RoHS", "REACH"],
+    capacity: "12M motors/yr",
+    speciality: "Brushless DC motors & drive units for power tools",
+    initials: "ND",
+    established: "1973",
+    employees: "107,000",
+    revenue: "€14.2B",
+    leadTime: "6–10 weeks",
     qualityScore: 96,
     deliveryRating: "98.1%",
     riskLevel: "Low",
     financialHealth: "Strong",
     products: [
       {
-        name: "HR5212C — SDS-Max Rotary Hammer",
+        name: "BLDC-4270 — 36V Brushless Motor Assembly",
         specs: [
-          { label: "Impact Energy", value: "19.1 J (EPTA)" },
-          { label: "No Load Speed", value: "155–310 rpm" },
-          { label: "Blow Rate", value: "1,100–2,250 bpm" },
-          { label: "Motor", value: "1,510W brushless" },
-          { label: "Weight", value: "13.6 kg" },
-          { label: "Vibration (3-axis)", value: "8.0 m/s² (drilling)" },
-          { label: "Dust Protection", value: "AWS dust extraction compatible" },
-          { label: "Modes", value: "Rotation + hammering, hammering only" },
+          { label: "Rated Power", value: "1,510W continuous" },
+          { label: "Max Speed", value: "32,000 rpm (no load)" },
+          { label: "Torque", value: "4.8 Nm peak" },
+          { label: "Efficiency", value: "92% at rated load" },
+          { label: "Weight", value: "480g (incl. housing)" },
+          { label: "Winding", value: "12-slot 10-pole, Class H insulation" },
+          { label: "Bearing", value: "NSK sealed ball bearing, 8,000h MTBF" },
+          { label: "Protection", value: "IP5X dust ingress rated" },
         ],
-        datasheet: "DS-HR5212C-Rev.5",
+        datasheet: "DS-BLDC4270-Rev.7",
       },
       {
-        name: "DTD172 — 18V Brushless Impact Driver",
+        name: "ECM-1850 — 18V Compact Motor Unit",
         specs: [
-          { label: "Max Torque", value: "180 Nm" },
-          { label: "No Load Speed", value: "0–3,800 rpm" },
-          { label: "Impact Rate", value: "0–4,600 ipm" },
-          { label: "Battery Platform", value: "18V LXT Li-Ion" },
-          { label: "Weight (w/ battery)", value: "1.7 kg" },
-          { label: "IP Rating", value: "IP56 dust & water resistant" },
-          { label: "Modes", value: "4-speed + assist mode" },
-          { label: "LED", value: "Dual-zone work light" },
+          { label: "Rated Power", value: "850W continuous" },
+          { label: "Max Speed", value: "28,000 rpm" },
+          { label: "Torque", value: "2.1 Nm peak" },
+          { label: "Efficiency", value: "89% at rated load" },
+          { label: "Weight", value: "310g" },
+          { label: "Commutation", value: "Sensorless FOC" },
+          { label: "Thermal Protection", value: "Integrated NTC, 155°C cutoff" },
+          { label: "Connector", value: "6-pin Molex press-fit" },
         ],
-        datasheet: "DS-DTD172-Rev.3",
+        datasheet: "DS-ECM1850-Rev.4",
       },
     ],
     projectRefs: [
-      "Deutsche Bahn — 12,000 cordless tool fleet rollout",
-      "Skanska — Rotary hammer standardization (Nordic region)",
-      "Bouygues Construction — Impact driver package (2,400 units)",
-      "HOCHTIEF — Jobsite tool fleet management program",
+      "Hilti — TE 60-ATC/AVR motor platform (2022–present)",
+      "Makita — 40V XGT brushless motor series",
+      "Bosch — ProCORE motor assembly line",
+      "Stanley Black & Decker — FlexVolt drive units",
     ],
     portfolioFit: {
       score: 94,
-      reasoning: "Makita's cordless platform covers 92% of your typical jobsite tool requirements. Their IEC 62841 and EN 60745 dual certification matches your standard procurement specs. Battery interchangeability across 300+ tools reduces fleet complexity significantly.",
+      reasoning: "Nidec is the world's largest motor manufacturer with deep power tool expertise. Their BLDC motor technology covers 90% of Hilti's rotary hammer and drill motor requirements. Vertical integration (magnets, windings, bearings) reduces supply chain risk. Existing Hilti supply relationship strengthens qualification position.",
       strengths: [
-        "Broadest cordless platform — 300+ tools on 18V LXT battery",
-        "Proven track record on 4 major construction fleet programs",
-        "In-house motor manufacturing eliminates supply chain risk",
-        "IP56 rating standard — exceeds jobsite durability requirements",
+        "World's #1 motor manufacturer — unmatched scale and R&D depth",
+        "Active Hilti supplier for TE 60-ATC motor platform since 2022",
+        "Vertical integration: magnets, stators, rotors, bearings in-house",
+        "12M units/yr capacity — can absorb volume spikes without lead time impact",
       ],
       gaps: [
-        "No gas-actuated fastening tools — would need secondary supplier for direct fastening",
-        "Lead time 4–8 weeks — may be tight for urgent project mobilization",
+        "Lead time 6–10 weeks — longer than some regional alternatives",
+        "Japan-centric production — freight cost and transit time for EU delivery",
       ],
     },
     recommendations: [
-      "Request budgetary quote for rotary hammer fleet package — their sweet spot product category",
-      "Order a quality compliance audit to verify IEC 62841 test lab accreditation and CE module conformity",
-      "Consider pairing with Husqvarna for concrete cutting & sawing applications",
-      "Negotiate frame agreement — their capacity of 25,000 units/yr can cover multiple projects simultaneously",
-      "Request demo day invitation at nearest Makita experience center (typically monthly)",
+      "Extend frame agreement to cover next-generation 36V motor platform",
+      "Order qualification audit for new Nidec Mexico plant (closer to US operations)",
+      "Request thermal endurance test data for Class H insulation at 155°C sustained",
+      "Negotiate safety stock agreement — 4-week buffer at Nidec's EU distribution hub",
+      "Evaluate Nidec's integrated motor+controller modules for cost reduction",
     ],
   },
   {
-    name: "Bosch Professional",
-    location: "Stuttgart, Germany",
+    name: "Samsung SDI",
+    location: "Yongin, South Korea",
     match: 94,
-    certs: ["IEC 62841", "EN 60745", "UL Listed", "CE Marking", "IP54"],
-    capacity: "30,000 units/yr",
-    speciality: "Cordless drilling & measuring systems",
-    initials: "BP",
-    established: "1886",
-    employees: "72,000",
-    revenue: "€6.1B",
-    leadTime: "3–6 weeks",
-    qualityScore: 91,
-    deliveryRating: "96.4%",
-    riskLevel: "Medium",
-    financialHealth: "Stable",
-    products: [
-      {
-        name: "GBH 18V-45 C — BITURBO SDS-Max Hammer",
-        specs: [
-          { label: "Impact Energy", value: "12.5 J (EPTA)" },
-          { label: "No Load Speed", value: "0–305 rpm" },
-          { label: "Blow Rate", value: "1,380–2,900 bpm" },
-          { label: "Battery Platform", value: "18V ProCORE Li-Ion" },
-          { label: "Weight (w/ battery)", value: "8.9 kg" },
-          { label: "Vibration", value: "13.0 m/s² (chiseling)" },
-          { label: "Connectivity", value: "Bluetooth + Bosch Connected" },
-          { label: "Modes", value: "Drill, hammer drill, chisel" },
-        ],
-        datasheet: "DS-GBH45C-Rev.4",
-      },
-    ],
-    projectRefs: [
-      "Vinci Construction — 8,000-unit fleet standardization",
-      "Strabag — ProCORE battery platform migration",
-      "PORR Group — Drilling systems for tunnel projects",
-    ],
-    portfolioFit: {
-      score: 78,
-      reasoning: "Strong on cordless drilling and measuring systems, but connected tool fleet management (Bosch Connected) is still maturing. IP54 rating falls slightly below jobsite requirements for heavy rain/dust exposure. Best suited as a complementary supplier for precision drilling and measurement.",
-      strengths: [
-        "Highest production capacity — 30,000 units/yr",
-        "Fastest lead times among European manufacturers (3–6 weeks)",
-        "Strong Vinci/Strabag fleet standardization references",
-      ],
-      gaps: [
-        "IP54 rating — below IP56 requirement for harsh jobsite conditions",
-        "Connected tool platform still maturing vs. competitors",
-        "No SDS-Max rotary hammer above 12.5 J in cordless range",
-      ],
-    },
-    recommendations: [
-      "Use for precision drilling and measuring tool packages — competitive pricing on volume",
-      "Request fleet management demo of Bosch Connected platform for tool tracking",
-      "Monitor IP rating upgrade roadmap before qualifying for outdoor heavy construction",
-    ],
-  },
-  {
-    name: "DeWalt Industrial",
-    location: "Towson, MD, USA",
-    match: 91,
-    certs: ["UL Listed", "CSA", "EN 62841", "OSHA Compliant", "MET Listed"],
-    capacity: "40,000 units/yr",
-    speciality: "Heavy-duty demolition & concrete tools",
-    initials: "DW",
-    established: "1923",
-    employees: "14,200",
-    revenue: "€3.8B",
-    leadTime: "3–5 weeks",
-    qualityScore: 98,
-    deliveryRating: "99.2%",
+    certs: ["ISO 9001", "ISO 14001", "UN 38.3", "IEC 62133", "UL 2054", "KC Mark"],
+    capacity: "500 GWh/yr",
+    speciality: "Li-ion battery cells & packs for professional tools",
+    initials: "SS",
+    established: "1970",
+    employees: "31,000",
+    revenue: "€8.9B",
+    leadTime: "8–14 weeks",
+    qualityScore: 93,
+    deliveryRating: "96.8%",
     riskLevel: "Low",
     financialHealth: "Very Strong",
     products: [
       {
-        name: "DCH735 — 60V FlexVolt SDS-Max Combination Hammer",
+        name: "INR21700-50G — High-drain Li-ion Cell",
         specs: [
-          { label: "Impact Energy", value: "13.3 J (EPTA)" },
-          { label: "No Load Speed", value: "0–380 rpm" },
-          { label: "Blow Rate", value: "1,170–2,340 bpm" },
-          { label: "Battery Platform", value: "60V FlexVolt MAX" },
-          { label: "Weight (w/ battery)", value: "9.3 kg" },
-          { label: "E-Clutch", value: "Electronic torque limiter" },
-          { label: "Dust Management", value: "AirLock system compatible" },
-          { label: "Warranty", value: "3-year + 1-year free service" },
+          { label: "Nominal Capacity", value: "5,000 mAh" },
+          { label: "Nominal Voltage", value: "3.6V" },
+          { label: "Max Discharge", value: "25A continuous" },
+          { label: "Energy Density", value: "260 Wh/kg" },
+          { label: "Cycle Life", value: ">500 cycles to 80% SoH" },
+          { label: "Weight", value: "68.5g" },
+          { label: "Operating Temp", value: "-20°C to +60°C" },
+          { label: "Safety", value: "CID + PTC + ceramic separator" },
         ],
-        datasheet: "DS-DCH735-Rev.8",
+        datasheet: "DS-INR21700-50G-Rev.9",
       },
     ],
     projectRefs: [
-      "Turner Construction — FlexVolt fleet deployment (US nationwide)",
-      "Bechtel — Demolition tool package for refinery turnarounds",
-      "Kiewit Corporation — Heavy-duty concrete drilling program",
+      "Hilti — Nuron 22V battery platform cell supply",
+      "Bosch — ProCORE 18V battery cells",
+      "Festool — 18V battery pack development",
+      "TTI Group — Milwaukee M18 cell qualification",
     ],
     portfolioFit: {
-      score: 88,
-      reasoning: "Best-in-class for heavy-duty demolition and concrete applications. FlexVolt 60V platform delivers corded-equivalent power in cordless form factor. Premium quality (98/100) with the highest delivery rating in the dataset. US-centric distribution may limit EU project logistics.",
+      score: 91,
+      reasoning: "Samsung SDI is a top-3 global battery cell manufacturer with proven power tool credentials. Their 21700 cells deliver the high-drain performance required for rotary hammers and demolition tools. Existing Hilti Nuron supply relationship ensures process alignment. Long lead times are the primary risk factor.",
       strengths: [
-        "Unmatched heavy-duty cordless power with 60V FlexVolt platform",
-        "Highest quality score (98/100) and delivery rating (99.2%)",
-        "100+ years of professional tool engineering heritage",
+        "Top-3 global Li-ion cell manufacturer — proven scale and quality",
+        "Active Hilti Nuron 22V platform supplier",
+        "260 Wh/kg energy density — best-in-class for power tool applications",
       ],
       gaps: [
-        "FlexVolt batteries not cross-compatible with 18V competitor platforms",
-        "Limited measuring/layout tool portfolio vs. competitors",
-        "Higher pricing due to premium positioning",
+        "8–14 week lead time — requires careful demand planning",
+        "Cell allocation priority may shift during EV industry demand surges",
+        "Korea-centric production — geopolitical supply chain considerations",
       ],
     },
     recommendations: [
-      "Ideal complement to Makita for heavy demolition and high-power concrete applications",
-      "Request early fleet assessment to standardize battery platform across project sites",
-      "Explore frame agreement for multi-project demolition tool standardization",
+      "Secure 12-month cell allocation agreement to protect against EV demand spikes",
+      "Request next-generation 46800-format cell samples for future platform evaluation",
+      "Audit Samsung SDI Malaysia plant as alternative production site for risk diversification",
     ],
   },
   {
-    name: "Milwaukee Tool",
-    location: "Brookfield, WI, USA",
-    match: 88,
-    certs: ["UL Listed", "CSA", "EN 62841", "OSHA Compliant", "IP56"],
-    capacity: "35,000 units/yr",
-    speciality: "M18 FUEL cordless platform & One-Key fleet management",
-    initials: "MW",
-    established: "1924",
-    employees: "11,000",
-    revenue: "€3.2B",
-    leadTime: "4–6 weeks",
-    qualityScore: 89,
-    deliveryRating: "95.8%",
-    riskLevel: "Low",
-    financialHealth: "Stable",
-    products: [
-      {
-        name: "M18 FUEL 2915-20 — SDS-Max Rotary Hammer",
-        specs: [
-          { label: "Impact Energy", value: "11.6 J (EPTA)" },
-          { label: "No Load Speed", value: "0–310 rpm" },
-          { label: "Blow Rate", value: "1,450–2,900 bpm" },
-          { label: "Battery Platform", value: "M18 REDLITHIUM HIGH OUTPUT" },
-          { label: "Weight (w/ battery)", value: "9.1 kg" },
-          { label: "One-Key", value: "Tool tracking + custom profiles" },
-          { label: "Anti-Vibration", value: "AUTOSTOP kickback control" },
-          { label: "LED", value: "Built-in task lighting" },
-        ],
-        datasheet: "DS-2915-Rev.4",
-      },
-    ],
-    projectRefs: [
-      "Skanska USA — One-Key fleet management pilot (5,000 tools)",
-      "PCL Construction — M18 FUEL standardization program",
-      "Walsh Group — Complete cordless conversion initiative",
-    ],
-    portfolioFit: {
-      score: 82,
-      reasoning: "Industry-leading fleet management platform (One-Key) with GPS tracking, usage reporting, and remote tool lockout. Strong M18 FUEL cordless lineup covers most jobsite applications. Limited to M18 platform — no high-voltage option like DeWalt FlexVolt for heaviest-duty tasks.",
-      strengths: [
-        "One-Key fleet management — best digital tool tracking in the industry",
-        "IP56 rated across M18 FUEL lineup — exceeds jobsite requirements",
-        "Strong North American construction fleet references",
-      ],
-      gaps: [
-        "No high-voltage (>18V) platform for heaviest demolition work",
-        "One-Key platform availability limited outside North America",
-        "Delivery rating (95.8%) below portfolio average",
-      ],
-    },
-    recommendations: [
-      "Best choice for fleet management & tool tracking requirements — request One-Key demo",
-      "Pair with DeWalt (heavy demo) + Makita (precision) for complete tool ecosystem",
-      "Request One-Key international availability timeline if considering for EU/ME projects",
-    ],
-  },
-  {
-    name: "Festool GmbH",
-    location: "Wendlingen, Germany",
-    match: 85,
-    certs: ["IEC 62841", "EN 60745", "CE Marking", "GS Mark", "IP55"],
-    capacity: "15,000 units/yr",
-    speciality: "Precision drilling & dust-free cutting systems",
-    initials: "FT",
-    established: "1925",
-    employees: "3,200",
-    revenue: "€850M",
-    leadTime: "5–8 weeks",
-    qualityScore: 93,
+    name: "Georg Fischer (GF Machining)",
+    location: "Schaffhausen, Switzerland",
+    match: 91,
+    certs: ["ISO 9001", "ISO 14001", "IATF 16949", "EN 9100", "CE Marking"],
+    capacity: "850K housings/yr",
+    speciality: "Precision die-cast & machined housings for power tools",
+    initials: "GF",
+    established: "1802",
+    employees: "15,100",
+    revenue: "€4.1B",
+    leadTime: "4–8 weeks",
+    qualityScore: 95,
     deliveryRating: "97.5%",
     riskLevel: "Low",
     financialHealth: "Stable",
     products: [
       {
-        name: "BHC 18 — Cordless SDS-Plus Rotary Hammer",
+        name: "DC-7050 — Magnesium Die-Cast Tool Housing",
         specs: [
-          { label: "Impact Energy", value: "2.2 J (EPTA)" },
-          { label: "No Load Speed", value: "0–1,100 rpm" },
-          { label: "Blow Rate", value: "0–4,600 bpm" },
-          { label: "Battery Platform", value: "18V Festool battery system" },
-          { label: "Weight (w/ battery)", value: "3.3 kg" },
-          { label: "Dust Extraction", value: "Integrated D-handle + hose connection" },
-          { label: "Vibration", value: "7.5 m/s² (drilling)" },
-          { label: "Systainer", value: "Compatible with Festool system storage" },
+          { label: "Material", value: "AZ91D magnesium alloy" },
+          { label: "Wall Thickness", value: "1.8–3.2mm" },
+          { label: "Surface Finish", value: "Ra 1.6 μm (as-cast)" },
+          { label: "Dimensional Tolerance", value: "±0.05mm on critical features" },
+          { label: "Weight Reduction", value: "33% lighter vs. aluminum" },
+          { label: "Porosity", value: "<0.5% by X-ray (ASTM E505)" },
+          { label: "Coating", value: "E-coat + powder coat, 500h salt spray" },
+          { label: "Annual Volume", value: "250K–850K units" },
         ],
-        datasheet: "DS-BHC18-Rev.6",
+        datasheet: "DS-DC7050-Rev.5",
       },
     ],
     projectRefs: [
-      "Implenia — Dust-free interior fit-out program",
-      "Goldbeck — Precision drilling standardization for modular construction",
-      "Züblin — Systainer fleet rollout for occupied renovation projects",
+      "Hilti — TE 500-AVR housing series (magnesium)",
+      "Stihl — Chainsaw crankcase die-casting",
+      "Husqvarna — Power cutter housing program",
+      "Miele — Precision motor housing for vacuum systems",
     ],
     portfolioFit: {
-      score: 76,
-      reasoning: "Niche specialist in dust-free and precision applications with strong European compliance. Smaller tool range and lower impact energy limit applicability for heavy concrete work. Best for interior fit-out, renovation, and occupied building projects requiring strict dust management.",
+      score: 88,
+      reasoning: "GF is a world leader in precision casting and machining with 220+ years of manufacturing heritage. Their magnesium die-casting capability directly addresses Hilti's weight reduction targets for next-gen tools. Swiss quality culture aligns with Hilti's precision requirements.",
       strengths: [
-        "Best-in-class dust extraction integration — exceeds occupational health standards",
-        "Full CE + GS + IEC certification — rare combination for European compliance",
-        "Strong European fit-out and renovation project references",
+        "220+ year manufacturing heritage — unmatched process maturity",
+        "Active Hilti supplier for TE 500-AVR magnesium housings",
+        "EU-based production — short logistics chain, no tariff risk",
       ],
       gaps: [
-        "Limited impact energy — max 2.2 J, insufficient for structural concrete",
-        "Smallest capacity (15,000 units/yr) among compared suppliers",
-        "No SDS-Max platform — limits heavy demolition eligibility",
+        "Capacity limited to 850K/yr — may constrain high-volume product launches",
+        "Higher unit cost vs. Asian die-casting alternatives",
+        "No plastic injection capability — secondary supplier needed for polymer housings",
       ],
     },
     recommendations: [
-      "Ideal for interior fit-out and occupied renovation requiring dust-free operation",
-      "Use for precision SDS-Plus drilling and cutting (light to medium duty)",
-      "Complement with Makita or DeWalt for heavy-duty SDS-Max applications",
+      "Negotiate capacity reservation for 2026 next-gen tool platform launch",
+      "Request feasibility study for thin-wall (<1.5mm) magnesium housing designs",
+      "Explore GF's additive manufacturing capability for rapid prototyping",
+    ],
+  },
+  {
+    name: "Infineon Technologies",
+    location: "Neubiberg, Germany",
+    match: 89,
+    certs: ["ISO 9001", "IATF 16949", "AEC-Q100", "IPC-A-610", "RoHS", "REACH"],
+    capacity: "2B chips/yr",
+    speciality: "Power semiconductors & motor controllers for cordless tools",
+    initials: "IF",
+    established: "1999",
+    employees: "56,200",
+    revenue: "€16.3B",
+    leadTime: "10–16 weeks",
+    qualityScore: 92,
+    deliveryRating: "94.2%",
+    riskLevel: "Medium",
+    financialHealth: "Very Strong",
+    products: [
+      {
+        name: "MOTIX™ IMD700A — Integrated Motor Driver",
+        specs: [
+          { label: "Voltage Range", value: "8–60V" },
+          { label: "Phase Current", value: "30A continuous" },
+          { label: "MOSFET RDS(on)", value: "3.8 mΩ (per phase)" },
+          { label: "PWM Frequency", value: "Up to 100 kHz" },
+          { label: "Package", value: "QFN 7×7mm" },
+          { label: "Protection", value: "OCP, OVP, OTP, UVLO" },
+          { label: "Sensorless Control", value: "FOC with flux observer" },
+          { label: "Operating Temp", value: "-40°C to +150°C" },
+        ],
+        datasheet: "DS-IMD700A-Rev.3",
+      },
+    ],
+    projectRefs: [
+      "Hilti — Nuron platform motor controller IC design-in",
+      "Bosch — eBike motor controller series",
+      "Dyson — Digital motor driver program",
+      "Nidec — Integrated motor+controller modules",
+    ],
+    portfolioFit: {
+      score: 85,
+      reasoning: "Infineon is the #1 power semiconductor supplier globally with strong motor control expertise. Their MOTIX platform is designed specifically for brushless motor applications in cordless tools. Existing Hilti design-in for Nuron platform reduces re-qualification risk. Long lead times are the main constraint.",
+      strengths: [
+        "#1 global power semiconductor company — deep application expertise",
+        "Active Hilti design-in for Nuron motor controller platform",
+        "Automotive-grade quality (AEC-Q100) exceeds tool industry standards",
+      ],
+      gaps: [
+        "10–16 week lead time — semiconductor cycle sensitivity",
+        "Delivery rating 94.2% — below portfolio target of 96%+",
+        "Single-source risk if no second supplier qualified for critical ICs",
+      ],
+    },
+    recommendations: [
+      "Establish 6-month rolling forecast commitment to secure allocation priority",
+      "Qualify Texas Instruments as second source for motor driver ICs",
+      "Request Infineon application engineering support for next-gen sensorless FOC tuning",
+    ],
+  },
+  {
+    name: "Bossard Group",
+    location: "Zug, Switzerland",
+    match: 86,
+    certs: ["ISO 9001", "ISO 14001", "IATF 16949", "VDA 6.3", "EN 15048"],
+    capacity: "4B fasteners/yr",
+    speciality: "Precision fasteners, assembly components & smart logistics",
+    initials: "BG",
+    established: "1831",
+    employees: "2,800",
+    revenue: "€1.1B",
+    leadTime: "2–6 weeks",
+    qualityScore: 94,
+    deliveryRating: "99.1%",
+    riskLevel: "Low",
+    financialHealth: "Stable",
+    products: [
+      {
+        name: "ecosyn® — Thread-forming Screws for Tool Assembly",
+        specs: [
+          { label: "Material", value: "Case-hardened steel, Class 10.9" },
+          { label: "Thread Type", value: "Trilobular thread-forming" },
+          { label: "Drive", value: "TORX PLUS® T25" },
+          { label: "Coating", value: "ecosyn®-lubric (friction-controlled)" },
+          { label: "Clamp Force", value: "±10% consistency across 100K cycles" },
+          { label: "Sizes", value: "M3–M8, lengths 6–40mm" },
+          { label: "Salt Spray", value: ">720h per ISO 9227" },
+          { label: "Smart Factory", value: "SmartBin IoT replenishment" },
+        ],
+        datasheet: "DS-ECOSYN-Rev.11",
+      },
+    ],
+    projectRefs: [
+      "Hilti — Assembly fastener program (all tool platforms)",
+      "Siemens — Switchgear assembly fastener standardization",
+      "ABB — SmartBin logistics pilot for robotics assembly",
+      "Schindler — Elevator assembly fastener program",
+    ],
+    portfolioFit: {
+      score: 82,
+      reasoning: "Bossard is a premium fastener and assembly technology specialist with deep expertise in thread-forming and friction-controlled coatings. Their SmartBin IoT system automates replenishment, reducing line-stop risk. Active Hilti supplier across all tool assembly platforms. Highest delivery rating in the portfolio (99.1%).",
+      strengths: [
+        "Active Hilti assembly fastener supplier across all platforms",
+        "99.1% delivery rating — best in portfolio",
+        "SmartBin IoT — automated replenishment eliminates stockout risk",
+      ],
+      gaps: [
+        "Limited to fastener/assembly components — no structural parts capability",
+        "Premium pricing vs. Asian fastener alternatives",
+        "Smaller company scale vs. other portfolio suppliers",
+      ],
+    },
+    recommendations: [
+      "Expand SmartBin deployment to Hilti Thüringen plant assembly lines",
+      "Request total cost analysis (fastener + assembly time savings) vs. standard screws",
+      "Evaluate Bossard's assembly process consulting for next-gen tool design-for-assembly",
     ],
   },
 ];
@@ -419,12 +423,17 @@ const LNGSupplierDetailModal = ({ supplier, open, onOpenChange }: Props) => {
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">Project References</h3>
-                  <div className="space-y-0">
+                  <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">Speciality</h3>
+                  <p className="text-foreground">{supplier.speciality}</p>
+                </div>
+
+                <div>
+                  <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">Key Project References</h3>
+                  <div className="space-y-2">
                     {supplier.projectRefs.map((ref, i) => (
-                      <div key={i} className="flex items-center gap-3 py-3 border-b border-foreground/5 last:border-0">
-                        <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                        <p className="text-sm text-foreground font-medium">{ref}</p>
+                      <div key={i} className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                        <p className="text-sm text-foreground">{ref}</p>
                       </div>
                     ))}
                   </div>
@@ -437,41 +446,24 @@ const LNGSupplierDetailModal = ({ supplier, open, onOpenChange }: Props) => {
               <div className="space-y-6">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {[
-                    { label: "Quality Score", value: `${supplier.qualityScore}/100`, icon: Star, color: supplier.qualityScore >= 95 ? "text-primary" : supplier.qualityScore >= 90 ? "text-secondary" : "text-foreground" },
-                    { label: "Delivery Rating", value: supplier.deliveryRating, icon: TrendingUp, color: "text-primary" },
-                    { label: "Risk Level", value: supplier.riskLevel, icon: AlertTriangle, color: supplier.riskLevel === "Low" ? "text-secondary" : "text-destructive" },
-                    { label: "Financial Health", value: supplier.financialHealth, icon: CheckCircle, color: "text-primary" },
+                    { label: "Quality Score", value: `${supplier.qualityScore}/100`, color: supplier.qualityScore >= 90 ? "text-primary" : "text-foreground" },
+                    { label: "Delivery Rating", value: supplier.deliveryRating, color: "text-primary" },
+                    { label: "Risk Level", value: supplier.riskLevel, color: supplier.riskLevel === "Low" ? "text-secondary" : "text-[hsl(var(--warning))]" },
+                    { label: "Financial Health", value: supplier.financialHealth, color: "text-secondary" },
                   ].map((item, i) => (
                     <div key={i} className="p-4 bg-muted">
-                      <div className="flex items-center gap-2 mb-2">
-                        <item.icon className={`w-4 h-4 ${item.color}`} />
-                        <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">{item.label}</p>
-                      </div>
-                      <p className={`text-2xl font-bold ${item.color}`}>{item.value}</p>
+                      <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-1">{item.label}</p>
+                      <p className={`text-lg font-bold ${item.color}`}>{item.value}</p>
                     </div>
                   ))}
                 </div>
 
-                <div className="p-4 bg-muted">
-                  <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">Quality Score Breakdown</h3>
-                  <div className="space-y-3">
-                    {[
-                      { label: "Documentation & Traceability", score: Math.min(100, supplier.qualityScore + 2) },
-                      { label: "Process Control", score: supplier.qualityScore },
-                      { label: "Non-Conformance Rate", score: Math.max(80, supplier.qualityScore - 3) },
-                      { label: "Corrective Action Effectiveness", score: Math.min(100, supplier.qualityScore + 1) },
-                    ].map((item, i) => (
-                      <div key={i}>
-                        <div className="flex justify-between mb-1">
-                          <span className="text-sm text-foreground font-medium">{item.label}</span>
-                          <span className="text-sm font-bold text-primary">{item.score}%</span>
-                        </div>
-                        <div className="h-2 bg-foreground/10 overflow-hidden">
-                          <div className="h-full bg-primary" style={{ width: `${item.score}%` }} />
-                        </div>
-                      </div>
-                    ))}
+                <div className="p-4 bg-muted/50 border border-border">
+                  <div className="flex items-center gap-2 mb-2">
+                    <TrendingUp className="w-4 h-4 text-primary" />
+                    <h3 className="text-sm font-semibold text-foreground">Performance Trend</h3>
                   </div>
+                  <p className="text-sm text-muted-foreground">Quality and delivery metrics have been stable or improving over the last 4 assessment periods. No significant deviations or escalation triggers detected.</p>
                 </div>
               </div>
             )}
@@ -480,71 +472,61 @@ const LNGSupplierDetailModal = ({ supplier, open, onOpenChange }: Props) => {
             {activeTab === 2 && (
               <div className="space-y-6">
                 {supplier.products.map((product, pi) => (
-                  <div key={pi} className="border border-foreground/10">
-                    <div className="p-4 bg-muted flex items-center justify-between">
-                      <div>
-                        <h3 className="text-base font-bold text-foreground">{product.name}</h3>
-                        <p className="text-xs text-muted-foreground mt-1">Datasheet: {product.datasheet}</p>
-                      </div>
+                  <div key={pi} className="border border-border">
+                    <div className="p-4 bg-muted/50 border-b border-border flex items-center justify-between">
+                      <h3 className="text-sm font-bold text-foreground">{product.name}</h3>
+                      <span className="text-[10px] font-mono text-muted-foreground">{product.datasheet}</span>
                     </div>
-                    <div className="divide-y divide-foreground/5">
-                      {product.specs.map((spec, si) => (
-                        <div key={si} className="flex items-center justify-between px-4 py-3">
-                          <span className="text-sm text-muted-foreground font-medium">{spec.label}</span>
-                          <span className="text-sm font-bold text-foreground">{spec.value}</span>
-                        </div>
-                      ))}
+                    <div className="p-4">
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        {product.specs.map((spec, si) => (
+                          <div key={si}>
+                            <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-0.5">{spec.label}</p>
+                            <p className="text-sm font-medium text-foreground">{spec.value}</p>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
             )}
 
-            {/* Portfolio Fit — AI Prediction */}
+            {/* Portfolio Fit */}
             {activeTab === 3 && (
               <div className="space-y-6">
-                <div className="p-5 bg-primary/5 border border-primary/15">
-                  <div className="flex items-center gap-3 mb-4">
-                    <Sparkles className="w-5 h-5 text-primary" />
-                    <h3 className="text-sm font-bold uppercase tracking-wider text-primary">AI Portfolio Fit Analysis</h3>
+                <div className="flex items-center gap-4 p-4 bg-primary/5 border border-primary/20">
+                  <div className="text-center">
+                    <div className="text-4xl font-bold text-primary">{supplier.portfolioFit.score}</div>
+                    <div className="text-xs text-muted-foreground uppercase tracking-wider">Fit Score</div>
                   </div>
-                  <div className="flex items-center gap-6 mb-4">
-                    <div>
-                      <p className="text-5xl font-bold text-primary">{supplier.portfolioFit.score}%</p>
-                      <p className="text-xs text-muted-foreground uppercase tracking-wider mt-1">Portfolio Fit Score</p>
-                    </div>
-                    <div className="flex-1">
-                      <div className="h-3 bg-foreground/10 overflow-hidden">
-                        <motion.div
-                          className="h-full bg-primary"
-                          initial={{ width: 0 }}
-                          animate={{ width: `${supplier.portfolioFit.score}%` }}
-                          transition={{ duration: 1, ease: "easeOut" }}
-                        />
-                      </div>
-                    </div>
+                  <div className="flex-1">
+                    <p className="text-sm text-foreground leading-relaxed">{supplier.portfolioFit.reasoning}</p>
                   </div>
-                  <p className="text-sm text-foreground leading-relaxed">{supplier.portfolioFit.reasoning}</p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="p-4 bg-secondary/5 border border-secondary/15">
-                    <h4 className="text-sm font-bold uppercase tracking-wider text-secondary mb-3">Strengths</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-primary" /> Strengths
+                    </h3>
                     <div className="space-y-2">
                       {supplier.portfolioFit.strengths.map((s, i) => (
                         <div key={i} className="flex items-start gap-2">
-                          <CheckCircle className="w-4 h-4 text-secondary flex-shrink-0 mt-0.5" />
+                          <Star className="w-3 h-3 text-primary mt-1 flex-shrink-0" />
                           <p className="text-sm text-foreground">{s}</p>
                         </div>
                       ))}
                     </div>
                   </div>
-                  <div className="p-4 bg-destructive/5 border border-destructive/15">
-                    <h4 className="text-sm font-bold uppercase tracking-wider text-destructive mb-3">Gaps</h4>
+                  <div>
+                    <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+                      <AlertTriangle className="w-4 h-4 text-[hsl(var(--warning))]" /> Gaps & Limitations
+                    </h3>
                     <div className="space-y-2">
                       {supplier.portfolioFit.gaps.map((g, i) => (
                         <div key={i} className="flex items-start gap-2">
-                          <AlertTriangle className="w-4 h-4 text-destructive flex-shrink-0 mt-0.5" />
+                          <AlertTriangle className="w-3 h-3 text-[hsl(var(--warning))] mt-1 flex-shrink-0" />
                           <p className="text-sm text-foreground">{g}</p>
                         </div>
                       ))}
@@ -557,23 +539,21 @@ const LNGSupplierDetailModal = ({ supplier, open, onOpenChange }: Props) => {
             {/* Recommendations */}
             {activeTab === 4 && (
               <div className="space-y-4">
-                <div className="flex items-center gap-3 mb-2">
+                <div className="flex items-center gap-2 mb-4">
                   <Sparkles className="w-5 h-5 text-primary" />
-                  <h3 className="text-sm font-bold uppercase tracking-wider text-primary">AI-Generated Recommendations</h3>
+                  <h3 className="text-sm font-semibold text-foreground">AI-Generated Recommendations</h3>
                 </div>
                 {supplier.recommendations.map((rec, i) => (
-                  <div key={i} className="p-4 bg-muted flex items-start gap-4">
-                    <div className="w-8 h-8 bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <span className="text-sm font-bold text-primary">{i + 1}</span>
+                  <div key={i} className="flex items-start gap-3 p-4 bg-muted/50 border border-border">
+                    <div className="w-6 h-6 bg-primary flex items-center justify-center flex-shrink-0">
+                      <span className="text-xs font-bold text-white">{i + 1}</span>
                     </div>
-                    <div className="flex-1">
-                      <p className="text-sm text-foreground font-medium leading-relaxed">{rec}</p>
-                    </div>
-                    <ArrowRight className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-1" />
+                    <p className="text-sm text-foreground">{rec}</p>
                   </div>
                 ))}
               </div>
             )}
+
           </motion.div>
         </div>
       </DialogContent>

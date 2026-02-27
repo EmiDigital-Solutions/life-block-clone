@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import { X, CheckCircle2, AlertTriangle, XCircle, Star, ArrowRight } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
-// Benchmark data — rotary hammer suppliers for construction fleet procurement
-const referenceSupplier = "Hilti AG";
+// Benchmark data — brushless motor suppliers for Hilti power tool production
+const referenceSupplier = "Nidec Corporation";
 
 interface BenchmarkCriterion {
   name: string;
@@ -13,47 +13,47 @@ interface BenchmarkCriterion {
 }
 
 const suppliers = [
-  { name: "Hilti AG", country: "Liechtenstein", role: "Reference (Benchmark)", blocked: true },
-  { name: "Makita Corporation", country: "Japan", role: "#1 Priority", blocked: false },
-  { name: "Bosch Professional", country: "Germany", role: "#2 Priority", blocked: false },
-  { name: "DeWalt Industrial", country: "USA", role: "#3 Priority", blocked: false },
-  { name: "Milwaukee Tool", country: "USA", role: "#4 Priority", blocked: false },
+  { name: "Nidec Corporation", country: "Japan", role: "Current Supplier (Benchmark)", blocked: true },
+  { name: "Mabuchi Motor", country: "Japan", role: "#1 Alternative", blocked: false },
+  { name: "Johnson Electric", country: "Hong Kong", role: "#2 Alternative", blocked: false },
+  { name: "Minebea Mitsumi", country: "Japan", role: "#3 Alternative", blocked: false },
+  { name: "ebm-papst", country: "Germany", role: "#4 Alternative", blocked: false },
 ];
 
 const criteria: BenchmarkCriterion[] = [
-  { name: "Impact Energy ≥ 12 J", weight: 5, scores: [5, 5, 5, 5, 4], notes: "All cover ≥12 J SDS-Max; Milwaukee slightly below at 11.6 J" },
-  { name: "IP56 Dust/Water Rating", weight: 5, scores: [5, 5, 3, 4, 5], notes: "Makita & Milwaukee IP56 standard; Bosch IP54 needs verification" },
-  { name: "IEC 62841 Compliance", weight: 5, scores: [5, 5, 5, 4, 4], notes: "Makita & Bosch full IEC; DeWalt/Milwaukee primarily UL Listed" },
-  { name: "Fleet Mgmt / Connectivity", weight: 4, scores: [5, 3, 4, 3, 5], notes: "Milwaukee One-Key leads; Bosch Connected improving; Makita developing" },
-  { name: "Battery Platform Breadth", weight: 4, scores: [5, 5, 4, 4, 4], notes: "Makita 300+ tools on 18V LXT; Bosch ProCORE growing" },
-  { name: "Dust Extraction Integration", weight: 3, scores: [5, 5, 4, 5, 4], notes: "Makita AWS & DeWalt AirLock both excellent" },
-  { name: "Pricing vs Hilti (est.)", weight: 4, scores: [2, 4, 4, 3, 3], notes: "Makita/Bosch 30–40% lower; DeWalt ~25% lower" },
-  { name: "Lead Time / Delivery", weight: 4, scores: [5, 4, 5, 5, 4], notes: "Bosch & DeWalt fastest (3–6 weeks); Makita 4–8 weeks" },
-  { name: "After-Sales / Warranty", weight: 3, scores: [5, 4, 4, 5, 4], notes: "DeWalt 3yr + 1yr free service; Hilti fleet management best" },
-  { name: "Vibration Reduction Tech", weight: 3, scores: [5, 5, 3, 4, 4], notes: "Makita AVT system closest to Hilti Active Vibration Reduction" },
-  { name: "Company Scale / Stability", weight: 3, scores: [5, 5, 5, 4, 4], notes: "Bosch largest (€6.1B tools div.); Makita €4.8B" },
-  { name: "EU Availability & Support", weight: 5, scores: [5, 5, 5, 3, 3], notes: "Hilti/Makita/Bosch strong EU network; DeWalt/Milwaukee US-centric" },
+  { name: "BLDC Motor Power (≥1,500W)", weight: 5, scores: [5, 4, 5, 4, 3], notes: "Nidec & Johnson cover ≥1,500W; Mabuchi strong at mid-range; ebm-papst primarily fan motors" },
+  { name: "IEC 60034 Compliance", weight: 5, scores: [5, 5, 5, 5, 4], notes: "All Japanese suppliers full IEC; ebm-papst primarily EN 60335 focused" },
+  { name: "Bearing MTBF ≥ 8,000h", weight: 5, scores: [5, 4, 5, 5, 4], notes: "Nidec & Johnson use NSK/NMB sealed bearings; Mabuchi standard sintered" },
+  { name: "Sensorless FOC Capability", weight: 4, scores: [5, 3, 5, 4, 3], notes: "Johnson & Nidec lead on integrated FOC; Mabuchi developing" },
+  { name: "Volume Capacity (>5M/yr)", weight: 4, scores: [5, 5, 4, 5, 3], notes: "Mabuchi highest volume (1.6B motors/yr); ebm-papst smaller scale" },
+  { name: "Thermal Class H Insulation", weight: 4, scores: [5, 4, 4, 5, 4], notes: "Nidec & Minebea standard Class H; others Class F upgradable" },
+  { name: "EU/EMEA Production Site", weight: 4, scores: [3, 2, 4, 3, 5], notes: "ebm-papst strongest EU presence; Johnson has EU plant in Hungary" },
+  { name: "Cost Competitiveness", weight: 4, scores: [3, 5, 4, 4, 2], notes: "Mabuchi 20–30% lower; ebm-papst premium pricing" },
+  { name: "Lead Time (target ≤8 wks)", weight: 3, scores: [4, 4, 4, 3, 5], notes: "ebm-papst fastest (3–5 wks from DE); Asian suppliers 6–10 wks" },
+  { name: "Power Tool Track Record", weight: 5, scores: [5, 4, 4, 3, 2], notes: "Nidec & Mabuchi strongest power tool references; ebm-papst minimal" },
+  { name: "Vertical Integration", weight: 3, scores: [5, 3, 4, 5, 4], notes: "Nidec & Minebea fully vertical (magnets, bearings, windings)" },
+  { name: "IATF 16949 Certification", weight: 3, scores: [5, 4, 5, 5, 3], notes: "Most have IATF; ebm-papst primarily ISO 9001" },
 ];
 
-const totals = suppliers.map((_, si) => 
+const totals = suppliers.map((_, si) =>
   criteria.reduce((sum, c) => sum + c.scores[si] * c.weight, 0)
 );
 const maxTotal = criteria.reduce((sum, c) => sum + 5 * c.weight, 0);
 
 const overallRatings = [
-  { label: "Benchmark (In-house)", color: "text-[hsl(var(--destructive))]" },
-  { label: "★★★★ Very High — #1 Priority", color: "text-[hsl(var(--accent))]" },
-  { label: "★★★★ Very High — #2 Priority", color: "text-[hsl(var(--accent))]" },
-  { label: "★★★ High — #3 Priority", color: "text-[hsl(var(--accent))]" },
-  { label: "★★★ High — #4 Priority", color: "text-[hsl(var(--accent))]" },
+  { label: "Current Supplier (Benchmark)", color: "text-[hsl(var(--destructive))]" },
+  { label: "★★★★ Very High — #1 Alt.", color: "text-[hsl(var(--accent))]" },
+  { label: "★★★★ High — #2 Alt.", color: "text-[hsl(var(--accent))]" },
+  { label: "★★★ High — #3 Alt.", color: "text-[hsl(var(--accent))]" },
+  { label: "★★★ Moderate — #4 Alt.", color: "text-[hsl(var(--accent))]" },
 ];
 
 const availabilityFeasibility = [
-  { label: "✓ In-house", feasible: true },
+  { label: "✓ Active", feasible: true },
   { label: "✓ Available", feasible: true },
   { label: "✓ Available", feasible: true },
-  { label: "◐ Limited EU", feasible: true },
-  { label: "◐ Limited EU", feasible: true },
+  { label: "✓ Available", feasible: true },
+  { label: "◐ Limited PT exp.", feasible: true },
 ];
 
 interface Props {
@@ -78,13 +78,13 @@ const SupplierBenchmarkModal = ({ open, onOpenChange }: Props) => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-[10px] font-mono text-[hsl(var(--accent))] uppercase tracking-[0.2em] mb-2">
-                Supplier Benchmark — Rotary Hammers for Construction Fleet
+                Supplier Benchmark — Brushless Motors for Power Tool Production
               </p>
               <h2 className="text-2xl font-medium text-foreground">
-                Technical Comparison — 5 Suppliers
+                Technical Comparison — 5 Motor Suppliers
               </h2>
               <p className="text-sm text-muted-foreground mt-1">
-                Reference: {referenceSupplier} (in-house benchmark) · Weighted scoring across 12 criteria
+                Reference: {referenceSupplier} (current supplier) · Weighted scoring across 12 criteria
               </p>
             </div>
           </div>
@@ -157,16 +157,16 @@ const SupplierBenchmarkModal = ({ open, onOpenChange }: Props) => {
                 <td className="p-3" />
               </tr>
 
-              {/* EU Availability */}
+              {/* Availability */}
               <tr className="border-b border-border/50">
                 <td className="p-3 sticky left-0 bg-background z-10">
-                  <div className="text-xs text-foreground font-medium">EU Availability</div>
+                  <div className="text-xs text-foreground font-medium">Availability</div>
                 </td>
                 {availabilityFeasibility.map((s, i) => (
                   <td key={i} className="p-3 text-center">
                     <span className={`text-xs font-mono px-2 py-1 rounded-sm ${
-                      s.feasible 
-                        ? 'bg-[hsl(var(--accent))]/10 text-[hsl(var(--accent))]' 
+                      s.feasible
+                        ? 'bg-[hsl(var(--accent))]/10 text-[hsl(var(--accent))]'
                         : 'bg-[hsl(var(--destructive))]/10 text-[hsl(var(--destructive))]'
                     }`}>
                       {s.label}
@@ -204,11 +204,10 @@ const SupplierBenchmarkModal = ({ open, onOpenChange }: Props) => {
               <div className="flex items-start gap-3">
                 <CheckCircle2 className="w-4 h-4 text-[hsl(var(--accent))] mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-sm text-foreground font-medium">Makita Corporation — Primary recommendation</p>
+                  <p className="text-sm text-foreground font-medium">Mabuchi Motor — Primary alternative recommendation</p>
                   <p className="text-xs text-muted-foreground mt-1">
-                    Highest weighted score among alternative suppliers. 300+ tools on single 18V LXT battery platform provides maximum fleet standardization.
-                    AVT vibration reduction system is closest technical equivalent to Hilti Active Vibration Reduction.
-                    30–40% cost reduction vs Hilti reference. In-house motor manufacturing and global service network.
+                    Best cost-performance ratio among alternative motor suppliers. 20–30% lower unit cost vs. Nidec with comparable quality for mid-power applications.
+                    World's largest small motor manufacturer (1.6B units/yr) ensures supply security. Strong power tool references with Makita and TTI Group.
                   </p>
                 </div>
               </div>
@@ -217,10 +216,10 @@ const SupplierBenchmarkModal = ({ open, onOpenChange }: Props) => {
                 <div>
                   <p className="text-sm text-foreground font-medium">Next steps</p>
                   <p className="text-xs text-muted-foreground mt-1">
-                    1. Request Makita fleet pricing for SDS-Max rotary hammer package (50+ units) · 
-                    2. Schedule demo day at nearest Makita experience center for hands-on testing · 
-                    3. Obtain Bosch Professional pricing as backup for cost negotiation leverage · 
-                    4. Evaluate Milwaukee One-Key fleet management as add-on for tool tracking
+                    1. Request Mabuchi sample motors for 36V BLDC platform validation testing ·
+                    2. Schedule qualification audit at Mabuchi Dongguan plant (highest power tool volume) ·
+                    3. Obtain Johnson Electric pricing as backup for cost negotiation leverage ·
+                    4. Evaluate Minebea Mitsumi for high-precision applications requiring integrated bearings
                   </p>
                 </div>
               </div>
@@ -229,8 +228,8 @@ const SupplierBenchmarkModal = ({ open, onOpenChange }: Props) => {
                 <div>
                   <p className="text-sm text-foreground font-medium">Risk note</p>
                   <p className="text-xs text-muted-foreground mt-1">
-                    No alternative supplier currently matches Hilti's integrated fleet management (ON!Track). 
-                    Milwaukee One-Key offers closest alternative but has limited EU availability.
+                    No alternative supplier currently matches Nidec's vertical integration depth (in-house magnets + bearings + windings).
+                    Dual-sourcing Nidec + Mabuchi recommended to balance cost reduction with supply chain resilience.
                   </p>
                 </div>
               </div>
