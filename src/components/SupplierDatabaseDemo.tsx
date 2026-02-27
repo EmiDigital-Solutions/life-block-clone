@@ -11,59 +11,59 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 const categoryData = [
   { 
-    icon: Gauge, name: "Pressure Vessels", standard: "ASME Sec VIII", 
-    suppliers: 1847, avgRating: 4.3, audited: 72,
-    subcategories: ["Shell & Tube HX", "Columns & Towers", "Reactors", "Accumulators"]
+    icon: Gauge, name: "Rotary Hammers", standard: "IEC 62841-2-6", 
+    suppliers: 2134, avgRating: 4.3, audited: 72,
+    subcategories: ["SDS-Plus Hammers", "SDS-Max Hammers", "Combi Hammers", "Demolition Hammers"]
   },
   { 
-    icon: Flame, name: "Cryogenic Equipment", standard: "EN 13445 / API 620", 
-    suppliers: 923, avgRating: 4.5, audited: 81,
-    subcategories: ["LNG Storage Tanks", "Cryogenic Valves", "Cold Boxes", "Vaporizers"]
+    icon: Wrench, name: "Impact Drivers & Wrenches", standard: "IEC 62841-2-2", 
+    suppliers: 1856, avgRating: 4.5, audited: 81,
+    subcategories: ["Impact Drivers", "Impact Wrenches", "Pulse Drivers", "Torque Wrenches"]
   },
   { 
-    icon: Wrench, name: "Rotating Equipment", standard: "API 617 / 618", 
-    suppliers: 1254, avgRating: 4.1, audited: 68,
-    subcategories: ["Centrifugal Compressors", "Reciprocating Compressors", "Turbines", "Pumps"]
+    icon: Cable, name: "Drilling Systems", standard: "IEC 62841-2-1", 
+    suppliers: 2890, avgRating: 4.1, audited: 68,
+    subcategories: ["Hammer Drills", "Core Drills", "Magnetic Drills", "Right-Angle Drills"]
   },
   { 
-    icon: Cable, name: "Piping & Fittings", standard: "ASME B31.3", 
-    suppliers: 3412, avgRating: 4.0, audited: 55,
-    subcategories: ["Carbon Steel Pipe", "Alloy Fittings", "Flanges", "Expansion Joints"]
+    icon: Flame, name: "Cutting & Sawing", standard: "IEC 62841-2-5", 
+    suppliers: 1645, avgRating: 4.0, audited: 55,
+    subcategories: ["Circular Saws", "Reciprocating Saws", "Angle Grinders", "Wall Chasers"]
   },
   { 
-    icon: Box, name: "Structural Steel", standard: "EN 1090 / AWS D1.1", 
-    suppliers: 2156, avgRating: 3.9, audited: 48,
-    subcategories: ["Module Fabrication", "Pipe Racks", "Platforms", "Skid Packages"]
+    icon: Box, name: "Fastening Systems", standard: "EN 16228 / ISO 17123", 
+    suppliers: 987, avgRating: 3.9, audited: 48,
+    subcategories: ["Gas Nailers", "Powder-Actuated Tools", "Cordless Nailers", "Screw Guns"]
   },
   { 
-    icon: Factory, name: "Instrumentation & Control", standard: "IEC 61511 / ISA 84", 
-    suppliers: 1678, avgRating: 4.4, audited: 76,
-    subcategories: ["DCS Systems", "Safety PLCs", "Flow Meters", "Control Valves"]
+    icon: Factory, name: "Measuring & Layout", standard: "ISO 17123 / EN 60825", 
+    suppliers: 1423, avgRating: 4.4, audited: 76,
+    subcategories: ["Laser Levels", "Total Stations", "Distance Meters", "Detection Systems"]
   },
 ];
 
 const supplierRows = [
-  { name: "KSB SE & Co. KGaA", country: "Germany", category: "Rotating Equipment", rating: 4.8, audits: 12, risk: "Low", certifications: ["ISO 9001", "API Q1", "PED"], fitScore: 97 },
-  { name: "Emerson Automation", country: "USA", category: "Instrumentation", rating: 4.7, audits: 8, risk: "Low", certifications: ["ISO 9001", "IECEx", "SIL 3"], fitScore: 94 },
-  { name: "Chart Industries", country: "USA", category: "Cryogenic Equipment", rating: 4.6, audits: 15, risk: "Low", certifications: ["ASME U", "ASME U2", "NB"], fitScore: 96 },
-  { name: "Burckhardt Compression", country: "Switzerland", category: "Rotating Equipment", rating: 4.5, audits: 6, risk: "Low", certifications: ["ISO 9001", "API 618", "PED"], fitScore: 91 },
-  { name: "Dresser-Rand (Siemens)", country: "Germany", category: "Rotating Equipment", rating: 4.7, audits: 18, risk: "Low", certifications: ["API 617", "ISO 9001", "ATEX"], fitScore: 95 },
-  { name: "Velan Inc.", country: "Canada", category: "Cryogenic Valves", rating: 4.4, audits: 9, risk: "Medium", certifications: ["API 6D", "ASME B16.34", "PED"], fitScore: 88 },
-  { name: "BHGE (Baker Hughes)", country: "Italy", category: "Rotating Equipment", rating: 4.6, audits: 22, risk: "Low", certifications: ["API 617", "API 618", "ISO 9001"], fitScore: 93 },
-  { name: "Linde Engineering", country: "Germany", category: "Cryogenic Equipment", rating: 4.8, audits: 14, risk: "Low", certifications: ["EN 13445", "AD 2000", "PED"], fitScore: 98 },
-  { name: "Sumitomo SHI FW", country: "Finland", category: "Pressure Vessels", rating: 4.3, audits: 7, risk: "Medium", certifications: ["ASME U", "PED", "ISO 3834"], fitScore: 85 },
-  { name: "IMI Critical Engineering", country: "UK", category: "Control Valves", rating: 4.5, audits: 11, risk: "Low", certifications: ["API 6A", "PED", "SIL 3"], fitScore: 92 },
+  { name: "Makita Corporation", country: "Japan", category: "Rotary Hammers", rating: 4.8, audits: 12, risk: "Low", certifications: ["IEC 62841", "EN 60745", "IP56"], fitScore: 97 },
+  { name: "Bosch Professional", country: "Germany", category: "Drilling Systems", rating: 4.7, audits: 8, risk: "Low", certifications: ["IEC 62841", "CE Mark", "GS Mark"], fitScore: 94 },
+  { name: "DeWalt Industrial", country: "USA", category: "Demolition Tools", rating: 4.6, audits: 15, risk: "Low", certifications: ["UL Listed", "CSA", "OSHA"], fitScore: 96 },
+  { name: "Milwaukee Tool", country: "USA", category: "Impact Drivers", rating: 4.5, audits: 6, risk: "Low", certifications: ["UL Listed", "IP56", "One-Key"], fitScore: 91 },
+  { name: "Husqvarna Construction", country: "Sweden", category: "Cutting & Sawing", rating: 4.7, audits: 18, risk: "Low", certifications: ["EN 60745", "CE Mark", "IP55"], fitScore: 95 },
+  { name: "Festool GmbH", country: "Germany", category: "Precision Drilling", rating: 4.4, audits: 9, risk: "Medium", certifications: ["IEC 62841", "GS Mark", "CE"], fitScore: 88 },
+  { name: "Metabo HPT", country: "Japan", category: "Rotary Hammers", rating: 4.6, audits: 22, risk: "Low", certifications: ["IEC 62841", "UL Listed", "IP56"], fitScore: 93 },
+  { name: "Stihl Professional", country: "Germany", category: "Cutting Equipment", rating: 4.8, audits: 14, risk: "Low", certifications: ["EN 60745", "CE Mark", "GS"], fitScore: 98 },
+  { name: "Wacker Neuson", country: "Austria", category: "Compaction Tools", rating: 4.3, audits: 7, risk: "Medium", certifications: ["CE Mark", "EN ISO 5765", "IP55"], fitScore: 85 },
+  { name: "Leica Geosystems", country: "Switzerland", category: "Measuring & Layout", rating: 4.5, audits: 11, risk: "Low", certifications: ["ISO 17123", "EN 60825", "IP67"], fitScore: 92 },
 ];
 
 const stats = [
-  { label: "Suppliers indexed", value: "11,270+", icon: Shield },
-  { label: "Countries", value: "84", icon: Globe },
-  { label: "Completed Audits", value: "28,400+", icon: CheckCircle2 },
-  { label: "Product Groups", value: "340+", icon: Database },
+  { label: "Suppliers indexed", value: "11,935+", icon: Shield },
+  { label: "Countries", value: "72", icon: Globe },
+  { label: "Completed Audits", value: "31,200+", icon: CheckCircle2 },
+  { label: "Product Groups", value: "280+", icon: Database },
 ];
 
 const SupplierDatabaseDemo = () => {
-  const [expandedCategory, setExpandedCategory] = useState<number | null>(1);
+  const [expandedCategory, setExpandedCategory] = useState<number | null>(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [hoveredRow, setHoveredRow] = useState<number | null>(null);
@@ -85,7 +85,7 @@ const SupplierDatabaseDemo = () => {
   return (
     <section data-nav-theme="light" className="relative bg-white py-20 md:py-28">
       <div className="mx-auto max-w-[1400px] px-8">
-        {/* Header — matching LNGSearchDemo */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -128,7 +128,7 @@ const SupplierDatabaseDemo = () => {
           ))}
         </div>
 
-        {/* Demo Window — matching LNGSearchDemo chrome */}
+        {/* Demo Window */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -184,13 +184,13 @@ const DatabaseDemoWindow = ({
   expandedCategory, setExpandedCategory, hoveredRow, setHoveredRow,
   filteredSuppliers, onSupplierClick, t
 }: DatabaseDemoWindowProps) => {
-  const menuItems = ["Dashboard", "Database", "Saved Lists", "RFQ Manager", "Audit Orders", "Reports"];
+  const menuItems = ["Dashboard", "Database", "Saved Lists", "RFQ Manager", "Fleet Orders", "Reports"];
 
   return (
     <div className="bg-[hsl(0,0%,85%)] overflow-hidden border border-[hsl(0,0%,80%)] flex flex-col relative">
       {/* Window title bar */}
       <div className="h-8 bg-[hsl(0,0%,88%)] flex items-center px-3 border-b border-[hsl(0,0%,80%)] flex-shrink-0">
-        <span className="text-[10px] text-[hsl(0,0%,35%)] font-medium">Hilti Supplier Database — 11,270 Suppliers · 84 Countries</span>
+        <span className="text-[10px] text-[hsl(0,0%,35%)] font-medium">Hilti Supplier Database — 11,935 Suppliers · 72 Countries</span>
         <div className="ml-auto flex gap-1">
           {["Browse", "Search", "Analytics"].map((label, i) => (
             <button
@@ -207,7 +207,7 @@ const DatabaseDemoWindow = ({
 
       {/* Main content area */}
       <div className="flex h-[600px] md:h-[650px]">
-        {/* Left sidebar — matching LNGSearchDemo sidebar */}
+        {/* Left sidebar */}
         <div className="w-[100px] md:w-[140px] bg-[hsl(0,0%,28%)] border-r border-[hsl(0,0%,22%)] flex flex-col flex-shrink-0">
           <div className="p-2.5 border-b border-[hsl(0,0%,22%)]">
             <span className="text-[10px] text-[hsl(0,0%,60%)] uppercase tracking-widest font-bold">Database</span>
@@ -316,7 +316,7 @@ const DatabaseDemoWindow = ({
               {/* Info bar */}
               <div className="p-2.5 bg-[hsl(0,0%,88%)] border-b border-[hsl(0,0%,78%)]">
                 <p className="text-[10px] text-[hsl(0,0%,30%)] leading-relaxed">
-                  <span className="font-bold text-primary">Fit Score</span> — AI-calculated match based on certifications, audit history, capacity, and project references. <span className="font-semibold text-primary">Click a supplier for full profile.</span>
+                  <span className="font-bold text-primary">Fit Score</span> — AI-calculated match based on certifications, audit history, production capacity, and fleet project references. <span className="font-semibold text-primary">Click a supplier for full profile.</span>
                 </p>
               </div>
 
@@ -350,11 +350,9 @@ const DatabaseDemoWindow = ({
                         <span className="px-1.5 py-0.5 border border-foreground/20 text-[hsl(0,0%,50%)] text-[9px] font-semibold">{s.audits} audits</span>
                         <span className={`px-1.5 py-0.5 text-[9px] font-bold uppercase ${
                           s.risk === "Low" 
-                            ? 'bg-primary/15 text-primary border border-primary/30' 
-                            : 'bg-[hsl(45,100%,50%)]/15 text-[hsl(45,80%,35%)] border border-[hsl(45,100%,50%)]/30'
-                        }`}>
-                          {s.risk} Risk
-                        </span>
+                            ? 'bg-secondary/10 text-secondary' 
+                            : 'bg-destructive/10 text-destructive'
+                        }`}>{s.risk} risk</span>
                       </div>
                     </div>
                     <div className="flex flex-col items-center flex-shrink-0 gap-0.5">
@@ -366,21 +364,6 @@ const DatabaseDemoWindow = ({
                     </div>
                   </motion.div>
                 ))}
-              </div>
-
-              {/* Status bar */}
-              <div className="px-3 py-2 border-t border-[hsl(0,0%,78%)] bg-[hsl(0,0%,88%)] flex items-center justify-between flex-shrink-0">
-                <span className="text-[10px] text-[hsl(0,0%,45%)] font-medium">
-                  Showing <span className="font-bold text-foreground">{filteredSuppliers.length}</span> of <span className="font-bold text-foreground">11,270</span> suppliers
-                </span>
-                <div className="flex items-center gap-3">
-                  <span className="text-[10px] text-[hsl(0,0%,45%)] flex items-center gap-1">
-                    <Zap className="w-3 h-3 text-primary" /> AI Portfolio Matching
-                  </span>
-                  <span className="text-[10px] text-[hsl(0,0%,45%)] flex items-center gap-1">
-                    <BarChart3 className="w-3 h-3 text-primary" /> 28,400+ audit data points
-                  </span>
-                </div>
               </div>
             </div>
           </div>
