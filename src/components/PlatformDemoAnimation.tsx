@@ -130,9 +130,9 @@ const DiscoverScreen = () => {
   }, []);
 
   const suppliers = [
-    { name: "PräzisionsTech GmbH", location: "Stuttgart, DE", industry: "CNC Machining", score: 94, certs: "ISO 9001, AS9100" },
-    { name: "AeroComponents SA", location: "Toulouse, FR", industry: "Aerospace Parts", score: 89, certs: "EN 9100, ISO 14001" },
-    { name: "TurboValve Ltd", location: "Sheffield, UK", industry: "Valve Manufacturing", score: 86, certs: "ISO 9001, PED" },
+    { name: "Đuro Đaković d.d.", location: "Slavonski Brod, HR", industry: "Steel Fabrication", score: 97, certs: "ISO 9001, EN 1090-2" },
+    { name: "Končar d.d.", location: "Zagreb, HR", industry: "Electrical Equipment", score: 94, certs: "ISO 9001, IEC 61439" },
+    { name: "AD Plastik d.d.", location: "Solin, HR", industry: "Automotive Components", score: 91, certs: "IATF 16949, VDA 6.3" },
   ];
 
   return (
