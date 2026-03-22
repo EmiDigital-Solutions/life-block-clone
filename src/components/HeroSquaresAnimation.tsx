@@ -77,17 +77,6 @@ const formations = {
     ];
   })(),
 
-  // Croatian šahovnica — 5×5 checkerboard grid (initial formation)
-  sahovnica: (() => {
-    const squares = [];
-    for (let row = 0; row < 5; row++) {
-      for (let col = 0; col < 5; col++) {
-        squares.push({ x: UNIT * col, y: UNIT * row });
-      }
-    }
-    // Keep only 11 to match other formations, pick checkerboard-visible ones
-    return squares.slice(0, 11);
-  })(),
 };
 
 type Formation = keyof typeof formations;
