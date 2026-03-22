@@ -323,7 +323,7 @@ const AtlasAIDemoAnimation = () => {
                 </div>
               </div>
               <p className="text-[18px] md:text-[20px] text-white font-medium leading-[1.5]">
-                Does the cryogenic test field demonstrate compliant boil-off rates and vacuum integrity per EN 13458?
+                Does the injection molding process for BMW air vent assemblies meet Cpk ≥ 1.67 and color ΔE &lt; 0.5 per IATF 16949?
               </p>
             </motion.div>
 
