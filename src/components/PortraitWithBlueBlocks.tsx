@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-interface PortraitWithBlueBlocksProps {
+interface PortraitWithBlocksProps {
   src: string;
   alt: string;
   className?: string;
@@ -8,8 +8,8 @@ interface PortraitWithBlueBlocksProps {
 }
 
 /**
- * Portrait image with Archlet-style scattered square blocks overlay.
- * Inspired by the checkerboard pixel-grid pattern from the reference design.
+ * Portrait image with Croatian šahovnica-style scattered square blocks overlay.
+ * Alternates red and white squares like the Croatian coat of arms.
  * Blocks are positioned to avoid overlapping the face/head area.
  */
 const PortraitWithBlueBlocks = ({ 
