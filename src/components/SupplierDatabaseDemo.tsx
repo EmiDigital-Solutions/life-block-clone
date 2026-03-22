@@ -316,7 +316,7 @@ const DatabaseDemoWindow = ({
               {/* Info bar */}
               <div className="p-2.5 bg-[hsl(0,0%,88%)] border-b border-[hsl(0,0%,78%)]">
                 <p className="text-[10px] text-[hsl(0,0%,30%)] leading-relaxed">
-                  <span className="font-bold text-primary">Fit Score</span> — AI-calculated match based on certifications, audit history, production capacity, and Hilti component requirements. <span className="font-semibold text-primary">Click a supplier for full profile.</span>
+                  <span className="font-bold text-primary">Fit Score</span> — AI-calculated match based on certifications, audit history, production capacity, and buyer requirements. <span className="font-semibold text-primary">Click a supplier for full profile.</span>
                 </p>
               </div>
 
