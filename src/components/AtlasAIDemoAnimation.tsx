@@ -443,7 +443,7 @@ const AtlasAIDemoAnimation = () => {
                                 transition={{ delay: 0.5 }}
                                 className="text-[12px] text-white/40 italic"
                               >
-                                Boil-off at 0.18%/day confirmed on-site. Vacuum jacket shows pressure rise. Recommend re-evacuation before acceptance...
+                                Cpk at 1.42 confirmed on cavity 3. Color ΔE 0.72 on recent batch. Recommend mold insert replacement and color masterbatch recalibration before BMW run-at-rate...
                               </motion.span>
                             </div>
                             <div className="flex justify-end mt-3">
