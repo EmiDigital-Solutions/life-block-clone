@@ -175,7 +175,7 @@ const DiscoverScreen = () => {
             <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}>
               <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-1.5">Audit Standard</div>
               <div className="flex gap-1.5">
-                {["ISO 9001", "AS9100", "IATF"].map((std, i) => (
+                {["ISO 9001", "EN 1090-2", "IATF"].map((std, i) => (
                   <div key={std} className={`px-3 py-1.5 text-xs font-semibold ${i === 0 ? 'bg-foreground text-background' : 'border border-foreground/15 text-foreground/50'}`}>
                     {std}
                   </div>
