@@ -64,9 +64,9 @@ const AtlasAIDemoAnimation = () => {
   const { language } = useLanguage();
 
   const riskAlertPartsEn = [
-    "Cryogenic test field audit required per EN 13458 and ASME VIII Div.1.",
-    "Verify LN₂ boil-off rate measurement and vacuum insulation integrity.",
-    "Check calibration certificates for temperature sensors below minus 196°C.",
+    "Injection molding audit required per IATF 16949 and VDA 6.3 for BMW interior trim components.",
+    "Verify cavity pressure monitoring and dimensional control on dashboard air vent assemblies.",
+    "Check material certificates for PP-T20 compound and color matching records against BMW M-TN 1011.",
   ];
 
   const speakRiskAlert = useCallback(() => {
