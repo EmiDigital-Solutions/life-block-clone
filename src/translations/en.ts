@@ -153,7 +153,7 @@ export const en = {
     subtitle: "Structured supplier data for metalworking, plastics, machinery, and electronics — search results, audit findings, and technical portfolio analysis in one system.",
     targetArch: "Target Architecture",
     stats: [
-      { label: "Suppliers indexed", value: "200M+" },
+      { label: "Croatian companies indexed", value: "162K+" },
       { label: "Countries", value: "47+" },
       { label: "Completed Audits", value: "28,400+" },
       { label: "Industry Sectors", value: "340+" },
