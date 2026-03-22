@@ -153,9 +153,9 @@ const PowerToolChatbot = () => {
               <span className="text-[10px] font-bold uppercase tracking-widest text-primary block mb-1.5">Preference Engine — Context Detected</span>
               <div className="flex gap-2 flex-wrap">
                 {[
-                  { label: "CNC Stainless Steel Machining", type: "Process" },
+                  { label: "Steel Fabrication & Welding", type: "Process" },
                   { label: "Europe / Croatia Priority", type: "Region" },
-                  { label: "ISO 9001 Required", type: "Standard" },
+                  { label: "ISO 9001 / EN 1090 Required", type: "Standard" },
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-1">
                     <span className="px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider bg-[hsl(0,0%,85%)] text-[hsl(0,0%,40%)]">{item.type}</span>
