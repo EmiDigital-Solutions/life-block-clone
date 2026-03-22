@@ -342,9 +342,9 @@ const MatchScreen = () => {
   }, []);
 
   const auditors = [
-    { name: "Markus Hoffmann", region: "DACH", location: "Stuttgart, DE", match: 96, cert: "ISO 9001 Lead · 15 yrs", supplier: "PräzisionsTech", img: auditorGen2 },
-    { name: "Dr. Anna Weber", region: "Western EU", location: "Toulouse, FR", match: 93, cert: "AS9100 Lead · 12 yrs", supplier: "AeroComponents", img: auditorGen3 },
-    { name: "Thomas Richter", region: "UK & Ireland", location: "Manchester, UK", match: 89, cert: "ISO 9001 · 9 yrs", supplier: "TurboValve", img: auditorGen4 },
+    { name: "Markus Hoffmann", region: "DACH", location: "Stuttgart, DE", match: 96, cert: "EN 1090-2 Lead · 15 yrs", supplier: "Đuro Đaković", img: auditorGen2 },
+    { name: "Dr. Anna Weber", region: "Western EU", location: "Vienna, AT", match: 93, cert: "ISO 9001 Lead · 12 yrs", supplier: "Končar", img: auditorGen3 },
+    { name: "Ivan Horvat", region: "SEE", location: "Zagreb, HR", match: 89, cert: "IATF 16949 · 9 yrs", supplier: "AD Plastik", img: auditorGen4 },
   ];
 
   const reasoningSteps = [
