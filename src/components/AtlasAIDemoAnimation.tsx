@@ -271,17 +271,17 @@ const AtlasAIDemoAnimation = () => {
                 </span>
               </div>
               <div className="space-y-2">
-                <EvidenceItem name="test_field_overview.jpg" type="img" status="verified" />
-                <EvidenceItem name="boiloff_rate_report.pdf" type="doc" status={evidenceComplete ? "verified" : "review"} />
-                <EvidenceItem name="vacuum_gauge_reading.jpg" type="img" status="verified" />
+                <EvidenceItem name="molding_cell_overview.jpg" type="img" status="verified" />
+                <EvidenceItem name="cpk_report_air_vent.pdf" type="doc" status={evidenceComplete ? "verified" : "review"} />
+                <EvidenceItem name="cavity_pressure_chart.jpg" type="img" status="verified" />
                 <AnimatePresence>
                   {evidenceComplete && (
                     <>
                       <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }}>
-                        <EvidenceItem name="thermal_cycle_log.pdf" type="doc" status="verified" />
+                        <EvidenceItem name="color_delta_e_report.pdf" type="doc" status="verified" />
                       </motion.div>
                       <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} transition={{ delay: 0.2 }}>
-                        <EvidenceItem name="sensor_calibration_cert.pdf" type="doc" status="verified" />
+                        <EvidenceItem name="pp_t20_material_cert.pdf" type="doc" status="verified" />
                       </motion.div>
                     </>
                   )}
