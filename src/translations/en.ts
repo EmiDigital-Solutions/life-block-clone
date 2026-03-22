@@ -134,7 +134,7 @@ export const en = {
     headline2: "to close-out",
     subtitle: "Five steps. One platform. Full visibility from supplier discovery to corrective action close-out.",
     steps: [
-      { number: "01", title: "Search", subtitle: "Find the right supplier", description: "Describe what you need. AI scans 200M+ companies worldwide — by capability, certification, capacity. Results in seconds. Multilingual: EN, DE, IT." },
+      { number: "01", title: "Search", subtitle: "Find the right supplier", description: "Describe what you need. AI scans 162,000+ Croatian companies — by capability, certification, capacity. Results in seconds. Multilingual: EN, DE, IT, HR." },
       { number: "02", title: "Qualify", subtitle: "Verify before you contact", description: "Automated certificate checks, capacity validation, risk scoring. Know if a supplier is worth your time before the first call." },
       { number: "03", title: "Audit", subtitle: "On-site in 48 hours", description: "Local certified auditor deployed from CEIP network. AI-guided checklists. Real-time progress tracking. No travel required from your side." },
       { number: "04", title: "Report", subtitle: "Decision-ready in 24h", description: "Standardized findings with photo evidence, risk scores, and benchmarks. Same format for every supplier, every country." },
