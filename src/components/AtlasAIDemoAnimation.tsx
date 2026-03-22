@@ -112,21 +112,24 @@ const AtlasAIDemoAnimation = () => {
     });
   }, [copilotSpeaking, language]);
 
-  // Pulse speaker when section scrolls into view
+  // Auto-play Atlas Copilot when section scrolls into view
+  const hasAutoPlayed = useRef(false);
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !copilotSpeaking) {
-          setSpeakerPulsing(true);
+        if (entry.isIntersecting && !copilotSpeaking && !hasAutoPlayed.current) {
+          hasAutoPlayed.current = true;
+          // Small delay so user sees the section first
+          setTimeout(() => speakRiskAlert(), 800);
         }
       },
       { threshold: 0.5 }
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, [copilotSpeaking]);
+  }, [copilotSpeaking, speakRiskAlert]);
 
   // Stop pulsing when user clicks speak
   useEffect(() => {
