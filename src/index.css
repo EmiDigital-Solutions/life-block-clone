@@ -26,8 +26,8 @@ All colors MUST be HSL.
     --primary: 195 88.5714% 34.3137%; /* CEIP Blue #0A7FA5 */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 50% 35%; /* Croatian Navy Blue */
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 161 25.5411% 54.7059%;
+    --secondary-foreground: 0 0% 0%;
 
     --muted: 0 0% 96%; /* Snow White #F5F5F5 */
     --muted-foreground: 0 0% 45%;
