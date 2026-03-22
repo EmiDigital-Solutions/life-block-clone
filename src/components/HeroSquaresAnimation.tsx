@@ -30,65 +30,63 @@ const formations = {
     { x: UNIT * 4, y: UNIT * 3 },
     { x: UNIT * 4, y: UNIT * 4, opacity: 0 },
   ],
-  // Person / Auditor: head (1) + body (torso + arms + legs)
+  // Person / Auditor
   person: [
-    // Head
     { x: UNIT * 2.5, y: 0 },
-    // Shoulders
     { x: UNIT * 1.5, y: UNIT },
     { x: UNIT * 2.5, y: UNIT },
     { x: UNIT * 3.5, y: UNIT },
-    // Torso
     { x: UNIT * 2.5, y: UNIT * 2 },
-    // Arms
     { x: UNIT * 1, y: UNIT * 2 },
     { x: UNIT * 4, y: UNIT * 2 },
-    // Legs + feet
     { x: UNIT * 2, y: UNIT * 3 },
     { x: UNIT * 3, y: UNIT * 3 },
     { x: UNIT * 2, y: UNIT * 4 },
     { x: UNIT * 3, y: UNIT * 4 },
   ],
-  // Atlas AI Copilot — "AI" letters, narrow symmetric A
+  // Atlas AI Copilot
   atlasAI: [
-    // Letter A — left leg (narrow angle)
     { x: UNIT * 0.5, y: UNIT * 3 },
     { x: UNIT * 0.75, y: UNIT * 2 },
     { x: UNIT * 1, y: UNIT },
-    // A — apex
     { x: UNIT * 1.25, y: 0 },
-    // A — right leg
     { x: UNIT * 1.5, y: UNIT },
     { x: UNIT * 1.75, y: UNIT * 2 },
     { x: UNIT * 2, y: UNIT * 3 },
-    // Letter I (centered with A)
     { x: UNIT * 3.5, y: 0 },
     { x: UNIT * 3.5, y: UNIT },
     { x: UNIT * 3.5, y: UNIT * 2 },
     { x: UNIT * 3.5, y: UNIT * 3 },
   ],
-  // Checkmark — diamonds (45° rotated) with 3px edge gap along diagonals
-  // Diamond edge-to-edge gap of 3px → center spacing = (28+3)/√2 ≈ 21.9px
+  // Checkmark — diamonds
   checkmark: (() => {
-    const D = (SQUARE_SIZE + 3) / Math.SQRT2; // ~21.9px diagonal step
-    const vx = D * 2, vy = D * 4; // vertex position
+    const D = (SQUARE_SIZE + 3) / Math.SQRT2;
+    const vx = D * 2, vy = D * 4;
     return [
-      // Short leg (2 diamonds, down-right to vertex)
       { x: vx - D * 2, y: vy - D * 2, diamond: true },
       { x: vx - D, y: vy - D, diamond: true },
-      // Vertex (bottom point)
       { x: vx, y: vy, diamond: true },
-      // Long leg (4 diamonds, up-right from vertex)
       { x: vx + D, y: vy - D, diamond: true },
       { x: vx + D * 2, y: vy - D * 2, diamond: true },
       { x: vx + D * 3, y: vy - D * 3, diamond: true },
       { x: vx + D * 4, y: vy - D * 4, diamond: true },
-      // Hidden (to keep 11 squares)
       { x: vx + D, y: vy - D, opacity: 0 },
       { x: vx + D * 2, y: vy - D * 2, opacity: 0 },
       { x: vx + D * 3, y: vy - D * 3, opacity: 0 },
       { x: vx + D * 4, y: vy - D * 4, opacity: 0 },
     ];
+  })(),
+
+  // Croatian šahovnica — 5×5 checkerboard grid (initial formation)
+  sahovnica: (() => {
+    const squares = [];
+    for (let row = 0; row < 5; row++) {
+      for (let col = 0; col < 5; col++) {
+        squares.push({ x: UNIT * col, y: UNIT * row });
+      }
+    }
+    // Keep only 11 to match other formations, pick checkerboard-visible ones
+    return squares.slice(0, 11);
   })(),
 };
 
