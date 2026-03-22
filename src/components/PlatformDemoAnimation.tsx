@@ -294,7 +294,7 @@ const DiscoverScreen = () => {
                   </svg>
                   <div className="flex-1">
                     <span className="text-xs font-semibold text-foreground block">AI Recommendation</span>
-                    <span className="text-[10px] text-muted-foreground leading-relaxed">All 3 suppliers qualify for ISO 9001 audit. PräzisionsTech shows strongest quality metrics. Recommend parallel audit execution for fastest qualification.</span>
+                    <span className="text-[10px] text-muted-foreground leading-relaxed">All 3 Croatian suppliers qualify for audit. Đuro Đaković shows strongest quality metrics. Recommend parallel audit execution for fastest qualification.</span>
                   </div>
                 </div>
               </GlassCard>
