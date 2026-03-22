@@ -248,7 +248,7 @@ const PowerToolChatbot = () => {
 
       <div className="p-3 border-t border-[hsl(0,0%,78%)] flex gap-2 flex-shrink-0 bg-[hsl(0,0%,88%)] mt-auto">
         <div className="flex-1 h-9 bg-white border border-[hsl(0,0%,75%)] flex items-center px-3">
-          <span className="text-[hsl(0,0%,55%)] text-[11px]">Describe what component you need...</span>
+          <span className="text-[hsl(0,0%,55%)] text-[11px]">Describe what you need from a supplier...</span>
         </div>
         <div className="w-9 h-9 bg-primary flex items-center justify-center">
           <ArrowRight className="w-4 h-4 text-white" />
