@@ -553,27 +553,27 @@ const AtlasAIDemoAnimation = () => {
               <ScrollNav scrollRef={rightScrollRef} />
               <IntelCard title="Priority" titleColor="text-[#AE3D3D]">
                 <div className="space-y-2 text-[12px] text-white/45">
-                  <div>• Boil-off rate deviation (0.18% vs 0.12%)</div>
-                  <div>• Vacuum jacket integrity (8.5 mbar)</div>
-                  <div className="text-[#6EA996] mt-1 font-medium">→ Verify insulation condition first</div>
+                  <div>• Cpk deviation (1.42 vs 1.67 required)</div>
+                  <div>• Color ΔE out-of-spec (0.72 vs 0.5)</div>
+                  <div className="text-[#6EA996] mt-1 font-medium">→ Inspect mold cavity 3 insert wear first</div>
                 </div>
               </IntelCard>
 
-              <IntelCard title="Client Focus">
+              <IntelCard title="BMW Requirements">
                 <div className="space-y-2 text-[12px] text-white/45">
-                  <div><span className="text-[10px] px-1.5 py-0.5 bg-[#AE3D3D] text-white font-bold rounded mr-2">1</span>Boil-off Compliance</div>
-                  <div><span className="text-[10px] px-1.5 py-0.5 bg-[#AE3D3D] text-white font-bold rounded mr-2">2</span>Vacuum Integrity</div>
-                  <div><span className="text-[10px] px-1.5 py-0.5 bg-[#F5A623] text-white font-bold rounded mr-2">3</span>Sensor Accuracy</div>
+                  <div><span className="text-[10px] px-1.5 py-0.5 bg-[#AE3D3D] text-white font-bold rounded mr-2">1</span>Cpk ≥ 1.67 All Dimensions</div>
+                  <div><span className="text-[10px] px-1.5 py-0.5 bg-[#AE3D3D] text-white font-bold rounded mr-2">2</span>Color ΔE &lt; 0.5</div>
+                  <div><span className="text-[10px] px-1.5 py-0.5 bg-[#F5A623] text-white font-bold rounded mr-2">3</span>Mold Maintenance Compliance</div>
                 </div>
               </IntelCard>
 
               <IntelCard title="Benchmark">
                 <div className="space-y-2">
-                  <div className="flex justify-between text-[12px]"><span className="text-white/40">This supplier</span><span className="text-white/60 font-bold">5.8/10</span></div>
-                  <BarRound value={58} />
-                  <div className="flex justify-between text-[12px]"><span className="text-white/40">Industry avg</span><span className="text-white/60 font-bold">7.2/10</span></div>
-                  <BarRound value={72} color="bg-white/20" />
-                  <div className="text-[12px] text-[#AE3D3D] font-semibold mt-2">Hold — corrective action required</div>
+                  <div className="flex justify-between text-[12px]"><span className="text-white/40">AD Plastik</span><span className="text-white/60 font-bold">6.4/10</span></div>
+                  <BarRound value={64} />
+                  <div className="flex justify-between text-[12px]"><span className="text-white/40">BMW Tier-1 avg</span><span className="text-white/60 font-bold">8.1/10</span></div>
+                  <BarRound value={81} color="bg-white/20" />
+                  <div className="text-[12px] text-[#AE3D3D] font-semibold mt-2">Hold — mold rework required before run-at-rate</div>
                 </div>
               </IntelCard>
 
