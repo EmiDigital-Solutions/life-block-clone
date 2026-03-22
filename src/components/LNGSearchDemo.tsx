@@ -289,8 +289,8 @@ const PowerToolResults = ({ onSupplierClick }: { onSupplierClick: () => void }) 
       <div className="flex-1 flex flex-col min-w-0">
         <div className="px-3 py-2.5 border-b border-[hsl(0,0%,78%)] flex items-center justify-between flex-shrink-0 bg-[hsl(0,0%,88%)]">
           <div>
-            <p className="text-[11px] text-[hsl(0,0%,30%)] uppercase tracking-wider font-bold">18 Suppliers Found</p>
-            <p className="text-[10px] text-[hsl(0,0%,50%)]">BLDC Motors · 36V Platform · IEC 60034 · IATF 16949</p>
+             <p className="text-[11px] text-[hsl(0,0%,30%)] uppercase tracking-wider font-bold">12 Suppliers Found</p>
+              <p className="text-[10px] text-[hsl(0,0%,50%)]">CNC Machining · Stainless 316L · ISO 9001 · Food Processing</p>
           </div>
           <div className="flex gap-1.5">
             <span className="px-2 py-1 bg-white/80 border border-white/85 text-[10px] text-foreground font-medium">Sort: Match</span>
