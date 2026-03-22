@@ -148,6 +148,7 @@ const HeroSquaresAnimation = ({ className = "" }: HeroSquaresAnimationProps) => 
               mass: 0.8,
               delay: i * 0.04,
             }}
+          />
           );
         })}
         <AnimatePresence mode="wait">
