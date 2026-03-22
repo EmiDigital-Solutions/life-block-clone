@@ -24,16 +24,16 @@ const PortraitWithBlueBlocks = ({
   const blockVariants = {
     default: (
       <>
-        {/* Bottom-left cluster — checkerboard red/white */}
-        <div className={`absolute bottom-[4%] left-[2%] ${sq} bg-primary`} />
-        <div className={`absolute bottom-[4%] left-[11%] ${sq} bg-white border border-primary/30`} />
-        <div className={`absolute bottom-[13%] left-[2%] ${sq} bg-white border border-primary/30`} />
-        <div className={`absolute bottom-[13%] left-[20%] ${sq} bg-primary`} />
-        <div className={`absolute bottom-[22%] left-[11%] ${sq} bg-primary`} />
+        {/* Bottom-left cluster — Croatian checkerboard red/white */}
+        <div className={`absolute bottom-[4%] left-[2%] ${sq} bg-[hsl(0,78%,50%)]`} />
+        <div className={`absolute bottom-[4%] left-[11%] ${sq} bg-white border border-[hsl(0,78%,50%)]/30`} />
+        <div className={`absolute bottom-[13%] left-[2%] ${sq} bg-white border border-[hsl(0,78%,50%)]/30`} />
+        <div className={`absolute bottom-[13%] left-[20%] ${sq} bg-[hsl(0,78%,50%)]`} />
+        <div className={`absolute bottom-[22%] left-[11%] ${sq} bg-[hsl(0,78%,50%)]`} />
         {/* Top-right cluster */}
-        <div className={`absolute top-[6%] right-[3%] ${sq} bg-primary`} />
-        <div className={`absolute top-[6%] right-[12%] ${sq} bg-white border border-primary/30`} />
-        <div className={`absolute top-[15%] right-[3%] ${sq} bg-white border border-primary/30`} />
+        <div className={`absolute top-[6%] right-[3%] ${sq} bg-[hsl(0,78%,50%)]`} />
+        <div className={`absolute top-[6%] right-[12%] ${sq} bg-white border border-[hsl(0,78%,50%)]/30`} />
+        <div className={`absolute top-[15%] right-[3%] ${sq} bg-white border border-[hsl(0,78%,50%)]/30`} />
       </>
     ),
     left: (
