@@ -32,8 +32,8 @@ All colors MUST be HSL.
     --muted: 0 0% 96%; /* Snow White #F5F5F5 */
     --muted-foreground: 0 0% 45%;
 
-    --accent: 158 23% 75%; /* Hilti Red */
-    --accent-foreground: 0 0% 0%;
+    --accent: 220 50% 92%; /* Light blue accent */
+    --accent-foreground: 220 50% 35%;
 
     --success: 158 23% 75%; /* Green for success — semantic */
     --success-foreground: 0 0% 0%;
