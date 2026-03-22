@@ -10,13 +10,13 @@ interface AILoadingSpinnerProps {
 
 // Brand colors for the spinner bars
 const barColors = [
-  "#E31E24", // Croatian Red
-  "#1A3A6B", // Croatian Navy
+  "#0A7FA5", // CEIP Blue
+  "#6EA996", // Hero Green
   "#E39B5C", // Amber Soft
-  "#C43E42", // Darker Red
+  "#1391BF", // Lighter Blue
   "#AD3D3D", // Audit Red
-  "#2A4A7B", // Navy Light
-  "#D4393F", // Mid Red
+  "#B2CDBC", // Mint Light
+  "#ACC5D9", // BlueGrey Light
   "#87CEAB", // Light Green
 ];
 
@@ -53,10 +53,10 @@ export function AILoadingSpinner({
     const radians = (angle * Math.PI) / 180;
     
     let spokeColor: string;
-    if (spoke === 12) spokeColor = "#AD3D3D"; // dark red
-    else if (spoke === 24) spokeColor = "#1A3A6B"; // navy
+    if (spoke === 12) spokeColor = "#AD3D3D"; // red
+    else if (spoke === 24) spokeColor = "#6EA996"; // green
     else if (spoke === 36) spokeColor = "#E39B5C"; // amber
-    else spokeColor = "#E31E24"; // Croatian red
+    else spokeColor = "#0A7FA5"; // blue
     
     // Generate particles along each spoke
     return Array.from({ length: 4 }, (_, p) => {

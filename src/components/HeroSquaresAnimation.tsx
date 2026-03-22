@@ -137,7 +137,7 @@ const HeroSquaresAnimation = ({ className = "" }: HeroSquaresAnimationProps) => 
         {activeFormation?.map((pos, i) => (
           <motion.div
             key={i}
-            className={`absolute ${i % 2 === 0 ? 'bg-primary' : 'bg-white border border-primary/30'}`}
+            className={`absolute ${i % 2 === 0 ? 'bg-[hsl(0,78%,50%)]' : 'bg-white border border-[hsl(0,78%,50%)]/30'}`}
             style={{
               width: SQUARE_SIZE,
               height: SQUARE_SIZE,
@@ -161,7 +161,7 @@ const HeroSquaresAnimation = ({ className = "" }: HeroSquaresAnimationProps) => 
         <AnimatePresence mode="wait">
           <motion.p
             key={formationOrder[currentFormation]}
-            className="absolute text-primary font-mono text-xs md:text-sm tracking-widest uppercase whitespace-nowrap"
+            className="absolute text-[hsl(0,78%,50%)] font-mono text-xs md:text-sm tracking-widest uppercase whitespace-nowrap"
             style={{
               top: formationMetrics[formationOrder[currentFormation]].bottom + 12,
               left: formationMetrics[formationOrder[currentFormation]].centerX,
