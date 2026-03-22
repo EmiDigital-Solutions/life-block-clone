@@ -56,10 +56,10 @@ const supplierRows = [
 ];
 
 const stats = [
-  { label: "Component suppliers indexed", value: "11,355+", icon: Shield },
-  { label: "Countries", value: "68", icon: Globe },
+  { label: "Companies indexed globally", value: "200M+", icon: Shield },
+  { label: "Countries with auditors", value: "47+", icon: Globe },
   { label: "Completed Audits", value: "28,400+", icon: CheckCircle2 },
-  { label: "Component Groups", value: "340+", icon: Database },
+  { label: "Croatian exporters profiled", value: "2,000+", icon: Database },
 ];
 
 const SupplierDatabaseDemo = () => {
