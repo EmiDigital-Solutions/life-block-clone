@@ -482,15 +482,15 @@ const PowerToolProfile = () => {
           {activeTab === 3 && (
             <div className="space-y-3">
               <div className="p-3 bg-white/70 border border-white/80">
-                <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Order Fleet Assessment</p>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Order Supplier Audit</p>
                 <div className="flex gap-2 mb-3">
-                  {["Quality Audit", "Performance Test", "Fleet Demo"].map((type, i) => (
+                  {["Quality Audit", "Process Audit", "Compliance Check"].map((type, i) => (
                     <span key={i} className={`px-2.5 py-1 text-[10px] font-semibold ${i === 0 ? 'bg-accent text-white' : 'bg-foreground/10 border border-foreground/15 text-foreground'}`}>{type}</span>
                   ))}
                 </div>
                 <div className="space-y-0">
                   {[
-                    { field: "Audit Standard", value: "IEC 62841 / EN 60745" },
+                    { field: "Audit Standard", value: "EN 1090-2 EXC3 / ISO 3834-2" },
                     { field: "Duration", value: "2 days on-site" },
                     { field: "Earliest Date", value: "March 15, 2026" },
                   ].map((row, i) => (
@@ -502,7 +502,7 @@ const PowerToolProfile = () => {
                 </div>
               </div>
               <button className="w-full py-2.5 bg-accent text-white text-[12px] font-semibold">
-                Schedule Fleet Assessment Now
+                Schedule Supplier Audit Now
               </button>
             </div>
           )}
