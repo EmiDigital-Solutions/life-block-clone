@@ -125,7 +125,7 @@ const HeroSquaresAnimation = ({ className = "" }: HeroSquaresAnimationProps) => 
           return (
           <motion.div
             key={i}
-            className="absolute bg-destructive"
+            className="absolute bg-primary"
             style={{
               width: SQUARE_SIZE,
               height: SQUARE_SIZE,
