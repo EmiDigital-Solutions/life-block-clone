@@ -227,7 +227,7 @@ const PowerToolChatbot = () => {
               <div className="flex items-center gap-1.5 mb-1">
                 <span className="px-2 py-0.5 text-[9px] font-bold bg-primary/30 text-primary">✓ Confirmed</span>
               </div>
-              <p className="text-[11px] font-semibold text-foreground leading-relaxed">Add vertical integration requirement and min 500K units/yr capacity</p>
+              <p className="text-[11px] font-semibold text-foreground leading-relaxed">Add EN 10204 3.1 material certificates and min 10 years food processing industry experience</p>
             </div>
           </motion.div>
         )}
