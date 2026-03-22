@@ -17,7 +17,7 @@ const PortraitWithBlueBlocks = ({
   alt, 
   className = "aspect-square",
   variant = "default"
-}: PortraitWithBlueBlocksProps) => {
+}: PortraitWithBlocksProps) => {
   // Square size as percentage of container
   const sq = "w-[8%] aspect-square";
 
