@@ -23,7 +23,7 @@ const Index = () => {
     <div className="min-h-screen relative">
       <PageSEO
         title="CEIP — Croatian Enterprise Intelligence Platform"
-        description="AI-powered platform connecting Croatian manufacturers with international buyers. Structured supplier profiles, AI matchmaking, 48-hour on-site audits. 200M+ companies, 47+ countries."
+        description="AI-powered platform connecting 162,000+ Croatian manufacturers with international buyers. Structured supplier profiles, AI matchmaking, 48-hour on-site audits. Government-backed export initiative."
         canonical="/"
         jsonLd={[
           {

@@ -68,7 +68,7 @@ export const en = {
       { time: "Day 3", title: "Certified auditor on-site", description: "ISO 9001 / IATF 16949 / EN 1090 certified professional. AI-powered documentation tools. Standardized checklists. Production photos. Capability verification. Quality system assessment." },
       { time: "Day 7", title: "Complete audit report delivered", description: "Comprehensive verification report. AI-standardized format. Consistent data structure. Photo evidence. Capability scoring. Everything the buyer needs for a sourcing decision." },
       { time: "Day 7", title: "Match confirmed", description: "Buyer has verified supplier data. Croatian manufacturer has qualified international customer. Business relationship initiated through structured, evidence-based process." },
-      { time: "The Result", title: "7 days total. €700 audit cost. Croatian SME visible to 200M+ companies worldwide.", description: "Every Croatian manufacturer can compete internationally. Zero trade fair costs. Full verification." },
+      { time: "The Result", title: "7 days total. €700 audit cost. Croatian SME visible to international buyers worldwide.", description: "Every Croatian manufacturer can compete internationally. Zero trade fair costs. Full verification." },
     ],
     nightmareContent: [
       { time: "Week 1", title: "50+ emails just to start", description: "Coordination chaos across time zones, departments, and suppliers. Quality schedules inspectors. Procurement chases approvals. Supplier confirms facility access. Everyone's calendar is full." },
@@ -134,7 +134,7 @@ export const en = {
     headline2: "to close-out",
     subtitle: "Five steps. One platform. Full visibility from supplier discovery to corrective action close-out.",
     steps: [
-      { number: "01", title: "Search", subtitle: "Find the right supplier", description: "Describe what you need. AI scans 200M+ companies worldwide — by capability, certification, capacity. Results in seconds. Multilingual: EN, DE, IT." },
+      { number: "01", title: "Search", subtitle: "Find the right supplier", description: "Describe what you need. AI scans 162,000+ Croatian companies — by capability, certification, capacity. Results in seconds. Multilingual: EN, DE, IT, HR." },
       { number: "02", title: "Qualify", subtitle: "Verify before you contact", description: "Automated certificate checks, capacity validation, risk scoring. Know if a supplier is worth your time before the first call." },
       { number: "03", title: "Audit", subtitle: "On-site in 48 hours", description: "Local certified auditor deployed from CEIP network. AI-guided checklists. Real-time progress tracking. No travel required from your side." },
       { number: "04", title: "Report", subtitle: "Decision-ready in 24h", description: "Standardized findings with photo evidence, risk scores, and benchmarks. Same format for every supplier, every country." },
@@ -144,7 +144,7 @@ export const en = {
   lngSearch: {
     eyebrow: "Supplier Search",
     headline: "Find verified suppliers\nin seconds, not days",
-    subtitle: "AI-powered supplier discovery across 200M+ companies worldwide. Describe what you need — get matched Croatian and international suppliers with verified capabilities.",
+    subtitle: "AI-powered supplier discovery across 162,000+ Croatian companies. Describe what you need — get matched manufacturers with verified capabilities, certifications, and export readiness.",
   },
   supplierDb: {
     eyebrow: "VISION — CEIP SUPPLIER DATABASE",
@@ -153,7 +153,7 @@ export const en = {
     subtitle: "Structured supplier data for metalworking, plastics, machinery, and electronics — search results, audit findings, and technical portfolio analysis in one system.",
     targetArch: "Target Architecture",
     stats: [
-      { label: "Suppliers indexed", value: "200M+" },
+      { label: "Croatian companies indexed", value: "162K+" },
       { label: "Countries", value: "47+" },
       { label: "Completed Audits", value: "28,400+" },
       { label: "Industry Sectors", value: "340+" },
@@ -345,7 +345,7 @@ export const en = {
       {
         title: "Croatian Manufacturers",
         benefits: [
-          "Visible to 200M+ international companies without trade fair costs",
+          "Visible to international buyers worldwide without trade fair costs",
           "Professional, standardized capability profile in 47+ languages",
           "CEIP-verified quality badge increases buyer confidence",
           "AI-powered customer acquisition finds matching buyers automatically",
@@ -364,7 +364,7 @@ export const en = {
     roiEyebrow: "Value proposition",
     roiHeadline: "Key numbers",
     roiStats: [
-      { value: "200M+", label: "Companies in global database" },
+      { value: "162K+", label: "Croatian companies indexed" },
       { value: "48h", label: "Auditor on-site deployment" },
       { value: "47+", label: "Countries with auditor coverage" },
     ],
