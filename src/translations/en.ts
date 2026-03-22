@@ -345,7 +345,7 @@ export const en = {
       {
         title: "Croatian Manufacturers",
         benefits: [
-          "Visible to 200M+ international companies without trade fair costs",
+          "Visible to international buyers worldwide without trade fair costs",
           "Professional, standardized capability profile in 47+ languages",
           "CEIP-verified quality badge increases buyer confidence",
           "AI-powered customer acquisition finds matching buyers automatically",
