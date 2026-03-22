@@ -22,17 +22,17 @@ const Index = () => {
   return (
     <div className="min-h-screen relative">
       <PageSEO
-        title="Hilti — From Tool Sourcing to Verified Quality"
-        description="Find, qualify, inspect, and improve power tool suppliers on one platform. AI-powered search, on-site inspections in 72h, automated CAPA tracking. Full lifecycle coverage."
+        title="CEIP — Croatian Enterprise Intelligence Platform"
+        description="AI-powered platform connecting Croatian manufacturers with international buyers. Structured supplier profiles, AI matchmaking, 48-hour on-site audits. 200M+ companies, 47+ countries."
         canonical="/"
         jsonLd={[
           {
             "@context": "https://schema.org",
             "@type": "Organization",
-            "name": "Hilti",
-            "url": "https://www.hilti.com",
-            "description": "AI-powered tool supplier lifecycle platform — from search to inspection to CAPA close-out.",
-            "serviceType": "Power Tool Supplier Quality Management"
+            "name": "CEIP",
+            "url": "https://www.ceip.hr",
+            "description": "Croatian Enterprise Intelligence Platform — AI-powered supplier discovery, qualification, and verification for Croatian industry.",
+            "serviceType": "Enterprise Intelligence Platform"
           }
         ]}
       />

@@ -121,8 +121,8 @@ const inspectionCases: InspectionCase[] = [
     status: "REJECTED",
     claimAmount: "€65K–€98K",
     repairDays: "35 days",
-    codes: "ISO 2768 · DIN 3990",
-    summary: "Stage 2 sun gear tooth profile deviation 18μm (spec: ±8μm). Bearing pre-load torque 40% above spec causing efficiency loss. Output shaft runout 0.04mm (spec: 0.02mm). Grease fill volume inconsistent. Major rework at supplier required.",
+    codes: "EN 1090-1 · ISO 8501",
+    summary: "Bolt hole diameter deviation +1.5mm on 6 of 24 gusset plate connections (spec: ±0.5mm). Hot-dip galvanizing thickness 45μm on leg members (spec: ≥85μm per ISO 1461). Angle member straightness out of tolerance. Major rework at supplier required.",
   },
 ];
 
