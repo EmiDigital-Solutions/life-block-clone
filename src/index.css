@@ -68,7 +68,7 @@ All colors MUST be HSL.
     /* How It Works section colors */
     --process-bg: 0 0% 5%;
     --content-bg: 0 0% 4%;
-    --content-accent: 158 23% 75%; /* Hilti Red */
+    --content-accent: 0 78% 50%; /* Croatian Red */
     --font-sans: Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   }
 

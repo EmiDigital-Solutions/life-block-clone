@@ -52,14 +52,14 @@ const PortraitWithBlueBlocks = ({
     ),
     right: (
       <>
-        {/* Bottom-left cluster */}
+        {/* Bottom-left cluster — checkerboard */}
         <div className={`absolute bottom-[4%] left-[2%] ${sq} bg-primary`} />
-        <div className={`absolute bottom-[4%] left-[11%] ${sq} bg-primary`} />
-        <div className={`absolute bottom-[13%] left-[2%] ${sq} bg-primary`} />
-        {/* Top-right scattered */}
+        <div className={`absolute bottom-[4%] left-[11%] ${sq} bg-white border border-primary/30`} />
+        <div className={`absolute bottom-[13%] left-[2%] ${sq} bg-white border border-primary/30`} />
+        {/* Top-right scattered — checkerboard */}
         <div className={`absolute top-[4%] right-[2%] ${sq} bg-primary`} />
-        <div className={`absolute top-[13%] right-[11%] ${sq} bg-primary`} />
-        <div className={`absolute top-[4%] right-[11%] ${sq} bg-primary`} />
+        <div className={`absolute top-[13%] right-[11%] ${sq} bg-white border border-primary/30`} />
+        <div className={`absolute top-[4%] right-[11%] ${sq} bg-white border border-primary/30`} />
         <div className={`absolute top-[13%] right-[2%] ${sq} bg-primary`} />
       </>
     ),
