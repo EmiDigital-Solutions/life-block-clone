@@ -378,21 +378,21 @@ const PowerToolProfile = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const tabLabels = ["Overview", "Audit History", "Intelligence", "Fleet Order"];
+  const tabLabels = ["Overview", "Audit History", "Intelligence", "Order Audit"];
 
   return (
     <div className="bg-[hsl(0,0%,85%)] flex flex-col h-full">
       <div className="p-4 md:px-6 md:pt-4 md:pb-3 border-b border-[hsl(0,0%,78%)] flex-shrink-0">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-white/80 border border-white/85 flex items-center justify-center">
-            <span className="text-sm font-bold text-foreground">MK</span>
+            <span className="text-sm font-bold text-foreground">ĐĐ</span>
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-2">
-              <h3 className="text-[14px] font-bold text-[hsl(0,0%,15%)]">Makita Corporation</h3>
+              <h3 className="text-[14px] font-bold text-[hsl(0,0%,15%)]">Đuro Đaković Specijalna Vozila</h3>
               <span className="px-2 py-0.5 bg-accent text-white text-[10px] font-bold">97% Match</span>
             </div>
-            <p className="text-[11px] text-[hsl(0,0%,45%)] font-medium">Anjo, Japan · Est. 1915 · 18,500 employees</p>
+            <p className="text-[11px] text-[hsl(0,0%,45%)] font-medium">Slavonski Brod, Croatia · Est. 1921 · 450 employees</p>
           </div>
           <div className="flex gap-2">
             <button className="px-3 py-1.5 bg-accent text-white text-[11px] font-semibold">Request Quote</button>
