@@ -138,7 +138,7 @@ const PowerToolChatbot = () => {
       <div className="px-4 py-2 border-b border-[hsl(0,0%,78%)] bg-[hsl(0,0%,88%)] flex items-center justify-between flex-shrink-0">
         <div className="flex items-center gap-2">
           <span className="text-[11px] font-semibold text-[hsl(0,0%,30%)] uppercase tracking-wider">AI Agent</span>
-          <span className="text-[10px] text-[hsl(0,0%,55%)]">Component Supplier Discovery</span>
+          <span className="text-[10px] text-[hsl(0,0%,55%)]">Supplier Discovery</span>
         </div>
         <div className="flex items-center gap-1.5">
           <span className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse" />
