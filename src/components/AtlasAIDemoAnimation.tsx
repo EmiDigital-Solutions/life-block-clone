@@ -85,12 +85,11 @@ const AtlasAIDemoAnimation = () => {
 
     window.speechSynthesis.cancel();
 
-    const isRu = language === "ru";
-    const parts = isRu ? riskAlertPartsRu : riskAlertPartsEn;
-    const langCode = isRu ? "ru-RU" : "en-US";
+    const parts = riskAlertPartsEn;
+    const langCode = "en-US";
 
     const voices = window.speechSynthesis.getVoices();
-    const langVoices = voices.filter(v => v.lang.startsWith(isRu ? "ru" : "en"));
+    const langVoices = voices.filter(v => v.lang.startsWith("en"));
     const preferred = langVoices.find(v => v.name.includes("Google")) || langVoices[0];
 
     setCopilotSpeaking(true);
