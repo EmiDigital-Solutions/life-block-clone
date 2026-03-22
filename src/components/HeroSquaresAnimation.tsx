@@ -30,66 +30,53 @@ const formations = {
     { x: UNIT * 4, y: UNIT * 3 },
     { x: UNIT * 4, y: UNIT * 4, opacity: 0 },
   ],
-  // Person / Auditor: head (1) + body (torso + arms + legs)
+  // Person / Auditor
   person: [
-    // Head
     { x: UNIT * 2.5, y: 0 },
-    // Shoulders
     { x: UNIT * 1.5, y: UNIT },
     { x: UNIT * 2.5, y: UNIT },
     { x: UNIT * 3.5, y: UNIT },
-    // Torso
     { x: UNIT * 2.5, y: UNIT * 2 },
-    // Arms
     { x: UNIT * 1, y: UNIT * 2 },
     { x: UNIT * 4, y: UNIT * 2 },
-    // Legs + feet
     { x: UNIT * 2, y: UNIT * 3 },
     { x: UNIT * 3, y: UNIT * 3 },
     { x: UNIT * 2, y: UNIT * 4 },
     { x: UNIT * 3, y: UNIT * 4 },
   ],
-  // Atlas AI Copilot — "AI" letters, narrow symmetric A
+  // Atlas AI Copilot
   atlasAI: [
-    // Letter A — left leg (narrow angle)
     { x: UNIT * 0.5, y: UNIT * 3 },
     { x: UNIT * 0.75, y: UNIT * 2 },
     { x: UNIT * 1, y: UNIT },
-    // A — apex
     { x: UNIT * 1.25, y: 0 },
-    // A — right leg
     { x: UNIT * 1.5, y: UNIT },
     { x: UNIT * 1.75, y: UNIT * 2 },
     { x: UNIT * 2, y: UNIT * 3 },
-    // Letter I (centered with A)
     { x: UNIT * 3.5, y: 0 },
     { x: UNIT * 3.5, y: UNIT },
     { x: UNIT * 3.5, y: UNIT * 2 },
     { x: UNIT * 3.5, y: UNIT * 3 },
   ],
-  // Checkmark — diamonds (45° rotated) with 3px edge gap along diagonals
-  // Diamond edge-to-edge gap of 3px → center spacing = (28+3)/√2 ≈ 21.9px
+  // Checkmark — diamonds
   checkmark: (() => {
-    const D = (SQUARE_SIZE + 3) / Math.SQRT2; // ~21.9px diagonal step
-    const vx = D * 2, vy = D * 4; // vertex position
+    const D = (SQUARE_SIZE + 3) / Math.SQRT2;
+    const vx = D * 2, vy = D * 4;
     return [
-      // Short leg (2 diamonds, down-right to vertex)
       { x: vx - D * 2, y: vy - D * 2, diamond: true },
       { x: vx - D, y: vy - D, diamond: true },
-      // Vertex (bottom point)
       { x: vx, y: vy, diamond: true },
-      // Long leg (4 diamonds, up-right from vertex)
       { x: vx + D, y: vy - D, diamond: true },
       { x: vx + D * 2, y: vy - D * 2, diamond: true },
       { x: vx + D * 3, y: vy - D * 3, diamond: true },
       { x: vx + D * 4, y: vy - D * 4, diamond: true },
-      // Hidden (to keep 11 squares)
       { x: vx + D, y: vy - D, opacity: 0 },
       { x: vx + D * 2, y: vy - D * 2, opacity: 0 },
       { x: vx + D * 3, y: vy - D * 3, opacity: 0 },
       { x: vx + D * 4, y: vy - D * 4, opacity: 0 },
     ];
   })(),
+
 };
 
 type Formation = keyof typeof formations;
@@ -134,10 +121,15 @@ const HeroSquaresAnimation = ({ className = "" }: HeroSquaresAnimationProps) => 
       aria-hidden="true"
     >
       <div className="relative" style={{ width: UNIT * 5 + SQUARE_SIZE, height: UNIT * 5 + 32 }}>
-        {activeFormation?.map((pos, i) => (
+        {activeFormation?.map((pos, i) => {
+          // Checkerboard: color based on grid position (col + row) for proper red/white/red/white
+          const col = Math.round(pos.x / UNIT);
+          const row = Math.round(pos.y / UNIT);
+          const isRed = (col + row) % 2 === 0;
+          return (
           <motion.div
             key={i}
-            className={`absolute ${i % 2 === 0 ? 'bg-destructive' : 'bg-white border border-destructive/30'}`}
+            className={`absolute ${isRed ? 'bg-destructive' : 'bg-white border border-destructive/30'}`}
             style={{
               width: SQUARE_SIZE,
               height: SQUARE_SIZE,
@@ -157,7 +149,8 @@ const HeroSquaresAnimation = ({ className = "" }: HeroSquaresAnimationProps) => 
               delay: i * 0.04,
             }}
           />
-        ))}
+          );
+        })}
         <AnimatePresence mode="wait">
           <motion.p
             key={formationOrder[currentFormation]}
