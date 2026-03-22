@@ -438,9 +438,9 @@ const PowerToolProfile = () => {
           {activeTab === 1 && (
             <div className="space-y-2.5">
               {[
-                { type: "IEC 62841 Safety Compliance Audit", date: "Dec 2025", score: "94/100", auditor: "R. Andersen", status: "Completed" },
-                { type: "Production Quality System Review", date: "Oct 2025", score: "97/100", auditor: "J. Martinez", status: "Completed" },
-                { type: "Battery Performance Lab Inspection", date: "Aug 2025", score: "91/100", auditor: "H. Nakamura", status: "Completed" },
+                { type: "EN 1090-2 EXC3 Structural Steel Audit", date: "Dec 2025", score: "96/100", auditor: "M. Novak", status: "Completed" },
+                { type: "EN 15085-2 Railway Welding Review", date: "Oct 2025", score: "94/100", auditor: "K. Schulz", status: "Completed" },
+                { type: "ISO 3834-2 Welding Quality System", date: "Aug 2025", score: "92/100", auditor: "I. Horvat", status: "Completed" },
               ].map((audit, i) => (
                 <div key={i} className="p-3 bg-white/70 border border-white/80">
                   <div className="flex items-center justify-between mb-1">
