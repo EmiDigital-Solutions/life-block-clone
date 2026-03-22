@@ -411,7 +411,7 @@ const AtlasAIDemoAnimation = () => {
                           >{level}</motion.div>
                         ))}
                       </div>
-                      <p className="text-[10px] text-white/35 mt-2">Level 3 — Test field operational but boil-off exceeds specification limits</p>
+                      <p className="text-[10px] text-white/35 mt-2">Level 3 — Process capable but Cpk below BMW threshold on critical dimensions</p>
                     </div>
 
                     {/* Auditor selection */}
