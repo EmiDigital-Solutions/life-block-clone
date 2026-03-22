@@ -340,7 +340,7 @@ const AtlasAIDemoAnimation = () => {
                       <span className="text-[12px] font-bold text-[#AE3D3D] uppercase tracking-wider">Risk Alert</span>
                     </div>
                     <p className="text-[12px] text-white/50 leading-[1.5]">
-                      Thermal cycling test shows 0.18%/day boil-off — exceeds 0.12% specification limit. Vacuum jacket pressure at 8.5 mbar, above 5 mbar threshold. Potential insulation degradation.
+                      Cpk for critical dimension (clip retention force) at 1.42 — below BMW requirement of 1.67. Color deviation ΔE = 0.72 on batch 2024-11, exceeding 0.5 tolerance. Potential mold wear on cavity 3.
                     </p>
                   </motion.div>
                 )}
