@@ -144,7 +144,7 @@ export const en = {
   lngSearch: {
     eyebrow: "Supplier Search",
     headline: "Find verified suppliers\nin seconds, not days",
-    subtitle: "AI-powered supplier discovery across 200M+ companies worldwide. Describe what you need — get matched Croatian and international suppliers with verified capabilities.",
+    subtitle: "AI-powered supplier discovery across 162,000+ Croatian companies. Describe what you need — get matched manufacturers with verified capabilities, certifications, and export readiness.",
   },
   supplierDb: {
     eyebrow: "VISION — CEIP SUPPLIER DATABASE",
