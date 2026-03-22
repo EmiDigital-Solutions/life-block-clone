@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-interface PortraitWithBlueBlocksProps {
+interface PortraitWithBlocksProps {
   src: string;
   alt: string;
   className?: string;
@@ -8,8 +8,8 @@ interface PortraitWithBlueBlocksProps {
 }
 
 /**
- * Portrait image with Archlet-style scattered square blocks overlay.
- * Inspired by the checkerboard pixel-grid pattern from the reference design.
+ * Portrait image with Croatian šahovnica-style scattered square blocks overlay.
+ * Alternates red and white squares like the Croatian coat of arms.
  * Blocks are positioned to avoid overlapping the face/head area.
  */
 const PortraitWithBlueBlocks = ({ 
@@ -17,49 +17,49 @@ const PortraitWithBlueBlocks = ({
   alt, 
   className = "aspect-square",
   variant = "default"
-}: PortraitWithBlueBlocksProps) => {
+}: PortraitWithBlocksProps) => {
   // Square size as percentage of container
   const sq = "w-[8%] aspect-square";
 
   const blockVariants = {
     default: (
       <>
-        {/* Bottom-left cluster */}
+        {/* Bottom-left cluster — checkerboard red/white */}
         <div className={`absolute bottom-[4%] left-[2%] ${sq} bg-primary`} />
-        <div className={`absolute bottom-[4%] left-[11%] ${sq} bg-primary`} />
-        <div className={`absolute bottom-[13%] left-[2%] ${sq} bg-primary`} />
+        <div className={`absolute bottom-[4%] left-[11%] ${sq} bg-white border border-primary/30`} />
+        <div className={`absolute bottom-[13%] left-[2%] ${sq} bg-white border border-primary/30`} />
         <div className={`absolute bottom-[13%] left-[20%] ${sq} bg-primary`} />
         <div className={`absolute bottom-[22%] left-[11%] ${sq} bg-primary`} />
         {/* Top-right cluster */}
         <div className={`absolute top-[6%] right-[3%] ${sq} bg-primary`} />
-        <div className={`absolute top-[6%] right-[12%] ${sq} bg-primary`} />
-        <div className={`absolute top-[15%] right-[3%] ${sq} bg-primary`} />
+        <div className={`absolute top-[6%] right-[12%] ${sq} bg-white border border-primary/30`} />
+        <div className={`absolute top-[15%] right-[3%] ${sq} bg-white border border-primary/30`} />
       </>
     ),
     left: (
       <>
-        {/* Bottom-right cluster */}
+        {/* Bottom-right cluster — checkerboard */}
         <div className={`absolute bottom-[4%] right-[2%] ${sq} bg-primary`} />
-        <div className={`absolute bottom-[4%] right-[11%] ${sq} bg-primary`} />
-        <div className={`absolute bottom-[13%] right-[2%] ${sq} bg-primary`} />
+        <div className={`absolute bottom-[4%] right-[11%] ${sq} bg-white border border-primary/30`} />
+        <div className={`absolute bottom-[13%] right-[2%] ${sq} bg-white border border-primary/30`} />
         <div className={`absolute bottom-[13%] right-[20%] ${sq} bg-primary`} />
         <div className={`absolute bottom-[22%] right-[11%] ${sq} bg-primary`} />
         {/* Top-left cluster */}
-        <div className={`absolute top-[6%] left-[3%] ${sq} bg-primary`} />
+        <div className={`absolute top-[6%] left-[3%] ${sq} bg-white border border-primary/30`} />
         <div className={`absolute top-[6%] left-[12%] ${sq} bg-primary`} />
         <div className={`absolute top-[15%] left-[3%] ${sq} bg-primary`} />
       </>
     ),
     right: (
       <>
-        {/* Bottom-left cluster */}
+        {/* Bottom-left cluster — checkerboard */}
         <div className={`absolute bottom-[4%] left-[2%] ${sq} bg-primary`} />
-        <div className={`absolute bottom-[4%] left-[11%] ${sq} bg-primary`} />
-        <div className={`absolute bottom-[13%] left-[2%] ${sq} bg-primary`} />
-        {/* Top-right scattered */}
+        <div className={`absolute bottom-[4%] left-[11%] ${sq} bg-white border border-primary/30`} />
+        <div className={`absolute bottom-[13%] left-[2%] ${sq} bg-white border border-primary/30`} />
+        {/* Top-right scattered — checkerboard */}
         <div className={`absolute top-[4%] right-[2%] ${sq} bg-primary`} />
-        <div className={`absolute top-[13%] right-[11%] ${sq} bg-primary`} />
-        <div className={`absolute top-[4%] right-[11%] ${sq} bg-primary`} />
+        <div className={`absolute top-[13%] right-[11%] ${sq} bg-white border border-primary/30`} />
+        <div className={`absolute top-[4%] right-[11%] ${sq} bg-white border border-primary/30`} />
         <div className={`absolute top-[13%] right-[2%] ${sq} bg-primary`} />
       </>
     ),

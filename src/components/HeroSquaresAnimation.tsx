@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
 /**
- * Animated Ion Blue squares that morph between three formations:
+ * Animated Croatian šahovnica (checkerboard) squares — red and white alternating.
  * 1. Cluster (initial grid)
  * 2. Checkmark (accepted)
  * 3. Magnifying glass (search)
@@ -137,7 +137,7 @@ const HeroSquaresAnimation = ({ className = "" }: HeroSquaresAnimationProps) => 
         {activeFormation?.map((pos, i) => (
           <motion.div
             key={i}
-            className="absolute bg-primary"
+            className={`absolute ${i % 2 === 0 ? 'bg-primary' : 'bg-white border border-primary/30'}`}
             style={{
               width: SQUARE_SIZE,
               height: SQUARE_SIZE,
