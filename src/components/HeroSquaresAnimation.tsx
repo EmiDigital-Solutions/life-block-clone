@@ -122,14 +122,10 @@ const HeroSquaresAnimation = ({ className = "" }: HeroSquaresAnimationProps) => 
     >
       <div className="relative" style={{ width: UNIT * 5 + SQUARE_SIZE, height: UNIT * 5 + 32 }}>
         {activeFormation?.map((pos, i) => {
-          // Checkerboard: color based on grid position (col + row) for proper red/white/red/white
-          const col = Math.round(pos.x / UNIT);
-          const row = Math.round(pos.y / UNIT);
-          const isRed = (col + row) % 2 === 0;
           return (
           <motion.div
             key={i}
-            className={`absolute ${isRed ? 'bg-destructive' : 'bg-white border border-destructive/30'}`}
+            className="absolute bg-destructive"
             style={{
               width: SQUARE_SIZE,
               height: SQUARE_SIZE,
