@@ -56,7 +56,7 @@ const supplierRows = [
 ];
 
 const stats = [
-  { label: "Companies indexed globally", value: "200M+", icon: Shield },
+  { label: "Croatian companies indexed", value: "162K+", icon: Shield },
   { label: "Countries with auditors", value: "47+", icon: Globe },
   { label: "Completed Audits", value: "28,400+", icon: CheckCircle2 },
   { label: "Croatian exporters profiled", value: "2,000+", icon: Database },
