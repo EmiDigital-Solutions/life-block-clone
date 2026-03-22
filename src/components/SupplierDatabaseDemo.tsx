@@ -11,48 +11,48 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 const categoryData = [
   { 
-    icon: Zap, name: "Motors & Drives", standard: "IEC 60034 / IEC 62841", 
-    suppliers: 1834, avgRating: 4.4, audited: 78,
-    subcategories: ["Brushless DC Motors", "Universal Motors", "Gear Assemblies", "Motor Controllers"]
+    icon: Zap, name: "Metalworking & CNC", standard: "ISO 9001 / EN 1090", 
+    suppliers: 2840, avgRating: 4.4, audited: 78,
+    subcategories: ["CNC Milling & Turning", "Sheet Metal Fabrication", "Welding & Assembly", "Surface Treatment"]
   },
   { 
-    icon: Flame, name: "Battery Cells & Packs", standard: "UN 38.3 / IEC 62133", 
-    suppliers: 956, avgRating: 4.6, audited: 85,
-    subcategories: ["21700 Cells", "18650 Cells", "Battery Pack Assemblies", "BMS Modules"]
+    icon: Flame, name: "Plastics & Polymers", standard: "ISO 294 / IATF 16949", 
+    suppliers: 1256, avgRating: 4.6, audited: 85,
+    subcategories: ["Injection Molding", "Blow Molding", "Extrusion", "Thermoforming"]
   },
   { 
-    icon: Gauge, name: "Housings & Casings", standard: "ISO 1043 / ASTM E505", 
-    suppliers: 2340, avgRating: 4.1, audited: 65,
-    subcategories: ["Magnesium Die-Cast", "Aluminum Die-Cast", "PA66-GF Injection", "Overmolded Grips"]
+    icon: Gauge, name: "Electrical & Electronics", standard: "IEC 61439 / IPC-A-610", 
+    suppliers: 1840, avgRating: 4.1, audited: 65,
+    subcategories: ["Transformers", "Switchgear", "PCB Assembly", "Cable Harnesses"]
   },
   { 
-    icon: Cpu, name: "Electronics & PCBs", standard: "IPC-A-610 / AEC-Q100", 
-    suppliers: 1425, avgRating: 4.3, audited: 71,
-    subcategories: ["Motor Driver ICs", "Power MOSFETs", "Main PCB Assemblies", "Sensor Modules"]
+    icon: Cpu, name: "Automotive Components", standard: "IATF 16949 / VDA 6.3", 
+    suppliers: 925, avgRating: 4.3, audited: 71,
+    subcategories: ["Interior Trim", "Exterior Parts", "Powertrain Components", "Wiring Systems"]
   },
   { 
-    icon: Wrench, name: "Precision Components", standard: "ISO 2768 / DIN 7168", 
-    suppliers: 3120, avgRating: 4.0, audited: 58,
-    subcategories: ["Gears & Spindles", "Bearings", "Chucks & Collets", "Seals & O-Rings"]
+    icon: Wrench, name: "Machinery & Equipment", standard: "EN ISO 12100 / CE", 
+    suppliers: 1620, avgRating: 4.0, audited: 58,
+    subcategories: ["Industrial Machinery", "Agricultural Equipment", "Food Processing", "Packaging Lines"]
   },
   { 
-    icon: Box, name: "Fasteners & Assembly", standard: "EN 15048 / VDA 6.3", 
-    suppliers: 1680, avgRating: 4.2, audited: 72,
-    subcategories: ["Thread-forming Screws", "Rivets & Inserts", "Springs & Clips", "Labels & Packaging"]
+    icon: Box, name: "Shipbuilding & Offshore", standard: "DNV GL / ISO 3834", 
+    suppliers: 680, avgRating: 4.2, audited: 72,
+    subcategories: ["Hull Construction", "Outfitting", "Offshore Structures", "Marine Equipment"]
   },
 ];
 
 const supplierRows = [
-  { name: "Nidec Corporation", country: "Japan", category: "Brushless Motors", rating: 4.8, audits: 14, risk: "Low", certifications: ["IEC 60034", "IATF 16949", "ISO 9001"], fitScore: 97 },
-  { name: "Samsung SDI", country: "South Korea", category: "Battery Cells", rating: 4.7, audits: 11, risk: "Low", certifications: ["UN 38.3", "IEC 62133", "ISO 14001"], fitScore: 94 },
-  { name: "Georg Fischer (GF)", country: "Switzerland", category: "Die-Cast Housings", rating: 4.7, audits: 18, risk: "Low", certifications: ["IATF 16949", "EN 9100", "ISO 9001"], fitScore: 95 },
-  { name: "Infineon Technologies", country: "Germany", category: "Motor Driver ICs", rating: 4.5, audits: 8, risk: "Medium", certifications: ["AEC-Q100", "IATF 16949", "ISO 9001"], fitScore: 89 },
-  { name: "Bossard Group", country: "Switzerland", category: "Assembly Fasteners", rating: 4.6, audits: 12, risk: "Low", certifications: ["VDA 6.3", "EN 15048", "ISO 9001"], fitScore: 93 },
-  { name: "Mabuchi Motor", country: "Japan", category: "DC Motors", rating: 4.4, audits: 9, risk: "Low", certifications: ["IEC 60034", "ISO 9001", "IATF 16949"], fitScore: 88 },
-  { name: "NSK Ltd", country: "Japan", category: "Bearings", rating: 4.8, audits: 22, risk: "Low", certifications: ["ISO 9001", "IATF 16949", "ISO 14001"], fitScore: 96 },
-  { name: "BASF Engineering", country: "Germany", category: "PA66-GF Compounds", rating: 4.5, audits: 15, risk: "Low", certifications: ["ISO 9001", "REACH", "UL 94"], fitScore: 91 },
-  { name: "Murata Manufacturing", country: "Japan", category: "Sensors & Capacitors", rating: 4.6, audits: 10, risk: "Low", certifications: ["AEC-Q200", "ISO 9001", "IATF 16949"], fitScore: 92 },
-  { name: "Johnson Electric", country: "Hong Kong", category: "Motor Assemblies", rating: 4.3, audits: 7, risk: "Medium", certifications: ["IEC 60034", "ISO 9001", "ISO 14001"], fitScore: 85 },
+  { name: "Đuro Đaković Specijalna Vozila", country: "Croatia", category: "Steel Structures", rating: 4.8, audits: 14, risk: "Low", certifications: ["EN 1090-2", "EN 15085", "ISO 9001"], fitScore: 97 },
+  { name: "Končar Elektroindustrija", country: "Croatia", category: "Power Transformers", rating: 4.7, audits: 11, risk: "Low", certifications: ["IEC 61439", "ISO 9001", "ISO 14001"], fitScore: 94 },
+  { name: "AD Plastik", country: "Croatia", category: "Injection Molding", rating: 4.7, audits: 18, risk: "Low", certifications: ["IATF 16949", "VDA 6.3", "ISO 9001"], fitScore: 95 },
+  { name: "Brodosplit", country: "Croatia", category: "Shipbuilding", rating: 4.5, audits: 8, risk: "Medium", certifications: ["DNV GL", "Lloyd's", "ISO 3834"], fitScore: 89 },
+  { name: "Rimac Technology", country: "Croatia", category: "EV Powertrains", rating: 4.6, audits: 12, risk: "Low", certifications: ["IATF 16949", "ISO 26262", "ISO 9001"], fitScore: 93 },
+  { name: "Dalekovod", country: "Croatia", category: "Transmission Towers", rating: 4.4, audits: 9, risk: "Low", certifications: ["EN 1090-1", "ISO 9001", "ISO 14001"], fitScore: 88 },
+  { name: "Pliva (Teva)", country: "Croatia", category: "Pharmaceuticals", rating: 4.8, audits: 22, risk: "Low", certifications: ["EU GMP", "FDA cGMP", "ISO 14001"], fitScore: 96 },
+  { name: "Teknoxgroup", country: "Croatia", category: "CNC Machine Tools", rating: 4.5, audits: 15, risk: "Low", certifications: ["ISO 9001", "CE Marking", "EN 12417"], fitScore: 91 },
+  { name: "Elka d.o.o.", country: "Croatia", category: "Cable Harnesses", rating: 4.6, audits: 10, risk: "Low", certifications: ["IATF 16949", "IPC-A-620", "ISO 9001"], fitScore: 92 },
+  { name: "DOK-ING", country: "Croatia", category: "Robotic Systems", rating: 4.3, audits: 7, risk: "Medium", certifications: ["ISO 9001", "NATO AQAP", "CE Marking"], fitScore: 85 },
 ];
 
 const stats = [
