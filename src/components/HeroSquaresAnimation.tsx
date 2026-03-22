@@ -137,7 +137,7 @@ const HeroSquaresAnimation = ({ className = "" }: HeroSquaresAnimationProps) => 
         {activeFormation?.map((pos, i) => (
           <motion.div
             key={i}
-            className={`absolute ${i % 2 === 0 ? 'bg-primary' : 'bg-white border border-primary/30'}`}
+            className={`absolute ${i % 2 === 0 ? 'bg-[hsl(0,78%,50%)]' : 'bg-white border border-[hsl(0,78%,50%)]/30'}`}
             style={{
               width: SQUARE_SIZE,
               height: SQUARE_SIZE,
