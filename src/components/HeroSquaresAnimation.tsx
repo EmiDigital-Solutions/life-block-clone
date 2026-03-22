@@ -125,7 +125,7 @@ const HeroSquaresAnimation = ({ className = "" }: HeroSquaresAnimationProps) => 
           return (
           <motion.div
             key={i}
-            className="absolute bg-destructive"
+            className="absolute bg-primary"
             style={{
               width: SQUARE_SIZE,
               height: SQUARE_SIZE,
@@ -150,7 +150,7 @@ const HeroSquaresAnimation = ({ className = "" }: HeroSquaresAnimationProps) => 
         <AnimatePresence mode="wait">
           <motion.p
             key={formationOrder[currentFormation]}
-            className="absolute text-destructive font-mono text-xs md:text-sm tracking-widest uppercase whitespace-nowrap"
+            className="absolute text-primary font-mono text-xs md:text-sm tracking-widest uppercase whitespace-nowrap"
             style={{
               top: formationMetrics[formationOrder[currentFormation]].bottom + 12,
               left: formationMetrics[formationOrder[currentFormation]].centerX,
