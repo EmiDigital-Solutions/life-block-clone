@@ -35,8 +35,8 @@ All colors MUST be HSL.
     --accent: 158 23% 75%;
     --accent-foreground: 0 0% 0%;
 
-    --success: 145 50% 42%; /* Green for success — semantic */
-    --success-foreground: 0 0% 100%;
+    --success: 158 23% 75%; /* Green for success — semantic */
+    --success-foreground: 0 0% 0%;
 
     --warning: 37 91% 55%; /* Amber #F5A623 */
     --warning-foreground: 0 0% 0%;
