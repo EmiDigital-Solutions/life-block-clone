@@ -253,12 +253,6 @@ const voiceAlertPartsEn = [
   "Hydrostatic test is on hold until weld repairs are verified. Check with the welding engineer before proceeding.",
 ];
 
-const voiceAlertPartsRu = [
-  "Внимание инспектор. Множественные дефекты сварки требуют вашей проверки на конденсаторе деэтанизатора.",
-  "Перейдите сначала к продольному шву. Обнаружена возможная трещина у кромки шва — сфотографируйте и запросите магнитопорошковый контроль для подтверждения.",
-  "Гидростатическое испытание приостановлено до проверки ремонта сварки. Свяжитесь с инженером-сварщиком перед продолжением.",
-];
-
 const LNGAtlasDemo = () => {
   const [paused, setPaused] = useState(false);
   const [loopKey, setLoopKey] = useState(0);

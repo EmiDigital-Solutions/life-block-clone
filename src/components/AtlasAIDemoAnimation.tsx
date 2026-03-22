@@ -69,12 +69,6 @@ const AtlasAIDemoAnimation = () => {
     "Check calibration certificates for temperature sensors below minus 196°C.",
   ];
 
-  const riskAlertPartsRu = [
-    "Требуется аудит криогенного испытательного полигона по EN 13458 и ASME VIII Div.1.",
-    "Проверьте измерение скорости испарения LN₂ и целостность вакуумной изоляции.",
-    "Проверьте сертификаты калибровки датчиков температуры ниже минус 196°C.",
-  ];
-
   const speakRiskAlert = useCallback(() => {
     if (copilotSpeaking) {
       window.speechSynthesis.cancel();
