@@ -68,7 +68,7 @@ export const en = {
       { time: "Day 3", title: "Certified auditor on-site", description: "ISO 9001 / IATF 16949 / EN 1090 certified professional. AI-powered documentation tools. Standardized checklists. Production photos. Capability verification. Quality system assessment." },
       { time: "Day 7", title: "Complete audit report delivered", description: "Comprehensive verification report. AI-standardized format. Consistent data structure. Photo evidence. Capability scoring. Everything the buyer needs for a sourcing decision." },
       { time: "Day 7", title: "Match confirmed", description: "Buyer has verified supplier data. Croatian manufacturer has qualified international customer. Business relationship initiated through structured, evidence-based process." },
-      { time: "The Result", title: "7 days total. €700 audit cost. Croatian SME visible to 200M+ companies worldwide.", description: "Every Croatian manufacturer can compete internationally. Zero trade fair costs. Full verification." },
+      { time: "The Result", title: "7 days total. €700 audit cost. Croatian SME visible to international buyers worldwide.", description: "Every Croatian manufacturer can compete internationally. Zero trade fair costs. Full verification." },
     ],
     nightmareContent: [
       { time: "Week 1", title: "50+ emails just to start", description: "Coordination chaos across time zones, departments, and suppliers. Quality schedules inspectors. Procurement chases approvals. Supplier confirms facility access. Everyone's calendar is full." },
