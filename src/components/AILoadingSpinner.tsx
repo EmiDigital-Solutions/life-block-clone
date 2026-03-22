@@ -53,10 +53,10 @@ export function AILoadingSpinner({
     const radians = (angle * Math.PI) / 180;
     
     let spokeColor: string;
-    if (spoke === 12) spokeColor = "#AD3D3D"; // dark red
-    else if (spoke === 24) spokeColor = "#1A3A6B"; // navy
+    if (spoke === 12) spokeColor = "#AD3D3D"; // red
+    else if (spoke === 24) spokeColor = "#6EA996"; // green
     else if (spoke === 36) spokeColor = "#E39B5C"; // amber
-    else spokeColor = "#E31E24"; // Croatian red
+    else spokeColor = "#0A7FA5"; // blue
     
     // Generate particles along each spoke
     return Array.from({ length: 4 }, (_, p) => {

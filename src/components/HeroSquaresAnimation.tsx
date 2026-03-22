@@ -161,7 +161,7 @@ const HeroSquaresAnimation = ({ className = "" }: HeroSquaresAnimationProps) => 
         <AnimatePresence mode="wait">
           <motion.p
             key={formationOrder[currentFormation]}
-            className="absolute text-primary font-mono text-xs md:text-sm tracking-widest uppercase whitespace-nowrap"
+            className="absolute text-[hsl(0,78%,50%)] font-mono text-xs md:text-sm tracking-widest uppercase whitespace-nowrap"
             style={{
               top: formationMetrics[formationOrder[currentFormation]].bottom + 12,
               left: formationMetrics[formationOrder[currentFormation]].centerX,
