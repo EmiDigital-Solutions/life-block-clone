@@ -323,7 +323,7 @@ const PowerToolResults = ({ onSupplierClick }: { onSupplierClick: () => void }) 
           <div className="flex-1 p-2.5 space-y-1.5">
             <div className="p-2.5 bg-[hsl(0,0%,88%)] border border-[hsl(0,0%,78%)] mb-1.5">
               <p className="text-[10px] text-[hsl(0,0%,30%)] leading-relaxed">
-                <span className="font-bold text-primary">Match Score</span> — AI-calculated fit based on technical specs, quality certifications, production capacity, and Hilti supply chain requirements. <span className="font-semibold text-primary">Click a supplier for full details.</span>
+                <span className="font-bold text-primary">Match Score</span> — AI-calculated fit based on manufacturing capabilities, quality certifications, production capacity, and buyer requirements. <span className="font-semibold text-primary">Click a supplier for full details.</span>
               </p>
             </div>
 
