@@ -586,7 +586,7 @@ const AtlasAIDemoAnimation = () => {
                       <span className="text-[12px] font-bold text-white">AI Finding</span>
                       <span className="text-[#F5A623]">⚠</span>
                     </div>
-                    <p className="text-[12px] text-white/45 leading-[1.5]">Vacuum jacket pressure 8.5 mbar — exceeds 5 mbar acceptance limit. Boil-off rate 0.18%/day vs. 0.12% spec. Recommend full re-evacuation and helium leak test before client witness.</p>
+                    <p className="text-[12px] text-white/45 leading-[1.5]">Cavity 3 shows 62K shots since last insert service — BMW limit is 50K. Clip retention force Cpk dropped to 1.42. Color masterbatch lot 2024-11 shows ΔE 0.72. Recommend mold insert replacement and masterbatch qualification before BMW run-at-rate approval.</p>
                     <div className="flex gap-2 mt-3">
                       <button className="flex-1 py-2 text-[10px] font-bold text-[#6EA996] border border-[#6EA996]/25 rounded-lg bg-[#6EA996]/5 hover:bg-[#6EA996]/15 active:bg-[#6EA996]/25 uppercase tracking-wider transition-colors">Accept</button>
                       <button className="flex-1 py-2 text-[10px] font-bold text-white/35 border border-white/10 rounded-lg bg-white/5 hover:bg-white/10 active:bg-white/15 uppercase tracking-wider transition-colors">Dismiss</button>
