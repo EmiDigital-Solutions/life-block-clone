@@ -352,7 +352,7 @@ const AtlasAIDemoAnimation = () => {
                     className="bg-white/5 rounded-lg p-4">
                     <span className="text-[12px] font-semibold text-white/45 uppercase tracking-wider">What to Check</span>
                     <div className="mt-2 space-y-2">
-                      {["Boil-off rate within 0.12%/day limit?", "Vacuum jacket pressure below 5 mbar?", "Temperature sensor calibration valid (±0.5°C at −196°C)?"].map((q, i) => (
+                      {["Cpk ≥ 1.67 on clip retention force?", "Color ΔE < 0.5 across all cavities?", "Mold maintenance log current (< 50K shots since last service)?"].map((q, i) => (
                         <div key={i} className="flex items-start gap-2">
                           <span className="text-[12px] text-white/60 font-bold shrink-0 mt-0.5">{i + 1}.</span>
                           <span className="text-[12px] text-white/50 leading-[1.5]">{q}</span>
