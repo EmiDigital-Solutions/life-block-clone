@@ -414,9 +414,9 @@ const PowerToolProfile = () => {
           {activeTab === 0 && (
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {[
-                { label: "Capacity", value: "25,000 units/yr" },
-                { label: "Lead Time", value: "4–8 weeks" },
-                { label: "Testing", value: "IEC 62841, EN 60745" },
+                { label: "Capacity", value: "12,000 t/yr" },
+                { label: "Lead Time", value: "8–14 weeks" },
+                { label: "Welding", value: "EN ISO 3834-2" },
                 { label: "Quality Score", value: "96/100" },
               ].map((item, i) => (
                 <div key={i} className="p-3 bg-white/70 border border-white/80">
@@ -427,7 +427,7 @@ const PowerToolProfile = () => {
               <div className="col-span-2 md:col-span-4 p-3 bg-white/70 border border-white/80">
                 <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Certifications & Compliance</p>
                 <div className="flex gap-2 flex-wrap">
-                  {["IEC 62841", "EN 60745", "UL Listed", "CE Marking", "IP56", "EPTA 05/2015"].map((c, i) => (
+                  {["ISO 9001", "EN 1090-2", "EN 15085-2", "ISO 3834-2", "CE Marking", "NATO AQAP"].map((c, i) => (
                     <span key={i} className="px-2 py-1 border border-primary/40 text-primary text-[10px] font-bold uppercase">{c}</span>
                   ))}
                 </div>
