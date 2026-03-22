@@ -138,7 +138,7 @@ const PowerToolChatbot = () => {
       <div className="px-4 py-2 border-b border-[hsl(0,0%,78%)] bg-[hsl(0,0%,88%)] flex items-center justify-between flex-shrink-0">
         <div className="flex items-center gap-2">
           <span className="text-[11px] font-semibold text-[hsl(0,0%,30%)] uppercase tracking-wider">AI Agent</span>
-          <span className="text-[10px] text-[hsl(0,0%,55%)]">Component Supplier Discovery</span>
+          <span className="text-[10px] text-[hsl(0,0%,55%)]">Supplier Discovery</span>
         </div>
         <div className="flex items-center gap-1.5">
           <span className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse" />
@@ -153,9 +153,9 @@ const PowerToolChatbot = () => {
               <span className="text-[10px] font-bold uppercase tracking-widest text-primary block mb-1.5">Preference Engine — Context Detected</span>
               <div className="flex gap-2 flex-wrap">
                 {[
-                  { label: "Power Tool Manufacturing", type: "Industry" },
-                  { label: "Europe / Asia Pacific", type: "Region" },
-                  { label: "IATF 16949 Required", type: "Standard" },
+                  { label: "CNC Stainless Steel Machining", type: "Process" },
+                  { label: "Europe / Croatia Priority", type: "Region" },
+                  { label: "ISO 9001 Required", type: "Standard" },
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-1">
                     <span className="px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider bg-[hsl(0,0%,85%)] text-[hsl(0,0%,40%)]">{item.type}</span>
@@ -171,7 +171,7 @@ const PowerToolChatbot = () => {
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="flex justify-end">
             <div className="p-2.5 bg-white/80 backdrop-blur-md border border-white/85 w-fit">
               <span className="text-[10px] font-bold uppercase tracking-wider text-foreground/60 block mb-0.5">You</span>
-              <p className="text-[12px] font-semibold text-foreground leading-relaxed">I need brushless DC motor suppliers for our 36V rotary hammer platform</p>
+              <p className="text-[12px] font-semibold text-foreground leading-relaxed">I need CNC stainless steel machining suppliers in Croatia for food processing equipment components</p>
             </div>
           </motion.div>
         )}
@@ -193,14 +193,14 @@ const PowerToolChatbot = () => {
               <span className="text-[10px] font-bold uppercase tracking-widest text-primary block mb-2">Preference Engine — I identified the following</span>
               <div className="flex flex-wrap gap-1.5">
                 {[
-                  { tag: "Brushless DC Motors", cat: "Component" },
-                  { tag: "36V Platform", cat: "Voltage" },
-                  { tag: "IEC 60034", cat: "Standard" },
-                  { tag: "IATF 16949", cat: "Quality" },
-                  { tag: "≥ 1,500W Continuous", cat: "Spec" },
-                  { tag: "Class H Insulation", cat: "Spec" },
-                  { tag: "Sensorless FOC", cat: "Control" },
-                  { tag: "MTBF ≥ 8,000h", cat: "Reliability" },
+                  { tag: "CNC Machining", cat: "Process" },
+                  { tag: "Stainless Steel 316L", cat: "Material" },
+                  { tag: "ISO 9001", cat: "Standard" },
+                  { tag: "FSSC 22000 Compatible", cat: "Industry" },
+                  { tag: "Ra ≤ 0.8 μm Surface", cat: "Spec" },
+                  { tag: "EN 10204 3.1 MTR", cat: "Traceability" },
+                  { tag: "5-Axis Capability", cat: "Equipment" },
+                  { tag: "Capacity ≥ 500 parts/mo", cat: "Volume" },
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-1">
                     <span className="px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider bg-primary/20 text-primary">{item.cat}</span>
@@ -211,7 +211,7 @@ const PowerToolChatbot = () => {
               <div className="mt-2 pt-2 border-t border-white/30">
                 <span className="text-[9px] font-bold uppercase tracking-wider text-primary/80 block mb-1">Also recommended</span>
                 <div className="flex gap-1.5 flex-wrap">
-                  {["Integrated Controller", "Sealed Bearings", "NTC Thermal Protection", "IP5X Dust Rating"].map((opt, i) => (
+                  {["Electro-polishing", "CMM Inspection Reports", "FDA Contact Material", "Batch Traceability"].map((opt, i) => (
                     <span key={i} className="px-2 py-0.5 text-[9px] font-semibold bg-primary/10 text-primary border border-primary/25">+ {opt}</span>
                   ))}
                 </div>
@@ -227,7 +227,7 @@ const PowerToolChatbot = () => {
               <div className="flex items-center gap-1.5 mb-1">
                 <span className="px-2 py-0.5 text-[9px] font-bold bg-primary/30 text-primary">✓ Confirmed</span>
               </div>
-              <p className="text-[11px] font-semibold text-foreground leading-relaxed">Add vertical integration requirement and min 500K units/yr capacity</p>
+              <p className="text-[11px] font-semibold text-foreground leading-relaxed">Add EN 10204 3.1 material certificates and min 10 years food processing industry experience</p>
             </div>
           </motion.div>
         )}
@@ -237,9 +237,9 @@ const PowerToolChatbot = () => {
             <div className="p-2.5 bg-white/70 backdrop-blur-md border border-white/80">
               <span className="text-[10px] font-bold uppercase tracking-widest text-primary block mb-1.5">Preference Engine — Ready to Search</span>
               <div className="flex gap-2 flex-wrap">
-                <span className="px-2 py-0.5 text-[9px] font-bold bg-primary/25 text-primary">+ Vertical Integration</span>
-                <span className="px-2 py-0.5 text-[9px] font-bold bg-primary/25 text-primary">+ 500K min capacity</span>
-                <span className="px-2 py-0.5 text-[9px] font-bold bg-primary/25 text-primary">+ IATF 16949 ✓</span>
+                <span className="px-2 py-0.5 text-[9px] font-bold bg-primary/25 text-primary">+ EN 10204 3.1 MTR</span>
+                <span className="px-2 py-0.5 text-[9px] font-bold bg-primary/25 text-primary">+ 10yr food processing exp.</span>
+                <span className="px-2 py-0.5 text-[9px] font-bold bg-primary/25 text-primary">+ Croatia priority ✓</span>
               </div>
             </div>
           </motion.div>
@@ -248,7 +248,7 @@ const PowerToolChatbot = () => {
 
       <div className="p-3 border-t border-[hsl(0,0%,78%)] flex gap-2 flex-shrink-0 bg-[hsl(0,0%,88%)] mt-auto">
         <div className="flex-1 h-9 bg-white border border-[hsl(0,0%,75%)] flex items-center px-3">
-          <span className="text-[hsl(0,0%,55%)] text-[11px]">Describe what component you need...</span>
+          <span className="text-[hsl(0,0%,55%)] text-[11px]">Describe what you need from a supplier...</span>
         </div>
         <div className="w-9 h-9 bg-primary flex items-center justify-center">
           <ArrowRight className="w-4 h-4 text-white" />
@@ -289,8 +289,8 @@ const PowerToolResults = ({ onSupplierClick }: { onSupplierClick: () => void }) 
       <div className="flex-1 flex flex-col min-w-0">
         <div className="px-3 py-2.5 border-b border-[hsl(0,0%,78%)] flex items-center justify-between flex-shrink-0 bg-[hsl(0,0%,88%)]">
           <div>
-            <p className="text-[11px] text-[hsl(0,0%,30%)] uppercase tracking-wider font-bold">18 Suppliers Found</p>
-            <p className="text-[10px] text-[hsl(0,0%,50%)]">BLDC Motors · 36V Platform · IEC 60034 · IATF 16949</p>
+             <p className="text-[11px] text-[hsl(0,0%,30%)] uppercase tracking-wider font-bold">12 Suppliers Found</p>
+              <p className="text-[10px] text-[hsl(0,0%,50%)]">CNC Machining · Stainless 316L · ISO 9001 · Food Processing</p>
           </div>
           <div className="flex gap-1.5">
             <span className="px-2 py-1 bg-white/80 border border-white/85 text-[10px] text-foreground font-medium">Sort: Match</span>
@@ -302,9 +302,9 @@ const PowerToolResults = ({ onSupplierClick }: { onSupplierClick: () => void }) 
           <div className="w-[110px] md:w-[130px] bg-[hsl(0,0%,82%)] border-r border-[hsl(0,0%,76%)] p-2.5 flex-shrink-0">
             <p className="text-[10px] text-[hsl(0,0%,30%)] uppercase tracking-widest font-bold mb-2.5">Filters</p>
             {[
-              { label: "Standard", values: ["IEC 60034", "IATF 16949", "AEC-Q100"] },
-              { label: "Region", values: ["Europe", "Asia Pacific", "Americas"] },
-              { label: "Type", values: ["BLDC Motors", "Integrated"] },
+              { label: "Standard", values: ["ISO 9001", "EN 1090", "IATF 16949"] },
+              { label: "Region", values: ["Croatia", "Slovenia", "Serbia"] },
+              { label: "Process", values: ["CNC Machining", "Welding"] },
             ].map((filter, i) => (
               <div key={i} className="mb-2.5">
                 <p className="text-[10px] text-[hsl(0,0%,35%)] font-bold uppercase mb-1">{filter.label}</p>
@@ -323,7 +323,7 @@ const PowerToolResults = ({ onSupplierClick }: { onSupplierClick: () => void }) 
           <div className="flex-1 p-2.5 space-y-1.5">
             <div className="p-2.5 bg-[hsl(0,0%,88%)] border border-[hsl(0,0%,78%)] mb-1.5">
               <p className="text-[10px] text-[hsl(0,0%,30%)] leading-relaxed">
-                <span className="font-bold text-primary">Match Score</span> — AI-calculated fit based on technical specs, quality certifications, production capacity, and Hilti supply chain requirements. <span className="font-semibold text-primary">Click a supplier for full details.</span>
+                <span className="font-bold text-primary">Match Score</span> — AI-calculated fit based on manufacturing capabilities, quality certifications, production capacity, and buyer requirements. <span className="font-semibold text-primary">Click a supplier for full details.</span>
               </p>
             </div>
 

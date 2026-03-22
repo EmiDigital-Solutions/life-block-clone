@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import { X, CheckCircle2, AlertTriangle, XCircle, Star, ArrowRight } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
-// Benchmark data — brushless motor suppliers for Hilti power tool production
-const referenceSupplier = "Nidec Corporation";
+// Benchmark data — Croatian steel fabrication suppliers
+const referenceSupplier = "Đuro Đaković Specijalna Vozila";
 
 interface BenchmarkCriterion {
   name: string;
@@ -13,26 +13,26 @@ interface BenchmarkCriterion {
 }
 
 const suppliers = [
-  { name: "Nidec Corporation", country: "Japan", role: "Current Supplier (Benchmark)", blocked: true },
-  { name: "Mabuchi Motor", country: "Japan", role: "#1 Alternative", blocked: false },
-  { name: "Johnson Electric", country: "Hong Kong", role: "#2 Alternative", blocked: false },
-  { name: "Minebea Mitsumi", country: "Japan", role: "#3 Alternative", blocked: false },
-  { name: "ebm-papst", country: "Germany", role: "#4 Alternative", blocked: false },
+  { name: "Đuro Đaković Specijalna Vozila", country: "Croatia", role: "Current Supplier (Benchmark)", blocked: true },
+  { name: "Brodosplit Strojogradnja", country: "Croatia", role: "#1 Alternative", blocked: false },
+  { name: "Dalekovod Proizvodnja", country: "Croatia", role: "#2 Alternative", blocked: false },
+  { name: "Montmontaža Gredelj", country: "Croatia", role: "#3 Alternative", blocked: false },
+  { name: "SAS Strojogradnja", country: "Croatia", role: "#4 Alternative", blocked: false },
 ];
 
 const criteria: BenchmarkCriterion[] = [
-  { name: "BLDC Motor Power (≥1,500W)", weight: 5, scores: [5, 4, 5, 4, 3], notes: "Nidec & Johnson cover ≥1,500W; Mabuchi strong at mid-range; ebm-papst primarily fan motors" },
-  { name: "IEC 60034 Compliance", weight: 5, scores: [5, 5, 5, 5, 4], notes: "All Japanese suppliers full IEC; ebm-papst primarily EN 60335 focused" },
-  { name: "Bearing MTBF ≥ 8,000h", weight: 5, scores: [5, 4, 5, 5, 4], notes: "Nidec & Johnson use NSK/NMB sealed bearings; Mabuchi standard sintered" },
-  { name: "Sensorless FOC Capability", weight: 4, scores: [5, 3, 5, 4, 3], notes: "Johnson & Nidec lead on integrated FOC; Mabuchi developing" },
-  { name: "Volume Capacity (>5M/yr)", weight: 4, scores: [5, 5, 4, 5, 3], notes: "Mabuchi highest volume (1.6B motors/yr); ebm-papst smaller scale" },
-  { name: "Thermal Class H Insulation", weight: 4, scores: [5, 4, 4, 5, 4], notes: "Nidec & Minebea standard Class H; others Class F upgradable" },
-  { name: "EU/EMEA Production Site", weight: 4, scores: [3, 2, 4, 3, 5], notes: "ebm-papst strongest EU presence; Johnson has EU plant in Hungary" },
-  { name: "Cost Competitiveness", weight: 4, scores: [3, 5, 4, 4, 2], notes: "Mabuchi 20–30% lower; ebm-papst premium pricing" },
-  { name: "Lead Time (target ≤8 wks)", weight: 3, scores: [4, 4, 4, 3, 5], notes: "ebm-papst fastest (3–5 wks from DE); Asian suppliers 6–10 wks" },
-  { name: "Power Tool Track Record", weight: 5, scores: [5, 4, 4, 3, 2], notes: "Nidec & Mabuchi strongest power tool references; ebm-papst minimal" },
-  { name: "Vertical Integration", weight: 3, scores: [5, 3, 4, 5, 4], notes: "Nidec & Minebea fully vertical (magnets, bearings, windings)" },
-  { name: "IATF 16949 Certification", weight: 3, scores: [5, 4, 5, 5, 3], notes: "Most have IATF; ebm-papst primarily ISO 9001" },
+  { name: "EN 1090-2 EXC3 Compliance", weight: 5, scores: [5, 5, 4, 4, 3], notes: "ĐĐ & Brodosplit full EXC3; Dalekovod EXC2+; SAS developing" },
+  { name: "Welding EN ISO 3834-2", weight: 5, scores: [5, 5, 5, 4, 4], notes: "Top 3 all certified ISO 3834-2; Gredelj & SAS ISO 3834-3" },
+  { name: "Max Unit Weight (≥15t)", weight: 5, scores: [5, 5, 3, 4, 3], notes: "ĐĐ 25t, Brodosplit 500t; Dalekovod tower-focused" },
+  { name: "NDT Capability (UT/RT/MT)", weight: 4, scores: [5, 5, 4, 4, 3], notes: "ĐĐ & Brodosplit in-house NDT Level III; others outsource RT" },
+  { name: "Annual Capacity (>5,000t)", weight: 4, scores: [5, 4, 4, 3, 3], notes: "ĐĐ 12,000t; Brodosplit 8,000t; others smaller" },
+  { name: "Surface Treatment In-house", weight: 4, scores: [5, 4, 3, 4, 3], notes: "ĐĐ full blast+paint; Brodosplit marine coating; others partial" },
+  { name: "EU Export Track Record", weight: 4, scores: [5, 4, 4, 3, 2], notes: "ĐĐ active Siemens/Andritz supplier; Brodosplit Saipem" },
+  { name: "Cost Competitiveness", weight: 4, scores: [4, 3, 4, 5, 5], notes: "Gredelj & SAS 15–25% lower; Brodosplit premium (marine grade)" },
+  { name: "Lead Time (target ≤12 wks)", weight: 3, scores: [4, 3, 4, 4, 5], notes: "SAS fastest (6–8 wks); Brodosplit slowest (16–24 wks)" },
+  { name: "Railway EN 15085 Cert", weight: 5, scores: [5, 2, 1, 5, 1], notes: "Only ĐĐ & Gredelj hold EN 15085-2 for railway welding" },
+  { name: "Classification Society Approvals", weight: 3, scores: [3, 5, 1, 2, 1], notes: "Brodosplit DNV/Lloyd's/BV; ĐĐ developing" },
+  { name: "Quality System Maturity", weight: 3, scores: [5, 4, 4, 3, 3], notes: "ĐĐ 100+ years heritage; Brodosplit 90+ years" },
 ];
 
 const totals = suppliers.map((_, si) =>
