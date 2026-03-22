@@ -171,7 +171,7 @@ const PowerToolChatbot = () => {
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="flex justify-end">
             <div className="p-2.5 bg-white/80 backdrop-blur-md border border-white/85 w-fit">
               <span className="text-[10px] font-bold uppercase tracking-wider text-foreground/60 block mb-0.5">You</span>
-              <p className="text-[12px] font-semibold text-foreground leading-relaxed">I need brushless DC motor suppliers for our 36V rotary hammer platform</p>
+              <p className="text-[12px] font-semibold text-foreground leading-relaxed">I need CNC stainless steel machining suppliers in Croatia for food processing equipment components</p>
             </div>
           </motion.div>
         )}
