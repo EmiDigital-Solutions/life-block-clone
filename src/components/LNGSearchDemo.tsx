@@ -193,14 +193,14 @@ const PowerToolChatbot = () => {
               <span className="text-[10px] font-bold uppercase tracking-widest text-primary block mb-2">Preference Engine — I identified the following</span>
               <div className="flex flex-wrap gap-1.5">
                 {[
-                  { tag: "CNC Machining", cat: "Process" },
-                  { tag: "Stainless Steel 316L", cat: "Material" },
-                  { tag: "ISO 9001", cat: "Standard" },
-                  { tag: "FSSC 22000 Compatible", cat: "Industry" },
-                  { tag: "Ra ≤ 0.8 μm Surface", cat: "Spec" },
-                  { tag: "EN 10204 3.1 MTR", cat: "Traceability" },
-                  { tag: "5-Axis Capability", cat: "Equipment" },
-                  { tag: "Capacity ≥ 500 parts/mo", cat: "Volume" },
+                  { tag: "Steel Fabrication", cat: "Process" },
+                  { tag: "S355 / S460 Structural Steel", cat: "Material" },
+                  { tag: "ISO 9001 + EN 1090-2", cat: "Standard" },
+                  { tag: "Infrastructure & Heavy Industry", cat: "Industry" },
+                  { tag: "EN ISO 3834-2 Welding", cat: "Spec" },
+                  { tag: "NDT (UT, MT, PT)", cat: "Testing" },
+                  { tag: "CE Marking Required", cat: "Compliance" },
+                  { tag: "Capacity ≥ 5,000 t/yr", cat: "Volume" },
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-1">
                     <span className="px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider bg-primary/20 text-primary">{item.cat}</span>
