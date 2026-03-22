@@ -50,7 +50,7 @@ const Navigation = () => {
             className="flex items-center hover:opacity-80 transition-opacity"
             onClick={() => setIsMenuOpen(false)}
           >
-            <span className="text-2xl md:text-3xl font-black tracking-tight text-foreground">HILTI</span>
+            <span className="text-xl md:text-2xl font-black tracking-tight text-foreground">CEIP</span>
           </Link>
 
           {/* Center: Hamburger + Language Switcher */}
@@ -74,7 +74,7 @@ const Navigation = () => {
               onClick={() => setLanguage(language === "en" ? "ru" : "en")}
               className="flex items-center justify-center px-2 py-1 text-[11px] md:text-xs font-semibold tracking-wider uppercase text-foreground/60 hover:text-foreground hover:bg-foreground/5 transition-colors rounded-full"
             >
-              {language === "en" ? "RU" : "EN"}
+              {language === "en" ? "HR" : "EN"}
             </button>
           </div>
 
