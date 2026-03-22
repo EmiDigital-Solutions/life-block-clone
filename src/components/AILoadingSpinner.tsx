@@ -10,13 +10,13 @@ interface AILoadingSpinnerProps {
 
 // Brand colors for the spinner bars
 const barColors = [
-  "#E31E24", // Croatian Red
-  "#1A3A6B", // Croatian Navy
+  "#0A7FA5", // CEIP Blue
+  "#6EA996", // Hero Green
   "#E39B5C", // Amber Soft
-  "#C43E42", // Darker Red
+  "#1391BF", // Lighter Blue
   "#AD3D3D", // Audit Red
-  "#2A4A7B", // Navy Light
-  "#D4393F", // Mid Red
+  "#B2CDBC", // Mint Light
+  "#ACC5D9", // BlueGrey Light
   "#87CEAB", // Light Green
 ];
 
