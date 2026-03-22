@@ -364,7 +364,7 @@ export const en = {
     roiEyebrow: "Value proposition",
     roiHeadline: "Key numbers",
     roiStats: [
-      { value: "200M+", label: "Companies in global database" },
+      { value: "162K+", label: "Croatian companies indexed" },
       { value: "48h", label: "Auditor on-site deployment" },
       { value: "47+", label: "Countries with auditor coverage" },
     ],

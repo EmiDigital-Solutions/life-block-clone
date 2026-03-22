@@ -190,7 +190,7 @@ const DatabaseDemoWindow = ({
     <div className="bg-[hsl(0,0%,85%)] overflow-hidden border border-[hsl(0,0%,80%)] flex flex-col relative">
       {/* Window title bar */}
       <div className="h-8 bg-[hsl(0,0%,88%)] flex items-center px-3 border-b border-[hsl(0,0%,80%)] flex-shrink-0">
-        <span className="text-[10px] text-[hsl(0,0%,35%)] font-medium">CEIP Supplier Database — 200M+ Companies · 47+ Countries</span>
+        <span className="text-[10px] text-[hsl(0,0%,35%)] font-medium">CEIP Supplier Database — 162K+ Croatian Companies · 47+ Export Markets</span>
         <div className="ml-auto flex gap-1">
           {["Browse", "Search", "Analytics"].map((label, i) => (
             <button
