@@ -64,9 +64,9 @@ const AtlasAIDemoAnimation = () => {
   const { language } = useLanguage();
 
   const riskAlertPartsEn = [
-    "Cryogenic test field audit required per EN 13458 and ASME VIII Div.1.",
-    "Verify LN₂ boil-off rate measurement and vacuum insulation integrity.",
-    "Check calibration certificates for temperature sensors below minus 196°C.",
+    "Injection molding audit required per IATF 16949 and VDA 6.3 for BMW interior trim components.",
+    "Verify cavity pressure monitoring and dimensional control on dashboard air vent assemblies.",
+    "Check material certificates for PP-T20 compound and color matching records against BMW M-TN 1011.",
   ];
 
   const speakRiskAlert = useCallback(() => {
@@ -223,7 +223,7 @@ const AtlasAIDemoAnimation = () => {
             <div className="w-2.5 h-2.5 rounded-full bg-[#6EA996]" />
             <span className="text-[12px] text-white/40 font-medium tracking-wider uppercase">Live Audit</span>
           </div>
-          <span className="text-[14px] font-bold text-white tracking-wide">Atlas AI · Cryogenic Test Field Audit</span>
+          <span className="text-[14px] font-bold text-white tracking-wide">Atlas AI · AD Plastik — BMW Interior Trim Audit</span>
           <div className="flex items-center gap-3">
             <span className="text-[12px] text-white/30 hidden md:inline">Progress 45%</span>
             <div className="w-20 h-2 bg-white/8 rounded-full overflow-hidden">
@@ -239,27 +239,27 @@ const AtlasAIDemoAnimation = () => {
           <div className="flex-[25] border-r border-white/[0.03] flex flex-col overflow-hidden">
             <div className="px-4 py-3">
               <span className="text-[12px] font-bold text-white/50 uppercase tracking-wider">Checklist</span>
-              <div className="text-[10px] text-white/25 mt-1">Cryogenic Test Field · LNG Storage</div>
+              <div className="text-[10px] text-white/25 mt-1">Injection Molding · AD Plastik d.d., Solin</div>
             </div>
 
             <div className="flex-1 overflow-y-auto px-4 py-3 space-y-1 relative" ref={leftScrollRef} style={{ scrollbarWidth: "none" }}>
               <ScrollNav scrollRef={leftScrollRef} />
-              <div className="text-[12px] font-bold text-white/40 mb-2">▼ 5. CRYOGENIC TESTING</div>
-              <CheckItem done label="5.1 Test Field Layout & Safety" />
-              <div className="text-[12px] font-semibold text-white/35 pl-2 mt-2 mb-1">▼ 5.2 LN₂ Performance Testing</div>
-              <CheckItem done label="5.2.1 Boil-off Rate Measurement" indent />
-              <CheckItem done label="5.2.2 Vacuum Insulation Check" indent />
+              <div className="text-[12px] font-bold text-white/40 mb-2">▼ 4. INJECTION MOLDING PROCESS</div>
+              <CheckItem done label="4.1 Machine Park & Clamping Force" />
+              <div className="text-[12px] font-semibold text-white/35 pl-2 mt-2 mb-1">▼ 4.2 Dashboard Air Vent Production</div>
+              <CheckItem done label="4.2.1 Mold Condition & Maintenance Log" indent />
+              <CheckItem done label="4.2.2 Cavity Pressure Monitoring" indent />
               <div className="bg-[#AE3D3D]/8 border border-[#AE3D3D]/25 rounded-lg px-3 py-2.5 ml-2 my-2">
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full bg-[#AE3D3D] animate-pulse" />
-                  <span className="text-[12px] font-bold text-white">5.2.3 Thermal Cycling Results</span>
+                  <span className="text-[12px] font-bold text-white">4.2.3 Dimensional Stability (Cpk)</span>
                 </div>
                 <span className="text-[10px] px-2 py-0.5 bg-[#AE3D3D] text-white font-bold rounded ml-5 inline-block mt-1">HIGH RISK</span>
               </div>
-              <CheckItem label="5.2.4 Sensor Calibration" indent pending />
-              <div className="text-[12px] font-bold text-white/40 mt-3 mb-2">▶ 6. MATERIAL CERTIFICATION</div>
-              <CheckItem label="6.1 9% Nickel Steel Certs" pending />
-              <CheckItem label="6.2 Impact Test Records (−196°C)" pending />
+              <CheckItem label="4.2.4 Color Matching (ΔE < 0.5)" indent pending />
+              <div className="text-[12px] font-bold text-white/40 mt-3 mb-2">▶ 5. MATERIAL & TRACEABILITY</div>
+              <CheckItem label="5.1 PP-T20 Material Certificates" pending />
+              <CheckItem label="5.2 BMW M-TN 1011 Color Records" pending />
             </div>
 
             {/* Evidence */}
@@ -271,17 +271,17 @@ const AtlasAIDemoAnimation = () => {
                 </span>
               </div>
               <div className="space-y-2">
-                <EvidenceItem name="test_field_overview.jpg" type="img" status="verified" />
-                <EvidenceItem name="boiloff_rate_report.pdf" type="doc" status={evidenceComplete ? "verified" : "review"} />
-                <EvidenceItem name="vacuum_gauge_reading.jpg" type="img" status="verified" />
+                <EvidenceItem name="molding_cell_overview.jpg" type="img" status="verified" />
+                <EvidenceItem name="cpk_report_air_vent.pdf" type="doc" status={evidenceComplete ? "verified" : "review"} />
+                <EvidenceItem name="cavity_pressure_chart.jpg" type="img" status="verified" />
                 <AnimatePresence>
                   {evidenceComplete && (
                     <>
                       <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }}>
-                        <EvidenceItem name="thermal_cycle_log.pdf" type="doc" status="verified" />
+                        <EvidenceItem name="color_delta_e_report.pdf" type="doc" status="verified" />
                       </motion.div>
                       <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} transition={{ delay: 0.2 }}>
-                        <EvidenceItem name="sensor_calibration_cert.pdf" type="doc" status="verified" />
+                        <EvidenceItem name="pp_t20_material_cert.pdf" type="doc" status="verified" />
                       </motion.div>
                     </>
                   )}
@@ -323,7 +323,7 @@ const AtlasAIDemoAnimation = () => {
                 </div>
               </div>
               <p className="text-[18px] md:text-[20px] text-white font-medium leading-[1.5]">
-                Does the cryogenic test field demonstrate compliant boil-off rates and vacuum integrity per EN 13458?
+                Does the injection molding process for BMW air vent assemblies meet Cpk ≥ 1.67 and color ΔE &lt; 0.5 per IATF 16949?
               </p>
             </motion.div>
 
@@ -340,7 +340,7 @@ const AtlasAIDemoAnimation = () => {
                       <span className="text-[12px] font-bold text-[#AE3D3D] uppercase tracking-wider">Risk Alert</span>
                     </div>
                     <p className="text-[12px] text-white/50 leading-[1.5]">
-                      Thermal cycling test shows 0.18%/day boil-off — exceeds 0.12% specification limit. Vacuum jacket pressure at 8.5 mbar, above 5 mbar threshold. Potential insulation degradation.
+                      Cpk for critical dimension (clip retention force) at 1.42 — below BMW requirement of 1.67. Color deviation ΔE = 0.72 on batch 2024-11, exceeding 0.5 tolerance. Potential mold wear on cavity 3.
                     </p>
                   </motion.div>
                 )}
@@ -352,7 +352,7 @@ const AtlasAIDemoAnimation = () => {
                     className="bg-white/5 rounded-lg p-4">
                     <span className="text-[12px] font-semibold text-white/45 uppercase tracking-wider">What to Check</span>
                     <div className="mt-2 space-y-2">
-                      {["Boil-off rate within 0.12%/day limit?", "Vacuum jacket pressure below 5 mbar?", "Temperature sensor calibration valid (±0.5°C at −196°C)?"].map((q, i) => (
+                      {["Cpk ≥ 1.67 on clip retention force?", "Color ΔE < 0.5 across all cavities?", "Mold maintenance log current (< 50K shots since last service)?"].map((q, i) => (
                         <div key={i} className="flex items-start gap-2">
                           <span className="text-[12px] text-white/60 font-bold shrink-0 mt-0.5">{i + 1}.</span>
                           <span className="text-[12px] text-white/50 leading-[1.5]">{q}</span>
@@ -369,7 +369,7 @@ const AtlasAIDemoAnimation = () => {
                     className="bg-white/5 rounded-lg p-4">
                     <span className="text-[12px] font-semibold text-[#F5A623] uppercase tracking-wider">Common Issues</span>
                     <div className="mt-2 space-y-2">
-                      {["Boil-off exceeds spec (68% of failures)", "Vacuum degradation undetected (54%)", "Sensor drift at cryogenic temps (41%)"].map(t => (
+                      {["Cpk drift after 40K shots (72% of findings)", "Color shift on aged mold inserts (58%)", "Clip force out-of-spec on cavity 3–4 (44%)"].map(t => (
                         <div key={t} className="flex items-center gap-2">
                           <div className="w-2 h-2 rounded-full bg-[#F5A623]" />
                           <span className="text-[12px] text-white/45 leading-[1.5]">{t}</span>
@@ -411,7 +411,7 @@ const AtlasAIDemoAnimation = () => {
                           >{level}</motion.div>
                         ))}
                       </div>
-                      <p className="text-[10px] text-white/35 mt-2">Level 3 — Test field operational but boil-off exceeds specification limits</p>
+                      <p className="text-[10px] text-white/35 mt-2">Level 3 — Process capable but Cpk below BMW threshold on critical dimensions</p>
                     </div>
 
                     {/* Auditor selection */}
@@ -443,7 +443,7 @@ const AtlasAIDemoAnimation = () => {
                                 transition={{ delay: 0.5 }}
                                 className="text-[12px] text-white/40 italic"
                               >
-                                Boil-off at 0.18%/day confirmed on-site. Vacuum jacket shows pressure rise. Recommend re-evacuation before acceptance...
+                                Cpk at 1.42 confirmed on cavity 3. Color ΔE 0.72 on recent batch. Recommend mold insert replacement and color masterbatch recalibration before BMW run-at-rate...
                               </motion.span>
                             </div>
                             <div className="flex justify-end mt-3">
@@ -553,27 +553,27 @@ const AtlasAIDemoAnimation = () => {
               <ScrollNav scrollRef={rightScrollRef} />
               <IntelCard title="Priority" titleColor="text-[#AE3D3D]">
                 <div className="space-y-2 text-[12px] text-white/45">
-                  <div>• Boil-off rate deviation (0.18% vs 0.12%)</div>
-                  <div>• Vacuum jacket integrity (8.5 mbar)</div>
-                  <div className="text-[#6EA996] mt-1 font-medium">→ Verify insulation condition first</div>
+                  <div>• Cpk deviation (1.42 vs 1.67 required)</div>
+                  <div>• Color ΔE out-of-spec (0.72 vs 0.5)</div>
+                  <div className="text-[#6EA996] mt-1 font-medium">→ Inspect mold cavity 3 insert wear first</div>
                 </div>
               </IntelCard>
 
-              <IntelCard title="Client Focus">
+              <IntelCard title="BMW Requirements">
                 <div className="space-y-2 text-[12px] text-white/45">
-                  <div><span className="text-[10px] px-1.5 py-0.5 bg-[#AE3D3D] text-white font-bold rounded mr-2">1</span>Boil-off Compliance</div>
-                  <div><span className="text-[10px] px-1.5 py-0.5 bg-[#AE3D3D] text-white font-bold rounded mr-2">2</span>Vacuum Integrity</div>
-                  <div><span className="text-[10px] px-1.5 py-0.5 bg-[#F5A623] text-white font-bold rounded mr-2">3</span>Sensor Accuracy</div>
+                  <div><span className="text-[10px] px-1.5 py-0.5 bg-[#AE3D3D] text-white font-bold rounded mr-2">1</span>Cpk ≥ 1.67 All Dimensions</div>
+                  <div><span className="text-[10px] px-1.5 py-0.5 bg-[#AE3D3D] text-white font-bold rounded mr-2">2</span>Color ΔE &lt; 0.5</div>
+                  <div><span className="text-[10px] px-1.5 py-0.5 bg-[#F5A623] text-white font-bold rounded mr-2">3</span>Mold Maintenance Compliance</div>
                 </div>
               </IntelCard>
 
               <IntelCard title="Benchmark">
                 <div className="space-y-2">
-                  <div className="flex justify-between text-[12px]"><span className="text-white/40">This supplier</span><span className="text-white/60 font-bold">5.8/10</span></div>
-                  <BarRound value={58} />
-                  <div className="flex justify-between text-[12px]"><span className="text-white/40">Industry avg</span><span className="text-white/60 font-bold">7.2/10</span></div>
-                  <BarRound value={72} color="bg-white/20" />
-                  <div className="text-[12px] text-[#AE3D3D] font-semibold mt-2">Hold — corrective action required</div>
+                  <div className="flex justify-between text-[12px]"><span className="text-white/40">AD Plastik</span><span className="text-white/60 font-bold">6.4/10</span></div>
+                  <BarRound value={64} />
+                  <div className="flex justify-between text-[12px]"><span className="text-white/40">BMW Tier-1 avg</span><span className="text-white/60 font-bold">8.1/10</span></div>
+                  <BarRound value={81} color="bg-white/20" />
+                  <div className="text-[12px] text-[#AE3D3D] font-semibold mt-2">Hold — mold rework required before run-at-rate</div>
                 </div>
               </IntelCard>
 
@@ -586,7 +586,7 @@ const AtlasAIDemoAnimation = () => {
                       <span className="text-[12px] font-bold text-white">AI Finding</span>
                       <span className="text-[#F5A623]">⚠</span>
                     </div>
-                    <p className="text-[12px] text-white/45 leading-[1.5]">Vacuum jacket pressure 8.5 mbar — exceeds 5 mbar acceptance limit. Boil-off rate 0.18%/day vs. 0.12% spec. Recommend full re-evacuation and helium leak test before client witness.</p>
+                    <p className="text-[12px] text-white/45 leading-[1.5]">Cavity 3 shows 62K shots since last insert service — BMW limit is 50K. Clip retention force Cpk dropped to 1.42. Color masterbatch lot 2024-11 shows ΔE 0.72. Recommend mold insert replacement and masterbatch qualification before BMW run-at-rate approval.</p>
                     <div className="flex gap-2 mt-3">
                       <button className="flex-1 py-2 text-[10px] font-bold text-[#6EA996] border border-[#6EA996]/25 rounded-lg bg-[#6EA996]/5 hover:bg-[#6EA996]/15 active:bg-[#6EA996]/25 uppercase tracking-wider transition-colors">Accept</button>
                       <button className="flex-1 py-2 text-[10px] font-bold text-white/35 border border-white/10 rounded-lg bg-white/5 hover:bg-white/10 active:bg-white/15 uppercase tracking-wider transition-colors">Dismiss</button>
