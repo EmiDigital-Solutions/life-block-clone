@@ -239,27 +239,27 @@ const AtlasAIDemoAnimation = () => {
           <div className="flex-[25] border-r border-white/[0.03] flex flex-col overflow-hidden">
             <div className="px-4 py-3">
               <span className="text-[12px] font-bold text-white/50 uppercase tracking-wider">Checklist</span>
-              <div className="text-[10px] text-white/25 mt-1">Cryogenic Test Field · LNG Storage</div>
+              <div className="text-[10px] text-white/25 mt-1">Injection Molding · AD Plastik d.d., Solin</div>
             </div>
 
             <div className="flex-1 overflow-y-auto px-4 py-3 space-y-1 relative" ref={leftScrollRef} style={{ scrollbarWidth: "none" }}>
               <ScrollNav scrollRef={leftScrollRef} />
-              <div className="text-[12px] font-bold text-white/40 mb-2">▼ 5. CRYOGENIC TESTING</div>
-              <CheckItem done label="5.1 Test Field Layout & Safety" />
-              <div className="text-[12px] font-semibold text-white/35 pl-2 mt-2 mb-1">▼ 5.2 LN₂ Performance Testing</div>
-              <CheckItem done label="5.2.1 Boil-off Rate Measurement" indent />
-              <CheckItem done label="5.2.2 Vacuum Insulation Check" indent />
+              <div className="text-[12px] font-bold text-white/40 mb-2">▼ 4. INJECTION MOLDING PROCESS</div>
+              <CheckItem done label="4.1 Machine Park & Clamping Force" />
+              <div className="text-[12px] font-semibold text-white/35 pl-2 mt-2 mb-1">▼ 4.2 Dashboard Air Vent Production</div>
+              <CheckItem done label="4.2.1 Mold Condition & Maintenance Log" indent />
+              <CheckItem done label="4.2.2 Cavity Pressure Monitoring" indent />
               <div className="bg-[#AE3D3D]/8 border border-[#AE3D3D]/25 rounded-lg px-3 py-2.5 ml-2 my-2">
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full bg-[#AE3D3D] animate-pulse" />
-                  <span className="text-[12px] font-bold text-white">5.2.3 Thermal Cycling Results</span>
+                  <span className="text-[12px] font-bold text-white">4.2.3 Dimensional Stability (Cpk)</span>
                 </div>
                 <span className="text-[10px] px-2 py-0.5 bg-[#AE3D3D] text-white font-bold rounded ml-5 inline-block mt-1">HIGH RISK</span>
               </div>
-              <CheckItem label="5.2.4 Sensor Calibration" indent pending />
-              <div className="text-[12px] font-bold text-white/40 mt-3 mb-2">▶ 6. MATERIAL CERTIFICATION</div>
-              <CheckItem label="6.1 9% Nickel Steel Certs" pending />
-              <CheckItem label="6.2 Impact Test Records (−196°C)" pending />
+              <CheckItem label="4.2.4 Color Matching (ΔE < 0.5)" indent pending />
+              <div className="text-[12px] font-bold text-white/40 mt-3 mb-2">▶ 5. MATERIAL & TRACEABILITY</div>
+              <CheckItem label="5.1 PP-T20 Material Certificates" pending />
+              <CheckItem label="5.2 BMW M-TN 1011 Color Records" pending />
             </div>
 
             {/* Evidence */}
