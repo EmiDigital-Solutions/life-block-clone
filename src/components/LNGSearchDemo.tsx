@@ -211,7 +211,7 @@ const PowerToolChatbot = () => {
               <div className="mt-2 pt-2 border-t border-white/30">
                 <span className="text-[9px] font-bold uppercase tracking-wider text-primary/80 block mb-1">Also recommended</span>
                 <div className="flex gap-1.5 flex-wrap">
-                  {["Integrated Controller", "Sealed Bearings", "NTC Thermal Protection", "IP5X Dust Rating"].map((opt, i) => (
+                  {["Electro-polishing", "CMM Inspection Reports", "FDA Contact Material", "Batch Traceability"].map((opt, i) => (
                     <span key={i} className="px-2 py-0.5 text-[9px] font-semibold bg-primary/10 text-primary border border-primary/25">+ {opt}</span>
                   ))}
                 </div>
