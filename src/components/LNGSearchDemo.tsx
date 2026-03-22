@@ -153,9 +153,9 @@ const PowerToolChatbot = () => {
               <span className="text-[10px] font-bold uppercase tracking-widest text-primary block mb-1.5">Preference Engine — Context Detected</span>
               <div className="flex gap-2 flex-wrap">
                 {[
-                  { label: "CNC Stainless Steel Machining", type: "Process" },
+                  { label: "Steel Fabrication & Welding", type: "Process" },
                   { label: "Europe / Croatia Priority", type: "Region" },
-                  { label: "ISO 9001 Required", type: "Standard" },
+                  { label: "ISO 9001 / EN 1090 Required", type: "Standard" },
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-1">
                     <span className="px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider bg-[hsl(0,0%,85%)] text-[hsl(0,0%,40%)]">{item.type}</span>
@@ -171,7 +171,7 @@ const PowerToolChatbot = () => {
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="flex justify-end">
             <div className="p-2.5 bg-white/80 backdrop-blur-md border border-white/85 w-fit">
               <span className="text-[10px] font-bold uppercase tracking-wider text-foreground/60 block mb-0.5">You</span>
-              <p className="text-[12px] font-semibold text-foreground leading-relaxed">I need CNC stainless steel machining suppliers in Croatia for food processing equipment components</p>
+              <p className="text-[12px] font-semibold text-foreground leading-relaxed">I need heavy steel fabrication and welding suppliers in Croatia for infrastructure and industrial equipment projects</p>
             </div>
           </motion.div>
         )}
@@ -193,14 +193,14 @@ const PowerToolChatbot = () => {
               <span className="text-[10px] font-bold uppercase tracking-widest text-primary block mb-2">Preference Engine — I identified the following</span>
               <div className="flex flex-wrap gap-1.5">
                 {[
-                  { tag: "CNC Machining", cat: "Process" },
-                  { tag: "Stainless Steel 316L", cat: "Material" },
-                  { tag: "ISO 9001", cat: "Standard" },
-                  { tag: "FSSC 22000 Compatible", cat: "Industry" },
-                  { tag: "Ra ≤ 0.8 μm Surface", cat: "Spec" },
-                  { tag: "EN 10204 3.1 MTR", cat: "Traceability" },
-                  { tag: "5-Axis Capability", cat: "Equipment" },
-                  { tag: "Capacity ≥ 500 parts/mo", cat: "Volume" },
+                  { tag: "Steel Fabrication", cat: "Process" },
+                  { tag: "S355 / S460 Structural Steel", cat: "Material" },
+                  { tag: "ISO 9001 + EN 1090-2", cat: "Standard" },
+                  { tag: "Infrastructure & Heavy Industry", cat: "Industry" },
+                  { tag: "EN ISO 3834-2 Welding", cat: "Spec" },
+                  { tag: "NDT (UT, MT, PT)", cat: "Testing" },
+                  { tag: "CE Marking Required", cat: "Compliance" },
+                  { tag: "Capacity ≥ 5,000 t/yr", cat: "Volume" },
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-1">
                     <span className="px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider bg-primary/20 text-primary">{item.cat}</span>
@@ -211,7 +211,7 @@ const PowerToolChatbot = () => {
               <div className="mt-2 pt-2 border-t border-white/30">
                 <span className="text-[9px] font-bold uppercase tracking-wider text-primary/80 block mb-1">Also recommended</span>
                 <div className="flex gap-1.5 flex-wrap">
-                  {["Electro-polishing", "CMM Inspection Reports", "FDA Contact Material", "Batch Traceability"].map((opt, i) => (
+                  {["Pressure Vessel Capability", "Surface Treatment SA 2.5", "EXC3 Execution Class", "Railway Approval"].map((opt, i) => (
                     <span key={i} className="px-2 py-0.5 text-[9px] font-semibold bg-primary/10 text-primary border border-primary/25">+ {opt}</span>
                   ))}
                 </div>
@@ -227,7 +227,7 @@ const PowerToolChatbot = () => {
               <div className="flex items-center gap-1.5 mb-1">
                 <span className="px-2 py-0.5 text-[9px] font-bold bg-primary/30 text-primary">✓ Confirmed</span>
               </div>
-              <p className="text-[11px] font-semibold text-foreground leading-relaxed">Add EN 10204 3.1 material certificates and min 10 years food processing industry experience</p>
+              <p className="text-[11px] font-semibold text-foreground leading-relaxed">Add EN 1090-2 EXC3 execution class and min 50 years industrial manufacturing experience</p>
             </div>
           </motion.div>
         )}
@@ -237,8 +237,8 @@ const PowerToolChatbot = () => {
             <div className="p-2.5 bg-white/70 backdrop-blur-md border border-white/80">
               <span className="text-[10px] font-bold uppercase tracking-widest text-primary block mb-1.5">Preference Engine — Ready to Search</span>
               <div className="flex gap-2 flex-wrap">
-                <span className="px-2 py-0.5 text-[9px] font-bold bg-primary/25 text-primary">+ EN 10204 3.1 MTR</span>
-                <span className="px-2 py-0.5 text-[9px] font-bold bg-primary/25 text-primary">+ 10yr food processing exp.</span>
+                <span className="px-2 py-0.5 text-[9px] font-bold bg-primary/25 text-primary">+ EN 1090-2 EXC3</span>
+                <span className="px-2 py-0.5 text-[9px] font-bold bg-primary/25 text-primary">+ 50yr manufacturing exp.</span>
                 <span className="px-2 py-0.5 text-[9px] font-bold bg-primary/25 text-primary">+ Croatia priority ✓</span>
               </div>
             </div>
@@ -290,7 +290,7 @@ const PowerToolResults = ({ onSupplierClick }: { onSupplierClick: () => void }) 
         <div className="px-3 py-2.5 border-b border-[hsl(0,0%,78%)] flex items-center justify-between flex-shrink-0 bg-[hsl(0,0%,88%)]">
           <div>
              <p className="text-[11px] text-[hsl(0,0%,30%)] uppercase tracking-wider font-bold">12 Suppliers Found</p>
-              <p className="text-[10px] text-[hsl(0,0%,50%)]">CNC Machining · Stainless 316L · ISO 9001 · Food Processing</p>
+              <p className="text-[10px] text-[hsl(0,0%,50%)]">Steel Fabrication · EN 1090-2 · ISO 9001 · Heavy Industry</p>
           </div>
           <div className="flex gap-1.5">
             <span className="px-2 py-1 bg-white/80 border border-white/85 text-[10px] text-foreground font-medium">Sort: Match</span>
@@ -302,9 +302,9 @@ const PowerToolResults = ({ onSupplierClick }: { onSupplierClick: () => void }) 
           <div className="w-[110px] md:w-[130px] bg-[hsl(0,0%,82%)] border-r border-[hsl(0,0%,76%)] p-2.5 flex-shrink-0">
             <p className="text-[10px] text-[hsl(0,0%,30%)] uppercase tracking-widest font-bold mb-2.5">Filters</p>
             {[
-              { label: "Standard", values: ["ISO 9001", "EN 1090", "IATF 16949"] },
+              { label: "Standard", values: ["ISO 9001", "EN 1090-2", "ISO 3834-2"] },
               { label: "Region", values: ["Croatia", "Slovenia", "Serbia"] },
-              { label: "Process", values: ["CNC Machining", "Welding"] },
+              { label: "Process", values: ["Steel Fabrication", "Welding"] },
             ].map((filter, i) => (
               <div key={i} className="mb-2.5">
                 <p className="text-[10px] text-[hsl(0,0%,35%)] font-bold uppercase mb-1">{filter.label}</p>
@@ -378,21 +378,21 @@ const PowerToolProfile = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const tabLabels = ["Overview", "Audit History", "Intelligence", "Fleet Order"];
+  const tabLabels = ["Overview", "Audit History", "Intelligence", "Order Audit"];
 
   return (
     <div className="bg-[hsl(0,0%,85%)] flex flex-col h-full">
       <div className="p-4 md:px-6 md:pt-4 md:pb-3 border-b border-[hsl(0,0%,78%)] flex-shrink-0">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-white/80 border border-white/85 flex items-center justify-center">
-            <span className="text-sm font-bold text-foreground">MK</span>
+            <span className="text-sm font-bold text-foreground">ĐĐ</span>
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-2">
-              <h3 className="text-[14px] font-bold text-[hsl(0,0%,15%)]">Makita Corporation</h3>
+              <h3 className="text-[14px] font-bold text-[hsl(0,0%,15%)]">Đuro Đaković Specijalna Vozila</h3>
               <span className="px-2 py-0.5 bg-accent text-white text-[10px] font-bold">97% Match</span>
             </div>
-            <p className="text-[11px] text-[hsl(0,0%,45%)] font-medium">Anjo, Japan · Est. 1915 · 18,500 employees</p>
+            <p className="text-[11px] text-[hsl(0,0%,45%)] font-medium">Slavonski Brod, Croatia · Est. 1921 · 450 employees</p>
           </div>
           <div className="flex gap-2">
             <button className="px-3 py-1.5 bg-accent text-white text-[11px] font-semibold">Request Quote</button>
@@ -414,9 +414,9 @@ const PowerToolProfile = () => {
           {activeTab === 0 && (
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {[
-                { label: "Capacity", value: "25,000 units/yr" },
-                { label: "Lead Time", value: "4–8 weeks" },
-                { label: "Testing", value: "IEC 62841, EN 60745" },
+                { label: "Capacity", value: "12,000 t/yr" },
+                { label: "Lead Time", value: "8–14 weeks" },
+                { label: "Welding", value: "EN ISO 3834-2" },
                 { label: "Quality Score", value: "96/100" },
               ].map((item, i) => (
                 <div key={i} className="p-3 bg-white/70 border border-white/80">
@@ -427,7 +427,7 @@ const PowerToolProfile = () => {
               <div className="col-span-2 md:col-span-4 p-3 bg-white/70 border border-white/80">
                 <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Certifications & Compliance</p>
                 <div className="flex gap-2 flex-wrap">
-                  {["IEC 62841", "EN 60745", "UL Listed", "CE Marking", "IP56", "EPTA 05/2015"].map((c, i) => (
+                  {["ISO 9001", "EN 1090-2", "EN 15085-2", "ISO 3834-2", "CE Marking", "NATO AQAP"].map((c, i) => (
                     <span key={i} className="px-2 py-1 border border-primary/40 text-primary text-[10px] font-bold uppercase">{c}</span>
                   ))}
                 </div>
@@ -438,9 +438,9 @@ const PowerToolProfile = () => {
           {activeTab === 1 && (
             <div className="space-y-2.5">
               {[
-                { type: "IEC 62841 Safety Compliance Audit", date: "Dec 2025", score: "94/100", auditor: "R. Andersen", status: "Completed" },
-                { type: "Production Quality System Review", date: "Oct 2025", score: "97/100", auditor: "J. Martinez", status: "Completed" },
-                { type: "Battery Performance Lab Inspection", date: "Aug 2025", score: "91/100", auditor: "H. Nakamura", status: "Completed" },
+                { type: "EN 1090-2 EXC3 Structural Steel Audit", date: "Dec 2025", score: "96/100", auditor: "M. Novak", status: "Completed" },
+                { type: "EN 15085-2 Railway Welding Review", date: "Oct 2025", score: "94/100", auditor: "K. Schulz", status: "Completed" },
+                { type: "ISO 3834-2 Welding Quality System", date: "Aug 2025", score: "92/100", auditor: "I. Horvat", status: "Completed" },
               ].map((audit, i) => (
                 <div key={i} className="p-3 bg-white/70 border border-white/80">
                   <div className="flex items-center justify-between mb-1">
@@ -472,7 +472,7 @@ const PowerToolProfile = () => {
               </div>
               <div className="p-3 bg-white/70 border border-white/80">
                 <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Fleet Project References</p>
-                {["Deutsche Bahn — 12,000 cordless tool fleet rollout", "Skanska — Rotary hammer standardization (Nordic)", "Bouygues Construction — Impact driver package (2,400 units)"].map((ref, i) => (
+                {["Siemens Mobility — Railway bogie frames for Desiro HC", "Andritz Hydro — Penstock sections for Austrian hydropower", "Doppelmayr — Cable car station steel structures"].map((ref, i) => (
                   <p key={i} className="text-[11px] text-foreground font-medium py-1.5 border-b border-white/30 last:border-0">{ref}</p>
                 ))}
               </div>
@@ -482,15 +482,15 @@ const PowerToolProfile = () => {
           {activeTab === 3 && (
             <div className="space-y-3">
               <div className="p-3 bg-white/70 border border-white/80">
-                <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Order Fleet Assessment</p>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Order Supplier Audit</p>
                 <div className="flex gap-2 mb-3">
-                  {["Quality Audit", "Performance Test", "Fleet Demo"].map((type, i) => (
+                  {["Quality Audit", "Process Audit", "Compliance Check"].map((type, i) => (
                     <span key={i} className={`px-2.5 py-1 text-[10px] font-semibold ${i === 0 ? 'bg-accent text-white' : 'bg-foreground/10 border border-foreground/15 text-foreground'}`}>{type}</span>
                   ))}
                 </div>
                 <div className="space-y-0">
                   {[
-                    { field: "Audit Standard", value: "IEC 62841 / EN 60745" },
+                    { field: "Audit Standard", value: "EN 1090-2 EXC3 / ISO 3834-2" },
                     { field: "Duration", value: "2 days on-site" },
                     { field: "Earliest Date", value: "March 15, 2026" },
                   ].map((row, i) => (
@@ -502,7 +502,7 @@ const PowerToolProfile = () => {
                 </div>
               </div>
               <button className="w-full py-2.5 bg-accent text-white text-[12px] font-semibold">
-                Schedule Fleet Assessment Now
+                Schedule Supplier Audit Now
               </button>
             </div>
           )}

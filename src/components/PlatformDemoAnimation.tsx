@@ -130,9 +130,9 @@ const DiscoverScreen = () => {
   }, []);
 
   const suppliers = [
-    { name: "PräzisionsTech GmbH", location: "Stuttgart, DE", industry: "CNC Machining", score: 94, certs: "ISO 9001, AS9100" },
-    { name: "AeroComponents SA", location: "Toulouse, FR", industry: "Aerospace Parts", score: 89, certs: "EN 9100, ISO 14001" },
-    { name: "TurboValve Ltd", location: "Sheffield, UK", industry: "Valve Manufacturing", score: 86, certs: "ISO 9001, PED" },
+    { name: "Đuro Đaković d.d.", location: "Slavonski Brod, HR", industry: "Steel Fabrication", score: 97, certs: "ISO 9001, EN 1090-2" },
+    { name: "Končar d.d.", location: "Zagreb, HR", industry: "Electrical Equipment", score: 94, certs: "ISO 9001, IEC 61439" },
+    { name: "AD Plastik d.d.", location: "Solin, HR", industry: "Automotive Components", score: 91, certs: "IATF 16949, VDA 6.3" },
   ];
 
   return (
@@ -175,7 +175,7 @@ const DiscoverScreen = () => {
             <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}>
               <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-1.5">Audit Standard</div>
               <div className="flex gap-1.5">
-                {["ISO 9001", "AS9100", "IATF"].map((std, i) => (
+                {["ISO 9001", "EN 1090-2", "IATF"].map((std, i) => (
                   <div key={std} className={`px-3 py-1.5 text-xs font-semibold ${i === 0 ? 'bg-foreground text-background' : 'border border-foreground/15 text-foreground/50'}`}>
                     {std}
                   </div>
@@ -294,7 +294,7 @@ const DiscoverScreen = () => {
                   </svg>
                   <div className="flex-1">
                     <span className="text-xs font-semibold text-foreground block">AI Recommendation</span>
-                    <span className="text-[10px] text-muted-foreground leading-relaxed">All 3 suppliers qualify for ISO 9001 audit. PräzisionsTech shows strongest quality metrics. Recommend parallel audit execution for fastest qualification.</span>
+                    <span className="text-[10px] text-muted-foreground leading-relaxed">All 3 Croatian suppliers qualify for audit. Đuro Đaković shows strongest quality metrics. Recommend parallel audit execution for fastest qualification.</span>
                   </div>
                 </div>
               </GlassCard>
@@ -342,9 +342,9 @@ const MatchScreen = () => {
   }, []);
 
   const auditors = [
-    { name: "Markus Hoffmann", region: "DACH", location: "Stuttgart, DE", match: 96, cert: "ISO 9001 Lead · 15 yrs", supplier: "PräzisionsTech", img: auditorGen2 },
-    { name: "Dr. Anna Weber", region: "Western EU", location: "Toulouse, FR", match: 93, cert: "AS9100 Lead · 12 yrs", supplier: "AeroComponents", img: auditorGen3 },
-    { name: "Thomas Richter", region: "UK & Ireland", location: "Manchester, UK", match: 89, cert: "ISO 9001 · 9 yrs", supplier: "TurboValve", img: auditorGen4 },
+    { name: "Markus Hoffmann", region: "DACH", location: "Stuttgart, DE", match: 96, cert: "EN 1090-2 Lead · 15 yrs", supplier: "Đuro Đaković", img: auditorGen2 },
+    { name: "Dr. Anna Weber", region: "Western EU", location: "Vienna, AT", match: 93, cert: "ISO 9001 Lead · 12 yrs", supplier: "Končar", img: auditorGen3 },
+    { name: "Ivan Horvat", region: "SEE", location: "Zagreb, HR", match: 89, cert: "IATF 16949 · 9 yrs", supplier: "AD Plastik", img: auditorGen4 },
   ];
 
   const reasoningSteps = [
