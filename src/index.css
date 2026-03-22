@@ -26,8 +26,8 @@ All colors MUST be HSL.
     --primary: 0 78% 50%; /* Croatian Red #E31E24 */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 161 25.5411% 54.7059%; /* Hilti Red */
-    --secondary-foreground: 0 0% 0%;
+    --secondary: 220 50% 35%; /* Croatian Navy Blue */
+    --secondary-foreground: 0 0% 100%;
 
     --muted: 0 0% 96%; /* Snow White #F5F5F5 */
     --muted-foreground: 0 0% 45%;
