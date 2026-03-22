@@ -253,12 +253,6 @@ const voiceAlertPartsEn = [
   "Hydrostatic test is on hold until weld repairs are verified. Check with the welding engineer before proceeding.",
 ];
 
-const voiceAlertPartsRu = [
-  "Внимание инспектор. Множественные дефекты сварки требуют вашей проверки на конденсаторе деэтанизатора.",
-  "Перейдите сначала к продольному шву. Обнаружена возможная трещина у кромки шва — сфотографируйте и запросите магнитопорошковый контроль для подтверждения.",
-  "Гидростатическое испытание приостановлено до проверки ремонта сварки. Свяжитесь с инженером-сварщиком перед продолжением.",
-];
-
 const LNGAtlasDemo = () => {
   const [paused, setPaused] = useState(false);
   const [loopKey, setLoopKey] = useState(0);
@@ -324,12 +318,11 @@ const LNGAtlasDemo = () => {
     }
     window.speechSynthesis.cancel();
 
-    const isRu = language === "ru";
-    const parts = isRu ? voiceAlertPartsRu : voiceAlertPartsEn;
-    const langCode = isRu ? "ru-RU" : "en-US";
+    const parts = voiceAlertPartsEn;
+    const langCode = "en-US";
 
     const voices = window.speechSynthesis.getVoices();
-    const langVoices = voices.filter(v => v.lang.startsWith(isRu ? "ru" : "en"));
+    const langVoices = voices.filter(v => v.lang.startsWith("en"));
     const preferred = langVoices.find(v => v.name.includes("Google")) || langVoices[0];
 
     setCopilotSpeaking(true);

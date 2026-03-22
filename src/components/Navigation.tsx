@@ -6,7 +6,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const { language, setLanguage, t } = useLanguage();
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -69,13 +69,6 @@ const Navigation = () => {
               )}
             </button>
             
-            {/* Language Switcher */}
-            <button
-              onClick={() => setLanguage(language === "en" ? "ru" : "en")}
-              className="flex items-center justify-center px-2 py-1 text-[11px] md:text-xs font-semibold tracking-wider uppercase text-foreground/60 hover:text-foreground hover:bg-foreground/5 transition-colors rounded-full"
-            >
-              {language === "en" ? "HR" : "EN"}
-            </button>
           </div>
 
           {/* Demo Button */}

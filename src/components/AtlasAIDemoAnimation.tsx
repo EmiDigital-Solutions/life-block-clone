@@ -69,12 +69,6 @@ const AtlasAIDemoAnimation = () => {
     "Check calibration certificates for temperature sensors below minus 196°C.",
   ];
 
-  const riskAlertPartsRu = [
-    "Требуется аудит криогенного испытательного полигона по EN 13458 и ASME VIII Div.1.",
-    "Проверьте измерение скорости испарения LN₂ и целостность вакуумной изоляции.",
-    "Проверьте сертификаты калибровки датчиков температуры ниже минус 196°C.",
-  ];
-
   const speakRiskAlert = useCallback(() => {
     if (copilotSpeaking) {
       window.speechSynthesis.cancel();
@@ -85,12 +79,11 @@ const AtlasAIDemoAnimation = () => {
 
     window.speechSynthesis.cancel();
 
-    const isRu = language === "ru";
-    const parts = isRu ? riskAlertPartsRu : riskAlertPartsEn;
-    const langCode = isRu ? "ru-RU" : "en-US";
+    const parts = riskAlertPartsEn;
+    const langCode = "en-US";
 
     const voices = window.speechSynthesis.getVoices();
-    const langVoices = voices.filter(v => v.lang.startsWith(isRu ? "ru" : "en"));
+    const langVoices = voices.filter(v => v.lang.startsWith("en"));
     const preferred = langVoices.find(v => v.name.includes("Google")) || langVoices[0];
 
     setCopilotSpeaking(true);
