@@ -472,7 +472,7 @@ const PowerToolProfile = () => {
               </div>
               <div className="p-3 bg-white/70 border border-white/80">
                 <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold mb-2">Fleet Project References</p>
-                {["Deutsche Bahn — 12,000 cordless tool fleet rollout", "Skanska — Rotary hammer standardization (Nordic)", "Bouygues Construction — Impact driver package (2,400 units)"].map((ref, i) => (
+                {["Siemens Mobility — Railway bogie frames for Desiro HC", "Andritz Hydro — Penstock sections for Austrian hydropower", "Doppelmayr — Cable car station steel structures"].map((ref, i) => (
                   <p key={i} className="text-[11px] text-foreground font-medium py-1.5 border-b border-white/30 last:border-0">{ref}</p>
                 ))}
               </div>
