@@ -23,8 +23,8 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 0%;
 
-    --primary: 195 88.5714% 34.3137%; /* Hilti Red #DD1F26 */
-    --primary-foreground: 0 0% 0%;
+    --primary: 0 78% 50%; /* Croatian Red #E31E24 */
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 161 25.5411% 54.7059%; /* Hilti Red */
     --secondary-foreground: 0 0% 0%;
