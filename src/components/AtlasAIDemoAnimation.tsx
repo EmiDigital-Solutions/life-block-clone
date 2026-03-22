@@ -369,7 +369,7 @@ const AtlasAIDemoAnimation = () => {
                     className="bg-white/5 rounded-lg p-4">
                     <span className="text-[12px] font-semibold text-[#F5A623] uppercase tracking-wider">Common Issues</span>
                     <div className="mt-2 space-y-2">
-                      {["Boil-off exceeds spec (68% of failures)", "Vacuum degradation undetected (54%)", "Sensor drift at cryogenic temps (41%)"].map(t => (
+                      {["Cpk drift after 40K shots (72% of findings)", "Color shift on aged mold inserts (58%)", "Clip force out-of-spec on cavity 3–4 (44%)"].map(t => (
                         <div key={t} className="flex items-center gap-2">
                           <div className="w-2 h-2 rounded-full bg-[#F5A623]" />
                           <span className="text-[12px] text-white/45 leading-[1.5]">{t}</span>
