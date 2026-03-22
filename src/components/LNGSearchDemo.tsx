@@ -302,9 +302,9 @@ const PowerToolResults = ({ onSupplierClick }: { onSupplierClick: () => void }) 
           <div className="w-[110px] md:w-[130px] bg-[hsl(0,0%,82%)] border-r border-[hsl(0,0%,76%)] p-2.5 flex-shrink-0">
             <p className="text-[10px] text-[hsl(0,0%,30%)] uppercase tracking-widest font-bold mb-2.5">Filters</p>
             {[
-              { label: "Standard", values: ["ISO 9001", "EN 1090", "IATF 16949"] },
+              { label: "Standard", values: ["ISO 9001", "EN 1090-2", "ISO 3834-2"] },
               { label: "Region", values: ["Croatia", "Slovenia", "Serbia"] },
-              { label: "Process", values: ["CNC Machining", "Welding"] },
+              { label: "Process", values: ["Steel Fabrication", "Welding"] },
             ].map((filter, i) => (
               <div key={i} className="mb-2.5">
                 <p className="text-[10px] text-[hsl(0,0%,35%)] font-bold uppercase mb-1">{filter.label}</p>
