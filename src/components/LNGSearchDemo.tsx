@@ -237,8 +237,8 @@ const PowerToolChatbot = () => {
             <div className="p-2.5 bg-white/70 backdrop-blur-md border border-white/80">
               <span className="text-[10px] font-bold uppercase tracking-widest text-primary block mb-1.5">Preference Engine — Ready to Search</span>
               <div className="flex gap-2 flex-wrap">
-                <span className="px-2 py-0.5 text-[9px] font-bold bg-primary/25 text-primary">+ EN 10204 3.1 MTR</span>
-                <span className="px-2 py-0.5 text-[9px] font-bold bg-primary/25 text-primary">+ 10yr food processing exp.</span>
+                <span className="px-2 py-0.5 text-[9px] font-bold bg-primary/25 text-primary">+ EN 1090-2 EXC3</span>
+                <span className="px-2 py-0.5 text-[9px] font-bold bg-primary/25 text-primary">+ 50yr manufacturing exp.</span>
                 <span className="px-2 py-0.5 text-[9px] font-bold bg-primary/25 text-primary">+ Croatia priority ✓</span>
               </div>
             </div>
