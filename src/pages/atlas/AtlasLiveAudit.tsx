@@ -36,7 +36,18 @@ const styles = `
   .progress-bar { width: 80px; height: 4px; background: #1c2333; border-radius: 2px; overflow: hidden; }
   .progress-fill { height: 100%; background: #2dd4bf; border-radius: 2px; width: 45%; }
 
-  .body { display: grid; grid-template-columns: 260px 1fr 280px; flex: 1; overflow: hidden; }
+  .body { display: grid; grid-template-columns: 220px 1fr 240px; flex: 1; overflow: hidden; }
+  @media (min-width: 1200px) {
+    .body { grid-template-columns: 260px 1fr 280px; }
+  }
+  @media (max-width: 900px) {
+    .body { grid-template-columns: 200px 1fr 220px; }
+  }
+  @media (max-width: 700px) {
+    .body { grid-template-columns: 1fr; grid-template-rows: auto 1fr auto; }
+    .left-panel { display: none; }
+    .right-panel { max-height: 200px; border-left: none; border-top: 1px solid #2a3145; }
+  }
 
   .left-panel { background: #161b26; border-right: 1px solid #2a3145; display: flex; flex-direction: column; overflow: hidden; }
   .panel-section { padding: 14px 16px 10px; border-bottom: 1px solid #2a3145; }
