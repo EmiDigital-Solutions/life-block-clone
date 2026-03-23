@@ -10,7 +10,6 @@ import ToleranceNotation from "@/components/ToleranceNotation";
 import { Button } from "@/components/ui/button";
 import LNGInspectionDemo from "@/components/LNGInspectionDemo";
 import LNGAtlasDemo from "@/components/LNGAtlasDemo";
-import AtlasAuditInterface from "@/components/AtlasAuditInterface";
 import LNGInspectionDashboard from "@/components/LNGInspectionDashboard";
 import LNGSupplierClaimsDashboard from "@/components/LNGSupplierClaimsDashboard";
 import LNGFullLifecycleDemo from "@/components/LNGFullLifecycleDemo";
@@ -361,33 +360,6 @@ const LNGInspection = () => {
             <div className="aspect-[16/10] w-full">
               <LNGAtlasDemo />
             </div>
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════════
-            ATLAS AUDIT INTERFACE — LIVE DEMO
-        ═══════════════════════════════════════════════════ */}
-        <section data-nav-theme="dark" className="py-24 md:py-32 bg-[hsl(210,20%,8%)]">
-          <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="max-w-3xl mb-12"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-px bg-white/20" />
-                <span className="text-xs font-mono tracking-[0.25em] uppercase text-white/40">Live Platform Preview</span>
-              </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.03em] leading-[0.95] text-white">
-                Atlas AI Audit<br />Interface
-              </h2>
-              <p className="text-base md:text-lg text-white/40 mt-6 max-w-xl">
-                AI-guided scoring, real-time evidence verification, and copilot intelligence — all in one screen.
-              </p>
-            </motion.div>
-
-            <AtlasAuditInterface />
           </div>
         </section>
 

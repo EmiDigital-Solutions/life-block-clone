@@ -753,9 +753,9 @@ const LNGAtlasDemo = () => {
                   </svg>
                 </motion.button>
               </div>
-              {copilotSpeaking && (
-                <span className="text-[12px] font-medium mt-2 text-[#6EA996]">Speaking...</span>
-              )}
+              <span className={`text-[12px] font-medium mt-2 ${copilotSpeaking ? "text-[#6EA996]" : speakerPulsing ? "text-[#6EA996] animate-pulse" : "text-white/30"}`}>
+                {copilotSpeaking ? "Speaking..." : speakerPulsing ? "Tap to listen" : "Tap to speak"}
+              </span>
               {/* Waveform */}
               <div className="flex items-center gap-0.5 mt-2 h-5">
                 {copilotSpeaking && [...Array(16)].map((_, i) => (
