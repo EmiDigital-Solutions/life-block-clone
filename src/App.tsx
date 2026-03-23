@@ -71,6 +71,7 @@ const App = () => (
               <Route path="capa" element={<AtlasCapa />} />
               <Route path="evidence" element={<AtlasEvidence />} />
               <Route path="copilot" element={<AtlasCopilot />} />
+              <Route path="live-audit" element={<AtlasLiveAudit />} />
             </Route>
 
             <Route path="*" element={<NotFound />} />
