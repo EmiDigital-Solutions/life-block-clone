@@ -20,6 +20,19 @@ import CustomerStoryDetail from "./pages/CustomerStoryDetail";
 import LNGInspection from "./pages/LNGInspection";
 import NotFound from "./pages/NotFound";
 
+// Atlas AI App
+import AtlasLayout from "./pages/atlas/AtlasLayout";
+import AtlasLogin from "./pages/atlas/AtlasLogin";
+import AtlasDashboard from "./pages/atlas/AtlasDashboard";
+import AtlasSuppliers from "./pages/atlas/AtlasSuppliers";
+import AtlasAudits from "./pages/atlas/AtlasAudits";
+import AtlasAuditDetail from "./pages/atlas/AtlasAuditDetail";
+import AtlasFindings from "./pages/atlas/AtlasFindings";
+import AtlasCapa from "./pages/atlas/AtlasCapa";
+import AtlasEvidence from "./pages/atlas/AtlasEvidence";
+import AtlasCopilot from "./pages/atlas/AtlasCopilot";
+import AtlasAuthGuard from "./components/atlas/AtlasAuthGuard";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -32,7 +45,6 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
-            {/* supplier-digital-twin content moved into SupplierProfileModal */}
             <Route path="/lng-inspection" element={<LNGInspection />} />
             <Route path="/be-found" element={<BeFound />} />
             <Route path="/ground-intelligence" element={<GroundIntelligence />} />
@@ -46,7 +58,20 @@ const App = () => (
             <Route path="/customer-stories" element={<CustomerStories />} />
             <Route path="/customer-stories/:storyId" element={<CustomerStoryDetail />} />
             <Route path="/bg-removal" element={<BackgroundRemoval />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+
+            {/* Atlas AI App */}
+            <Route path="/atlas/login" element={<AtlasLogin />} />
+            <Route path="/atlas" element={<AtlasAuthGuard><AtlasLayout /></AtlasAuthGuard>}>
+              <Route index element={<AtlasDashboard />} />
+              <Route path="suppliers" element={<AtlasSuppliers />} />
+              <Route path="audits" element={<AtlasAudits />} />
+              <Route path="audits/:auditId" element={<AtlasAuditDetail />} />
+              <Route path="findings" element={<AtlasFindings />} />
+              <Route path="capa" element={<AtlasCapa />} />
+              <Route path="evidence" element={<AtlasEvidence />} />
+              <Route path="copilot" element={<AtlasCopilot />} />
+            </Route>
+
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
