@@ -14,6 +14,299 @@ export type Database = {
   }
   public: {
     Tables: {
+      audit_checkpoints: {
+        Row: {
+          audit_id: string
+          category: string
+          created_at: string
+          id: string
+          notes: string | null
+          order_index: number | null
+          question: string
+          score: number | null
+          status: string
+        }
+        Insert: {
+          audit_id: string
+          category: string
+          created_at?: string
+          id?: string
+          notes?: string | null
+          order_index?: number | null
+          question: string
+          score?: number | null
+          status?: string
+        }
+        Update: {
+          audit_id?: string
+          category?: string
+          created_at?: string
+          id?: string
+          notes?: string | null
+          order_index?: number | null
+          question?: string
+          score?: number | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "audit_checkpoints_audit_id_fkey"
+            columns: ["audit_id"]
+            isOneToOne: false
+            referencedRelation: "audits"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      audit_evidence: {
+        Row: {
+          ai_analysis: string | null
+          audit_id: string
+          captured_at: string | null
+          checkpoint_id: string | null
+          created_at: string
+          description: string | null
+          file_name: string
+          file_path: string
+          finding_id: string | null
+          geo_lat: number | null
+          geo_lng: number | null
+          id: string
+          mime_type: string | null
+          uploaded_by: string | null
+        }
+        Insert: {
+          ai_analysis?: string | null
+          audit_id: string
+          captured_at?: string | null
+          checkpoint_id?: string | null
+          created_at?: string
+          description?: string | null
+          file_name: string
+          file_path: string
+          finding_id?: string | null
+          geo_lat?: number | null
+          geo_lng?: number | null
+          id?: string
+          mime_type?: string | null
+          uploaded_by?: string | null
+        }
+        Update: {
+          ai_analysis?: string | null
+          audit_id?: string
+          captured_at?: string | null
+          checkpoint_id?: string | null
+          created_at?: string
+          description?: string | null
+          file_name?: string
+          file_path?: string
+          finding_id?: string | null
+          geo_lat?: number | null
+          geo_lng?: number | null
+          id?: string
+          mime_type?: string | null
+          uploaded_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "audit_evidence_audit_id_fkey"
+            columns: ["audit_id"]
+            isOneToOne: false
+            referencedRelation: "audits"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "audit_evidence_checkpoint_id_fkey"
+            columns: ["checkpoint_id"]
+            isOneToOne: false
+            referencedRelation: "audit_checkpoints"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "audit_evidence_finding_id_fkey"
+            columns: ["finding_id"]
+            isOneToOne: false
+            referencedRelation: "audit_findings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      audit_findings: {
+        Row: {
+          ai_recommendation: string | null
+          audit_id: string
+          checkpoint_id: string | null
+          created_at: string
+          description: string | null
+          evidence_notes: string | null
+          id: string
+          severity: string
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          ai_recommendation?: string | null
+          audit_id: string
+          checkpoint_id?: string | null
+          created_at?: string
+          description?: string | null
+          evidence_notes?: string | null
+          id?: string
+          severity?: string
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          ai_recommendation?: string | null
+          audit_id?: string
+          checkpoint_id?: string | null
+          created_at?: string
+          description?: string | null
+          evidence_notes?: string | null
+          id?: string
+          severity?: string
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "audit_findings_audit_id_fkey"
+            columns: ["audit_id"]
+            isOneToOne: false
+            referencedRelation: "audits"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "audit_findings_checkpoint_id_fkey"
+            columns: ["checkpoint_id"]
+            isOneToOne: false
+            referencedRelation: "audit_checkpoints"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      audits: {
+        Row: {
+          ai_analysis: string | null
+          audit_type: string
+          auditor_id: string | null
+          completed_date: string | null
+          created_at: string
+          id: string
+          overall_score: number | null
+          requested_by: string | null
+          scheduled_date: string | null
+          standard: string | null
+          status: string
+          summary: string | null
+          supplier_id: string
+          updated_at: string
+        }
+        Insert: {
+          ai_analysis?: string | null
+          audit_type?: string
+          auditor_id?: string | null
+          completed_date?: string | null
+          created_at?: string
+          id?: string
+          overall_score?: number | null
+          requested_by?: string | null
+          scheduled_date?: string | null
+          standard?: string | null
+          status?: string
+          summary?: string | null
+          supplier_id: string
+          updated_at?: string
+        }
+        Update: {
+          ai_analysis?: string | null
+          audit_type?: string
+          auditor_id?: string | null
+          completed_date?: string | null
+          created_at?: string
+          id?: string
+          overall_score?: number | null
+          requested_by?: string | null
+          scheduled_date?: string | null
+          standard?: string | null
+          status?: string
+          summary?: string | null
+          supplier_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "audits_supplier_id_fkey"
+            columns: ["supplier_id"]
+            isOneToOne: false
+            referencedRelation: "suppliers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      capa_actions: {
+        Row: {
+          audit_id: string
+          completed_at: string | null
+          completion_notes: string | null
+          created_at: string
+          description: string | null
+          due_date: string | null
+          finding_id: string
+          id: string
+          responsible_user_id: string | null
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          audit_id: string
+          completed_at?: string | null
+          completion_notes?: string | null
+          created_at?: string
+          description?: string | null
+          due_date?: string | null
+          finding_id: string
+          id?: string
+          responsible_user_id?: string | null
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          audit_id?: string
+          completed_at?: string | null
+          completion_notes?: string | null
+          created_at?: string
+          description?: string | null
+          due_date?: string | null
+          finding_id?: string
+          id?: string
+          responsible_user_id?: string | null
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "capa_actions_audit_id_fkey"
+            columns: ["audit_id"]
+            isOneToOne: false
+            referencedRelation: "audits"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "capa_actions_finding_id_fkey"
+            columns: ["finding_id"]
+            isOneToOne: false
+            referencedRelation: "audit_findings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       contact_submissions: {
         Row: {
           company: string | null
@@ -179,6 +472,93 @@ export type Database = {
           uploaded_at?: string | null
           uploaded_by?: string
           width?: number | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          company: string | null
+          created_at: string
+          full_name: string
+          id: string
+          phone: string | null
+          role_type: string
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          company?: string | null
+          created_at?: string
+          full_name?: string
+          id: string
+          phone?: string | null
+          role_type?: string
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          company?: string | null
+          created_at?: string
+          full_name?: string
+          id?: string
+          phone?: string | null
+          role_type?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      suppliers: {
+        Row: {
+          certifications: string[] | null
+          city: string | null
+          contact_email: string | null
+          country: string | null
+          created_at: string
+          description: string | null
+          employee_count: number | null
+          id: string
+          industry: string | null
+          name: string
+          oib: string | null
+          revenue_eur: number | null
+          sub_industry: string | null
+          updated_at: string
+          website: string | null
+        }
+        Insert: {
+          certifications?: string[] | null
+          city?: string | null
+          contact_email?: string | null
+          country?: string | null
+          created_at?: string
+          description?: string | null
+          employee_count?: number | null
+          id?: string
+          industry?: string | null
+          name: string
+          oib?: string | null
+          revenue_eur?: number | null
+          sub_industry?: string | null
+          updated_at?: string
+          website?: string | null
+        }
+        Update: {
+          certifications?: string[] | null
+          city?: string | null
+          contact_email?: string | null
+          country?: string | null
+          created_at?: string
+          description?: string | null
+          employee_count?: number | null
+          id?: string
+          industry?: string | null
+          name?: string
+          oib?: string | null
+          revenue_eur?: number | null
+          sub_industry?: string | null
+          updated_at?: string
+          website?: string | null
         }
         Relationships: []
       }
