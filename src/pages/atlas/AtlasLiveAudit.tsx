@@ -16,7 +16,7 @@ const styles = `
   }
   .header {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 0 20px; height: 44px; background: #161b26;
+    padding: 0 16px; height: 40px; background: #161b26;
     border-bottom: 1px solid #2a3145; flex-shrink: 0;
   }
   .live-badge {
