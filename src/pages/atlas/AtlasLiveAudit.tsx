@@ -1,395 +1,505 @@
 import { useState } from "react";
-import {
-  CheckCircle,
-  ChevronDown,
-  ChevronRight,
-  AlertTriangle,
-  FileText,
-  FileImage,
-  Upload,
-  Camera,
-  Send,
-  Mic,
-  Volume2,
-  MonitorSmartphone,
-  Image,
-} from "lucide-react";
-import { Progress } from "@/components/ui/progress";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 
-/* ─── Types ─── */
-interface CheckItem {
-  id: string;
-  label: string;
-  status: "pass" | "fail" | "pending" | "high_risk";
-  children?: CheckItem[];
-}
+const styles = `
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600;700&display=swap');
 
-interface EvidenceFile {
-  name: string;
-  type: "pdf" | "image";
-  verified: boolean;
-}
+  .audit-root {
+    font-family: 'DM Sans', sans-serif;
+    background: #0f1117;
+    color: #f1f5f9;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 20px; height: 44px; background: #161b26;
+    border-bottom: 1px solid #2a3145; flex-shrink: 0;
+  }
+  .live-badge {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+    color: #2dd4bf; text-transform: uppercase;
+  }
+  .live-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #2dd4bf; box-shadow: 0 0 6px #2dd4bf;
+    animation: audit-pulse 2s infinite;
+  }
+  @keyframes audit-pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .header-title { font-size: 13px; font-weight: 600; color: #f1f5f9; letter-spacing: 0.02em; }
+  .header-title span { color: #94a3b8; font-weight: 400; }
+  .progress-wrap { display: flex; align-items: center; gap: 10px; font-size: 12px; color: #94a3b8; }
+  .progress-bar { width: 80px; height: 4px; background: #1c2333; border-radius: 2px; overflow: hidden; }
+  .progress-fill { height: 100%; background: #2dd4bf; border-radius: 2px; width: 45%; }
 
-/* ─── Data ─── */
-const checklist: CheckItem[] = [
-  {
-    id: "4",
-    label: "4. INJECTION MOLDING PROCESS",
-    status: "pending",
-    children: [
-      { id: "4.1", label: "4.1 Machine Park & Clamping Force", status: "pass" },
-      {
-        id: "4.2",
-        label: "4.2 Dashboard Air Vent Production",
-        status: "pending",
-        children: [
-          { id: "4.2.1", label: "4.2.1 Mold Condition & Maintenance Log", status: "pending" },
-          { id: "4.2.2", label: "4.2.2 Cavity Pressure Monitoring", status: "pass" },
-          { id: "4.2.3", label: "4.2.3 Dimensional Stability (Cpk)", status: "high_risk" },
-        ],
-      },
-    ],
-  },
-];
+  .body { display: grid; grid-template-columns: 260px 1fr 280px; flex: 1; overflow: hidden; }
 
-const evidenceFiles: EvidenceFile[] = [
-  { name: "molding_cell_overview.j...", type: "image", verified: true },
-  { name: "cpk_report_air_vent.pdf", type: "pdf", verified: true },
-  { name: "cavity_pressure_chart.jpg", type: "image", verified: true },
-  { name: "color_delta_e_report.pdf", type: "pdf", verified: true },
-  { name: "pp_t20_material_cert.pdf", type: "pdf", verified: true },
-];
+  .left-panel { background: #161b26; border-right: 1px solid #2a3145; display: flex; flex-direction: column; overflow: hidden; }
+  .panel-section { padding: 14px 16px 10px; border-bottom: 1px solid #2a3145; }
+  .panel-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: #4b5675; text-transform: uppercase; margin-bottom: 2px; }
+  .panel-sublabel { font-size: 11px; color: #94a3b8; }
+  .checklist-scroll { flex: 1; overflow-y: auto; padding: 10px 0; }
+  .checklist-scroll::-webkit-scrollbar { width: 3px; }
+  .checklist-scroll::-webkit-scrollbar-track { background: transparent; }
+  .checklist-scroll::-webkit-scrollbar-thumb { background: #2a3145; border-radius: 2px; }
 
-/* ─── Sub-components ─── */
+  .section-header {
+    display: flex; align-items: center; gap: 6px; padding: 5px 16px;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+    color: #2dd4bf; text-transform: uppercase; cursor: pointer;
+  }
+  .section-header svg { opacity: 0.7; }
 
-const StatusIcon = ({ status }: { status: string }) => {
-  if (status === "pass") return <CheckCircle className="h-4 w-4 text-emerald-400 flex-shrink-0" />;
-  if (status === "high_risk")
-    return (
-      <span className="text-[10px] font-bold bg-red-600 text-white px-1.5 py-0.5 rounded flex-shrink-0">
-        HIGH RISK
-      </span>
-    );
-  return <div className="h-4 w-4 rounded border border-slate-500 flex-shrink-0" />;
-};
+  .checklist-item {
+    display: flex; align-items: flex-start; gap: 8px;
+    padding: 5px 16px 5px 28px; font-size: 12px; color: #94a3b8;
+    cursor: pointer; transition: background 0.15s; position: relative;
+  }
+  .checklist-item:hover { background: #212840; }
+  .checklist-item.active { background: rgba(45,212,191,0.15); color: #f1f5f9; }
+  .checklist-item.active::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: #2dd4bf;
+  }
+  .checklist-item.sub { padding-left: 40px; }
 
-const ChecklistNode = ({
-  item,
-  depth = 0,
-  selected,
-  onSelect,
-}: {
-  item: CheckItem;
-  depth?: number;
-  selected: string;
-  onSelect: (id: string) => void;
-}) => {
-  const [open, setOpen] = useState(true);
-  const hasChildren = item.children && item.children.length > 0;
-  const isSelected = selected === item.id;
+  .check-icon {
+    width: 14px; height: 14px; border-radius: 3px; border: 1.5px solid #2a3145;
+    flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center;
+  }
+  .check-icon.done { background: #2dd4bf; border-color: #2dd4bf; }
+  .risk-dot { width: 7px; height: 7px; border-radius: 50%; background: #ef4444; box-shadow: 0 0 5px #ef4444; flex-shrink: 0; margin-top: 4px; }
+  .high-risk-badge {
+    display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.06em;
+    background: #3d1515; color: #ef4444; border: 1px solid rgba(239,68,68,0.3);
+    padding: 1px 6px; border-radius: 3px; margin-top: 3px; text-transform: uppercase;
+  }
 
-  return (
-    <div>
-      <button
-        onClick={() => {
-          onSelect(item.id);
-          if (hasChildren) setOpen(!open);
-        }}
-        className={`w-full flex items-center gap-2 py-1.5 px-2 rounded text-left text-[13px] transition-colors ${
-          isSelected ? "bg-slate-700/60 text-white" : "text-slate-300 hover:bg-slate-700/30"
-        }`}
-        style={{ paddingLeft: `${depth * 16 + 8}px` }}
-      >
-        {hasChildren ? (
-          open ? (
-            <ChevronDown className="h-3 w-3 flex-shrink-0 text-slate-400" />
-          ) : (
-            <ChevronRight className="h-3 w-3 flex-shrink-0 text-slate-400" />
-          )
-        ) : (
-          <span className="w-3" />
-        )}
-        <StatusIcon status={item.status} />
-        <span className={`truncate ${item.status === "high_risk" ? "font-semibold text-white" : ""}`}>
-          {item.label}
-        </span>
-      </button>
-      {open && hasChildren && item.children!.map((child) => (
-        <ChecklistNode key={child.id} item={child} depth={depth + 1} selected={selected} onSelect={onSelect} />
-      ))}
-    </div>
-  );
-};
+  .evidence-panel { border-top: 1px solid #2a3145; padding: 12px 16px; flex-shrink: 0; }
+  .evidence-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .evidence-count { font-size: 11px; font-weight: 600; }
+  .evidence-count.ok { color: #2dd4bf; }
+  .evidence-file {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 5px 0; font-size: 11px; color: #94a3b8; border-bottom: 1px solid #2a3145;
+  }
+  .evidence-file:last-child { border-bottom: none; }
+  .file-name { display: flex; align-items: center; gap: 6px; overflow: hidden; }
+  .file-name span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 130px; }
+  .file-icon {
+    width: 16px; height: 16px; background: #1c2333; border-radius: 2px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 8px; color: #4b5675; font-family: 'IBM Plex Mono', monospace;
+  }
+  .status-badge { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 3px; flex-shrink: 0; }
+  .status-badge.verified { background: #14532d; color: #22c55e; }
+  .status-badge.review { background: rgba(245,158,11,0.15); color: #f59e0b; }
+  .action-row { display: flex; gap: 8px; margin-top: 10px; }
+  .btn-secondary {
+    flex: 1; display: flex; align-items: center; justify-content: center; gap: 5px;
+    padding: 7px; background: #1c2333; border: 1px solid #2a3145; border-radius: 6px;
+    font-size: 12px; font-family: 'DM Sans', sans-serif; color: #94a3b8; cursor: pointer; transition: all 0.15s;
+  }
+  .btn-secondary:hover { border-color: #2dd4bf; color: #f1f5f9; }
 
-/* ─── Main Component ─── */
+  .center-panel { display: flex; flex-direction: column; overflow: hidden; background: #0f1117; }
+  .question-area { padding: 20px 24px 16px; border-bottom: 1px solid #2a3145; flex-shrink: 0; }
+  .question-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .question-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: #4b5675; text-transform: uppercase; }
+  .question-actions { display: flex; gap: 6px; }
+  .icon-btn {
+    width: 28px; height: 28px; background: #1c2333; border: 1px solid #2a3145; border-radius: 5px;
+    display: flex; align-items: center; justify-content: center; cursor: pointer; color: #4b5675; transition: all 0.15s;
+  }
+  .icon-btn:hover { border-color: #2dd4bf; color: #2dd4bf; }
+  .question-text { font-size: 18px; font-weight: 600; line-height: 1.4; color: #f1f5f9; letter-spacing: -0.01em; }
+
+  .center-scroll { flex: 1; overflow-y: auto; padding: 20px 24px; }
+  .center-scroll::-webkit-scrollbar { width: 3px; }
+  .center-scroll::-webkit-scrollbar-thumb { background: #2a3145; border-radius: 2px; }
+
+  .risk-alert-box {
+    background: #3d1515; border: 1px solid rgba(239,68,68,0.35);
+    border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;
+  }
+  .risk-alert-title { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: #ef4444; text-transform: uppercase; margin-bottom: 8px; }
+  .risk-alert-text { font-size: 12px; color: #fca5a5; line-height: 1.6; }
+
+  .guidance-block {
+    background: #1c2333; border: 1px solid #2a3145; border-radius: 8px; padding: 14px 16px; margin-bottom: 14px;
+  }
+  .guidance-title { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: #4b5675; text-transform: uppercase; margin-bottom: 10px; }
+  .check-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .check-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: #94a3b8; }
+  .check-num {
+    width: 18px; height: 18px; border-radius: 50%; background: #212840; border: 1px solid #2a3145;
+    font-size: 10px; font-family: 'IBM Plex Mono', monospace; font-weight: 600; color: #2dd4bf;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;
+  }
+  .issue-list { display: flex; flex-direction: column; gap: 6px; }
+  .issue-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #94a3b8; }
+  .issue-dot { width: 6px; height: 6px; border-radius: 50%; background: #f59e0b; flex-shrink: 0; }
+
+  .guidance-section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: #4b5675; text-transform: uppercase; margin-bottom: 12px; }
+  .section-divider { height: 1px; background: #2a3145; margin: 20px 0 16px; }
+
+  .score-block { background: #1c2333; border: 1px solid #2a3145; border-radius: 8px; padding: 16px; margin-bottom: 14px; }
+  .score-block-header { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+  .ai-suggests-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: #2dd4bf; text-transform: uppercase; }
+  .ai-dot { width: 7px; height: 7px; border-radius: 50%; background: #2dd4bf; }
+  .score-row { display: flex; gap: 8px; margin-bottom: 8px; }
+  .score-btn {
+    flex: 1; height: 38px; border-radius: 6px; border: 1.5px solid #2a3145; background: #212840;
+    color: #4b5675; font-size: 14px; font-weight: 600; font-family: 'DM Sans', sans-serif;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .score-btn:hover { border-color: #2dd4bf; color: #f1f5f9; }
+  .score-btn.ai-pick { background: #2dd4bf; border-color: #2dd4bf; color: #0f1117; }
+  .score-btn.user-pick { background: #1c2333; border-color: #94a3b8; color: #f1f5f9; box-shadow: 0 0 0 2px rgba(241,245,249,0.15); }
+  .score-hint { font-size: 11px; color: #4b5675; margin-top: 4px; font-style: italic; }
+  .override-notice { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #f59e0b; margin-top: 6px; }
+  .your-assessment-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: #4b5675; text-transform: uppercase; margin-bottom: 12px; }
+
+  .findings-input {
+    width: 100%; background: #212840; border: 1px solid #2a3145; border-radius: 6px;
+    padding: 10px 12px; font-size: 12px; font-family: 'DM Sans', sans-serif; color: #f1f5f9;
+    resize: none; height: 70px; outline: none; transition: border-color 0.15s; margin-top: 12px;
+  }
+  .findings-input:focus { border-color: #2dd4bf; }
+  .findings-input::placeholder { color: #4b5675; }
+
+  .submit-btn {
+    width: 100%; padding: 12px; background: #2dd4bf; border: none; border-radius: 7px;
+    font-size: 13px; font-weight: 700; font-family: 'DM Sans', sans-serif; color: #0f1117;
+    cursor: pointer; letter-spacing: 0.02em; transition: all 0.15s; margin-top: 14px;
+  }
+  .submit-btn:hover { background: #5eead4; transform: translateY(-1px); }
+
+  .bottom-bar {
+    padding: 10px 24px; border-top: 1px solid #2a3145; display: flex; align-items: center; gap: 10px;
+    flex-shrink: 0; background: #161b26;
+  }
+  .bottom-input {
+    flex: 1; background: #1c2333; border: 1px solid #2a3145; border-radius: 7px;
+    padding: 8px 14px; font-size: 13px; font-family: 'DM Sans', sans-serif; color: #f1f5f9;
+    outline: none; transition: border-color 0.15s;
+  }
+  .bottom-input:focus { border-color: #2dd4bf; }
+  .bottom-input::placeholder { color: #4b5675; }
+  .mic-btn {
+    width: 34px; height: 34px; background: #1c2333; border: 1px solid #2a3145; border-radius: 7px;
+    display: flex; align-items: center; justify-content: center; cursor: pointer; color: #4b5675; transition: all 0.15s;
+  }
+  .mic-btn:hover { border-color: #2dd4bf; color: #2dd4bf; }
+  .send-btn {
+    width: 34px; height: 34px; background: #2dd4bf; border: none; border-radius: 7px;
+    display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.15s;
+  }
+  .send-btn:hover { background: #5eead4; }
+
+  .right-panel {
+    background: #161b26; border-left: 1px solid #2a3145; display: flex; flex-direction: column;
+    overflow-y: auto; padding: 16px; gap: 14px;
+  }
+  .right-panel::-webkit-scrollbar { width: 3px; }
+  .right-panel::-webkit-scrollbar-thumb { background: #2a3145; }
+  .copilot-header { display: flex; align-items: center; justify-content: space-between; }
+  .copilot-title { font-size: 12px; font-weight: 700; color: #f1f5f9; letter-spacing: 0.03em; }
+
+  .flagged-issues { display: flex; flex-direction: column; gap: 6px; }
+  .flag-item {
+    display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: #1c2333;
+    border: 1px solid #2a3145; border-radius: 6px; font-size: 12px; color: #94a3b8;
+    transition: background 0.15s; cursor: pointer;
+  }
+  .flag-item:hover { background: #212840; }
+  .flag-num {
+    width: 18px; height: 18px; border-radius: 4px; font-size: 10px; font-weight: 700;
+    font-family: 'IBM Plex Mono', monospace; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .flag-num.n1 { background: rgba(239,68,68,0.2); color: #ef4444; }
+  .flag-num.n2 { background: rgba(245,158,11,0.2); color: #f59e0b; }
+  .flag-num.n3 { background: rgba(148,163,184,0.1); color: #94a3b8; }
+
+  .benchmark-card { background: #1c2333; border: 1px solid #2a3145; border-radius: 8px; padding: 14px; }
+  .benchmark-title { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: #4b5675; text-transform: uppercase; margin-bottom: 12px; }
+  .benchmark-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+  .benchmark-name { font-size: 12px; color: #94a3b8; }
+  .benchmark-score { font-size: 13px; font-weight: 700; font-family: 'IBM Plex Mono', monospace; color: #f1f5f9; }
+  .bm-bar { height: 4px; border-radius: 2px; margin-bottom: 10px; }
+  .bm-bar.good { background: #2dd4bf; }
+  .bm-bar.low { background: #475569; }
+  .benchmark-verdict { font-size: 11px; font-weight: 600; color: #ef4444; padding-top: 6px; border-top: 1px solid #2a3145; }
+  .benchmark-context { font-size: 10px; color: #4b5675; margin-top: 4px; font-family: 'IBM Plex Mono', monospace; }
+
+  .ai-finding-card { background: #1c2333; border: 1px solid rgba(245,158,11,0.3); border-radius: 8px; padding: 14px; }
+  .ai-finding-title { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: #f1f5f9; margin-bottom: 10px; }
+  .ai-finding-text { font-size: 12px; color: #94a3b8; line-height: 1.6; margin-bottom: 12px; }
+  .finding-actions { display: flex; gap: 8px; }
+  .btn-accept {
+    flex: 1; padding: 8px; background: #1a7a6e; border: 1px solid #2dd4bf; border-radius: 5px;
+    color: #2dd4bf; font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+    font-family: 'DM Sans', sans-serif; text-transform: uppercase; cursor: pointer; transition: all 0.15s;
+  }
+  .btn-accept:hover { background: #2dd4bf; color: #0f1117; }
+  .btn-dismiss {
+    flex: 1; padding: 8px; background: transparent; border: 1px solid #2a3145; border-radius: 5px;
+    color: #4b5675; font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+    font-family: 'DM Sans', sans-serif; text-transform: uppercase; cursor: pointer; transition: all 0.15s;
+  }
+  .btn-dismiss:hover { border-color: #94a3b8; color: #94a3b8; }
+  .divider { height: 1px; background: #2a3145; }
+`;
+
+const CheckIconComp = ({ done }: { done?: boolean }) => (
+  <div className={`check-icon ${done ? "done" : ""}`}>
+    {done && (
+      <svg width="9" height="7" viewBox="0 0 9 7" fill="none">
+        <path d="M1 3.5L3.5 6L8 1" stroke="#0f1117" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    )}
+  </div>
+);
+
+const MicIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+    <line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/>
+  </svg>
+);
+
+const SendIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0f1117" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+  </svg>
+);
+
+const SpeakerIcon = () => (
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+    <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+  </svg>
+);
+
+const ImgIcon = () => (
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+    <polyline points="21 15 16 10 5 21"/>
+  </svg>
+);
+
+const PaperclipIcon = () => (
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+  </svg>
+);
+
+const WarningIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+    <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+  </svg>
+);
+
+const CaptureIcon = () => (
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+    <circle cx="12" cy="13" r="4"/>
+  </svg>
+);
+
+const UploadIcon = () => (
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+    <polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+  </svg>
+);
+
 const AtlasLiveAudit = () => {
-  const [selectedCheck, setSelectedCheck] = useState("4.2.3");
-  const [aiScore, setAiScore] = useState(3);
   const [userScore, setUserScore] = useState<number | null>(null);
-  const [chatInput, setChatInput] = useState("");
-  const [copilotListening, setCopilotListening] = useState(false);
+  const aiScore = 3;
+
+  const evidenceFiles = [
+    { name: "molding_cell_overview.jpg", type: "jpg", status: "verified" },
+    { name: "cpk_report_air_vent.pdf", type: "pdf", status: "review" },
+    { name: "cavity_pressure_chart.jpg", type: "jpg", status: "verified" },
+    { name: "color_delta_e_report.pdf", type: "pdf", status: "verified" },
+    { name: "pp_t20_material_cert.pdf", type: "pdf", status: "verified" },
+  ];
 
   return (
-    <div className="h-screen w-full bg-[hsl(200,15%,10%)] text-slate-200 flex flex-col overflow-hidden">
-      {/* ─── Top Bar ─── */}
-      <header className="h-12 flex items-center justify-between px-5 border-b border-slate-700/50 flex-shrink-0">
-        <div className="flex items-center gap-3">
-          <span className="flex items-center gap-2 text-xs font-medium tracking-wider text-emerald-400">
-            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-            LIVE AUDIT
-          </span>
-        </div>
-        <h1 className="text-sm font-semibold text-slate-100 hidden md:block">
-          Atlas AI · AD Plastik — BMW Interior Trim Audit
-        </h1>
-        <div className="flex items-center gap-2 text-xs text-slate-400">
-          Progress 45%
-          <div className="w-24 h-2 rounded-full bg-slate-700 overflow-hidden">
-            <div className="h-full w-[45%] bg-emerald-500 rounded-full" />
+    <>
+      <style>{styles}</style>
+      <div className="audit-root">
+        <div className="header">
+          <div className="live-badge"><div className="live-dot" />Live Audit</div>
+          <div className="header-title">Atlas AI · <span>AD Plastik — BMW Interior Trim Audit</span></div>
+          <div className="progress-wrap">
+            <span>Progress 45%</span>
+            <div className="progress-bar"><div className="progress-fill" /></div>
           </div>
         </div>
-      </header>
 
-      {/* ─── Three-column body ─── */}
-      <div className="flex flex-1 min-h-0">
-        {/* ─── LEFT: Checklist + Evidence ─── */}
-        <aside className="w-[260px] border-r border-slate-700/50 flex flex-col flex-shrink-0 overflow-hidden">
-          {/* Checklist */}
-          <div className="flex-1 overflow-y-auto p-3">
-            <h2 className="text-[11px] font-bold tracking-wider text-slate-400 mb-1">CHECKLIST</h2>
-            <p className="text-[11px] text-slate-500 mb-3">Injection Molding · AD Plastik d.d., Solin</p>
-            {checklist.map((item) => (
-              <ChecklistNode key={item.id} item={item} selected={selectedCheck} onSelect={setSelectedCheck} />
-            ))}
-          </div>
-
-          {/* Evidence */}
-          <div className="border-t border-slate-700/50 p-3">
-            <div className="flex items-center justify-between mb-2">
-              <h2 className="text-[11px] font-bold tracking-wider text-slate-400">EVIDENCE</h2>
-              <span className="text-[11px] text-slate-500">5 / 5 ✓</span>
+        <div className="body">
+          <div className="left-panel">
+            <div className="panel-section">
+              <div className="panel-label">Checklist</div>
+              <div className="panel-sublabel">Injection Molding · AD Plastik d.d., Solin</div>
             </div>
-            <div className="space-y-1.5 max-h-[180px] overflow-y-auto">
+            <div className="checklist-scroll">
+              <div className="section-header">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M2 3l3 4 3-4H2z"/></svg>
+                4. Injection Molding Process
+              </div>
+              <div className="checklist-item"><CheckIconComp done /><span>4.1 Machine Park &amp; Clamping Force</span></div>
+              <div className="checklist-item">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" style={{color:'#4b5675',flexShrink:0,marginTop:3}}><path d="M2 3l3 4 3-4H2z"/></svg>
+                <span>4.2 Dashboard Air Vent Production</span>
+              </div>
+              <div className="checklist-item sub"><CheckIconComp done /><span>4.2.1 Mold Condition &amp; Maintenance Log</span></div>
+              <div className="checklist-item sub"><CheckIconComp done /><span>4.2.2 Cavity Pressure Monitoring</span></div>
+              <div className="checklist-item sub active">
+                <div className="risk-dot" />
+                <div><div>4.2.3 Dimensional Stability (Cpk)</div><div className="high-risk-badge">High Risk</div></div>
+              </div>
+              <div className="checklist-item sub" style={{color:'#4b5675'}}><CheckIconComp /><span>4.2.4 Color Matching (ΔE &lt; 0.5)</span></div>
+              <div className="section-header" style={{marginTop:6}}>
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M3 2l4 3-4 3V2z"/></svg>
+                5. Material &amp; Traceability
+              </div>
+              <div className="checklist-item" style={{color:'#4b5675'}}><CheckIconComp /><span>5.1 PP-T20 Material Certificates</span></div>
+            </div>
+            <div className="evidence-panel">
+              <div className="evidence-header">
+                <div className="panel-label">Evidence</div>
+                <div className="evidence-count ok">5 / 5 ✓</div>
+              </div>
               {evidenceFiles.map((f, i) => (
-                <div key={i} className="flex items-center gap-2 text-[12px] text-slate-300">
-                  {f.type === "image" ? (
-                    <FileImage className="h-3.5 w-3.5 text-emerald-400 flex-shrink-0" />
-                  ) : (
-                    <FileText className="h-3.5 w-3.5 text-sky-400 flex-shrink-0" />
-                  )}
-                  <span className="truncate">{f.name}</span>
-                  {f.verified && (
-                    <span className="ml-auto flex items-center gap-1 text-[10px] text-emerald-400">
-                      ✓ Verified
-                    </span>
-                  )}
+                <div className="evidence-file" key={i}>
+                  <div className="file-name">
+                    <div className="file-icon">{f.type.toUpperCase()}</div>
+                    <span title={f.name}>{f.name}</span>
+                  </div>
+                  <span className={`status-badge ${f.status}`}>{f.status === "verified" ? "✓ Verified" : "⚠ Review"}</span>
                 </div>
               ))}
-            </div>
-            <div className="flex gap-2 mt-3">
-              <Button
-                size="sm"
-                variant="outline"
-                className="flex-1 h-8 text-[11px] border-slate-600 text-slate-300 bg-transparent hover:bg-slate-700"
-              >
-                <Camera className="h-3 w-3 mr-1" /> Capture
-              </Button>
-              <Button
-                size="sm"
-                variant="outline"
-                className="flex-1 h-8 text-[11px] border-slate-600 text-slate-300 bg-transparent hover:bg-slate-700"
-              >
-                <Upload className="h-3 w-3 mr-1" /> Upload
-              </Button>
+              <div className="action-row">
+                <button className="btn-secondary"><CaptureIcon /> Capture</button>
+                <button className="btn-secondary"><UploadIcon /> Upload</button>
+              </div>
             </div>
           </div>
-        </aside>
 
-        {/* ─── CENTER: Question + Assessment ─── */}
-        <main className="flex-1 flex flex-col min-w-0 overflow-y-auto">
-          <div className="p-6 space-y-6 max-w-2xl mx-auto w-full">
-            {/* Question header */}
+          <div className="center-panel">
+            <div className="question-area">
+              <div className="question-meta">
+                <div className="question-label">Question</div>
+                <div className="question-actions">
+                  <div className="icon-btn"><SpeakerIcon /></div>
+                  <div className="icon-btn"><ImgIcon /></div>
+                  <div className="icon-btn"><PaperclipIcon /></div>
+                </div>
+              </div>
+              <div className="question-text">
+                Does the injection molding process for BMW air vent assemblies meet Cpk ≥ 1.67 and color ΔE &lt; 0.5 per IATF 16949?
+              </div>
+            </div>
+            <div className="center-scroll">
+              <div className="guidance-section-label">AI Guidance</div>
+              <div className="risk-alert-box">
+                <div className="risk-alert-title">⚠ Risk Alert</div>
+                <div className="risk-alert-text">
+                  Cpk for critical dimension (clip retention force) at 1.42 — below BMW requirement of 1.67. Color deviation ΔE = 0.72 on batch 2024-11, exceeding 0.5 tolerance. Potential mold wear on cavity 3.
+                </div>
+              </div>
+              <div className="guidance-block">
+                <div className="guidance-title">What to Check</div>
+                <ul className="check-list">
+                  <li><div className="check-num">1</div><span>Cpk ≥ 1.67 on clip retention force?</span></li>
+                  <li><div className="check-num">2</div><span>Color ΔE &lt; 0.5 across all cavities?</span></li>
+                  <li><div className="check-num">3</div><span>Mold maintenance log current (&lt; 50K shots since last service)?</span></li>
+                </ul>
+              </div>
+              <div className="guidance-block">
+                <div className="guidance-title">Common Issues</div>
+                <div className="issue-list">
+                  <div className="issue-item"><div className="issue-dot" /><span>Cpk drift after 40K shots (72% of findings)</span></div>
+                  <div className="issue-item"><div className="issue-dot" /><span>Color shift on aged mold inserts (58%)</span></div>
+                  <div className="issue-item"><div className="issue-dot" /><span>Clip force out-of-spec on cavity 3–4 (44%)</span></div>
+                </div>
+              </div>
+              <div className="section-divider" />
+              <div className="guidance-section-label">Maturity Assessment</div>
+              <div className="score-block">
+                <div className="score-block-header"><div className="ai-dot" /><div className="ai-suggests-label">Atlas AI Suggests</div></div>
+                <div className="score-row">
+                  {[1,2,3,4,5].map(n => (
+                    <button key={n} className={`score-btn ${n === aiScore ? "ai-pick" : ""}`}>{n}</button>
+                  ))}
+                </div>
+                <div className="score-hint">Level 3 — Process capable but Cpk below BMW threshold on critical dimensions</div>
+              </div>
+              <div className="score-block">
+                <div className="your-assessment-label">Your Assessment</div>
+                <div className="score-row">
+                  {[1,2,3,4,5].map(n => (
+                    <button key={n} className={`score-btn ${userScore === n ? "user-pick" : ""}`} onClick={() => setUserScore(n)}>{n}</button>
+                  ))}
+                </div>
+                {userScore && userScore !== aiScore && (
+                  <div className="override-notice">
+                    <WarningIcon />
+                    Override {userScore > aiScore ? `+${userScore - aiScore}` : userScore - aiScore} vs AI suggestion — add reason below
+                  </div>
+                )}
+                <textarea className="findings-input" placeholder="Add findings or override justification..." />
+                <button className="submit-btn">Submit &amp; Next →</button>
+              </div>
+            </div>
+            <div className="bottom-bar">
+              <div className="mic-btn"><MicIcon /></div>
+              <input className="bottom-input" placeholder="Ask Atlas AI..." />
+              <button className="send-btn"><SendIcon /></button>
+            </div>
+          </div>
+
+          <div className="right-panel">
+            <div className="copilot-header"><div className="copilot-title">Atlas Copilot</div></div>
             <div>
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-[11px] font-bold tracking-wider text-slate-400">QUESTION</span>
-                <div className="flex gap-1.5">
-                  <button className="h-8 w-8 rounded bg-slate-700 hover:bg-slate-600 flex items-center justify-center">
-                    <Volume2 className="h-4 w-4 text-slate-300" />
-                  </button>
-                  <button className="h-8 w-8 rounded bg-slate-700 hover:bg-slate-600 flex items-center justify-center">
-                    <MonitorSmartphone className="h-4 w-4 text-slate-300" />
-                  </button>
-                  <button className="h-8 w-8 rounded bg-slate-700 hover:bg-slate-600 flex items-center justify-center">
-                    <Mic className="h-4 w-4 text-slate-300" />
-                  </button>
-                </div>
-              </div>
-              <h2 className="text-xl font-semibold text-white leading-relaxed">
-                Does the injection molding process for BMW air vent assemblies meet Cpk ≥ 1.67 and color ΔE {"<"} 0.5
-                per IATF 16949?
-              </h2>
-            </div>
-
-            {/* Risk indicators */}
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 text-[13px]">
-                <span className="h-2 w-2 rounded-full bg-amber-500" />
-                <span className="text-slate-300">Color shift on aged mold inserts (58%)</span>
-              </div>
-              <div className="flex items-center gap-2 text-[13px]">
-                <span className="h-2 w-2 rounded-full bg-amber-500" />
-                <span className="text-slate-300">Clip force out-of-spec on cavity 3-4 (44%)</span>
+              <div className="panel-label" style={{marginBottom:8}}>Flagged Issues</div>
+              <div className="flagged-issues">
+                <div className="flag-item"><div className="flag-num n1">1</div><span>Dimensional Stability (Cpk)</span></div>
+                <div className="flag-item"><div className="flag-num n2">2</div><span>Color Matching ΔE</span></div>
+                <div className="flag-item"><div className="flag-num n3">3</div><span>Mold Shot Count</span></div>
               </div>
             </div>
-
-            {/* Maturity Assessment */}
-            <div className="bg-slate-800/50 rounded-lg p-5 border border-slate-700/50">
-              <h3 className="text-[11px] font-bold tracking-wider text-slate-400 mb-4">MATURITY ASSESSMENT</h3>
-
-              {/* AI suggestion */}
-              <div className="mb-5">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400" />
-                  <span className="text-[11px] font-bold tracking-wider text-slate-400">ATLAS AI SUGGESTS</span>
-                </div>
-                <div className="flex gap-2">
-                  {[1, 2, 3, 4, 5].map((n) => (
-                    <button
-                      key={n}
-                      className={`h-10 w-12 rounded-md text-sm font-semibold transition-colors ${
-                        n === aiScore
-                          ? "bg-emerald-600 text-white"
-                          : "bg-slate-700 text-slate-300 hover:bg-slate-600"
-                      }`}
-                    >
-                      {n}
-                    </button>
-                  ))}
-                </div>
-                <p className="text-[12px] text-slate-500 mt-2">
-                  Level 3 — Process capable but Cpk below BMW threshold on critical dimensions
-                </p>
+            <div className="divider" />
+            <div className="benchmark-card">
+              <div className="benchmark-title">Benchmark</div>
+              <div className="benchmark-row"><div className="benchmark-name">AD Plastik</div><div className="benchmark-score">6.4/10</div></div>
+              <div className="bm-bar good" style={{width:'64%'}} />
+              <div className="benchmark-row"><div className="benchmark-name">BMW Tier-1 avg</div><div className="benchmark-score">8.1/10</div></div>
+              <div className="bm-bar low" style={{width:'81%'}} />
+              <div className="benchmark-verdict">Hold — mold rework required before run-at-rate</div>
+              <div className="benchmark-context">Based on 34 Tier-1 suppliers · Q1 2025</div>
+            </div>
+            <div className="divider" />
+            <div className="ai-finding-card">
+              <div className="ai-finding-title"><WarningIcon /> AI Finding</div>
+              <div className="ai-finding-text">
+                Cavity 3 shows 62K shots since last insert service — BMW limit is 50K. Clip retention force Cpk dropped to 1.42. Color masterbatch lot 2024-11 shows ΔE 0.72. Recommend mold insert replacement and masterbatch qualification before BMW run-at-rate approval.
               </div>
-
-              {/* User assessment */}
-              <div>
-                <h4 className="text-[11px] font-bold tracking-wider text-slate-400 mb-3">YOUR ASSESSMENT</h4>
-                <div className="flex gap-2">
-                  {[1, 2, 3, 4, 5].map((n) => (
-                    <button
-                      key={n}
-                      onClick={() => setUserScore(n)}
-                      className={`h-10 w-12 rounded-md text-sm font-semibold transition-colors ${
-                        n === userScore
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-slate-700 text-slate-300 hover:bg-slate-600"
-                      }`}
-                    >
-                      {n}
-                    </button>
-                  ))}
-                </div>
+              <div className="finding-actions">
+                <button className="btn-accept">Accept</button>
+                <button className="btn-dismiss">Dismiss</button>
               </div>
             </div>
           </div>
-
-          {/* Chat input */}
-          <div className="mt-auto p-4 border-t border-slate-700/50">
-            <div className="max-w-2xl mx-auto flex gap-2">
-              <div className="flex-1 relative">
-                <Input
-                  value={chatInput}
-                  onChange={(e) => setChatInput(e.target.value)}
-                  placeholder="Ask Atlas AI or add findings..."
-                  className="bg-slate-800 border-slate-600 text-slate-200 placeholder:text-slate-500 pr-10 h-10"
-                />
-              </div>
-              <Button size="icon" className="h-10 w-10 bg-emerald-600 hover:bg-emerald-500">
-                <Send className="h-4 w-4" />
-              </Button>
-            </div>
-          </div>
-        </main>
-
-        {/* ─── RIGHT: Copilot + Benchmark ─── */}
-        <aside className="w-[240px] border-l border-slate-700/50 flex flex-col flex-shrink-0 overflow-y-auto p-4 space-y-5">
-          {/* Copilot */}
-          <div className="text-center">
-            <h3 className="text-sm font-semibold text-slate-200 mb-4">Atlas Copilot</h3>
-            <button
-              onClick={() => setCopilotListening(!copilotListening)}
-              className={`mx-auto h-16 w-16 rounded-full flex items-center justify-center transition-colors ${
-                copilotListening
-                  ? "bg-emerald-600 ring-4 ring-emerald-600/30"
-                  : "bg-slate-700 hover:bg-slate-600"
-              }`}
-            >
-              <Mic className="h-6 w-6 text-white" />
-            </button>
-            <p className="text-[11px] text-slate-500 mt-2">Tap to speak</p>
-          </div>
-
-          {/* Benchmark */}
-          <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700/50">
-            <h4 className="text-[11px] font-bold tracking-wider text-slate-400 mb-3">BENCHMARK</h4>
-            <div className="space-y-3">
-              <div>
-                <div className="flex justify-between text-[12px] mb-1">
-                  <span className="text-slate-300">AD Plastik</span>
-                  <span className="font-semibold text-slate-200">6.4/10</span>
-                </div>
-                <div className="h-1.5 rounded-full bg-slate-700 overflow-hidden">
-                  <div className="h-full w-[64%] bg-primary rounded-full" />
-                </div>
-              </div>
-              <div>
-                <div className="flex justify-between text-[12px] mb-1">
-                  <span className="text-slate-300">BMW Tier-1 avg</span>
-                  <span className="font-semibold text-slate-200">8.1/10</span>
-                </div>
-                <div className="h-1.5 rounded-full bg-slate-700 overflow-hidden">
-                  <div className="h-full w-[81%] bg-primary rounded-full" />
-                </div>
-              </div>
-            </div>
-            <p className="text-[11px] text-amber-400 mt-3">
-              Hold — mold rework required before run-at-rate
-            </p>
-          </div>
-
-          {/* AI Finding */}
-          <div className="bg-slate-800/60 rounded-lg p-4 border border-amber-600/40">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-[12px] font-bold text-amber-400">AI Finding</span>
-              <AlertTriangle className="h-4 w-4 text-amber-400" />
-            </div>
-            <p className="text-[12px] text-slate-300 leading-relaxed">
-              Cavity 3 shows 62K shots since last insert service — BMW limit is 50K. Clip retention force Cpk
-              dropped to 1.42. Color masterbatch lot 2024-11 shows ΔE 0.72. Recommend mold insert replacement
-              and masterbatch qualification before BMW run-at-rate approval.
-            </p>
-            <div className="flex gap-2 mt-3">
-              <Button
-                size="sm"
-                variant="outline"
-                className="flex-1 h-8 text-[11px] border-emerald-600 text-emerald-400 bg-transparent hover:bg-emerald-600/20"
-              >
-                ACCEPT
-              </Button>
-              <Button
-                size="sm"
-                variant="outline"
-                className="flex-1 h-8 text-[11px] border-slate-600 text-slate-400 bg-transparent hover:bg-slate-700"
-              >
-                DISMISS
-              </Button>
-            </div>
-          </div>
-        </aside>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
