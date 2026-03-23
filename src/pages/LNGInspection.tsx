@@ -10,6 +10,7 @@ import ToleranceNotation from "@/components/ToleranceNotation";
 import { Button } from "@/components/ui/button";
 import LNGInspectionDemo from "@/components/LNGInspectionDemo";
 import LNGAtlasDemo from "@/components/LNGAtlasDemo";
+import AtlasAuditInterface from "@/components/AtlasAuditInterface";
 import LNGInspectionDashboard from "@/components/LNGInspectionDashboard";
 import LNGSupplierClaimsDashboard from "@/components/LNGSupplierClaimsDashboard";
 import LNGFullLifecycleDemo from "@/components/LNGFullLifecycleDemo";
