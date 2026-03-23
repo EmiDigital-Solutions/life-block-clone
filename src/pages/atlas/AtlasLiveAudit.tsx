@@ -190,12 +190,12 @@ const styles = `
   .submit-btn:hover { background: #5eead4; transform: translateY(-1px); }
 
   .bottom-bar {
-    padding: 10px 24px; border-top: 1px solid #2a3145; display: flex; align-items: center; gap: 10px;
+    padding: 8px 18px; border-top: 1px solid #2a3145; display: flex; align-items: center; gap: 8px;
     flex-shrink: 0; background: #161b26;
   }
   .bottom-input {
     flex: 1; background: #1c2333; border: 1px solid #2a3145; border-radius: 7px;
-    padding: 8px 14px; font-size: 13px; font-family: 'DM Sans', sans-serif; color: #f1f5f9;
+    padding: 8px 12px; font-size: 13px; font-family: 'DM Sans', sans-serif; color: #f1f5f9;
     outline: none; transition: border-color 0.15s;
   }
   .bottom-input:focus { border-color: #2dd4bf; }
@@ -213,7 +213,7 @@ const styles = `
 
   .right-panel {
     background: #161b26; border-left: 1px solid #2a3145; display: flex; flex-direction: column;
-    overflow-y: auto; padding: 16px; gap: 14px;
+    overflow-y: auto; padding: 12px; gap: 10px;
   }
   .right-panel::-webkit-scrollbar { width: 3px; }
   .right-panel::-webkit-scrollbar-thumb { background: #2a3145; }
