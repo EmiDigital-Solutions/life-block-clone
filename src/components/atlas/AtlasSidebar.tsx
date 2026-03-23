@@ -8,6 +8,7 @@ import {
   Bot,
   LogOut,
   User,
+  Radio,
 } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
