@@ -8,13 +8,15 @@ const styles = `
     background: #0f1117;
     color: #f1f5f9;
     height: 100vh;
+    height: 100dvh;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    -webkit-overflow-scrolling: touch;
   }
   .header {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 0 20px; height: 44px; background: #161b26;
+    padding: 0 16px; height: 40px; background: #161b26;
     border-bottom: 1px solid #2a3145; flex-shrink: 0;
   }
   .live-badge {
@@ -34,7 +36,18 @@ const styles = `
   .progress-bar { width: 80px; height: 4px; background: #1c2333; border-radius: 2px; overflow: hidden; }
   .progress-fill { height: 100%; background: #2dd4bf; border-radius: 2px; width: 45%; }
 
-  .body { display: grid; grid-template-columns: 260px 1fr 280px; flex: 1; overflow: hidden; }
+  .body { display: grid; grid-template-columns: 220px 1fr 240px; flex: 1; overflow: hidden; }
+  @media (min-width: 1200px) {
+    .body { grid-template-columns: 260px 1fr 280px; }
+  }
+  @media (max-width: 900px) {
+    .body { grid-template-columns: 200px 1fr 220px; }
+  }
+  @media (max-width: 700px) {
+    .body { grid-template-columns: 1fr; grid-template-rows: auto 1fr auto; }
+    .left-panel { display: none; }
+    .right-panel { max-height: 200px; border-left: none; border-top: 1px solid #2a3145; }
+  }
 
   .left-panel { background: #161b26; border-right: 1px solid #2a3145; display: flex; flex-direction: column; overflow: hidden; }
   .panel-section { padding: 14px 16px 10px; border-bottom: 1px solid #2a3145; }
@@ -104,8 +117,8 @@ const styles = `
   .btn-secondary:hover { border-color: #2dd4bf; color: #f1f5f9; }
 
   .center-panel { display: flex; flex-direction: column; overflow: hidden; background: #0f1117; }
-  .question-area { padding: 20px 24px 16px; border-bottom: 1px solid #2a3145; flex-shrink: 0; }
-  .question-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .question-area { padding: 14px 18px 12px; border-bottom: 1px solid #2a3145; flex-shrink: 0; }
+  .question-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
   .question-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: #4b5675; text-transform: uppercase; }
   .question-actions { display: flex; gap: 6px; }
   .icon-btn {
@@ -113,9 +126,9 @@ const styles = `
     display: flex; align-items: center; justify-content: center; cursor: pointer; color: #4b5675; transition: all 0.15s;
   }
   .icon-btn:hover { border-color: #2dd4bf; color: #2dd4bf; }
-  .question-text { font-size: 18px; font-weight: 600; line-height: 1.4; color: #f1f5f9; letter-spacing: -0.01em; }
+  .question-text { font-size: 16px; font-weight: 600; line-height: 1.4; color: #f1f5f9; letter-spacing: -0.01em; }
 
-  .center-scroll { flex: 1; overflow-y: auto; padding: 20px 24px; }
+  .center-scroll { flex: 1; overflow-y: auto; padding: 14px 18px; }
   .center-scroll::-webkit-scrollbar { width: 3px; }
   .center-scroll::-webkit-scrollbar-thumb { background: #2a3145; border-radius: 2px; }
 
@@ -177,12 +190,12 @@ const styles = `
   .submit-btn:hover { background: #5eead4; transform: translateY(-1px); }
 
   .bottom-bar {
-    padding: 10px 24px; border-top: 1px solid #2a3145; display: flex; align-items: center; gap: 10px;
+    padding: 8px 18px; border-top: 1px solid #2a3145; display: flex; align-items: center; gap: 8px;
     flex-shrink: 0; background: #161b26;
   }
   .bottom-input {
     flex: 1; background: #1c2333; border: 1px solid #2a3145; border-radius: 7px;
-    padding: 8px 14px; font-size: 13px; font-family: 'DM Sans', sans-serif; color: #f1f5f9;
+    padding: 8px 12px; font-size: 13px; font-family: 'DM Sans', sans-serif; color: #f1f5f9;
     outline: none; transition: border-color 0.15s;
   }
   .bottom-input:focus { border-color: #2dd4bf; }
@@ -200,7 +213,7 @@ const styles = `
 
   .right-panel {
     background: #161b26; border-left: 1px solid #2a3145; display: flex; flex-direction: column;
-    overflow-y: auto; padding: 16px; gap: 14px;
+    overflow-y: auto; padding: 12px; gap: 10px;
   }
   .right-panel::-webkit-scrollbar { width: 3px; }
   .right-panel::-webkit-scrollbar-thumb { background: #2a3145; }
