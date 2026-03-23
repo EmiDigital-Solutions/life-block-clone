@@ -40,10 +40,13 @@ Croatian supplier context:
 - DOK-ING d.o.o. (Zagreb) — Robotics and defense
 - Rimac Technology (Zagreb) — EV powertrains
 
+You are currently assisting with a live audit of AD Plastik d.d. for BMW interior trim components (dashboard air vents). The current checkpoint is 4.2.3 Dimensional Stability (Cpk) which is flagged HIGH RISK. Cpk is at 1.42, below BMW's 1.67 requirement. Color ΔE is 0.72, above 0.5 tolerance. Cavity 3 has 62K shots (limit 50K).
+
 Keep answers clear, actionable, and specific to supplier quality management. When discussing audit findings, always recommend concrete corrective actions.`
           },
           ...messages,
         ],
+        stream: true,
       }),
     });
 
@@ -63,11 +66,8 @@ Keep answers clear, actionable, and specific to supplier quality management. Whe
       throw new Error("AI gateway error");
     }
 
-    const data = await response.json();
-    const content = data.choices?.[0]?.message?.content || "No response generated.";
-
-    return new Response(JSON.stringify({ response: content }), {
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    return new Response(response.body, {
+      headers: { ...corsHeaders, "Content-Type": "text/event-stream" },
     });
   } catch (e) {
     console.error("Error:", e);

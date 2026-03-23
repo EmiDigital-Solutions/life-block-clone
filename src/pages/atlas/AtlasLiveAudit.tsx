@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600;700&display=swap');
@@ -317,9 +317,17 @@ const UploadIcon = () => (
   </svg>
 );
 
+type ChatMsg = { role: "user" | "assistant"; content: string };
+
+const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/atlas-copilot`;
+
 const AtlasLiveAudit = () => {
   const [userScore, setUserScore] = useState<number | null>(null);
   const aiScore = 3;
+  const [chatInput, setChatInput] = useState("");
+  const [chatMessages, setChatMessages] = useState<ChatMsg[]>([]);
+  const [isStreaming, setIsStreaming] = useState(false);
+  const chatEndRef = useRef<HTMLDivElement>(null);
 
   const evidenceFiles = [
     { name: "molding_cell_overview.jpg", type: "jpg", status: "verified" },
@@ -328,6 +336,90 @@ const AtlasLiveAudit = () => {
     { name: "color_delta_e_report.pdf", type: "pdf", status: "verified" },
     { name: "pp_t20_material_cert.pdf", type: "pdf", status: "verified" },
   ];
+
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chatMessages]);
+
+  const sendChat = useCallback(async () => {
+    const text = chatInput.trim();
+    if (!text || isStreaming) return;
+    setChatInput("");
+    const userMsg: ChatMsg = { role: "user", content: text };
+    const allMessages = [...chatMessages, userMsg];
+    setChatMessages(allMessages);
+    setIsStreaming(true);
+
+    let assistantSoFar = "";
+
+    try {
+      const resp = await fetch(CHAT_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+        },
+        body: JSON.stringify({ messages: allMessages }),
+      });
+
+      if (!resp.ok) {
+        const errData = await resp.json().catch(() => ({ error: "Request failed" }));
+        setChatMessages(prev => [...prev, { role: "assistant", content: `⚠ ${errData.error || "Error occurred"}` }]);
+        setIsStreaming(false);
+        return;
+      }
+
+      if (!resp.body) throw new Error("No response body");
+
+      const reader = resp.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = "";
+
+      const upsert = (chunk: string) => {
+        assistantSoFar += chunk;
+        const content = assistantSoFar;
+        setChatMessages(prev => {
+          const last = prev[prev.length - 1];
+          if (last?.role === "assistant" && prev.length > allMessages.length) {
+            return prev.map((m, i) => i === prev.length - 1 ? { ...m, content } : m);
+          }
+          return [...prev, { role: "assistant", content }];
+        });
+      };
+
+      let done = false;
+      while (!done) {
+        const { done: readerDone, value } = await reader.read();
+        if (readerDone) break;
+        buffer += decoder.decode(value, { stream: true });
+
+        let idx: number;
+        while ((idx = buffer.indexOf("\n")) !== -1) {
+          let line = buffer.slice(0, idx);
+          buffer = buffer.slice(idx + 1);
+          if (line.endsWith("\r")) line = line.slice(0, -1);
+          if (!line.startsWith("data: ")) continue;
+          const json = line.slice(6).trim();
+          if (json === "[DONE]") { done = true; break; }
+          try {
+            const parsed = JSON.parse(json);
+            const content = parsed.choices?.[0]?.delta?.content;
+            if (content) upsert(content);
+          } catch { /* partial chunk */ }
+        }
+      }
+
+      // If no content was streamed, show fallback
+      if (!assistantSoFar) {
+        setChatMessages(prev => [...prev, { role: "assistant", content: "No response generated." }]);
+      }
+    } catch (err) {
+      console.error("Chat error:", err);
+      setChatMessages(prev => [...prev, { role: "assistant", content: "⚠ Connection error. Please try again." }]);
+    } finally {
+      setIsStreaming(false);
+    }
+  }, [chatInput, chatMessages, isStreaming]);
 
   return (
     <>
@@ -460,13 +552,64 @@ const AtlasLiveAudit = () => {
             </div>
             <div className="bottom-bar">
               <div className="mic-btn"><MicIcon /></div>
-              <input className="bottom-input" placeholder="Ask Atlas AI..." />
-              <button className="send-btn"><SendIcon /></button>
+              <input
+                className="bottom-input"
+                placeholder="Ask Atlas AI..."
+                value={chatInput}
+                onChange={e => setChatInput(e.target.value)}
+                onKeyDown={e => e.key === "Enter" && sendChat()}
+                disabled={isStreaming}
+              />
+              <button className="send-btn" onClick={sendChat} disabled={isStreaming || !chatInput.trim()}>
+                <SendIcon />
+              </button>
             </div>
           </div>
 
           <div className="right-panel">
             <div className="copilot-header"><div className="copilot-title">Atlas Copilot</div></div>
+
+            {/* Chat Messages */}
+            {chatMessages.length > 0 && (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8, maxHeight: '40vh', overflowY: 'auto' }}>
+                {chatMessages.map((msg, i) => (
+                  <div key={i} style={{
+                    padding: '8px 10px',
+                    borderRadius: 6,
+                    fontSize: 12,
+                    lineHeight: 1.6,
+                    background: msg.role === 'user' ? '#212840' : '#1c2333',
+                    color: msg.role === 'user' ? '#f1f5f9' : '#94a3b8',
+                    border: `1px solid ${msg.role === 'user' ? '#2a3145' : '#2a3145'}`,
+                    alignSelf: msg.role === 'user' ? 'flex-end' : 'flex-start',
+                    maxWidth: '95%',
+                    whiteSpace: 'pre-wrap',
+                  }}>
+                    {msg.role === 'assistant' && (
+                      <div style={{ fontSize: 10, fontWeight: 700, color: '#2dd4bf', marginBottom: 4, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                        Atlas AI
+                      </div>
+                    )}
+                    {msg.content}
+                  </div>
+                ))}
+                {isStreaming && chatMessages[chatMessages.length - 1]?.role !== 'assistant' && (
+                  <div style={{ padding: '8px 10px', borderRadius: 6, fontSize: 12, background: '#1c2333', color: '#4b5675', border: '1px solid #2a3145' }}>
+                    <span style={{ animation: 'audit-pulse 1s infinite' }}>Thinking...</span>
+                  </div>
+                )}
+                <div ref={chatEndRef} />
+              </div>
+            )}
+
+            {chatMessages.length === 0 && (
+              <div style={{ fontSize: 11, color: '#4b5675', textAlign: 'center', padding: '12px 0' }}>
+                Ask questions in the bottom bar to get AI-powered audit guidance
+              </div>
+            )}
+
+            <div className="divider" />
+
             <div>
               <div className="panel-label" style={{marginBottom:8}}>Flagged Issues</div>
               <div className="flagged-issues">
