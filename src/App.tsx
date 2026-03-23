@@ -62,6 +62,7 @@ const App = () => (
 
             {/* Atlas AI App */}
             <Route path="/atlas/login" element={<AtlasLogin />} />
+            <Route path="/atlas/live-audit" element={<AtlasLiveAudit />} />
             <Route path="/atlas" element={<AtlasLayout />}>
               <Route index element={<AtlasDashboard />} />
               <Route path="suppliers" element={<AtlasSuppliers />} />
@@ -71,7 +72,6 @@ const App = () => (
               <Route path="capa" element={<AtlasCapa />} />
               <Route path="evidence" element={<AtlasEvidence />} />
               <Route path="copilot" element={<AtlasCopilot />} />
-              <Route path="live-audit" element={<AtlasLiveAudit />} />
             </Route>
 
             <Route path="*" element={<NotFound />} />
