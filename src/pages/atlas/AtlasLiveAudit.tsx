@@ -8,9 +8,11 @@ const styles = `
     background: #0f1117;
     color: #f1f5f9;
     height: 100vh;
+    height: 100dvh;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    -webkit-overflow-scrolling: touch;
   }
   .header {
     display: flex; align-items: center; justify-content: space-between;
