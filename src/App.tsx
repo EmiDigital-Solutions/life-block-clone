@@ -31,6 +31,7 @@ import AtlasFindings from "./pages/atlas/AtlasFindings";
 import AtlasCapa from "./pages/atlas/AtlasCapa";
 import AtlasEvidence from "./pages/atlas/AtlasEvidence";
 import AtlasCopilot from "./pages/atlas/AtlasCopilot";
+import AtlasLiveAudit from "./pages/atlas/AtlasLiveAudit";
 import AtlasAuthGuard from "./components/atlas/AtlasAuthGuard";
 
 const queryClient = new QueryClient();
@@ -61,6 +62,7 @@ const App = () => (
 
             {/* Atlas AI App */}
             <Route path="/atlas/login" element={<AtlasLogin />} />
+            <Route path="/atlas/live-audit" element={<AtlasLiveAudit />} />
             <Route path="/atlas" element={<AtlasLayout />}>
               <Route index element={<AtlasDashboard />} />
               <Route path="suppliers" element={<AtlasSuppliers />} />

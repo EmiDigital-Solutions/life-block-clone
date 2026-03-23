@@ -8,6 +8,7 @@ import {
   Bot,
   LogOut,
   User,
+  Radio,
 } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -34,6 +35,7 @@ const mainItems = [
 ];
 
 const toolItems = [
+  { title: "Live Audit", url: "/atlas/live-audit", icon: Radio },
   { title: "Evidence Upload", url: "/atlas/evidence", icon: Upload },
   { title: "AI Copilot", url: "/atlas/copilot", icon: Bot },
 ];
