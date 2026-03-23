@@ -61,7 +61,7 @@ const App = () => (
 
             {/* Atlas AI App */}
             <Route path="/atlas/login" element={<AtlasLogin />} />
-            <Route path="/atlas" element={<AtlasAuthGuard><AtlasLayout /></AtlasAuthGuard>}>
+            <Route path="/atlas" element={<AtlasLayout />}>
               <Route index element={<AtlasDashboard />} />
               <Route path="suppliers" element={<AtlasSuppliers />} />
               <Route path="audits" element={<AtlasAudits />} />
