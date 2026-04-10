@@ -205,5 +205,6 @@ export default function AuditReport() {
         </div>
       </div>
     </div>
+    </>
   );
 }
