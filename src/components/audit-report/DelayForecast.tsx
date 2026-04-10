@@ -1,6 +1,8 @@
-import { delayForecastData } from "@/data/auditReportData";
+import { useAuditReportContext } from "@/contexts/AuditReportContext";
 
 export default function DelayForecast() {
+  const { delayForecastData } = useAuditReportContext();
+
   const baseDate = new Date('2026-04-15');
   const endDate = new Date('2026-06-25');
   const totalDays = (endDate.getTime() - baseDate.getTime()) / (1000 * 60 * 60 * 24);
