@@ -1,7 +1,9 @@
-import { costImpactData } from "@/data/auditReportData";
+import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, ReferenceLine, CartesianGrid } from "recharts";
 
 export default function CostWaterfallChart() {
+  const { costImpactData } = useAuditReportContext();
+
   // Build waterfall data
   let runningTotal = 0;
   const waterfallData = costImpactData.map(item => {
@@ -16,11 +18,9 @@ export default function CostWaterfallChart() {
     };
   });
 
-  // Add total bar
   const totalExposure = costImpactData.reduce((a, c) => a + c.currentExposure, 0);
   const totalMitigated = costImpactData.reduce((a, c) => a + c.mitigatedCost, 0);
 
-  // Build simple stacked bar data for display
   const chartData = costImpactData.map(item => ({
     name: item.category.split(' — ')[0].substring(0, 18),
     exposure: Math.round(item.currentExposure / 1000),
@@ -43,7 +43,6 @@ export default function CostWaterfallChart() {
       </h2>
 
       <div className="border border-[#E5E7EB] bg-white p-6">
-        {/* Summary strip */}
         <div className="flex items-center gap-6 mb-6 pb-4 border-b border-[#E5E7EB]">
           <div>
             <span className="text-[10px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold">Total Exposure</span>
@@ -61,7 +60,6 @@ export default function CostWaterfallChart() {
           </div>
         </div>
 
-        {/* Waterfall bars */}
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={chartData} margin={{ top: 10, right: 10, left: 10, bottom: 40 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" vertical={false} />
@@ -76,7 +74,6 @@ export default function CostWaterfallChart() {
           </BarChart>
         </ResponsiveContainer>
 
-        {/* Detailed breakdown */}
         <div className="mt-4 space-y-2">
           {costImpactData.map(item => (
             <div key={item.category} className="flex items-center gap-3 py-2 border-b border-[#F5F5F5] last:border-0">

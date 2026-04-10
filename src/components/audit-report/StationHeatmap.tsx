@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { stations } from "@/data/auditReportData";
+import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import type { StationHealth } from "@/data/auditReportData";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
@@ -16,6 +16,7 @@ interface StationHeatmapProps {
 }
 
 export default function StationHeatmap({ activeStation, onStationClick }: StationHeatmapProps) {
+  const { stations } = useAuditReportContext();
   const displayStations = stations.filter(s => s.index >= 2 && s.index <= 9);
 
   return (

@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { stations, allNCRs, reportMeta } from "@/data/auditReportData";
+import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import type { StationHealth } from "@/data/auditReportData";
 
 const healthDotColor: Record<StationHealth, string> = {
@@ -130,6 +130,7 @@ function SectionGroup({ label, children }: { label: string; children: React.Reac
 }
 
 export default function ReportSidebar({ activeStation, onStationClick, onScrollToId, className }: ReportSidebarProps) {
+  const { stations, allNCRs } = useAuditReportContext();
   const totalSections = stations.filter(s => s.observation || s.index <= 1).length + 6;
   const ncrCount = allNCRs.length;
 

@@ -1,14 +1,16 @@
 import { cn } from "@/lib/utils";
 import type { NCR } from "@/data/auditReportData";
+import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import NCRCard from "./NCRCard";
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Cell } from "recharts";
-import { radarData, ncrSeverityData } from "@/data/auditReportData";
 
 interface NCRRegisterProps {
   ncrs: NCR[];
 }
 
 export default function NCRRegister({ ncrs }: NCRRegisterProps) {
+  const { radarData, ncrSeverityData } = useAuditReportContext();
+
   return (
     <section id="station-10" className="scroll-mt-20 space-y-8">
       <div className="flex items-center gap-3 mb-2">

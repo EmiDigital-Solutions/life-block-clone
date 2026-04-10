@@ -1,4 +1,4 @@
-import { crossCorrelations, supplierRiskSignals } from "@/data/auditReportData";
+import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { Zap, AlertTriangle, TrendingDown } from "lucide-react";
 
 const severityColor: Record<string, string> = {
@@ -9,13 +9,13 @@ const severityColor: Record<string, string> = {
 };
 
 export default function AnomalyCallouts() {
-  // Show top 3 most critical anomalies
+  const { crossCorrelations, supplierRiskSignals } = useAuditReportContext();
+
   const topAnomalies = crossCorrelations
     .filter(c => !c.humanVisible)
     .sort((a, b) => b.confidence - a.confidence)
     .slice(0, 3);
 
-  // Critical risk signals
   const criticalSignals = supplierRiskSignals.filter(s => s.status === 'critical');
 
   return (
@@ -58,7 +58,6 @@ export default function AnomalyCallouts() {
         })}
       </div>
 
-      {/* Critical risk signal strip */}
       {criticalSignals.length > 0 && (
         <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
           {criticalSignals.map(signal => (

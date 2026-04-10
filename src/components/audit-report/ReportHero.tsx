@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import type { VerdictType } from "@/data/auditReportData";
-import { iatfProcessScores, iatfWeightedScore, reportMeta, allNCRs, kpis } from "@/data/auditReportData";
+import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { Shield, AlertTriangle, Clock, TrendingDown, ChevronDown, FileCheck } from "lucide-react";
 
 const verdictConfig: Record<VerdictType, { label: string; color: string; accent: string; bgGradient: string; iconBg: string; borderColor: string }> = {
@@ -43,6 +43,7 @@ interface ReportHeroProps {
 }
 
 export default function ReportHero({ verdict, verdictLabel, heroReason, supplier, po, auditor, date, location, onDecide, onWalk }: ReportHeroProps) {
+  const { reportMeta, allNCRs, iatfProcessScores, iatfWeightedScore } = useAuditReportContext();
   const config = verdictConfig[verdict];
   const majorNCRs = allNCRs.filter(n => n.severity === 'major').length;
   const minorNCRs = allNCRs.filter(n => n.severity === 'minor').length;

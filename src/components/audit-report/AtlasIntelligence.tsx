@@ -1,10 +1,6 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import {
-  costImpactData, qualityTrajectoryData, qualityTrajectoryMitigated,
-  innovationSignals, crossCorrelations, supplierRiskSignals, scenarioOutcomes,
-  iatfProcessScores, iatfWeightedScore,
-} from "@/data/auditReportData";
+import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import {
   BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Cell,
   AreaChart, Area, CartesianGrid, Tooltip,
@@ -22,6 +18,11 @@ const severityColor = { critical: '#AD3D3D', high: '#E39B5C', medium: '#E39B5C',
 const statusColor = { safe: '#6EA996', warning: '#E39B5C', critical: '#AD3D3D' };
 
 export default function AtlasIntelligence() {
+  const {
+    costImpactData, qualityTrajectoryData, qualityTrajectoryMitigated,
+    innovationSignals, crossCorrelations, supplierRiskSignals, scenarioOutcomes,
+    iatfProcessScores, iatfWeightedScore,
+  } = useAuditReportContext();
   const [showMitigated, setShowMitigated] = useState(false);
   const [expandedCorrelation, setExpandedCorrelation] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'cost' | 'quality' | 'innovation' | 'correlations' | 'scenarios'>('cost');

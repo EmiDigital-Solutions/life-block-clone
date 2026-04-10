@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import type { Station, NCR } from "@/data/auditReportData";
-import { stations, allNCRs } from "@/data/auditReportData";
+import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { X, AlertTriangle } from "lucide-react";
 
 const severityDot: Record<string, string> = {
@@ -36,6 +36,7 @@ interface SectionInspectorProps {
 }
 
 export default function SectionInspector({ activeStation, isOpen, onClose }: SectionInspectorProps) {
+  const { stations, allNCRs } = useAuditReportContext();
   const station = stations.find(s => s.index === activeStation);
   if (!station) return null;
 

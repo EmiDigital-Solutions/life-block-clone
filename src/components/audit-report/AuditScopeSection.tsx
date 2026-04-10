@@ -1,7 +1,9 @@
-import { auditScope } from "@/data/auditReportData";
+import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { CheckCircle2, XCircle } from "lucide-react";
 
 export default function AuditScopeSection() {
+  const { auditScope } = useAuditReportContext();
+
   return (
     <section id="station-2" className="scroll-mt-20 space-y-6">
       <div className="flex items-center gap-3 mb-2">
@@ -14,7 +16,6 @@ export default function AuditScopeSection() {
       <h2 className="text-[28px] font-light text-[#0A0A0A] tracking-tight leading-none">Audit Scope</h2>
 
       <div className=" border border-[#E5E7EB] bg-white p-6 md:p-8 space-y-8">
-        {/* Standard & Type */}
         <div className="grid md:grid-cols-2 gap-6">
           <div>
             <h4 className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold mb-2">Standard</h4>
@@ -26,13 +27,11 @@ export default function AuditScopeSection() {
           </div>
         </div>
 
-        {/* Scope description */}
         <div>
           <h4 className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold mb-2">Scope of Certification</h4>
           <p className="text-[14px] text-[#1A1A1A] leading-relaxed">{auditScope.scope}</p>
         </div>
 
-        {/* Exclusions */}
         <div>
           <h4 className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold mb-3">Exclusions</h4>
           <div className="space-y-2">
@@ -45,7 +44,6 @@ export default function AuditScopeSection() {
           </div>
         </div>
 
-        {/* VDA 6.3 Process Elements */}
         <div>
           <h4 className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold mb-3">VDA 6.3 Process Elements</h4>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
@@ -58,7 +56,6 @@ export default function AuditScopeSection() {
           </div>
         </div>
 
-        {/* Product Scope */}
         <div>
           <h4 className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold mb-3">Product Scope</h4>
           <div className=" border border-[#E5E7EB] overflow-hidden">
@@ -78,7 +75,6 @@ export default function AuditScopeSection() {
           </div>
         </div>
 
-        {/* Site & Previous */}
         <div className="grid md:grid-cols-2 gap-6">
           <div>
             <h4 className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold mb-3">Site Details</h4>
@@ -113,7 +109,6 @@ export default function AuditScopeSection() {
           </div>
         </div>
 
-        {/* Sampling & Auditors */}
         <div>
           <h4 className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold mb-2">Sampling Basis</h4>
           <p className="text-[13px] text-[#1A1A1A] leading-relaxed">{auditScope.samplingBasis}</p>

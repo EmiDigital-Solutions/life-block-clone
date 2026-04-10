@@ -1,8 +1,7 @@
-import { allNCRs } from "@/data/auditReportData";
+import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { cn } from "@/lib/utils";
 import { Clock, User, AlertTriangle } from "lucide-react";
 
-// Generate mock CAPA timeline from NCR data
 interface CAPAItem {
   id: string;
   ncrId: string;
@@ -12,20 +11,8 @@ interface CAPAItem {
   startDate: string;
   dueDate: string;
   status: 'open' | 'in-progress' | 'overdue' | 'completed';
-  predictedSuccess: number; // AI predicted % chance of on-time completion
+  predictedSuccess: number;
 }
-
-const capaItems: CAPAItem[] = allNCRs.map((ncr, i) => ({
-  id: `CAPA-${String(i + 1).padStart(3, '0')}`,
-  ncrId: ncr.id,
-  title: ncr.recommendedAction.substring(0, 60) + '...',
-  owner: ncr.owner || 'Unassigned',
-  severity: ncr.severity,
-  startDate: '2026-04-10',
-  dueDate: ncr.dueDate || '2026-05-15',
-  status: ncr.owner ? (ncr.status === 'open' ? 'in-progress' : ncr.status as any) : 'open',
-  predictedSuccess: ncr.severity === 'major' ? Math.round(55 + Math.random() * 20) : Math.round(70 + Math.random() * 25),
-}));
 
 const statusColors: Record<string, { bg: string; text: string; border: string }> = {
   open: { bg: 'bg-[#F5F5F5]', text: 'text-[#7B8E80]', border: 'border-[#E5E7EB]' },
@@ -35,6 +22,20 @@ const statusColors: Record<string, { bg: string; text: string; border: string }>
 };
 
 export default function CAPAGantt() {
+  const { allNCRs } = useAuditReportContext();
+
+  const capaItems: CAPAItem[] = allNCRs.map((ncr, i) => ({
+    id: `CAPA-${String(i + 1).padStart(3, '0')}`,
+    ncrId: ncr.id,
+    title: ncr.recommendedAction.substring(0, 60) + '...',
+    owner: ncr.owner || 'Unassigned',
+    severity: ncr.severity,
+    startDate: '2026-04-10',
+    dueDate: ncr.dueDate || '2026-05-15',
+    status: ncr.owner ? (ncr.status === 'open' ? 'in-progress' : ncr.status as any) : 'open',
+    predictedSuccess: ncr.severity === 'major' ? Math.round(55 + Math.random() * 20) : Math.round(70 + Math.random() * 25),
+  }));
+
   const baseDate = new Date('2026-04-08');
   const endDate = new Date('2026-06-01');
   const totalDays = (endDate.getTime() - baseDate.getTime()) / (1000 * 60 * 60 * 24);
@@ -61,7 +62,6 @@ export default function CAPAGantt() {
       </h2>
 
       <div className="border border-[#E5E7EB] bg-white p-6">
-        {/* Timeline header */}
         <div className="flex items-center gap-4 text-[11px] text-[#7B8E80] mb-6 pb-3 border-b border-[#E5E7EB]">
           <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-[#AD3D3D] inline-block" /> Major NCR</span>
           <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-[#E39B5C] inline-block" /> Minor NCR</span>
@@ -69,7 +69,6 @@ export default function CAPAGantt() {
           <span className="ml-auto flex items-center gap-1.5"><AlertTriangle className="w-3 h-3 text-[#E39B5C]" /> AI Success Prediction</span>
         </div>
 
-        {/* Gantt rows */}
         <div className="space-y-3">
           {capaItems.map(item => {
             const style = statusColors[item.status];
@@ -91,14 +90,12 @@ export default function CAPAGantt() {
                     <User className="w-3 h-3 text-[#C0C0C0]" />
                     <span className="text-[10px] text-[#7B8E80]">{item.owner}</span>
                   </div>
-                  {/* Predictive CAPA success */}
                   <div className="flex items-center gap-1 px-2 py-0.5" style={{ background: `${successColor}10` }}>
                     <span className="text-[9px] font-mono font-bold" style={{ color: successColor }}>{item.predictedSuccess}%</span>
                     <span className="text-[8px] text-[#7B8E80]">on-time</span>
                   </div>
                 </div>
                 <p className="text-[12px] text-[#0A0A0A] mb-2 truncate">{item.title}</p>
-                {/* Gantt bar */}
                 <div className="relative h-5 bg-[#F5F5F5]">
                   <div
                     className="absolute top-0 h-full opacity-70"
@@ -108,7 +105,6 @@ export default function CAPAGantt() {
                       background: barColor,
                     }}
                   />
-                  {/* Today line */}
                   <div className="absolute top-0 bottom-0 w-px bg-[#0A7FA5]" style={{ left: `${todayOffset}%` }} />
                 </div>
                 <div className="flex justify-between text-[9px] font-mono text-[#C0C0C0] mt-1">
