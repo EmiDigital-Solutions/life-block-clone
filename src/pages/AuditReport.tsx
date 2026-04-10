@@ -114,53 +114,83 @@ export default function AuditReport() {
       <div className="flex-1 flex flex-col min-w-0 relative">
         {/* Top document bar — dark, matching reference image-8 */}
         <div className={cn(
-          "sticky top-0 z-40 flex items-center justify-between px-4 md:px-6 h-12 border-b border-[#1A1A1A] bg-[#0A0A0A] transition-all duration-300",
+          "sticky top-0 z-40 border-b border-[#1A1A1A] bg-[#0A0A0A] transition-all duration-300",
           scrolledPastHero ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
         )}>
-          <div className="flex items-center gap-4">
-            {isMobile && (
-              <button onClick={() => setSidebarOpen(true)} className="p-1.5 rounded-lg hover:bg-[#1A1A1A]">
-                <Menu className="w-4 h-4 text-[#C0C0C0]" />
-              </button>
-            )}
-            <span className="text-[11px] font-semibold text-[#6EA996] tracking-wider">yvoo+</span>
-            <span className="text-[11px] text-[#7B8E80]">SCANPRO+ · ATLAS AI</span>
-            <span className="text-[11px] text-[#C0C0C0]">/</span>
-            <span className="text-[12px] text-[#F5F5F5] font-medium">{reportMeta.supplier}</span>
-            <span className="text-[11px] font-medium text-[#E39B5C] ml-2">{reportMeta.verdictLabel}</span>
-            <span className="text-[11px] text-[#7B8E80]">· {allNCRs.length} NCRs</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="flex items-center rounded-md border border-[#1A1A1A] overflow-hidden">
-              {(['executive', 'standard', 'full'] as DepthLevel[]).map(d => (
-                <button
-                  key={d}
-                  onClick={() => setDepth(d)}
-                  className={cn(
-                    "px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider transition-colors",
-                    depth === d ? "bg-[#0A7FA5] text-white" : "text-[#7B8E80] hover:text-[#F5F5F5] hover:bg-[#1A1A1A]"
-                  )}
-                >
-                  {depthLabels[d]}
+          <div className="flex items-center justify-between px-4 md:px-6 h-12">
+            <div className="flex items-center gap-4">
+              {isMobile && (
+                <button onClick={() => setSidebarOpen(true)} className="p-1.5 hover:bg-[#1A1A1A]">
+                  <Menu className="w-4 h-4 text-[#C0C0C0]" />
                 </button>
-              ))}
+              )}
+              <span className="text-[11px] font-semibold text-[#6EA996] tracking-wider">yvoo+</span>
+              <span className="text-[11px] text-[#7B8E80]">SCANPRO+ · ATLAS AI</span>
+              <span className="text-[11px] text-[#C0C0C0]">/</span>
+              <span className="text-[12px] text-[#F5F5F5] font-medium">{reportMeta.supplier}</span>
+              <span className="text-[11px] font-medium text-[#E39B5C] ml-2">{reportMeta.verdictLabel}</span>
+              <span className="text-[11px] text-[#7B8E80]">· {allNCRs.length} NCRs</span>
+
+              {/* Station heatmap strip */}
+              <div className="hidden md:flex items-center gap-2 ml-2 pl-2 border-l border-[#1A1A1A]">
+                <StationHeatmap activeStation={activeStation} onStationClick={scrollToStation} />
+              </div>
             </div>
-            <button
-              className="px-3 py-1.5 rounded-md text-[11px] font-medium text-[#F5F5F5] border border-[#7B8E80] hover:bg-[#1A1A1A] transition-colors"
-            >
-              Export pdf
-            </button>
-            <button
-              className="px-3 py-1.5 rounded-md text-[11px] font-medium text-[#F5F5F5] border border-[#7B8E80] hover:bg-[#1A1A1A] transition-colors"
-            >
-              Print
-            </button>
-            <button
-              onClick={() => setInspectorOpen(!inspectorOpen)}
-              className="px-4 py-1.5 rounded-md text-[11px] font-semibold text-[#0A0A0A] bg-[#6EA996] hover:bg-[#5E9B87] transition-colors"
-            >
-              Sign off ({allNCRs.filter(n => n.status === 'open').length})
-            </button>
+            <div className="flex items-center gap-3">
+              {/* Reading progress */}
+              <span className="text-[10px] font-mono text-[#7B8E80] tabular-nums">{readingProgress}%</span>
+
+              {/* Jump to worst */}
+              {worstStation && (
+                <TooltipProvider delayDuration={200}>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <button
+                        onClick={() => scrollToStation(worstStation.index)}
+                        className="flex items-center gap-1.5 px-2.5 py-1.5 text-[10px] font-semibold text-[#AD3D3D] bg-[#AD3D3D]/10 hover:bg-[#AD3D3D]/20 transition-colors uppercase tracking-wider"
+                      >
+                        <AlertTriangle className="w-3 h-3" />
+                        Worst
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent side="bottom" className="text-[11px]">
+                      Jump to {worstStation.name} — lowest scoring station
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              )}
+
+              <div className="flex items-center border border-[#1A1A1A] overflow-hidden">
+                {(['executive', 'standard', 'full'] as DepthLevel[]).map(d => (
+                  <button
+                    key={d}
+                    onClick={() => setDepth(d)}
+                    className={cn(
+                      "px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider transition-colors",
+                      depth === d ? "bg-[#0A7FA5] text-white" : "text-[#7B8E80] hover:text-[#F5F5F5] hover:bg-[#1A1A1A]"
+                    )}
+                  >
+                    {depthLabels[d]}
+                  </button>
+                ))}
+              </div>
+              <button className="px-3 py-1.5 text-[11px] font-medium text-[#F5F5F5] border border-[#7B8E80] hover:bg-[#1A1A1A] transition-colors">
+                Export pdf
+              </button>
+              <button className="px-3 py-1.5 text-[11px] font-medium text-[#F5F5F5] border border-[#7B8E80] hover:bg-[#1A1A1A] transition-colors">
+                Print
+              </button>
+              <button
+                onClick={() => setInspectorOpen(!inspectorOpen)}
+                className="px-4 py-1.5 text-[11px] font-semibold text-[#0A0A0A] bg-[#6EA996] hover:bg-[#5E9B87] transition-colors"
+              >
+                Sign off ({allNCRs.filter(n => n.status === 'open').length})
+              </button>
+            </div>
+          </div>
+          {/* Reading progress bar */}
+          <div className="h-[2px] bg-[#1A1A1A]">
+            <div className="h-full bg-[#0A7FA5] transition-all duration-150" style={{ width: `${readingProgress}%` }} />
           </div>
         </div>
 
