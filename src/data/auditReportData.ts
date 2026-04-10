@@ -75,7 +75,7 @@ export interface BMWImpact {
 
 export interface AIPattern {
   id: string;
-  type: 'pattern' | 'prediction' | 'anomaly' | 'trend';
+  type: 'pattern' | 'prediction' | 'anomaly' | 'trend' | 'correlation';
   title: string;
   body: string;
   confidence: number;
