@@ -165,6 +165,8 @@ export default function AuditReport() {
                 <KPIBand kpis={kpis} />
               </section>
 
+              <ExecutiveRadarCharts />
+
               <AuditScopeSection />
 
               <div className="space-y-16 md:space-y-24 pb-16 mt-16">
