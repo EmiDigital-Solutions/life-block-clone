@@ -80,6 +80,7 @@ const scrollMap: Record<number, number> = {
 interface ReportSidebarProps {
   activeStation: number;
   onStationClick: (index: number) => void;
+  onScrollToId?: (id: string) => void;
   className?: string;
 }
 
@@ -107,11 +108,18 @@ export default function ReportSidebar({ activeStation, onStationClick, className
   const renderItem = (item: SidebarItem) => {
     const targetStation = scrollMap[item.index] || 1;
     const isActive = activeStation === targetStation;
+    const isCustomId = !item.id.startsWith('station-') && item.id !== 'signatures' && item.id !== 'revision';
 
     return (
       <div key={item.index}>
         <button
-          onClick={() => onStationClick(targetStation)}
+          onClick={() => {
+            if (isCustomId && onScrollToId) {
+              onScrollToId(item.id);
+            } else {
+              onStationClick(targetStation);
+            }
+          }}
           className={cn(
             "flex items-center gap-3 w-full px-4 py-2 text-left transition-all duration-150 group",
             isActive
