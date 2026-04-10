@@ -93,6 +93,18 @@ const Navigation = () => {
                 <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">{t.nav.groundIntelligence}</span>
                 <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">{t.nav.groundIntelligenceDesc}</span>
               </Link>
+              <Link to="/audit-report" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">ScanPro+ Report</span>
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">AI-powered ISO 9001 audit report with factory walkthrough</span>
+              </Link>
+              <Link to="/atlas/login" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">Atlas AI</span>
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">Audit management platform with AI copilot</span>
+              </Link>
+              <Link to="/atlas/live-audit" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">Live Audit</span>
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">Tablet-first real-time audit interface with AI assistance</span>
+              </Link>
             </nav>
           </div>
         )}
