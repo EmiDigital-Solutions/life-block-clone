@@ -99,13 +99,13 @@ const CustomTooltip = ({ active, payload }: any) => {
 export default function ExecutiveRadarCharts() {
   // Calculate gaps for production radar
   const productionGaps = productionData
-    .map(d => ({ label: d.fullLabel, gap: d.supplier - d.clientMin, direction: (d.supplier < d.clientMin ? 'below' : 'above') as 'below' | 'above' }))
+    .map(d => ({ label: d.fullLabel.split(' — ')[0], gap: d.supplier - d.clientMin, direction: (d.supplier < d.clientMin ? 'below' : 'above') as 'below' | 'above' }))
     .filter(d => d.direction === 'below')
     .sort((a, b) => a.gap - b.gap);
 
   // Calculate gaps for commercial radar
   const commercialGaps = commercialData
-    .map(d => ({ label: d.fullLabel, gap: d.supplier - d.benchmark, direction: (d.supplier < d.benchmark ? 'below' : 'above') as 'below' | 'above' }))
+    .map(d => ({ label: d.fullLabel.split(' — ')[0], gap: d.supplier - d.benchmark, direction: (d.supplier < d.benchmark ? 'below' : 'above') as 'below' | 'above' }))
     .filter(d => d.direction === 'below')
     .sort((a, b) => a.gap - b.gap);
 
