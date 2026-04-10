@@ -19,6 +19,7 @@ import CustomerStories from "./pages/CustomerStories";
 import CustomerStoryDetail from "./pages/CustomerStoryDetail";
 import LNGInspection from "./pages/LNGInspection";
 import NotFound from "./pages/NotFound";
+import AuditReport from "./pages/AuditReport";
 
 // Atlas AI App
 import AtlasLayout from "./pages/atlas/AtlasLayout";
