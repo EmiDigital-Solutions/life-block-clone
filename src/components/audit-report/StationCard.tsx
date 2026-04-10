@@ -195,10 +195,10 @@ export default function StationCard({ station, depth, totalStations }: StationCa
             </div>
           )}
 
-          {/* WHAT WE SAW */}
+          {/* WHAT WE SAW — font-light for observations */}
           <div>
             <h4 className="text-[11px] uppercase tracking-[0.15em] text-[#7B8E80] font-semibold mb-3">What we saw</h4>
-            <p className="text-[15px] text-[#1A1A1A] leading-relaxed">{station.observation}</p>
+            <p className="text-[15px] font-light text-[#1A1A1A] leading-relaxed">{station.observation}</p>
           </div>
 
           {/* WHAT IT MEANS */}
@@ -225,20 +225,29 @@ export default function StationCard({ station, depth, totalStations }: StationCa
                 {station.findings.map((finding, i) => {
                   const Icon = findingIcon[finding.type];
                   return (
-                    <div key={i} className="flex gap-3 p-4  border border-[#E5E7EB] bg-[#F5F5F5]">
+                    <div key={i} className="flex gap-3 p-4 border border-[#E5E7EB] bg-[#F5F5F5]">
                       <Icon className={cn("w-4 h-4 mt-0.5 shrink-0", findingColor[finding.type])} />
                       <div className="min-w-0">
-                        <div className="flex items-center gap-2">
-                          <p className="text-[14px] font-medium text-[#0A0A0A]">{finding.title}</p>
-                          {finding.isoClause && depth === 'full' && (
-                            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#E5E7EB] text-[#7B8E80] shrink-0">§{finding.isoClause}</span>
+                        <div className="flex items-center gap-2 flex-wrap">
+                          {/* font-semibold for findings */}
+                          <p className="text-[14px] font-semibold text-[#0A0A0A]">{finding.title}</p>
+                          {finding.isoClause && (
+                            <a
+                              href={`https://www.iso.org/standard/62085.html`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-[10px] font-mono px-1.5 py-0.5 bg-[#0A7FA5]/10 text-[#0A7FA5] hover:bg-[#0A7FA5]/20 transition-colors cursor-pointer"
+                              title={`ISO 9001:2015 Clause ${finding.isoClause}`}
+                            >
+                              §{finding.isoClause}
+                            </a>
                           )}
                         </div>
                         {depth !== 'executive' && (
-                          <p className="text-[13px] text-[#7B8E80] mt-1 leading-relaxed">{finding.description}</p>
+                          <p className="text-[13px] font-light text-[#7B8E80] mt-1 leading-relaxed">{finding.description}</p>
                         )}
                         {finding.ncrId && (
-                          <span className="inline-block mt-1.5 text-[11px] font-mono px-2 py-0.5 rounded bg-[#AD3D3D]/10 text-[#AD3D3D]">{finding.ncrId}</span>
+                          <span className="inline-block mt-1.5 text-[11px] font-mono font-bold px-2 py-0.5 bg-[#AD3D3D]/10 text-[#AD3D3D]">{finding.ncrId}</span>
                         )}
                       </div>
                     </div>
