@@ -9,6 +9,38 @@ const healthDotColor: Record<StationHealth, string> = {
   grey: 'bg-[#C0C0C0]',
 };
 
+// Mock sparkline data for cross-audit score trajectory per station
+const stationSparklines: Record<number, number[]> = {
+  1: [82, 78, 76, 74, 72],
+  2: [80, 82, 85, 84, 86],
+  3: [78, 80, 82, 83, 85],
+  4: [72, 68, 65, 62, 58],
+  5: [65, 60, 55, 48, 42],
+  6: [88, 87, 89, 90, 91],
+  7: [70, 62, 55, 48, 38],
+  8: [82, 84, 85, 86, 88],
+  9: [68, 65, 60, 58, 55],
+};
+
+function SidebarSparkline({ data }: { data: number[] }) {
+  if (!data || data.length < 2) return null;
+  const max = Math.max(...data);
+  const min = Math.min(...data);
+  const range = max - min || 1;
+  const h = 12;
+  const w = 32;
+  const step = w / (data.length - 1);
+  const points = data.map((v, i) => `${i * step},${h - ((v - min) / range) * h}`).join(' ');
+  const lastVal = data[data.length - 1];
+  const color = lastVal >= 70 ? '#6EA996' : lastVal >= 50 ? '#E39B5C' : '#AD3D3D';
+
+  return (
+    <svg width={w} height={h} className="shrink-0 opacity-60">
+      <polyline points={points} fill="none" stroke={color} strokeWidth="1" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 interface SidebarItem {
   id: string;
   index: number;
@@ -141,7 +173,12 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
             {item.label}
           </span>
           {item.health && (
-            <div className={cn("w-2 h-2 rounded-full shrink-0", healthDotColor[item.health])} />
+            <div className="flex items-center gap-1 shrink-0">
+              {stationSparklines[item.index] && (
+                <SidebarSparkline data={stationSparklines[item.index]} />
+              )}
+              <div className={cn("w-2 h-2 rounded-full", healthDotColor[item.health])} />
+            </div>
           )}
         </button>
 

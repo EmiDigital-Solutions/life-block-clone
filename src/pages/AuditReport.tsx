@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { cn } from "@/lib/utils";
-import { reportMeta, kpis, stations, allNCRs } from "@/data/auditReportData";
+import { reportMeta, kpis, stations, allNCRs, costImpactData } from "@/data/auditReportData";
 import type { DepthLevel } from "@/data/auditReportData";
 import ReportSidebar from "@/components/audit-report/ReportSidebar";
 import ReportHero from "@/components/audit-report/ReportHero";
@@ -15,16 +15,33 @@ import AuditScopeSection from "@/components/audit-report/AuditScopeSection";
 import ExecutiveRadarCharts from "@/components/audit-report/ExecutiveRadarCharts";
 import MachineParkIntelligence from "@/components/audit-report/MachineParkIntelligence";
 import SectionInspector from "@/components/audit-report/SectionInspector";
-import { Menu, X, Sparkles, AlertTriangle } from "lucide-react";
+import AtlasRiskScore from "@/components/audit-report/AtlasRiskScore";
+import AnomalyCallouts from "@/components/audit-report/AnomalyCallouts";
+import CostWaterfallChart from "@/components/audit-report/CostWaterfallChart";
+import CAPAGantt from "@/components/audit-report/CAPAGantt";
+import StationHeatmap from "@/components/audit-report/StationHeatmap";
+import { Menu, X, Sparkles, AlertTriangle, Clock } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Navigation from "@/components/Navigation";
-import StationHeatmap from "@/components/audit-report/StationHeatmap";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const depthLabels: Record<DepthLevel, string> = {
   executive: 'Executive',
   standard: 'Standard',
   full: 'Full',
+};
+
+const readingTimeEstimates: Record<DepthLevel, string> = {
+  executive: '~4 min',
+  standard: '~12 min',
+  full: '~28 min',
+};
+
+const verdictColors: Record<string, string> = {
+  go: '#6EA996',
+  conditional: '#E39B5C',
+  hold: '#AD3D3D',
+  nogo: '#AD3D3D',
 };
 
 export default function AuditReport() {
@@ -35,19 +52,28 @@ export default function AuditReport() {
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
   const [askAtlasInput, setAskAtlasInput] = useState('');
   const [readingProgress, setReadingProgress] = useState(0);
+  const [reviewedStations, setReviewedStations] = useState<Set<number>>(new Set());
   const contentRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
 
-  // Find worst station (first red, or first amber)
+  const displayStations = stations.filter(s => s.index >= 2 && s.index <= 9);
+  const totalStations = displayStations.length;
+
+  // Find worst station
   const worstStation = stations.find(s => s.health === 'red' && s.index >= 2 && s.index <= 9)
     || stations.find(s => s.health === 'amber' && s.index >= 2 && s.index <= 9);
+
+  // Find next NCR station from current position
+  const nextNCRStation = useMemo(() => {
+    const stationsWithNCRs = stations.filter(s => s.ncrs.length > 0 && s.index > activeStation);
+    return stationsWithNCRs[0] || stations.find(s => s.ncrs.length > 0);
+  }, [activeStation]);
 
   useEffect(() => {
     const container = contentRef.current;
     if (!container) return;
     const handleScroll = () => {
       setScrolledPastHero(container.scrollTop > window.innerHeight * 0.6);
-      // Reading progress
       const scrollHeight = container.scrollHeight - container.clientHeight;
       if (scrollHeight > 0) {
         setReadingProgress(Math.round((container.scrollTop / scrollHeight) * 100));
@@ -57,7 +83,12 @@ export default function AuditReport() {
       stationEls.forEach((el) => {
         const rect = el.getBoundingClientRect();
         if (rect.top <= 200) {
-          current = parseInt(el.id.replace('station-', ''));
+          const idx = parseInt(el.id.replace('station-', ''));
+          current = idx;
+          // Track reviewed stations
+          if (idx >= 2 && idx <= 9) {
+            setReviewedStations(prev => new Set([...prev, idx]));
+          }
         }
       });
       setActiveStation(current);
@@ -78,9 +109,44 @@ export default function AuditReport() {
     setSidebarOpen(false);
   }, []);
 
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') return;
+
+      switch (e.key) {
+        case 'ArrowDown':
+        case 'j':
+          e.preventDefault();
+          scrollToStation(Math.min(activeStation + 1, 14));
+          break;
+        case 'ArrowUp':
+        case 'k':
+          e.preventDefault();
+          scrollToStation(Math.max(activeStation - 1, 1));
+          break;
+        case 'd':
+        case 'D':
+          e.preventDefault();
+          setDepth(prev => prev === 'executive' ? 'standard' : prev === 'standard' ? 'full' : 'executive');
+          break;
+        case 'n':
+        case 'N':
+          e.preventDefault();
+          if (nextNCRStation) scrollToStation(nextNCRStation.index);
+          break;
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeStation, scrollToStation, nextNCRStation]);
+
   useEffect(() => {
     if (isMobile) setInspectorOpen(false);
   }, [isMobile]);
+
+  const verdictBandColor = verdictColors[reportMeta.verdict] || '#E39B5C';
 
   return (
     <>
@@ -112,9 +178,15 @@ export default function AuditReport() {
 
       {/* Main content */}
       <div className="flex-1 flex flex-col min-w-0 relative">
-        {/* Top document bar — dark, matching reference image-8 */}
+        {/* Verdict color band */}
         <div className={cn(
-          "sticky top-0 z-40 border-b border-[#1A1A1A] bg-[#0A0A0A] transition-all duration-300",
+          "h-[2px] transition-all duration-300",
+          scrolledPastHero ? "opacity-100" : "opacity-0"
+        )} style={{ background: verdictBandColor }} />
+
+        {/* Top document bar */}
+        <div className={cn(
+          "sticky top-0 z-40 bg-[#0A0A0A] transition-all duration-300",
           scrolledPastHero ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
         )}>
           <div className="flex items-center justify-between px-4 md:px-6 h-12">
@@ -135,10 +207,23 @@ export default function AuditReport() {
               <div className="hidden md:flex items-center gap-2 ml-2 pl-2 border-l border-[#1A1A1A]">
                 <StationHeatmap activeStation={activeStation} onStationClick={scrollToStation} />
               </div>
+
+              {/* Breadcrumb progress */}
+              <div className="hidden lg:flex items-center gap-1.5 ml-2 pl-2 border-l border-[#1A1A1A]">
+                <span className="text-[10px] font-mono text-[#7B8E80] tabular-nums">
+                  Reviewed {reviewedStations.size}/{totalStations}
+                </span>
+              </div>
             </div>
             <div className="flex items-center gap-3">
-              {/* Reading progress */}
-              <span className="text-[10px] font-mono text-[#7B8E80] tabular-nums">{readingProgress}%</span>
+              {/* Reading progress + time */}
+              <div className="hidden md:flex items-center gap-2">
+                <span className="text-[10px] font-mono text-[#7B8E80] tabular-nums">{readingProgress}%</span>
+                <span className="text-[10px] text-[#7B8E80] flex items-center gap-1">
+                  <Clock className="w-3 h-3" />
+                  {readingTimeEstimates[depth]}
+                </span>
+              </div>
 
               {/* Jump to worst */}
               {worstStation && (
@@ -174,10 +259,10 @@ export default function AuditReport() {
                   </button>
                 ))}
               </div>
-              <button className="px-3 py-1.5 text-[11px] font-medium text-[#F5F5F5] border border-[#7B8E80] hover:bg-[#1A1A1A] transition-colors">
+              <button className="hidden md:block px-3 py-1.5 text-[11px] font-medium text-[#F5F5F5] border border-[#7B8E80] hover:bg-[#1A1A1A] transition-colors">
                 Export pdf
               </button>
-              <button className="px-3 py-1.5 text-[11px] font-medium text-[#F5F5F5] border border-[#7B8E80] hover:bg-[#1A1A1A] transition-colors">
+              <button className="hidden lg:block px-3 py-1.5 text-[11px] font-medium text-[#F5F5F5] border border-[#7B8E80] hover:bg-[#1A1A1A] transition-colors">
                 Print
               </button>
               <button
@@ -211,6 +296,9 @@ export default function AuditReport() {
                 onWalk={() => scrollToStation(2)}
               />
 
+              {/* Atlas Risk Score */}
+              <AtlasRiskScore />
+
               <section className="py-16 md:py-24">
                 <KPIBand kpis={kpis} />
               </section>
@@ -219,11 +307,21 @@ export default function AuditReport() {
 
               <AuditScopeSection />
 
+              {/* Anomaly callouts */}
+              <AnomalyCallouts />
+
               <div className="space-y-16 md:space-y-24 pb-16 mt-16">
-                {stations.filter(s => s.index >= 2 && s.index <= 9).map((station) => (
+                {displayStations.map((station) => (
                   <StationCard key={station.index} station={station} depth={depth} totalStations={14} />
                 ))}
                 <NCRRegister ncrs={allNCRs} />
+                
+                {/* Cost waterfall chart */}
+                <CostWaterfallChart />
+
+                {/* CAPA Gantt Timeline */}
+                <CAPAGantt />
+
                 <AtlasIntelligence />
                 <div id="machine-park">
                   <MachineParkIntelligence />
@@ -235,7 +333,7 @@ export default function AuditReport() {
 
               {/* Ask Atlas */}
               <div className="sticky bottom-4 z-30 mb-8">
-                <div className="max-w-[640px] mx-auto flex items-center gap-2 px-4 py-2.5 rounded-2xl border border-[#E5E7EB] bg-white/95 backdrop-blur-sm shadow-lg">
+                <div className="max-w-[640px] mx-auto flex items-center gap-2 px-4 py-2.5 border border-[#E5E7EB] bg-white/95 backdrop-blur-sm shadow-lg">
                   <Sparkles className="w-4 h-4 text-[#0A7FA5] shrink-0" />
                   <input
                     value={askAtlasInput}
@@ -243,7 +341,7 @@ export default function AuditReport() {
                     placeholder="Ask Atlas about this audit..."
                     className="flex-1 bg-transparent text-[14px] text-[#0A0A0A] placeholder:text-[#C0C0C0] outline-none"
                   />
-                  <button className="px-3 py-1 rounded-lg text-[12px] font-medium text-[#0A7FA5] hover:bg-[#0A7FA5]/5 transition-colors">
+                  <button className="px-3 py-1 text-[12px] font-medium text-[#0A7FA5] hover:bg-[#0A7FA5]/5 transition-colors">
                     Ask
                   </button>
                 </div>

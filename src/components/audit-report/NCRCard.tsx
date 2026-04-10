@@ -56,11 +56,18 @@ export default function NCRCard({ ncr, compact, onAssign, onAction }: NCRCardPro
               {sev.label}
             </span>
           </div>
-          <p className="text-[15px] font-medium text-[#0A0A0A] mt-0.5">{ncr.title}</p>
+          <p className="text-[15px] font-bold text-[#0A0A0A] mt-0.5">{ncr.title}</p>
           {ncr.isoClause && (
-            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#F5F5F5] text-[#7B8E80] mt-1 inline-block">
-              ISO 9001 §{ncr.isoClause}
-            </span>
+            <a
+              href={`https://www.iso.org/standard/62085.html`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[10px] font-mono px-1.5 py-0.5 bg-[#0A7FA5]/10 text-[#0A7FA5] hover:bg-[#0A7FA5]/20 transition-colors mt-1 inline-flex items-center gap-1 cursor-pointer"
+              title={`ISO 9001:2015 / IATF 16949 Clause ${ncr.isoClause}`}
+            >
+              <span>ISO 9001 §{ncr.isoClause}</span>
+              <span className="text-[8px]">↗</span>
+            </a>
           )}
         </div>
       </div>
