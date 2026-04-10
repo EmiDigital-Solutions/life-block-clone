@@ -1,4 +1,8 @@
-import { Mail, CalendarPlus, ExternalLink } from "lucide-react";
+import { Mail, CalendarPlus, ExternalLink, FileDown, Printer, Users, Eye } from "lucide-react";
+import DigitalSignatureWorkflow from "./DigitalSignatureWorkflow";
+import CommentingAnnotation from "./CommentingAnnotation";
+import VersionComparison from "./VersionComparison";
+import CrossAuditBenchmark from "./CrossAuditBenchmark";
 
 export default function RecommendationSection() {
   const nextSteps = [
@@ -8,7 +12,7 @@ export default function RecommendationSection() {
   ];
 
   return (
-    <section id="station-13" className="scroll-mt-20 space-y-6">
+    <section id="station-13" className="scroll-mt-20 space-y-8">
       <div className="flex items-center gap-3 mb-2">
         <span className="text-[12px] font-medium tracking-[0.1em] text-[#7B8E80]">// 13</span>
         <span className="w-1.5 h-1.5 rounded-full bg-[#0A7FA5]" />
@@ -20,15 +24,16 @@ export default function RecommendationSection() {
         Recommendation & Next Steps
       </h2>
 
-      <div className=" border border-[#E5E7EB] bg-white p-6 md:p-8">
+      {/* Monday Morning Actions */}
+      <div className="border border-[#E5E7EB] bg-white p-6 md:p-8">
         <h4 className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold mb-6">Monday Morning — 3 actions</h4>
         <div className="space-y-3">
           {nextSteps.map((step, i) => (
-            <div key={i} className="flex items-center gap-4 p-4  border border-[#E5E7EB] hover:bg-[#F5F5F5] transition-colors group">
+            <div key={i} className="flex items-center gap-4 p-4 border border-[#E5E7EB] hover:bg-[#F5F5F5] transition-colors group">
               <span className="text-[16px] font-mono text-[#C0C0C0] w-6">{i + 1}.</span>
               <step.icon className="w-4 h-4 text-[#0A7FA5] shrink-0" />
               <span className="text-[14px] text-[#0A0A0A] flex-1">{step.label}</span>
-              <button className="px-3 py-1.5  text-[12px] font-medium text-[#0A7FA5] border border-[#0A7FA5]/20 hover:bg-[#0A7FA5]/5 opacity-0 group-hover:opacity-100 transition-all">
+              <button className="px-3 py-1.5 text-[12px] font-medium text-[#0A7FA5] border border-[#0A7FA5]/20 hover:bg-[#0A7FA5]/5 opacity-0 group-hover:opacity-100 transition-all">
                 {step.action}
               </button>
             </div>
@@ -36,9 +41,64 @@ export default function RecommendationSection() {
         </div>
       </div>
 
-      <div className=" border border-dashed border-[#C0C0C0] p-6 text-center">
+      {/* Cross-Audit Benchmarking */}
+      <CrossAuditBenchmark />
+
+      {/* Digital Signature Workflow */}
+      <DigitalSignatureWorkflow />
+
+      {/* Export & Role-Based Views */}
+      <div className="grid md:grid-cols-2 gap-4">
+        <div className="border border-[#E5E7EB] bg-white p-5 space-y-3">
+          <h4 className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold">Export</h4>
+          <div className="space-y-2">
+            <button className="w-full flex items-center gap-3 px-4 py-3 border border-[#E5E7EB] hover:bg-[#F5F5F5] transition-colors text-left">
+              <FileDown className="w-4 h-4 text-[#0A7FA5]" />
+              <div>
+                <span className="text-[13px] text-[#0A0A0A] font-medium">PDF with Corporate Branding</span>
+                <p className="text-[10px] text-[#7B8E80]">Client logo, custom header/footer, cover page</p>
+              </div>
+            </button>
+            <button className="w-full flex items-center gap-3 px-4 py-3 border border-[#E5E7EB] hover:bg-[#F5F5F5] transition-colors text-left">
+              <Printer className="w-4 h-4 text-[#0A7FA5]" />
+              <div>
+                <span className="text-[13px] text-[#0A0A0A] font-medium">Print-Ready Format</span>
+                <p className="text-[10px] text-[#7B8E80]">Optimized for A4, grayscale safe</p>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <div className="border border-[#E5E7EB] bg-white p-5 space-y-3">
+          <h4 className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold">Role-Based Views</h4>
+          <div className="space-y-2">
+            {[
+              { role: 'Procurement', desc: 'Cost data, supplier terms, risk exposure', icon: Users },
+              { role: 'Quality Engineering', desc: 'Technical findings, NCRs, CAPA status', icon: Eye },
+              { role: 'C-Suite', desc: 'Executive summary, verdict, key metrics', icon: Eye },
+            ].map((view, i) => (
+              <button key={i} className="w-full flex items-center gap-3 px-4 py-3 border border-[#E5E7EB] hover:bg-[#F5F5F5] transition-colors text-left">
+                <view.icon className="w-4 h-4 text-[#0A7FA5]" />
+                <div>
+                  <span className="text-[13px] text-[#0A0A0A] font-medium">{view.role}</span>
+                  <p className="text-[10px] text-[#7B8E80]">{view.desc}</p>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Version Comparison */}
+      <VersionComparison />
+
+      {/* Commenting & Annotation */}
+      <CommentingAnnotation />
+
+      {/* Switch to Supplier View */}
+      <div className="border border-dashed border-[#C0C0C0] p-6 text-center">
         <p className="text-[14px] text-[#7B8E80] mb-3">Share this report from the supplier's perspective</p>
-        <button className="px-6 py-2.5  text-[13px] font-medium text-[#0A0A0A] border border-[#E5E7EB] hover:bg-[#F5F5F5] transition-colors">
+        <button className="px-6 py-2.5 text-[13px] font-medium text-[#0A0A0A] border border-[#E5E7EB] hover:bg-[#F5F5F5] transition-colors">
           Switch to Supplier View →
         </button>
       </div>
