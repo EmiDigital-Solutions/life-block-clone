@@ -1,10 +1,6 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import {
-  costImpactData, qualityTrajectoryData, qualityTrajectoryMitigated,
-  innovationSignals, crossCorrelations, supplierRiskSignals, scenarioOutcomes,
-  iatfProcessScores, iatfWeightedScore,
-} from "@/data/auditReportData";
+import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import {
   BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Cell,
   AreaChart, Area, CartesianGrid, Tooltip,
