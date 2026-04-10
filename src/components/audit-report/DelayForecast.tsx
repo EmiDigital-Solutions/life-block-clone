@@ -23,7 +23,7 @@ export default function DelayForecast() {
         Delay Forecast
       </h2>
 
-      <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 space-y-6">
+      <div className=" border border-[#E5E7EB] bg-white p-6 space-y-6">
         <div className="flex items-center gap-6 text-[12px] text-[#7B8E80]">
           <span className="flex items-center gap-2"><span className="w-3 h-0.5 bg-[#0A7FA5] rounded-full inline-block" /> Contracted</span>
           <span className="flex items-center gap-2"><span className="w-3 h-0.5 bg-[#E39B5C] rounded-full inline-block" /> Predicted</span>
@@ -35,7 +35,7 @@ export default function DelayForecast() {
               <span className="text-[14px] text-[#0A0A0A] font-medium">{item.milestone}</span>
               <span className="text-[12px] font-mono text-[#7B8E80]">P{item.confidence}</span>
             </div>
-            <div className="relative h-6 bg-[#F5F5F5] rounded-lg overflow-hidden">
+            <div className="relative h-6 bg-[#F5F5F5]  overflow-hidden">
               <div className="absolute top-1 h-4 bg-[#0A7FA5]/10 rounded" style={{ left: '0%', width: `${dayOffset(item.contracted)}%` }}>
                 <div className="absolute right-0 top-0 bottom-0 w-0.5 bg-[#0A7FA5]" />
               </div>

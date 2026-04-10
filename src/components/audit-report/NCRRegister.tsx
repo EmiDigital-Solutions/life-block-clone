@@ -28,7 +28,7 @@ export default function NCRRegister({ ncrs }: NCRRegisterProps) {
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
-        <div className="rounded-xl border border-[#E5E7EB] bg-white p-6">
+        <div className=" border border-[#E5E7EB] bg-white p-6">
           <h4 className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold mb-4">Station Health Radar</h4>
           <ResponsiveContainer width="100%" height={240}>
             <RadarChart data={radarData}>
@@ -40,7 +40,7 @@ export default function NCRRegister({ ncrs }: NCRRegisterProps) {
           </ResponsiveContainer>
         </div>
 
-        <div className="rounded-xl border border-[#E5E7EB] bg-white p-6">
+        <div className=" border border-[#E5E7EB] bg-white p-6">
           <h4 className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold mb-4">NCR Severity Distribution</h4>
           <ResponsiveContainer width="100%" height={240}>
             <BarChart data={ncrSeverityData} layout="vertical" margin={{ left: 60 }}>
@@ -56,9 +56,9 @@ export default function NCRRegister({ ncrs }: NCRRegisterProps) {
         </div>
       </div>
 
-      <div className="rounded-xl border border-[#E5E7EB] bg-white p-6">
+      <div className=" border border-[#E5E7EB] bg-white p-6">
         <h4 className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold mb-4">Priority Matrix — Severity × Effort to Fix</h4>
-        <div className="grid grid-cols-2 gap-px bg-[#E5E7EB] rounded-xl overflow-hidden" style={{ aspectRatio: '2/1' }}>
+        <div className="grid grid-cols-2 gap-px bg-[#E5E7EB]  overflow-hidden" style={{ aspectRatio: '2/1' }}>
           <div className="bg-white p-4 flex flex-col items-center justify-center">
             <span className="text-[10px] uppercase tracking-wider text-[#7B8E80] mb-2">High Severity · Low Effort</span>
             <span className="text-[13px] text-[#AD3D3D] font-medium">Fix First</span>

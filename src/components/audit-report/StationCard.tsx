@@ -44,7 +44,7 @@ function EvidenceGrid({ evidence }: { evidence: SubCategoryEvidence[] }) {
         {evidence.map(ev => {
           const Icon = evidenceTypeIcon[ev.type] || FileText;
           return (
-            <button key={ev.id} className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-[#E5E7EB] bg-white hover:bg-[#F5F5F5] transition-colors text-[11px] text-[#1A1A1A]">
+            <button key={ev.id} className="flex items-center gap-1.5 px-2.5 py-1.5  border border-[#E5E7EB] bg-white hover:bg-[#F5F5F5] transition-colors text-[11px] text-[#1A1A1A]">
               <Icon className="w-3 h-3 text-[#0A7FA5]" />
               <span className="max-w-[160px] truncate">{ev.label}</span>
             </button>
@@ -64,7 +64,7 @@ function AIPatternsList({ patterns }: { patterns: AIPattern[] }) {
       {patterns.map(p => {
         const color = impactRatingColor[p.impact];
         return (
-          <div key={p.id} className="rounded-md border border-[#0A7FA5]/10 bg-[#0A7FA5]/3 p-3">
+          <div key={p.id} className=" border border-[#0A7FA5]/10 bg-[#0A7FA5]/3 p-3">
             <div className="flex items-center gap-2 mb-1 flex-wrap">
               <span className="text-[9px] px-1.5 py-0.5 rounded-full font-semibold uppercase tracking-wider" style={{ background: `${color}15`, color }}>{p.type}</span>
               <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-[#F5F5F5] text-[#7B8E80] font-mono">{p.confidence}%</span>
@@ -97,7 +97,7 @@ function BMWImpactPanel({ impact }: { impact: BMWImpact }) {
         {items.map(({ key, label, icon: Icon, data }) => {
           const color = impactRatingColor[data.rating];
           return (
-            <div key={key} className="rounded-md border border-[#E5E7EB] bg-white p-2.5">
+            <div key={key} className=" border border-[#E5E7EB] bg-white p-2.5">
               <div className="flex items-center gap-1.5 mb-1">
                 <Icon className="w-3 h-3" style={{ color }} />
                 <span className="text-[10px] font-semibold text-[#0A0A0A]">{label}</span>
@@ -143,14 +143,14 @@ export default function StationCard({ station, depth, totalStations }: StationCa
       <h2 className="text-[28px] font-light text-[#0A0A0A] tracking-tight leading-none mb-8">{station.name}</h2>
 
       {station.observation && (
-        <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 md:p-8 space-y-8">
+        <div className=" border border-[#E5E7EB] bg-white p-6 md:p-8 space-y-8">
           {/* Hero photo */}
           {station.heroPhoto ? (
-            <div className="aspect-video rounded-lg overflow-hidden border border-[#E5E7EB]">
+            <div className="aspect-video  overflow-hidden border border-[#E5E7EB]">
               <img src={station.heroPhoto} alt={`Factory photo — ${station.name}`} className="w-full h-full object-cover" loading="lazy" width={960} height={540} />
             </div>
           ) : (
-            <div className="aspect-video rounded-lg bg-[#F5F5F5] border border-[#E5E7EB] flex items-center justify-center">
+            <div className="aspect-video  bg-[#F5F5F5] border border-[#E5E7EB] flex items-center justify-center">
               <div className="text-center">
                 <Camera className="w-8 h-8 text-[#C0C0C0] mx-auto mb-2" />
                 <span className="text-[13px] text-[#7B8E80]">Factory photo — Station {station.index}</span>
@@ -188,7 +188,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
                 {station.findings.map((finding, i) => {
                   const Icon = findingIcon[finding.type];
                   return (
-                    <div key={i} className="flex gap-3 p-4 rounded-lg border border-[#E5E7EB] bg-[#F5F5F5]">
+                    <div key={i} className="flex gap-3 p-4  border border-[#E5E7EB] bg-[#F5F5F5]">
                       <Icon className={cn("w-4 h-4 mt-0.5 shrink-0", findingColor[finding.type])} />
                       <div className="min-w-0">
                         <div className="flex items-center gap-2">
@@ -219,7 +219,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
                 {station.subCategories.map(sub => {
                   const subHealthColor = sub.health === 'green' ? '#6EA996' : sub.health === 'amber' ? '#E39B5C' : sub.health === 'red' ? '#AD3D3D' : '#C0C0C0';
                   return (
-                    <div key={sub.id} className="rounded-lg border border-[#E5E7EB] bg-[#F5F5F5] p-4 space-y-3">
+                    <div key={sub.id} className=" border border-[#E5E7EB] bg-[#F5F5F5] p-4 space-y-3">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <div className="w-2 h-2 rounded-full" style={{ background: subHealthColor }} />
@@ -240,7 +240,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
                         );
                       })}
                       {depth === 'full' && (
-                        <div className="flex gap-2 p-3 rounded-lg bg-[#0A7FA5]/5 border border-[#0A7FA5]/10">
+                        <div className="flex gap-2 p-3  bg-[#0A7FA5]/5 border border-[#0A7FA5]/10">
                           <Sparkles className="w-3.5 h-3.5 text-[#0A7FA5] mt-0.5 shrink-0" />
                           <div>
                             <span className="text-[10px] font-semibold uppercase tracking-wider text-[#0A7FA5]">Atlas AI · {sub.aiConfidence}%</span>
@@ -277,7 +277,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
                 {station.atlasInsights.map((insight, ii) => {
                   const ic = impactRatingColor[insight.impact];
                   return (
-                    <div key={ii} className="rounded-lg border border-[#0A7FA5]/15 bg-[#0A7FA5]/3 p-4">
+                    <div key={ii} className=" border border-[#0A7FA5]/15 bg-[#0A7FA5]/3 p-4">
                       <div className="flex items-center gap-2 mb-2 flex-wrap">
                         <span className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wider" style={{ background: `${ic}15`, color: ic }}>{insight.impact}</span>
                         <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#F5F5F5] text-[#7B8E80] font-mono">{insight.confidence}% conf.</span>
@@ -315,7 +315,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
               {questionsOpen && (
                 <div className="space-y-2">
                   {station.auditQuestions!.map((q) => (
-                    <div key={q.id} className="flex gap-3 p-3 rounded-lg border border-[#E5E7EB] bg-[#F5F5F5]">
+                    <div key={q.id} className="flex gap-3 p-3  border border-[#E5E7EB] bg-[#F5F5F5]">
                       <div className="shrink-0 w-10 text-center">
                         <span className={cn("text-[18px] font-mono font-light tabular-nums", scoreColor(q.score))}>{q.score ?? '—'}</span>
                         <div className="w-full h-1 rounded-full bg-[#E5E7EB] mt-1 overflow-hidden">

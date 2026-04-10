@@ -60,13 +60,13 @@ export default function AtlasIntelligence() {
       </p>
 
       {/* Tab bar */}
-      <div className="flex items-center gap-1 p-1 rounded-lg bg-[#F5F5F5] border border-[#E5E7EB] overflow-x-auto">
+      <div className="flex items-center gap-1 p-1  bg-[#F5F5F5] border border-[#E5E7EB] overflow-x-auto">
         {tabs.map(tab => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={cn(
-              "flex items-center gap-2 px-4 py-2 rounded-md text-[12px] font-medium whitespace-nowrap transition-all",
+              "flex items-center gap-2 px-4 py-2  text-[12px] font-medium whitespace-nowrap transition-all",
               activeTab === tab.id ? "bg-white text-[#0A0A0A] shadow-sm" : "text-[#7B8E80] hover:text-[#0A0A0A]"
             )}
           >
@@ -80,24 +80,24 @@ export default function AtlasIntelligence() {
       {activeTab === 'cost' && (
         <div className="space-y-4">
           <div className="grid grid-cols-3 gap-4">
-            <div className="rounded-xl border border-[#AD3D3D]/20 bg-[#AD3D3D]/5 p-5">
+            <div className=" border border-[#AD3D3D]/20 bg-[#AD3D3D]/5 p-5">
               <span className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold">Total Exposure</span>
               <p className="text-[32px] font-light text-[#AD3D3D] leading-none mt-2 tabular-nums">€{(totalExposure / 1000).toFixed(0)}K</p>
               <span className="text-[12px] text-[#7B8E80] mt-1 block">if no action taken</span>
             </div>
-            <div className="rounded-xl border border-[#6EA996]/20 bg-[#6EA996]/5 p-5">
+            <div className=" border border-[#6EA996]/20 bg-[#6EA996]/5 p-5">
               <span className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold">After Mitigation</span>
               <p className="text-[32px] font-light text-[#6EA996] leading-none mt-2 tabular-nums">€{(totalMitigated / 1000).toFixed(0)}K</p>
               <span className="text-[12px] text-[#7B8E80] mt-1 block">with full remediation</span>
             </div>
-            <div className="rounded-xl border border-[#E5E7EB] bg-white p-5">
+            <div className=" border border-[#E5E7EB] bg-white p-5">
               <span className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold">ROI of Action</span>
               <p className="text-[32px] font-light text-[#0A0A0A] leading-none mt-2 tabular-nums">{((1 - totalMitigated / totalExposure) * 100).toFixed(0)}%</p>
               <span className="text-[12px] text-[#7B8E80] mt-1 block">cost reduction achievable</span>
             </div>
           </div>
 
-          <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 space-y-4">
+          <div className=" border border-[#E5E7EB] bg-white p-6 space-y-4">
             <h4 className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold">Cost Exposure by Category</h4>
             {costImpactData.map((item, i) => (
               <div key={i} className="space-y-2">
@@ -124,7 +124,7 @@ export default function AtlasIntelligence() {
       {/* QUALITY */}
       {activeTab === 'quality' && (
         <div className="space-y-4">
-          <div className="rounded-xl border border-[#E5E7EB] bg-white p-6">
+          <div className=" border border-[#E5E7EB] bg-white p-6">
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h4 className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold">DPPM Forecast — 12 Month</h4>
@@ -133,7 +133,7 @@ export default function AtlasIntelligence() {
               <button
                 onClick={() => setShowMitigated(!showMitigated)}
                 className={cn(
-                  "px-3 py-1.5 rounded-lg text-[11px] font-medium transition-all border",
+                  "px-3 py-1.5  text-[11px] font-medium transition-all border",
                   showMitigated ? "border-[#6EA996] text-[#6EA996] bg-[#6EA996]/5" : "border-[#E5E7EB] text-[#7B8E80] hover:text-[#0A0A0A]"
                 )}
               >
@@ -160,11 +160,11 @@ export default function AtlasIntelligence() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-[#E5E7EB] bg-white p-6">
+          <div className=" border border-[#E5E7EB] bg-white p-6">
             <h4 className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold mb-4">Supplier Risk Signals</h4>
             <div className="space-y-2">
               {supplierRiskSignals.map((signal, i) => (
-                <div key={i} className="flex items-center gap-3 p-3 rounded-lg border border-[#E5E7EB] bg-[#F5F5F5]">
+                <div key={i} className="flex items-center gap-3 p-3  border border-[#E5E7EB] bg-[#F5F5F5]">
                   <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: statusColor[signal.status] }} />
                   <span className="text-[13px] text-[#0A0A0A] font-medium flex-1 min-w-0">{signal.signal}</span>
                   <span className="text-[15px] font-mono tabular-nums shrink-0" style={{ color: statusColor[signal.status] }}>{signal.value}</span>
@@ -180,7 +180,7 @@ export default function AtlasIntelligence() {
       {activeTab === 'innovation' && (
         <div className="space-y-4">
           <div className="grid md:grid-cols-2 gap-4">
-            <div className="rounded-xl border border-[#E5E7EB] bg-white p-6">
+            <div className=" border border-[#E5E7EB] bg-white p-6">
               <h4 className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold mb-4">Innovation Radar vs. Tier-2</h4>
               <ResponsiveContainer width="100%" height={280}>
                 <RadarChart data={innovationSignals.map(s => ({ dimension: s.dimension.replace(/\s/g, '\n'), score: s.score, benchmark: s.benchmark }))}>
@@ -197,12 +197,12 @@ export default function AtlasIntelligence() {
               </div>
             </div>
 
-            <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 space-y-3">
+            <div className=" border border-[#E5E7EB] bg-white p-6 space-y-3">
               <h4 className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold mb-2">Innovation Signals</h4>
               {innovationSignals.map((signal, i) => {
                 const TIcon = trendIcon[signal.trend];
                 return (
-                  <div key={i} className="p-3 rounded-lg border border-[#E5E7EB] bg-[#F5F5F5]">
+                  <div key={i} className="p-3  border border-[#E5E7EB] bg-[#F5F5F5]">
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-[13px] text-[#0A0A0A] font-medium">{signal.dimension}</span>
                       <div className="flex items-center gap-2">
@@ -222,7 +222,7 @@ export default function AtlasIntelligence() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-[#E5E7EB] bg-white p-6">
+          <div className=" border border-[#E5E7EB] bg-white p-6">
             <div className="flex items-center justify-between mb-4">
               <h4 className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold">IATF 16949 Process Audit Scores</h4>
               <span className="text-[14px] font-mono tabular-nums text-[#E39B5C]">Weighted: {Math.round(iatfWeightedScore)}%</span>
@@ -245,7 +245,7 @@ export default function AtlasIntelligence() {
       {/* HIDDEN PATTERNS */}
       {activeTab === 'correlations' && (
         <div className="space-y-4">
-          <div className="rounded-xl border border-[#ACC5D9] bg-[#ACC5D9]/10 p-5">
+          <div className=" border border-[#ACC5D9] bg-[#ACC5D9]/10 p-5">
             <div className="flex items-center gap-2 mb-2">
               <Brain className="w-4 h-4 text-[#0A7FA5]" />
               <span className="text-[13px] font-semibold text-[#0A0A0A]">What Atlas sees that humans don't</span>
@@ -261,7 +261,7 @@ export default function AtlasIntelligence() {
             <div
               key={cc.id}
               className={cn(
-                "rounded-xl border p-5 transition-all cursor-pointer bg-white",
+                " border p-5 transition-all cursor-pointer bg-white",
                 cc.severity === 'critical' ? "border-[#AD3D3D]/30" :
                 cc.severity === 'high' ? "border-[#E39B5C]/30" :
                 "border-[#E5E7EB]"
@@ -307,7 +307,7 @@ export default function AtlasIntelligence() {
               const isRecommended = sc.scenario === 'Full Remediation';
               return (
                 <div key={i} className={cn(
-                  "rounded-xl border p-5 space-y-4 bg-white",
+                  " border p-5 space-y-4 bg-white",
                   isRecommended ? "border-[#6EA996]/30 bg-[#6EA996]/5" : "border-[#E5E7EB]"
                 )}>
                   <div className="flex items-center justify-between">

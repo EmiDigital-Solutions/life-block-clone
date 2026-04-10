@@ -82,7 +82,7 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
             {/* Left — verdict + supplier */}
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-3 mb-4">
-                <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center", config.iconBg)}>
+                <div className={cn("w-10 h-10  flex items-center justify-center", config.iconBg)}>
                   {verdict === 'go' ? <Shield className="w-5 h-5" style={{ color: config.color }} /> :
                    verdict === 'conditional' ? <AlertTriangle className="w-5 h-5" style={{ color: config.color }} /> :
                    <AlertTriangle className="w-5 h-5" style={{ color: config.color }} />}
@@ -109,7 +109,7 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
               </p>
 
               {/* Executive Summary — clear, structured */}
-              <div className="mt-5 p-4 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
+              <div className="mt-5 p-4  bg-[#F8FAFC] border border-[#E2E8F0]">
                 <div className="text-[10px] font-bold tracking-[0.12em] uppercase text-[#94A3B8] mb-2">Executive Summary</div>
                 <ul className="space-y-2 text-[13px] text-[#334155] leading-relaxed">
                   <li className="flex items-start gap-2">
@@ -134,7 +134,7 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
               {/* Quick stats row */}
               <div className="mt-6 flex items-center gap-6">
                 <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg bg-red-50 flex items-center justify-center">
+                  <div className="w-7 h-7  bg-red-50 flex items-center justify-center">
                     <AlertTriangle className="w-3.5 h-3.5 text-red-600" />
                   </div>
                   <div>
@@ -143,7 +143,7 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg bg-amber-50 flex items-center justify-center">
+                  <div className="w-7 h-7  bg-amber-50 flex items-center justify-center">
                     <Clock className="w-3.5 h-3.5 text-amber-600" />
                   </div>
                   <div>
@@ -152,7 +152,7 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg bg-slate-50 flex items-center justify-center">
+                  <div className="w-7 h-7  bg-slate-50 flex items-center justify-center">
                     <TrendingDown className="w-3.5 h-3.5 text-slate-500" />
                   </div>
                   <div>
@@ -165,7 +165,7 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
 
             {/* Right — IATF score panel */}
             <div className="w-full md:w-[300px] shrink-0">
-              <div className="rounded-xl border border-[#E2E8F0] bg-white p-5 shadow-sm">
+              <div className=" border border-[#E2E8F0] bg-white p-5 shadow-sm">
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <div className="text-[10px] font-bold tracking-[0.12em] uppercase text-[#64748B]">IATF 16949</div>
@@ -204,10 +204,10 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
         </div>
 
         {/* Cost exposure banner */}
-        <div className="rounded-xl border border-[#E2E8F0] bg-[#FAFBFC] p-4 mb-6">
+        <div className=" border border-[#E2E8F0] bg-[#FAFBFC] p-4 mb-6">
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center">
+              <div className="w-8 h-8  bg-red-50 flex items-center justify-center">
                 <TrendingDown className="w-4 h-4 text-red-500" />
               </div>
               <div>
@@ -233,20 +233,20 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
         <div className="flex items-center gap-3 mb-8">
           <button
             onClick={onDecide}
-            className="px-7 py-3 rounded-xl text-[13px] font-semibold text-white shadow-md hover:shadow-lg transition-all duration-200 active:scale-[0.98]"
+            className="px-7 py-3  text-[13px] font-semibold text-white shadow-md hover:shadow-lg transition-all duration-200 active:scale-[0.98]"
             style={{ background: `linear-gradient(135deg, ${config.color}, ${config.accent})` }}
           >
             Review & decide →
           </button>
           <button
             onClick={onWalk}
-            className="px-7 py-3 rounded-xl text-[13px] font-semibold text-[#475569] border border-[#E2E8F0] bg-white hover:bg-[#F8FAFC] hover:border-[#CBD5E1] transition-all duration-200 active:scale-[0.98]"
+            className="px-7 py-3  text-[13px] font-semibold text-[#475569] border border-[#E2E8F0] bg-white hover:bg-[#F8FAFC] hover:border-[#CBD5E1] transition-all duration-200 active:scale-[0.98]"
           >
             Walk the factory
             <ChevronDown className="w-3.5 h-3.5 inline ml-1.5 -mt-0.5" />
           </button>
           <button
-            className="px-7 py-3 rounded-xl text-[13px] font-semibold text-[#475569] border border-[#E2E8F0] bg-white hover:bg-[#F8FAFC] hover:border-[#CBD5E1] transition-all duration-200 active:scale-[0.98]"
+            className="px-7 py-3  text-[13px] font-semibold text-[#475569] border border-[#E2E8F0] bg-white hover:bg-[#F8FAFC] hover:border-[#CBD5E1] transition-all duration-200 active:scale-[0.98]"
           >
             <FileCheck className="w-3.5 h-3.5 inline mr-1.5 -mt-0.5" />
             Export PDF
