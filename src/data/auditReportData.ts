@@ -517,6 +517,19 @@ export const stations: Station[] = [
         ],
         aiInsight: 'Atlas detected that management review attendance correlates 0.87 with CAPA close-out speed across 127 Tier-2 suppliers. MV Motors\' CEO participation places them in top 12% — a strong leading indicator for NCR resolution velocity.',
         aiConfidence: 91,
+        evidence: [
+          { id: 'EVD-R01', type: 'document', label: 'Management Review Minutes Q1 2026' },
+          { id: 'EVD-R02', type: 'photo', label: 'CEO at opening meeting' },
+          { id: 'EVD-R03', type: 'document', label: 'Org chart Rev. F' },
+        ],
+        aiPatterns: [
+          { id: 'AP-R01', type: 'pattern', title: 'CEO attendance → CAPA velocity', body: 'Across 127 suppliers, CEO audit participation correlates with 2.3× faster major NCR closure. MV Motors fits this pattern.', confidence: 91, impact: 'low' },
+        ],
+        bmwImpact: {
+          quality: { rating: 'none', detail: 'No direct quality risk from management station.' },
+          time: { rating: 'low', detail: 'Strong leadership accelerates NCR resolution — estimated 5 days faster closure.' },
+          cost: { rating: 'none', detail: 'No cost exposure at this station.' },
+        },
       },
       { id: 'mgmt-system', label: 'QMS Structure', health: 'green', score: 88,
         findings: [
@@ -525,6 +538,37 @@ export const stations: Station[] = [
         ],
         aiInsight: 'Cross-referencing 5 prior audits: MV Motors consistently scores 85–92 on management system structure. However, the 2 unmeasurable objectives (Customer Satisfaction & Innovation) are the exact areas where Tier-2 suppliers typically regress. Atlas recommends quantifying these within 30 days.',
         aiConfidence: 88,
+        evidence: [
+          { id: 'EVD-R04', type: 'document', label: 'Quality Manual QM-001 Rev. G' },
+          { id: 'EVD-R05', type: 'document', label: 'Quality Objectives Matrix 2026' },
+        ],
+        aiPatterns: [
+          { id: 'AP-R02', type: 'prediction', title: 'Unmeasured KPIs regress within 12 months', body: 'In 83% of Tier-2 suppliers, quality objectives without quantifiable targets degrade within 12 months. MV Motors\' Customer Satisfaction and Innovation objectives are at risk.', confidence: 83, impact: 'medium', timeframe: '12 months' },
+        ],
+        bmwImpact: {
+          quality: { rating: 'low', detail: 'Unmeasured KPIs could drift — no immediate BMW part risk.' },
+          time: { rating: 'none', detail: 'No delivery timeline impact.' },
+          cost: { rating: 'none', detail: 'No direct cost exposure.' },
+        },
+      },
+      { id: 'mgmt-communication', label: 'Communication & Culture', health: 'green', score: 90,
+        findings: [
+          { type: 'pass', title: 'Quality culture visibility', description: 'Policy displayed at entrance, cafeteria, and all 23 workstations.', isoClause: '7.4' },
+        ],
+        aiInsight: 'Sentiment analysis of employee interview transcripts (8 operators, 3 managers) shows 94% positive quality culture alignment — highest in YVOO\'s Croatian supplier database. This is a hidden competitive advantage.',
+        aiConfidence: 86,
+        evidence: [
+          { id: 'EVD-R06', type: 'photo', label: 'Quality policy display — entrance' },
+          { id: 'EVD-R07', type: 'video', label: 'Employee interview compilation (8 operators)' },
+          { id: 'EVD-R08', type: 'photo', label: 'Quality policy at workstation #12' },
+        ],
+        bmwImpact: {
+          quality: { rating: 'none', detail: 'Positive culture reduces latent defect risk.' },
+          time: { rating: 'none', detail: 'No timeline effect.' },
+          cost: { rating: 'none', detail: 'No cost effect.' },
+        },
+      },
+    ],
       },
       { id: 'mgmt-communication', label: 'Communication & Culture', health: 'green', score: 90,
         findings: [
