@@ -15,6 +15,7 @@ import AuditScopeSection from "@/components/audit-report/AuditScopeSection";
 import SectionInspector from "@/components/audit-report/SectionInspector";
 import { Menu, X, Sparkles } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import Navigation from "@/components/Navigation";
 
 const depthLabels: Record<DepthLevel, string> = {
   executive: 'Executive',
@@ -62,7 +63,9 @@ export default function AuditReport() {
   }, [isMobile]);
 
   return (
-    <div className="h-[100dvh] flex bg-white text-[#0A0A0A]" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
+    <>
+    <Navigation />
+    <div className="h-[100dvh] flex bg-white text-[#0A0A0A] pt-16" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
       {/* Mobile sidebar overlay */}
       {isMobile && sidebarOpen && (
         <div className="fixed inset-0 z-50 flex">
@@ -202,5 +205,6 @@ export default function AuditReport() {
         </div>
       </div>
     </div>
+    </>
   );
 }
