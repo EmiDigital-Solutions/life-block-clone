@@ -59,6 +59,26 @@ export interface AuditQuestion {
   notes: string;
 }
 
+export interface SubCategory {
+  id: string;
+  label: string;
+  health: StationHealth;
+  score: number;
+  findings: Finding[];
+  aiInsight: string;
+  aiConfidence: number;
+}
+
+export interface AtlasAIInsight {
+  type: 'prediction' | 'correlation' | 'anomaly' | 'benchmark' | 'risk';
+  title: string;
+  body: string;
+  confidence: number;
+  impact: 'critical' | 'high' | 'medium' | 'low';
+  connectedNCRs?: string[];
+  dataPointsAnalyzed?: number;
+}
+
 export interface Station {
   index: number;
   name: string;
@@ -72,7 +92,55 @@ export interface Station {
   evidenceCount: { photos: number; measurements: number; videos: number };
   ncrs: NCR[];
   auditQuestions?: AuditQuestion[];
+  subCategories?: SubCategory[];
+  atlasInsights?: AtlasAIInsight[];
 }
+
+// ─── Audit Scope ─────────────────────────────────────────────
+export interface AuditScopeData {
+  standard: string;
+  auditType: string;
+  scope: string;
+  exclusions: string[];
+  processElements: { code: string; name: string; applicable: boolean }[];
+  productScope: { partNumber: string; description: string; volume: string; customer: string }[];
+  siteDetails: { area: string; employees: number; shifts: number; machines: number };
+  previousFindings: { total: number; closed: number; openCarryForward: number };
+  samplingBasis: string;
+  auditorQualifications: string[];
+}
+
+export const auditScope: AuditScopeData = {
+  standard: 'ISO 9001:2015 / IATF 16949:2016 / VDA 6.3:2023',
+  auditType: 'Surveillance Audit — Annual (2nd of 3-year cycle)',
+  scope: 'Manufacture of precision-machined engine mounts (P/N EM-4200 series) and structural brackets (P/N SB-7100 series) for BMW N20 powertrain platform. Covers raw material receipt through final packaging and shipment. Design responsibility excluded — design owned by Linde Engineering GmbH.',
+  exclusions: [
+    'Clause 8.3 — Design and development (outsourced to Linde Engineering GmbH)',
+    'Clause 8.5.5 — Post-delivery activities (handled by customer logistics)',
+  ],
+  processElements: [
+    { code: 'P1', name: 'Potential Analysis', applicable: true },
+    { code: 'P2', name: 'Project Management', applicable: true },
+    { code: 'P3', name: 'Product & Process Development', applicable: false },
+    { code: 'P4', name: 'Supplier Management', applicable: true },
+    { code: 'P5', name: 'Production (Series)', applicable: true },
+    { code: 'P6', name: 'Customer Care & Satisfaction', applicable: true },
+    { code: 'P7', name: 'Continual Improvement', applicable: true },
+  ],
+  productScope: [
+    { partNumber: 'EM-4201', description: 'Engine mount bracket — LH', volume: '24,000 pcs/yr', customer: 'BMW (via Linde)' },
+    { partNumber: 'EM-4202', description: 'Engine mount bracket — RH', volume: '24,000 pcs/yr', customer: 'BMW (via Linde)' },
+    { partNumber: 'SB-7101', description: 'Structural bracket — upper', volume: '18,000 pcs/yr', customer: 'BMW (via Linde)' },
+    { partNumber: 'SB-7102', description: 'Structural bracket — lower', volume: '18,000 pcs/yr', customer: 'BMW (via Linde)' },
+  ],
+  siteDetails: { area: '4,200 m²', employees: 280, shifts: 2, machines: 23 },
+  previousFindings: { total: 8, closed: 6, openCarryForward: 2 },
+  samplingBasis: 'Risk-based sampling per ISO 19011:2018 Annex A. High-risk processes (Production, Final Test) sampled at 2× standard intensity. 47 audit questions across 14 ISO 9001 clauses.',
+  auditorQualifications: [
+    'I. Petrović — Lead Auditor, IRCA Cert. #A21849, 14 years automotive audit experience',
+    'M. Kovačević — Technical Expert, CNC machining (VDA 6.3 qualified)',
+  ],
+};
 
 // ─── Atlas AI Predictions ────────────────────────────────────────
 
