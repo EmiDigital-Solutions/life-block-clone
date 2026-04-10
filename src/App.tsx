@@ -19,6 +19,7 @@ import CustomerStories from "./pages/CustomerStories";
 import CustomerStoryDetail from "./pages/CustomerStoryDetail";
 import LNGInspection from "./pages/LNGInspection";
 import NotFound from "./pages/NotFound";
+import AuditReport from "./pages/AuditReport";
 
 // Atlas AI App
 import AtlasLayout from "./pages/atlas/AtlasLayout";
@@ -59,6 +60,7 @@ const App = () => (
             <Route path="/customer-stories" element={<CustomerStories />} />
             <Route path="/customer-stories/:storyId" element={<CustomerStoryDetail />} />
             <Route path="/bg-removal" element={<BackgroundRemoval />} />
+            <Route path="/audit-report" element={<AuditReport />} />
 
             {/* Atlas AI App */}
             <Route path="/atlas/login" element={<AtlasLogin />} />
