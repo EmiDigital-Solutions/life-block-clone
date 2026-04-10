@@ -59,6 +59,30 @@ export interface AuditQuestion {
   notes: string;
 }
 
+export interface SubCategoryEvidence {
+  id: string;
+  type: 'photo' | 'document' | 'video' | 'measurement';
+  label: string;
+  thumbnail?: string;
+  timestamp?: string;
+}
+
+export interface BMWImpact {
+  quality: { rating: 'critical' | 'high' | 'medium' | 'low' | 'none'; detail: string };
+  time: { rating: 'critical' | 'high' | 'medium' | 'low' | 'none'; detail: string };
+  cost: { rating: 'critical' | 'high' | 'medium' | 'low' | 'none'; detail: string };
+}
+
+export interface AIPattern {
+  id: string;
+  type: 'pattern' | 'prediction' | 'anomaly' | 'trend' | 'correlation';
+  title: string;
+  body: string;
+  confidence: number;
+  impact: 'critical' | 'high' | 'medium' | 'low';
+  timeframe?: string;
+}
+
 export interface SubCategory {
   id: string;
   label: string;
@@ -67,6 +91,9 @@ export interface SubCategory {
   findings: Finding[];
   aiInsight: string;
   aiConfidence: number;
+  evidence?: SubCategoryEvidence[];
+  aiPatterns?: AIPattern[];
+  bmwImpact?: BMWImpact;
 }
 
 export interface AtlasAIInsight {
@@ -490,6 +517,19 @@ export const stations: Station[] = [
         ],
         aiInsight: 'Atlas detected that management review attendance correlates 0.87 with CAPA close-out speed across 127 Tier-2 suppliers. MV Motors\' CEO participation places them in top 12% — a strong leading indicator for NCR resolution velocity.',
         aiConfidence: 91,
+        evidence: [
+          { id: 'EVD-R01', type: 'document', label: 'Management Review Minutes Q1 2026' },
+          { id: 'EVD-R02', type: 'photo', label: 'CEO at opening meeting' },
+          { id: 'EVD-R03', type: 'document', label: 'Org chart Rev. F' },
+        ],
+        aiPatterns: [
+          { id: 'AP-R01', type: 'pattern', title: 'CEO attendance → CAPA velocity', body: 'Across 127 suppliers, CEO audit participation correlates with 2.3× faster major NCR closure. MV Motors fits this pattern.', confidence: 91, impact: 'low' },
+        ],
+        bmwImpact: {
+          quality: { rating: 'none', detail: 'No direct quality risk from management station.' },
+          time: { rating: 'low', detail: 'Strong leadership accelerates NCR resolution — estimated 5 days faster closure.' },
+          cost: { rating: 'none', detail: 'No cost exposure at this station.' },
+        },
       },
       { id: 'mgmt-system', label: 'QMS Structure', health: 'green', score: 88,
         findings: [
@@ -498,6 +538,18 @@ export const stations: Station[] = [
         ],
         aiInsight: 'Cross-referencing 5 prior audits: MV Motors consistently scores 85–92 on management system structure. However, the 2 unmeasurable objectives (Customer Satisfaction & Innovation) are the exact areas where Tier-2 suppliers typically regress. Atlas recommends quantifying these within 30 days.',
         aiConfidence: 88,
+        evidence: [
+          { id: 'EVD-R04', type: 'document', label: 'Quality Manual QM-001 Rev. G' },
+          { id: 'EVD-R05', type: 'document', label: 'Quality Objectives Matrix 2026' },
+        ],
+        aiPatterns: [
+          { id: 'AP-R02', type: 'prediction', title: 'Unmeasured KPIs regress within 12 months', body: 'In 83% of Tier-2 suppliers, quality objectives without quantifiable targets degrade within 12 months. MV Motors\' Customer Satisfaction and Innovation objectives are at risk.', confidence: 83, impact: 'medium', timeframe: '12 months' },
+        ],
+        bmwImpact: {
+          quality: { rating: 'low', detail: 'Unmeasured KPIs could drift — no immediate BMW part risk.' },
+          time: { rating: 'none', detail: 'No delivery timeline impact.' },
+          cost: { rating: 'none', detail: 'No direct cost exposure.' },
+        },
       },
       { id: 'mgmt-communication', label: 'Communication & Culture', health: 'green', score: 90,
         findings: [
@@ -505,6 +557,16 @@ export const stations: Station[] = [
         ],
         aiInsight: 'Sentiment analysis of employee interview transcripts (8 operators, 3 managers) shows 94% positive quality culture alignment — highest in YVOO\'s Croatian supplier database. This is a hidden competitive advantage.',
         aiConfidence: 86,
+        evidence: [
+          { id: 'EVD-R06', type: 'photo', label: 'Quality policy display — entrance' },
+          { id: 'EVD-R07', type: 'video', label: 'Employee interview compilation (8 operators)' },
+          { id: 'EVD-R08', type: 'photo', label: 'Quality policy at workstation #12' },
+        ],
+        bmwImpact: {
+          quality: { rating: 'none', detail: 'Positive culture reduces latent defect risk.' },
+          time: { rating: 'none', detail: 'No timeline effect.' },
+          cost: { rating: 'none', detail: 'No cost effect.' },
+        },
       },
     ],
     atlasInsights: [
@@ -552,6 +614,19 @@ export const stations: Station[] = [
         ],
         aiInsight: 'Atlas cross-referenced material certificates against BMW SOR-0042 requirements. All 14 batches comply. However, Supplier S-017\'s last 3 heats show phosphorus trending toward upper limit (0.024% vs 0.025% max). Recommend tightening incoming spec to 0.020% to create early warning buffer.',
         aiConfidence: 89,
+        evidence: [
+          { id: 'EVD-I01', type: 'document', label: 'EN 10204 Type 3.1 Certificates (14 batches)' },
+          { id: 'EVD-I02', type: 'measurement', label: 'Spectrometer readings — 3 heats' },
+          { id: 'EVD-I03', type: 'photo', label: 'Material storage area — barcode system' },
+        ],
+        aiPatterns: [
+          { id: 'AP-I01', type: 'trend', title: 'Phosphorus creep in S-017 steel', body: 'Phosphorus levels have increased 0.003% per quarter for 4 consecutive quarters. At current trajectory, material will exceed BMW spec by Q3 2026.', confidence: 78, impact: 'high', timeframe: '6 months' },
+        ],
+        bmwImpact: {
+          quality: { rating: 'medium', detail: 'S-017 phosphorus trend could cause brittle fracture in engine mount under thermal cycling. BMW field risk if undetected.' },
+          time: { rating: 'low', detail: 'Supplier re-qualification adds 8-12 weeks if S-017 fails spec.' },
+          cost: { rating: 'medium', detail: 'Alternative supplier qualification: €12,000. Potential warranty exposure if brittle parts ship: €62,000.' },
+        },
       },
       { id: 'inc-inspection', label: 'Inspection Process', health: 'amber', score: 68,
         findings: [
@@ -560,6 +635,20 @@ export const stations: Station[] = [
         ],
         aiInsight: 'Atlas identified a hidden pattern: all 3 unsigned records occurred during night shift (22:00-06:00), when only 1 inspector covers incoming + in-process. This is not a discipline issue — it\'s a staffing capacity constraint. Adding a second night inspector would eliminate 94% of documentation gaps based on similar supplier models.',
         aiConfidence: 92,
+        evidence: [
+          { id: 'EVD-I04', type: 'document', label: 'Incoming inspection log — March 2026 (3 unsigned)' },
+          { id: 'EVD-I05', type: 'photo', label: 'Night shift inspector workstation' },
+          { id: 'EVD-I06', type: 'document', label: 'Shift roster — March 2026' },
+        ],
+        aiPatterns: [
+          { id: 'AP-I02', type: 'pattern', title: 'Night shift → documentation gaps', body: 'Night shift documentation errors are 4.7× higher than day shift across 847 records over 18 months. Single inspector covering 2 areas is the root cause.', confidence: 92, impact: 'medium' },
+          { id: 'AP-I03', type: 'prediction', title: 'Defect escape risk at night', body: 'Rushed inspections (4.2 min vs 8 min standard) increase defect escape probability by 2.3×. Atlas estimates 1 in 200 night-shift inspected parts may carry undetected defects.', confidence: 74, impact: 'high', timeframe: 'ongoing' },
+        ],
+        bmwImpact: {
+          quality: { rating: 'medium', detail: 'Rushed night inspections increase risk of defective material entering production undetected.' },
+          time: { rating: 'low', detail: 'No direct delivery impact. Corrective action (hire inspector) takes 4-6 weeks.' },
+          cost: { rating: 'low', detail: 'Additional night inspector: €38,000/year. Prevention of 1 defect escape saves €8,000-€480,000.' },
+        },
       },
       { id: 'inc-supplier', label: 'Supplier Management', health: 'amber', score: 72,
         findings: [
@@ -567,6 +656,20 @@ export const stations: Station[] = [
         ],
         aiInsight: 'Of the 6 overdue suppliers, Atlas flagged 2 as high-risk: Supplier S-017 (steel bar stock, incoming rejection rate 3.2× average) and S-031 (cutting tools, 2 field recalls in 2025). These 2 suppliers feed directly into the Bore ID process where Cpk is failing. There is a 67% probability that supplier material variation is a root contributor to the Cpk decline.',
         aiConfidence: 84,
+        evidence: [
+          { id: 'EVD-I07', type: 'document', label: 'Approved Supplier List (42 suppliers)' },
+          { id: 'EVD-I08', type: 'document', label: 'Supplier evaluation matrix — overdue 6' },
+          { id: 'EVD-I09', type: 'document', label: 'S-017 incoming rejection log (12 months)' },
+        ],
+        aiPatterns: [
+          { id: 'AP-I04', type: 'correlation', title: 'S-017 material → Bore Cpk decline', body: 'Supplier S-017 rejection rate rose from 0.8% to 2.4% over 12 months. 23% of MV Motors rework traces to S-017 material. 67% probability this is a root contributor to Cpk decline.', confidence: 84, impact: 'critical' },
+          { id: 'AP-I05', type: 'prediction', title: 'S-031 cutting tool risk', body: 'Supplier S-031 had 2 field recalls in 2025. Without re-evaluation, Atlas predicts 18% probability of receiving defective tooling in next 6 months, directly impacting bore operations.', confidence: 71, impact: 'high', timeframe: '6 months' },
+        ],
+        bmwImpact: {
+          quality: { rating: 'high', detail: 'Unevaluated suppliers feeding critical bore process. S-017 material variation likely contributing to Cpk failure.' },
+          time: { rating: 'medium', detail: 'If S-017 fails, qualifying alternate steel source takes 12-16 weeks. BMW production at risk.' },
+          cost: { rating: 'high', detail: 'Supply chain disruption cost: €215,000. BMW line-stop penalty: €8,000/hour.' },
+        },
       },
     ],
     atlasInsights: [
@@ -623,6 +726,19 @@ export const stations: Station[] = [
         ],
         aiInsight: 'Atlas analyzed operator error rates across 14,000 production logs. Despite machine calibration failures, operator-attributable defects are 0.02% — lowest across all YVOO-audited Tier-2 suppliers in Croatia. The personnel are not the problem here; the system is failing them.',
         aiConfidence: 94,
+        evidence: [
+          { id: 'EVD-P01', type: 'document', label: 'Skills matrix — 8 CNC operators' },
+          { id: 'EVD-P02', type: 'document', label: 'Training certificates — CNC Level 3' },
+          { id: 'EVD-P03', type: 'video', label: 'Operator interview — Machine #3' },
+        ],
+        aiPatterns: [
+          { id: 'AP-P01', type: 'anomaly', title: 'Operators outperform system', body: 'Operator-attributable defect rate (0.02%) is 17× lower than system-attributable rate (0.34%). Personnel are compensating for machine failures — this is unsustainable.', confidence: 94, impact: 'medium' },
+        ],
+        bmwImpact: {
+          quality: { rating: 'none', detail: 'Personnel are not contributing to quality issues. They are actively mitigating system failures.' },
+          time: { rating: 'none', detail: 'No delivery impact from personnel.' },
+          cost: { rating: 'none', detail: 'No cost exposure from personnel performance.' },
+        },
       },
       { id: 'prod-material', label: 'Material', health: 'amber', score: 72,
         findings: [
@@ -631,6 +747,21 @@ export const stations: Station[] = [
         ],
         aiInsight: 'Atlas discovered a hidden chain reaction: coolant degradation → thermal expansion → bore ID drift → Cpk decline. Cross-referencing coolant change logs with CMM data over 6 months shows a 0.91 correlation (r²) between coolant age >14 days and bore ID excursions. This single variable explains 73% of the Cpk variance.',
         aiConfidence: 91,
+        evidence: [
+          { id: 'EVD-P04', type: 'measurement', label: 'Coolant concentration readings (6 months)' },
+          { id: 'EVD-P05', type: 'photo', label: 'Boring bar wear — 1,847 cycles' },
+          { id: 'EVD-P06', type: 'document', label: 'Coolant change log vs CMM data overlay' },
+          { id: 'EVD-P07', type: 'video', label: 'Coolant pump inspection — Machine #3' },
+        ],
+        aiPatterns: [
+          { id: 'AP-P02', type: 'correlation', title: 'Coolant age → Cpk decline chain', body: 'Coolant older than 14 days: r²=0.91 correlation with bore ID excursions. This single variable explains 73% of Cpk variance. 12-day change cycle restores Cpk >1.33 with 89% probability.', confidence: 91, impact: 'critical' },
+          { id: 'AP-P03', type: 'prediction', title: 'Tool failure within 200 cycles', body: 'Boring bar at 1,847 of 1,500 recommended cycles. Atlas predicts 62% probability of catastrophic tool failure within next 200 cycles, causing potential scrap of €4,200 in parts.', confidence: 78, impact: 'high', timeframe: '3-5 days' },
+        ],
+        bmwImpact: {
+          quality: { rating: 'critical', detail: 'Coolant drift is the primary driver of Cpk failure on Bore ID Ø42H7. BMW DPPM target exceeded by 540×.' },
+          time: { rating: 'high', detail: 'Tool failure would halt production 4-8 hours. Coolant fix requires 2 hours downtime per machine.' },
+          cost: { rating: 'critical', detail: 'Coolant fix: €800. Tool replacement: €2,400. NOT fixing: €127,400 in rework/scrap + €480,000 BMW line-stop risk.' },
+        },
       },
       { id: 'prod-machine', label: 'Machine', health: 'red', score: 38,
         findings: [
@@ -640,6 +771,23 @@ export const stations: Station[] = [
         ],
         aiInsight: 'This is the epicenter of risk. Atlas modeled the combined effect of calibration lapse + coolant temperature + tool wear: the probability of producing non-conforming parts on Machine #3 is currently 34% per shift. Machines #2 and #4 are operating blind — without valid calibration, defect detection is impossible. Atlas estimates 47 ± 12 non-conforming parts have already been shipped in the last 24 days.',
         aiConfidence: 87,
+        evidence: [
+          { id: 'EVD-P08', type: 'photo', label: 'Expired calibration sticker — CNC #2' },
+          { id: 'EVD-P09', type: 'photo', label: 'Expired calibration sticker — CNC #4' },
+          { id: 'EVD-P10', type: 'measurement', label: 'Coolant temperature log — Machine #3 (28°C)' },
+          { id: 'EVD-P11', type: 'photo', label: 'Chip accumulation — CNC #1 spindle area' },
+          { id: 'EVD-P12', type: 'video', label: 'Machine #3 operation — visible coolant issues' },
+          { id: 'EVD-P13', type: 'document', label: 'Calibration certificates — expired 2026-03-15' },
+        ],
+        aiPatterns: [
+          { id: 'AP-P04', type: 'prediction', title: '47 non-conforming parts already shipped', body: 'Based on 24-day lapse, 58 parts/day production, 3.4% historical defect rate during lapse: 47 ± 12 non-conforming parts shipped to Linde/BMW. Immediate containment required.', confidence: 87, impact: 'critical', timeframe: 'immediate' },
+          { id: 'AP-P05', type: 'anomaly', title: 'Calibration lapse = technician leave pattern', body: 'All calibration lapses in 3 years coincide with technician annual leave. Manual spreadsheet has single point of failure. Architectural flaw, not oversight.', confidence: 96, impact: 'critical' },
+        ],
+        bmwImpact: {
+          quality: { rating: 'critical', detail: '34% per-shift probability of non-conforming parts. 47 potentially defective parts already in BMW supply chain. Containment notification required.' },
+          time: { rating: 'critical', detail: 'Recalibration: 48 hours. 100% inspection of 1,400 quarantined parts: 5-7 days. BMW PPAP re-approval: 14 days.' },
+          cost: { rating: 'critical', detail: 'Quarantine inspection: €34,200. BMW line-stop (20% probability): €96,000. Total machine-related exposure: €514,200.' },
+        },
       },
       { id: 'prod-method', label: 'Method', health: 'amber', score: 74,
         findings: [
@@ -649,6 +797,20 @@ export const stations: Station[] = [
         ],
         aiInsight: 'Atlas identified a systemic weakness: preventive maintenance adherence has declined from 95% to 78% over 3 quarters, tracking almost perfectly with the increase in quality incidents (r²=0.94). The organization is drifting from prevention to reaction. If PM adherence drops below 70%, Atlas projects a 3× increase in unplanned downtime within 6 months.',
         aiConfidence: 89,
+        evidence: [
+          { id: 'EVD-P14', type: 'document', label: 'PM schedule — 3 quarters trend' },
+          { id: 'EVD-P15', type: 'document', label: 'Control plan CP-EM4200-C' },
+          { id: 'EVD-P16', type: 'document', label: 'PFMEA — not updated for tooling change' },
+        ],
+        aiPatterns: [
+          { id: 'AP-P06', type: 'trend', title: 'PM adherence decline → quality incident rise', body: 'PM adherence dropped from 95% to 78% over 3 quarters. Quality incidents rose from 2 to 11 in same period. r²=0.94 correlation. Below 70% triggers 3× unplanned downtime increase.', confidence: 89, impact: 'high', timeframe: '6 months' },
+          { id: 'AP-P07', type: 'anomaly', title: 'Tooling change without PFMEA update', body: 'Boring bar supplier changed Jan 2026. PFMEA and control plan not updated — violating IATF 16949 §8.5.6. This uncontrolled change may be contributing to current Cpk failure.', confidence: 82, impact: 'high' },
+        ],
+        bmwImpact: {
+          quality: { rating: 'high', detail: 'Uncontrolled tooling change + declining PM directly degrade process stability and part quality.' },
+          time: { rating: 'medium', detail: 'PM backlog creates 3× unplanned downtime risk. Each stop: 4-8 hours production loss.' },
+          cost: { rating: 'medium', detail: 'Unplanned downtime cost: €2,400/hour. PM catch-up investment: €8,500. ROI: 4 weeks.' },
+        },
       },
       { id: 'prod-environment', label: 'Environment', health: 'amber', score: 68,
         findings: [
@@ -657,6 +819,19 @@ export const stations: Station[] = [
         ],
         aiInsight: 'Atlas cross-referenced seasonal temperature data with reject rates: summer months (Jun-Aug) show 2.1× higher dimensional non-conformance. MV Motors has no climate control — unlike 67% of comparable Tier-2 suppliers. Estimated annual cost of temperature-related rework: €34,000. ROI on HVAC installation: 14 months.',
         aiConfidence: 82,
+        evidence: [
+          { id: 'EVD-P17', type: 'measurement', label: 'Ambient temperature log — 26°C during audit' },
+          { id: 'EVD-P18', type: 'photo', label: 'Shop floor — no HVAC visible' },
+          { id: 'EVD-P19', type: 'measurement', label: 'Lux meter readings — machine areas (400 lux)' },
+        ],
+        aiPatterns: [
+          { id: 'AP-P08', type: 'correlation', title: 'Summer heat → dimensional non-conformance', body: 'Jun-Aug reject rates are 2.1× higher. No climate control means ambient temperature directly affects workpiece dimensions. 67% of comparable suppliers have HVAC.', confidence: 82, impact: 'medium', timeframe: 'seasonal (Jun-Aug)' },
+        ],
+        bmwImpact: {
+          quality: { rating: 'medium', detail: 'Thermal expansion at 26°C causes measurable dimensional drift on precision engine mounts.' },
+          time: { rating: 'low', detail: 'No immediate delivery impact. HVAC installation: 6-8 weeks lead time.' },
+          cost: { rating: 'medium', detail: 'Annual temperature-related rework: €34,000. HVAC investment: €42,000. ROI: 14 months.' },
+        },
       },
     ],
     atlasInsights: [
@@ -693,14 +868,60 @@ export const stations: Station[] = [
       { id: 'assy-personnel', label: 'Personnel', health: 'green', score: 94,
         findings: [{ type: 'pass', title: 'Skills matrix current', description: 'All 6 operators have Level 2+ certification. Cross-training on 3+ stations each.', isoClause: '7.2' }],
         aiInsight: 'Assembly team has the lowest turnover (2.1%) and highest cross-training ratio in the facility. Atlas benchmarks this against 89 Tier-2 assembly lines — MV Motors is in the top 8%.', aiConfidence: 93,
+        evidence: [
+          { id: 'EVD-A01', type: 'document', label: 'Assembly skills matrix — 6 operators' },
+          { id: 'EVD-A02', type: 'photo', label: 'Cross-training board at assembly entrance' },
+        ],
+        bmwImpact: { quality: { rating: 'none', detail: 'Personnel excellence. No quality risk.' }, time: { rating: 'none', detail: 'No delivery impact.' }, cost: { rating: 'none', detail: 'No cost exposure.' } },
       },
       { id: 'assy-machine', label: 'Machine & Tooling', health: 'green', score: 95,
         findings: [{ type: 'pass', title: 'Torque wrench calibration', description: 'All 12 torque wrenches calibrated. Next due: 2026-07-15.', isoClause: '7.1.5' }],
         aiInsight: 'Atlas detected zero calibration lapses on assembly tooling in 36 months — contrasting sharply with CNC production. The difference: assembly uses automated SAP PM scheduling, while CNC uses manual spreadsheets. This proves the fix for Production is already implemented in-house.', aiConfidence: 97,
+        evidence: [
+          { id: 'EVD-A03', type: 'document', label: 'Torque wrench calibration certs (12)' },
+          { id: 'EVD-A04', type: 'photo', label: 'SAP PM dashboard — assembly scheduling' },
+        ],
+        aiPatterns: [
+          { id: 'AP-A01', type: 'pattern', title: 'SAP PM = zero calibration lapses', body: 'Assembly\'s automated SAP PM scheduling produced zero calibration lapses in 36 months. CNC\'s manual spreadsheet produced 4 lapses. The solution to Production\'s #1 problem already exists in-house.', confidence: 97, impact: 'high' },
+        ],
+        bmwImpact: { quality: { rating: 'none', detail: 'All tooling in spec. Zero quality risk.' }, time: { rating: 'none', detail: 'No delivery impact.' }, cost: { rating: 'none', detail: 'No cost exposure.' } },
       },
       { id: 'assy-method', label: 'Method & Process', health: 'green', score: 96,
         findings: [{ type: 'pass', title: 'Poka-yoke effectiveness', description: '8/8 error-proofing fixtures verified. 14 rejects caught in last 30 days — system working as designed.', isoClause: '8.5.1' }],
         aiInsight: 'This station is the benchmark for the entire facility. If Production adopted the same level of process control (automated scheduling, poka-yoke, SPC), Atlas projects an overall score increase from 72 to 86.', aiConfidence: 90,
+        evidence: [
+          { id: 'EVD-A05', type: 'video', label: 'Poka-yoke test — misoriented part rejection' },
+          { id: 'EVD-A06', type: 'measurement', label: 'SPC charts — 30 days critical torques' },
+          { id: 'EVD-A07', type: 'photo', label: 'FIFO pick-to-light system' },
+        ],
+        aiPatterns: [
+          { id: 'AP-A02', type: 'prediction', title: 'Replicating assembly controls → score +14', body: 'If Production adopted assembly\'s process controls (SAP PM, poka-yoke, hourly SPC), Atlas projects overall audit score increase from 72 to 86 within 6 months.', confidence: 90, impact: 'high', timeframe: '6 months' },
+        ],
+        bmwImpact: { quality: { rating: 'none', detail: 'Best-in-class quality control. Zero rework observed.' }, time: { rating: 'none', detail: 'No delivery impact.' }, cost: { rating: 'none', detail: 'No cost exposure. This station saves €12,000/month by preventing downstream defects.' } },
+      },
+      { id: 'assy-material', label: 'Material', health: 'green', score: 91,
+        findings: [
+          { type: 'pass', title: 'FIFO enforcement', description: 'Lane markers, color coding, and digital pick-to-light ensure strict FIFO.', isoClause: '8.5.4' },
+          { type: 'pass', title: 'Component traceability', description: 'Laser-marked serial on each sub-assembly. Full genealogy in SAP.', isoClause: '8.5.2' },
+        ],
+        aiInsight: 'Assembly material flow is fully digitized. However, Atlas detected that upstream production variability (from CNC bore ID issues) is being absorbed by assembly without flagging. The SPC scatter on torque values has increased 15% since Oct 2025 — assembly is compensating, not immune.', aiConfidence: 76,
+        evidence: [
+          { id: 'EVD-A08', type: 'photo', label: 'FIFO lane markers and color coding' },
+          { id: 'EVD-A09', type: 'measurement', label: 'Assembly torque SPC — Cp/Cpk scatter trend' },
+        ],
+        aiPatterns: [
+          { id: 'AP-A03', type: 'trend', title: 'Assembly absorbing upstream variation', body: 'Assembly torque SPC scatter increased 15% since Oct 2025, tracking production line degradation. Assembly is compensating for upstream instability — not immune to it.', confidence: 76, impact: 'medium', timeframe: 'ongoing' },
+        ],
+        bmwImpact: { quality: { rating: 'low', detail: 'Assembly is absorbing upstream variation. Long-term, this masks problems that could escalate.' }, time: { rating: 'none', detail: 'No delivery impact.' }, cost: { rating: 'low', detail: 'Hidden compensation effort adds €3,200/month in operator adjustment time.' } },
+      },
+      { id: 'assy-environment', label: 'Environment', health: 'green', score: 93,
+        findings: [{ type: 'pass', title: 'Assembly environment', description: 'Clean, well-lit, temperature controlled at 22°C. ESD protection on electronic sub-assemblies.', isoClause: '7.1.4' }],
+        aiInsight: 'Assembly is the only production area with climate control (22°C ± 1°C). This directly contributes to the superior dimensional stability and Cpk results. If CNC production had the same environment, thermal-related rework would drop by an estimated 65%.', aiConfidence: 85,
+        evidence: [
+          { id: 'EVD-A10', type: 'measurement', label: 'Temperature log — assembly (22°C ± 1°C)' },
+          { id: 'EVD-A11', type: 'photo', label: 'ESD protection station' },
+        ],
+        bmwImpact: { quality: { rating: 'none', detail: 'Climate-controlled environment ensures consistent assembly quality.' }, time: { rating: 'none', detail: 'No impact.' }, cost: { rating: 'none', detail: 'No exposure.' } },
       },
     ],
     atlasInsights: [
@@ -747,6 +968,73 @@ export const stations: Station[] = [
         owner: null, dueDate: null, evidenceIds: ['EVD-006', 'EVD-007'], status: 'open', isoClause: '7.1.5',
       },
     ],
+    subCategories: [
+      { id: 'test-personnel', label: 'Personnel', health: 'green', score: 88,
+        findings: [{ type: 'pass', title: 'CMM operator certified', description: 'Level 3 CMM programming certification. 6 years experience on Zeiss CONTURA.', isoClause: '7.2' }],
+        aiInsight: 'CMM operator is highly experienced but single-qualified — no backup operator. If absent, testing capacity drops to zero.', aiConfidence: 85,
+        evidence: [{ id: 'EVD-T01', type: 'document', label: 'CMM operator certification — Level 3' }],
+        bmwImpact: { quality: { rating: 'low', detail: 'Single operator bottleneck risk.' }, time: { rating: 'medium', detail: 'Absence = zero testing capacity.' }, cost: { rating: 'low', detail: 'Cross-training: €4,200.' } },
+      },
+      { id: 'test-material', label: 'Material (Test Specimens)', health: 'red', score: 42,
+        findings: [
+          { type: 'major-ncr', title: 'Cpk = 0.98 on Bore ID', description: 'Process mean shifted +0.008mm. 27,000 DPPM vs BMW 50 DPPM target.', ncrId: 'NCR-0001', isoClause: '8.6' },
+          { type: 'concern', title: 'Surface roughness exceedance', description: 'Ra 1.8µm on 2/5 parts vs ≤1.6µm spec. Leak risk.', isoClause: '8.6' },
+        ],
+        aiInsight: 'Atlas traces 89% of test failures to Machine #3. Fixing production root cause eliminates most test non-conformances.', aiConfidence: 88,
+        evidence: [
+          { id: 'EVD-T02', type: 'measurement', label: 'CMM data — 30-piece Bore ID study (Cpk 0.98)' },
+          { id: 'EVD-T03', type: 'measurement', label: 'Surface roughness readings — Ra 1.8µm' },
+          { id: 'EVD-T04', type: 'document', label: 'BMW SOR-0042 — Cpk requirements' },
+          { id: 'EVD-T05', type: 'photo', label: 'CMM output — bore ID histogram' },
+        ],
+        aiPatterns: [
+          { id: 'AP-T01', type: 'correlation', title: '89% failures trace to Machine #3', body: 'Cross-referencing CMM data with production batch logs shows Machine #3 as primary source.', confidence: 88, impact: 'critical' },
+          { id: 'AP-T02', type: 'prediction', title: 'Cpk recoverable to 1.67', body: 'Restoring coolant temp + replacing boring bar → Cpk 1.67 within 5 production days.', confidence: 85, impact: 'critical', timeframe: '14 days' },
+        ],
+        bmwImpact: { quality: { rating: 'critical', detail: 'Cpk 0.98 = 27,000 DPPM. BMW target: 50. Surface roughness creates seal leak risk.' }, time: { rating: 'critical', detail: 'Lot rejection + PPAP re-approval: minimum 14 days.' }, cost: { rating: 'critical', detail: 'Lot rejection: €16,200. BMW line-stop risk: €96,000.' } },
+      },
+      { id: 'test-machine', label: 'Machine (Test Equipment)', health: 'amber', score: 65,
+        findings: [
+          { type: 'minor-ncr', title: 'CMM fixture misalignment', description: 'Offset 0.02mm from datum A. Gauge R&R at 18%.', ncrId: 'NCR-0002', isoClause: '7.1.5' },
+          { type: 'pass', title: 'CMM calibration current', description: 'Zeiss & Mitutoyo have valid certificates.', isoClause: '7.1.5.2' },
+        ],
+        aiInsight: 'Fixture misalignment accounts for ~15% of apparent Cpk degradation. True Cpk after correction: ~1.08.', aiConfidence: 91,
+        evidence: [
+          { id: 'EVD-T06', type: 'measurement', label: 'Gauge R&R study — 18%' },
+          { id: 'EVD-T07', type: 'photo', label: 'CMM fixture — worn locating pin' },
+          { id: 'EVD-T08', type: 'video', label: 'CMM measurement cycle' },
+        ],
+        aiPatterns: [
+          { id: 'AP-T03', type: 'anomaly', title: 'Fixture bias masks true Cpk', body: '0.02mm systematic offset inflates variation by 15%.', confidence: 91, impact: 'high' },
+          { id: 'AP-T04', type: 'trend', title: 'Gauge R&R approaching limit', body: 'Increased from 12% to 18% over 12 months. Will exceed 20% action limit by Jul 2026.', confidence: 84, impact: 'medium', timeframe: '3 months' },
+        ],
+        bmwImpact: { quality: { rating: 'high', detail: 'Measurement uncertainty: conforming parts rejected, non-conforming may pass.' }, time: { rating: 'low', detail: 'Fixture repair: 4 hours.' }, cost: { rating: 'medium', detail: 'Pin: €180. Avoiding false rejection saves €4,800/month.' } },
+      },
+      { id: 'test-method', label: 'Method', health: 'amber', score: 70,
+        findings: [
+          { type: 'observation', title: 'No SPC on surface roughness', description: 'Roughness monitored but not SPC-tracked.', isoClause: '9.1.1' },
+          { type: 'pass', title: 'Test records complete', description: 'All records signed and archived.', isoClause: '7.5.3' },
+        ],
+        aiInsight: 'Without SPC on roughness, drift from Ra 1.2→1.8µm was undetected. SPC would have flagged it 8 weeks earlier.', aiConfidence: 87,
+        evidence: [
+          { id: 'EVD-T10', type: 'document', label: 'Test procedure TP-EM4200-D' },
+          { id: 'EVD-T11', type: 'measurement', label: 'Surface roughness trend — 6 months' },
+        ],
+        aiPatterns: [
+          { id: 'AP-T05', type: 'prediction', title: 'SPC catches drift 8 weeks earlier', body: 'X-bar/R simulation: Western Electric Rule 2 at Ra 1.4µm — 8 weeks before spec exceedance.', confidence: 87, impact: 'high', timeframe: 'retroactive' },
+        ],
+        bmwImpact: { quality: { rating: 'medium', detail: 'No early warning for roughness degradation.' }, time: { rating: 'low', detail: 'SPC setup: 2 days.' }, cost: { rating: 'low', detail: 'SPC implementation: €800. Saves €18,000/year.' } },
+      },
+      { id: 'test-environment', label: 'Environment', health: 'green', score: 90,
+        findings: [{ type: 'pass', title: 'CMM room conditions', description: '20°C ± 0.5°C. Vibration isolation pad.', isoClause: '7.1.4' }],
+        aiInsight: 'CMM room eliminates environmental measurement error. All Cpk degradation is genuinely process-related.', aiConfidence: 95,
+        evidence: [
+          { id: 'EVD-T12', type: 'measurement', label: 'CMM room temp log (20°C ± 0.5°C)' },
+          { id: 'EVD-T13', type: 'photo', label: 'Vibration isolation pad under CMM' },
+        ],
+        bmwImpact: { quality: { rating: 'none', detail: 'Ideal measurement environment.' }, time: { rating: 'none', detail: 'No impact.' }, cost: { rating: 'none', detail: 'No exposure.' } },
+      },
+    ],
     auditQuestions: [
       { id: 'Q7-01', clause: '8.6', question: 'Has the organization implemented planned arrangements to verify product requirements?', score: 3, notes: 'CRITICAL: Cpk = 0.98. Process not capable.' },
       { id: 'Q7-02', clause: '7.1.5.1', question: 'Is measurement equipment suitable?', score: 5, notes: 'CMM fixture misaligned. Gauge R&R at 18%.' },
@@ -769,6 +1057,46 @@ export const stations: Station[] = [
       { type: 'pass', title: 'Customer property care', description: 'Customer fixtures in locked storage.', isoClause: '8.5.3' },
     ],
     evidenceCount: { photos: 5, measurements: 2, videos: 0 }, ncrs: [],
+    subCategories: [
+      { id: 'pack-material', label: 'Material (Packaging)', health: 'green', score: 96,
+        findings: [
+          { type: 'pass', title: 'VCI paper application', description: 'VCI paper applied to all machined surfaces. Correct grade for 42CrMo4 steel.', isoClause: '8.5.4' },
+          { type: 'pass', title: 'Foam dividers', description: 'Parts individually wrapped in foam-lined dividers. Zero transit damage in 12 months.', isoClause: '8.5.4' },
+        ],
+        aiInsight: 'Packing material specification matches BMW LP-PKG-004 exactly. Atlas cross-referenced 2,400 shipments: zero packaging-related customer complaints in 12 months. This is top 3% performance across 89 Tier-2 suppliers.', aiConfidence: 97,
+        evidence: [
+          { id: 'EVD-K01', type: 'photo', label: 'VCI paper application on engine mounts' },
+          { id: 'EVD-K02', type: 'photo', label: 'Foam-lined divider arrangement' },
+          { id: 'EVD-K03', type: 'document', label: 'Linde LP-PKG-004 Rev. C compliance checklist' },
+        ],
+        bmwImpact: { quality: { rating: 'none', detail: 'Zero packaging-related quality issues.' }, time: { rating: 'none', detail: 'No impact.' }, cost: { rating: 'none', detail: 'No exposure. Saves ~€8,400/year in damage claims.' } },
+      },
+      { id: 'pack-method', label: 'Method', health: 'green', score: 94,
+        findings: [
+          { type: 'pass', title: 'Final outgoing inspection', description: '3-tier gate: visual + dimensional spot-check (3/100) + packaging integrity.', isoClause: '8.6' },
+          { type: 'pass', title: 'Product identification', description: 'QR code on each package links to electronic Certificate of Conformity.', isoClause: '8.5.2' },
+        ],
+        aiInsight: 'The 3-tier outgoing gate is the last line of defense. Atlas analyzed its detection effectiveness: the visual check catches 78% of cosmetic defects, the dimensional spot-check catches 92% of dimensional outliers (at 3% sampling), and the QR-CoC linkage ensures full traceability. Combined detection rate: 96.4%.', aiConfidence: 90,
+        evidence: [
+          { id: 'EVD-K04', type: 'video', label: 'Final outgoing inspection process walkthrough' },
+          { id: 'EVD-K05', type: 'photo', label: 'QR code label linked to electronic CoC' },
+          { id: 'EVD-K06', type: 'document', label: 'Outgoing inspection procedure OI-001 Rev. B' },
+        ],
+        aiPatterns: [
+          { id: 'AP-K01', type: 'prediction', title: 'Detection rate insufficient for current Cpk', body: 'At Cpk 0.98, the 3% sampling rate catches only 92% of dimensional outliers — meaning ~4 non-conforming parts per 1,000 could escape. Atlas recommends increasing sampling to 10% until Cpk is restored to >1.33.', confidence: 84, impact: 'high', timeframe: 'immediate' },
+        ],
+        bmwImpact: { quality: { rating: 'medium', detail: 'At current Cpk, 3% sampling is insufficient. ~4/1,000 non-conforming parts may escape to BMW.' }, time: { rating: 'low', detail: 'Increased sampling adds 15 min/lot.' }, cost: { rating: 'low', detail: 'Increased sampling cost: €1,200/month. Preventing one BMW line-stop: €96,000.' } },
+      },
+      { id: 'pack-environment', label: 'Environment', health: 'green', score: 95,
+        findings: [{ type: 'pass', title: 'Storage conditions', description: 'Customer fixtures in locked, climate-controlled storage. Clean packing area.', isoClause: '8.5.3' }],
+        aiInsight: 'Packing area maintains controlled conditions. Customer-owned fixtures properly stored with quarterly reconciliation. No issues identified.', aiConfidence: 95,
+        evidence: [
+          { id: 'EVD-K07', type: 'photo', label: 'Locked fixture storage area' },
+          { id: 'EVD-K08', type: 'document', label: 'Customer property reconciliation log' },
+        ],
+        bmwImpact: { quality: { rating: 'none', detail: 'Controlled storage environment.' }, time: { rating: 'none', detail: 'No impact.' }, cost: { rating: 'none', detail: 'No exposure.' } },
+      },
+    ],
     auditQuestions: [
       { id: 'Q8-01', clause: '8.5.4', question: 'Does the organization preserve outputs during production?', score: 10, notes: 'Best-in-class packing. Zero shipping damage in 12 months.' },
       { id: 'Q8-02', clause: '8.5.2', question: 'Is product identification maintained through delivery?', score: 9, notes: 'QR-coded labels with full traceability.' },
@@ -799,6 +1127,65 @@ export const stations: Station[] = [
         rootCause: 'Manual cross-referencing process. No automated linking between drawing revisions and WIs.',
         recommendedAction: 'Update all 4 WIs. Full cross-reference audit. Implement automated revision linking.',
         owner: null, dueDate: null, evidenceIds: ['EVD-030', 'EVD-031', 'EVD-032'], status: 'open', isoClause: '7.5.3',
+      },
+    ],
+    subCategories: [
+      { id: 'doc-system', label: 'Document Control System', health: 'amber', score: 62,
+        findings: [
+          { type: 'minor-ncr', title: 'Outdated work instructions', description: '4 of 28 WIs reference superseded drawings. 14% non-compliance rate.', ncrId: 'NCR-0006', isoClause: '7.5.3' },
+          { type: 'pass', title: 'Quality Manual current', description: 'QM-001 Rev. G current and accessible via shared drive.', isoClause: '7.5.2' },
+        ],
+        aiInsight: 'Atlas analyzed the 4 outdated WIs: 2 cover CNC boring operations on the critical Bore ID dimension. Operators using obsolete drawing references are at 3.2× higher error probability. This document control gap is compounding the production Cpk issue.', aiConfidence: 79,
+        evidence: [
+          { id: 'EVD-D01', type: 'document', label: 'Quality Manual QM-001 Rev. G' },
+          { id: 'EVD-D02', type: 'document', label: 'Work Instruction cross-reference matrix (4 gaps highlighted)' },
+          { id: 'EVD-D03', type: 'photo', label: 'Outdated drawing at CNC station #2' },
+        ],
+        aiPatterns: [
+          { id: 'AP-D01', type: 'correlation', title: 'Obsolete WIs → operator error → Cpk impact', body: 'Two of 4 outdated WIs cover CNC bore operations. Historical analysis: WI-to-drawing mismatch >30 days correlates with 3.2× operator error rate. Compounding the Cpk crisis.', confidence: 79, impact: 'high' },
+          { id: 'AP-D02', type: 'prediction', title: 'DMS migration ROI: 8 months', body: 'Migrating from manual cross-referencing to automated DMS costs €18,000. Atlas projects it would eliminate 94% of document revision mismatches. ROI: 8 months based on rework prevention.', confidence: 74, impact: 'medium', timeframe: '8 months' },
+        ],
+        bmwImpact: { quality: { rating: 'high', detail: 'Obsolete WIs at CNC stations directly increase bore ID error risk. Part of the Cpk failure chain.' }, time: { rating: 'low', detail: 'WI updates: 2 days. DMS migration: 12 weeks.' }, cost: { rating: 'medium', detail: 'WI update: €400. DMS: €18,000. Annual rework prevention: €28,000.' } },
+      },
+      { id: 'doc-audit', label: 'Internal Audit Program', health: 'amber', score: 58,
+        findings: [
+          { type: 'concern', title: 'Postponed audits', description: '2 of 12 planned audits not conducted. Clauses 8.5 and 9.1 unaudited for 15 months.', isoClause: '9.2' },
+        ],
+        aiInsight: 'The 2 postponed audits cover Clause 8.5 (Production) and Clause 9.1 (Monitoring/Measurement) — precisely the areas where major NCRs were found. If these internal audits had been conducted, Atlas estimates 73% probability that the calibration lapse and coolant issues would have been detected 4-6 months earlier.', aiConfidence: 81,
+        evidence: [
+          { id: 'EVD-D04', type: 'document', label: 'Internal audit schedule — 2025-2026' },
+          { id: 'EVD-D05', type: 'document', label: 'Postponement justification memo (resource constraints)' },
+        ],
+        aiPatterns: [
+          { id: 'AP-D03', type: 'anomaly', title: 'Skipped audits on highest-risk areas', body: 'The 2 skipped audits cover the exact clauses where major NCRs occurred. Had they been conducted, calibration lapse and coolant issues would likely have been caught 4-6 months earlier. This is a systemic self-correction failure.', confidence: 81, impact: 'critical' },
+        ],
+        bmwImpact: { quality: { rating: 'high', detail: 'Lack of internal auditing allowed critical issues to go undetected for months.' }, time: { rating: 'medium', detail: 'Catch-up audits: 2-3 weeks. Delays NCR closure timeline.' }, cost: { rating: 'high', detail: 'Early detection would have prevented ~€127,400 in rework/scrap costs.' } },
+      },
+      { id: 'doc-capa', label: 'CAPA Management', health: 'red', score: 45,
+        findings: [
+          { type: 'concern', title: 'Overdue CAPAs', description: '3 of 8 corrective actions overdue by average 47 days.', isoClause: '10.2' },
+        ],
+        aiInsight: 'Atlas analyzed MV Motors\' CAPA closure history across 5 audits: closure rate predicts next-audit score with r²=0.87. Current 62.5% closure rate (5/8) projects next-audit score of 66-69 — below BMW\'s 70 threshold. This is the most reliable predictor of audit trajectory available.', aiConfidence: 87,
+        evidence: [
+          { id: 'EVD-D06', type: 'document', label: 'CAPA register — 8 actions (3 overdue)' },
+          { id: 'EVD-D07', type: 'document', label: 'CAPA closure trend — 5 audit cycles' },
+        ],
+        aiPatterns: [
+          { id: 'AP-D04', type: 'prediction', title: 'Next audit score: 66-69 (below BMW threshold)', body: 'CAPA closure rate (62.5%) predicts next-audit score with r²=0.87. Projected score: 66-69. BMW downgrade threshold: 70. MV Motors is on track for supplier status downgrade.', confidence: 87, impact: 'critical', timeframe: '12 months' },
+          { id: 'AP-D05', type: 'trend', title: 'CAPA velocity declining', body: 'Average CAPA closure time increased from 18 days to 47 days over 3 audit cycles. Root cause: Quality Manager workload — single person managing CAPAs, audits, and day-to-day quality.', confidence: 82, impact: 'high', timeframe: 'ongoing' },
+        ],
+        bmwImpact: { quality: { rating: 'critical', detail: 'Slow CAPA closure means root causes persist. Recurrence risk: 78% for unresolved CAPAs.' }, time: { rating: 'high', detail: 'BMW re-audit required within 14 days for major NCRs. Overdue CAPAs delay clearance.' }, cost: { rating: 'high', detail: 'BMW supplier downgrade = loss of preferred status. Revenue impact: up to €2.4M/year.' } },
+      },
+      { id: 'doc-improvement', label: 'Continual Improvement', health: 'amber', score: 65,
+        findings: [
+          { type: 'observation', title: 'Improvement execution gap', description: 'Improvement intentions documented but execution lagging. No formal CI methodology (Lean/Six Sigma).', isoClause: '10.3' },
+        ],
+        aiInsight: 'MV Motors identifies improvement opportunities correctly but fails to execute them. Atlas detected 12 documented improvement ideas in the last 18 months — only 3 were implemented. The Assembly station implements improvements at 4× the rate of Production, suggesting the issue is station-specific management, not organization-wide culture.', aiConfidence: 75,
+        evidence: [
+          { id: 'EVD-D08', type: 'document', label: 'Improvement log — 12 ideas, 3 implemented' },
+          { id: 'EVD-D09', type: 'document', label: 'Management review action items (outstanding)' },
+        ],
+        bmwImpact: { quality: { rating: 'medium', detail: 'Stagnant improvement culture allows quality issues to compound over time.' }, time: { rating: 'low', detail: 'No immediate delivery impact.' }, cost: { rating: 'medium', detail: 'Unrealized improvement savings: estimated €45,000/year based on the 9 unimplemented ideas.' } },
       },
     ],
     auditQuestions: [
