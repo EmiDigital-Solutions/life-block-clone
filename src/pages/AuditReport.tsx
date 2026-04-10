@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { reportMeta, kpis, stations, allNCRs, costImpactData } from "@/data/auditReportData";
+import { useAuditReport } from "@/hooks/useAuditReport";
 import type { DepthLevel } from "@/data/auditReportData";
 import ReportSidebar from "@/components/audit-report/ReportSidebar";
 import ReportHero from "@/components/audit-report/ReportHero";
