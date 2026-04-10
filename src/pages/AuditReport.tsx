@@ -318,6 +318,9 @@ export default function AuditReport() {
                 ))}
                 <NCRRegister ncrs={allNCRs} />
                 
+                {/* Finding Resolution Pipeline (Sankey) */}
+                <FindingSankeyDiagram />
+
                 {/* Cost waterfall chart */}
                 <CostWaterfallChart />
 
@@ -326,7 +329,10 @@ export default function AuditReport() {
 
                 <AtlasIntelligence />
                 <div id="machine-park">
-                  <MachineParkIntelligence />
+                  <OEEGaugeCluster />
+                  <div className="mt-16">
+                    <MachineParkIntelligence />
+                  </div>
                 </div>
                 <DelayForecast />
                 <RecommendationSection />
