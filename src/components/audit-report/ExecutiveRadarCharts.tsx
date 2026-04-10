@@ -1,29 +1,58 @@
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Legend, Tooltip } from "recharts";
 
-// ─── Production Capability Radar ─────────────────────────────
-// Measures how well the supplier meets client's production requirements
+// ─── Manufacturing Capability Radar ──────────────────────────
+// Expert auditor / engineer assessment: covers process, equipment grade,
+// conditions, HSE, workforce, tooling, quality systems, and more.
 const productionData = [
-  { dimension: 'Process Capability\n(Cpk)', supplier: 73, clientMin: 90, industryMin: 60, fullLabel: 'Process Capability (Cpk)' },
-  { dimension: 'Equipment\nReliability', supplier: 82, clientMin: 85, industryMin: 65, fullLabel: 'Equipment Reliability (OEE)' },
-  { dimension: 'Quality\nControl', supplier: 68, clientMin: 88, industryMin: 60, fullLabel: 'Quality Control Systems' },
-  { dimension: 'Calibration\nCompliance', supplier: 55, clientMin: 95, industryMin: 70, fullLabel: 'Calibration Compliance' },
-  { dimension: 'Workforce\nCompetency', supplier: 85, clientMin: 80, industryMin: 60, fullLabel: 'Workforce Competency' },
-  { dimension: 'Throughput\nCapacity', supplier: 78, clientMin: 75, industryMin: 55, fullLabel: 'Throughput Capacity' },
-  { dimension: 'Traceability', supplier: 72, clientMin: 92, industryMin: 65, fullLabel: 'Material Traceability' },
-  { dimension: 'Defect Rate\n(DPPM)', supplier: 48, clientMin: 85, industryMin: 50, fullLabel: 'Defect Rate Control (DPPM)' },
+  // Process & output quality
+  { dimension: 'Process\nCapability (Cpk)', supplier: 73, clientMin: 90, industryMin: 60, fullLabel: 'Process Capability (Cpk) — Statistical process control, Cpk/Ppk on critical dimensions' },
+  { dimension: 'Defect Rate\n(DPPM)', supplier: 48, clientMin: 85, industryMin: 50, fullLabel: 'Defect Rate Control (DPPM) — BMW target 50 DPPM, current: 410' },
+  // Machine park — grade, age, technology, OEM vs. copy
+  { dimension: 'Machine Park\nGrade', supplier: 72, clientMin: 85, industryMin: 55, fullLabel: 'Machine Park Grade — OEM quality (Mazak, DMG Mori) vs. low-cost clones. Avg. age, technology level, axis count, repeatability specs' },
+  { dimension: 'Equipment\nReliability (OEE)', supplier: 78, clientMin: 85, industryMin: 65, fullLabel: 'Equipment Reliability (OEE) — Overall Equipment Effectiveness: availability x performance x quality rate' },
+  { dimension: 'Maintenance\n& TPM', supplier: 62, clientMin: 88, industryMin: 55, fullLabel: 'Maintenance & TPM — Preventive/predictive maintenance program, TPM implementation, spare parts availability, MTBF/MTTR tracking' },
+  // Calibration & metrology
+  { dimension: 'Calibration\nCompliance', supplier: 55, clientMin: 95, industryMin: 70, fullLabel: 'Calibration Compliance — Gauge management, CMM calibration status, MSA (Gage R&R), external lab accreditation' },
+  // Tooling
+  { dimension: 'Tooling\nManagement', supplier: 45, clientMin: 80, industryMin: 55, fullLabel: 'Tooling Management — Tool life monitoring, adaptive wear compensation, tool-change discipline, spare tool availability' },
+  // Throughput & capacity
+  { dimension: 'Production\nCapacity', supplier: 80, clientMin: 75, industryMin: 55, fullLabel: 'Production Capacity — Shift utilization, bottleneck analysis, capacity vs. demand ratio, cycle time adherence' },
+  // Facility conditions
+  { dimension: 'Facility\nConditions', supplier: 68, clientMin: 82, industryMin: 55, fullLabel: 'Facility Conditions — Cleanliness (5S score), lighting, temperature/humidity control, floor markings, material flow layout' },
+  // HSE — Health, Safety, Environment
+  { dimension: 'HSE\nCompliance', supplier: 58, clientMin: 85, industryMin: 60, fullLabel: 'HSE Compliance — Health, Safety & Environment: PPE discipline, incident rate, chemical handling, fire protection, ergonomics, ISO 14001/45001' },
+  // Quality systems
+  { dimension: 'Quality\nSystems', supplier: 70, clientMin: 88, industryMin: 60, fullLabel: 'Quality Systems — SPC deployment, FMEA maturity, control plans, inspection frequency, non-conformance handling, 8D capability' },
+  // Traceability
+  { dimension: 'Material\nTraceability', supplier: 72, clientMin: 92, industryMin: 65, fullLabel: 'Material Traceability — Lot tracking, material certs, FIFO compliance, batch-to-serial linkage, recall readiness' },
+  // Workforce
+  { dimension: 'Workforce\nCompetency', supplier: 85, clientMin: 80, industryMin: 60, fullLabel: 'Workforce Competency — Training matrix, skills versatility, operator certification, succession planning' },
+  // Automation & digitalization
+  { dimension: 'Automation\nLevel', supplier: 42, clientMin: 70, industryMin: 45, fullLabel: 'Automation Level — Robotic loading, automated inspection, MES integration, real-time OEE dashboards, Industry 4.0 readiness' },
 ];
 
-// ─── Commercial Radar ────────────────────────────────────────
-// Measures commercial viability and risk factors
+// ─── Commercial & Business Radar ─────────────────────────────
+// Expert commercial assessment: pricing, logistics, financial health,
+// risk, sustainability, IP, contract discipline, and strategic fit.
 const commercialData = [
-  { dimension: 'Cost\nCompetitiveness', supplier: 76, benchmark: 70, fullLabel: 'Cost Competitiveness' },
-  { dimension: 'Delivery\nReliability', supplier: 87, benchmark: 90, fullLabel: 'On-Time Delivery Rate' },
-  { dimension: 'Financial\nStability', supplier: 82, benchmark: 75, fullLabel: 'Financial Health & Stability' },
-  { dimension: 'Supply Chain\nResilience', supplier: 35, benchmark: 65, fullLabel: 'Supply Chain Resilience' },
-  { dimension: 'Innovation\nCapability', supplier: 45, benchmark: 63, fullLabel: 'Innovation & Technology Index' },
-  { dimension: 'Sustainability\n(ESG)', supplier: 38, benchmark: 58, fullLabel: 'ESG & Sustainability Score' },
-  { dimension: 'Responsiveness', supplier: 80, benchmark: 75, fullLabel: 'Communication & Responsiveness' },
-  { dimension: 'Scalability', supplier: 65, benchmark: 70, fullLabel: 'Capacity Scalability' },
+  // Pricing & cost
+  { dimension: 'Cost\nCompetitiveness', supplier: 76, benchmark: 70, fullLabel: 'Cost Competitiveness — Price vs. market, should-cost analysis alignment, VA/VE willingness, total cost of ownership' },
+  { dimension: 'Cost\nTransparency', supplier: 68, benchmark: 75, fullLabel: 'Cost Transparency — Open-book costing readiness, detailed cost breakdowns, willingness to share material & overhead splits' },
+  // Delivery & logistics
+  { dimension: 'Delivery\nReliability', supplier: 87, benchmark: 90, fullLabel: 'On-Time Delivery — OTD rate, lead time consistency, expedite capability, logistics infrastructure' },
+  { dimension: 'Lead Time\nFlexibility', supplier: 72, benchmark: 78, fullLabel: 'Lead Time Flexibility — Ability to absorb demand spikes, short-notice changes, buffer stock strategy, MOQ flexibility' },
+  // Financial & legal
+  { dimension: 'Financial\nStability', supplier: 82, benchmark: 75, fullLabel: 'Financial Stability — Revenue trend, EBITDA margin, credit rating, payment history, dependency on single customer' },
+  { dimension: 'Contract &\nIP Discipline', supplier: 75, benchmark: 80, fullLabel: 'Contract & IP Discipline — NDA compliance, IP protection, contract adherence, warranty terms, liability coverage' },
+  // Risk
+  { dimension: 'Supply Chain\nResilience', supplier: 35, benchmark: 65, fullLabel: 'Supply Chain Resilience — Dual-sourcing strategy, sub-supplier risk, geographic concentration, raw material hedging' },
+  { dimension: 'Business\nContinuity', supplier: 40, benchmark: 70, fullLabel: 'Business Continuity — BCP documentation, disaster recovery, key-person dependencies, insurance coverage' },
+  // Strategic
+  { dimension: 'Innovation\nCapability', supplier: 45, benchmark: 63, fullLabel: 'Innovation Capability — R&D investment, new technology adoption, co-development willingness, patent activity' },
+  { dimension: 'Sustainability\n(ESG)', supplier: 38, benchmark: 58, fullLabel: 'ESG & Sustainability — Carbon footprint tracking, energy management, waste reduction, social compliance, scope 3 reporting' },
+  // Relationship
+  { dimension: 'Communication\n& Responsiveness', supplier: 80, benchmark: 75, fullLabel: 'Communication & Responsiveness — Response time, escalation effectiveness, key account management, language capability' },
+  { dimension: 'Scalability', supplier: 65, benchmark: 70, fullLabel: 'Scalability — Capacity to grow with client demand, CAPEX willingness, workforce expansion ability, second-shift readiness' },
 ];
 
 function RadarLegendItem({ color, label }: { color: string; label: string }) {
@@ -70,13 +99,13 @@ const CustomTooltip = ({ active, payload }: any) => {
 export default function ExecutiveRadarCharts() {
   // Calculate gaps for production radar
   const productionGaps = productionData
-    .map(d => ({ label: d.fullLabel, gap: d.supplier - d.clientMin, direction: (d.supplier < d.clientMin ? 'below' : 'above') as 'below' | 'above' }))
+    .map(d => ({ label: d.fullLabel.split(' — ')[0], gap: d.supplier - d.clientMin, direction: (d.supplier < d.clientMin ? 'below' : 'above') as 'below' | 'above' }))
     .filter(d => d.direction === 'below')
     .sort((a, b) => a.gap - b.gap);
 
   // Calculate gaps for commercial radar
   const commercialGaps = commercialData
-    .map(d => ({ label: d.fullLabel, gap: d.supplier - d.benchmark, direction: (d.supplier < d.benchmark ? 'below' : 'above') as 'below' | 'above' }))
+    .map(d => ({ label: d.fullLabel.split(' — ')[0], gap: d.supplier - d.benchmark, direction: (d.supplier < d.benchmark ? 'below' : 'above') as 'below' | 'above' }))
     .filter(d => d.direction === 'below')
     .sort((a, b) => a.gap - b.gap);
 
@@ -110,7 +139,7 @@ export default function ExecutiveRadarCharts() {
             <RadarLegendItem color="#CBD5E1" label="Industry minimum" />
           </div>
 
-          <div className="w-full" style={{ height: 340 }}>
+          <div className="w-full" style={{ height: 420 }}>
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart cx="50%" cy="50%" outerRadius="72%" data={productionData}>
                 <PolarGrid stroke="#E2E8F0" strokeDasharray="3 3" />
@@ -140,7 +169,7 @@ export default function ExecutiveRadarCharts() {
               Critical gaps vs. client requirements
             </div>
             <div className="space-y-0">
-              {productionGaps.slice(0, 4).map((g, i) => (
+              {productionGaps.slice(0, 6).map((g, i) => (
                 <GapIndicator key={i} label={g.label} gap={g.gap} direction={g.direction} />
               ))}
             </div>
@@ -161,7 +190,7 @@ export default function ExecutiveRadarCharts() {
             <RadarLegendItem color="#16A34A" label="Tier-2 benchmark" />
           </div>
 
-          <div className="w-full" style={{ height: 340 }}>
+          <div className="w-full" style={{ height: 420 }}>
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart cx="50%" cy="50%" outerRadius="72%" data={commercialData}>
                 <PolarGrid stroke="#E2E8F0" strokeDasharray="3 3" />
@@ -190,7 +219,7 @@ export default function ExecutiveRadarCharts() {
               Critical gaps vs. benchmark
             </div>
             <div className="space-y-0">
-              {commercialGaps.slice(0, 4).map((g, i) => (
+              {commercialGaps.slice(0, 6).map((g, i) => (
                 <GapIndicator key={i} label={g.label} gap={g.gap} direction={g.direction} />
               ))}
             </div>
@@ -204,18 +233,23 @@ export default function ExecutiveRadarCharts() {
           <div>
             <div className="text-[10px] font-bold tracking-[0.1em] uppercase text-[#64748B] mb-1">Assessment Summary</div>
             <p className="text-[13px] text-[#475569] leading-relaxed max-w-xl">
-              MV Motors meets production capacity and workforce requirements but falls critically short on <strong className="text-[#0F172A]">calibration compliance</strong>, <strong className="text-[#0F172A]">defect rate control</strong>, and <strong className="text-[#0F172A]">supply chain resilience</strong>. These three dimensions must reach client thresholds before unconditional approval.
+              MV Motors meets workforce and throughput requirements but shows critical weaknesses in <strong className="text-[#0F172A]">tooling management</strong>, <strong className="text-[#0F172A]">automation level</strong>, <strong className="text-[#0F172A]">calibration</strong>, <strong className="text-[#0F172A]">HSE compliance</strong>, and <strong className="text-[#0F172A]">supply chain resilience</strong>. Machine park is aging Mazak fleet with no predictive maintenance. Commercially, <strong className="text-[#0F172A]">business continuity planning</strong> and <strong className="text-[#0F172A]">ESG readiness</strong> are significantly below automotive Tier-2 benchmarks.
             </p>
           </div>
           <div className="flex items-center gap-6 shrink-0">
             <div className="text-center">
-              <div className="text-[28px] font-bold text-[#D97706] leading-none tabular-nums">4</div>
-              <div className="text-[10px] text-[#94A3B8] font-medium uppercase mt-1">Gaps to close</div>
+              <div className="text-[28px] font-bold text-[#DC2626] leading-none tabular-nums">{productionGaps.length + commercialGaps.length}</div>
+              <div className="text-[10px] text-[#94A3B8] font-medium uppercase mt-1">Gaps total</div>
             </div>
             <div className="w-px h-10 bg-[#E2E8F0]" />
             <div className="text-center">
-              <div className="text-[28px] font-bold text-[#0A7FA5] leading-none tabular-nums">70%</div>
-              <div className="text-[10px] text-[#94A3B8] font-medium uppercase mt-1">Dimensions met</div>
+              <div className="text-[28px] font-bold text-[#D97706] leading-none tabular-nums">{productionGaps.length}</div>
+              <div className="text-[10px] text-[#94A3B8] font-medium uppercase mt-1">Manufacturing</div>
+            </div>
+            <div className="w-px h-10 bg-[#E2E8F0]" />
+            <div className="text-center">
+              <div className="text-[28px] font-bold text-[#0A7FA5] leading-none tabular-nums">{commercialGaps.length}</div>
+              <div className="text-[10px] text-[#94A3B8] font-medium uppercase mt-1">Commercial</div>
             </div>
           </div>
         </div>
