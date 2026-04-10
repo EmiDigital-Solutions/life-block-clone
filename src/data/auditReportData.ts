@@ -623,6 +623,19 @@ export const stations: Station[] = [
         ],
         aiInsight: 'Atlas cross-referenced material certificates against BMW SOR-0042 requirements. All 14 batches comply. However, Supplier S-017\'s last 3 heats show phosphorus trending toward upper limit (0.024% vs 0.025% max). Recommend tightening incoming spec to 0.020% to create early warning buffer.',
         aiConfidence: 89,
+        evidence: [
+          { id: 'EVD-I01', type: 'document', label: 'EN 10204 Type 3.1 Certificates (14 batches)' },
+          { id: 'EVD-I02', type: 'measurement', label: 'Spectrometer readings — 3 heats' },
+          { id: 'EVD-I03', type: 'photo', label: 'Material storage area — barcode system' },
+        ],
+        aiPatterns: [
+          { id: 'AP-I01', type: 'trend', title: 'Phosphorus creep in S-017 steel', body: 'Phosphorus levels have increased 0.003% per quarter for 4 consecutive quarters. At current trajectory, material will exceed BMW spec by Q3 2026.', confidence: 78, impact: 'high', timeframe: '6 months' },
+        ],
+        bmwImpact: {
+          quality: { rating: 'medium', detail: 'S-017 phosphorus trend could cause brittle fracture in engine mount under thermal cycling. BMW field risk if undetected.' },
+          time: { rating: 'low', detail: 'Supplier re-qualification adds 8-12 weeks if S-017 fails spec.' },
+          cost: { rating: 'medium', detail: 'Alternative supplier qualification: €12,000. Potential warranty exposure if brittle parts ship: €62,000.' },
+        },
       },
       { id: 'inc-inspection', label: 'Inspection Process', health: 'amber', score: 68,
         findings: [
@@ -631,6 +644,20 @@ export const stations: Station[] = [
         ],
         aiInsight: 'Atlas identified a hidden pattern: all 3 unsigned records occurred during night shift (22:00-06:00), when only 1 inspector covers incoming + in-process. This is not a discipline issue — it\'s a staffing capacity constraint. Adding a second night inspector would eliminate 94% of documentation gaps based on similar supplier models.',
         aiConfidence: 92,
+        evidence: [
+          { id: 'EVD-I04', type: 'document', label: 'Incoming inspection log — March 2026 (3 unsigned)' },
+          { id: 'EVD-I05', type: 'photo', label: 'Night shift inspector workstation' },
+          { id: 'EVD-I06', type: 'document', label: 'Shift roster — March 2026' },
+        ],
+        aiPatterns: [
+          { id: 'AP-I02', type: 'pattern', title: 'Night shift → documentation gaps', body: 'Night shift documentation errors are 4.7× higher than day shift across 847 records over 18 months. Single inspector covering 2 areas is the root cause.', confidence: 92, impact: 'medium' },
+          { id: 'AP-I03', type: 'prediction', title: 'Defect escape risk at night', body: 'Rushed inspections (4.2 min vs 8 min standard) increase defect escape probability by 2.3×. Atlas estimates 1 in 200 night-shift inspected parts may carry undetected defects.', confidence: 74, impact: 'high', timeframe: 'ongoing' },
+        ],
+        bmwImpact: {
+          quality: { rating: 'medium', detail: 'Rushed night inspections increase risk of defective material entering production undetected.' },
+          time: { rating: 'low', detail: 'No direct delivery impact. Corrective action (hire inspector) takes 4-6 weeks.' },
+          cost: { rating: 'low', detail: 'Additional night inspector: €38,000/year. Prevention of 1 defect escape saves €8,000-€480,000.' },
+        },
       },
       { id: 'inc-supplier', label: 'Supplier Management', health: 'amber', score: 72,
         findings: [
@@ -638,6 +665,20 @@ export const stations: Station[] = [
         ],
         aiInsight: 'Of the 6 overdue suppliers, Atlas flagged 2 as high-risk: Supplier S-017 (steel bar stock, incoming rejection rate 3.2× average) and S-031 (cutting tools, 2 field recalls in 2025). These 2 suppliers feed directly into the Bore ID process where Cpk is failing. There is a 67% probability that supplier material variation is a root contributor to the Cpk decline.',
         aiConfidence: 84,
+        evidence: [
+          { id: 'EVD-I07', type: 'document', label: 'Approved Supplier List (42 suppliers)' },
+          { id: 'EVD-I08', type: 'document', label: 'Supplier evaluation matrix — overdue 6' },
+          { id: 'EVD-I09', type: 'document', label: 'S-017 incoming rejection log (12 months)' },
+        ],
+        aiPatterns: [
+          { id: 'AP-I04', type: 'correlation', title: 'S-017 material → Bore Cpk decline', body: 'Supplier S-017 rejection rate rose from 0.8% to 2.4% over 12 months. 23% of MV Motors rework traces to S-017 material. 67% probability this is a root contributor to Cpk decline.', confidence: 84, impact: 'critical' },
+          { id: 'AP-I05', type: 'prediction', title: 'S-031 cutting tool risk', body: 'Supplier S-031 had 2 field recalls in 2025. Without re-evaluation, Atlas predicts 18% probability of receiving defective tooling in next 6 months, directly impacting bore operations.', confidence: 71, impact: 'high', timeframe: '6 months' },
+        ],
+        bmwImpact: {
+          quality: { rating: 'high', detail: 'Unevaluated suppliers feeding critical bore process. S-017 material variation likely contributing to Cpk failure.' },
+          time: { rating: 'medium', detail: 'If S-017 fails, qualifying alternate steel source takes 12-16 weeks. BMW production at risk.' },
+          cost: { rating: 'high', detail: 'Supply chain disruption cost: €215,000. BMW line-stop penalty: €8,000/hour.' },
+        },
       },
     ],
     atlasInsights: [
