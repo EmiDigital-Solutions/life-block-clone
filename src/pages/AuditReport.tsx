@@ -18,6 +18,7 @@ import AuditScopeSection from "@/components/audit-report/AuditScopeSection";
 import ExecutiveRadarCharts from "@/components/audit-report/ExecutiveRadarCharts";
 import MachineParkIntelligence from "@/components/audit-report/MachineParkIntelligence";
 import SectionInspector from "@/components/audit-report/SectionInspector";
+import ExecutiveReportView from "@/components/audit-report/ExecutiveReportView";
 import AtlasRiskScore from "@/components/audit-report/AtlasRiskScore";
 import AnomalyCallouts from "@/components/audit-report/AnomalyCallouts";
 import CostWaterfallChart from "@/components/audit-report/CostWaterfallChart";
