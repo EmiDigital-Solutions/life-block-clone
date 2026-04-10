@@ -60,6 +60,7 @@ const App = () => (
             <Route path="/customer-stories" element={<CustomerStories />} />
             <Route path="/customer-stories/:storyId" element={<CustomerStoryDetail />} />
             <Route path="/bg-removal" element={<BackgroundRemoval />} />
+            <Route path="/audit-report" element={<AuditReport />} />
 
             {/* Atlas AI App */}
             <Route path="/atlas/login" element={<AtlasLogin />} />
