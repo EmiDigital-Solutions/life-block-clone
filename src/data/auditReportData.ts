@@ -1057,6 +1057,46 @@ export const stations: Station[] = [
       { type: 'pass', title: 'Customer property care', description: 'Customer fixtures in locked storage.', isoClause: '8.5.3' },
     ],
     evidenceCount: { photos: 5, measurements: 2, videos: 0 }, ncrs: [],
+    subCategories: [
+      { id: 'pack-material', label: 'Material (Packaging)', health: 'green', score: 96,
+        findings: [
+          { type: 'pass', title: 'VCI paper application', description: 'VCI paper applied to all machined surfaces. Correct grade for 42CrMo4 steel.', isoClause: '8.5.4' },
+          { type: 'pass', title: 'Foam dividers', description: 'Parts individually wrapped in foam-lined dividers. Zero transit damage in 12 months.', isoClause: '8.5.4' },
+        ],
+        aiInsight: 'Packing material specification matches BMW LP-PKG-004 exactly. Atlas cross-referenced 2,400 shipments: zero packaging-related customer complaints in 12 months. This is top 3% performance across 89 Tier-2 suppliers.', aiConfidence: 97,
+        evidence: [
+          { id: 'EVD-K01', type: 'photo', label: 'VCI paper application on engine mounts' },
+          { id: 'EVD-K02', type: 'photo', label: 'Foam-lined divider arrangement' },
+          { id: 'EVD-K03', type: 'document', label: 'Linde LP-PKG-004 Rev. C compliance checklist' },
+        ],
+        bmwImpact: { quality: { rating: 'none', detail: 'Zero packaging-related quality issues.' }, time: { rating: 'none', detail: 'No impact.' }, cost: { rating: 'none', detail: 'No exposure. Saves ~€8,400/year in damage claims.' } },
+      },
+      { id: 'pack-method', label: 'Method', health: 'green', score: 94,
+        findings: [
+          { type: 'pass', title: 'Final outgoing inspection', description: '3-tier gate: visual + dimensional spot-check (3/100) + packaging integrity.', isoClause: '8.6' },
+          { type: 'pass', title: 'Product identification', description: 'QR code on each package links to electronic Certificate of Conformity.', isoClause: '8.5.2' },
+        ],
+        aiInsight: 'The 3-tier outgoing gate is the last line of defense. Atlas analyzed its detection effectiveness: the visual check catches 78% of cosmetic defects, the dimensional spot-check catches 92% of dimensional outliers (at 3% sampling), and the QR-CoC linkage ensures full traceability. Combined detection rate: 96.4%.', aiConfidence: 90,
+        evidence: [
+          { id: 'EVD-K04', type: 'video', label: 'Final outgoing inspection process walkthrough' },
+          { id: 'EVD-K05', type: 'photo', label: 'QR code label linked to electronic CoC' },
+          { id: 'EVD-K06', type: 'document', label: 'Outgoing inspection procedure OI-001 Rev. B' },
+        ],
+        aiPatterns: [
+          { id: 'AP-K01', type: 'prediction', title: 'Detection rate insufficient for current Cpk', body: 'At Cpk 0.98, the 3% sampling rate catches only 92% of dimensional outliers — meaning ~4 non-conforming parts per 1,000 could escape. Atlas recommends increasing sampling to 10% until Cpk is restored to >1.33.', confidence: 84, impact: 'high', timeframe: 'immediate' },
+        ],
+        bmwImpact: { quality: { rating: 'medium', detail: 'At current Cpk, 3% sampling is insufficient. ~4/1,000 non-conforming parts may escape to BMW.' }, time: { rating: 'low', detail: 'Increased sampling adds 15 min/lot.' }, cost: { rating: 'low', detail: 'Increased sampling cost: €1,200/month. Preventing one BMW line-stop: €96,000.' } },
+      },
+      { id: 'pack-environment', label: 'Environment', health: 'green', score: 95,
+        findings: [{ type: 'pass', title: 'Storage conditions', description: 'Customer fixtures in locked, climate-controlled storage. Clean packing area.', isoClause: '8.5.3' }],
+        aiInsight: 'Packing area maintains controlled conditions. Customer-owned fixtures properly stored with quarterly reconciliation. No issues identified.', aiConfidence: 95,
+        evidence: [
+          { id: 'EVD-K07', type: 'photo', label: 'Locked fixture storage area' },
+          { id: 'EVD-K08', type: 'document', label: 'Customer property reconciliation log' },
+        ],
+        bmwImpact: { quality: { rating: 'none', detail: 'Controlled storage environment.' }, time: { rating: 'none', detail: 'No impact.' }, cost: { rating: 'none', detail: 'No exposure.' } },
+      },
+    ],
     auditQuestions: [
       { id: 'Q8-01', clause: '8.5.4', question: 'Does the organization preserve outputs during production?', score: 10, notes: 'Best-in-class packing. Zero shipping damage in 12 months.' },
       { id: 'Q8-02', clause: '8.5.2', question: 'Is product identification maintained through delivery?', score: 9, notes: 'QR-coded labels with full traceability.' },
