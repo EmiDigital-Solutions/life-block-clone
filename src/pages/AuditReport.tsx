@@ -15,6 +15,7 @@ import AuditScopeSection from "@/components/audit-report/AuditScopeSection";
 import SectionInspector from "@/components/audit-report/SectionInspector";
 import { Menu, X, Sparkles } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import Navigation from "@/components/Navigation";
 
 const depthLabels: Record<DepthLevel, string> = {
   executive: 'Executive',
