@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import {
-  Camera, Cpu, Zap, Clock, Gauge, ThermometerSun, AlertTriangle,
+  Camera, Cpu, Zap, Clock, Gauge, AlertTriangle,
   CheckCircle2, XCircle, ChevronDown, ChevronUp, Sparkles, Factory,
-  CalendarDays, Weight, Ruler, Settings2, Shield, TrendingDown, TrendingUp,
-  BarChart3, Wrench, Leaf
+  CalendarDays, Shield, Settings2, Wrench, Leaf, BarChart3
 } from "lucide-react";
 
 /* ── Machine data (simulated Atlas AI capture) ── */
@@ -195,48 +194,44 @@ const machines: MachineProfile[] = [
   },
 ];
 
-/* ── Helpers ── */
-const conditionColor = (c: string) => {
-  switch (c) {
-    case 'excellent': return 'text-emerald-600 bg-emerald-50 border-emerald-200';
-    case 'good': return 'text-emerald-700 bg-emerald-50/60 border-emerald-200';
-    case 'fair': return 'text-amber-700 bg-amber-50 border-amber-200';
-    case 'poor': return 'text-red-600 bg-red-50 border-red-200';
-    default: return 'text-[#7B8E80]';
-  }
-};
-
+/* ── Helpers using project palette ── */
 const suitabilityConfig = {
-  'approved': { icon: CheckCircle2, color: 'text-emerald-600', bg: 'bg-emerald-50', border: 'border-emerald-200', label: 'Client Approved' },
-  'conditional': { icon: AlertTriangle, color: 'text-amber-600', bg: 'bg-amber-50', border: 'border-amber-200', label: 'Conditional' },
-  'not-suitable': { icon: XCircle, color: 'text-red-600', bg: 'bg-red-50', border: 'border-red-200', label: 'Not Suitable' },
+  'approved': { icon: CheckCircle2, color: 'text-[#6EA996]', label: 'Approved' },
+  'conditional': { icon: AlertTriangle, color: 'text-[#E39B5C]', label: 'Conditional' },
+  'not-suitable': { icon: XCircle, color: 'text-[#AD3D3D]', label: 'Not Suitable' },
 };
 
-const originBadge = (tier: string) => {
+const originLabel = (tier: string) => {
   switch (tier) {
-    case 'oem-premium': return { label: 'OEM Premium', color: 'text-emerald-700 bg-emerald-50 border-emerald-200' };
-    case 'oem-standard': return { label: 'OEM Standard', color: 'text-blue-700 bg-blue-50 border-blue-200' };
-    case 'economy': return { label: 'Economy / Clone', color: 'text-amber-700 bg-amber-50 border-amber-200' };
-    default: return { label: tier, color: 'text-[#7B8E80]' };
+    case 'oem-premium': return 'OEM Premium';
+    case 'oem-standard': return 'OEM Standard';
+    case 'economy': return 'Economy';
+    default: return tier;
   }
+};
+
+const conditionScoreColor = (score: number) => {
+  if (score >= 85) return '#6EA996';
+  if (score >= 60) return '#E39B5C';
+  return '#AD3D3D';
 };
 
 function OEEGauge({ label, value, threshold }: { label: string; value: number; threshold: number }) {
   const met = value >= threshold;
+  const color = met ? '#6EA996' : '#E39B5C';
   return (
     <div className="text-center">
-      <div className="relative w-16 h-16 mx-auto mb-1.5">
+      <div className="relative w-14 h-14 mx-auto mb-1">
         <svg viewBox="0 0 36 36" className="w-full h-full -rotate-90">
-          <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#E5E7EB" strokeWidth="3" />
+          <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#E5E7EB" strokeWidth="2.5" />
           <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none"
-            stroke={met ? "#059669" : "#D97706"}
-            strokeWidth="3" strokeDasharray={`${value}, 100`} strokeLinecap="round" />
+            stroke={color} strokeWidth="2.5" strokeDasharray={`${value}, 100`} strokeLinecap="butt" />
         </svg>
-        <span className={cn("absolute inset-0 flex items-center justify-center text-[11px] font-bold", met ? "text-emerald-700" : "text-amber-700")}>
+        <span className="absolute inset-0 flex items-center justify-center text-[11px] font-mono font-bold" style={{ color }}>
           {value}%
         </span>
       </div>
-      <span className="text-[10px] text-[#7B8E80] font-medium uppercase tracking-wider">{label}</span>
+      <span className="text-[9px] text-[#7B8E80] font-medium uppercase tracking-[0.1em]">{label}</span>
     </div>
   );
 }
@@ -246,140 +241,110 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
   const [expanded, setExpanded] = useState(false);
   const suit = suitabilityConfig[machine.clientSuitability];
   const SuitIcon = suit.icon;
-  const origin = originBadge(machine.originTier);
+  const cColor = conditionScoreColor(machine.conditionScore);
 
   return (
-    <div className="border border-[#E5E7EB] rounded-xl bg-white overflow-hidden">
+    <div className="border border-[#E5E7EB] bg-white">
       {/* Header */}
-      <div className="px-5 py-4 border-b border-[#F0F0F0] flex items-start justify-between gap-4">
+      <div className="px-5 py-4 flex items-start justify-between gap-4">
         <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-            <span className="text-[10px] font-bold text-[#0A7FA5] bg-[#0A7FA5]/8 px-2 py-0.5 rounded">{machine.id}</span>
-            <span className={cn("text-[10px] font-semibold px-2 py-0.5 rounded border", origin.color)}>{origin.label}</span>
-            <span className={cn("text-[10px] font-semibold px-2 py-0.5 rounded border", conditionColor(machine.condition))}>
-              {machine.condition.charAt(0).toUpperCase() + machine.condition.slice(1)} · {machine.conditionScore}/100
+          <div className="flex items-center gap-2 mb-1 flex-wrap">
+            <span className="text-[10px] font-mono font-bold text-[#0A7FA5]">{machine.id}</span>
+            <span className="text-[10px] text-[#7B8E80]">·</span>
+            <span className="text-[10px] text-[#7B8E80] font-medium">{originLabel(machine.originTier)}</span>
+            <span className="text-[10px] text-[#7B8E80]">·</span>
+            <span className="text-[10px] font-mono" style={{ color: cColor }}>
+              {machine.condition} {machine.conditionScore}/100
             </span>
           </div>
-          <h4 className="text-[15px] font-bold text-[#0A0A0A] leading-tight">
-            {machine.manufacturer} {machine.model}
+          <h4 className="text-[16px] font-light text-[#0A0A0A] tracking-tight leading-tight">
+            {machine.manufacturer} <span className="font-medium">{machine.model}</span>
           </h4>
-          <div className="flex items-center gap-3 mt-1 text-[11px] text-[#7B8E80]">
-            <span className="flex items-center gap-1"><Factory className="w-3 h-3" />{machine.category}</span>
-            <span>·</span>
+          <div className="flex items-center gap-3 mt-1.5 text-[11px] text-[#7B8E80]">
+            <span>{machine.category}</span>
+            <span className="text-[#E5E7EB]">|</span>
             <span>{machine.location}</span>
-            <span>·</span>
-            <span>S/N: {machine.serialNumber}</span>
+            <span className="text-[#E5E7EB]">|</span>
+            <span className="font-mono text-[10px]">S/N {machine.serialNumber}</span>
           </div>
         </div>
-        <div className="flex flex-col items-end gap-1.5 shrink-0">
-          <div className="flex items-center gap-1">
-            <Camera className="w-3.5 h-3.5 text-[#0A7FA5]" />
-            <span className="text-[10px] text-[#0A7FA5] font-medium">Atlas AI Captured</span>
-          </div>
-          <div className={cn("flex items-center gap-1.5 px-2.5 py-1 rounded-lg border", suit.bg, suit.border)}>
-            <SuitIcon className={cn("w-3.5 h-3.5", suit.color)} />
-            <span className={cn("text-[11px] font-semibold", suit.color)}>{suit.label}</span>
-          </div>
+        <div className="flex items-center gap-1.5 shrink-0">
+          <SuitIcon className={cn("w-4 h-4", suit.color)} />
+          <span className={cn("text-[11px] font-semibold", suit.color)}>{suit.label}</span>
         </div>
       </div>
 
-      {/* Key metrics row */}
-      <div className="px-5 py-4 grid grid-cols-2 md:grid-cols-6 gap-4 border-b border-[#F0F0F0] bg-[#FAFAFA]">
-        <div className="flex items-center gap-2">
-          <CalendarDays className="w-4 h-4 text-[#7B8E80]" />
-          <div>
-            <div className="text-[10px] text-[#7B8E80] uppercase tracking-wider">Age</div>
-            <div className="text-[13px] font-bold text-[#0A0A0A]">{machine.age} yrs <span className="text-[10px] font-normal text-[#7B8E80]">({machine.yearManufactured})</span></div>
+      {/* Metrics row */}
+      <div className="border-t border-[#E5E7EB] grid grid-cols-6 divide-x divide-[#E5E7EB]">
+        {[
+          { label: "Age", value: `${machine.age} yrs`, sub: String(machine.yearManufactured), icon: CalendarDays },
+          { label: "Energy", value: `${machine.energyConsumption} kWh`, sub: machine.energyClass, icon: Zap },
+          { label: "CO₂/yr", value: `${machine.co2PerYear} t`, sub: "", icon: Leaf },
+          { label: "Last Maint.", value: machine.lastMaintenance, sub: "", icon: Wrench },
+          { label: "Next Maint.", value: machine.nextMaintenance, sub: "", icon: CalendarDays },
+          { label: "Origin", value: machine.origin, sub: "", icon: Shield },
+        ].map((m, i) => (
+          <div key={i} className="px-3 py-3">
+            <div className="text-[9px] text-[#7B8E80] uppercase tracking-[0.1em] mb-0.5">{m.label}</div>
+            <div className="text-[12px] font-mono font-medium text-[#0A0A0A]">
+              {m.value}{m.sub && <span className="text-[10px] text-[#7B8E80] ml-1">{m.sub}</span>}
+            </div>
           </div>
-        </div>
-        <div className="flex items-center gap-2">
-          <Zap className="w-4 h-4 text-[#7B8E80]" />
-          <div>
-            <div className="text-[10px] text-[#7B8E80] uppercase tracking-wider">Energy</div>
-            <div className="text-[13px] font-bold text-[#0A0A0A]">{machine.energyConsumption} kWh <span className={cn("text-[10px] font-semibold", machine.energyClass.startsWith('A') ? "text-emerald-600" : "text-amber-600")}>{machine.energyClass}</span></div>
-          </div>
-        </div>
-        <div className="flex items-center gap-2">
-          <Leaf className="w-4 h-4 text-[#7B8E80]" />
-          <div>
-            <div className="text-[10px] text-[#7B8E80] uppercase tracking-wider">CO₂/yr</div>
-            <div className="text-[13px] font-bold text-[#0A0A0A]">{machine.co2PerYear} t</div>
-          </div>
-        </div>
-        <div className="flex items-center gap-2">
-          <Wrench className="w-4 h-4 text-[#7B8E80]" />
-          <div>
-            <div className="text-[10px] text-[#7B8E80] uppercase tracking-wider">Last Maint.</div>
-            <div className="text-[13px] font-bold text-[#0A0A0A]">{machine.lastMaintenance}</div>
-          </div>
-        </div>
-        <div className="flex items-center gap-2">
-          <CalendarDays className="w-4 h-4 text-[#7B8E80]" />
-          <div>
-            <div className="text-[10px] text-[#7B8E80] uppercase tracking-wider">Next Maint.</div>
-            <div className="text-[13px] font-bold text-[#0A0A0A]">{machine.nextMaintenance}</div>
-          </div>
-        </div>
-        <div className="flex items-center gap-2">
-          <Shield className="w-4 h-4 text-[#7B8E80]" />
-          <div>
-            <div className="text-[10px] text-[#7B8E80] uppercase tracking-wider">Origin</div>
-            <div className="text-[13px] font-bold text-[#0A0A0A]">{machine.origin}</div>
-          </div>
-        </div>
+        ))}
       </div>
 
       {/* OEE Gauges */}
-      <div className="px-5 py-5 border-b border-[#F0F0F0]">
-        <div className="flex items-center gap-2 mb-3">
-          <BarChart3 className="w-4 h-4 text-[#0A0A0A]" />
-          <span className="text-[12px] font-bold text-[#0A0A0A] uppercase tracking-wider">OEE Performance</span>
-          <span className="text-[10px] text-[#7B8E80] ml-auto">BMW Threshold: ≥85%</span>
+      <div className="border-t border-[#E5E7EB] px-5 py-4">
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-[10px] font-semibold text-[#0A0A0A] uppercase tracking-[0.12em] flex items-center gap-1.5">
+            <BarChart3 className="w-3.5 h-3.5 text-[#7B8E80]" /> OEE Performance
+          </span>
+          <span className="text-[9px] text-[#7B8E80] font-mono">Threshold ≥ 85%</span>
         </div>
         <div className="flex items-center justify-around">
           <OEEGauge label="OEE" value={machine.oee} threshold={85} />
-          <OEEGauge label="Availability" value={machine.availability} threshold={90} />
-          <OEEGauge label="Performance" value={machine.performance} threshold={90} />
+          <OEEGauge label="Avail." value={machine.availability} threshold={90} />
+          <OEEGauge label="Perf." value={machine.performance} threshold={90} />
           <OEEGauge label="Quality" value={machine.quality} threshold={97} />
         </div>
       </div>
 
-      {/* Client Suitability Assessment */}
-      <div className={cn("px-5 py-3 border-b border-[#F0F0F0]", suit.bg)}>
+      {/* Client Suitability */}
+      <div className="border-t border-[#E5E7EB] px-5 py-3">
         <div className="flex items-start gap-2">
-          <SuitIcon className={cn("w-4 h-4 mt-0.5 shrink-0", suit.color)} />
+          <SuitIcon className={cn("w-3.5 h-3.5 mt-0.5 shrink-0", suit.color)} />
           <div>
-            <span className={cn("text-[11px] font-bold uppercase tracking-wider", suit.color)}>BMW Suitability Assessment</span>
+            <span className="text-[10px] font-semibold text-[#7B8E80] uppercase tracking-[0.1em]">BMW Suitability</span>
             <p className="text-[12px] text-[#0A0A0A] mt-0.5 leading-relaxed">{machine.clientSuitabilityReason}</p>
           </div>
         </div>
       </div>
 
-      {/* Expand/Collapse for full specs */}
+      {/* Expand toggle */}
       <button
         onClick={() => setExpanded(!expanded)}
-        className="w-full px-5 py-3 flex items-center justify-between text-[11px] font-semibold text-[#0A7FA5] hover:bg-[#FAFAFA] transition-colors"
+        className="w-full border-t border-[#E5E7EB] px-5 py-2.5 flex items-center justify-between text-[11px] font-medium text-[#0A7FA5] hover:bg-[#FAFAFA] transition-colors"
       >
         <span className="flex items-center gap-1.5">
           <Settings2 className="w-3.5 h-3.5" />
-          {expanded ? "Hide" : "Show"} Full Technical Data Sheet & Capabilities
+          {expanded ? "Hide" : "Show"} Technical Data Sheet
         </span>
-        {expanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+        {expanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
       </button>
 
       {expanded && (
-        <div className="border-t border-[#F0F0F0]">
-          {/* Technical Specs Table */}
+        <div className="border-t border-[#E5E7EB]">
+          {/* Specs grid */}
           <div className="px-5 py-4">
-            <h5 className="text-[11px] font-bold text-[#0A0A0A] uppercase tracking-wider mb-3 flex items-center gap-1.5">
-              <Cpu className="w-3.5 h-3.5" /> Technical Data Sheet
+            <h5 className="text-[10px] font-semibold text-[#0A0A0A] uppercase tracking-[0.12em] mb-3 flex items-center gap-1.5">
+              <Cpu className="w-3.5 h-3.5 text-[#7B8E80]" /> Technical Specifications
             </h5>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-px bg-[#E5E7EB] rounded-lg overflow-hidden">
+            <div className="grid grid-cols-5 gap-px bg-[#E5E7EB]">
               {machine.specs.map((spec, i) => (
                 <div key={i} className="bg-white px-3 py-2.5">
-                  <div className="text-[9px] text-[#7B8E80] uppercase tracking-wider mb-0.5">{spec.label}</div>
-                  <div className="text-[13px] font-bold text-[#0A0A0A]">
-                    {spec.value} {spec.unit && <span className="text-[10px] font-normal text-[#7B8E80]">{spec.unit}</span>}
+                  <div className="text-[9px] text-[#7B8E80] uppercase tracking-[0.08em] mb-0.5">{spec.label}</div>
+                  <div className="text-[12px] font-mono font-medium text-[#0A0A0A]">
+                    {spec.value}{spec.unit && <span className="text-[9px] text-[#7B8E80] ml-0.5">{spec.unit}</span>}
                   </div>
                 </div>
               ))}
@@ -387,13 +352,13 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
           </div>
 
           {/* Capabilities */}
-          <div className="px-5 py-4 border-t border-[#F0F0F0]">
-            <h5 className="text-[11px] font-bold text-[#0A0A0A] uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
-              <Gauge className="w-3.5 h-3.5" /> Process Capabilities
+          <div className="border-t border-[#E5E7EB] px-5 py-4">
+            <h5 className="text-[10px] font-semibold text-[#0A0A0A] uppercase tracking-[0.12em] mb-2.5 flex items-center gap-1.5">
+              <Gauge className="w-3.5 h-3.5 text-[#7B8E80]" /> Process Capabilities
             </h5>
             <div className="flex flex-wrap gap-1.5">
               {machine.capabilities.map((cap, i) => (
-                <span key={i} className="text-[11px] px-2.5 py-1 rounded-md bg-[#0A7FA5]/6 text-[#0A7FA5] font-medium border border-[#0A7FA5]/10">
+                <span key={i} className="text-[10px] px-2 py-1 border border-[#E5E7EB] text-[#0A0A0A] font-medium">
                   {cap}
                 </span>
               ))}
@@ -402,14 +367,14 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
 
           {/* Risks */}
           {machine.risks.length > 0 && (
-            <div className="px-5 py-4 border-t border-[#F0F0F0] bg-amber-50/30">
-              <h5 className="text-[11px] font-bold text-amber-700 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+            <div className="border-t border-[#E5E7EB] px-5 py-4">
+              <h5 className="text-[10px] font-semibold text-[#E39B5C] uppercase tracking-[0.12em] mb-2 flex items-center gap-1.5">
                 <AlertTriangle className="w-3.5 h-3.5" /> Identified Risks
               </h5>
               <ul className="space-y-1">
                 {machine.risks.map((risk, i) => (
-                  <li key={i} className="text-[12px] text-amber-800 flex items-start gap-2">
-                    <span className="w-1 h-1 rounded-full bg-amber-500 mt-1.5 shrink-0" />
+                  <li key={i} className="text-[11px] text-[#0A0A0A] flex items-start gap-2">
+                    <span className="w-1 h-1 bg-[#E39B5C] mt-1.5 shrink-0" />
                     {risk}
                   </li>
                 ))}
@@ -418,12 +383,12 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
           )}
 
           {/* Atlas AI Insight */}
-          <div className="px-5 py-4 border-t border-[#F0F0F0] bg-[#0A7FA5]/3">
+          <div className="border-t border-[#E5E7EB] px-5 py-4">
             <div className="flex items-start gap-2">
-              <Sparkles className="w-4 h-4 text-[#0A7FA5] mt-0.5 shrink-0" />
+              <Sparkles className="w-3.5 h-3.5 text-[#0A7FA5] mt-0.5 shrink-0" />
               <div>
-                <span className="text-[10px] font-bold text-[#0A7FA5] uppercase tracking-wider">Atlas AI Insight</span>
-                <p className="text-[12px] text-[#0A0A0A] mt-0.5 leading-relaxed">{machine.atlasInsight}</p>
+                <span className="text-[10px] font-semibold text-[#0A7FA5] uppercase tracking-[0.1em]">Atlas AI Insight</span>
+                <p className="text-[11px] text-[#0A0A0A] mt-0.5 leading-relaxed">{machine.atlasInsight}</p>
               </div>
             </div>
           </div>
@@ -448,39 +413,36 @@ export default function MachineParkIntelligence() {
     <section id="machine-park" className="py-12">
       {/* Section Header */}
       <div className="flex items-center gap-3 mb-2">
-        <div className="w-8 h-8 rounded-lg bg-[#0A0A0A] flex items-center justify-center">
-          <Factory className="w-4 h-4 text-white" />
-        </div>
-        <div>
-          <h2 className="text-[18px] font-bold text-[#0A0A0A] tracking-tight">Machine Park Intelligence</h2>
-          <p className="text-[11px] text-[#7B8E80]">Atlas AI · Type Plate Recognition · Automated Capability Profiling</p>
-        </div>
-        <div className="ml-auto flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#0A7FA5]/6 border border-[#0A7FA5]/15">
+        <span className="text-[12px] font-medium tracking-[0.1em] text-[#7B8E80]">// 15</span>
+        <span className="w-1.5 h-1.5 bg-[#0A7FA5]" />
+        <span className="text-[12px] font-medium tracking-[0.1em] text-[#7B8E80]">Machine Park Intelligence</span>
+        <div className="flex-1 h-px bg-[#E5E7EB]" />
+        <div className="flex items-center gap-1.5">
           <Camera className="w-3.5 h-3.5 text-[#0A7FA5]" />
-          <span className="text-[10px] font-semibold text-[#0A7FA5]">{totalMachines} Machines Captured</span>
+          <span className="text-[10px] font-mono text-[#0A7FA5]">{totalMachines} captured</span>
         </div>
       </div>
 
-      <p className="text-[13px] text-[#555] mb-6 max-w-[720px] leading-relaxed">
-        Atlas AI automatically identifies equipment from captured type plate images, cross-references manufacturer databases for full technical specifications, 
-        and evaluates each machine's capability against <span className="font-semibold text-[#0A0A0A]">BMW Tier-1 supplier requirements</span>.
+      <h2 className="text-[28px] font-light text-[#0A0A0A] tracking-tight leading-none mb-3">Machine Park Intelligence</h2>
+      <p className="text-[13px] text-[#7B8E80] mb-8 max-w-[680px] leading-relaxed">
+        Atlas AI identifies equipment from type plate captures, cross-references manufacturer databases,
+        and evaluates capability against <span className="font-medium text-[#0A0A0A]">BMW Tier-1</span> requirements.
       </p>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-7 gap-px bg-[#E5E7EB] rounded-xl overflow-hidden mb-8">
+      <div className="grid grid-cols-7 divide-x divide-[#E5E7EB] border border-[#E5E7EB] mb-8">
         {[
-          { label: "Avg OEE", value: `${avgOEE}%`, icon: Gauge, ok: Number(avgOEE) >= 85 },
-          { label: "Avg Age", value: `${avgAge} yrs`, icon: Clock, ok: Number(avgAge) <= 8 },
-          { label: "Total Energy", value: `${totalEnergy} kWh`, icon: Zap, ok: true },
-          { label: "CO₂ / Year", value: `${totalCO2} t`, icon: Leaf, ok: true },
-          { label: "OEM Premium", value: `${oemPremium}/${totalMachines}`, icon: Shield, ok: oemPremium >= totalMachines * 0.5 },
-          { label: "Approved", value: `${approved}`, icon: CheckCircle2, ok: true },
-          { label: "Conditional", value: `${conditional}`, icon: AlertTriangle, ok: conditional === 0 },
+          { label: "Avg OEE", value: `${avgOEE}%`, ok: Number(avgOEE) >= 85 },
+          { label: "Avg Age", value: `${avgAge} yrs`, ok: Number(avgAge) <= 8 },
+          { label: "Energy", value: `${totalEnergy} kWh`, ok: true },
+          { label: "CO₂/yr", value: `${totalCO2} t`, ok: true },
+          { label: "OEM Premium", value: `${oemPremium}/${totalMachines}`, ok: oemPremium >= totalMachines * 0.5 },
+          { label: "Approved", value: `${approved}`, ok: true },
+          { label: "Conditional", value: `${conditional}`, ok: conditional === 0 },
         ].map((s, i) => (
-          <div key={i} className="bg-white px-4 py-3 flex flex-col items-center text-center">
-            <s.icon className={cn("w-4 h-4 mb-1", s.ok ? "text-emerald-600" : "text-amber-600")} />
-            <span className={cn("text-[15px] font-bold", s.ok ? "text-[#0A0A0A]" : "text-amber-700")}>{s.value}</span>
-            <span className="text-[9px] text-[#7B8E80] uppercase tracking-wider mt-0.5">{s.label}</span>
+          <div key={i} className="px-3 py-3 text-center">
+            <span className={cn("text-[15px] font-mono font-bold block", s.ok ? "text-[#0A0A0A]" : "text-[#E39B5C]")}>{s.value}</span>
+            <span className="text-[9px] text-[#7B8E80] uppercase tracking-[0.1em]">{s.label}</span>
           </div>
         ))}
       </div>
@@ -493,14 +455,13 @@ export default function MachineParkIntelligence() {
       </div>
 
       {/* Bottom Note */}
-      <div className="mt-6 px-4 py-3 rounded-lg bg-[#FAFAFA] border border-[#E5E7EB] flex items-start gap-2.5">
-        <Sparkles className="w-4 h-4 text-[#0A7FA5] mt-0.5 shrink-0" />
+      <div className="mt-6 px-4 py-3 border border-[#E5E7EB] flex items-start gap-2.5">
+        <Sparkles className="w-3.5 h-3.5 text-[#0A7FA5] mt-0.5 shrink-0" />
         <div>
-          <span className="text-[11px] font-bold text-[#0A0A0A]">Atlas AI Machine Intelligence</span>
+          <span className="text-[10px] font-semibold text-[#0A0A0A] uppercase tracking-[0.1em]">Atlas AI Machine Intelligence</span>
           <p className="text-[11px] text-[#7B8E80] mt-0.5 leading-relaxed">
-            All machine profiles are auto-generated from on-site type plate captures. Atlas AI cross-references manufacturer datasheets, 
-            maintenance records, and energy monitoring data to build comprehensive capability profiles. Suitability assessments are 
-            calibrated against the specific client's (BMW) technical requirements and tolerance specifications.
+            All machine profiles are auto-generated from on-site type plate captures. Suitability assessments are
+            calibrated against BMW technical requirements and tolerance specifications.
           </p>
         </div>
       </div>
