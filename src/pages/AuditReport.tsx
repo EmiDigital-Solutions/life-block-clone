@@ -60,6 +60,12 @@ export default function AuditReport() {
     setSidebarOpen(false);
   }, []);
 
+  const scrollToId = useCallback((id: string) => {
+    const el = document.getElementById(id);
+    el?.scrollIntoView({ behavior: 'smooth' });
+    setSidebarOpen(false);
+  }, []);
+
   useEffect(() => {
     if (isMobile) setInspectorOpen(false);
   }, [isMobile]);
