@@ -165,7 +165,7 @@ export default function AuditReport() {
                     key={station.index}
                     station={station}
                     depth={depth}
-                    totalStations={13}
+                    totalStations={14}
                   />
                 ))}
 
