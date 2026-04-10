@@ -13,6 +13,7 @@ import RecommendationSection from "@/components/audit-report/RecommendationSecti
 import EvidenceVault from "@/components/audit-report/EvidenceVault";
 import AuditScopeSection from "@/components/audit-report/AuditScopeSection";
 import ExecutiveRadarCharts from "@/components/audit-report/ExecutiveRadarCharts";
+import MachineParkIntelligence from "@/components/audit-report/MachineParkIntelligence";
 import SectionInspector from "@/components/audit-report/SectionInspector";
 import { Menu, X, Sparkles } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -168,6 +169,8 @@ export default function AuditReport() {
               <ExecutiveRadarCharts />
 
               <AuditScopeSection />
+
+              <MachineParkIntelligence />
 
               <div className="space-y-16 md:space-y-24 pb-16 mt-16">
                 {stations.filter(s => s.index >= 2 && s.index <= 9).map((station) => (
