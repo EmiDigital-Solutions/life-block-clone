@@ -440,7 +440,7 @@ export const kpis: KPITile[] = [
   { label: 'Innovation Index', value: '45', unit: '/100', trend: 'flat', trendValue: '−2', interpretation: 'Below Tier-2 median of 63. Automation and tooling gaps.', sparkline: [48, 47, 47, 46, 45] },
 ];
 
-// ─── Stations (kept same) ──────────────────────────────────────
+// ─── Stations ──────────────────────────────────────────────────
 export const stations: Station[] = [
   {
     index: 1, name: 'Verdict & Summary', health: 'amber', heroPhoto: '',
