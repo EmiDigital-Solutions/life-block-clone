@@ -569,15 +569,6 @@ export const stations: Station[] = [
         },
       },
     ],
-      },
-      { id: 'mgmt-communication', label: 'Communication & Culture', health: 'green', score: 90,
-        findings: [
-          { type: 'pass', title: 'Quality culture visibility', description: 'Policy displayed at entrance, cafeteria, and all 23 workstations.', isoClause: '7.4' },
-        ],
-        aiInsight: 'Sentiment analysis of employee interview transcripts (8 operators, 3 managers) shows 94% positive quality culture alignment — highest in YVOO\'s Croatian supplier database. This is a hidden competitive advantage.',
-        aiConfidence: 86,
-      },
-    ],
     atlasInsights: [
       { type: 'benchmark', title: 'Leadership Score: Top 12% Tier-2', body: 'MV Motors\' management engagement score of 92/100 ranks in the top 12th percentile of 127 Tier-2 automotive suppliers audited by YVOO in 2024-2026. This is a strong predictor of successful NCR remediation — suppliers with leadership scores >85 close major NCRs 2.3× faster.', confidence: 91, impact: 'low', dataPointsAnalyzed: 847 },
       { type: 'risk', title: 'Quality Manager succession gap', body: 'The Quality Manager (age 58, 14 years tenure) has no documented successor. Atlas models show 23% probability of retirement within 24 months. Without succession planning, institutional knowledge loss could degrade QMS maturity by 15-20 points.', confidence: 78, impact: 'medium' },
