@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useAuditReport } from "@/hooks/useAuditReport";
+import { AuditReportProvider, useAuditReportContext } from "@/contexts/AuditReportContext";
 import type { DepthLevel } from "@/data/auditReportData";
 import ReportSidebar from "@/components/audit-report/ReportSidebar";
 import ReportHero from "@/components/audit-report/ReportHero";
