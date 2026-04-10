@@ -35,7 +35,7 @@ export default function EvidenceVault() {
         {evidenceItems.map((item) => {
           const Icon = typeIcon[item.type as keyof typeof typeIcon] || Camera;
           return (
-            <div key={item.id} className="rounded-xl border border-[#E5E7EB] bg-white overflow-hidden group hover:shadow-md transition-all cursor-pointer">
+            <div key={item.id} className=" border border-[#E5E7EB] bg-white overflow-hidden group hover:shadow-md transition-all cursor-pointer">
               <div className="aspect-[4/3] bg-[#F5F5F5] flex items-center justify-center relative">
                 <Icon className="w-8 h-8 text-[#C0C0C0]" />
                 <span className="absolute bottom-2 left-2 text-[10px] px-2 py-0.5 rounded bg-white/80 text-[#7B8E80] font-mono border border-[#E5E7EB]">

@@ -84,7 +84,7 @@ const CustomTooltip = ({ active, payload }: any) => {
   const data = payload[0]?.payload;
   if (!data) return null;
   return (
-    <div className="bg-white border border-[#E2E8F0] rounded-lg shadow-lg p-3 max-w-[200px]">
+    <div className="bg-white border border-[#E2E8F0]  shadow-lg p-3 max-w-[200px]">
       <div className="text-[12px] font-semibold text-[#0F172A] mb-1">{data.fullLabel}</div>
       {payload.map((entry: any, i: number) => (
         <div key={i} className="flex items-center justify-between gap-4 text-[11px]">
@@ -125,7 +125,7 @@ export default function ExecutiveRadarCharts() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* ── Production Capability Radar ───────────────────── */}
-        <div className="rounded-xl border border-[#E2E8F0] bg-white p-6">
+        <div className=" border border-[#E2E8F0] bg-white p-6">
           <div className="mb-5">
             <div className="text-[10px] font-bold tracking-[0.12em] uppercase text-[#D97706] mb-1">Production</div>
             <h3 className="text-[17px] font-bold text-[#0F172A]">Manufacturing Capability</h3>
@@ -177,7 +177,7 @@ export default function ExecutiveRadarCharts() {
         </div>
 
         {/* ── Commercial Radar ─────────────────────────────── */}
-        <div className="rounded-xl border border-[#E2E8F0] bg-white p-6">
+        <div className=" border border-[#E2E8F0] bg-white p-6">
           <div className="mb-5">
             <div className="text-[10px] font-bold tracking-[0.12em] uppercase text-[#16A34A] mb-1">Commercial</div>
             <h3 className="text-[17px] font-bold text-[#0F172A]">Business & Risk Profile</h3>
@@ -228,7 +228,7 @@ export default function ExecutiveRadarCharts() {
       </div>
 
       {/* Bottom summary bar */}
-      <div className="mt-6 rounded-xl border border-[#E2E8F0] bg-[#FAFBFC] p-5">
+      <div className="mt-6  border border-[#E2E8F0] bg-[#FAFBFC] p-5">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
             <div className="text-[10px] font-bold tracking-[0.1em] uppercase text-[#64748B] mb-1">Assessment Summary</div>

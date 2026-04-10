@@ -121,21 +121,21 @@ export default function SectionInspector({ activeStation, isOpen, onClose }: Sec
             <span className="text-[10px] font-semibold tracking-[0.15em] uppercase text-[#7B8E80] mb-3 block">Linked Evidence</span>
             <div className="grid grid-cols-2 gap-2">
               {Array.from({ length: Math.min(station.evidenceCount.photos, 4) }).map((_, i) => (
-                <div key={i} className="aspect-square rounded-lg bg-gradient-to-br from-[#ACC5D9]/30 to-[#B2CDBC]/20 border border-[#E5E7EB] flex items-end p-2">
+                <div key={i} className="aspect-square  bg-gradient-to-br from-[#ACC5D9]/30 to-[#B2CDBC]/20 border border-[#E5E7EB] flex items-end p-2">
                   <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#0A0A0A]/60 text-white">
                     PHO-{String(27 + i).padStart(3, '0')}
                   </span>
                 </div>
               ))}
               {station.evidenceCount.videos > 0 && (
-                <div className="aspect-square rounded-lg bg-gradient-to-br from-[#ACC5D9]/20 to-[#B2CDBC]/10 border border-[#E5E7EB] flex items-end p-2">
+                <div className="aspect-square  bg-gradient-to-br from-[#ACC5D9]/20 to-[#B2CDBC]/10 border border-[#E5E7EB] flex items-end p-2">
                   <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#0A0A0A]/60 text-white">
                     VID-002
                   </span>
                 </div>
               )}
               {(station.evidenceCount.photos + station.evidenceCount.measurements + station.evidenceCount.videos) > 5 && (
-                <div className="aspect-square rounded-lg bg-[#F5F5F5] border border-[#E5E7EB] flex items-center justify-center">
+                <div className="aspect-square  bg-[#F5F5F5] border border-[#E5E7EB] flex items-center justify-center">
                   <span className="text-[12px] font-medium text-[#7B8E80]">
                     +{station.evidenceCount.photos + station.evidenceCount.measurements + station.evidenceCount.videos - 5}
                   </span>

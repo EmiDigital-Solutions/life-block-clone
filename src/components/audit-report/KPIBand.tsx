@@ -39,7 +39,7 @@ export default function KPIBand({ kpis }: KPIBandProps) {
         return (
           <div
             key={i}
-            className="rounded-xl border border-[#E5E7EB] bg-white p-5 hover:shadow-md transition-all duration-300 group cursor-pointer"
+            className=" border border-[#E5E7EB] bg-white p-5 hover:shadow-md transition-all duration-300 group cursor-pointer"
           >
             <span className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold">
               {kpi.label}

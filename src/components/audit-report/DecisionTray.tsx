@@ -25,7 +25,7 @@ export default function DecisionTray({ ncrs, isOpen, onClose, className }: Decis
           <h3 className="text-[14px] font-semibold text-[#111827]">Decision Tray</h3>
           <p className="text-[12px] text-[#9CA3AF] mt-0.5">{pending} pending · {assigned} assigned</p>
         </div>
-        <button onClick={onClose} className="p-1.5 rounded-lg hover:bg-[#F3F4F6] text-[#9CA3AF] hover:text-[#111827] transition-colors">
+        <button onClick={onClose} className="p-1.5  hover:bg-[#F3F4F6] text-[#9CA3AF] hover:text-[#111827] transition-colors">
           <X className="w-4 h-4" />
         </button>
       </div>
@@ -62,7 +62,7 @@ export default function DecisionTray({ ncrs, isOpen, onClose, className }: Decis
         <button
           disabled={pending > 0}
           className={cn(
-            "w-full py-3 rounded-lg text-[14px] font-medium transition-all duration-200",
+            "w-full py-3  text-[14px] font-medium transition-all duration-200",
             pending > 0
               ? "bg-[#F3F4F6] text-[#9CA3AF] cursor-not-allowed"
               : "bg-[#0052FF] text-white hover:bg-[#0043D6]"

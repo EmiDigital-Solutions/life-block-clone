@@ -13,7 +13,7 @@ export default function AuditScopeSection() {
 
       <h2 className="text-[28px] font-light text-[#0A0A0A] tracking-tight leading-none">Audit Scope</h2>
 
-      <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 md:p-8 space-y-8">
+      <div className=" border border-[#E5E7EB] bg-white p-6 md:p-8 space-y-8">
         {/* Standard & Type */}
         <div className="grid md:grid-cols-2 gap-6">
           <div>
@@ -50,7 +50,7 @@ export default function AuditScopeSection() {
           <h4 className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold mb-3">VDA 6.3 Process Elements</h4>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
             {auditScope.processElements.map(pe => (
-              <div key={pe.code} className={`flex items-center gap-2 px-3 py-2 rounded-lg border ${pe.applicable ? 'border-[#6EA996]/20 bg-[#6EA996]/5' : 'border-[#E5E7EB] bg-[#F5F5F5]'}`}>
+              <div key={pe.code} className={`flex items-center gap-2 px-3 py-2  border ${pe.applicable ? 'border-[#6EA996]/20 bg-[#6EA996]/5' : 'border-[#E5E7EB] bg-[#F5F5F5]'}`}>
                 {pe.applicable ? <CheckCircle2 className="w-3.5 h-3.5 text-[#6EA996]" /> : <XCircle className="w-3.5 h-3.5 text-[#C0C0C0]" />}
                 <span className={`text-[12px] font-medium ${pe.applicable ? 'text-[#0A0A0A]' : 'text-[#C0C0C0] line-through'}`}>{pe.code} — {pe.name}</span>
               </div>
@@ -61,7 +61,7 @@ export default function AuditScopeSection() {
         {/* Product Scope */}
         <div>
           <h4 className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold mb-3">Product Scope</h4>
-          <div className="rounded-lg border border-[#E5E7EB] overflow-hidden">
+          <div className=" border border-[#E5E7EB] overflow-hidden">
             <div className="grid grid-cols-4 gap-0 bg-[#F5F5F5] px-4 py-2">
               {['Part Number', 'Description', 'Annual Volume', 'Customer'].map(h => (
                 <span key={h} className="text-[10px] uppercase tracking-wider text-[#7B8E80] font-semibold">{h}</span>
