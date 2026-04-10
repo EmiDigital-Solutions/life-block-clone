@@ -59,6 +59,30 @@ export interface AuditQuestion {
   notes: string;
 }
 
+export interface SubCategoryEvidence {
+  id: string;
+  type: 'photo' | 'document' | 'video' | 'measurement';
+  label: string;
+  thumbnail?: string;
+  timestamp?: string;
+}
+
+export interface BMWImpact {
+  quality: { rating: 'critical' | 'high' | 'medium' | 'low' | 'none'; detail: string };
+  time: { rating: 'critical' | 'high' | 'medium' | 'low' | 'none'; detail: string };
+  cost: { rating: 'critical' | 'high' | 'medium' | 'low' | 'none'; detail: string };
+}
+
+export interface AIPattern {
+  id: string;
+  type: 'pattern' | 'prediction' | 'anomaly' | 'trend';
+  title: string;
+  body: string;
+  confidence: number;
+  impact: 'critical' | 'high' | 'medium' | 'low';
+  timeframe?: string;
+}
+
 export interface SubCategory {
   id: string;
   label: string;
@@ -67,6 +91,9 @@ export interface SubCategory {
   findings: Finding[];
   aiInsight: string;
   aiConfidence: number;
+  evidence?: SubCategoryEvidence[];
+  aiPatterns?: AIPattern[];
+  bmwImpact?: BMWImpact;
 }
 
 export interface AtlasAIInsight {
