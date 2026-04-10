@@ -59,6 +59,26 @@ export interface AuditQuestion {
   notes: string;
 }
 
+export interface SubCategory {
+  id: string;
+  label: string;
+  health: StationHealth;
+  score: number;
+  findings: Finding[];
+  aiInsight: string;
+  aiConfidence: number;
+}
+
+export interface AtlasAIInsight {
+  type: 'prediction' | 'correlation' | 'anomaly' | 'benchmark' | 'risk';
+  title: string;
+  body: string;
+  confidence: number;
+  impact: 'critical' | 'high' | 'medium' | 'low';
+  connectedNCRs?: string[];
+  dataPointsAnalyzed?: number;
+}
+
 export interface Station {
   index: number;
   name: string;
@@ -72,7 +92,55 @@ export interface Station {
   evidenceCount: { photos: number; measurements: number; videos: number };
   ncrs: NCR[];
   auditQuestions?: AuditQuestion[];
+  subCategories?: SubCategory[];
+  atlasInsights?: AtlasAIInsight[];
 }
+
+// ─── Audit Scope ─────────────────────────────────────────────
+export interface AuditScopeData {
+  standard: string;
+  auditType: string;
+  scope: string;
+  exclusions: string[];
+  processElements: { code: string; name: string; applicable: boolean }[];
+  productScope: { partNumber: string; description: string; volume: string; customer: string }[];
+  siteDetails: { area: string; employees: number; shifts: number; machines: number };
+  previousFindings: { total: number; closed: number; openCarryForward: number };
+  samplingBasis: string;
+  auditorQualifications: string[];
+}
+
+export const auditScope: AuditScopeData = {
+  standard: 'ISO 9001:2015 / IATF 16949:2016 / VDA 6.3:2023',
+  auditType: 'Surveillance Audit — Annual (2nd of 3-year cycle)',
+  scope: 'Manufacture of precision-machined engine mounts (P/N EM-4200 series) and structural brackets (P/N SB-7100 series) for BMW N20 powertrain platform. Covers raw material receipt through final packaging and shipment. Design responsibility excluded — design owned by Linde Engineering GmbH.',
+  exclusions: [
+    'Clause 8.3 — Design and development (outsourced to Linde Engineering GmbH)',
+    'Clause 8.5.5 — Post-delivery activities (handled by customer logistics)',
+  ],
+  processElements: [
+    { code: 'P1', name: 'Potential Analysis', applicable: true },
+    { code: 'P2', name: 'Project Management', applicable: true },
+    { code: 'P3', name: 'Product & Process Development', applicable: false },
+    { code: 'P4', name: 'Supplier Management', applicable: true },
+    { code: 'P5', name: 'Production (Series)', applicable: true },
+    { code: 'P6', name: 'Customer Care & Satisfaction', applicable: true },
+    { code: 'P7', name: 'Continual Improvement', applicable: true },
+  ],
+  productScope: [
+    { partNumber: 'EM-4201', description: 'Engine mount bracket — LH', volume: '24,000 pcs/yr', customer: 'BMW (via Linde)' },
+    { partNumber: 'EM-4202', description: 'Engine mount bracket — RH', volume: '24,000 pcs/yr', customer: 'BMW (via Linde)' },
+    { partNumber: 'SB-7101', description: 'Structural bracket — upper', volume: '18,000 pcs/yr', customer: 'BMW (via Linde)' },
+    { partNumber: 'SB-7102', description: 'Structural bracket — lower', volume: '18,000 pcs/yr', customer: 'BMW (via Linde)' },
+  ],
+  siteDetails: { area: '4,200 m²', employees: 280, shifts: 2, machines: 23 },
+  previousFindings: { total: 8, closed: 6, openCarryForward: 2 },
+  samplingBasis: 'Risk-based sampling per ISO 19011:2018 Annex A. High-risk processes (Production, Final Test) sampled at 2× standard intensity. 47 audit questions across 14 ISO 9001 clauses.',
+  auditorQualifications: [
+    'I. Petrović — Lead Auditor, IRCA Cert. #A21849, 14 years automotive audit experience',
+    'M. Kovačević — Technical Expert, CNC machining (VDA 6.3 qualified)',
+  ],
+};
 
 // ─── Atlas AI Predictions ────────────────────────────────────────
 
@@ -372,7 +440,7 @@ export const kpis: KPITile[] = [
   { label: 'Innovation Index', value: '45', unit: '/100', trend: 'flat', trendValue: '−2', interpretation: 'Below Tier-2 median of 63. Automation and tooling gaps.', sparkline: [48, 47, 47, 46, 45] },
 ];
 
-// ─── Stations (kept same) ──────────────────────────────────────
+// ─── Stations ──────────────────────────────────────────────────
 export const stations: Station[] = [
   {
     index: 1, name: 'Verdict & Summary', health: 'amber', heroPhoto: '',
@@ -414,6 +482,35 @@ export const stations: Station[] = [
       { type: 'pass', title: 'Organizational roles & authorities (5.3)', description: 'Org chart current. Quality Manager has authority to stop production.', isoClause: '5.3' },
     ],
     evidenceCount: { photos: 5, measurements: 0, videos: 0 }, ncrs: [],
+    subCategories: [
+      { id: 'mgmt-personnel', label: 'Personnel & Leadership', health: 'green', score: 92,
+        findings: [
+          { type: 'pass', title: 'CEO engagement', description: 'CEO participated in opening & closing meetings. Quality is Board KPI.', isoClause: '5.1' },
+          { type: 'pass', title: 'Quality Manager authority', description: 'QM has stop-production authority. Exercised 2× in 2025.', isoClause: '5.3' },
+        ],
+        aiInsight: 'Atlas detected that management review attendance correlates 0.87 with CAPA close-out speed across 127 Tier-2 suppliers. MV Motors\' CEO participation places them in top 12% — a strong leading indicator for NCR resolution velocity.',
+        aiConfidence: 91,
+      },
+      { id: 'mgmt-system', label: 'QMS Structure', health: 'green', score: 88,
+        findings: [
+          { type: 'pass', title: 'Management review completeness', description: 'All 9.3.2 inputs addressed. Output actions tracked in SAP.', isoClause: '9.3' },
+          { type: 'observation', title: 'KPI targets incomplete', description: '2/6 quality objectives lack measurable targets. Risk of drift.', isoClause: '6.2' },
+        ],
+        aiInsight: 'Cross-referencing 5 prior audits: MV Motors consistently scores 85–92 on management system structure. However, the 2 unmeasurable objectives (Customer Satisfaction & Innovation) are the exact areas where Tier-2 suppliers typically regress. Atlas recommends quantifying these within 30 days.',
+        aiConfidence: 88,
+      },
+      { id: 'mgmt-communication', label: 'Communication & Culture', health: 'green', score: 90,
+        findings: [
+          { type: 'pass', title: 'Quality culture visibility', description: 'Policy displayed at entrance, cafeteria, and all 23 workstations.', isoClause: '7.4' },
+        ],
+        aiInsight: 'Sentiment analysis of employee interview transcripts (8 operators, 3 managers) shows 94% positive quality culture alignment — highest in YVOO\'s Croatian supplier database. This is a hidden competitive advantage.',
+        aiConfidence: 86,
+      },
+    ],
+    atlasInsights: [
+      { type: 'benchmark', title: 'Leadership Score: Top 12% Tier-2', body: 'MV Motors\' management engagement score of 92/100 ranks in the top 12th percentile of 127 Tier-2 automotive suppliers audited by YVOO in 2024-2026. This is a strong predictor of successful NCR remediation — suppliers with leadership scores >85 close major NCRs 2.3× faster.', confidence: 91, impact: 'low', dataPointsAnalyzed: 847 },
+      { type: 'risk', title: 'Quality Manager succession gap', body: 'The Quality Manager (age 58, 14 years tenure) has no documented successor. Atlas models show 23% probability of retirement within 24 months. Without succession planning, institutional knowledge loss could degrade QMS maturity by 15-20 points.', confidence: 78, impact: 'medium' },
+    ],
     auditQuestions: [
       { id: 'Q3-01', clause: '5.1.1', question: 'Does top management demonstrate leadership and commitment with respect to the QMS?', score: 9, notes: 'CEO personally chairs quarterly management reviews.' },
       { id: 'Q3-02', clause: '5.1.2', question: 'Does top management ensure customer requirements are determined and met?', score: 9, notes: 'Customer requirements matrix maintained.' },
@@ -446,6 +543,35 @@ export const stations: Station[] = [
         recommendedAction: 'Implement shift-end signature verification checklist.',
         owner: null, dueDate: null, evidenceIds: ['EVD-020', 'EVD-021', 'EVD-022'], status: 'open', isoClause: '7.5.3',
       },
+    ],
+    subCategories: [
+      { id: 'inc-material', label: 'Material Verification', health: 'green', score: 90,
+        findings: [
+          { type: 'pass', title: 'Material certificates', description: 'EN 10204 Type 3.1 certificates present for all 14 steel batches received in March 2026.', isoClause: '8.4.2' },
+          { type: 'pass', title: 'Chemical composition', description: 'Spectrometer spot-check on 3 heats — all within EN 10083-3 limits for 42CrMo4.', isoClause: '8.6' },
+        ],
+        aiInsight: 'Atlas cross-referenced material certificates against BMW SOR-0042 requirements. All 14 batches comply. However, Supplier S-017\'s last 3 heats show phosphorus trending toward upper limit (0.024% vs 0.025% max). Recommend tightening incoming spec to 0.020% to create early warning buffer.',
+        aiConfidence: 89,
+      },
+      { id: 'inc-inspection', label: 'Inspection Process', health: 'amber', score: 68,
+        findings: [
+          { type: 'minor-ncr', title: 'Unsigned records', description: '3 of 12 incoming inspection records missing inspector signatures — pattern: all from night shift.', ncrId: 'NCR-0004', isoClause: '7.5' },
+          { type: 'observation', title: 'Inspection time pressure', description: 'Average inspection time: 4.2 min vs. 8 min standard. Night shift rushing.', isoClause: '8.6' },
+        ],
+        aiInsight: 'Atlas identified a hidden pattern: all 3 unsigned records occurred during night shift (22:00-06:00), when only 1 inspector covers incoming + in-process. This is not a discipline issue — it\'s a staffing capacity constraint. Adding a second night inspector would eliminate 94% of documentation gaps based on similar supplier models.',
+        aiConfidence: 92,
+      },
+      { id: 'inc-supplier', label: 'Supplier Management', health: 'amber', score: 72,
+        findings: [
+          { type: 'concern', title: 'Re-evaluation overdue', description: '6 of 42 active suppliers not re-evaluated within 12-month cycle. 3 are single-source.', isoClause: '8.4' },
+        ],
+        aiInsight: 'Of the 6 overdue suppliers, Atlas flagged 2 as high-risk: Supplier S-017 (steel bar stock, incoming rejection rate 3.2× average) and S-031 (cutting tools, 2 field recalls in 2025). These 2 suppliers feed directly into the Bore ID process where Cpk is failing. There is a 67% probability that supplier material variation is a root contributor to the Cpk decline.',
+        aiConfidence: 84,
+      },
+    ],
+    atlasInsights: [
+      { type: 'correlation', title: 'Night shift staffing → documentation gaps', body: 'Atlas analyzed 847 incoming inspection records over 18 months. Night shift documentation errors are 4.7× higher than day shift. Root cause: single inspector covering 2 functional areas. This is a systemic capacity issue, not a training gap.', confidence: 92, impact: 'medium', connectedNCRs: ['NCR-0004'], dataPointsAnalyzed: 847 },
+      { type: 'prediction', title: 'Supplier S-017 quality deterioration', body: 'Phosphorus levels in S-017 steel have increased 0.003% per quarter for 4 quarters. At current trajectory, material will exceed BMW spec by Q3 2026. Recommend preemptive qualification of alternative source.', confidence: 78, impact: 'high', dataPointsAnalyzed: 56 },
     ],
     auditQuestions: [
       { id: 'Q4-01', clause: '8.4.1', question: 'Does the organization ensure externally provided products conform to requirements?', score: 7, notes: 'Incoming inspection effective but signature discipline needs improvement.' },
@@ -489,6 +615,55 @@ export const stations: Station[] = [
         owner: null, dueDate: null, evidenceIds: ['EVD-016', 'EVD-017'], status: 'open', isoClause: '7.1.4',
       },
     ],
+    subCategories: [
+      { id: 'prod-personnel', label: 'Personnel', health: 'green', score: 92,
+        findings: [
+          { type: 'pass', title: 'Operator competency', description: 'All 8 operators on shift hold current CNC Level 3 certification. Skills matrix verified.', isoClause: '7.2' },
+          { type: 'pass', title: 'Training records', description: 'Continuous training program: 24h/year per operator. Above industry average of 16h.', isoClause: '7.2' },
+        ],
+        aiInsight: 'Atlas analyzed operator error rates across 14,000 production logs. Despite machine calibration failures, operator-attributable defects are 0.02% — lowest across all YVOO-audited Tier-2 suppliers in Croatia. The personnel are not the problem here; the system is failing them.',
+        aiConfidence: 94,
+      },
+      { id: 'prod-material', label: 'Material', health: 'amber', score: 72,
+        findings: [
+          { type: 'concern', title: 'Coolant specification drift', description: 'Coolant concentration at 7.2% vs. 8-10% specification. pH 8.4 (borderline). Linked to thermal expansion.', isoClause: '8.5.1' },
+          { type: 'observation', title: 'Tool wear monitoring gap', description: 'Boring bar at 1,847 cycles vs. 1,500 recommended replacement. No automated wear tracking.', isoClause: '8.5.1' },
+        ],
+        aiInsight: 'Atlas discovered a hidden chain reaction: coolant degradation → thermal expansion → bore ID drift → Cpk decline. Cross-referencing coolant change logs with CMM data over 6 months shows a 0.91 correlation (r²) between coolant age >14 days and bore ID excursions. This single variable explains 73% of the Cpk variance.',
+        aiConfidence: 91,
+      },
+      { id: 'prod-machine', label: 'Machine', health: 'red', score: 38,
+        findings: [
+          { type: 'major-ncr', title: 'Calibration lapse — CNC #2 & #4', description: '50% of CNC machines operating 24 days past calibration due date. ~1,400 parts with unverified dimensional accuracy.', ncrId: 'NCR-0003', isoClause: '7.1.5' },
+          { type: 'minor-ncr', title: 'Chip evacuation blocked', description: 'Machine #1 chip conveyor blocked. Chips accumulating near spindle — thermal and safety hazard.', ncrId: 'NCR-0005', isoClause: '7.1.4' },
+          { type: 'concern', title: 'Coolant temperature 28°C', description: 'Machine #3 coolant at 28°C vs. 22°C spec. 6°C deviation causes ~14µm thermal drift on 200mm workpiece.', isoClause: '8.5.1' },
+        ],
+        aiInsight: 'This is the epicenter of risk. Atlas modeled the combined effect of calibration lapse + coolant temperature + tool wear: the probability of producing non-conforming parts on Machine #3 is currently 34% per shift. Machines #2 and #4 are operating blind — without valid calibration, defect detection is impossible. Atlas estimates 47 ± 12 non-conforming parts have already been shipped in the last 24 days.',
+        aiConfidence: 87,
+      },
+      { id: 'prod-method', label: 'Method', health: 'amber', score: 74,
+        findings: [
+          { type: 'pass', title: 'Work instructions current', description: 'Work instructions Rev. D at each station. Content matches control plan CP-EM4200-C.', isoClause: '8.5.1' },
+          { type: 'observation', title: 'PM schedule execution', description: 'Machine #3 coolant pump flagged Feb 2026 — repair pending 6 weeks. PM adherence at 78% vs. 95% target.', isoClause: '7.1.3' },
+          { type: 'observation', title: 'Change control gap', description: 'Boring bar supplier changed in Jan 2026 without updating PFMEA or control plan.', isoClause: '8.5.6' },
+        ],
+        aiInsight: 'Atlas identified a systemic weakness: preventive maintenance adherence has declined from 95% to 78% over 3 quarters, tracking almost perfectly with the increase in quality incidents (r²=0.94). The organization is drifting from prevention to reaction. If PM adherence drops below 70%, Atlas projects a 3× increase in unplanned downtime within 6 months.',
+        aiConfidence: 89,
+      },
+      { id: 'prod-environment', label: 'Environment', health: 'amber', score: 68,
+        findings: [
+          { type: 'concern', title: 'Ambient temperature control', description: 'Shop floor at 26°C during audit. No climate control. Thermal expansion risk on precision parts.', isoClause: '7.1.4' },
+          { type: 'observation', title: 'Lighting adequacy', description: 'Lux levels at inspection stations adequate (>750 lux). Machine areas at 400 lux — borderline.', isoClause: '7.1.4' },
+        ],
+        aiInsight: 'Atlas cross-referenced seasonal temperature data with reject rates: summer months (Jun-Aug) show 2.1× higher dimensional non-conformance. MV Motors has no climate control — unlike 67% of comparable Tier-2 suppliers. Estimated annual cost of temperature-related rework: €34,000. ROI on HVAC installation: 14 months.',
+        aiConfidence: 82,
+      },
+    ],
+    atlasInsights: [
+      { type: 'anomaly', title: 'Calibration lapse + technician leave = systemic failure', body: 'Atlas discovered that all calibration lapses in the last 3 years coincide with the calibration technician\'s annual leave. The manual spreadsheet system has a single point of failure. This is not an oversight — it\'s an architectural flaw in the quality system.', confidence: 96, impact: 'critical', connectedNCRs: ['NCR-0003'], dataPointsAnalyzed: 1247 },
+      { type: 'prediction', title: '47 non-conforming parts likely shipped', body: 'Based on the calibration lapse duration (24 days), production volume (58 parts/day), and historical defect rate during lapse periods (3.4%), Atlas estimates 47 ± 12 non-conforming parts have been shipped to Linde Engineering. Recommend immediate containment notification.', confidence: 87, impact: 'critical', connectedNCRs: ['NCR-0003', 'NCR-0001'], dataPointsAnalyzed: 14000 },
+      { type: 'correlation', title: 'Coolant age → Bore ID drift causal chain', body: 'Coolant older than 14 days causes concentration drop → thermal expansion → bore ID drift. This single variable explains 73% of Cpk variance. Implementing a 12-day coolant change cycle would restore Cpk to >1.33 with 89% probability.', confidence: 91, impact: 'high', dataPointsAnalyzed: 2400 },
+    ],
     auditQuestions: [
       { id: 'Q5-01', clause: '7.1.5.1', question: 'Has the organization determined the monitoring and measuring resources needed?', score: 3, notes: 'CRITICAL: 2 of 4 CNC machines out of calibration.' },
       { id: 'Q5-02', clause: '7.1.5.2', question: 'Is measurement traceability maintained?', score: 4, notes: 'Expired certificates void traceability.' },
@@ -514,6 +689,23 @@ export const stations: Station[] = [
       { type: 'pass', title: 'Competency & awareness', description: 'Operators passed practical skills assessment.', isoClause: '7.2' },
     ],
     evidenceCount: { photos: 8, measurements: 12, videos: 1 }, ncrs: [],
+    subCategories: [
+      { id: 'assy-personnel', label: 'Personnel', health: 'green', score: 94,
+        findings: [{ type: 'pass', title: 'Skills matrix current', description: 'All 6 operators have Level 2+ certification. Cross-training on 3+ stations each.', isoClause: '7.2' }],
+        aiInsight: 'Assembly team has the lowest turnover (2.1%) and highest cross-training ratio in the facility. Atlas benchmarks this against 89 Tier-2 assembly lines — MV Motors is in the top 8%.', aiConfidence: 93,
+      },
+      { id: 'assy-machine', label: 'Machine & Tooling', health: 'green', score: 95,
+        findings: [{ type: 'pass', title: 'Torque wrench calibration', description: 'All 12 torque wrenches calibrated. Next due: 2026-07-15.', isoClause: '7.1.5' }],
+        aiInsight: 'Atlas detected zero calibration lapses on assembly tooling in 36 months — contrasting sharply with CNC production. The difference: assembly uses automated SAP PM scheduling, while CNC uses manual spreadsheets. This proves the fix for Production is already implemented in-house.', aiConfidence: 97,
+      },
+      { id: 'assy-method', label: 'Method & Process', health: 'green', score: 96,
+        findings: [{ type: 'pass', title: 'Poka-yoke effectiveness', description: '8/8 error-proofing fixtures verified. 14 rejects caught in last 30 days — system working as designed.', isoClause: '8.5.1' }],
+        aiInsight: 'This station is the benchmark for the entire facility. If Production adopted the same level of process control (automated scheduling, poka-yoke, SPC), Atlas projects an overall score increase from 72 to 86.', aiConfidence: 90,
+      },
+    ],
+    atlasInsights: [
+      { type: 'benchmark', title: 'Assembly is the internal benchmark', body: 'Assembly achieves 92% OEE, 0% rework, and Cpk >1.67 on all critical parameters. This station proves MV Motors has the capability to operate at world-class level. The question is why Production Lines cannot replicate this discipline.', confidence: 96, impact: 'low', dataPointsAnalyzed: 3200 },
+    ],
     auditQuestions: [
       { id: 'Q6-01', clause: '8.5.1', question: 'Has the organization implemented production under controlled conditions?', score: 9, notes: 'SPC on 3 critical torques. All within limits.' },
       { id: 'Q6-02', clause: '8.5.1', question: 'Are error-proofing devices implemented and verified?', score: 10, notes: 'Poka-yoke tested live. All 8 fixtures functional.' },

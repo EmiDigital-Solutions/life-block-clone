@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import type { Station, DepthLevel, FindingSeverity } from "@/data/auditReportData";
+import type { Station, DepthLevel, FindingSeverity, SubCategory, AtlasAIInsight } from "@/data/auditReportData";
 import NCRCard from "./NCRCard";
-import { CheckCircle2, Circle, Triangle, Diamond, Square, Minus, Camera, Ruler, Video, Sparkles, ChevronDown, ChevronRight, BookOpen } from "lucide-react";
+import { CheckCircle2, Circle, Triangle, Diamond, Square, Minus, Camera, Ruler, Video, Sparkles, ChevronDown, ChevronRight, BookOpen, Brain, AlertTriangle, TrendingUp } from "lucide-react";
 
 const findingIcon: Record<FindingSeverity, React.ElementType> = {
   pass: CheckCircle2, observation: Circle, concern: Triangle, 'minor-ncr': Diamond, 'major-ncr': Square, na: Minus,
@@ -127,6 +127,80 @@ export default function StationCard({ station, depth, totalStations }: StationCa
                           <span className="inline-block mt-1.5 text-[11px] font-mono px-2 py-0.5 rounded bg-[#AD3D3D]/10 text-[#AD3D3D]">{finding.ncrId}</span>
                         )}
                       </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Sub-Categories (Personnel, Material, Machine, Method, Environment) */}
+          {station.subCategories && station.subCategories.length > 0 && depth !== 'executive' && (
+            <div>
+              <h4 className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold mb-4">Process Element Breakdown</h4>
+              <div className="space-y-3">
+                {station.subCategories.map(sub => {
+                  const subHealthColor = sub.health === 'green' ? '#6EA996' : sub.health === 'amber' ? '#E39B5C' : sub.health === 'red' ? '#AD3D3D' : '#C0C0C0';
+                  return (
+                    <div key={sub.id} className="rounded-lg border border-[#E5E7EB] bg-[#F5F5F5] p-4 space-y-3">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 rounded-full" style={{ background: subHealthColor }} />
+                          <span className="text-[14px] font-medium text-[#0A0A0A]">{sub.label}</span>
+                        </div>
+                        <span className="text-[16px] font-mono tabular-nums" style={{ color: subHealthColor }}>{sub.score}/100</span>
+                      </div>
+                      <div className="h-1.5 bg-[#E5E7EB] rounded-full overflow-hidden">
+                        <div className="h-full rounded-full transition-all" style={{ width: `${sub.score}%`, background: subHealthColor }} />
+                      </div>
+                      {sub.findings.map((f, fi) => {
+                        const FIcon = findingIcon[f.type];
+                        return (
+                          <div key={fi} className="flex items-start gap-2 text-[13px]">
+                            <FIcon className={cn("w-3.5 h-3.5 mt-0.5 shrink-0", findingColor[f.type])} />
+                            <span className="text-[#1A1A1A]"><strong>{f.title}</strong> — {f.description}</span>
+                          </div>
+                        );
+                      })}
+                      {depth === 'full' && (
+                        <div className="flex gap-2 p-3 rounded-lg bg-[#0A7FA5]/5 border border-[#0A7FA5]/10">
+                          <Sparkles className="w-3.5 h-3.5 text-[#0A7FA5] mt-0.5 shrink-0" />
+                          <div>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#0A7FA5]">Atlas AI · {sub.aiConfidence}%</span>
+                            <p className="text-[12px] text-[#1A1A1A] leading-relaxed mt-1">{sub.aiInsight}</p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Atlas AI Insights */}
+          {station.atlasInsights && station.atlasInsights.length > 0 && depth !== 'executive' && (
+            <div>
+              <h4 className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold mb-4 flex items-center gap-2">
+                <Brain className="w-4 h-4 text-[#0A7FA5]" /> Atlas Intelligence
+              </h4>
+              <div className="space-y-3">
+                {station.atlasInsights.map((insight, ii) => {
+                  const impactColor = insight.impact === 'critical' ? '#AD3D3D' : insight.impact === 'high' ? '#E39B5C' : '#6EA996';
+                  return (
+                    <div key={ii} className="rounded-lg border border-[#0A7FA5]/15 bg-[#0A7FA5]/3 p-4">
+                      <div className="flex items-center gap-2 mb-2 flex-wrap">
+                        <span className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wider" style={{ background: `${impactColor}15`, color: impactColor }}>{insight.impact}</span>
+                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#F5F5F5] text-[#7B8E80] font-mono">{insight.confidence}% conf.</span>
+                        {insight.dataPointsAnalyzed && <span className="text-[10px] text-[#7B8E80]">{insight.dataPointsAnalyzed.toLocaleString()} data points</span>}
+                      </div>
+                      <p className="text-[14px] font-medium text-[#0A0A0A] mb-1">{insight.title}</p>
+                      <p className="text-[13px] text-[#7B8E80] leading-relaxed">{insight.body}</p>
+                      {insight.connectedNCRs && insight.connectedNCRs.length > 0 && (
+                        <div className="flex items-center gap-2 mt-2">
+                          {insight.connectedNCRs.map(n => <span key={n} className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#AD3D3D]/10 text-[#AD3D3D]">{n}</span>)}
+                        </div>
+                      )}
                     </div>
                   );
                 })}

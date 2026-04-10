@@ -25,9 +25,19 @@ const sidebarStructure: SidebarItem[] = [
   { id: 'station-2', index: 4, label: 'Audit scope', health: 'green', section: 'front' },
   {
     id: 'station-3', index: 5, label: 'Reception & management', health: 'green', section: 'findings',
+    children: [
+      { id: 'personnel', label: 'Personnel & Leadership' },
+      { id: 'system', label: 'QMS Structure' },
+      { id: 'communication', label: 'Communication & Culture' },
+    ],
   },
   {
     id: 'station-4', index: 6, label: 'Incoming goods', health: 'amber', section: 'findings',
+    children: [
+      { id: 'material', label: 'Material Verification' },
+      { id: 'inspection', label: 'Inspection Process' },
+      { id: 'supplier', label: 'Supplier Management' },
+    ],
   },
   {
     id: 'station-5', index: 7, label: 'Production lines', health: 'red', section: 'findings',
@@ -36,19 +46,27 @@ const sidebarStructure: SidebarItem[] = [
       { id: 'material', label: 'Material' },
       { id: 'machine', label: 'Machine' },
       { id: 'method', label: 'Method' },
+      { id: 'environment', label: 'Environment' },
     ],
   },
-  { id: 'station-6', index: 8, label: 'Assembly', health: 'green', section: 'findings' },
+  {
+    id: 'station-6', index: 8, label: 'Assembly', health: 'green', section: 'findings',
+    children: [
+      { id: 'personnel', label: 'Personnel' },
+      { id: 'machine', label: 'Machine & Tooling' },
+      { id: 'method', label: 'Method & Process' },
+    ],
+  },
   { id: 'station-7', index: 9, label: 'Final test', health: 'red', section: 'findings' },
   { id: 'station-8', index: 10, label: 'Packing & outgoing', health: 'green', section: 'findings' },
   { id: 'station-9', index: 11, label: 'Documentation & QMS', health: 'amber', section: 'findings' },
   { id: 'station-10', index: 12, label: 'NCR register', health: 'red', section: 'back' },
-  { id: 'station-11', index: 13, label: 'Delay & risk forecast', health: 'amber', section: 'back' },
-  { id: 'station-12', index: 14, label: 'Corrective actions', health: 'grey', section: 'back' },
-  { id: 'station-13', index: 15, label: 'Evidence register', health: 'grey', section: 'back' },
-  { id: 'station-14', index: 16, label: 'Signatures & approval', health: 'grey', section: 'back' },
-  { id: 'revision', index: 17, label: 'Revision history', health: 'green', section: 'back' },
-  { id: 'appendices', index: 18, label: 'Appendices', health: 'green', section: 'back' },
+  { id: 'station-11', index: 13, label: 'Atlas Intelligence', health: 'grey', section: 'back' },
+  { id: 'station-12', index: 14, label: 'Delay & risk forecast', health: 'amber', section: 'back' },
+  { id: 'station-13', index: 15, label: 'Corrective actions', health: 'grey', section: 'back' },
+  { id: 'station-14', index: 16, label: 'Evidence register', health: 'grey', section: 'back' },
+  { id: 'signatures', index: 17, label: 'Signatures & approval', health: 'grey', section: 'back' },
+  { id: 'revision', index: 18, label: 'Revision history', health: 'green', section: 'back' },
 ];
 
 // Map sidebar items to actual scroll targets (stations)
