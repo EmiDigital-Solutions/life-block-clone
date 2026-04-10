@@ -139,7 +139,7 @@ export default function ExecutiveRadarCharts() {
             <RadarLegendItem color="#CBD5E1" label="Industry minimum" />
           </div>
 
-          <div className="w-full" style={{ height: 340 }}>
+          <div className="w-full" style={{ height: 420 }}>
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart cx="50%" cy="50%" outerRadius="72%" data={productionData}>
                 <PolarGrid stroke="#E2E8F0" strokeDasharray="3 3" />
@@ -169,7 +169,7 @@ export default function ExecutiveRadarCharts() {
               Critical gaps vs. client requirements
             </div>
             <div className="space-y-0">
-              {productionGaps.slice(0, 4).map((g, i) => (
+              {productionGaps.slice(0, 6).map((g, i) => (
                 <GapIndicator key={i} label={g.label} gap={g.gap} direction={g.direction} />
               ))}
             </div>
@@ -190,7 +190,7 @@ export default function ExecutiveRadarCharts() {
             <RadarLegendItem color="#16A34A" label="Tier-2 benchmark" />
           </div>
 
-          <div className="w-full" style={{ height: 340 }}>
+          <div className="w-full" style={{ height: 420 }}>
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart cx="50%" cy="50%" outerRadius="72%" data={commercialData}>
                 <PolarGrid stroke="#E2E8F0" strokeDasharray="3 3" />
@@ -219,7 +219,7 @@ export default function ExecutiveRadarCharts() {
               Critical gaps vs. benchmark
             </div>
             <div className="space-y-0">
-              {commercialGaps.slice(0, 4).map((g, i) => (
+              {commercialGaps.slice(0, 6).map((g, i) => (
                 <GapIndicator key={i} label={g.label} gap={g.gap} direction={g.direction} />
               ))}
             </div>
@@ -233,18 +233,23 @@ export default function ExecutiveRadarCharts() {
           <div>
             <div className="text-[10px] font-bold tracking-[0.1em] uppercase text-[#64748B] mb-1">Assessment Summary</div>
             <p className="text-[13px] text-[#475569] leading-relaxed max-w-xl">
-              MV Motors meets production capacity and workforce requirements but falls critically short on <strong className="text-[#0F172A]">calibration compliance</strong>, <strong className="text-[#0F172A]">defect rate control</strong>, and <strong className="text-[#0F172A]">supply chain resilience</strong>. These three dimensions must reach client thresholds before unconditional approval.
+              MV Motors meets workforce and throughput requirements but shows critical weaknesses in <strong className="text-[#0F172A]">tooling management</strong>, <strong className="text-[#0F172A]">automation level</strong>, <strong className="text-[#0F172A]">calibration</strong>, <strong className="text-[#0F172A]">HSE compliance</strong>, and <strong className="text-[#0F172A]">supply chain resilience</strong>. Machine park is aging Mazak fleet with no predictive maintenance. Commercially, <strong className="text-[#0F172A]">business continuity planning</strong> and <strong className="text-[#0F172A]">ESG readiness</strong> are significantly below automotive Tier-2 benchmarks.
             </p>
           </div>
           <div className="flex items-center gap-6 shrink-0">
             <div className="text-center">
-              <div className="text-[28px] font-bold text-[#D97706] leading-none tabular-nums">4</div>
-              <div className="text-[10px] text-[#94A3B8] font-medium uppercase mt-1">Gaps to close</div>
+              <div className="text-[28px] font-bold text-[#DC2626] leading-none tabular-nums">{productionGaps.length + commercialGaps.length}</div>
+              <div className="text-[10px] text-[#94A3B8] font-medium uppercase mt-1">Gaps total</div>
             </div>
             <div className="w-px h-10 bg-[#E2E8F0]" />
             <div className="text-center">
-              <div className="text-[28px] font-bold text-[#0A7FA5] leading-none tabular-nums">70%</div>
-              <div className="text-[10px] text-[#94A3B8] font-medium uppercase mt-1">Dimensions met</div>
+              <div className="text-[28px] font-bold text-[#D97706] leading-none tabular-nums">{productionGaps.length}</div>
+              <div className="text-[10px] text-[#94A3B8] font-medium uppercase mt-1">Manufacturing</div>
+            </div>
+            <div className="w-px h-10 bg-[#E2E8F0]" />
+            <div className="text-center">
+              <div className="text-[28px] font-bold text-[#0A7FA5] leading-none tabular-nums">{commercialGaps.length}</div>
+              <div className="text-[10px] text-[#94A3B8] font-medium uppercase mt-1">Commercial</div>
             </div>
           </div>
         </div>
