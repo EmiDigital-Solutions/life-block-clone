@@ -249,7 +249,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
                         </div>
                       )}
                       {/* Evidence */}
-                      {sub.evidence && sub.evidence.length > 0 && depth !== 'executive' && (
+                      {sub.evidence && sub.evidence.length > 0 && (
                         <EvidenceGrid evidence={sub.evidence} />
                       )}
                       {/* AI Patterns & Predictions */}
@@ -257,7 +257,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
                         <AIPatternsList patterns={sub.aiPatterns} />
                       )}
                       {/* BMW Impact */}
-                      {sub.bmwImpact && depth !== 'executive' && (
+                      {sub.bmwImpact && (
                         <BMWImpactPanel impact={sub.bmwImpact} />
                       )}
                     </div>
