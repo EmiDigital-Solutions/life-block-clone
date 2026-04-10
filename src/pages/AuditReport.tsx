@@ -170,6 +170,8 @@ export default function AuditReport() {
 
               <AuditScopeSection />
 
+              <MachineParkIntelligence />
+
               <div className="space-y-16 md:space-y-24 pb-16 mt-16">
                 {stations.filter(s => s.index >= 2 && s.index <= 9).map((station) => (
                   <StationCard key={station.index} station={station} depth={depth} totalStations={14} />
