@@ -1129,6 +1129,65 @@ export const stations: Station[] = [
         owner: null, dueDate: null, evidenceIds: ['EVD-030', 'EVD-031', 'EVD-032'], status: 'open', isoClause: '7.5.3',
       },
     ],
+    subCategories: [
+      { id: 'doc-system', label: 'Document Control System', health: 'amber', score: 62,
+        findings: [
+          { type: 'minor-ncr', title: 'Outdated work instructions', description: '4 of 28 WIs reference superseded drawings. 14% non-compliance rate.', ncrId: 'NCR-0006', isoClause: '7.5.3' },
+          { type: 'pass', title: 'Quality Manual current', description: 'QM-001 Rev. G current and accessible via shared drive.', isoClause: '7.5.2' },
+        ],
+        aiInsight: 'Atlas analyzed the 4 outdated WIs: 2 cover CNC boring operations on the critical Bore ID dimension. Operators using obsolete drawing references are at 3.2× higher error probability. This document control gap is compounding the production Cpk issue.', aiConfidence: 79,
+        evidence: [
+          { id: 'EVD-D01', type: 'document', label: 'Quality Manual QM-001 Rev. G' },
+          { id: 'EVD-D02', type: 'document', label: 'Work Instruction cross-reference matrix (4 gaps highlighted)' },
+          { id: 'EVD-D03', type: 'photo', label: 'Outdated drawing at CNC station #2' },
+        ],
+        aiPatterns: [
+          { id: 'AP-D01', type: 'correlation', title: 'Obsolete WIs → operator error → Cpk impact', body: 'Two of 4 outdated WIs cover CNC bore operations. Historical analysis: WI-to-drawing mismatch >30 days correlates with 3.2× operator error rate. Compounding the Cpk crisis.', confidence: 79, impact: 'high' },
+          { id: 'AP-D02', type: 'prediction', title: 'DMS migration ROI: 8 months', body: 'Migrating from manual cross-referencing to automated DMS costs €18,000. Atlas projects it would eliminate 94% of document revision mismatches. ROI: 8 months based on rework prevention.', confidence: 74, impact: 'medium', timeframe: '8 months' },
+        ],
+        bmwImpact: { quality: { rating: 'high', detail: 'Obsolete WIs at CNC stations directly increase bore ID error risk. Part of the Cpk failure chain.' }, time: { rating: 'low', detail: 'WI updates: 2 days. DMS migration: 12 weeks.' }, cost: { rating: 'medium', detail: 'WI update: €400. DMS: €18,000. Annual rework prevention: €28,000.' } },
+      },
+      { id: 'doc-audit', label: 'Internal Audit Program', health: 'amber', score: 58,
+        findings: [
+          { type: 'concern', title: 'Postponed audits', description: '2 of 12 planned audits not conducted. Clauses 8.5 and 9.1 unaudited for 15 months.', isoClause: '9.2' },
+        ],
+        aiInsight: 'The 2 postponed audits cover Clause 8.5 (Production) and Clause 9.1 (Monitoring/Measurement) — precisely the areas where major NCRs were found. If these internal audits had been conducted, Atlas estimates 73% probability that the calibration lapse and coolant issues would have been detected 4-6 months earlier.', aiConfidence: 81,
+        evidence: [
+          { id: 'EVD-D04', type: 'document', label: 'Internal audit schedule — 2025-2026' },
+          { id: 'EVD-D05', type: 'document', label: 'Postponement justification memo (resource constraints)' },
+        ],
+        aiPatterns: [
+          { id: 'AP-D03', type: 'anomaly', title: 'Skipped audits on highest-risk areas', body: 'The 2 skipped audits cover the exact clauses where major NCRs occurred. Had they been conducted, calibration lapse and coolant issues would likely have been caught 4-6 months earlier. This is a systemic self-correction failure.', confidence: 81, impact: 'critical' },
+        ],
+        bmwImpact: { quality: { rating: 'high', detail: 'Lack of internal auditing allowed critical issues to go undetected for months.' }, time: { rating: 'medium', detail: 'Catch-up audits: 2-3 weeks. Delays NCR closure timeline.' }, cost: { rating: 'high', detail: 'Early detection would have prevented ~€127,400 in rework/scrap costs.' } },
+      },
+      { id: 'doc-capa', label: 'CAPA Management', health: 'red', score: 45,
+        findings: [
+          { type: 'concern', title: 'Overdue CAPAs', description: '3 of 8 corrective actions overdue by average 47 days.', isoClause: '10.2' },
+        ],
+        aiInsight: 'Atlas analyzed MV Motors\' CAPA closure history across 5 audits: closure rate predicts next-audit score with r²=0.87. Current 62.5% closure rate (5/8) projects next-audit score of 66-69 — below BMW\'s 70 threshold. This is the most reliable predictor of audit trajectory available.', aiConfidence: 87,
+        evidence: [
+          { id: 'EVD-D06', type: 'document', label: 'CAPA register — 8 actions (3 overdue)' },
+          { id: 'EVD-D07', type: 'document', label: 'CAPA closure trend — 5 audit cycles' },
+        ],
+        aiPatterns: [
+          { id: 'AP-D04', type: 'prediction', title: 'Next audit score: 66-69 (below BMW threshold)', body: 'CAPA closure rate (62.5%) predicts next-audit score with r²=0.87. Projected score: 66-69. BMW downgrade threshold: 70. MV Motors is on track for supplier status downgrade.', confidence: 87, impact: 'critical', timeframe: '12 months' },
+          { id: 'AP-D05', type: 'trend', title: 'CAPA velocity declining', body: 'Average CAPA closure time increased from 18 days to 47 days over 3 audit cycles. Root cause: Quality Manager workload — single person managing CAPAs, audits, and day-to-day quality.', confidence: 82, impact: 'high', timeframe: 'ongoing' },
+        ],
+        bmwImpact: { quality: { rating: 'critical', detail: 'Slow CAPA closure means root causes persist. Recurrence risk: 78% for unresolved CAPAs.' }, time: { rating: 'high', detail: 'BMW re-audit required within 14 days for major NCRs. Overdue CAPAs delay clearance.' }, cost: { rating: 'high', detail: 'BMW supplier downgrade = loss of preferred status. Revenue impact: up to €2.4M/year.' } },
+      },
+      { id: 'doc-improvement', label: 'Continual Improvement', health: 'amber', score: 65,
+        findings: [
+          { type: 'observation', title: 'Improvement execution gap', description: 'Improvement intentions documented but execution lagging. No formal CI methodology (Lean/Six Sigma).', isoClause: '10.3' },
+        ],
+        aiInsight: 'MV Motors identifies improvement opportunities correctly but fails to execute them. Atlas detected 12 documented improvement ideas in the last 18 months — only 3 were implemented. The Assembly station implements improvements at 4× the rate of Production, suggesting the issue is station-specific management, not organization-wide culture.', aiConfidence: 75,
+        evidence: [
+          { id: 'EVD-D08', type: 'document', label: 'Improvement log — 12 ideas, 3 implemented' },
+          { id: 'EVD-D09', type: 'document', label: 'Management review action items (outstanding)' },
+        ],
+        bmwImpact: { quality: { rating: 'medium', detail: 'Stagnant improvement culture allows quality issues to compound over time.' }, time: { rating: 'low', detail: 'No immediate delivery impact.' }, cost: { rating: 'medium', detail: 'Unrealized improvement savings: estimated €45,000/year based on the 9 unimplemented ideas.' } },
+      },
+    ],
     auditQuestions: [
       { id: 'Q9-01', clause: '7.5.2', question: 'Has the organization ensured appropriate identification and format of documented information?', score: 7, notes: 'Quality Manual well-maintained. Some WIs have revision gaps.' },
       { id: 'Q9-02', clause: '7.5.3', question: 'Is documented information controlled?', score: 4, notes: '4/28 WIs reference obsolete drawings.' },
