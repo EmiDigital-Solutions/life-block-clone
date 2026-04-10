@@ -1,4 +1,4 @@
-import { Camera, FileText, Video, MapPin, Clock, Link2 } from "lucide-react";
+import { Camera, FileText, Video, Clock, Link2 } from "lucide-react";
 
 const evidenceItems = [
   { id: 'EVD-001', type: 'photo', name: 'CNC Machine #2 — No calibration sticker', station: 5, ncr: 'NCR-0003', time: '09:14' },
@@ -12,50 +12,44 @@ const evidenceItems = [
   { id: 'EVD-009', type: 'photo', name: 'Packing line — VCI paper application', station: 8, ncr: null, time: '11:05' },
 ];
 
-const typeIcon = {
-  photo: Camera,
-  measurement: FileText,
-  video: Video,
-  document: FileText,
-};
+const typeIcon = { photo: Camera, measurement: FileText, video: Video, document: FileText };
 
 export default function EvidenceVault() {
   return (
     <section id="station-14" className="scroll-mt-20 space-y-6">
+      <div className="flex items-center gap-3 mb-2">
+        <span className="text-[12px] font-medium tracking-[0.1em] text-[#9CA3AF]">// 14</span>
+        <span className="w-1.5 h-1.5 rounded-full bg-[#0052FF]" />
+        <span className="text-[12px] font-medium tracking-[0.1em] text-[#9CA3AF]">Evidence Vault</span>
+        <div className="flex-1 h-px bg-[#E5E7EB]" />
+      </div>
+
       <div className="flex items-center gap-3">
-        <span className="text-[32px] font-semibold text-[#F5F6FA] tracking-tight leading-none">
-          Evidence Vault
-        </span>
-        <span className="text-[11px] px-2.5 py-1 rounded-full uppercase tracking-wider font-semibold bg-white/[0.06] text-[#6B7085]">
+        <h2 className="text-[32px] font-light text-[#111827] tracking-tight leading-none">Evidence Vault</h2>
+        <span className="text-[11px] px-2.5 py-1 rounded-full uppercase tracking-wider font-semibold bg-[#F3F4F6] text-[#9CA3AF]">
           {evidenceItems.length} files
         </span>
       </div>
 
-      {/* Masonry grid */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {evidenceItems.map((item) => {
           const Icon = typeIcon[item.type as keyof typeof typeIcon] || Camera;
           return (
-            <div
-              key={item.id}
-              className="rounded-xl border border-white/[0.08] bg-white/[0.03] overflow-hidden group hover:bg-white/[0.05] transition-all cursor-pointer"
-            >
-              {/* Photo placeholder */}
-              <div className="aspect-[4/3] bg-gradient-to-br from-white/[0.04] to-white/[0.01] flex items-center justify-center relative">
-                <Icon className="w-8 h-8 text-[#6B7085]/50" />
-                {/* Station tag */}
-                <span className="absolute bottom-2 left-2 text-[10px] px-2 py-0.5 rounded bg-black/60 text-[#A1A5B7] font-mono">
+            <div key={item.id} className="rounded-xl border border-[#E5E7EB] bg-white overflow-hidden group hover:shadow-md transition-all cursor-pointer">
+              <div className="aspect-[4/3] bg-[#F9FAFB] flex items-center justify-center relative">
+                <Icon className="w-8 h-8 text-[#D1D5DB]" />
+                <span className="absolute bottom-2 left-2 text-[10px] px-2 py-0.5 rounded bg-white/80 text-[#6B7280] font-mono border border-[#E5E7EB]">
                   Stn {String(item.station).padStart(2, '0')}
                 </span>
                 {item.ncr && (
-                  <span className="absolute top-2 right-2 text-[10px] px-2 py-0.5 rounded bg-[#F04464]/20 text-[#F04464] font-mono flex items-center gap-1">
+                  <span className="absolute top-2 right-2 text-[10px] px-2 py-0.5 rounded bg-[#FEF2F2] text-[#EF4444] font-mono flex items-center gap-1 border border-[#FCA5A5]">
                     <Link2 className="w-3 h-3" /> {item.ncr}
                   </span>
                 )}
               </div>
               <div className="p-3">
-                <p className="text-[12px] text-[#F5F6FA] font-medium line-clamp-1">{item.name}</p>
-                <div className="flex items-center gap-3 mt-1.5 text-[11px] text-[#6B7085]">
+                <p className="text-[12px] text-[#111827] font-medium line-clamp-1">{item.name}</p>
+                <div className="flex items-center gap-3 mt-1.5 text-[11px] text-[#9CA3AF]">
                   <span className="font-mono">{item.id}</span>
                   <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {item.time}</span>
                 </div>

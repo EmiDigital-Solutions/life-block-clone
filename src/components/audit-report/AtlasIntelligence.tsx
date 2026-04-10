@@ -1,15 +1,9 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import {
-  costImpactData,
-  qualityTrajectoryData,
-  qualityTrajectoryMitigated,
-  innovationSignals,
-  crossCorrelations,
-  supplierRiskSignals,
-  scenarioOutcomes,
-  iatfProcessScores,
-  iatfWeightedScore,
+  costImpactData, qualityTrajectoryData, qualityTrajectoryMitigated,
+  innovationSignals, crossCorrelations, supplierRiskSignals, scenarioOutcomes,
+  iatfProcessScores, iatfWeightedScore,
 } from "@/data/auditReportData";
 import {
   BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Cell,
@@ -18,14 +12,14 @@ import {
 } from "recharts";
 import {
   Sparkles, Brain, TrendingDown, TrendingUp, Minus,
-  AlertTriangle, Eye, Zap, ChevronDown, ChevronRight,
+  Eye, ChevronDown, ChevronRight,
   DollarSign, Shield, Lightbulb, Link2, Target,
 } from "lucide-react";
 
 const trendIcon = { improving: TrendingUp, declining: TrendingDown, stable: Minus };
-const trendColor = { improving: '#22D3A5', declining: '#F04464', stable: '#6B7085' };
-const severityColor = { critical: '#F04464', high: '#FF7A59', medium: '#F5B544', low: '#A1A5B7' };
-const statusColor = { safe: '#22D3A5', warning: '#F5B544', critical: '#F04464' };
+const trendColor = { improving: '#10B981', declining: '#EF4444', stable: '#9CA3AF' };
+const severityColor = { critical: '#EF4444', high: '#F97316', medium: '#F59E0B', low: '#6B7280' };
+const statusColor = { safe: '#10B981', warning: '#F59E0B', critical: '#EF4444' };
 
 export default function AtlasIntelligence() {
   const [showMitigated, setShowMitigated] = useState(false);
@@ -38,40 +32,43 @@ export default function AtlasIntelligence() {
 
   const tabs = [
     { id: 'cost' as const, label: 'Cost Impact', icon: DollarSign },
-    { id: 'quality' as const, label: 'Quality Trajectory', icon: Shield },
+    { id: 'quality' as const, label: 'Quality', icon: Shield },
     { id: 'innovation' as const, label: 'Innovation', icon: Lightbulb },
-    { id: 'correlations' as const, label: 'Hidden Patterns', icon: Brain },
+    { id: 'correlations' as const, label: 'Patterns', icon: Brain },
     { id: 'scenarios' as const, label: 'Scenarios', icon: Target },
   ];
 
   return (
     <section id="station-11" className="scroll-mt-20 space-y-6">
-      {/* Header */}
+      {/* Section marker */}
+      <div className="flex items-center gap-3 mb-2">
+        <span className="text-[12px] font-medium tracking-[0.1em] text-[#9CA3AF]">// 11</span>
+        <span className="w-1.5 h-1.5 rounded-full bg-[#0052FF]" />
+        <span className="text-[12px] font-medium tracking-[0.1em] text-[#9CA3AF]">Atlas Intelligence</span>
+        <div className="flex-1 h-px bg-[#E5E7EB]" />
+      </div>
+
       <div className="flex items-center gap-3">
-        <span className="text-[32px] font-semibold text-[#F5F6FA] tracking-tight leading-none">
-          Atlas Intelligence
-        </span>
-        <span className="text-[11px] px-2.5 py-1 rounded-full uppercase tracking-wider font-semibold bg-gradient-to-r from-[#6366F1]/20 to-[#22D3EE]/20 text-[#22D3EE]">
-          <Sparkles className="w-3 h-3 inline mr-1" />Super-Intelligence
+        <h2 className="text-[32px] font-light text-[#111827] tracking-tight leading-none">Atlas Intelligence</h2>
+        <span className="text-[11px] px-2.5 py-1 rounded-full uppercase tracking-wider font-semibold bg-[#EBF0FF] text-[#0052FF]">
+          <Sparkles className="w-3 h-3 inline mr-1" />AI
         </span>
       </div>
 
-      <p className="text-[14px] text-[#A1A5B7] max-w-[640px]">
-        Atlas analyzes cross-domain correlations invisible to human auditors — connecting calibration patterns, 
-        financial exposure, quality trajectories, and innovation gaps into a unified risk model.
+      <p className="text-[14px] text-[#6B7280] max-w-[640px]">
+        Cross-domain correlations invisible to human auditors — connecting calibration patterns,
+        financial exposure, quality trajectories, and innovation gaps.
       </p>
 
       {/* Tab bar */}
-      <div className="flex items-center gap-1 p-1 rounded-xl bg-white/[0.04] border border-white/[0.06] overflow-x-auto">
+      <div className="flex items-center gap-1 p-1 rounded-lg bg-[#F3F4F6] border border-[#E5E7EB] overflow-x-auto">
         {tabs.map(tab => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={cn(
-              "flex items-center gap-2 px-4 py-2 rounded-lg text-[12px] font-medium whitespace-nowrap transition-all",
-              activeTab === tab.id
-                ? "bg-white/[0.08] text-[#F5F6FA]"
-                : "text-[#6B7085] hover:text-[#A1A5B7]"
+              "flex items-center gap-2 px-4 py-2 rounded-md text-[12px] font-medium whitespace-nowrap transition-all",
+              activeTab === tab.id ? "bg-white text-[#111827] shadow-sm" : "text-[#6B7280] hover:text-[#111827]"
             )}
           >
             <tab.icon className="w-3.5 h-3.5" />
@@ -80,81 +77,65 @@ export default function AtlasIntelligence() {
         ))}
       </div>
 
-      {/* ═══════ COST IMPACT ═══════ */}
+      {/* COST */}
       {activeTab === 'cost' && (
         <div className="space-y-4">
-          {/* Summary tiles */}
           <div className="grid grid-cols-3 gap-4">
-            <div className="rounded-2xl border border-[#F04464]/20 bg-[#F04464]/[0.04] p-5">
-              <span className="text-[11px] uppercase tracking-[0.15em] text-[#6B7085] font-medium">Total Exposure</span>
-              <p className="text-[36px] font-semibold text-[#F04464] leading-none mt-2 tabular-nums" style={{ fontFeatureSettings: "'tnum'" }}>
-                €{(totalExposure / 1000).toFixed(0)}K
-              </p>
-              <span className="text-[11px] text-[#A1A5B7] mt-1 block">if no action taken</span>
+            <div className="rounded-xl border border-[#FCA5A5] bg-[#FEF2F2] p-5">
+              <span className="text-[11px] uppercase tracking-[0.15em] text-[#9CA3AF] font-medium">Total Exposure</span>
+              <p className="text-[36px] font-light text-[#EF4444] leading-none mt-2 tabular-nums">€{(totalExposure / 1000).toFixed(0)}K</p>
+              <span className="text-[11px] text-[#6B7280] mt-1 block">if no action taken</span>
             </div>
-            <div className="rounded-2xl border border-[#22D3A5]/20 bg-[#22D3A5]/[0.04] p-5">
-              <span className="text-[11px] uppercase tracking-[0.15em] text-[#6B7085] font-medium">After Mitigation</span>
-              <p className="text-[36px] font-semibold text-[#22D3A5] leading-none mt-2 tabular-nums" style={{ fontFeatureSettings: "'tnum'" }}>
-                €{(totalMitigated / 1000).toFixed(0)}K
-              </p>
-              <span className="text-[11px] text-[#A1A5B7] mt-1 block">with full remediation</span>
+            <div className="rounded-xl border border-[#6EE7B7] bg-[#ECFDF5] p-5">
+              <span className="text-[11px] uppercase tracking-[0.15em] text-[#9CA3AF] font-medium">After Mitigation</span>
+              <p className="text-[36px] font-light text-[#10B981] leading-none mt-2 tabular-nums">€{(totalMitigated / 1000).toFixed(0)}K</p>
+              <span className="text-[11px] text-[#6B7280] mt-1 block">with full remediation</span>
             </div>
-            <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5">
-              <span className="text-[11px] uppercase tracking-[0.15em] text-[#6B7085] font-medium">ROI of Action</span>
-              <p className="text-[36px] font-semibold text-[#F5F6FA] leading-none mt-2 tabular-nums" style={{ fontFeatureSettings: "'tnum'" }}>
-                {((1 - totalMitigated / totalExposure) * 100).toFixed(0)}%
-              </p>
-              <span className="text-[11px] text-[#A1A5B7] mt-1 block">cost reduction achievable</span>
+            <div className="rounded-xl border border-[#E5E7EB] bg-white p-5">
+              <span className="text-[11px] uppercase tracking-[0.15em] text-[#9CA3AF] font-medium">ROI of Action</span>
+              <p className="text-[36px] font-light text-[#111827] leading-none mt-2 tabular-nums">{((1 - totalMitigated / totalExposure) * 100).toFixed(0)}%</p>
+              <span className="text-[11px] text-[#6B7280] mt-1 block">cost reduction achievable</span>
             </div>
           </div>
 
-          {/* Cost breakdown */}
-          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6 space-y-4">
-            <h4 className="text-[11px] uppercase tracking-[0.15em] text-[#6B7085] font-medium">Cost Exposure by Category</h4>
+          <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 space-y-4">
+            <h4 className="text-[11px] uppercase tracking-[0.15em] text-[#9CA3AF] font-medium">Cost Exposure by Category</h4>
             {costImpactData.map((item, i) => (
               <div key={i} className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-[13px] text-[#F5F6FA] font-medium">{item.category}</span>
+                  <span className="text-[13px] text-[#111827] font-medium">{item.category}</span>
                   <div className="flex items-center gap-3">
-                    <span className="text-[12px] font-mono text-[#F04464]">€{item.currentExposure.toLocaleString()}</span>
-                    <span className="text-[10px] text-[#6B7085]">→</span>
-                    <span className="text-[12px] font-mono text-[#22D3A5]">€{item.mitigatedCost.toLocaleString()}</span>
-                    <span className="text-[10px] font-mono text-[#6B7085] px-1.5 py-0.5 rounded bg-white/[0.04]">{item.confidence}%</span>
+                    <span className="text-[12px] font-mono text-[#EF4444]">€{item.currentExposure.toLocaleString()}</span>
+                    <span className="text-[10px] text-[#D1D5DB]">→</span>
+                    <span className="text-[12px] font-mono text-[#10B981]">€{item.mitigatedCost.toLocaleString()}</span>
+                    <span className="text-[10px] font-mono text-[#9CA3AF] px-1.5 py-0.5 rounded bg-[#F3F4F6]">{item.confidence}%</span>
                   </div>
                 </div>
-                <div className="relative h-2 bg-white/[0.04] rounded-full overflow-hidden">
-                  <div
-                    className="absolute inset-y-0 left-0 rounded-full bg-[#F04464]/40"
-                    style={{ width: `${(item.currentExposure / totalExposure) * 100}%` }}
-                  />
-                  <div
-                    className="absolute inset-y-0 left-0 rounded-full bg-[#22D3A5]"
-                    style={{ width: `${(item.mitigatedCost / totalExposure) * 100}%` }}
-                  />
+                <div className="relative h-2 bg-[#F3F4F6] rounded-full overflow-hidden">
+                  <div className="absolute inset-y-0 left-0 rounded-full bg-[#EF4444]/20" style={{ width: `${(item.currentExposure / totalExposure) * 100}%` }} />
+                  <div className="absolute inset-y-0 left-0 rounded-full bg-[#10B981]" style={{ width: `${(item.mitigatedCost / totalExposure) * 100}%` }} />
                 </div>
-                <p className="text-[11px] text-[#6B7085] leading-relaxed">{item.driver}</p>
+                <p className="text-[11px] text-[#9CA3AF] leading-relaxed">{item.driver}</p>
               </div>
             ))}
           </div>
         </div>
       )}
 
-      {/* ═══════ QUALITY TRAJECTORY ═══════ */}
+      {/* QUALITY */}
       {activeTab === 'quality' && (
         <div className="space-y-4">
-          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6">
+          <div className="rounded-xl border border-[#E5E7EB] bg-white p-6">
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h4 className="text-[11px] uppercase tracking-[0.15em] text-[#6B7085] font-medium">DPPM Forecast — 12 Month</h4>
-                <p className="text-[12px] text-[#A1A5B7] mt-1">BMW target: 50 DPPM (red line)</p>
+                <h4 className="text-[11px] uppercase tracking-[0.15em] text-[#9CA3AF] font-medium">DPPM Forecast — 12 Month</h4>
+                <p className="text-[12px] text-[#6B7280] mt-1">BMW target: 50 DPPM (red line)</p>
               </div>
               <button
                 onClick={() => setShowMitigated(!showMitigated)}
                 className={cn(
                   "px-3 py-1.5 rounded-lg text-[11px] font-medium transition-all border",
-                  showMitigated
-                    ? "border-[#22D3A5]/30 text-[#22D3A5] bg-[#22D3A5]/10"
-                    : "border-white/[0.08] text-[#A1A5B7] hover:text-[#F5F6FA]"
+                  showMitigated ? "border-[#10B981] text-[#10B981] bg-[#ECFDF5]" : "border-[#E5E7EB] text-[#6B7280] hover:text-[#111827]"
                 )}
               >
                 {showMitigated ? '✓ With remediation' : 'Show mitigated'}
@@ -162,57 +143,33 @@ export default function AtlasIntelligence() {
             </div>
             <ResponsiveContainer width="100%" height={280}>
               <AreaChart data={trajectoryData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
-                <XAxis dataKey="month" tick={{ fill: '#6B7085', fontSize: 11 }} axisLine={false} tickLine={false} />
-                <YAxis tick={{ fill: '#6B7085', fontSize: 11 }} axisLine={false} tickLine={false} />
-                <Tooltip
-                  contentStyle={{
-                    background: '#13151C', border: '1px solid rgba(255,255,255,0.08)',
-                    borderRadius: '12px', fontSize: '12px', color: '#F5F6FA',
-                  }}
-                />
-                {/* Confidence band */}
-                <Area type="monotone" dataKey="upperBound" stroke="none" fill="#6366F1" fillOpacity={0.08} />
-                <Area type="monotone" dataKey="lowerBound" stroke="none" fill="#0A0B0F" fillOpacity={1} />
-                {/* Predicted */}
-                <Area
-                  type="monotone" dataKey="predicted" stroke="#6366F1" strokeWidth={2}
-                  fill="url(#qualityGradient)" fillOpacity={0.15} strokeDasharray="6 3"
-                />
-                {/* Actual */}
-                <Area
-                  type="monotone" dataKey="actual" stroke="#22D3EE" strokeWidth={2}
-                  fill="none" dot={{ r: 4, fill: '#22D3EE' }} connectNulls={false}
-                />
-                {/* BMW target line */}
-                <Area type="monotone" dataKey={() => 50} stroke="#F04464" strokeWidth={1} strokeDasharray="4 4" fill="none" />
-                <defs>
-                  <linearGradient id="qualityGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#6366F1" stopOpacity={0.3} />
-                    <stop offset="100%" stopColor="#6366F1" stopOpacity={0} />
-                  </linearGradient>
-                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="#F3F4F6" />
+                <XAxis dataKey="month" tick={{ fill: '#9CA3AF', fontSize: 11 }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fill: '#9CA3AF', fontSize: 11 }} axisLine={false} tickLine={false} />
+                <Tooltip contentStyle={{ background: '#fff', border: '1px solid #E5E7EB', borderRadius: '8px', fontSize: '12px', color: '#111827' }} />
+                <Area type="monotone" dataKey="upperBound" stroke="none" fill="#0052FF" fillOpacity={0.04} />
+                <Area type="monotone" dataKey="lowerBound" stroke="none" fill="#fff" fillOpacity={1} />
+                <Area type="monotone" dataKey="predicted" stroke="#0052FF" strokeWidth={2} fill="#0052FF" fillOpacity={0.06} strokeDasharray="6 3" />
+                <Area type="monotone" dataKey="actual" stroke="#111827" strokeWidth={2} fill="none" dot={{ r: 4, fill: '#111827' }} connectNulls={false} />
+                <Area type="monotone" dataKey={() => 50} stroke="#EF4444" strokeWidth={1} strokeDasharray="4 4" fill="none" />
               </AreaChart>
             </ResponsiveContainer>
-            <div className="flex items-center gap-6 mt-4 text-[11px] text-[#6B7085]">
-              <span className="flex items-center gap-2"><span className="w-3 h-0.5 bg-[#22D3EE] rounded-full inline-block" /> Actual</span>
-              <span className="flex items-center gap-2"><span className="w-3 h-0.5 bg-[#6366F1] rounded-full inline-block" style={{ borderBottom: '1px dashed' }} /> Predicted</span>
-              <span className="flex items-center gap-2"><span className="w-3 h-0.5 bg-[#F04464] rounded-full inline-block" style={{ borderBottom: '1px dashed' }} /> BMW Target (50)</span>
+            <div className="flex items-center gap-6 mt-4 text-[11px] text-[#9CA3AF]">
+              <span className="flex items-center gap-2"><span className="w-3 h-0.5 bg-[#111827] rounded-full inline-block" /> Actual</span>
+              <span className="flex items-center gap-2"><span className="w-3 h-0.5 bg-[#0052FF] rounded-full inline-block" /> Predicted</span>
+              <span className="flex items-center gap-2"><span className="w-3 h-0.5 bg-[#EF4444] rounded-full inline-block" /> BMW Target (50)</span>
             </div>
           </div>
 
-          {/* Risk signals */}
-          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6">
-            <h4 className="text-[11px] uppercase tracking-[0.15em] text-[#6B7085] font-medium mb-4">Supplier Risk Signals</h4>
+          <div className="rounded-xl border border-[#E5E7EB] bg-white p-6">
+            <h4 className="text-[11px] uppercase tracking-[0.15em] text-[#9CA3AF] font-medium mb-4">Supplier Risk Signals</h4>
             <div className="space-y-2">
               {supplierRiskSignals.map((signal, i) => (
-                <div key={i} className="flex items-center gap-3 p-3 rounded-lg border border-white/[0.04] bg-white/[0.01]">
+                <div key={i} className="flex items-center gap-3 p-3 rounded-lg border border-[#E5E7EB] bg-[#FAFBFC]">
                   <div className="w-2 h-2 rounded-full shrink-0" style={{ background: statusColor[signal.status] }} />
-                  <span className="text-[13px] text-[#F5F6FA] font-medium flex-1 min-w-0">{signal.signal}</span>
-                  <span className="text-[14px] font-mono tabular-nums shrink-0" style={{ color: statusColor[signal.status], fontFeatureSettings: "'tnum'" }}>
-                    {signal.value}
-                  </span>
-                  <span className="text-[10px] text-[#6B7085] shrink-0">/ {signal.threshold}</span>
+                  <span className="text-[13px] text-[#111827] font-medium flex-1 min-w-0">{signal.signal}</span>
+                  <span className="text-[14px] font-mono tabular-nums shrink-0" style={{ color: statusColor[signal.status] }}>{signal.value}</span>
+                  <span className="text-[10px] text-[#9CA3AF] shrink-0">/ {signal.threshold}</span>
                 </div>
               ))}
             </div>
@@ -220,77 +177,64 @@ export default function AtlasIntelligence() {
         </div>
       )}
 
-      {/* ═══════ INNOVATION ═══════ */}
+      {/* INNOVATION */}
       {activeTab === 'innovation' && (
         <div className="space-y-4">
           <div className="grid md:grid-cols-2 gap-4">
-            {/* Radar */}
-            <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6">
-              <h4 className="text-[11px] uppercase tracking-[0.15em] text-[#6B7085] font-medium mb-4">Innovation Radar vs. Tier-2 Benchmark</h4>
+            <div className="rounded-xl border border-[#E5E7EB] bg-white p-6">
+              <h4 className="text-[11px] uppercase tracking-[0.15em] text-[#9CA3AF] font-medium mb-4">Innovation Radar vs. Tier-2</h4>
               <ResponsiveContainer width="100%" height={280}>
                 <RadarChart data={innovationSignals.map(s => ({ dimension: s.dimension.replace(/\s/g, '\n'), score: s.score, benchmark: s.benchmark }))}>
-                  <PolarGrid stroke="rgba(255,255,255,0.06)" />
-                  <PolarAngleAxis dataKey="dimension" tick={{ fill: '#6B7085', fontSize: 10 }} />
+                  <PolarGrid stroke="#E5E7EB" />
+                  <PolarAngleAxis dataKey="dimension" tick={{ fill: '#6B7280', fontSize: 10 }} />
                   <PolarRadiusAxis angle={90} domain={[0, 100]} tick={false} axisLine={false} />
-                  <Radar dataKey="benchmark" stroke="#6B7085" fill="none" strokeWidth={1} strokeDasharray="4 4" />
-                  <Radar dataKey="score" stroke="#22D3EE" fill="url(#innovationGradient)" fillOpacity={0.3} strokeWidth={2} />
-                  <defs>
-                    <linearGradient id="innovationGradient" x1="0" y1="0" x2="1" y2="1">
-                      <stop offset="0%" stopColor="#6366F1" stopOpacity={0.4} />
-                      <stop offset="100%" stopColor="#22D3EE" stopOpacity={0.2} />
-                    </linearGradient>
-                  </defs>
+                  <Radar dataKey="benchmark" stroke="#D1D5DB" fill="none" strokeWidth={1} strokeDasharray="4 4" />
+                  <Radar dataKey="score" stroke="#0052FF" fill="#0052FF" fillOpacity={0.08} strokeWidth={2} />
                 </RadarChart>
               </ResponsiveContainer>
-              <div className="flex items-center gap-6 mt-2 text-[11px] text-[#6B7085]">
-                <span className="flex items-center gap-2"><span className="w-3 h-0.5 bg-[#22D3EE] rounded-full inline-block" /> MV Motors</span>
-                <span className="flex items-center gap-2"><span className="w-3 h-0.5 bg-[#6B7085] rounded-full inline-block" style={{ borderBottom: '1px dashed' }} /> Tier-2 Median</span>
+              <div className="flex items-center gap-6 mt-2 text-[11px] text-[#9CA3AF]">
+                <span className="flex items-center gap-2"><span className="w-3 h-0.5 bg-[#0052FF] rounded-full inline-block" /> MV Motors</span>
+                <span className="flex items-center gap-2"><span className="w-3 h-0.5 bg-[#D1D5DB] rounded-full inline-block" /> Tier-2 Median</span>
               </div>
             </div>
 
-            {/* Signal list */}
-            <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6 space-y-3">
-              <h4 className="text-[11px] uppercase tracking-[0.15em] text-[#6B7085] font-medium mb-2">Innovation Signals</h4>
+            <div className="rounded-xl border border-[#E5E7EB] bg-white p-6 space-y-3">
+              <h4 className="text-[11px] uppercase tracking-[0.15em] text-[#9CA3AF] font-medium mb-2">Innovation Signals</h4>
               {innovationSignals.map((signal, i) => {
                 const TIcon = trendIcon[signal.trend];
                 return (
-                  <div key={i} className="p-3 rounded-lg border border-white/[0.04] bg-white/[0.01]">
+                  <div key={i} className="p-3 rounded-lg border border-[#E5E7EB] bg-[#FAFBFC]">
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-[13px] text-[#F5F6FA] font-medium">{signal.dimension}</span>
+                      <span className="text-[13px] text-[#111827] font-medium">{signal.dimension}</span>
                       <div className="flex items-center gap-2">
-                        <span className="text-[16px] font-mono tabular-nums" style={{ color: signal.score >= signal.benchmark ? '#22D3A5' : '#F5B544', fontFeatureSettings: "'tnum'" }}>
-                          {signal.score}
-                        </span>
-                        <span className="text-[11px] text-[#6B7085]">/ {signal.benchmark}</span>
+                        <span className="text-[16px] font-mono tabular-nums" style={{ color: signal.score >= signal.benchmark ? '#10B981' : '#F59E0B' }}>{signal.score}</span>
+                        <span className="text-[11px] text-[#9CA3AF]">/ {signal.benchmark}</span>
                         <TIcon className="w-3 h-3" style={{ color: trendColor[signal.trend] }} />
                       </div>
                     </div>
-                    <div className="relative h-1.5 bg-white/[0.04] rounded-full overflow-hidden mb-2">
-                      <div className="absolute inset-y-0 left-0 rounded-full bg-[#22D3EE]/60" style={{ width: `${signal.score}%` }} />
-                      <div className="absolute top-0 bottom-0 w-px bg-[#6B7085]" style={{ left: `${signal.benchmark}%` }} />
+                    <div className="relative h-1.5 bg-[#F3F4F6] rounded-full overflow-hidden mb-2">
+                      <div className="absolute inset-y-0 left-0 rounded-full bg-[#0052FF]/40" style={{ width: `${signal.score}%` }} />
+                      <div className="absolute top-0 bottom-0 w-px bg-[#9CA3AF]" style={{ left: `${signal.benchmark}%` }} />
                     </div>
-                    <p className="text-[11px] text-[#6B7085] leading-relaxed">{signal.insight}</p>
+                    <p className="text-[11px] text-[#9CA3AF] leading-relaxed">{signal.insight}</p>
                   </div>
                 );
               })}
             </div>
           </div>
 
-          {/* IATF Process Scores */}
-          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6">
+          <div className="rounded-xl border border-[#E5E7EB] bg-white p-6">
             <div className="flex items-center justify-between mb-4">
-              <h4 className="text-[11px] uppercase tracking-[0.15em] text-[#6B7085] font-medium">IATF 16949 Process Audit Scores</h4>
-              <span className="text-[14px] font-mono tabular-nums text-[#F5B544]" style={{ fontFeatureSettings: "'tnum'" }}>
-                Weighted: {Math.round(iatfWeightedScore)}%
-              </span>
+              <h4 className="text-[11px] uppercase tracking-[0.15em] text-[#9CA3AF] font-medium">IATF 16949 Process Audit Scores</h4>
+              <span className="text-[14px] font-mono tabular-nums text-[#F59E0B]">Weighted: {Math.round(iatfWeightedScore)}%</span>
             </div>
             <ResponsiveContainer width="100%" height={200}>
               <BarChart data={iatfProcessScores} margin={{ left: 120 }} layout="vertical">
-                <XAxis type="number" domain={[0, 100]} tick={{ fill: '#6B7085', fontSize: 11 }} axisLine={false} tickLine={false} />
-                <YAxis type="category" dataKey="process" tick={{ fill: '#A1A5B7', fontSize: 11 }} axisLine={false} tickLine={false} width={120} />
+                <XAxis type="number" domain={[0, 100]} tick={{ fill: '#9CA3AF', fontSize: 11 }} axisLine={false} tickLine={false} />
+                <YAxis type="category" dataKey="process" tick={{ fill: '#6B7280', fontSize: 11 }} axisLine={false} tickLine={false} width={120} />
                 <Bar dataKey="score" radius={[0, 4, 4, 0]} barSize={14}>
                   {iatfProcessScores.map((entry, index) => (
-                    <Cell key={index} fill={entry.score >= 80 ? '#22D3A5' : entry.score >= 60 ? '#F5B544' : '#F04464'} />
+                    <Cell key={index} fill={entry.score >= 80 ? '#10B981' : entry.score >= 60 ? '#F59E0B' : '#EF4444'} />
                   ))}
                 </Bar>
               </BarChart>
@@ -299,18 +243,18 @@ export default function AtlasIntelligence() {
         </div>
       )}
 
-      {/* ═══════ HIDDEN PATTERNS ═══════ */}
+      {/* HIDDEN PATTERNS */}
       {activeTab === 'correlations' && (
         <div className="space-y-4">
-          <div className="rounded-2xl border border-[#6366F1]/20 bg-[#6366F1]/[0.03] p-5">
+          <div className="rounded-xl border border-[#93C5FD] bg-[#EBF0FF] p-5">
             <div className="flex items-center gap-2 mb-2">
-              <Brain className="w-4 h-4 text-[#6366F1]" />
-              <span className="text-[13px] font-medium text-[#F5F6FA]">What Atlas sees that humans don't</span>
+              <Brain className="w-4 h-4 text-[#0052FF]" />
+              <span className="text-[13px] font-medium text-[#111827]">What Atlas sees that humans don't</span>
             </div>
-            <p className="text-[12px] text-[#A1A5B7] leading-relaxed">
-              Atlas cross-referenced 847 data points across all stations, historical audit data (5 prior audits), 
-              supplier financials, BMW quality gateway submissions, and regional industry benchmarks to identify 
-              6 hidden patterns. Items marked with <Eye className="w-3 h-3 inline text-[#6366F1]" /> were not flagged by the auditor.
+            <p className="text-[12px] text-[#6B7280] leading-relaxed">
+              Atlas cross-referenced 847 data points across all stations, historical audit data (5 prior audits),
+              supplier financials, BMW quality gateway submissions, and regional industry benchmarks to identify
+              6 hidden patterns. Items marked with <Eye className="w-3 h-3 inline text-[#0052FF]" /> were not flagged by the auditor.
             </p>
           </div>
 
@@ -318,84 +262,75 @@ export default function AtlasIntelligence() {
             <div
               key={cc.id}
               className={cn(
-                "rounded-2xl border p-5 transition-all cursor-pointer",
-                cc.severity === 'critical' ? "border-[#F04464]/20 bg-[#F04464]/[0.02]" :
-                cc.severity === 'high' ? "border-[#FF7A59]/20 bg-[#FF7A59]/[0.02]" :
-                "border-white/[0.08] bg-white/[0.02]"
+                "rounded-xl border p-5 transition-all cursor-pointer bg-white",
+                cc.severity === 'critical' ? "border-[#FCA5A5]" :
+                cc.severity === 'high' ? "border-[#FDBA74]" :
+                "border-[#E5E7EB]"
               )}
               onClick={() => setExpandedCorrelation(expandedCorrelation === cc.id ? null : cc.id)}
             >
               <div className="flex items-start gap-3">
-                {!cc.humanVisible && <Eye className="w-4 h-4 text-[#6366F1] mt-0.5 shrink-0" />}
+                {!cc.humanVisible && <Eye className="w-4 h-4 text-[#0052FF] mt-0.5 shrink-0" />}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1 flex-wrap">
-                    <span className="text-[14px] font-medium text-[#F5F6FA]">{cc.title}</span>
+                    <span className="text-[14px] font-medium text-[#111827]">{cc.title}</span>
                     <span className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wider"
                       style={{ background: `${severityColor[cc.severity]}15`, color: severityColor[cc.severity] }}>
                       {cc.severity}
                     </span>
-                    <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-white/[0.04] text-[#6B7085]">
-                      {cc.confidence}% conf.
-                    </span>
+                    <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#F3F4F6] text-[#9CA3AF]">{cc.confidence}% conf.</span>
                   </div>
                   {expandedCorrelation === cc.id && (
                     <div className="mt-3 space-y-3">
-                      <p className="text-[13px] text-[#A1A5B7] leading-relaxed">{cc.description}</p>
+                      <p className="text-[13px] text-[#6B7280] leading-relaxed">{cc.description}</p>
                       <div className="flex items-center gap-2 flex-wrap">
-                        <Link2 className="w-3 h-3 text-[#6B7085]" />
+                        <Link2 className="w-3 h-3 text-[#9CA3AF]" />
                         {cc.connectedFindings.map(f => (
-                          <span key={f} className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.06] text-[#A1A5B7]">{f}</span>
+                          <span key={f} className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#F3F4F6] text-[#6B7280]">{f}</span>
                         ))}
                       </div>
                     </div>
                   )}
                 </div>
-                {expandedCorrelation === cc.id ? <ChevronDown className="w-4 h-4 text-[#6B7085]" /> : <ChevronRight className="w-4 h-4 text-[#6B7085]" />}
+                {expandedCorrelation === cc.id ? <ChevronDown className="w-4 h-4 text-[#9CA3AF]" /> : <ChevronRight className="w-4 h-4 text-[#9CA3AF]" />}
               </div>
             </div>
           ))}
         </div>
       )}
 
-      {/* ═══════ SCENARIOS ═══════ */}
+      {/* SCENARIOS */}
       {activeTab === 'scenarios' && (
         <div className="space-y-4">
-          <p className="text-[13px] text-[#A1A5B7]">What happens under each decision path — cost, delivery, and quality modeled simultaneously.</p>
+          <p className="text-[13px] text-[#6B7280]">What happens under each decision path — cost, delivery, and quality modeled simultaneously.</p>
           <div className="grid md:grid-cols-2 gap-4">
             {scenarioOutcomes.map((sc, i) => {
               const isRecommended = sc.scenario === 'Full Remediation';
               return (
-                <div
-                  key={i}
-                  className={cn(
-                    "rounded-2xl border p-5 space-y-4",
-                    isRecommended ? "border-[#22D3A5]/30 bg-[#22D3A5]/[0.03]" : "border-white/[0.08] bg-white/[0.03]"
-                  )}
-                >
+                <div key={i} className={cn(
+                  "rounded-xl border p-5 space-y-4 bg-white",
+                  isRecommended ? "border-[#6EE7B7] bg-[#ECFDF5]" : "border-[#E5E7EB]"
+                )}>
                   <div className="flex items-center justify-between">
-                    <span className="text-[16px] font-semibold text-[#F5F6FA]">{sc.scenario}</span>
+                    <span className="text-[16px] font-medium text-[#111827]">{sc.scenario}</span>
                     {isRecommended && (
-                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#22D3A5]/20 text-[#22D3A5] font-semibold uppercase tracking-wider">
-                        Recommended
-                      </span>
+                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#D1FAE5] text-[#10B981] font-semibold uppercase tracking-wider">Recommended</span>
                     )}
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <span className="text-[10px] uppercase tracking-wider text-[#6B7085]">Delay</span>
-                      <p className="text-[24px] font-mono tabular-nums text-[#F5F6FA]" style={{ fontFeatureSettings: "'tnum'" }}>
-                        +{sc.deliveryDelay}d
-                      </p>
+                      <span className="text-[10px] uppercase tracking-wider text-[#9CA3AF]">Delay</span>
+                      <p className="text-[24px] font-mono font-light tabular-nums text-[#111827]">+{sc.deliveryDelay}d</p>
                     </div>
                     <div>
-                      <span className="text-[10px] uppercase tracking-wider text-[#6B7085]">Cost</span>
-                      <p className="text-[24px] font-mono tabular-nums" style={{ color: sc.costImpact > 200000 ? '#F04464' : sc.costImpact > 100000 ? '#F5B544' : '#22D3A5', fontFeatureSettings: "'tnum'" }}>
+                      <span className="text-[10px] uppercase tracking-wider text-[#9CA3AF]">Cost</span>
+                      <p className="text-[24px] font-mono font-light tabular-nums" style={{ color: sc.costImpact > 200000 ? '#EF4444' : sc.costImpact > 100000 ? '#F59E0B' : '#10B981' }}>
                         €{(sc.costImpact / 1000).toFixed(0)}K
                       </p>
                     </div>
                   </div>
-                  <p className="text-[12px] text-[#A1A5B7] leading-relaxed">{sc.qualityRisk}</p>
-                  <p className="text-[11px] font-medium" style={{ color: isRecommended ? '#22D3A5' : '#6B7085' }}>{sc.recommendation}</p>
+                  <p className="text-[12px] text-[#6B7280] leading-relaxed">{sc.qualityRisk}</p>
+                  <p className="text-[11px] font-medium" style={{ color: isRecommended ? '#10B981' : '#9CA3AF' }}>{sc.recommendation}</p>
                 </div>
               );
             })}
