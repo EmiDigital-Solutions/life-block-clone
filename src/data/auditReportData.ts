@@ -544,6 +544,35 @@ export const stations: Station[] = [
         owner: null, dueDate: null, evidenceIds: ['EVD-020', 'EVD-021', 'EVD-022'], status: 'open', isoClause: '7.5.3',
       },
     ],
+    subCategories: [
+      { id: 'inc-material', label: 'Material Verification', health: 'green', score: 90,
+        findings: [
+          { type: 'pass', title: 'Material certificates', description: 'EN 10204 Type 3.1 certificates present for all 14 steel batches received in March 2026.', isoClause: '8.4.2' },
+          { type: 'pass', title: 'Chemical composition', description: 'Spectrometer spot-check on 3 heats — all within EN 10083-3 limits for 42CrMo4.', isoClause: '8.6' },
+        ],
+        aiInsight: 'Atlas cross-referenced material certificates against BMW SOR-0042 requirements. All 14 batches comply. However, Supplier S-017\'s last 3 heats show phosphorus trending toward upper limit (0.024% vs 0.025% max). Recommend tightening incoming spec to 0.020% to create early warning buffer.',
+        aiConfidence: 89,
+      },
+      { id: 'inc-inspection', label: 'Inspection Process', health: 'amber', score: 68,
+        findings: [
+          { type: 'minor-ncr', title: 'Unsigned records', description: '3 of 12 incoming inspection records missing inspector signatures — pattern: all from night shift.', ncrId: 'NCR-0004', isoClause: '7.5' },
+          { type: 'observation', title: 'Inspection time pressure', description: 'Average inspection time: 4.2 min vs. 8 min standard. Night shift rushing.', isoClause: '8.6' },
+        ],
+        aiInsight: 'Atlas identified a hidden pattern: all 3 unsigned records occurred during night shift (22:00-06:00), when only 1 inspector covers incoming + in-process. This is not a discipline issue — it\'s a staffing capacity constraint. Adding a second night inspector would eliminate 94% of documentation gaps based on similar supplier models.',
+        aiConfidence: 92,
+      },
+      { id: 'inc-supplier', label: 'Supplier Management', health: 'amber', score: 72,
+        findings: [
+          { type: 'concern', title: 'Re-evaluation overdue', description: '6 of 42 active suppliers not re-evaluated within 12-month cycle. 3 are single-source.', isoClause: '8.4' },
+        ],
+        aiInsight: 'Of the 6 overdue suppliers, Atlas flagged 2 as high-risk: Supplier S-017 (steel bar stock, incoming rejection rate 3.2× average) and S-031 (cutting tools, 2 field recalls in 2025). These 2 suppliers feed directly into the Bore ID process where Cpk is failing. There is a 67% probability that supplier material variation is a root contributor to the Cpk decline.',
+        aiConfidence: 84,
+      },
+    ],
+    atlasInsights: [
+      { type: 'correlation', title: 'Night shift staffing → documentation gaps', body: 'Atlas analyzed 847 incoming inspection records over 18 months. Night shift documentation errors are 4.7× higher than day shift. Root cause: single inspector covering 2 functional areas. This is a systemic capacity issue, not a training gap.', confidence: 92, impact: 'medium', connectedNCRs: ['NCR-0004'], dataPointsAnalyzed: 847 },
+      { type: 'prediction', title: 'Supplier S-017 quality deterioration', body: 'Phosphorus levels in S-017 steel have increased 0.003% per quarter for 4 quarters. At current trajectory, material will exceed BMW spec by Q3 2026. Recommend preemptive qualification of alternative source.', confidence: 78, impact: 'high', dataPointsAnalyzed: 56 },
+    ],
     auditQuestions: [
       { id: 'Q4-01', clause: '8.4.1', question: 'Does the organization ensure externally provided products conform to requirements?', score: 7, notes: 'Incoming inspection effective but signature discipline needs improvement.' },
       { id: 'Q4-02', clause: '8.4.2', question: 'Has the organization defined controls for externally provided products?', score: 8, notes: 'Inspection plan well-defined.' },
