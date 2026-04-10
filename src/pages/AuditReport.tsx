@@ -8,6 +8,7 @@ import KPIBand from "@/components/audit-report/KPIBand";
 import StationCard from "@/components/audit-report/StationCard";
 import NCRRegister from "@/components/audit-report/NCRRegister";
 import DelayForecast from "@/components/audit-report/DelayForecast";
+import AtlasIntelligence from "@/components/audit-report/AtlasIntelligence";
 import RecommendationSection from "@/components/audit-report/RecommendationSection";
 import EvidenceVault from "@/components/audit-report/EvidenceVault";
 import DecisionTray from "@/components/audit-report/DecisionTray";
@@ -159,7 +160,7 @@ export default function AuditReport() {
 
               {/* Walkthrough stations */}
               <div className="space-y-16 md:space-y-24 pb-16">
-                {stations.filter(s => s.index >= 2 && s.index <= 9).map(station => (
+                {stations.filter(s => s.index >= 2 && s.index <= 9).map((station) => (
                   <StationCard
                     key={station.index}
                     station={station}
@@ -170,6 +171,9 @@ export default function AuditReport() {
 
                 {/* NCR Register */}
                 <NCRRegister ncrs={allNCRs} />
+
+                {/* Atlas Intelligence */}
+                <AtlasIntelligence />
 
                 {/* Delay Forecast */}
                 <DelayForecast />
