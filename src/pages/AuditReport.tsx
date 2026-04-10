@@ -60,6 +60,12 @@ export default function AuditReport() {
     setSidebarOpen(false);
   }, []);
 
+  const scrollToId = useCallback((id: string) => {
+    const el = document.getElementById(id);
+    el?.scrollIntoView({ behavior: 'smooth' });
+    setSidebarOpen(false);
+  }, []);
+
   useEffect(() => {
     if (isMobile) setInspectorOpen(false);
   }, [isMobile]);
@@ -77,7 +83,7 @@ export default function AuditReport() {
               <span className="text-[13px] font-semibold text-[#0A0A0A]">Document Outline</span>
               <button onClick={() => setSidebarOpen(false)} className="p-1"><X className="w-4 h-4 text-[#C0C0C0]" /></button>
             </div>
-            <ReportSidebar activeStation={activeStation} onStationClick={scrollToStation} />
+            <ReportSidebar activeStation={activeStation} onStationClick={scrollToStation} onScrollToId={scrollToId} />
           </div>
         </div>
       )}
@@ -87,6 +93,7 @@ export default function AuditReport() {
         <ReportSidebar
           activeStation={activeStation}
           onStationClick={scrollToStation}
+          onScrollToId={scrollToId}
           className="w-[260px] xl:w-[280px] shrink-0 border-r border-[#E5E7EB] bg-white"
         />
       )}
@@ -170,14 +177,15 @@ export default function AuditReport() {
 
               <AuditScopeSection />
 
-              <MachineParkIntelligence />
-
               <div className="space-y-16 md:space-y-24 pb-16 mt-16">
                 {stations.filter(s => s.index >= 2 && s.index <= 9).map((station) => (
                   <StationCard key={station.index} station={station} depth={depth} totalStations={14} />
                 ))}
                 <NCRRegister ncrs={allNCRs} />
                 <AtlasIntelligence />
+                <div id="machine-park">
+                  <MachineParkIntelligence />
+                </div>
                 <DelayForecast />
                 <RecommendationSection />
                 <EvidenceVault />

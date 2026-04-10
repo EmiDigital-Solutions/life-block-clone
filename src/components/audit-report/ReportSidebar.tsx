@@ -62,11 +62,12 @@ const sidebarStructure: SidebarItem[] = [
   { id: 'station-9', index: 11, label: 'Documentation & QMS', health: 'amber', section: 'findings' },
   { id: 'station-10', index: 12, label: 'NCR register', health: 'red', section: 'back' },
   { id: 'station-11', index: 13, label: 'Atlas Intelligence', health: 'grey', section: 'back' },
-  { id: 'station-12', index: 14, label: 'Delay & risk forecast', health: 'amber', section: 'back' },
-  { id: 'station-13', index: 15, label: 'Corrective actions', health: 'grey', section: 'back' },
-  { id: 'station-14', index: 16, label: 'Evidence register', health: 'grey', section: 'back' },
-  { id: 'signatures', index: 17, label: 'Signatures & approval', health: 'grey', section: 'back' },
-  { id: 'revision', index: 18, label: 'Revision history', health: 'green', section: 'back' },
+  { id: 'machine-park', index: 14, label: 'Machine Park Intelligence', health: 'amber', section: 'back' },
+  { id: 'station-12', index: 15, label: 'Delay & risk forecast', health: 'amber', section: 'back' },
+  { id: 'station-13', index: 16, label: 'Corrective actions', health: 'grey', section: 'back' },
+  { id: 'station-14', index: 17, label: 'Evidence register', health: 'grey', section: 'back' },
+  { id: 'signatures', index: 18, label: 'Signatures & approval', health: 'grey', section: 'back' },
+  { id: 'revision', index: 19, label: 'Revision history', health: 'green', section: 'back' },
 ];
 
 // Map sidebar items to actual scroll targets (stations)
@@ -79,6 +80,7 @@ const scrollMap: Record<number, number> = {
 interface ReportSidebarProps {
   activeStation: number;
   onStationClick: (index: number) => void;
+  onScrollToId?: (id: string) => void;
   className?: string;
 }
 
@@ -95,7 +97,7 @@ function SectionGroup({ label, children }: { label: string; children: React.Reac
   );
 }
 
-export default function ReportSidebar({ activeStation, onStationClick, className }: ReportSidebarProps) {
+export default function ReportSidebar({ activeStation, onStationClick, onScrollToId, className }: ReportSidebarProps) {
   const totalSections = stations.filter(s => s.observation || s.index <= 1).length + 6;
   const ncrCount = allNCRs.length;
 
@@ -106,11 +108,18 @@ export default function ReportSidebar({ activeStation, onStationClick, className
   const renderItem = (item: SidebarItem) => {
     const targetStation = scrollMap[item.index] || 1;
     const isActive = activeStation === targetStation;
+    const isCustomId = !item.id.startsWith('station-') && item.id !== 'signatures' && item.id !== 'revision';
 
     return (
       <div key={item.index}>
         <button
-          onClick={() => onStationClick(targetStation)}
+          onClick={() => {
+            if (isCustomId && onScrollToId) {
+              onScrollToId(item.id);
+            } else {
+              onStationClick(targetStation);
+            }
+          }}
           className={cn(
             "flex items-center gap-3 w-full px-4 py-2 text-left transition-all duration-150 group",
             isActive
