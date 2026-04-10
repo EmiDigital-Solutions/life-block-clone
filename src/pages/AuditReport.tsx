@@ -18,7 +18,6 @@ import AuditScopeSection from "@/components/audit-report/AuditScopeSection";
 import ExecutiveRadarCharts from "@/components/audit-report/ExecutiveRadarCharts";
 import MachineParkIntelligence from "@/components/audit-report/MachineParkIntelligence";
 import SectionInspector from "@/components/audit-report/SectionInspector";
-import ExecutiveReportView from "@/components/audit-report/ExecutiveReportView";
 import AtlasRiskScore from "@/components/audit-report/AtlasRiskScore";
 import AnomalyCallouts from "@/components/audit-report/AnomalyCallouts";
 import CostWaterfallChart from "@/components/audit-report/CostWaterfallChart";
@@ -296,64 +295,59 @@ export default function AuditReport() {
         <div className="flex-1 flex overflow-hidden">
           <div ref={contentRef} className="flex-1 overflow-y-auto bg-white">
             <div className="max-w-[960px] mx-auto px-4 md:px-8">
-              {depth === 'executive' ? (
-                <ExecutiveReportView
-                  reportMeta={reportMeta}
-                  stations={stations}
-                  kpis={kpis}
-                  allNCRs={allNCRs}
-                  onDecide={() => setInspectorOpen(true)}
-                />
-              ) : (
-                <>
-                  <ReportHero
-                    verdict={reportMeta.verdict}
-                    verdictLabel={reportMeta.verdictLabel}
-                    heroReason={reportMeta.heroReason}
-                    supplier={reportMeta.supplier}
-                    po={reportMeta.po}
-                    auditor={reportMeta.auditor}
-                    date={reportMeta.date}
-                    location={reportMeta.location}
-                    onDecide={() => setInspectorOpen(true)}
-                    onWalk={() => scrollToStation(2)}
-                  />
+              <ReportHero
+                verdict={reportMeta.verdict}
+                verdictLabel={reportMeta.verdictLabel}
+                heroReason={reportMeta.heroReason}
+                supplier={reportMeta.supplier}
+                po={reportMeta.po}
+                auditor={reportMeta.auditor}
+                date={reportMeta.date}
+                location={reportMeta.location}
+                onDecide={() => setInspectorOpen(true)}
+                onWalk={() => scrollToStation(2)}
+              />
 
-                  <AtlasRiskScore />
+              {/* Atlas Risk Score */}
+              <AtlasRiskScore />
 
-                  <section className="py-16 md:py-24">
-                    <KPIBand kpis={kpis} />
-                  </section>
+              <section className="py-16 md:py-24">
+                <KPIBand kpis={kpis} />
+              </section>
 
-                  <ExecutiveRadarCharts />
+              <ExecutiveRadarCharts />
 
-                  <AuditScopeSection />
+              <AuditScopeSection />
 
-                  <AnomalyCallouts />
+              {/* Anomaly callouts */}
+              <AnomalyCallouts />
 
-                  <div className="space-y-16 md:space-y-24 pb-16 mt-16">
-                    {displayStations.map((station) => (
-                      <StationCard key={station.index} station={station} depth={depth} totalStations={14} />
-                    ))}
-                    <NCRRegister ncrs={allNCRs} />
-                    
-                    <FindingSankeyDiagram />
-                    <CostWaterfallChart />
-                    <CAPAGantt />
+              <div className="space-y-16 md:space-y-24 pb-16 mt-16">
+                {displayStations.map((station) => (
+                  <StationCard key={station.index} station={station} depth={depth} totalStations={14} />
+                ))}
+                <NCRRegister ncrs={allNCRs} />
+                
+                {/* Finding Resolution Pipeline (Sankey) */}
+                <FindingSankeyDiagram />
 
-                    <AtlasIntelligence />
-                    <div id="machine-park">
-                      <OEEGaugeCluster />
-                      <div className="mt-16">
-                        <MachineParkIntelligence />
-                      </div>
-                    </div>
-                    <DelayForecast />
-                    <RecommendationSection />
-                    <EvidenceVault />
+                {/* Cost waterfall chart */}
+                <CostWaterfallChart />
+
+                {/* CAPA Gantt Timeline */}
+                <CAPAGantt />
+
+                <AtlasIntelligence />
+                <div id="machine-park">
+                  <OEEGaugeCluster />
+                  <div className="mt-16">
+                    <MachineParkIntelligence />
                   </div>
-                </>
-              )}
+                </div>
+                <DelayForecast />
+                <RecommendationSection />
+                <EvidenceVault />
+              </div>
 
               {/* Ask Atlas */}
               <div className="sticky bottom-4 z-30 mb-8">
