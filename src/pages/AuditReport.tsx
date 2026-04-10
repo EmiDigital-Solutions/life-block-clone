@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { reportMeta, kpis, stations, allNCRs, costImpactData } from "@/data/auditReportData";
+import { useAuditReport } from "@/hooks/useAuditReport";
 import type { DepthLevel } from "@/data/auditReportData";
 import ReportSidebar from "@/components/audit-report/ReportSidebar";
 import ReportHero from "@/components/audit-report/ReportHero";
@@ -47,6 +48,15 @@ const verdictColors: Record<string, string> = {
 };
 
 export default function AuditReport() {
+  const [searchParams] = useSearchParams();
+  const reportId = searchParams.get('id');
+  const { data: reportData } = useAuditReport(reportId);
+
+  const reportMeta = reportData?.reportMeta ?? { verdict: 'conditional' as const, verdictLabel: 'LOADING', heroReason: '', supplier: '', po: '', auditor: '', date: '', location: '', standard: '', client: '', scope: '', auditType: '', previousAuditDate: '', previousScore: 0, certBody: '', certNumber: '', certExpiry: '', iatfScore: 0, totalCostExposure: 0, mitigatedCostExposure: 0 };
+  const stations = reportData?.stations ?? [];
+  const kpis = reportData?.kpis ?? [];
+  const allNCRs = reportData?.allNCRs ?? [];
+
   const [activeStation, setActiveStation] = useState(1);
   const [depth, setDepth] = useState<DepthLevel>('standard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -69,7 +79,7 @@ export default function AuditReport() {
   const nextNCRStation = useMemo(() => {
     const stationsWithNCRs = stations.filter(s => s.ncrs.length > 0 && s.index > activeStation);
     return stationsWithNCRs[0] || stations.find(s => s.ncrs.length > 0);
-  }, [activeStation]);
+  }, [activeStation, stations]);
 
   useEffect(() => {
     const container = contentRef.current;
