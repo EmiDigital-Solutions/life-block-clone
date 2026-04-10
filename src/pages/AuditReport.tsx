@@ -11,6 +11,8 @@ import DelayForecast from "@/components/audit-report/DelayForecast";
 import AtlasIntelligence from "@/components/audit-report/AtlasIntelligence";
 import RecommendationSection from "@/components/audit-report/RecommendationSection";
 import EvidenceVault from "@/components/audit-report/EvidenceVault";
+import FindingSankeyDiagram from "@/components/audit-report/FindingSankeyDiagram";
+import OEEGaugeCluster from "@/components/audit-report/OEEGaugeCluster";
 import AuditScopeSection from "@/components/audit-report/AuditScopeSection";
 import ExecutiveRadarCharts from "@/components/audit-report/ExecutiveRadarCharts";
 import MachineParkIntelligence from "@/components/audit-report/MachineParkIntelligence";
@@ -316,6 +318,9 @@ export default function AuditReport() {
                 ))}
                 <NCRRegister ncrs={allNCRs} />
                 
+                {/* Finding Resolution Pipeline (Sankey) */}
+                <FindingSankeyDiagram />
+
                 {/* Cost waterfall chart */}
                 <CostWaterfallChart />
 
@@ -324,7 +329,10 @@ export default function AuditReport() {
 
                 <AtlasIntelligence />
                 <div id="machine-park">
-                  <MachineParkIntelligence />
+                  <OEEGaugeCluster />
+                  <div className="mt-16">
+                    <MachineParkIntelligence />
+                  </div>
                 </div>
                 <DelayForecast />
                 <RecommendationSection />

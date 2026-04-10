@@ -1,0 +1,94 @@
+import { useState } from "react";
+import { CheckCircle2, Circle, Clock, Shield, User, Fingerprint } from "lucide-react";
+
+interface SignatureStep {
+  role: string;
+  name: string;
+  status: 'completed' | 'pending' | 'waiting';
+  timestamp?: string;
+  hash?: string;
+}
+
+const signatureSteps: SignatureStep[] = [
+  { role: 'Lead Auditor', name: 'Marko Tomić, IRCA Lead', status: 'completed', timestamp: '2025-01-15 14:32 CET', hash: '0x7a3f…e91b' },
+  { role: 'Client QA Manager', name: 'Pending Assignment', status: 'pending' },
+  { role: 'Management Approval', name: 'Pending Assignment', status: 'waiting' },
+];
+
+const statusIcon = { completed: CheckCircle2, pending: Clock, waiting: Circle };
+const statusColor = { completed: 'text-[#6EA996]', pending: 'text-[#E39B5C]', waiting: 'text-[#C0C0C0]' };
+
+export default function DigitalSignatureWorkflow() {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <section className="space-y-4">
+      <div className="flex items-center gap-3">
+        <Fingerprint className="w-4 h-4 text-[#0A7FA5]" />
+        <h3 className="text-[14px] font-semibold text-[#0A0A0A]">Digital Signature & Approval</h3>
+        <span className="text-[10px] px-2 py-0.5 bg-[#E39B5C]/10 text-[#E39B5C] font-semibold uppercase tracking-wider">1 of 3 signed</span>
+      </div>
+
+      <div className="border border-[#E5E7EB] bg-white">
+        {signatureSteps.map((step, i) => {
+          const Icon = statusIcon[step.status];
+          return (
+            <div key={i} className="flex items-start gap-4 p-4 border-b border-[#E5E7EB] last:border-b-0">
+              <div className="flex flex-col items-center gap-1 pt-0.5">
+                <Icon className={`w-5 h-5 ${statusColor[step.status]}`} />
+                {i < signatureSteps.length - 1 && <div className="w-px h-8 bg-[#E5E7EB]" />}
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <span className="text-[11px] uppercase tracking-[0.1em] text-[#7B8E80] font-semibold">{step.role}</span>
+                    <p className="text-[13px] text-[#0A0A0A] mt-0.5">{step.name}</p>
+                  </div>
+                  {step.status === 'pending' && (
+                    <button className="px-3 py-1.5 text-[11px] font-medium text-[#0A7FA5] border border-[#0A7FA5]/20 hover:bg-[#0A7FA5]/5 transition-colors">
+                      Request Signature
+                    </button>
+                  )}
+                </div>
+                {step.timestamp && (
+                  <div className="flex items-center gap-3 mt-2">
+                    <span className="text-[10px] font-mono text-[#7B8E80]">{step.timestamp}</span>
+                    {step.hash && (
+                      <span className="text-[10px] font-mono text-[#C0C0C0] flex items-center gap-1">
+                        <Shield className="w-3 h-3" /> {step.hash}
+                      </span>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <button
+        onClick={() => setExpanded(!expanded)}
+        className="text-[11px] text-[#0A7FA5] hover:underline"
+      >
+        {expanded ? 'Hide audit trail' : 'View full audit trail →'}
+      </button>
+
+      {expanded && (
+        <div className="border border-dashed border-[#C0C0C0] p-4 space-y-2">
+          <p className="text-[10px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold mb-3">Immutable Audit Trail</p>
+          {[
+            { time: '2025-01-15 14:32', action: 'Report signed by Lead Auditor', hash: '0x7a3f…e91b' },
+            { time: '2025-01-15 14:30', action: 'All stations reviewed and marked complete', hash: '0x4b2c…f73d' },
+            { time: '2025-01-15 09:00', action: 'Audit report generated from live audit data', hash: '0x1e8a…d45c' },
+          ].map((entry, i) => (
+            <div key={i} className="flex items-center gap-3 text-[11px]">
+              <span className="font-mono text-[#C0C0C0] w-[140px] shrink-0">{entry.time}</span>
+              <span className="text-[#0A0A0A] flex-1">{entry.action}</span>
+              <span className="font-mono text-[#C0C0C0]">{entry.hash}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </section>
+  );
+}
