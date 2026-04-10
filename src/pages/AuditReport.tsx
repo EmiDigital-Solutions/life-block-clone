@@ -296,59 +296,64 @@ export default function AuditReport() {
         <div className="flex-1 flex overflow-hidden">
           <div ref={contentRef} className="flex-1 overflow-y-auto bg-white">
             <div className="max-w-[960px] mx-auto px-4 md:px-8">
-              <ReportHero
-                verdict={reportMeta.verdict}
-                verdictLabel={reportMeta.verdictLabel}
-                heroReason={reportMeta.heroReason}
-                supplier={reportMeta.supplier}
-                po={reportMeta.po}
-                auditor={reportMeta.auditor}
-                date={reportMeta.date}
-                location={reportMeta.location}
-                onDecide={() => setInspectorOpen(true)}
-                onWalk={() => scrollToStation(2)}
-              />
+              {depth === 'executive' ? (
+                <ExecutiveReportView
+                  reportMeta={reportMeta}
+                  stations={stations}
+                  kpis={kpis}
+                  allNCRs={allNCRs}
+                  onDecide={() => setInspectorOpen(true)}
+                />
+              ) : (
+                <>
+                  <ReportHero
+                    verdict={reportMeta.verdict}
+                    verdictLabel={reportMeta.verdictLabel}
+                    heroReason={reportMeta.heroReason}
+                    supplier={reportMeta.supplier}
+                    po={reportMeta.po}
+                    auditor={reportMeta.auditor}
+                    date={reportMeta.date}
+                    location={reportMeta.location}
+                    onDecide={() => setInspectorOpen(true)}
+                    onWalk={() => scrollToStation(2)}
+                  />
 
-              {/* Atlas Risk Score */}
-              <AtlasRiskScore />
+                  <AtlasRiskScore />
 
-              <section className="py-16 md:py-24">
-                <KPIBand kpis={kpis} />
-              </section>
+                  <section className="py-16 md:py-24">
+                    <KPIBand kpis={kpis} />
+                  </section>
 
-              <ExecutiveRadarCharts />
+                  <ExecutiveRadarCharts />
 
-              <AuditScopeSection />
+                  <AuditScopeSection />
 
-              {/* Anomaly callouts */}
-              <AnomalyCallouts />
+                  <AnomalyCallouts />
 
-              <div className="space-y-16 md:space-y-24 pb-16 mt-16">
-                {displayStations.map((station) => (
-                  <StationCard key={station.index} station={station} depth={depth} totalStations={14} />
-                ))}
-                <NCRRegister ncrs={allNCRs} />
-                
-                {/* Finding Resolution Pipeline (Sankey) */}
-                <FindingSankeyDiagram />
+                  <div className="space-y-16 md:space-y-24 pb-16 mt-16">
+                    {displayStations.map((station) => (
+                      <StationCard key={station.index} station={station} depth={depth} totalStations={14} />
+                    ))}
+                    <NCRRegister ncrs={allNCRs} />
+                    
+                    <FindingSankeyDiagram />
+                    <CostWaterfallChart />
+                    <CAPAGantt />
 
-                {/* Cost waterfall chart */}
-                <CostWaterfallChart />
-
-                {/* CAPA Gantt Timeline */}
-                <CAPAGantt />
-
-                <AtlasIntelligence />
-                <div id="machine-park">
-                  <OEEGaugeCluster />
-                  <div className="mt-16">
-                    <MachineParkIntelligence />
+                    <AtlasIntelligence />
+                    <div id="machine-park">
+                      <OEEGaugeCluster />
+                      <div className="mt-16">
+                        <MachineParkIntelligence />
+                      </div>
+                    </div>
+                    <DelayForecast />
+                    <RecommendationSection />
+                    <EvidenceVault />
                   </div>
-                </div>
-                <DelayForecast />
-                <RecommendationSection />
-                <EvidenceVault />
-              </div>
+                </>
+              )}
 
               {/* Ask Atlas */}
               <div className="sticky bottom-4 z-30 mb-8">
