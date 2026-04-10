@@ -927,6 +927,92 @@ export const stations: Station[] = [
     atlasInsights: [
       { type: 'benchmark', title: 'Assembly is the internal benchmark', body: 'Assembly achieves 92% OEE, 0% rework, and Cpk >1.67 on all critical parameters. This station proves MV Motors has the capability to operate at world-class level. The question is why Production Lines cannot replicate this discipline.', confidence: 96, impact: 'low', dataPointsAnalyzed: 3200 },
     ],
+    subCategories: [
+      { id: 'test-personnel', label: 'Personnel', health: 'green', score: 88,
+        findings: [
+          { type: 'pass', title: 'CMM operator certified', description: 'Level 3 CMM programming certification. 6 years experience on Zeiss CONTURA.', isoClause: '7.2' },
+        ],
+        aiInsight: 'CMM operator is highly experienced but single-qualified — no backup operator for Zeiss system. If absent, testing capacity drops to zero. Atlas recommends cross-training a second operator within 60 days.', aiConfidence: 85,
+        evidence: [
+          { id: 'EVD-T01', type: 'document', label: 'CMM operator certification — Level 3' },
+        ],
+        bmwImpact: { quality: { rating: 'low', detail: 'Single CMM operator creates bottleneck risk, not quality risk.' }, time: { rating: 'medium', detail: 'Absence = zero testing capacity. Queue buildup: 58 parts/day untested.' }, cost: { rating: 'low', detail: 'Cross-training cost: €4,200. Prevention of testing bottleneck saves €18,000/year.' } },
+      },
+      { id: 'test-material', label: 'Material (Test Specimens)', health: 'red', score: 42,
+        findings: [
+          { type: 'major-ncr', title: 'Cpk = 0.98 on Bore ID', description: 'Process mean shifted +0.008mm. 27,000 DPPM expected vs BMW 50 DPPM target.', ncrId: 'NCR-0001', isoClause: '8.6' },
+          { type: 'concern', title: 'Surface roughness exceedance', description: 'Ra 1.8µm on 2/5 parts vs ≤1.6µm spec on sealing face. Leak risk.', isoClause: '8.6' },
+        ],
+        aiInsight: 'The Cpk failure on Bore ID and surface roughness exceedance share a common upstream root cause: coolant degradation in Production. Atlas traces 89% of test failures back to Machine #3. Fixing the production root cause will eliminate most testing non-conformances without any changes to the test station itself.', aiConfidence: 88,
+        evidence: [
+          { id: 'EVD-T02', type: 'measurement', label: 'CMM data — 30-piece Bore ID study (Cpk 0.98)' },
+          { id: 'EVD-T03', type: 'measurement', label: 'Surface roughness readings — Ra 1.8µm' },
+          { id: 'EVD-T04', type: 'document', label: 'BMW SOR-0042 — Cpk requirements' },
+          { id: 'EVD-T05', type: 'photo', label: 'CMM output — bore ID histogram showing shift' },
+        ],
+        aiPatterns: [
+          { id: 'AP-T01', type: 'correlation', title: '89% of test failures trace to Machine #3', body: 'Cross-referencing CMM non-conformance reports with production batch logs: 89% of bore ID failures originate from CNC Machine #3 (coolant issue). Machine #1 contributes 8%, Machine #2 contributes 3%.', confidence: 88, impact: 'critical' },
+          { id: 'AP-T02', type: 'prediction', title: 'Cpk recoverable to 1.67 with upstream fix', body: 'If coolant temperature is restored (22°C) and boring bar replaced, Atlas models predict Cpk recovery to 1.67 within 5 production days. PPAP Level 3 re-submission within 14 days.', confidence: 85, impact: 'critical', timeframe: '14 days' },
+        ],
+        bmwImpact: {
+          quality: { rating: 'critical', detail: 'Cpk 0.98 = 27,000 DPPM. BMW target: 50 DPPM. 540× above acceptable level. Surface roughness creates seal leak risk on engine mount.' },
+          time: { rating: 'critical', detail: 'Current lot (~340 parts) must be rejected. New 50-piece capability study + PPAP Level 3 re-approval: minimum 14 days.' },
+          cost: { rating: 'critical', detail: 'Lot rejection: €16,200. Re-study + PPAP: €8,400. BMW line-stop if escaped: €96,000. Warranty risk: €62,000.' },
+        },
+      },
+      { id: 'test-machine', label: 'Machine (Test Equipment)', health: 'amber', score: 65,
+        findings: [
+          { type: 'minor-ncr', title: 'CMM fixture misalignment', description: 'Fixture offset 0.02mm from datum A. Gauge R&R at 18% — approaching 20% limit.', ncrId: 'NCR-0002', isoClause: '7.1.5' },
+          { type: 'pass', title: 'CMM calibration current', description: 'Zeiss CONTURA and Mitutoyo SJ-410 both have valid calibration certificates.', isoClause: '7.1.5.2' },
+        ],
+        aiInsight: 'The fixture misalignment introduces a systematic bias of 0.02mm — which alone accounts for ~15% of the apparent Cpk degradation. After fixture correction, the "true" Cpk may be closer to 1.08 (still failing, but less severe). The Gauge R&R at 18% means 18% of measured variation is from the measurement system, not the product.', aiConfidence: 91,
+        evidence: [
+          { id: 'EVD-T06', type: 'measurement', label: 'Gauge R&R study — 18% total variation' },
+          { id: 'EVD-T07', type: 'photo', label: 'CMM fixture — worn locating pin' },
+          { id: 'EVD-T08', type: 'document', label: 'Zeiss CONTURA calibration certificate' },
+          { id: 'EVD-T09', type: 'video', label: 'CMM measurement cycle — fixture alignment check' },
+        ],
+        aiPatterns: [
+          { id: 'AP-T03', type: 'anomaly', title: 'Fixture bias masks true Cpk', body: '0.02mm systematic fixture offset inflates apparent process variation by 15%. True Cpk after correction: ~1.08. Still failing BMW requirement but less severe than reported.', confidence: 91, impact: 'high' },
+          { id: 'AP-T04', type: 'trend', title: 'Gauge R&R trending toward limit', body: 'Gauge R&R increased from 12% to 18% over 12 months. At current trajectory, it will exceed the 20% action limit by Jul 2026. Fixture pin wear is the primary driver.', confidence: 84, impact: 'medium', timeframe: '3 months' },
+        ],
+        bmwImpact: {
+          quality: { rating: 'high', detail: 'Measurement system uncertainty means some conforming parts may be rejected and some non-conforming parts may pass. BMW audit would flag Gauge R&R >10%.' },
+          time: { rating: 'low', detail: 'Fixture repair: 4 hours. Gauge R&R re-run: 1 day. Minimal delivery impact.' },
+          cost: { rating: 'medium', detail: 'Pin replacement: €180. Gauge R&R study: €1,200. Avoiding false rejection saves €4,800/month.' },
+        },
+      },
+      { id: 'test-method', label: 'Method', health: 'amber', score: 70,
+        findings: [
+          { type: 'observation', title: 'SPC not applied to surface roughness', description: 'Surface roughness monitored but not tracked with SPC control charts.', isoClause: '9.1.1' },
+          { type: 'pass', title: 'Test records complete', description: 'All records signed, complete, and archived per ISO 7.5.3.', isoClause: '7.5.3' },
+        ],
+        aiInsight: 'Without SPC on surface roughness, MV Motors cannot detect drift before it exceeds spec. Atlas analyzed 6 months of roughness data: Ra has been trending upward from 1.2µm to 1.8µm since boring bar age exceeded 1,200 cycles. SPC would have flagged this trend 8 weeks earlier.', aiConfidence: 87,
+        evidence: [
+          { id: 'EVD-T10', type: 'document', label: 'Test procedure TP-EM4200-D' },
+          { id: 'EVD-T11', type: 'measurement', label: 'Surface roughness trend — 6 months' },
+        ],
+        aiPatterns: [
+          { id: 'AP-T05', type: 'prediction', title: 'SPC would have caught roughness drift 8 weeks earlier', body: 'Ra trended from 1.2µm to 1.8µm over 6 months. X-bar/R chart simulation shows Western Electric Rule 2 violation would have triggered at Ra 1.4µm — 8 weeks before spec exceedance.', confidence: 87, impact: 'high', timeframe: 'retroactive' },
+        ],
+        bmwImpact: {
+          quality: { rating: 'medium', detail: 'No early warning system for surface roughness degradation. Sealing face leak risk detected too late.' },
+          time: { rating: 'low', detail: 'Implementing SPC: 2 days setup. No delivery impact.' },
+          cost: { rating: 'low', detail: 'SPC implementation: €800. Early detection prevents ~€18,000/year in late-stage rejection costs.' },
+        },
+      },
+      { id: 'test-environment', label: 'Environment', health: 'green', score: 90,
+        findings: [
+          { type: 'pass', title: 'CMM room conditions', description: 'Temperature controlled at 20°C ± 0.5°C per ISO 1. Vibration isolation pad under CMM.', isoClause: '7.1.4' },
+        ],
+        aiInsight: 'CMM room is the gold standard in this facility — 20°C ± 0.5°C, vibration-isolated, clean. This eliminates environmental measurement error, meaning all Cpk degradation is genuinely process-related, not measurement-environment noise.', aiConfidence: 95,
+        evidence: [
+          { id: 'EVD-T12', type: 'measurement', label: 'CMM room temperature log (20°C ± 0.5°C)' },
+          { id: 'EVD-T13', type: 'photo', label: 'Vibration isolation pad under Zeiss CMM' },
+        ],
+        bmwImpact: { quality: { rating: 'none', detail: 'Ideal measurement environment. No environmental contribution to measurement error.' }, time: { rating: 'none', detail: 'No impact.' }, cost: { rating: 'none', detail: 'No exposure.' } },
+      },
+    ],
     auditQuestions: [
       { id: 'Q6-01', clause: '8.5.1', question: 'Has the organization implemented production under controlled conditions?', score: 9, notes: 'SPC on 3 critical torques. All within limits.' },
       { id: 'Q6-02', clause: '8.5.1', question: 'Are error-proofing devices implemented and verified?', score: 10, notes: 'Poka-yoke tested live. All 8 fixtures functional.' },
