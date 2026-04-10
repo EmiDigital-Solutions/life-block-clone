@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import type { Station, DepthLevel, FindingSeverity } from "@/data/auditReportData";
+import type { Station, DepthLevel, FindingSeverity, SubCategory, AtlasAIInsight } from "@/data/auditReportData";
 import NCRCard from "./NCRCard";
-import { CheckCircle2, Circle, Triangle, Diamond, Square, Minus, Camera, Ruler, Video, Sparkles, ChevronDown, ChevronRight, BookOpen } from "lucide-react";
+import { CheckCircle2, Circle, Triangle, Diamond, Square, Minus, Camera, Ruler, Video, Sparkles, ChevronDown, ChevronRight, BookOpen, Brain, AlertTriangle, TrendingUp } from "lucide-react";
 
 const findingIcon: Record<FindingSeverity, React.ElementType> = {
   pass: CheckCircle2, observation: Circle, concern: Triangle, 'minor-ncr': Diamond, 'major-ncr': Square, na: Minus,
