@@ -44,13 +44,42 @@ function EvidenceGrid({ evidence }: { evidence: SubCategoryEvidence[] }) {
         {evidence.map(ev => {
           const Icon = evidenceTypeIcon[ev.type] || FileText;
           return (
-            <button key={ev.id} className="flex items-center gap-1.5 px-2.5 py-1.5  border border-[#E5E7EB] bg-white hover:bg-[#F5F5F5] transition-colors text-[11px] text-[#1A1A1A]">
-              <Icon className="w-3 h-3 text-[#0A7FA5]" />
+            <button key={ev.id} className="flex items-center gap-1.5 px-2.5 py-1.5 border border-[#E5E7EB] bg-white hover:bg-[#F5F5F5] transition-colors text-[11px] text-[#1A1A1A]">
+              {ev.thumbnail ? (
+                <img src={ev.thumbnail} alt={ev.label} className="w-8 h-8 object-cover border border-[#E5E7EB]" />
+              ) : (
+                <div className="w-8 h-8 bg-[#F5F5F5] border border-[#E5E7EB] flex items-center justify-center">
+                  <Icon className="w-3.5 h-3.5 text-[#0A7FA5]" />
+                </div>
+              )}
               <span className="max-w-[160px] truncate">{ev.label}</span>
             </button>
           );
         })}
       </div>
+    </div>
+  );
+}
+
+function InlineEvidenceThumbnails({ evidence }: { evidence: SubCategoryEvidence[] }) {
+  const photos = evidence.filter(e => e.type === 'photo').slice(0, 4);
+  if (photos.length === 0) return null;
+  return (
+    <div className="flex items-center gap-1 mt-2">
+      {photos.map(p => (
+        <div key={p.id} className="w-8 h-8 bg-[#F5F5F5] border border-[#E5E7EB] overflow-hidden">
+          {p.thumbnail ? (
+            <img src={p.thumbnail} alt={p.label} className="w-full h-full object-cover" />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center">
+              <Image className="w-3 h-3 text-[#C0C0C0]" />
+            </div>
+          )}
+        </div>
+      ))}
+      {evidence.length > 4 && (
+        <span className="text-[9px] text-[#7B8E80] ml-1">+{evidence.length - 4}</span>
+      )}
     </div>
   );
 }
