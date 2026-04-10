@@ -482,6 +482,35 @@ export const stations: Station[] = [
       { type: 'pass', title: 'Organizational roles & authorities (5.3)', description: 'Org chart current. Quality Manager has authority to stop production.', isoClause: '5.3' },
     ],
     evidenceCount: { photos: 5, measurements: 0, videos: 0 }, ncrs: [],
+    subCategories: [
+      { id: 'mgmt-personnel', label: 'Personnel & Leadership', health: 'green', score: 92,
+        findings: [
+          { type: 'pass', title: 'CEO engagement', description: 'CEO participated in opening & closing meetings. Quality is Board KPI.', isoClause: '5.1' },
+          { type: 'pass', title: 'Quality Manager authority', description: 'QM has stop-production authority. Exercised 2× in 2025.', isoClause: '5.3' },
+        ],
+        aiInsight: 'Atlas detected that management review attendance correlates 0.87 with CAPA close-out speed across 127 Tier-2 suppliers. MV Motors\' CEO participation places them in top 12% — a strong leading indicator for NCR resolution velocity.',
+        aiConfidence: 91,
+      },
+      { id: 'mgmt-system', label: 'QMS Structure', health: 'green', score: 88,
+        findings: [
+          { type: 'pass', title: 'Management review completeness', description: 'All 9.3.2 inputs addressed. Output actions tracked in SAP.', isoClause: '9.3' },
+          { type: 'observation', title: 'KPI targets incomplete', description: '2/6 quality objectives lack measurable targets. Risk of drift.', isoClause: '6.2' },
+        ],
+        aiInsight: 'Cross-referencing 5 prior audits: MV Motors consistently scores 85–92 on management system structure. However, the 2 unmeasurable objectives (Customer Satisfaction & Innovation) are the exact areas where Tier-2 suppliers typically regress. Atlas recommends quantifying these within 30 days.',
+        aiConfidence: 88,
+      },
+      { id: 'mgmt-communication', label: 'Communication & Culture', health: 'green', score: 90,
+        findings: [
+          { type: 'pass', title: 'Quality culture visibility', description: 'Policy displayed at entrance, cafeteria, and all 23 workstations.', isoClause: '7.4' },
+        ],
+        aiInsight: 'Sentiment analysis of employee interview transcripts (8 operators, 3 managers) shows 94% positive quality culture alignment — highest in YVOO\'s Croatian supplier database. This is a hidden competitive advantage.',
+        aiConfidence: 86,
+      },
+    ],
+    atlasInsights: [
+      { type: 'benchmark', title: 'Leadership Score: Top 12% Tier-2', body: 'MV Motors\' management engagement score of 92/100 ranks in the top 12th percentile of 127 Tier-2 automotive suppliers audited by YVOO in 2024-2026. This is a strong predictor of successful NCR remediation — suppliers with leadership scores >85 close major NCRs 2.3× faster.', confidence: 91, impact: 'low', dataPointsAnalyzed: 847 },
+      { type: 'risk', title: 'Quality Manager succession gap', body: 'The Quality Manager (age 58, 14 years tenure) has no documented successor. Atlas models show 23% probability of retirement within 24 months. Without succession planning, institutional knowledge loss could degrade QMS maturity by 15-20 points.', confidence: 78, impact: 'medium' },
+    ],
     auditQuestions: [
       { id: 'Q3-01', clause: '5.1.1', question: 'Does top management demonstrate leadership and commitment with respect to the QMS?', score: 9, notes: 'CEO personally chairs quarterly management reviews.' },
       { id: 'Q3-02', clause: '5.1.2', question: 'Does top management ensure customer requirements are determined and met?', score: 9, notes: 'Customer requirements matrix maintained.' },
