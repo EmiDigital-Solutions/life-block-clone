@@ -12,6 +12,7 @@ import AtlasIntelligence from "@/components/audit-report/AtlasIntelligence";
 import RecommendationSection from "@/components/audit-report/RecommendationSection";
 import EvidenceVault from "@/components/audit-report/EvidenceVault";
 import AuditScopeSection from "@/components/audit-report/AuditScopeSection";
+import ExecutiveRadarCharts from "@/components/audit-report/ExecutiveRadarCharts";
 import SectionInspector from "@/components/audit-report/SectionInspector";
 import { Menu, X, Sparkles } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
