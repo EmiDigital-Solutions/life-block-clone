@@ -58,6 +58,11 @@ export default function NCRCard({ ncr, compact, onAssign, onAction }: NCRCardPro
             </span>
           </div>
           <p className="text-[15px] font-medium text-[#F5F6FA] mt-0.5">{ncr.title}</p>
+          {ncr.isoClause && (
+            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-white/[0.06] text-[#6B7085] mt-1 inline-block">
+              ISO 9001 §{ncr.isoClause}
+            </span>
+          )}
         </div>
       </div>
 

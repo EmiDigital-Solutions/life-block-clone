@@ -1,7 +1,8 @@
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import type { Station, DepthLevel, FindingSeverity } from "@/data/auditReportData";
 import NCRCard from "./NCRCard";
-import { CheckCircle2, Circle, Triangle, Diamond, Square, Minus, Camera, Ruler, Video, Sparkles } from "lucide-react";
+import { CheckCircle2, Circle, Triangle, Diamond, Square, Minus, Camera, Ruler, Video, Sparkles, ChevronDown, ChevronRight, BookOpen } from "lucide-react";
 
 const findingIcon: Record<FindingSeverity, React.ElementType> = {
   pass: CheckCircle2,
@@ -35,6 +36,20 @@ const healthChip: Record<string, string> = {
   grey: 'bg-white/[0.06] text-[#6B7085]',
 };
 
+const scoreColor = (score: number | null) => {
+  if (score === null) return 'text-[#6B7085]';
+  if (score >= 8) return 'text-[#22D3A5]';
+  if (score >= 6) return 'text-[#F5B544]';
+  return 'text-[#F04464]';
+};
+
+const scoreBar = (score: number | null) => {
+  if (score === null) return '#6B7085';
+  if (score >= 8) return '#22D3A5';
+  if (score >= 6) return '#F5B544';
+  return '#F04464';
+};
+
 interface StationCardProps {
   station: Station;
   depth: DepthLevel;
@@ -42,14 +57,14 @@ interface StationCardProps {
 }
 
 export default function StationCard({ station, depth, totalStations }: StationCardProps) {
-  // Skip hero and non-content stations
+  const [questionsOpen, setQuestionsOpen] = useState(false);
+
   if (!station.observation && station.index !== 10 && station.index !== 11 && station.index !== 12) return null;
 
+  const hasQuestions = station.auditQuestions && station.auditQuestions.length > 0;
+
   return (
-    <section
-      id={`station-${station.index}`}
-      className="scroll-mt-20"
-    >
+    <section id={`station-${station.index}`} className="scroll-mt-20">
       {/* Progress ribbon */}
       <div className="flex items-center gap-3 mb-6">
         <div className="h-[2px] flex-1 rounded-full bg-white/[0.06] overflow-hidden">
@@ -76,13 +91,26 @@ export default function StationCard({ station, depth, totalStations }: StationCa
       {/* Three-beat rhythm */}
       {station.observation && (
         <div className={cn("rounded-2xl border p-6 md:p-8 space-y-8", healthBorder[station.health], "bg-white/[0.02]")}>
-          {/* Hero photo placeholder */}
-          <div className="aspect-video rounded-xl bg-gradient-to-br from-white/[0.04] to-white/[0.01] border border-white/[0.06] flex items-center justify-center">
-            <div className="text-center">
-              <Camera className="w-8 h-8 text-[#6B7085] mx-auto mb-2" />
-              <span className="text-[13px] text-[#6B7085]">Factory photo — Station {station.index}</span>
+          {/* Hero photo */}
+          {station.heroPhoto ? (
+            <div className="aspect-video rounded-xl overflow-hidden border border-white/[0.06]">
+              <img
+                src={station.heroPhoto}
+                alt={`Factory photo — ${station.name}`}
+                className="w-full h-full object-cover"
+                loading="lazy"
+                width={960}
+                height={540}
+              />
             </div>
-          </div>
+          ) : (
+            <div className="aspect-video rounded-xl bg-gradient-to-br from-white/[0.04] to-white/[0.01] border border-white/[0.06] flex items-center justify-center">
+              <div className="text-center">
+                <Camera className="w-8 h-8 text-[#6B7085] mx-auto mb-2" />
+                <span className="text-[13px] text-[#6B7085]">Factory photo — Station {station.index}</span>
+              </div>
+            </div>
+          )}
 
           {/* WHAT WE SAW */}
           <div>
@@ -127,10 +155,22 @@ export default function StationCard({ station, depth, totalStations }: StationCa
                   return (
                     <div key={i} className="flex gap-3 p-4 rounded-xl border border-white/[0.06] bg-white/[0.02]">
                       <Icon className={cn("w-4 h-4 mt-0.5 shrink-0", findingColor[finding.type])} />
-                      <div>
-                        <p className="text-[14px] font-medium text-[#F5F6FA]">{finding.title}</p>
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-2">
+                          <p className="text-[14px] font-medium text-[#F5F6FA]">{finding.title}</p>
+                          {finding.isoClause && depth === 'full' && (
+                            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-white/[0.06] text-[#6B7085] shrink-0">
+                              §{finding.isoClause}
+                            </span>
+                          )}
+                        </div>
                         {depth !== 'executive' && (
                           <p className="text-[13px] text-[#A1A5B7] mt-1">{finding.description}</p>
+                        )}
+                        {finding.ncrId && (
+                          <span className="inline-block mt-1.5 text-[11px] font-mono px-2 py-0.5 rounded bg-[#F04464]/10 text-[#F04464]">
+                            {finding.ncrId}
+                          </span>
                         )}
                       </div>
                     </div>
@@ -146,6 +186,52 @@ export default function StationCard({ station, depth, totalStations }: StationCa
               {station.ncrs.map(ncr => (
                 <NCRCard key={ncr.id} ncr={ncr} />
               ))}
+            </div>
+          )}
+
+          {/* Audit Questions (Full depth only) */}
+          {hasQuestions && depth === 'full' && (
+            <div className="border-t border-white/[0.06] pt-6">
+              <button
+                onClick={() => setQuestionsOpen(!questionsOpen)}
+                className="flex items-center gap-2 text-[13px] font-medium text-[#A1A5B7] hover:text-[#F5F6FA] transition-colors mb-4"
+              >
+                <BookOpen className="w-4 h-4" />
+                <span>ISO 9001 Audit Checklist — {station.auditQuestions!.length} questions</span>
+                {questionsOpen ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronRight className="w-3.5 h-3.5" />}
+              </button>
+
+              {questionsOpen && (
+                <div className="space-y-2">
+                  {station.auditQuestions!.map((q) => (
+                    <div key={q.id} className="flex gap-3 p-3 rounded-lg border border-white/[0.04] bg-white/[0.01]">
+                      {/* Score */}
+                      <div className="shrink-0 w-10 text-center">
+                        <span className={cn("text-[18px] font-mono font-semibold tabular-nums", scoreColor(q.score))}>
+                          {q.score ?? '—'}
+                        </span>
+                        <div className="w-full h-1 rounded-full bg-white/[0.06] mt-1 overflow-hidden">
+                          <div
+                            className="h-full rounded-full"
+                            style={{ width: `${(q.score ?? 0) * 10}%`, background: scoreBar(q.score) }}
+                          />
+                        </div>
+                      </div>
+                      {/* Content */}
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center gap-2 mb-0.5">
+                          <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-white/[0.06] text-[#6B7085]">
+                            §{q.clause}
+                          </span>
+                          <span className="text-[10px] font-mono text-[#6B7085]">{q.id}</span>
+                        </div>
+                        <p className="text-[13px] text-[#F5F6FA] leading-snug">{q.question}</p>
+                        <p className="text-[12px] text-[#6B7085] mt-1 leading-relaxed">{q.notes}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           )}
 

@@ -77,10 +77,15 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
           </button>
         </div>
 
-        {/* Auditor info */}
-        <p className="text-[13px] text-[#6B7085] mt-12">
-          Auditor: {auditor} · {date} · {location}
-        </p>
+        {/* Audit details */}
+        <div className="mt-12 space-y-1.5">
+          <p className="text-[13px] text-[#6B7085]">
+            Auditor: {auditor} · {date} · {location}
+          </p>
+          <p className="text-[12px] text-[#6B7085]/70">
+            ISO 9001:2015 / IATF 16949:2016 · Surveillance Audit · TÜV SÜD certified
+          </p>
+        </div>
       </div>
     </section>
   );
