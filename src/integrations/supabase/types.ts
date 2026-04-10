@@ -188,6 +188,80 @@ export type Database = {
           },
         ]
       }
+      audit_reports: {
+        Row: {
+          audit_date: string | null
+          audit_id: string
+          auditor_name: string | null
+          client_logo_url: string | null
+          client_name: string
+          cost_exposure_eur: number | null
+          created_at: string
+          executive_summary: Json
+          iatf_score: number | null
+          id: string
+          meta: Json | null
+          mitigation_savings_eur: number | null
+          report_version: number
+          standard: string
+          status: string
+          supplier_location: string | null
+          supplier_name: string
+          updated_at: string
+          verdict: string
+        }
+        Insert: {
+          audit_date?: string | null
+          audit_id: string
+          auditor_name?: string | null
+          client_logo_url?: string | null
+          client_name?: string
+          cost_exposure_eur?: number | null
+          created_at?: string
+          executive_summary?: Json
+          iatf_score?: number | null
+          id?: string
+          meta?: Json | null
+          mitigation_savings_eur?: number | null
+          report_version?: number
+          standard?: string
+          status?: string
+          supplier_location?: string | null
+          supplier_name?: string
+          updated_at?: string
+          verdict?: string
+        }
+        Update: {
+          audit_date?: string | null
+          audit_id?: string
+          auditor_name?: string | null
+          client_logo_url?: string | null
+          client_name?: string
+          cost_exposure_eur?: number | null
+          created_at?: string
+          executive_summary?: Json
+          iatf_score?: number | null
+          id?: string
+          meta?: Json | null
+          mitigation_savings_eur?: number | null
+          report_version?: number
+          standard?: string
+          status?: string
+          supplier_location?: string | null
+          supplier_name?: string
+          updated_at?: string
+          verdict?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "audit_reports_audit_id_fkey"
+            columns: ["audit_id"]
+            isOneToOne: false
+            referencedRelation: "audits"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       audits: {
         Row: {
           ai_analysis: string | null
@@ -507,6 +581,309 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      report_machines: {
+        Row: {
+          atlas_insight: string | null
+          availability: number | null
+          capabilities: string[] | null
+          category: string | null
+          client_suitability: string | null
+          co2_per_year: number | null
+          condition: string | null
+          condition_score: number | null
+          created_at: string
+          energy_class: string | null
+          energy_kwh: number | null
+          id: string
+          last_maintenance: string | null
+          location: string | null
+          machine_code: string
+          manufacturer: string
+          meta: Json | null
+          model: string
+          next_maintenance: string | null
+          oee: number | null
+          origin_country: string | null
+          origin_tier: string | null
+          performance: number | null
+          quality: number | null
+          report_id: string
+          risks: string[] | null
+          serial_number: string | null
+          specs: Json
+          suitability_reason: string | null
+          type_plate_image_url: string | null
+          updated_at: string
+          year_manufactured: number | null
+        }
+        Insert: {
+          atlas_insight?: string | null
+          availability?: number | null
+          capabilities?: string[] | null
+          category?: string | null
+          client_suitability?: string | null
+          co2_per_year?: number | null
+          condition?: string | null
+          condition_score?: number | null
+          created_at?: string
+          energy_class?: string | null
+          energy_kwh?: number | null
+          id?: string
+          last_maintenance?: string | null
+          location?: string | null
+          machine_code: string
+          manufacturer: string
+          meta?: Json | null
+          model: string
+          next_maintenance?: string | null
+          oee?: number | null
+          origin_country?: string | null
+          origin_tier?: string | null
+          performance?: number | null
+          quality?: number | null
+          report_id: string
+          risks?: string[] | null
+          serial_number?: string | null
+          specs?: Json
+          suitability_reason?: string | null
+          type_plate_image_url?: string | null
+          updated_at?: string
+          year_manufactured?: number | null
+        }
+        Update: {
+          atlas_insight?: string | null
+          availability?: number | null
+          capabilities?: string[] | null
+          category?: string | null
+          client_suitability?: string | null
+          co2_per_year?: number | null
+          condition?: string | null
+          condition_score?: number | null
+          created_at?: string
+          energy_class?: string | null
+          energy_kwh?: number | null
+          id?: string
+          last_maintenance?: string | null
+          location?: string | null
+          machine_code?: string
+          manufacturer?: string
+          meta?: Json | null
+          model?: string
+          next_maintenance?: string | null
+          oee?: number | null
+          origin_country?: string | null
+          origin_tier?: string | null
+          performance?: number | null
+          quality?: number | null
+          report_id?: string
+          risks?: string[] | null
+          serial_number?: string | null
+          specs?: Json
+          suitability_reason?: string | null
+          type_plate_image_url?: string | null
+          updated_at?: string
+          year_manufactured?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "report_machines_report_id_fkey"
+            columns: ["report_id"]
+            isOneToOne: false
+            referencedRelation: "audit_reports"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      report_ncrs: {
+        Row: {
+          created_at: string
+          deadline: string | null
+          description: string | null
+          evidence_refs: Json | null
+          id: string
+          iso_clause: string | null
+          meta: Json | null
+          ncr_code: string
+          report_id: string
+          severity: string
+          station_id: string | null
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          deadline?: string | null
+          description?: string | null
+          evidence_refs?: Json | null
+          id?: string
+          iso_clause?: string | null
+          meta?: Json | null
+          ncr_code: string
+          report_id: string
+          severity?: string
+          station_id?: string | null
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          deadline?: string | null
+          description?: string | null
+          evidence_refs?: Json | null
+          id?: string
+          iso_clause?: string | null
+          meta?: Json | null
+          ncr_code?: string
+          report_id?: string
+          severity?: string
+          station_id?: string | null
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "report_ncrs_report_id_fkey"
+            columns: ["report_id"]
+            isOneToOne: false
+            referencedRelation: "audit_reports"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "report_ncrs_station_id_fkey"
+            columns: ["station_id"]
+            isOneToOne: false
+            referencedRelation: "report_stations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      report_radar_scores: {
+        Row: {
+          actual_score: number
+          benchmark_score: number | null
+          chart_type: string
+          created_at: string
+          dimension_key: string
+          dimension_label: string
+          id: string
+          max_score: number
+          meta: Json | null
+          report_id: string
+          sort_order: number | null
+        }
+        Insert: {
+          actual_score?: number
+          benchmark_score?: number | null
+          chart_type: string
+          created_at?: string
+          dimension_key: string
+          dimension_label: string
+          id?: string
+          max_score?: number
+          meta?: Json | null
+          report_id: string
+          sort_order?: number | null
+        }
+        Update: {
+          actual_score?: number
+          benchmark_score?: number | null
+          chart_type?: string
+          created_at?: string
+          dimension_key?: string
+          dimension_label?: string
+          id?: string
+          max_score?: number
+          meta?: Json | null
+          report_id?: string
+          sort_order?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "report_radar_scores_report_id_fkey"
+            columns: ["report_id"]
+            isOneToOne: false
+            referencedRelation: "audit_reports"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      report_stations: {
+        Row: {
+          atlas_insights: Json
+          audit_questions: Json
+          confidence: number | null
+          created_at: string
+          evidence_measurements: number | null
+          evidence_photos: number | null
+          evidence_videos: number | null
+          findings: Json
+          health: string
+          hero_photo_url: string | null
+          id: string
+          interpretation: string | null
+          meta: Json | null
+          name: string
+          observation: string | null
+          report_id: string
+          station_index: number
+          sub_categories: Json
+          updated_at: string
+        }
+        Insert: {
+          atlas_insights?: Json
+          audit_questions?: Json
+          confidence?: number | null
+          created_at?: string
+          evidence_measurements?: number | null
+          evidence_photos?: number | null
+          evidence_videos?: number | null
+          findings?: Json
+          health?: string
+          hero_photo_url?: string | null
+          id?: string
+          interpretation?: string | null
+          meta?: Json | null
+          name: string
+          observation?: string | null
+          report_id: string
+          station_index?: number
+          sub_categories?: Json
+          updated_at?: string
+        }
+        Update: {
+          atlas_insights?: Json
+          audit_questions?: Json
+          confidence?: number | null
+          created_at?: string
+          evidence_measurements?: number | null
+          evidence_photos?: number | null
+          evidence_videos?: number | null
+          findings?: Json
+          health?: string
+          hero_photo_url?: string | null
+          id?: string
+          interpretation?: string | null
+          meta?: Json | null
+          name?: string
+          observation?: string | null
+          report_id?: string
+          station_index?: number
+          sub_categories?: Json
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "report_stations_report_id_fkey"
+            columns: ["report_id"]
+            isOneToOne: false
+            referencedRelation: "audit_reports"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       suppliers: {
         Row: {
