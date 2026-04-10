@@ -11,6 +11,8 @@ import DelayForecast from "@/components/audit-report/DelayForecast";
 import AtlasIntelligence from "@/components/audit-report/AtlasIntelligence";
 import RecommendationSection from "@/components/audit-report/RecommendationSection";
 import EvidenceVault from "@/components/audit-report/EvidenceVault";
+import FindingSankeyDiagram from "@/components/audit-report/FindingSankeyDiagram";
+import OEEGaugeCluster from "@/components/audit-report/OEEGaugeCluster";
 import AuditScopeSection from "@/components/audit-report/AuditScopeSection";
 import ExecutiveRadarCharts from "@/components/audit-report/ExecutiveRadarCharts";
 import MachineParkIntelligence from "@/components/audit-report/MachineParkIntelligence";
