@@ -735,6 +735,19 @@ export const stations: Station[] = [
         ],
         aiInsight: 'Atlas analyzed operator error rates across 14,000 production logs. Despite machine calibration failures, operator-attributable defects are 0.02% — lowest across all YVOO-audited Tier-2 suppliers in Croatia. The personnel are not the problem here; the system is failing them.',
         aiConfidence: 94,
+        evidence: [
+          { id: 'EVD-P01', type: 'document', label: 'Skills matrix — 8 CNC operators' },
+          { id: 'EVD-P02', type: 'document', label: 'Training certificates — CNC Level 3' },
+          { id: 'EVD-P03', type: 'video', label: 'Operator interview — Machine #3' },
+        ],
+        aiPatterns: [
+          { id: 'AP-P01', type: 'anomaly', title: 'Operators outperform system', body: 'Operator-attributable defect rate (0.02%) is 17× lower than system-attributable rate (0.34%). Personnel are compensating for machine failures — this is unsustainable.', confidence: 94, impact: 'medium' },
+        ],
+        bmwImpact: {
+          quality: { rating: 'none', detail: 'Personnel are not contributing to quality issues. They are actively mitigating system failures.' },
+          time: { rating: 'none', detail: 'No delivery impact from personnel.' },
+          cost: { rating: 'none', detail: 'No cost exposure from personnel performance.' },
+        },
       },
       { id: 'prod-material', label: 'Material', health: 'amber', score: 72,
         findings: [
@@ -743,6 +756,21 @@ export const stations: Station[] = [
         ],
         aiInsight: 'Atlas discovered a hidden chain reaction: coolant degradation → thermal expansion → bore ID drift → Cpk decline. Cross-referencing coolant change logs with CMM data over 6 months shows a 0.91 correlation (r²) between coolant age >14 days and bore ID excursions. This single variable explains 73% of the Cpk variance.',
         aiConfidence: 91,
+        evidence: [
+          { id: 'EVD-P04', type: 'measurement', label: 'Coolant concentration readings (6 months)' },
+          { id: 'EVD-P05', type: 'photo', label: 'Boring bar wear — 1,847 cycles' },
+          { id: 'EVD-P06', type: 'document', label: 'Coolant change log vs CMM data overlay' },
+          { id: 'EVD-P07', type: 'video', label: 'Coolant pump inspection — Machine #3' },
+        ],
+        aiPatterns: [
+          { id: 'AP-P02', type: 'correlation', title: 'Coolant age → Cpk decline chain', body: 'Coolant older than 14 days: r²=0.91 correlation with bore ID excursions. This single variable explains 73% of Cpk variance. 12-day change cycle restores Cpk >1.33 with 89% probability.', confidence: 91, impact: 'critical' },
+          { id: 'AP-P03', type: 'prediction', title: 'Tool failure within 200 cycles', body: 'Boring bar at 1,847 of 1,500 recommended cycles. Atlas predicts 62% probability of catastrophic tool failure within next 200 cycles, causing potential scrap of €4,200 in parts.', confidence: 78, impact: 'high', timeframe: '3-5 days' },
+        ],
+        bmwImpact: {
+          quality: { rating: 'critical', detail: 'Coolant drift is the primary driver of Cpk failure on Bore ID Ø42H7. BMW DPPM target exceeded by 540×.' },
+          time: { rating: 'high', detail: 'Tool failure would halt production 4-8 hours. Coolant fix requires 2 hours downtime per machine.' },
+          cost: { rating: 'critical', detail: 'Coolant fix: €800. Tool replacement: €2,400. NOT fixing: €127,400 in rework/scrap + €480,000 BMW line-stop risk.' },
+        },
       },
       { id: 'prod-machine', label: 'Machine', health: 'red', score: 38,
         findings: [
@@ -752,6 +780,23 @@ export const stations: Station[] = [
         ],
         aiInsight: 'This is the epicenter of risk. Atlas modeled the combined effect of calibration lapse + coolant temperature + tool wear: the probability of producing non-conforming parts on Machine #3 is currently 34% per shift. Machines #2 and #4 are operating blind — without valid calibration, defect detection is impossible. Atlas estimates 47 ± 12 non-conforming parts have already been shipped in the last 24 days.',
         aiConfidence: 87,
+        evidence: [
+          { id: 'EVD-P08', type: 'photo', label: 'Expired calibration sticker — CNC #2' },
+          { id: 'EVD-P09', type: 'photo', label: 'Expired calibration sticker — CNC #4' },
+          { id: 'EVD-P10', type: 'measurement', label: 'Coolant temperature log — Machine #3 (28°C)' },
+          { id: 'EVD-P11', type: 'photo', label: 'Chip accumulation — CNC #1 spindle area' },
+          { id: 'EVD-P12', type: 'video', label: 'Machine #3 operation — visible coolant issues' },
+          { id: 'EVD-P13', type: 'document', label: 'Calibration certificates — expired 2026-03-15' },
+        ],
+        aiPatterns: [
+          { id: 'AP-P04', type: 'prediction', title: '47 non-conforming parts already shipped', body: 'Based on 24-day lapse, 58 parts/day production, 3.4% historical defect rate during lapse: 47 ± 12 non-conforming parts shipped to Linde/BMW. Immediate containment required.', confidence: 87, impact: 'critical', timeframe: 'immediate' },
+          { id: 'AP-P05', type: 'anomaly', title: 'Calibration lapse = technician leave pattern', body: 'All calibration lapses in 3 years coincide with technician annual leave. Manual spreadsheet has single point of failure. Architectural flaw, not oversight.', confidence: 96, impact: 'critical' },
+        ],
+        bmwImpact: {
+          quality: { rating: 'critical', detail: '34% per-shift probability of non-conforming parts. 47 potentially defective parts already in BMW supply chain. Containment notification required.' },
+          time: { rating: 'critical', detail: 'Recalibration: 48 hours. 100% inspection of 1,400 quarantined parts: 5-7 days. BMW PPAP re-approval: 14 days.' },
+          cost: { rating: 'critical', detail: 'Quarantine inspection: €34,200. BMW line-stop (20% probability): €96,000. Total machine-related exposure: €514,200.' },
+        },
       },
       { id: 'prod-method', label: 'Method', health: 'amber', score: 74,
         findings: [
@@ -761,6 +806,20 @@ export const stations: Station[] = [
         ],
         aiInsight: 'Atlas identified a systemic weakness: preventive maintenance adherence has declined from 95% to 78% over 3 quarters, tracking almost perfectly with the increase in quality incidents (r²=0.94). The organization is drifting from prevention to reaction. If PM adherence drops below 70%, Atlas projects a 3× increase in unplanned downtime within 6 months.',
         aiConfidence: 89,
+        evidence: [
+          { id: 'EVD-P14', type: 'document', label: 'PM schedule — 3 quarters trend' },
+          { id: 'EVD-P15', type: 'document', label: 'Control plan CP-EM4200-C' },
+          { id: 'EVD-P16', type: 'document', label: 'PFMEA — not updated for tooling change' },
+        ],
+        aiPatterns: [
+          { id: 'AP-P06', type: 'trend', title: 'PM adherence decline → quality incident rise', body: 'PM adherence dropped from 95% to 78% over 3 quarters. Quality incidents rose from 2 to 11 in same period. r²=0.94 correlation. Below 70% triggers 3× unplanned downtime increase.', confidence: 89, impact: 'high', timeframe: '6 months' },
+          { id: 'AP-P07', type: 'anomaly', title: 'Tooling change without PFMEA update', body: 'Boring bar supplier changed Jan 2026. PFMEA and control plan not updated — violating IATF 16949 §8.5.6. This uncontrolled change may be contributing to current Cpk failure.', confidence: 82, impact: 'high' },
+        ],
+        bmwImpact: {
+          quality: { rating: 'high', detail: 'Uncontrolled tooling change + declining PM directly degrade process stability and part quality.' },
+          time: { rating: 'medium', detail: 'PM backlog creates 3× unplanned downtime risk. Each stop: 4-8 hours production loss.' },
+          cost: { rating: 'medium', detail: 'Unplanned downtime cost: €2,400/hour. PM catch-up investment: €8,500. ROI: 4 weeks.' },
+        },
       },
       { id: 'prod-environment', label: 'Environment', health: 'amber', score: 68,
         findings: [
@@ -769,6 +828,19 @@ export const stations: Station[] = [
         ],
         aiInsight: 'Atlas cross-referenced seasonal temperature data with reject rates: summer months (Jun-Aug) show 2.1× higher dimensional non-conformance. MV Motors has no climate control — unlike 67% of comparable Tier-2 suppliers. Estimated annual cost of temperature-related rework: €34,000. ROI on HVAC installation: 14 months.',
         aiConfidence: 82,
+        evidence: [
+          { id: 'EVD-P17', type: 'measurement', label: 'Ambient temperature log — 26°C during audit' },
+          { id: 'EVD-P18', type: 'photo', label: 'Shop floor — no HVAC visible' },
+          { id: 'EVD-P19', type: 'measurement', label: 'Lux meter readings — machine areas (400 lux)' },
+        ],
+        aiPatterns: [
+          { id: 'AP-P08', type: 'correlation', title: 'Summer heat → dimensional non-conformance', body: 'Jun-Aug reject rates are 2.1× higher. No climate control means ambient temperature directly affects workpiece dimensions. 67% of comparable suppliers have HVAC.', confidence: 82, impact: 'medium', timeframe: 'seasonal (Jun-Aug)' },
+        ],
+        bmwImpact: {
+          quality: { rating: 'medium', detail: 'Thermal expansion at 26°C causes measurable dimensional drift on precision engine mounts.' },
+          time: { rating: 'low', detail: 'No immediate delivery impact. HVAC installation: 6-8 weeks lead time.' },
+          cost: { rating: 'medium', detail: 'Annual temperature-related rework: €34,000. HVAC investment: €42,000. ROI: 14 months.' },
+        },
       },
     ],
     atlasInsights: [
