@@ -15,9 +15,11 @@ import AuditScopeSection from "@/components/audit-report/AuditScopeSection";
 import ExecutiveRadarCharts from "@/components/audit-report/ExecutiveRadarCharts";
 import MachineParkIntelligence from "@/components/audit-report/MachineParkIntelligence";
 import SectionInspector from "@/components/audit-report/SectionInspector";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X, Sparkles, AlertTriangle } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Navigation from "@/components/Navigation";
+import StationHeatmap from "@/components/audit-report/StationHeatmap";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const depthLabels: Record<DepthLevel, string> = {
   executive: 'Executive',
@@ -32,14 +34,24 @@ export default function AuditReport() {
   const [inspectorOpen, setInspectorOpen] = useState(true);
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
   const [askAtlasInput, setAskAtlasInput] = useState('');
+  const [readingProgress, setReadingProgress] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
+
+  // Find worst station (first red, or first amber)
+  const worstStation = stations.find(s => s.health === 'red' && s.index >= 2 && s.index <= 9)
+    || stations.find(s => s.health === 'amber' && s.index >= 2 && s.index <= 9);
 
   useEffect(() => {
     const container = contentRef.current;
     if (!container) return;
     const handleScroll = () => {
       setScrolledPastHero(container.scrollTop > window.innerHeight * 0.6);
+      // Reading progress
+      const scrollHeight = container.scrollHeight - container.clientHeight;
+      if (scrollHeight > 0) {
+        setReadingProgress(Math.round((container.scrollTop / scrollHeight) * 100));
+      }
       const stationEls = container.querySelectorAll('[id^="station-"]');
       let current = 1;
       stationEls.forEach((el) => {
