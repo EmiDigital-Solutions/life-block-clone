@@ -44,13 +44,42 @@ function EvidenceGrid({ evidence }: { evidence: SubCategoryEvidence[] }) {
         {evidence.map(ev => {
           const Icon = evidenceTypeIcon[ev.type] || FileText;
           return (
-            <button key={ev.id} className="flex items-center gap-1.5 px-2.5 py-1.5  border border-[#E5E7EB] bg-white hover:bg-[#F5F5F5] transition-colors text-[11px] text-[#1A1A1A]">
-              <Icon className="w-3 h-3 text-[#0A7FA5]" />
+            <button key={ev.id} className="flex items-center gap-1.5 px-2.5 py-1.5 border border-[#E5E7EB] bg-white hover:bg-[#F5F5F5] transition-colors text-[11px] text-[#1A1A1A]">
+              {ev.thumbnail ? (
+                <img src={ev.thumbnail} alt={ev.label} className="w-8 h-8 object-cover border border-[#E5E7EB]" />
+              ) : (
+                <div className="w-8 h-8 bg-[#F5F5F5] border border-[#E5E7EB] flex items-center justify-center">
+                  <Icon className="w-3.5 h-3.5 text-[#0A7FA5]" />
+                </div>
+              )}
               <span className="max-w-[160px] truncate">{ev.label}</span>
             </button>
           );
         })}
       </div>
+    </div>
+  );
+}
+
+function InlineEvidenceThumbnails({ evidence }: { evidence: SubCategoryEvidence[] }) {
+  const photos = evidence.filter(e => e.type === 'photo').slice(0, 4);
+  if (photos.length === 0) return null;
+  return (
+    <div className="flex items-center gap-1 mt-2">
+      {photos.map(p => (
+        <div key={p.id} className="w-8 h-8 bg-[#F5F5F5] border border-[#E5E7EB] overflow-hidden">
+          {p.thumbnail ? (
+            <img src={p.thumbnail} alt={p.label} className="w-full h-full object-cover" />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center">
+              <Image className="w-3 h-3 text-[#C0C0C0]" />
+            </div>
+          )}
+        </div>
+      ))}
+      {evidence.length > 4 && (
+        <span className="text-[9px] text-[#7B8E80] ml-1">+{evidence.length - 4}</span>
+      )}
     </div>
   );
 }
@@ -129,15 +158,23 @@ export default function StationCard({ station, depth, totalStations }: StationCa
 
   return (
     <section id={`station-${station.index}`} className="scroll-mt-20">
-      {/* Section marker */}
-      <div className="flex items-center gap-3 mb-4">
-        <span className="text-[12px] font-medium tracking-[0.1em] text-[#7B8E80]">// {String(station.index).padStart(2, '0')}</span>
-        <span className="w-1.5 h-1.5 rounded-full bg-[#0A7FA5]" />
-        <span className="text-[12px] font-medium tracking-[0.1em] text-[#7B8E80]">{station.name}</span>
-        <div className="flex-1 h-px bg-[#E5E7EB]" />
-        <span className={cn("text-[10px] px-2.5 py-1 rounded-full uppercase tracking-wider font-semibold", healthChip[station.health])}>
-          {station.health === 'green' ? 'Pass' : station.health === 'amber' ? 'Concern' : station.health === 'red' ? 'Fail' : 'N/A'}
-        </span>
+      {/* Sticky section header */}
+      <div className="sticky top-12 z-20 bg-white/95 backdrop-blur-sm border-b border-[#E5E7EB] -mx-4 md:-mx-8 px-4 md:px-8 py-3 mb-4">
+        <div className="flex items-center gap-3">
+          <span className="text-[12px] font-medium tracking-[0.1em] text-[#7B8E80]">// {String(station.index).padStart(2, '0')}</span>
+          <div className={cn("w-2 h-2", station.health === 'green' ? 'bg-[#6EA996]' : station.health === 'amber' ? 'bg-[#E39B5C]' : station.health === 'red' ? 'bg-[#AD3D3D]' : 'bg-[#C0C0C0]')} />
+          <span className="text-[13px] font-semibold text-[#0A0A0A]">{station.name}</span>
+          <div className="flex-1 h-px bg-[#E5E7EB]" />
+          <span className={cn("text-[10px] px-2.5 py-1 uppercase tracking-wider font-semibold", healthChip[station.health])}>
+            {station.health === 'green' ? 'Pass' : station.health === 'amber' ? 'Concern' : station.health === 'red' ? 'Fail' : 'N/A'}
+          </span>
+          {/* Evidence count summary */}
+          <div className="flex items-center gap-2 text-[10px] text-[#7B8E80]">
+            {station.evidenceCount.photos > 0 && <span className="flex items-center gap-0.5"><Camera className="w-3 h-3" />{station.evidenceCount.photos}</span>}
+            {station.evidenceCount.videos > 0 && <span className="flex items-center gap-0.5"><Video className="w-3 h-3" />{station.evidenceCount.videos}</span>}
+            {station.evidenceCount.measurements > 0 && <span className="flex items-center gap-0.5"><Ruler className="w-3 h-3" />{station.evidenceCount.measurements}</span>}
+          </div>
+        </div>
       </div>
 
       <h2 className="text-[28px] font-light text-[#0A0A0A] tracking-tight leading-none mb-8">{station.name}</h2>
