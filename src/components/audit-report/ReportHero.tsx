@@ -108,6 +108,29 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
                 {heroReason}
               </p>
 
+              {/* Executive Summary — clear, structured */}
+              <div className="mt-5 p-4 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
+                <div className="text-[10px] font-bold tracking-[0.12em] uppercase text-[#94A3B8] mb-2">Executive Summary</div>
+                <ul className="space-y-2 text-[13px] text-[#334155] leading-relaxed">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-red-400 mt-1.5 shrink-0" />
+                    <span><strong className="text-[#0F172A]">Critical:</strong> Bore ID Cpk dropped to 0.98 (BMW min: 1.33). CNC calibration overdue on 2 machines — root cause traced to single-person dependency in calibration scheduling.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0" />
+                    <span><strong className="text-[#0F172A]">Warning:</strong> DPPM at 410 vs. BMW target of 50. Accelerating trend since Oct 2025. If uncorrected, Atlas AI projects supplier downgrade within 2 audit cycles.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
+                    <span><strong className="text-[#0F172A]">Strength:</strong> Workforce competency above benchmark. Production capacity meets demand. CEO engagement confirmed during audit.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-1.5 shrink-0" />
+                    <span><strong className="text-[#0F172A]">Action required:</strong> 2 major NCRs must be resolved with assigned owners and due dates before PO release. Total cost exposure: €937K if no action.</span>
+                  </li>
+                </ul>
+              </div>
+
               {/* Quick stats row */}
               <div className="mt-6 flex items-center gap-6">
                 <div className="flex items-center gap-2">
