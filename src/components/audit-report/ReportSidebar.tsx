@@ -62,11 +62,12 @@ const sidebarStructure: SidebarItem[] = [
   { id: 'station-9', index: 11, label: 'Documentation & QMS', health: 'amber', section: 'findings' },
   { id: 'station-10', index: 12, label: 'NCR register', health: 'red', section: 'back' },
   { id: 'station-11', index: 13, label: 'Atlas Intelligence', health: 'grey', section: 'back' },
-  { id: 'station-12', index: 14, label: 'Delay & risk forecast', health: 'amber', section: 'back' },
-  { id: 'station-13', index: 15, label: 'Corrective actions', health: 'grey', section: 'back' },
-  { id: 'station-14', index: 16, label: 'Evidence register', health: 'grey', section: 'back' },
-  { id: 'signatures', index: 17, label: 'Signatures & approval', health: 'grey', section: 'back' },
-  { id: 'revision', index: 18, label: 'Revision history', health: 'green', section: 'back' },
+  { id: 'machine-park', index: 14, label: 'Machine Park Intelligence', health: 'amber', section: 'back' },
+  { id: 'station-12', index: 15, label: 'Delay & risk forecast', health: 'amber', section: 'back' },
+  { id: 'station-13', index: 16, label: 'Corrective actions', health: 'grey', section: 'back' },
+  { id: 'station-14', index: 17, label: 'Evidence register', health: 'grey', section: 'back' },
+  { id: 'signatures', index: 18, label: 'Signatures & approval', health: 'grey', section: 'back' },
+  { id: 'revision', index: 19, label: 'Revision history', health: 'green', section: 'back' },
 ];
 
 // Map sidebar items to actual scroll targets (stations)
