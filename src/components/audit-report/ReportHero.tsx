@@ -48,6 +48,109 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
   const majorNCRs = allNCRs.filter(n => n.severity === 'major').length;
   const minorNCRs = allNCRs.filter(n => n.severity === 'minor').length;
 
+  // ── Executive mode: Dense formal engineering document header ──
+  if (depth === 'executive') {
+    return (
+      <section id="station-1" className="scroll-mt-20 pt-6 pb-4">
+        <div className="border border-border">
+          {/* Dark formal header */}
+          <div className="px-6 py-4" style={{ background: 'hsl(220,20%,14%)' }}>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="text-[10px] font-bold tracking-[0.15em] uppercase" style={{ color: config.color }}>
+                  {verdict === 'go' ? '■' : '▲'} VERDICT
+                </div>
+                <span className="text-[28px] font-bold tracking-[-0.02em] text-white leading-none">{verdictLabel}</span>
+              </div>
+              <div className="flex items-center gap-3">
+                {['ISO 9001', 'IATF 16949', 'VDA 6.3'].map(badge => (
+                  <span key={badge} className="text-[8px] font-bold tracking-[0.1em] uppercase px-2 py-0.5" style={{ background: 'hsl(220,20%,22%)', color: 'hsl(220,20%,60%)' }}>
+                    {badge}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Dense metadata grid */}
+          <div className="grid grid-cols-6 divide-x divide-border bg-card">
+            {[
+              { label: 'Supplier', value: supplier },
+              { label: 'Client', value: reportMeta.client },
+              { label: 'PO', value: po },
+              { label: 'Lead Auditor', value: 'I. Petrović' },
+              { label: 'Date', value: date },
+              { label: 'Location', value: location.split(' — ')[0] },
+            ].map((item, i) => (
+              <div key={i} className="px-3 py-2">
+                <div className="text-[8px] font-bold tracking-[0.12em] uppercase text-muted-foreground">{item.label}</div>
+                <div className="text-[12px] font-semibold text-foreground mt-0.5 truncate">{item.value}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Scores + NCR summary row */}
+          <div className="grid grid-cols-5 divide-x divide-border border-t border-border bg-muted/30">
+            <div className="px-3 py-2 text-center">
+              <div className="text-[8px] font-bold tracking-[0.12em] uppercase text-muted-foreground">IATF Score</div>
+              <div className="text-[20px] font-bold font-mono tabular-nums leading-none mt-1" style={{ color: config.color }}>{Math.round(iatfWeightedScore)}%</div>
+            </div>
+            <div className="px-3 py-2 text-center">
+              <div className="text-[8px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Previous</div>
+              <div className="text-[20px] font-bold font-mono tabular-nums leading-none mt-1 text-foreground">{reportMeta.previousScore}%</div>
+            </div>
+            <div className="px-3 py-2 text-center">
+              <div className="text-[8px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Major NCR</div>
+              <div className="text-[20px] font-bold font-mono tabular-nums leading-none mt-1 text-destructive">{majorNCRs}</div>
+            </div>
+            <div className="px-3 py-2 text-center">
+              <div className="text-[8px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Minor NCR</div>
+              <div className="text-[20px] font-bold font-mono tabular-nums leading-none mt-1 text-warning">{minorNCRs}</div>
+            </div>
+            <div className="px-3 py-2 text-center">
+              <div className="text-[8px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Cost Exposure</div>
+              <div className="text-[20px] font-bold font-mono tabular-nums leading-none mt-1 text-destructive">€{(reportMeta.totalCostExposure / 1000).toFixed(0)}K</div>
+            </div>
+          </div>
+
+          {/* Executive summary bullets — dense */}
+          <div className="px-6 py-3 border-t border-border bg-card">
+            <div className="text-[9px] font-bold tracking-[0.12em] uppercase text-muted-foreground mb-2">Executive Summary</div>
+            <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-[11px] leading-snug text-foreground/80">
+              <div className="flex items-start gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-destructive mt-1.5 shrink-0" />
+                <span><strong>Critical:</strong> Bore ID Cpk 0.98 (BMW min: 1.33). CNC calibration overdue 2 machines.</span>
+              </div>
+              <div className="flex items-start gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-warning mt-1.5 shrink-0" />
+                <span><strong>Warning:</strong> DPPM 410 vs. target 50. Accelerating trend since Oct 2025.</span>
+              </div>
+              <div className="flex items-start gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
+                <span><strong>Strength:</strong> Workforce competency above benchmark. CEO engagement confirmed.</span>
+              </div>
+              <div className="flex items-start gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
+                <span><strong>Action:</strong> 2 major NCRs require owners + dates before PO release. €937K exposure.</span>
+              </div>
+            </div>
+          </div>
+
+          {/* CTAs */}
+          <div className="flex items-center gap-2 px-6 py-3 border-t border-border bg-card">
+            <button onClick={onDecide} className="px-4 py-1.5 text-[10px] font-bold text-white uppercase tracking-wider bg-primary hover:bg-primary/90 cursor-pointer">
+              Review & decide →
+            </button>
+            <button onClick={onWalk} className="px-4 py-1.5 text-[10px] font-bold uppercase tracking-wider cursor-pointer bg-muted text-foreground hover:bg-muted/80">
+              Walk the factory ↓
+            </button>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // ── Standard / Full mode ──
   return (
     <section id="station-1" className="min-h-[100dvh] flex flex-col justify-center relative scroll-mt-20 py-12">
       <div className="relative z-10 max-w-[880px] mx-auto w-full">
