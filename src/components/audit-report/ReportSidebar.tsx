@@ -6,7 +6,7 @@ const healthDotColor: Record<StationHealth, string> = {
   green: 'bg-accent',
   amber: 'bg-warning',
   red: 'bg-destructive',
-  grey: 'bg-grey-mid',
+  grey: 'bg-white/20',
 };
 
 // Mock sparkline data for cross-audit score trajectory per station
@@ -118,9 +118,9 @@ interface ReportSidebarProps {
 
 function SectionGroup({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="mb-2">
+    <div className="mb-1">
       <div className="px-4 pt-5 pb-2">
-        <span className="text-[10px] font-semibold tracking-[0.15em] uppercase text-muted-foreground">
+        <span className="text-[10px] font-semibold tracking-[0.15em] uppercase text-white/30">
           {label}
         </span>
       </div>
@@ -154,13 +154,13 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
             }
           }}
           className={cn(
-            "flex items-center gap-3 w-full px-4 py-2 text-left transition-all duration-150 group",
+            "sidebar-item flex items-center gap-3 w-full px-4 py-2 text-left transition-all duration-150 group border-l-2",
             isActive
-              ? "bg-primary/5 text-primary border-l-2 border-primary"
-              : "text-charcoal hover:bg-muted border-l-2 border-transparent"
+              ? "active"
+              : "border-transparent"
           )}
         >
-          <span className="text-[13px] font-medium tabular-nums text-grey-mid w-6 shrink-0">
+          <span className="text-[13px] font-medium tabular-nums text-white/25 w-6 shrink-0">
             {item.index <= 4
               ? `${item.index}.0`
               : item.index <= 11
@@ -169,7 +169,7 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
           </span>
           <span className={cn(
             "text-[13px] flex-1 truncate",
-            isActive ? "font-semibold text-primary" : "font-normal"
+            isActive ? "font-semibold" : "font-normal"
           )}>
             {item.label}
           </span>
@@ -185,18 +185,18 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
 
         {/* Sub-items */}
         {item.children && isActive && (
-          <div className="ml-10 border-l border-border">
+          <div className="ml-10 border-l border-white/10">
             {item.children.map((child, ci) => (
               <button
                 key={child.id}
                 className={cn(
                   "flex items-center gap-2 w-full px-4 py-1.5 text-left text-[12px] transition-colors",
                   ci === 0
-                    ? "text-primary font-medium bg-primary/5"
-                    : "text-muted-foreground hover:text-charcoal"
+                    ? "text-sidebar-accent font-medium bg-sidebar-accent/10"
+                    : "text-white/40 hover:text-white/70"
                 )}
               >
-                <span className="tabular-nums text-grey-mid w-8">5.3.{ci + 1}</span>
+                <span className="tabular-nums text-white/20 w-8">5.3.{ci + 1}</span>
                 <span>{child.label}</span>
               </button>
             ))}
@@ -209,12 +209,17 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
   return (
     <aside className={cn("flex flex-col overflow-y-auto", className)}>
       {/* Document outline header */}
-      <div className="px-4 py-5 border-b border-border">
-        <span className="text-[10px] font-semibold tracking-[0.15em] uppercase text-muted-foreground">
-          Document Outline
-        </span>
-        <h3 className="text-[15px] font-semibold text-foreground mt-1">Process audit report</h3>
-        <p className="text-[12px] text-muted-foreground mt-0.5">
+      <div className="px-4 py-5 border-b border-white/10">
+        <div className="flex items-center gap-2 mb-2">
+          <div className="w-6 h-6 bg-primary/20 flex items-center justify-center">
+            <span className="text-primary text-[10px] font-bold">AI</span>
+          </div>
+          <span className="text-[11px] font-semibold tracking-[0.1em] uppercase text-white/50">
+            ScanPro+
+          </span>
+        </div>
+        <h3 className="text-[15px] font-semibold text-white/90 mt-1">Process audit report</h3>
+        <p className="text-[12px] text-white/35 mt-0.5">
           47 pages · {totalSections} sections · {ncrCount} ncrs
         </p>
       </div>

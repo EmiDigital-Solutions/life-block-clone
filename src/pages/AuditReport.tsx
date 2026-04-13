@@ -165,66 +165,66 @@ function AuditReportInner() {
   return (
     <>
     <Navigation />
-    <div className="h-[100dvh] flex bg-background text-foreground pt-16" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
+    <div className="h-[100dvh] flex text-foreground pt-16" style={{ fontFamily: "'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
       {/* Mobile sidebar overlay */}
       {isMobile && sidebarOpen && (
         <div className="fixed inset-0 z-50 flex">
-          <div className="absolute inset-0 bg-foreground/20" onClick={() => setSidebarOpen(false)} />
-          <div className="relative z-10 w-[280px] bg-background border-r border-border">
-            <div className="flex items-center justify-between px-4 py-3 border-b border-border">
-              <span className="text-[13px] font-semibold text-foreground">Document Outline</span>
-              <button onClick={() => setSidebarOpen(false)} className="p-1"><X className="w-4 h-4 text-grey-mid" /></button>
+          <div className="absolute inset-0 bg-foreground/40 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
+          <div className="relative z-10 w-[280px] audit-sidebar">
+            <div className="flex items-center justify-between px-4 py-3 border-b border-sidebar-border">
+              <span className="text-[13px] font-semibold text-white/90">Document Outline</span>
+              <button onClick={() => setSidebarOpen(false)} className="p-1"><X className="w-4 h-4 text-white/50" /></button>
             </div>
             <ReportSidebar activeStation={activeStation} onStationClick={scrollToStation} onScrollToId={scrollToId} />
           </div>
         </div>
       )}
 
-      {/* Desktop sidebar */}
+      {/* Desktop sidebar — dark theme */}
       {!isMobile && (
         <ReportSidebar
           activeStation={activeStation}
           onStationClick={scrollToStation}
           onScrollToId={scrollToId}
-          className="w-[260px] xl:w-[280px] shrink-0 border-r border-border bg-background"
+          className="w-[260px] xl:w-[280px] shrink-0 audit-sidebar border-r border-sidebar-border"
         />
       )}
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col min-w-0 relative">
+      <div className="flex-1 flex flex-col min-w-0 relative bg-background">
         {/* Verdict color band */}
         <div className={cn(
           "h-[2px] transition-all duration-300",
           scrolledPastHero ? "opacity-100" : "opacity-0"
         )} style={{ background: verdictBandColor }} />
 
-        {/* Top document bar */}
+        {/* Top document bar — dark glass */}
         <div className={cn(
-          "sticky top-0 z-40 bg-foreground transition-all duration-300",
+          "sticky top-0 z-40 audit-topbar transition-all duration-300",
           scrolledPastHero ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
         )}>
           <div className="flex items-center justify-between px-4 md:px-6 h-12">
             <div className="flex items-center gap-4">
               {isMobile && (
-                <button onClick={() => setSidebarOpen(true)} className="p-1.5 hover:bg-charcoal">
-                  <Menu className="w-4 h-4 text-grey-mid" />
+                <button onClick={() => setSidebarOpen(true)} className="p-1.5 hover:bg-white/5 transition-colors">
+                  <Menu className="w-4 h-4 text-white/50" />
                 </button>
               )}
               <span className="text-[11px] font-semibold text-accent tracking-wider">yvoo+</span>
-              <span className="text-[11px] text-muted-foreground">SCANPRO+ · ATLAS AI</span>
-              <span className="text-[11px] text-grey-mid">/</span>
-              <span className="text-[12px] text-muted font-medium">{reportMeta.supplier}</span>
+              <span className="text-[11px] text-white/40">SCANPRO+ · ATLAS AI</span>
+              <span className="text-[11px] text-white/20">|</span>
+              <span className="text-[12px] text-white/70 font-medium">{reportMeta.supplier}</span>
               <span className="text-[11px] font-medium text-warning ml-2">{reportMeta.verdictLabel}</span>
-              <span className="text-[11px] text-muted-foreground">· {allNCRs.length} NCRs</span>
+              <span className="text-[11px] text-white/40">· {allNCRs.length} NCRs</span>
 
               {/* Station heatmap strip */}
-              <div className="hidden md:flex items-center gap-2 ml-2 pl-2 border-l border-charcoal">
+              <div className="hidden md:flex items-center gap-2 ml-2 pl-2 border-l border-white/10">
                 <StationHeatmap activeStation={activeStation} onStationClick={scrollToStation} />
               </div>
 
               {/* Breadcrumb progress */}
-              <div className="hidden lg:flex items-center gap-1.5 ml-2 pl-2 border-l border-charcoal">
-                <span className="text-[10px] font-mono text-muted-foreground tabular-nums">
+              <div className="hidden lg:flex items-center gap-1.5 ml-2 pl-2 border-l border-white/10">
+                <span className="text-[10px] font-mono text-white/40 tabular-nums">
                   Reviewed {reviewedStations.size}/{totalStations}
                 </span>
               </div>
@@ -232,8 +232,8 @@ function AuditReportInner() {
             <div className="flex items-center gap-3">
               {/* Reading progress + time */}
               <div className="hidden md:flex items-center gap-2">
-                <span className="text-[10px] font-mono text-muted-foreground tabular-nums">{readingProgress}%</span>
-                <span className="text-[10px] text-muted-foreground flex items-center gap-1">
+                <span className="text-[10px] font-mono text-white/40 tabular-nums">{readingProgress}%</span>
+                <span className="text-[10px] text-white/30 flex items-center gap-1">
                   <Clock className="w-3 h-3" />
                   {readingTimeEstimates[depth]}
                 </span>
@@ -246,7 +246,7 @@ function AuditReportInner() {
                     <TooltipTrigger asChild>
                       <button
                         onClick={() => scrollToStation(worstStation.index)}
-                        className="flex items-center gap-1.5 px-2.5 py-1.5 text-[10px] font-semibold text-destructive bg-destructive/10 hover:bg-destructive/20 transition-colors uppercase tracking-wider"
+                        className="flex items-center gap-1.5 px-2.5 py-1.5 text-[10px] font-semibold text-destructive bg-destructive/15 hover:bg-destructive/25 transition-colors uppercase tracking-wider"
                       >
                         <AlertTriangle className="w-3 h-3" />
                         Worst
@@ -259,43 +259,43 @@ function AuditReportInner() {
                 </TooltipProvider>
               )}
 
-              <div className="flex items-center border border-charcoal overflow-hidden">
+              <div className="flex items-center border border-white/10 overflow-hidden">
                 {(['executive', 'standard', 'full'] as DepthLevel[]).map(d => (
                   <button
                     key={d}
                     onClick={() => setDepth(d)}
                     className={cn(
                       "px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider transition-colors",
-                      depth === d ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-muted hover:bg-charcoal"
+                      depth === d ? "bg-primary text-white" : "text-white/40 hover:text-white/70 hover:bg-white/5"
                     )}
                   >
                     {depthLabels[d]}
                   </button>
                 ))}
               </div>
-              <button className="hidden md:block px-3 py-1.5 text-[11px] font-medium text-muted border border-muted-foreground hover:bg-charcoal transition-colors">
+              <button className="hidden md:block px-3 py-1.5 text-[11px] font-medium text-white/60 border border-white/10 hover:bg-white/5 transition-colors">
                 Export pdf
               </button>
-              <button className="hidden lg:block px-3 py-1.5 text-[11px] font-medium text-muted border border-muted-foreground hover:bg-charcoal transition-colors">
+              <button className="hidden lg:block px-3 py-1.5 text-[11px] font-medium text-white/60 border border-white/10 hover:bg-white/5 transition-colors">
                 Print
               </button>
               <button
                 onClick={() => setInspectorOpen(!inspectorOpen)}
-                className="px-4 py-1.5 text-[11px] font-semibold text-foreground bg-accent hover:bg-accent/80 transition-colors"
+                className="px-4 py-1.5 text-[11px] font-semibold text-white bg-accent hover:bg-accent/80 transition-colors"
               >
                 Sign off ({allNCRs.filter(n => n.status === 'open').length})
               </button>
             </div>
           </div>
           {/* Reading progress bar */}
-          <div className="h-[2px] bg-charcoal">
+          <div className="h-[2px] bg-white/5">
             <div className="h-full bg-primary transition-all duration-150" style={{ width: `${readingProgress}%` }} />
           </div>
         </div>
 
         {/* Scrollable content */}
         <div className="flex-1 flex overflow-hidden">
-          <div ref={contentRef} className="flex-1 overflow-y-auto bg-background">
+          <div ref={contentRef} className="flex-1 overflow-y-auto">
             <div className="max-w-[960px] mx-auto px-4 md:px-8">
               <ReportHero
                 verdict={reportMeta.verdict}
@@ -346,9 +346,9 @@ function AuditReportInner() {
                 <EvidenceVault />
               </div>
 
-              {/* Ask Atlas */}
+              {/* Ask Atlas — glass style */}
               <div className="sticky bottom-4 z-30 mb-8">
-                <div className="max-w-[640px] mx-auto flex items-center gap-2 px-4 py-2.5 border border-border bg-background/95 backdrop-blur-sm shadow-lg">
+                <div className="max-w-[640px] mx-auto flex items-center gap-2 px-4 py-2.5 audit-glass-card">
                   <Sparkles className="w-4 h-4 text-primary shrink-0" />
                   <input
                     value={askAtlasInput}
