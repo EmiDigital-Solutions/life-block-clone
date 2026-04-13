@@ -248,7 +248,7 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
       </div>
 
       {/* Performance bars */}
-      <div className="p-5 space-y-2" style={{  }}>
+      <div className="p-5 space-y-2">
         <div className="flex items-center justify-between mb-3">
           <span className="text-[10px] font-bold uppercase tracking-[0.12em]" style={{ color: 'hsl(0,0%,50%)' }}>Performance Breakdown</span>
           <span className="text-[10px] font-mono" style={{ color: 'hsl(0,0%,55%)' }}>Dashed line = BMW threshold</span>
@@ -276,7 +276,7 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
       </div>
 
       {/* Suitability reason */}
-      <div className="px-5 py-3" style={{  }}>
+      <div className="px-5 py-3">
         <p className="text-[13px] leading-relaxed" style={{ color: 'hsl(0,0%,40%)' }}>
           <strong className="text-foreground">BMW Assessment:</strong> {machine.clientSuitabilityReason}
         </p>
@@ -284,7 +284,7 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
 
       {/* Risks */}
       {machine.risks.length > 0 && (
-        <div className="px-5 py-3" style={{  }}>
+        <div className="px-5 py-3">
           <div className="flex items-center gap-2 mb-2">
             <AlertTriangle className="w-3.5 h-3.5" style={{ color: 'hsl(24, 72%, 63%)' }} />
             <span className="text-[10px] font-bold uppercase tracking-[0.12em]" style={{ color: 'hsl(24, 72%, 63%)' }}>
@@ -320,7 +320,7 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
       </button>
 
       {expanded && (
-        <div style={{  }}>
+        <div>
           {/* Specs grid */}
           <div className="p-5">
             <span className="text-[10px] font-bold uppercase tracking-[0.12em] mb-3 block" style={{ color: 'hsl(0,0%,50%)' }}>Specifications</span>
@@ -341,7 +341,7 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
             <span className="text-[10px] font-bold uppercase tracking-[0.12em] mb-2 block" style={{ color: 'hsl(0,0%,50%)' }}>Capabilities</span>
             <div className="flex flex-wrap gap-1.5">
               {machine.capabilities.map((cap, i) => (
-                <span key={i} className="text-[11px] px-2.5 py-1 font-medium text-foreground" style={{  }}>
+                <span key={i} className="text-[11px] px-2.5 py-1 font-medium text-foreground">
                   {cap}
                 </span>
               ))}

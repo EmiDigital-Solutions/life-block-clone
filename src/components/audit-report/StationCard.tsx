@@ -48,7 +48,7 @@ function EvidenceGrid({ evidence }: { evidence: SubCategoryEvidence[] }) {
           return (
             <button key={ev.id} className="flex items-center gap-1.5 px-2.5 py-1.5 text-[11px] transition-colors cursor-pointer" style={{ background: 'hsla(0,0%,100%,0.7)', color: 'hsl(0,0%,30%)' }}>
               {ev.thumbnail ? (
-                <img src={ev.thumbnail} alt={ev.label} className="w-8 h-8 object-cover" style={{  }} />
+                <img src={ev.thumbnail} alt={ev.label} className="w-8 h-8 object-cover" />
               ) : (
                 <div className="w-8 h-8 flex items-center justify-center" style={{ background: 'hsl(0,0%,92%)' }}>
                   <Icon className="w-3.5 h-3.5 text-primary" />
@@ -189,7 +189,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
         <div className="p-6 md:p-8 space-y-8" style={{ background: 'hsla(0,0%,100%,0.7)', backdropFilter: 'blur(12px)' }}>
           {/* Hero photo */}
           {station.heroPhoto ? (
-            <div className="aspect-video overflow-hidden" style={{  }}>
+            <div className="aspect-video overflow-hidden">
               <img src={station.heroPhoto} alt={`Factory photo — ${station.name}`} className="w-full h-full object-cover" loading="lazy" width={960} height={540} />
             </div>
           ) : (
@@ -355,7 +355,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
 
           {/* Audit Questions */}
           {hasQuestions && depth === 'full' && (
-            <div className="pt-6" style={{  }}>
+            <div className="pt-6">
               <button onClick={() => setQuestionsOpen(!questionsOpen)} className="flex items-center gap-2 text-[13px] font-medium transition-colors mb-4 cursor-pointer" style={{ color: 'hsl(0,0%,45%)' }}>
                 <BookOpen className="w-4 h-4" />
                 <span>ISO 9001 Audit Checklist — {station.auditQuestions!.length} questions</span>
@@ -388,7 +388,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
 
           {/* Evidence footer */}
           {(station.evidenceCount.photos > 0 || station.evidenceCount.measurements > 0 || station.evidenceCount.videos > 0) && (
-            <div className="flex items-center justify-between pt-4" style={{  }}>
+            <div className="flex items-center justify-between pt-4">
               <div className="flex items-center gap-4 text-[12px]" style={{ color: 'hsl(0,0%,50%)' }}>
                 {station.evidenceCount.photos > 0 && <span className="flex items-center gap-1.5"><Camera className="w-3.5 h-3.5" /> {station.evidenceCount.photos} photos</span>}
                 {station.evidenceCount.measurements > 0 && <span className="flex items-center gap-1.5"><Ruler className="w-3.5 h-3.5" /> {station.evidenceCount.measurements} measurements</span>}
