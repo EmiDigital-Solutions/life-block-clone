@@ -57,6 +57,12 @@ export default {
   				foreground: 'hsl(var(--warning-foreground))'
   			},
   			mint: 'hsl(var(--mint))',
+  			charcoal: 'hsl(var(--charcoal))',
+  			'grey-mid': 'hsl(var(--grey-mid))',
+  			bluegrey: 'hsl(var(--bluegrey))',
+  			'hero-green': 'hsl(var(--hero-green))',
+  			'audit-red': 'hsl(var(--audit-red))',
+  			amber: 'hsl(var(--amber))',
   			popover: {
   				DEFAULT: 'hsl(var(--popover))',
   				foreground: 'hsl(var(--popover-foreground))'

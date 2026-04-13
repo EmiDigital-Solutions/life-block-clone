@@ -13,42 +13,49 @@ All colors MUST be HSL.
 @layer base {
   :root {
     --background: 0 0% 100%; /* #FFFFFF */
-    --foreground: 0 0% 0%;
+    --foreground: 0 0% 4%; /* Deep Neutral Black #0A0A0A */
 
     --hero-background: 0 0% 5%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 0%;
+    --card-foreground: 0 0% 4%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 0%;
+    --popover-foreground: 0 0% 4%;
 
-    --primary: 195 88.5714% 34.3137%; /* CEIP Blue #0A7FA5 */
+    --primary: 195 89% 34%; /* CTA Blue-Teal #0A7FA5 */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 161 25.5411% 54.7059%;
-    --secondary-foreground: 0 0% 0%;
+    --secondary: 207 33% 75%; /* BlueGrey Light #ACC5D9 */
+    --secondary-foreground: 0 0% 4%;
 
     --muted: 0 0% 96%; /* Snow White #F5F5F5 */
     --muted-foreground: 0 0% 45%;
 
-    --accent: 158 23% 75%;
-    --accent-foreground: 0 0% 0%;
+    --accent: 155 24% 55%; /* Hero Green #6EA996 */
+    --accent-foreground: 0 0% 100%;
 
-    --success: 158 23% 75%; /* Green for success — semantic */
-    --success-foreground: 0 0% 0%;
+    --success: 155 24% 55%; /* Hero Green #6EA996 — semantic success */
+    --success-foreground: 0 0% 100%;
 
-    --warning: 37 91% 55%; /* Amber #F5A623 */
-    --warning-foreground: 0 0% 0%;
+    --warning: 24 72% 63%; /* Amber Soft #E39B5C */
+    --warning-foreground: 0 0% 4%;
 
-    --destructive: 0 47.8632% 45.8824%; /* Red #AE3D3D */
-    --destructive-foreground: 0 47.8632% 45.8824%;
+    --destructive: 0 48% 46%; /* Audit Red #AD3D3D */
+    --destructive-foreground: 0 0% 100%;
 
     --mint: 143 18% 75%; /* Mint Light #B2CDBC */
 
+    --charcoal: 0 0% 10%; /* Charcoal #1A1A1A */
+    --grey-mid: 0 0% 75%; /* Grey Mid #C0C0C0 */
+    --bluegrey: 207 33% 75%; /* BlueGrey Light #ACC5D9 */
+    --hero-green: 155 24% 55%; /* Hero Green #6EA996 */
+    --audit-red: 0 48% 46%; /* Audit Red #AD3D3D */
+    --amber: 24 72% 63%; /* Amber Soft #E39B5C */
+
     --border: 0 0% 90%;
     --input: 0 0% 90%;
-    --ring: 160 25% 72%;
+    --ring: 195 89% 34%; /* CTA Blue-Teal for focus rings */
 
     --radius: 0.25rem;
 
@@ -60,56 +67,63 @@ All colors MUST be HSL.
     --cream: 0 0% 95%;
 
     /* Full-screen project section colors */
-    --project-blue: 192 20% 72%; /* BlueGrey Light */
+    --project-blue: 207 33% 75%; /* BlueGrey Light */
     --project-brown: 0 0% 50%;
-    --project-teal: 158 23% 75%; /* Sage Green */
+    --project-teal: 155 24% 55%; /* Hero Green */
     --project-pink: 0 0% 60%;
 
     /* How It Works section colors */
     --process-bg: 0 0% 5%;
     --content-bg: 0 0% 4%;
-    --content-accent: 158 23% 75%;
+    --content-accent: 155 24% 55%; /* Hero Green */
     --font-sans: Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   }
 
   .dark {
-    --background: 0 0% 5%;
-    --foreground: 0 0% 100%;
+    --background: 0 0% 4%; /* #0A0A0A */
+    --foreground: 0 0% 96%;
 
     --hero-background: 0 0% 5%;
 
     --card: 0 0% 10%;
-    --card-foreground: 0 0% 100%;
+    --card-foreground: 0 0% 96%;
 
     --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 100%;
+    --popover-foreground: 0 0% 96%;
 
-    --primary: 196 81.9048% 41.1765%; /* Hilti Red (lighter for dark mode) */
-    --primary-foreground: 0 0% 0%;
+    --primary: 195 89% 40%; /* CTA Blue-Teal lighter for dark */
+    --primary-foreground: 0 0% 4%;
 
-    --secondary: 192 20% 72%; /* Hilti Red */
-    --secondary-foreground: 0 0% 0%;
+    --secondary: 207 25% 55%; /* BlueGrey muted for dark */
+    --secondary-foreground: 0 0% 4%;
 
-    --muted: 0 0% 20%;
+    --muted: 0 0% 15%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 158 23% 75%; /* Hilti Red */
-    --accent-foreground: 0 0% 0%;
+    --accent: 155 24% 45%; /* Hero Green darker for dark mode */
+    --accent-foreground: 0 0% 100%;
 
-    --success: 145 63% 42%;
+    --success: 155 24% 45%;
     --success-foreground: 0 0% 100%;
 
-    --warning: 37 91% 55%;
-    --warning-foreground: 0 0% 0%;
+    --warning: 24 72% 55%;
+    --warning-foreground: 0 0% 4%;
 
-    --destructive: 4 49.7872% 53.9216%; /* Red #AE3D3D */
-    --destructive-foreground: 4 49.7872% 53.9216%;
+    --destructive: 0 48% 50%; /* Audit Red lighter for dark */
+    --destructive-foreground: 0 0% 100%;
 
-    --mint: 143 18% 75%;
+    --mint: 143 18% 55%;
+
+    --charcoal: 0 0% 75%;
+    --grey-mid: 0 0% 45%;
+    --bluegrey: 207 25% 45%;
+    --hero-green: 155 24% 45%;
+    --audit-red: 0 48% 50%;
+    --amber: 24 72% 55%;
 
     --border: 0 0% 20%;
     --input: 0 0% 20%;
-    --ring: 160 25% 72%;
+    --ring: 195 89% 40%;
     --font-sans: Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
     --radius: 0.125rem;
   }
