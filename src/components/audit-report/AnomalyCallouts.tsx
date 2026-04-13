@@ -1,5 +1,5 @@
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
-import { Zap, AlertTriangle, TrendingDown } from "lucide-react";
+import { Zap, TrendingDown } from "lucide-react";
 
 const severityColor: Record<string, string> = {
   critical: 'hsl(0, 48%, 46%)',
@@ -19,39 +19,42 @@ export default function AnomalyCallouts() {
   const criticalSignals = supplierRiskSignals.filter(s => s.status === 'critical');
 
   return (
-    <section className="py-12 border-b border-border">
-      <div className="flex items-center gap-3 mb-6">
-        <Zap className="w-3.5 h-3.5 text-primary" />
-        <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">AI Anomaly Detection</span>
-        <div className="flex-1 h-px bg-border" />
-        <span className="text-[10px] font-mono text-muted-foreground">{topAnomalies.length} hidden patterns found</span>
+    <section className="py-10 space-y-6">
+      <div className="flex items-center gap-2 mb-3">
+        <div className="w-1 h-5" style={{ background: 'hsl(24, 72%, 63%)' }} />
+        <span className="text-[11px] font-semibold tracking-[0.15em] uppercase" style={{ color: 'hsl(0,0%,50%)' }}>AI Anomaly Detection</span>
       </div>
 
-      <div className="space-y-3">
-        {topAnomalies.map(anomaly => {
+      <h2 className="text-[32px] font-bold text-foreground tracking-[-0.02em] leading-tight">
+        {topAnomalies.length} hidden patterns found by Atlas AI
+      </h2>
+      <p className="text-[15px] max-w-2xl leading-relaxed" style={{ color: 'hsl(0,0%,45%)' }}>
+        Cross-correlation analysis identified patterns not visible during manual inspection.
+      </p>
+
+      <div className="space-y-4">
+        {topAnomalies.map((anomaly, i) => {
           const color = severityColor[anomaly.severity];
           return (
-            <div key={anomaly.id} className="border border-border bg-white p-5 hover:border-primary/30 transition-colors">
-              <div className="flex items-start gap-3">
-                <div className="w-8 h-8 flex items-center justify-center shrink-0" style={{ background: `${color}15` }}>
-                  <AlertTriangle className="w-4 h-4" style={{ color }} />
+            <div key={anomaly.id} className="flex gap-6 p-6" style={{ background: 'hsl(0,0%,100%)', border: '1px solid hsl(0,0%,85%)' }}>
+              <div className="flex flex-col items-center gap-2 shrink-0">
+                <div className="w-10 h-10 flex items-center justify-center" style={{ background: `${color}10` }}>
+                  <Zap className="w-5 h-5" style={{ color }} />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1 flex-wrap">
-                    <span className="text-[9px] px-1.5 py-0.5 font-bold uppercase tracking-wider" style={{ background: `${color}15`, color }}>{anomaly.severity}</span>
-                    <span className="text-[9px] font-mono px-1.5 py-0.5 bg-muted text-muted-foreground">{anomaly.confidence}% conf.</span>
-                    <span className="text-[9px] text-grey-mid">· Not visible to human auditor</span>
+                <span className="text-[9px] font-bold uppercase tracking-wider" style={{ color }}>{anomaly.severity}</span>
+                <span className="text-[11px] font-mono font-bold" style={{ color: 'hsl(0,0%,40%)' }}>{anomaly.confidence}%</span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-[16px] font-bold text-foreground mb-1">{anomaly.title}</h3>
+                <p className="text-[14px] leading-relaxed" style={{ color: 'hsl(0,0%,45%)' }}>{anomaly.description}</p>
+                {anomaly.connectedFindings.length > 0 && (
+                  <div className="flex items-center gap-2 mt-3">
+                    <span className="text-[10px]" style={{ color: 'hsl(0,0%,55%)' }}>Linked findings:</span>
+                    {anomaly.connectedFindings.map(f => (
+                      <span key={f} className="text-[11px] font-mono px-2 py-0.5" style={{ background: 'hsl(0, 48%, 46%, 0.06)', color: 'hsl(0, 48%, 46%)' }}>{f}</span>
+                    ))}
                   </div>
-                  <p className="text-[14px] font-semibold text-foreground">{anomaly.title}</p>
-                  <p className="text-[12px] text-muted-foreground leading-relaxed mt-1">{anomaly.description}</p>
-                  {anomaly.connectedFindings.length > 0 && (
-                    <div className="flex items-center gap-1.5 mt-2">
-                      {anomaly.connectedFindings.map(f => (
-                        <span key={f} className="text-[9px] font-mono px-1.5 py-0.5 bg-destructive/10 text-destructive">{f}</span>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                )}
               </div>
             </div>
           );
@@ -59,17 +62,17 @@ export default function AnomalyCallouts() {
       </div>
 
       {criticalSignals.length > 0 && (
-        <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ background: 'hsl(0,0%,85%)' }}>
           {criticalSignals.map(signal => (
-            <div key={signal.signal} className="border border-destructive/20 bg-destructive/5 p-3">
-              <div className="flex items-center gap-2 mb-1">
-                <TrendingDown className="w-3 h-3 text-destructive" />
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-destructive">Critical</span>
+            <div key={signal.signal} className="p-5" style={{ background: 'hsl(0,0%,100%)' }}>
+              <div className="flex items-center gap-2 mb-2">
+                <TrendingDown className="w-4 h-4" style={{ color: 'hsl(0, 48%, 46%)' }} />
+                <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: 'hsl(0, 48%, 46%)' }}>Critical Signal</span>
               </div>
-              <p className="text-[13px] font-medium text-foreground">{signal.signal}</p>
-              <div className="flex items-baseline gap-1 mt-1">
-                <span className="text-[18px] font-mono font-bold text-destructive">{signal.value}</span>
-                <span className="text-[11px] text-muted-foreground">threshold: {signal.threshold}</span>
+              <p className="text-[14px] font-medium text-foreground">{signal.signal}</p>
+              <div className="flex items-baseline gap-2 mt-2">
+                <span className="text-[24px] font-mono font-bold" style={{ color: 'hsl(0, 48%, 46%)' }}>{signal.value}</span>
+                <span className="text-[12px]" style={{ color: 'hsl(0,0%,55%)' }}>threshold: {signal.threshold}</span>
               </div>
             </div>
           ))}

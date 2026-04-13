@@ -1,100 +1,85 @@
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, ReferenceLine, CartesianGrid } from "recharts";
 
 export default function CostWaterfallChart() {
   const { costImpactData } = useAuditReportContext();
 
-  // Build waterfall data
-  let runningTotal = 0;
-  const waterfallData = costImpactData.map(item => {
-    const start = runningTotal;
-    runningTotal += item.currentExposure;
-    return {
-      name: item.category.split(' — ')[0],
-      value: item.currentExposure / 1000,
-      mitigated: item.mitigatedCost / 1000,
-      start: start / 1000,
-      fill: item.currentExposure > 100000 ? 'hsl(0, 48%, 46%)' : 'hsl(24, 72%, 63%)',
-    };
-  });
-
   const totalExposure = costImpactData.reduce((a, c) => a + c.currentExposure, 0);
   const totalMitigated = costImpactData.reduce((a, c) => a + c.mitigatedCost, 0);
-
-  const chartData = costImpactData.map(item => ({
-    name: item.category.split(' — ')[0].substring(0, 18),
-    exposure: Math.round(item.currentExposure / 1000),
-    mitigated: Math.round(item.mitigatedCost / 1000),
-    net: Math.round((item.currentExposure - item.mitigatedCost) / 1000),
-    confidence: item.confidence,
-  }));
+  const savings = totalExposure - totalMitigated;
+  const maxExposure = Math.max(...costImpactData.map(c => c.currentExposure));
 
   return (
     <section className="scroll-mt-20 space-y-6">
-      <div className="flex items-center gap-3 mb-2">
-        <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">// COST</span>
-        <span className="w-1.5 h-1.5 bg-primary" />
-        <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">Cost Exposure Waterfall</span>
-        <div className="flex-1 h-px bg-border" />
+      <div className="flex items-center gap-2 mb-3">
+        <div className="w-1 h-5" style={{ background: 'hsl(0, 48%, 46%)' }} />
+        <span className="text-[11px] font-semibold tracking-[0.15em] uppercase" style={{ color: 'hsl(0,0%,50%)' }}>Cost Analysis</span>
       </div>
 
-      <h2 className="text-[28px] font-light text-foreground tracking-tight leading-none">
-        Cost Exposure Analysis
+      <h2 className="text-[32px] font-bold text-foreground tracking-[-0.02em] leading-tight">
+        €{Math.round(savings / 1000)}K recoverable through mitigation
       </h2>
+      <p className="text-[15px] max-w-2xl leading-relaxed" style={{ color: 'hsl(0,0%,45%)' }}>
+        Total cost exposure of €{Math.round(totalExposure / 1000)}K can be reduced to €{Math.round(totalMitigated / 1000)}K with recommended corrective actions.
+      </p>
 
-      <div className="border border-border bg-white p-6">
-        <div className="flex items-center gap-6 mb-6 pb-4 border-b border-border">
-          <div>
-            <span className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground font-semibold">Total Exposure</span>
-            <div className="text-[24px] font-bold text-destructive font-mono tabular-nums">€{Math.round(totalExposure / 1000)}K</div>
+      {/* Hero stat row */}
+      <div className="flex items-stretch gap-px" style={{ background: 'hsl(0,0%,85%)' }}>
+        {[
+          { label: 'Total Exposure', value: `€${Math.round(totalExposure / 1000)}K`, color: 'hsl(0, 48%, 46%)' },
+          { label: 'After Mitigation', value: `€${Math.round(totalMitigated / 1000)}K`, color: 'hsl(155, 24%, 55%)' },
+          { label: 'Savings', value: `€${Math.round(savings / 1000)}K`, color: 'hsl(195, 89%, 34%)' },
+          { label: 'Avg. Confidence', value: `${Math.round(costImpactData.reduce((a, c) => a + c.confidence, 0) / costImpactData.length)}%`, color: 'hsl(0,0%,30%)' },
+        ].map(stat => (
+          <div key={stat.label} className="flex-1 p-5" style={{ background: 'hsl(0,0%,100%)' }}>
+            <span className="text-[10px] uppercase tracking-[0.12em] font-semibold" style={{ color: 'hsl(0,0%,50%)' }}>{stat.label}</span>
+            <div className="text-[28px] font-bold font-mono tabular-nums mt-1 leading-none" style={{ color: stat.color }}>{stat.value}</div>
           </div>
-          <div className="w-px h-10 bg-border" />
-          <div>
-            <span className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground font-semibold">After Mitigation</span>
-            <div className="text-[24px] font-bold text-accent font-mono tabular-nums">€{Math.round(totalMitigated / 1000)}K</div>
-          </div>
-          <div className="w-px h-10 bg-border" />
-          <div>
-            <span className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground font-semibold">Savings</span>
-            <div className="text-[24px] font-bold text-primary font-mono tabular-nums">€{Math.round((totalExposure - totalMitigated) / 1000)}K</div>
-          </div>
+        ))}
+      </div>
+
+      {/* Horizontal bar chart — one bar per category, exposure vs mitigated */}
+      <div className="p-8" style={{ background: 'hsl(0,0%,100%)', border: '1px solid hsl(0,0%,85%)' }}>
+        <div className="flex items-center gap-6 mb-6 text-[11px]" style={{ color: 'hsl(0,0%,50%)' }}>
+          <span className="flex items-center gap-2">
+            <span className="w-3 h-2 inline-block" style={{ background: 'hsl(0, 48%, 46%)', opacity: 0.7 }} /> At Risk
+          </span>
+          <span className="flex items-center gap-2">
+            <span className="w-3 h-2 inline-block" style={{ background: 'hsl(155, 24%, 55%)' }} /> After Mitigation
+          </span>
         </div>
 
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={chartData} margin={{ top: 10, right: 10, left: 10, bottom: 40 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" vertical={false} />
-            <XAxis dataKey="name" tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 10 }} axisLine={false} tickLine={false} angle={-30} textAnchor="end" height={60} />
-            <YAxis tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v) => `€${v}K`} />
-            <Tooltip
-              formatter={(value: number, name: string) => [`€${value}K`, name === 'exposure' ? 'At Risk' : 'After Mitigation']}
-              contentStyle={{ fontSize: 12, border: '1px solid hsl(var(--border))', borderRadius: 0 }}
-            />
-            <Bar dataKey="exposure" fill="hsl(0, 48%, 46%)" opacity={0.7} name="At Risk" />
-            <Bar dataKey="mitigated" fill="hsl(155, 24%, 55%)" name="After Mitigation" />
-          </BarChart>
-        </ResponsiveContainer>
+        <div className="space-y-5">
+          {costImpactData.map(item => {
+            const exposurePct = (item.currentExposure / maxExposure) * 100;
+            const mitigatedPct = (item.mitigatedCost / maxExposure) * 100;
+            const name = item.category.split(' — ')[0];
 
-        <div className="mt-4 space-y-2">
-          {costImpactData.map(item => (
-            <div key={item.category} className="flex items-center gap-3 py-2 border-b border-muted last:border-0">
-              <div className="flex-1 min-w-0">
-                <span className="text-[13px] font-medium text-foreground">{item.category}</span>
-                <p className="text-[11px] text-muted-foreground truncate">{item.driver.substring(0, 80)}...</p>
-              </div>
-              <div className="flex items-center gap-4 shrink-0 text-right">
-                <div>
-                  <div className="text-[13px] font-mono font-bold text-destructive tabular-nums">€{(item.currentExposure / 1000).toFixed(0)}K</div>
-                  <div className="text-[9px] text-grey-mid">at risk</div>
+            return (
+              <div key={item.category}>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[14px] font-medium text-foreground">{name}</span>
+                  <div className="flex items-center gap-4 text-[13px] font-mono tabular-nums">
+                    <span style={{ color: 'hsl(0, 48%, 46%)' }}>€{Math.round(item.currentExposure / 1000)}K</span>
+                    <span style={{ color: 'hsl(0,0%,70%)' }}>→</span>
+                    <span style={{ color: 'hsl(155, 24%, 55%)' }}>€{Math.round(item.mitigatedCost / 1000)}K</span>
+                  </div>
                 </div>
-                <span className="text-[11px] text-grey-mid">→</span>
-                <div>
-                  <div className="text-[13px] font-mono font-bold text-accent tabular-nums">€{(item.mitigatedCost / 1000).toFixed(0)}K</div>
-                  <div className="text-[9px] text-grey-mid">mitigated</div>
+                <div className="relative h-6" style={{ background: 'hsl(0,0%,95%)' }}>
+                  <div
+                    className="absolute top-0 h-full"
+                    style={{ width: `${exposurePct}%`, background: 'hsl(0, 48%, 46%)', opacity: 0.2 }}
+                  />
+                  <div
+                    className="absolute top-0 h-full"
+                    style={{ width: `${mitigatedPct}%`, background: 'hsl(155, 24%, 55%)', opacity: 0.6 }}
+                  />
                 </div>
-                <span className="text-[9px] font-mono px-1.5 py-0.5 bg-muted text-muted-foreground">{item.confidence}%</span>
+                <p className="text-[12px] mt-1.5 leading-relaxed" style={{ color: 'hsl(0,0%,50%)' }}>
+                  {item.driver.substring(0, 120)}{item.driver.length > 120 ? '…' : ''}
+                </p>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
