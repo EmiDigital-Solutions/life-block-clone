@@ -16,11 +16,11 @@ export default function DecisionTray({ ncrs, isOpen, onClose, className }: Decis
 
   return (
     <aside className={cn(
-      "flex flex-col border-l border-muted/50 bg-muted transition-all duration-300 overflow-hidden",
+      "flex flex-col border-l border-border/40 bg-muted transition-all duration-300 overflow-hidden",
       isOpen ? "w-[300px] opacity-100" : "w-0 opacity-0",
       className
     )}>
-      <div className="flex items-center justify-between px-4 py-4 border-b border-muted">
+      <div className="flex items-center justify-between px-4 py-4 border-b border-border/40">
         <div>
           <h3 className="text-[14px] font-semibold text-foreground">Decision Tray</h3>
           <p className="text-[12px] text-muted-foreground mt-0.5">{pending} pending · {assigned} assigned</p>
@@ -30,7 +30,7 @@ export default function DecisionTray({ ncrs, isOpen, onClose, className }: Decis
         </button>
       </div>
 
-      <div className="grid grid-cols-3 gap-2 p-4 border-b border-muted">
+      <div className="grid grid-cols-3 gap-2 p-4 border-b border-border/40">
         <div className="text-center">
           <AlertCircle className="w-4 h-4 text-destructive mx-auto mb-1" />
           <span className="text-[18px] font-light text-foreground tabular-nums">{pending}</span>
@@ -48,7 +48,7 @@ export default function DecisionTray({ ncrs, isOpen, onClose, className }: Decis
         </div>
       </div>
 
-      <div className="px-4 py-3 border-b border-muted">
+      <div className="px-4 py-3 border-b border-border/40">
         <p className="text-[12px] text-muted-foreground">
           Est. <span className="text-foreground font-medium">12 min</span> to sign off
         </p>

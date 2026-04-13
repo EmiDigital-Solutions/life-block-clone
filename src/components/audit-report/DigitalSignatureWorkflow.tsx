@@ -33,7 +33,7 @@ export default function DigitalSignatureWorkflow() {
         {signatureSteps.map((step, i) => {
           const Icon = statusIcon[step.status];
           return (
-            <div key={i} className="flex items-start gap-4 p-4 border-b border-muted last:border-b-0">
+            <div key={i} className="flex items-start gap-4 p-4 border-b border-border/40 last:border-b-0">
               <div className="flex flex-col items-center gap-1 pt-0.5">
                 <Icon className={`w-5 h-5 ${statusColor[step.status]}`} />
                 {i < signatureSteps.length - 1 && <div className="w-px h-8 bg-border" />}
