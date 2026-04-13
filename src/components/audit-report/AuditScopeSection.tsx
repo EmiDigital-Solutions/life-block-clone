@@ -15,7 +15,7 @@ export default function AuditScopeSection() {
 
       <h2 className="text-[28px] font-light text-foreground tracking-tight leading-none">Audit Scope</h2>
 
-      <div className=" bg-white/60 backdrop-blur-sm p-6 md:p-8 space-y-8">
+      <div className=" bg-card shadow-sm p-6 md:p-8 space-y-8">
         <div className="grid md:grid-cols-2 gap-6">
           <div>
             <h4 className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold mb-2">Standard</h4>

@@ -36,7 +36,7 @@ export default function KPIBand({ kpis }: KPIBandProps) {
         const sparkColor = isNegativeTrend ? 'hsl(var(--destructive))' : 'hsl(var(--primary))';
 
         return (
-          <div key={i} className="p-5 bg-card">
+          <div key={i} className="p-5 bg-card shadow-sm">
             <span className="text-[10px] uppercase tracking-[0.12em] font-semibold text-muted-foreground">
               {kpi.label}
             </span>

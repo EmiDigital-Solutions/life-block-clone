@@ -165,11 +165,11 @@ function AuditReportInner() {
   return (
     <>
     <Navigation />
-    {/* Outer app shell — industrial grey like SupplierDatabaseDemo */}
+    {/* Outer app shell — Premium Enterprise SaaS */}
     <div className="h-[100dvh] flex flex-col text-foreground pt-16" style={{ fontFamily: "'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
-      {/* Window title bar — matches SupplierDatabaseDemo chrome */}
-      <div className="h-8 flex items-center px-3 border-b flex-shrink-0" style={{ background: 'hsl(0,0%,88%)', borderColor: 'hsl(0,0%,80%)' }}>
-        <span className="text-[10px] font-medium" style={{ color: 'hsl(0,0%,35%)' }}>
+      {/* Window title bar */}
+      <div className="h-8 flex items-center px-3 border-b flex-shrink-0" style={{ background: 'hsl(220,14%,96%)', borderColor: 'hsl(220,13%,89%)' }}>
+        <span className="text-[10px] font-medium" style={{ color: 'hsl(220,10%,40%)' }}>
           SCANPRO+ Audit Report — {reportMeta.supplier} · {reportMeta.po} · {allNCRs.length} NCRs
         </span>
         <div className="ml-auto flex gap-1">
@@ -178,9 +178,9 @@ function AuditReportInner() {
               key={i}
               className={cn(
                 "px-2 py-0.5 text-[9px] font-medium uppercase tracking-wider transition-colors cursor-pointer",
-                i === 0 ? 'bg-primary text-white' : 'text-[hsl(0,0%,45%)] hover:bg-[hsl(0,0%,72%)]'
+                i === 0 ? 'bg-primary text-white' : 'text-muted-foreground hover:bg-muted'
               )}
-              style={i !== 0 ? { background: 'hsl(0,0%,78%)' } : undefined}
+              style={i !== 0 ? { background: 'hsl(220,14%,90%)' } : undefined}
             >
               {label}
             </button>
@@ -189,7 +189,7 @@ function AuditReportInner() {
       </div>
 
       {/* Main content area — three-column layout */}
-      <div className="flex-1 flex overflow-hidden" style={{ background: 'hsl(0,0%,95%)' }}>
+      <div className="flex-1 flex overflow-hidden bg-background">
         {/* Mobile sidebar overlay */}
         {isMobile && sidebarOpen && (
           <div className="fixed inset-0 z-50 flex">
@@ -226,29 +226,29 @@ function AuditReportInner() {
           <div className={cn(
             "sticky top-0 z-40 transition-all duration-300",
             scrolledPastHero ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
-          )} style={{ background: 'hsl(0,0%,88%)', borderBottom: '1px solid hsl(0,0%,78%)' }}>
+          )} style={{ background: 'hsl(220,14%,96%)', borderBottom: '1px solid hsl(220,13%,89%)' }}>
             <div className="flex items-center justify-between px-3 h-10">
               <div className="flex items-center gap-3">
                 {isMobile && (
-                  <button onClick={() => setSidebarOpen(true)} className="p-1.5 hover:bg-[hsl(0,0%,82%)] transition-colors">
-                    <Menu className="w-4 h-4" style={{ color: 'hsl(0,0%,45%)' }} />
+                  <button onClick={() => setSidebarOpen(true)} className="p-1.5 hover:bg-muted transition-colors">
+                    <Menu className="w-4 h-4 text-muted-foreground" />
                   </button>
                 )}
                 <span className="text-[10px] font-bold uppercase tracking-wider text-primary">yvoo+</span>
-                <span className="text-[10px]" style={{ color: 'hsl(0,0%,55%)' }}>SCANPRO+ · ATLAS AI</span>
-                <span className="text-[10px]" style={{ color: 'hsl(0,0%,72%)' }}>|</span>
-                <span className="text-[11px] font-medium" style={{ color: 'hsl(0,0%,30%)' }}>{reportMeta.supplier}</span>
+                <span className="text-[10px] text-muted-foreground">SCANPRO+ · ATLAS AI</span>
+                <span className="text-[10px] text-border">|</span>
+                <span className="text-[11px] font-medium text-foreground">{reportMeta.supplier}</span>
                 <span className="text-[10px] font-semibold text-warning ml-1">{reportMeta.verdictLabel}</span>
-                <span className="text-[10px]" style={{ color: 'hsl(0,0%,55%)' }}>· {allNCRs.length} NCRs</span>
+                <span className="text-[10px] text-muted-foreground">· {allNCRs.length} NCRs</span>
 
                 {/* Station heatmap strip */}
-                <div className="hidden md:flex items-center gap-2 ml-2 pl-2" style={{ borderLeft: '1px solid hsl(0,0%,72%)' }}>
+                <div className="hidden md:flex items-center gap-2 ml-2 pl-2 border-l border-border">
                   <StationHeatmap activeStation={activeStation} onStationClick={scrollToStation} />
                 </div>
 
                 {/* Breadcrumb progress */}
-                <div className="hidden lg:flex items-center gap-1.5 ml-2 pl-2" style={{ borderLeft: '1px solid hsl(0,0%,72%)' }}>
-                  <span className="text-[10px] font-mono tabular-nums" style={{ color: 'hsl(0,0%,50%)' }}>
+                <div className="hidden lg:flex items-center gap-1.5 ml-2 pl-2 border-l border-border">
+                  <span className="text-[10px] font-mono tabular-nums text-muted-foreground">
                     Reviewed {reviewedStations.size}/{totalStations}
                   </span>
                 </div>
@@ -256,8 +256,8 @@ function AuditReportInner() {
               <div className="flex items-center gap-2">
                 {/* Reading progress + time */}
                 <div className="hidden md:flex items-center gap-2">
-                  <span className="text-[10px] font-mono tabular-nums" style={{ color: 'hsl(0,0%,50%)' }}>{readingProgress}%</span>
-                  <span className="text-[10px] flex items-center gap-1" style={{ color: 'hsl(0,0%,55%)' }}>
+                  <span className="text-[10px] font-mono tabular-nums text-muted-foreground">{readingProgress}%</span>
+                  <span className="text-[10px] flex items-center gap-1 text-muted-foreground">
                     <Clock className="w-3 h-3" />
                     {readingTimeEstimates[depth]}
                   </span>
@@ -292,15 +292,14 @@ function AuditReportInner() {
                       onClick={() => setDepth(d)}
                       className={cn(
                         "px-2.5 py-1 text-[9px] font-medium uppercase tracking-wider transition-colors cursor-pointer",
-                        depth === d ? "bg-primary text-white" : "hover:bg-[hsl(0,0%,72%)]"
+                        depth === d ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-muted/80"
                       )}
-                      style={depth !== d ? { background: 'hsl(0,0%,78%)', color: 'hsl(0,0%,45%)' } : undefined}
                     >
                       {depthLabels[d]}
                     </button>
                   ))}
                 </div>
-                <button className="hidden md:block px-2.5 py-1 text-[9px] font-medium uppercase tracking-wider cursor-pointer hover:bg-[hsl(0,0%,72%)] transition-colors" style={{ background: 'hsl(0,0%,78%)', color: 'hsl(0,0%,45%)' }}>
+                <button className="hidden md:block px-2.5 py-1 text-[9px] font-medium uppercase tracking-wider cursor-pointer bg-muted text-muted-foreground hover:bg-muted/80 transition-colors">
                   Export pdf
                 </button>
                 <button
@@ -312,7 +311,7 @@ function AuditReportInner() {
               </div>
             </div>
             {/* Reading progress bar */}
-            <div className="h-[2px]" style={{ background: 'hsl(0,0%,80%)' }}>
+            <div className="h-[2px] bg-border">
               <div className="h-full bg-primary transition-all duration-150" style={{ width: `${readingProgress}%` }} />
             </div>
           </div>
@@ -372,13 +371,13 @@ function AuditReportInner() {
 
                 {/* Ask Atlas — toolbar style */}
                 <div className="sticky bottom-4 z-30 mb-8">
-                  <div className="max-w-[640px] mx-auto flex items-center gap-2 px-3 py-2" style={{ background: 'hsla(0,0%,100%,0.7)', backdropFilter: 'blur(12px)', border: '1px solid hsl(0,0%,80%)' }}>
+                  <div className="max-w-[640px] mx-auto flex items-center gap-2 px-3 py-2 bg-card border border-border shadow-sm">
                     <Sparkles className="w-4 h-4 text-primary shrink-0" />
                     <input
                       value={askAtlasInput}
                       onChange={e => setAskAtlasInput(e.target.value)}
                       placeholder="Ask Atlas about this audit..."
-                      className="flex-1 bg-transparent text-[12px] text-foreground placeholder:text-[hsl(0,0%,55%)] outline-none"
+                      className="flex-1 bg-transparent text-[12px] text-foreground placeholder:text-muted-foreground outline-none"
                     />
                     <button className="px-2.5 py-1 text-[9px] font-medium uppercase tracking-wider bg-primary text-white cursor-pointer hover:bg-primary/90 transition-colors">
                       Ask

@@ -91,14 +91,14 @@ export default function AtlasIntelligence() {
               <p className="text-[32px] font-light text-accent leading-none mt-2 tabular-nums">€{(totalMitigated / 1000).toFixed(0)}K</p>
               <span className="text-[12px] text-muted-foreground mt-1 block">with full remediation</span>
             </div>
-            <div className=" bg-white/60 backdrop-blur-sm p-5">
+            <div className=" bg-card shadow-sm p-5">
               <span className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold">ROI of Action</span>
               <p className="text-[32px] font-light text-foreground leading-none mt-2 tabular-nums">{((1 - totalMitigated / totalExposure) * 100).toFixed(0)}%</p>
               <span className="text-[12px] text-muted-foreground mt-1 block">cost reduction achievable</span>
             </div>
           </div>
 
-          <div className=" bg-white/60 backdrop-blur-sm p-6 space-y-4">
+          <div className=" bg-card shadow-sm p-6 space-y-4">
             <h4 className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold">Cost Exposure by Category</h4>
             {costImpactData.map((item, i) => (
               <div key={i} className="space-y-2">
@@ -125,7 +125,7 @@ export default function AtlasIntelligence() {
       {/* QUALITY */}
       {activeTab === 'quality' && (
         <div className="space-y-4">
-          <div className=" bg-white/60 backdrop-blur-sm p-6">
+          <div className=" bg-card shadow-sm p-6">
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h4 className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold">DPPM Forecast — 12 Month</h4>
@@ -161,7 +161,7 @@ export default function AtlasIntelligence() {
             </div>
           </div>
 
-          <div className=" bg-white/60 backdrop-blur-sm p-6">
+          <div className=" bg-card shadow-sm p-6">
             <h4 className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold mb-4">Supplier Risk Signals</h4>
             <div className="space-y-2">
               {supplierRiskSignals.map((signal, i) => (
@@ -181,7 +181,7 @@ export default function AtlasIntelligence() {
       {activeTab === 'innovation' && (
         <div className="space-y-4">
           <div className="grid md:grid-cols-2 gap-4">
-            <div className=" bg-white/60 backdrop-blur-sm p-6">
+            <div className=" bg-card shadow-sm p-6">
               <h4 className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold mb-4">Innovation Radar vs. Tier-2</h4>
               <ResponsiveContainer width="100%" height={280}>
                 <RadarChart data={innovationSignals.map(s => ({ dimension: s.dimension.replace(/\s/g, '\n'), score: s.score, benchmark: s.benchmark }))}>
@@ -198,7 +198,7 @@ export default function AtlasIntelligence() {
               </div>
             </div>
 
-            <div className=" bg-white/60 backdrop-blur-sm p-6 space-y-3">
+            <div className=" bg-card shadow-sm p-6 space-y-3">
               <h4 className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold mb-2">Innovation Signals</h4>
               {innovationSignals.map((signal, i) => {
                 const TIcon = trendIcon[signal.trend];
@@ -223,7 +223,7 @@ export default function AtlasIntelligence() {
             </div>
           </div>
 
-          <div className=" bg-white/60 backdrop-blur-sm p-6">
+          <div className=" bg-card shadow-sm p-6">
             <div className="flex items-center justify-between mb-4">
               <h4 className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold">IATF 16949 Process Audit Scores</h4>
               <span className="text-[14px] font-mono tabular-nums text-warning">Weighted: {Math.round(iatfWeightedScore)}%</span>

@@ -75,7 +75,7 @@ export default function FindingSankeyDiagram() {
       </div>
 
       {/* Pipeline flow */}
-      <div className="bg-card/60 backdrop-blur-sm p-6">
+      <div className="bg-card shadow-sm p-6">
         <div className="grid grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] items-start gap-0">
           {stages.map((stage, si) => (
             <>

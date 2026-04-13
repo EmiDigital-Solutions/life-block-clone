@@ -118,7 +118,7 @@ function SectionGroup({ label, children }: { label: string; children: React.Reac
   return (
     <div className="mb-1">
       <div className="px-3 pt-5 pb-2">
-        <span className="text-[10px] font-bold tracking-[0.15em] uppercase" style={{ color: 'hsl(0,0%,55%)' }}>
+        <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-muted-foreground">
           {label}
         </span>
       </div>
@@ -183,19 +183,18 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
 
         {/* Sub-items */}
         {item.children && isActive && (
-          <div className="ml-9" style={{ borderLeft: '1px solid hsl(0,0%,88%)' }}>
+          <div className="ml-9 border-l border-border">
             {item.children.map((child, ci) => (
               <button
                 key={child.id}
                 className={cn(
                   "flex items-center gap-2 w-full px-3 py-1.5 text-left text-[11px] transition-colors",
                   ci === 0
-                    ? "text-primary font-medium"
+                    ? "text-primary font-medium bg-primary/10"
                     : "text-muted-foreground hover:text-foreground"
                 )}
-                style={ci === 0 ? { background: 'hsl(195, 89%, 34%, 0.1)' } : undefined}
               >
-                <span className="tabular-nums w-8" style={{ color: 'hsl(0,0%,65%)' }}>5.3.{ci + 1}</span>
+                <span className="tabular-nums w-8 text-muted-foreground">5.3.{ci + 1}</span>
                 <span>{child.label}</span>
               </button>
             ))}
@@ -207,21 +206,20 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
 
   return (
     <aside
-      className={cn("flex flex-col overflow-y-auto", className)}
-      style={{ background: 'hsl(0,0%,97%)', borderRight: '1px solid hsl(0,0%,90%)' }}
+      className={cn("flex flex-col overflow-y-auto bg-card border-r border-border", className)}
     >
       {/* Document outline header */}
-      <div className="px-3 py-4" style={{ borderBottom: '1px solid hsl(0,0%,90%)' }}>
+      <div className="px-3 py-4 border-b border-border">
         <div className="flex items-center gap-2 mb-1.5">
           <div className="w-5 h-5 bg-primary flex items-center justify-center">
             <span className="text-white text-[9px] font-bold">AI</span>
           </div>
-          <span className="text-[10px] font-bold tracking-[0.15em] uppercase" style={{ color: 'hsl(0,0%,55%)' }}>
+          <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-muted-foreground">
             ScanPro+
           </span>
         </div>
         <h3 className="text-[13px] font-semibold text-foreground">Process audit report</h3>
-        <p className="text-[11px] mt-0.5" style={{ color: 'hsl(0,0%,50%)' }}>
+        <p className="text-[11px] mt-0.5 text-muted-foreground">
           47 pages · {totalSections} sections · {ncrCount} ncrs
         </p>
       </div>

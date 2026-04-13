@@ -25,7 +25,7 @@ export default function RecommendationSection() {
       </h2>
 
       {/* Monday Morning Actions */}
-      <div className="bg-white/60 backdrop-blur-sm p-6 md:p-8">
+      <div className="bg-card shadow-sm p-6 md:p-8">
         <h4 className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold mb-6">Monday Morning — 3 actions</h4>
         <div className="space-y-3">
           {nextSteps.map((step, i) => (
@@ -49,7 +49,7 @@ export default function RecommendationSection() {
 
       {/* Export & Role-Based Views */}
       <div className="grid md:grid-cols-2 gap-4">
-        <div className="bg-white/60 backdrop-blur-sm p-5 space-y-3">
+        <div className="bg-card shadow-sm p-5 space-y-3">
           <h4 className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold">Export</h4>
           <div className="space-y-2">
             <button className="w-full flex items-center gap-3 px-4 py-3 hover:bg-muted/60 transition-colors text-left">
@@ -69,7 +69,7 @@ export default function RecommendationSection() {
           </div>
         </div>
 
-        <div className="bg-white/60 backdrop-blur-sm p-5 space-y-3">
+        <div className="bg-card shadow-sm p-5 space-y-3">
           <h4 className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold">Role-Based Views</h4>
           <div className="space-y-2">
             {[

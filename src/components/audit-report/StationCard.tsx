@@ -46,7 +46,7 @@ function EvidenceGrid({ evidence }: { evidence: SubCategoryEvidence[] }) {
         {evidence.map(ev => {
           const Icon = evidenceTypeIcon[ev.type] || FileText;
           return (
-            <button key={ev.id} className="flex items-center gap-1.5 px-2.5 py-1.5 text-[11px] transition-colors cursor-pointer" style={{ background: 'hsla(0,0%,100%,0.7)', color: 'hsl(0,0%,30%)' }}>
+            <button key={ev.id} className="flex items-center gap-1.5 px-2.5 py-1.5 text-[11px] transition-colors cursor-pointer bg-muted text-foreground">
               {ev.thumbnail ? (
                 <img src={ev.thumbnail} alt={ev.label} className="w-8 h-8 object-cover" />
               ) : (
@@ -128,7 +128,7 @@ function BMWImpactPanel({ impact }: { impact: BMWImpact }) {
         {items.map(({ key, label, icon: Icon, data }) => {
           const color = impactRatingColor[data.rating];
           return (
-            <div key={key} className="p-2.5" style={{ background: 'hsla(0,0%,100%,0.7)' }}>
+            <div key={key} className="p-2.5 bg-card">
               <div className="flex items-center gap-1.5 mb-1">
                 <Icon className="w-3 h-3" style={{ color }} />
                 <span className="text-[10px] font-semibold text-foreground">{label}</span>
@@ -162,10 +162,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
   return (
     <section id={`station-${station.index}`} className="scroll-mt-20">
       {/* Sticky section header */}
-      <div className="sticky top-12 z-20 -mx-4 md:-mx-8 px-4 md:px-8 py-3 mb-4" style={{
-        background: 'hsla(0,0%,95%,0.92)',
-        backdropFilter: 'blur(12px)',
-      }}>
+      <div className="sticky top-12 z-20 -mx-4 md:-mx-8 px-4 md:px-8 py-3 mb-4 bg-background/95 backdrop-blur-sm border-b border-border/40">
         <div className="flex items-center gap-3">
           <span className="text-[12px] font-medium tracking-[0.1em]" style={{ color: 'hsl(0,0%,50%)' }}>// {String(station.index).padStart(2, '0')}</span>
           <div className="w-2 h-2" style={{ background: hc.color }} />
@@ -186,7 +183,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
       <h2 className="text-[28px] font-light text-foreground tracking-tight leading-none mb-8">{station.name}</h2>
 
       {station.observation && (
-        <div className="p-6 md:p-8 space-y-8" style={{ background: 'hsla(0,0%,100%,0.7)', backdropFilter: 'blur(12px)' }}>
+        <div className="p-6 md:p-8 space-y-8 bg-card shadow-sm">
           {/* Hero photo */}
           {station.heroPhoto ? (
             <div className="aspect-video overflow-hidden">
