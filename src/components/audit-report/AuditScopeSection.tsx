@@ -15,7 +15,7 @@ export default function AuditScopeSection() {
 
       <h2 className="text-[28px] font-light text-foreground tracking-tight leading-none">Audit Scope</h2>
 
-      <div className=" border border-border bg-white p-6 md:p-8 space-y-8">
+      <div className=" bg-white/60 backdrop-blur-sm p-6 md:p-8 space-y-8">
         <div className="grid md:grid-cols-2 gap-6">
           <div>
             <h4 className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold mb-2">Standard</h4>
@@ -58,7 +58,7 @@ export default function AuditScopeSection() {
 
         <div>
           <h4 className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold mb-3">Product Scope</h4>
-          <div className=" border border-border overflow-hidden">
+          <div className=" overflow-hidden">
             <div className="grid grid-cols-4 gap-0 bg-muted px-4 py-2">
               {['Part Number', 'Description', 'Annual Volume', 'Customer'].map(h => (
                 <span key={h} className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">{h}</span>

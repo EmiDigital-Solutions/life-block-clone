@@ -25,11 +25,11 @@ export default function RecommendationSection() {
       </h2>
 
       {/* Monday Morning Actions */}
-      <div className="border border-border bg-white p-6 md:p-8">
+      <div className="bg-white/60 backdrop-blur-sm p-6 md:p-8">
         <h4 className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold mb-6">Monday Morning — 3 actions</h4>
         <div className="space-y-3">
           {nextSteps.map((step, i) => (
-            <div key={i} className="flex items-center gap-4 p-4 border border-border hover:bg-muted transition-colors group">
+            <div key={i} className="flex items-center gap-4 p-4 hover:bg-muted/60 transition-colors group">
               <span className="text-[16px] font-mono text-grey-mid w-6">{i + 1}.</span>
               <step.icon className="w-4 h-4 text-primary shrink-0" />
               <span className="text-[14px] text-foreground flex-1">{step.label}</span>
@@ -49,17 +49,17 @@ export default function RecommendationSection() {
 
       {/* Export & Role-Based Views */}
       <div className="grid md:grid-cols-2 gap-4">
-        <div className="border border-border bg-white p-5 space-y-3">
+        <div className="bg-white/60 backdrop-blur-sm p-5 space-y-3">
           <h4 className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold">Export</h4>
           <div className="space-y-2">
-            <button className="w-full flex items-center gap-3 px-4 py-3 border border-border hover:bg-muted transition-colors text-left">
+            <button className="w-full flex items-center gap-3 px-4 py-3 hover:bg-muted/60 transition-colors text-left">
               <FileDown className="w-4 h-4 text-primary" />
               <div>
                 <span className="text-[13px] text-foreground font-medium">PDF with Corporate Branding</span>
                 <p className="text-[10px] text-muted-foreground">Client logo, custom header/footer, cover page</p>
               </div>
             </button>
-            <button className="w-full flex items-center gap-3 px-4 py-3 border border-border hover:bg-muted transition-colors text-left">
+            <button className="w-full flex items-center gap-3 px-4 py-3 hover:bg-muted/60 transition-colors text-left">
               <Printer className="w-4 h-4 text-primary" />
               <div>
                 <span className="text-[13px] text-foreground font-medium">Print-Ready Format</span>
@@ -69,7 +69,7 @@ export default function RecommendationSection() {
           </div>
         </div>
 
-        <div className="border border-border bg-white p-5 space-y-3">
+        <div className="bg-white/60 backdrop-blur-sm p-5 space-y-3">
           <h4 className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold">Role-Based Views</h4>
           <div className="space-y-2">
             {[
@@ -77,7 +77,7 @@ export default function RecommendationSection() {
               { role: 'Quality Engineering', desc: 'Technical findings, NCRs, CAPA status', icon: Eye },
               { role: 'C-Suite', desc: 'Executive summary, verdict, key metrics', icon: Eye },
             ].map((view, i) => (
-              <button key={i} className="w-full flex items-center gap-3 px-4 py-3 border border-border hover:bg-muted transition-colors text-left">
+              <button key={i} className="w-full flex items-center gap-3 px-4 py-3 hover:bg-muted/60 transition-colors text-left">
                 <view.icon className="w-4 h-4 text-primary" />
                 <div>
                   <span className="text-[13px] text-foreground font-medium">{view.role}</span>
@@ -98,7 +98,7 @@ export default function RecommendationSection() {
       {/* Switch to Supplier View */}
       <div className="border border-dashed border-grey-mid p-6 text-center">
         <p className="text-[14px] text-muted-foreground mb-3">Share this report from the supplier's perspective</p>
-        <button className="px-6 py-2.5 text-[13px] font-medium text-foreground border border-border hover:bg-muted transition-colors">
+        <button className="px-6 py-2.5 text-[13px] font-medium text-foreground hover:bg-muted/60 transition-colors">
           Switch to Supplier View →
         </button>
       </div>

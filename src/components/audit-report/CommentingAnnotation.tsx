@@ -42,7 +42,7 @@ export default function CommentingAnnotation() {
         <span className="text-[10px] px-2 py-0.5 bg-primary/10 text-primary font-semibold">{unresolved} unresolved</span>
       </div>
 
-      <div className="border border-border bg-white divide-y divide-border">
+      <div className="bg-white/60 backdrop-blur-sm divide-y divide-border">
         {sampleComments.map((comment) => (
           <div key={comment.id} className="p-4 space-y-2">
             <div className="flex items-center justify-between">
@@ -77,7 +77,7 @@ export default function CommentingAnnotation() {
       </div>
 
       {/* New comment input */}
-      <div className="flex items-center gap-2 border border-border bg-white p-3">
+      <div className="flex items-center gap-2 bg-white/60 backdrop-blur-sm p-3">
         <AtSign className="w-4 h-4 text-grey-mid shrink-0" />
         <input
           value={newComment}

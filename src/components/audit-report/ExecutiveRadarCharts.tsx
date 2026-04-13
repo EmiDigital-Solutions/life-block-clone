@@ -177,7 +177,7 @@ export default function ExecutiveRadarCharts() {
       </div>
 
       {/* Takeaway bar */}
-      <div className="flex items-center gap-8 p-6 bg-surface-sunken border border-border">
+      <div className="flex items-center gap-8 p-6 bg-muted/30 backdrop-blur-sm">
         <div className="flex items-center gap-6 shrink-0">
           <div className="text-center">
             <div className="text-[36px] font-bold font-mono leading-none text-destructive">{criticalCount}</div>
