@@ -245,7 +245,7 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
   const cColor = conditionScoreColor(machine.conditionScore);
 
   return (
-    <div className="border border-border bg-white">
+    <div style={{ background: 'hsla(0,0%,100%,0.7)', backdropFilter: 'blur(12px)', border: '1px solid hsl(0,0%,80%)' }}>
       {/* Header */}
       <div className="px-5 py-4 flex items-start justify-between gap-4">
         <div className="flex-1 min-w-0">
@@ -276,7 +276,7 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
       </div>
 
       {/* Metrics row */}
-      <div className="border-t border-border grid grid-cols-6 divide-x divide-border">
+      <div style={{ borderTop: '1px solid hsl(0,0%,80%)' }} className="grid grid-cols-6 divide-x" />
         {[
           { label: "Age", value: `${machine.age} yrs`, sub: String(machine.yearManufactured), icon: CalendarDays },
           { label: "Energy", value: `${machine.energyConsumption} kWh`, sub: machine.energyClass, icon: Zap },
