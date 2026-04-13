@@ -6,23 +6,133 @@ export default function AuditScopeSection({ depth = 'standard' }: { depth?: impo
 
   if (depth === 'executive') {
     return (
-      <section id="station-2" className="scroll-mt-20 py-2">
+      <section id="station-2" className="scroll-mt-20 mt-4">
         <div className="border border-border">
+          {/* Section header */}
           <div className="px-4 py-2" style={{ background: 'hsl(220,20%,14%)' }}>
-            <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/80">Audit Scope</span>
+            <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/80">§2 — Audit Scope & Boundaries</span>
           </div>
-          <div className="grid grid-cols-3 divide-x divide-border bg-card">
-            <div className="px-4 py-2">
-              <div className="text-[8px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Standard</div>
-              <div className="text-[12px] font-semibold text-foreground mt-0.5">{auditScope.standard}</div>
+
+          {/* Scope metadata table */}
+          <table className="w-full border-collapse text-left">
+            <tbody>
+              {[
+                ['Standard', auditScope.standard],
+                ['Audit Type', auditScope.auditType],
+                ['Scope', auditScope.scope],
+                ['Sampling', auditScope.samplingBasis],
+              ].map(([label, value], i) => (
+                <tr key={i} className="border-b border-border/60">
+                  <td className="px-4 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground w-[130px] align-top" style={{ background: 'hsl(220,14%,94%)' }}>{label}</td>
+                  <td className="px-4 py-2 text-[11px] text-foreground leading-snug">{value}</td>
+                </tr>
+              ))}
+              <tr className="border-b border-border/60">
+                <td className="px-4 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground align-top" style={{ background: 'hsl(220,14%,94%)' }}>Exclusions</td>
+                <td className="px-4 py-2">
+                  {auditScope.exclusions.map((ex, i) => (
+                    <div key={i} className="flex items-start gap-1.5 text-[11px] text-foreground/80">
+                      <XCircle className="w-3 h-3 text-muted-foreground mt-0.5 shrink-0" />
+                      <span>{ex}</span>
+                    </div>
+                  ))}
+                </td>
+              </tr>
+              <tr className="border-b border-border/60">
+                <td className="px-4 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground align-top" style={{ background: 'hsl(220,14%,94%)' }}>Audit Team</td>
+                <td className="px-4 py-2">
+                  {auditScope.auditorQualifications.map((aq, i) => (
+                    <div key={i} className="text-[11px] text-foreground">{aq}</div>
+                  ))}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          {/* VDA 6.3 Process Elements */}
+          <div className="border-t border-border">
+            <div className="px-4 py-1.5" style={{ background: 'hsl(220,14%,92%)' }}>
+              <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">VDA 6.3 Process Elements — Applicability</span>
             </div>
-            <div className="px-4 py-2">
-              <div className="text-[8px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Audit Type</div>
-              <div className="text-[12px] font-semibold text-foreground mt-0.5">{auditScope.auditType}</div>
+            <div className="grid grid-cols-7 divide-x divide-border/60 bg-card">
+              {auditScope.processElements.map(pe => (
+                <div key={pe.code} className="px-3 py-2 text-center">
+                  <div className="text-[11px] font-bold font-mono text-foreground">{pe.code}</div>
+                  <div className="text-[9px] text-muted-foreground mt-0.5 leading-tight">{pe.name}</div>
+                  <div className="mt-1.5">
+                    {pe.applicable ? (
+                      <CheckCircle2 className="w-4 h-4 text-accent mx-auto" />
+                    ) : (
+                      <XCircle className="w-4 h-4 text-muted-foreground/40 mx-auto" />
+                    )}
+                  </div>
+                </div>
+              ))}
             </div>
-            <div className="px-4 py-2">
-              <div className="text-[8px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Scope</div>
-              <div className="text-[11px] text-foreground mt-0.5 line-clamp-2">{auditScope.scope}</div>
+          </div>
+
+          {/* Product scope table */}
+          <div className="border-t border-border">
+            <div className="px-4 py-1.5" style={{ background: 'hsl(220,14%,92%)' }}>
+              <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">Product Scope</span>
+            </div>
+            <table className="w-full border-collapse text-left">
+              <thead>
+                <tr style={{ background: 'hsl(220,14%,94%)' }}>
+                  {['Part No.', 'Description', 'Volume', 'Customer'].map(h => (
+                    <th key={h} className="px-4 py-1.5 text-[9px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border">{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {auditScope.productScope.map(p => (
+                  <tr key={p.partNumber} className="border-b border-border/40">
+                    <td className="px-4 py-1.5 text-[11px] font-mono font-bold text-primary">{p.partNumber}</td>
+                    <td className="px-4 py-1.5 text-[11px] text-foreground">{p.description}</td>
+                    <td className="px-4 py-1.5 text-[11px] font-mono text-foreground tabular-nums">{p.volume}</td>
+                    <td className="px-4 py-1.5 text-[11px] text-muted-foreground">{p.customer}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Site details + previous findings */}
+          <div className="grid grid-cols-2 divide-x divide-border border-t border-border">
+            <div>
+              <div className="px-4 py-1.5" style={{ background: 'hsl(220,14%,92%)' }}>
+                <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">Site Details</span>
+              </div>
+              <div className="px-4 py-2 bg-card space-y-1">
+                {[
+                  ['Area', auditScope.siteDetails.area],
+                  ['Employees', String(auditScope.siteDetails.employees)],
+                  ['Shifts', String(auditScope.siteDetails.shifts)],
+                  ['Machines', String(auditScope.siteDetails.machines)],
+                ].map(([k, v]) => (
+                  <div key={k} className="flex justify-between text-[11px]">
+                    <span className="text-muted-foreground">{k}</span>
+                    <span className="font-mono font-bold text-foreground">{v}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <div className="px-4 py-1.5" style={{ background: 'hsl(220,14%,92%)' }}>
+                <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">Previous Audit Carry-Forward</span>
+              </div>
+              <div className="px-4 py-2 bg-card space-y-1">
+                {[
+                  ['Total findings', String(auditScope.previousFindings.total)],
+                  ['Closed', String(auditScope.previousFindings.closed)],
+                  ['Open carry-forward', String(auditScope.previousFindings.openCarryForward)],
+                ].map(([k, v]) => (
+                  <div key={k} className="flex justify-between text-[11px]">
+                    <span className="text-muted-foreground">{k}</span>
+                    <span className="font-mono font-bold text-foreground">{v}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
