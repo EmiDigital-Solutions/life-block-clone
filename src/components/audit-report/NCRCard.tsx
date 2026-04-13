@@ -28,7 +28,7 @@ export default function NCRCard({ ncr, compact, onAssign, onAction }: NCRCardPro
 
   if (compact) {
     return (
-      <div className="flex items-center gap-3 px-3 py-2.5" className="bg-card" >
+      <div className="flex items-center gap-3 px-3 py-2.5 bg-card">
         <Icon className={cn("w-4 h-4 shrink-0", sev.color)} />
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
@@ -45,7 +45,7 @@ export default function NCRCard({ ncr, compact, onAssign, onAction }: NCRCardPro
   }
 
   return (
-    <div className="p-5 transition-all" className="bg-card shadow-sm" >
+    <div className="p-5 transition-all bg-card shadow-sm">
       <div className="flex items-center gap-3 mb-3">
         <div className="w-8 h-8 flex items-center justify-center" style={{ background: sev.bg }}>
           <Icon className={cn("w-4 h-4", sev.color)} />
