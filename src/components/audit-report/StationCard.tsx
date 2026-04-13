@@ -251,10 +251,10 @@ export default function StationCard({ station, depth, totalStations }: StationCa
                           )}
                         </div>
                         {depth !== 'executive' && (
-                          <p className="text-[13px] font-light mt-1 leading-relaxed" style={{ color: 'hsl(0,0%,50%)' }}>{finding.description}</p>
+                          <p className="text-[13px] mt-1.5 leading-[1.7]" style={{ color: 'hsl(0,0%,45%)' }}>{finding.description}</p>
                         )}
                         {finding.ncrId && (
-                          <span className="inline-block mt-1.5 text-[11px] font-mono font-bold px-2 py-0.5 text-destructive" style={{ background: 'hsl(0, 48%, 46%, 0.1)' }}>{finding.ncrId}</span>
+                          <span className="inline-block mt-2 text-[12px] font-mono font-semibold px-2.5 py-1 text-destructive" style={{ background: 'hsl(0, 48%, 46%, 0.08)' }}>{finding.ncrId}</span>
                         )}
                       </div>
                     </div>
