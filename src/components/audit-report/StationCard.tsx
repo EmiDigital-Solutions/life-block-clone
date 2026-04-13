@@ -95,7 +95,7 @@ function AIPatternsList({ patterns }: { patterns: AIPattern[] }) {
       {patterns.map(p => {
         const color = impactRatingColor[p.impact];
         return (
-          <div key={p.id} className="p-3" style={{ border: '1px solid hsl(195, 89%, 34%, 0.15)', background: 'hsl(195, 89%, 34%, 0.03)' }}>
+          <div key={p.id} className="p-3" style={{ background: 'hsl(195, 89%, 34%, 0.04)' }}>
             <div className="flex items-center gap-2 mb-1 flex-wrap">
               <span className="text-[9px] px-1.5 py-0.5 font-semibold uppercase tracking-wider" style={{ background: `${color}15`, color }}>{p.type}</span>
               <span className="text-[9px] px-1.5 py-0.5 font-mono" style={{ background: 'hsl(0,0%,88%)', color: 'hsl(0,0%,50%)' }}>{p.confidence}%</span>
@@ -293,7 +293,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
                         );
                       })}
                       {depth === 'full' && (
-                        <div className="flex gap-2 p-3" style={{ background: 'hsl(195, 89%, 34%, 0.05)', border: '1px solid hsl(195, 89%, 34%, 0.1)' }}>
+                        <div className="flex gap-2 p-3" style={{ background: 'hsl(195, 89%, 34%, 0.05)' }}>
                           <Sparkles className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
                           <div>
                             <span className="text-[10px] font-semibold uppercase tracking-wider text-primary">Atlas AI · {sub.aiConfidence}%</span>
@@ -327,7 +327,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
                 {station.atlasInsights.map((insight, ii) => {
                   const ic = impactRatingColor[insight.impact];
                   return (
-                    <div key={ii} className="p-4" style={{ border: '1px solid hsl(195, 89%, 34%, 0.15)', background: 'hsl(195, 89%, 34%, 0.03)' }}>
+                    <div key={ii} className="p-4" style={{ background: 'hsl(195, 89%, 34%, 0.04)' }}>
                       <div className="flex items-center gap-2 mb-2 flex-wrap">
                         <span className="text-[10px] px-2 py-0.5 font-semibold uppercase tracking-wider" style={{ background: `${ic}15`, color: ic }}>{insight.impact}</span>
                         <span className="text-[10px] px-2 py-0.5 font-mono" style={{ background: 'hsl(0,0%,88%)', color: 'hsl(0,0%,50%)' }}>{insight.confidence}% conf.</span>
