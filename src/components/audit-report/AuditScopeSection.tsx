@@ -22,7 +22,7 @@ export default function AuditScopeSection({ depth = 'standard' }: { depth?: impo
             </div>
             <div className="px-4 py-2">
               <div className="text-[8px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Scope</div>
-              <div className="text-[11px] text-foreground mt-0.5 line-clamp-2">{auditScope.scopeOfCertification}</div>
+              <div className="text-[11px] text-foreground mt-0.5 line-clamp-2">{auditScope.scope}</div>
             </div>
           </div>
         </div>
