@@ -335,32 +335,50 @@ function AuditReportInner() {
                   depth={depth}
                 />
 
-                <AtlasRiskScore depth={depth} />
+                {depth === 'executive' ? (
+                  <>
+                    {/* VDA 6.3 structured document flow */}
+                    <AuditScopeSection depth={depth} />
+                    <VDA63ScoringTable />
 
-                <section className={depth === 'executive' ? "py-6" : "py-16 md:py-24"}>
-                  <KPIBand kpis={kpis} depth={depth} />
-                </section>
+                    <section className="py-2">
+                      <KPIBand kpis={kpis} depth={depth} />
+                    </section>
 
-                <ExecutiveRadarCharts depth={depth} />
+                    <AnomalyCallouts depth={depth} />
 
-                <AuditScopeSection depth={depth} />
+                    <div className="space-y-3 mt-4 pb-16">
+                      {/* §3–§9 Station findings */}
+                      {displayStations.map((station) => (
+                        <StationCard key={station.index} station={station} depth={depth} totalStations={14} />
+                      ))}
 
-                <AnomalyCallouts depth={depth} />
+                      {/* §10 NCR Register */}
+                      <NCRRegister ncrs={allNCRs} depth={depth} />
 
-                <div className={cn("pb-16", depth === 'executive' ? "space-y-4 mt-6" : "space-y-16 md:space-y-24 mt-16")}>
-                  {displayStations.map((station) => (
-                    <StationCard key={station.index} station={station} depth={depth} totalStations={14} />
-                  ))}
-                  <NCRRegister ncrs={allNCRs} depth={depth} />
-                  
-                  {depth === 'executive' ? (
-                    <div className="space-y-4">
+                      {/* §11 Appendices */}
                       <FindingSankeyDiagram depth="executive" />
                       <CostWaterfallChart depth="executive" />
                       <OEEGaugeCluster depth="executive" />
                     </div>
-                  ) : (
-                    <>
+                  </>
+                ) : (
+                  <>
+                    <AtlasRiskScore depth={depth} />
+
+                    <section className="py-16 md:py-24">
+                      <KPIBand kpis={kpis} depth={depth} />
+                    </section>
+
+                    <ExecutiveRadarCharts depth={depth} />
+                    <AuditScopeSection depth={depth} />
+                    <AnomalyCallouts depth={depth} />
+
+                    <div className="pb-16 space-y-16 md:space-y-24 mt-16">
+                      {displayStations.map((station) => (
+                        <StationCard key={station.index} station={station} depth={depth} totalStations={14} />
+                      ))}
+                      <NCRRegister ncrs={allNCRs} depth={depth} />
                       <FindingSankeyDiagram />
                       <CostWaterfallChart />
                       <CAPAGantt />
@@ -374,9 +392,9 @@ function AuditReportInner() {
                       <DelayForecast />
                       <RecommendationSection />
                       <EvidenceVault />
-                    </>
-                  )}
-                </div>
+                    </div>
+                  </>
+                )
 
                 {/* Ask Atlas — toolbar style */}
                 <div className="sticky bottom-4 z-30 mb-8">
