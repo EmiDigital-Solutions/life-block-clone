@@ -165,11 +165,11 @@ function AuditReportInner() {
   return (
     <>
     <Navigation />
-    {/* Outer app shell — industrial grey like SupplierDatabaseDemo */}
+    {/* Outer app shell — Premium Enterprise SaaS */}
     <div className="h-[100dvh] flex flex-col text-foreground pt-16" style={{ fontFamily: "'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
-      {/* Window title bar — matches SupplierDatabaseDemo chrome */}
-      <div className="h-8 flex items-center px-3 border-b flex-shrink-0" style={{ background: 'hsl(0,0%,88%)', borderColor: 'hsl(0,0%,80%)' }}>
-        <span className="text-[10px] font-medium" style={{ color: 'hsl(0,0%,35%)' }}>
+      {/* Window title bar */}
+      <div className="h-8 flex items-center px-3 border-b flex-shrink-0" style={{ background: 'hsl(220,14%,96%)', borderColor: 'hsl(220,13%,89%)' }}>
+        <span className="text-[10px] font-medium" style={{ color: 'hsl(220,10%,40%)' }}>
           SCANPRO+ Audit Report — {reportMeta.supplier} · {reportMeta.po} · {allNCRs.length} NCRs
         </span>
         <div className="ml-auto flex gap-1">
@@ -178,9 +178,9 @@ function AuditReportInner() {
               key={i}
               className={cn(
                 "px-2 py-0.5 text-[9px] font-medium uppercase tracking-wider transition-colors cursor-pointer",
-                i === 0 ? 'bg-primary text-white' : 'text-[hsl(0,0%,45%)] hover:bg-[hsl(0,0%,72%)]'
+                i === 0 ? 'bg-primary text-white' : 'text-muted-foreground hover:bg-muted'
               )}
-              style={i !== 0 ? { background: 'hsl(0,0%,78%)' } : undefined}
+              style={i !== 0 ? { background: 'hsl(220,14%,90%)' } : undefined}
             >
               {label}
             </button>
@@ -189,7 +189,7 @@ function AuditReportInner() {
       </div>
 
       {/* Main content area — three-column layout */}
-      <div className="flex-1 flex overflow-hidden" style={{ background: 'hsl(0,0%,95%)' }}>
+      <div className="flex-1 flex overflow-hidden bg-background">
         {/* Mobile sidebar overlay */}
         {isMobile && sidebarOpen && (
           <div className="fixed inset-0 z-50 flex">
