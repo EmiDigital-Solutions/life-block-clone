@@ -51,7 +51,7 @@ export default function KPIBand({ kpis }: KPIBandProps) {
         return (
           <div
             key={i}
-            className="border border-border bg-background p-5 hover:shadow-md transition-all duration-300 group cursor-pointer"
+            className="audit-glass-card p-5 group cursor-pointer"
           >
             <span className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold">
               {kpi.label}
@@ -69,7 +69,7 @@ export default function KPIBand({ kpis }: KPIBandProps) {
             </div>
 
             {threshold && (
-              <div className="flex items-center justify-between mt-3 pt-2 border-t border-muted">
+              <div className="flex items-center justify-between mt-3 pt-2 border-t border-border/50">
                 <div className="text-[10px]">
                   <span className="text-grey-mid">Actual</span>
                   <span className="font-mono font-semibold text-foreground ml-1">{kpi.value}{kpi.unit || ''}</span>
