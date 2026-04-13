@@ -122,7 +122,7 @@ export default function ExecutiveRadarCharts() {
             </ResponsiveContainer>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-transparent">
+          <div className="mt-6 pt-4 border-t border-border/40">
             <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Gap to BMW requirement</span>
             <div className="mt-3">
               {productionGaps.filter(g => g.gap < 0).slice(0, 5).map(g => (
@@ -165,7 +165,7 @@ export default function ExecutiveRadarCharts() {
             </ResponsiveContainer>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-transparent">
+          <div className="mt-6 pt-4 border-t border-border/40">
             <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Gap to benchmark</span>
             <div className="mt-3">
               {commercialGaps.filter(g => g.gap < 0).slice(0, 5).map(g => (
