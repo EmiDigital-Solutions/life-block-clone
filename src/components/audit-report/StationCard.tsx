@@ -336,7 +336,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
           )}
 
           {/* Sub-Categories */}
-          {station.subCategories && station.subCategories.length > 0 && depth !== 'executive' && (
+          {station.subCategories && station.subCategories.length > 0 && (
             <div>
               <h4 className="text-[11px] uppercase tracking-[0.12em] font-semibold mb-4" style={{ color: 'hsl(0,0%,50%)' }}>Process Element Breakdown</h4>
               <div className="space-y-3">
@@ -389,7 +389,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
           )}
 
           {/* Atlas AI Insights */}
-          {station.atlasInsights && station.atlasInsights.length > 0 && depth !== 'executive' && (
+          {station.atlasInsights && station.atlasInsights.length > 0 && (
             <div>
               <h4 className="text-[11px] uppercase tracking-[0.12em] font-semibold mb-4 flex items-center gap-2" style={{ color: 'hsl(0,0%,50%)' }}>
                 <Brain className="w-4 h-4 text-primary" /> Atlas Intelligence
