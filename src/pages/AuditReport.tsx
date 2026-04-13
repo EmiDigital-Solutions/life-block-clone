@@ -242,13 +242,13 @@ function AuditReportInner() {
                 <span className="text-[10px] text-muted-foreground">· {allNCRs.length} NCRs</span>
 
                 {/* Station heatmap strip */}
-                <div className="hidden md:flex items-center gap-2 ml-2 pl-2" style={{ borderLeft: '1px solid hsl(0,0%,72%)' }}>
+                <div className="hidden md:flex items-center gap-2 ml-2 pl-2 border-l border-border">
                   <StationHeatmap activeStation={activeStation} onStationClick={scrollToStation} />
                 </div>
 
                 {/* Breadcrumb progress */}
-                <div className="hidden lg:flex items-center gap-1.5 ml-2 pl-2" style={{ borderLeft: '1px solid hsl(0,0%,72%)' }}>
-                  <span className="text-[10px] font-mono tabular-nums" style={{ color: 'hsl(0,0%,50%)' }}>
+                <div className="hidden lg:flex items-center gap-1.5 ml-2 pl-2 border-l border-border">
+                  <span className="text-[10px] font-mono tabular-nums text-muted-foreground">
                     Reviewed {reviewedStations.size}/{totalStations}
                   </span>
                 </div>
