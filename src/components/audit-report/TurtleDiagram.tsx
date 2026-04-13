@@ -1,5 +1,4 @@
 import type { Station } from "@/data/auditReportData";
-import type { Station } from "@/data/auditReportData";
 import { Users, Cpu, FileText, Gauge, ArrowRight } from "lucide-react";
 
 // VDA 6.3 Turtle Diagram — formal process visualization
