@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import {
-  Camera, Cpu, Zap, Clock, Gauge, AlertTriangle,
-  CheckCircle2, XCircle, ChevronDown, ChevronUp, Sparkles, Factory,
-  CalendarDays, Shield, Settings2, Wrench, Leaf, BarChart3
+  ChevronDown, ChevronUp, Sparkles,
+  CheckCircle2, AlertTriangle, XCircle, Settings2
 } from "lucide-react";
 
-/* ── Machine data (simulated Atlas AI capture) ── */
+/* ── Machine data ── */
 interface MachineSpec {
   label: string;
   value: string;
@@ -15,7 +14,6 @@ interface MachineSpec {
 
 interface MachineProfile {
   id: string;
-  typePlateImage: string;
   manufacturer: string;
   model: string;
   serialNumber: string;
@@ -38,7 +36,6 @@ interface MachineProfile {
   co2PerYear: number;
   clientSuitability: 'approved' | 'conditional' | 'not-suitable';
   clientSuitabilityReason: string;
-  bmwRequirementsMet: boolean;
   specs: MachineSpec[];
   capabilities: string[];
   risks: string[];
@@ -48,7 +45,6 @@ interface MachineProfile {
 const machines: MachineProfile[] = [
   {
     id: "M-001",
-    typePlateImage: "atlas-capture-001.jpg",
     manufacturer: "ENGEL",
     model: "victory 500/120 tech",
     serialNumber: "EN-2019-VT-44821",
@@ -71,7 +67,6 @@ const machines: MachineProfile[] = [
     co2PerYear: 14.2,
     clientSuitability: 'approved',
     clientSuitabilityReason: "Meets BMW Tier-1 precision requirements. Servo-hydraulic drive delivers Cpk > 1.67 on critical dimensions.",
-    bmwRequirementsMet: true,
     specs: [
       { label: "Clamping Force", value: "5,000", unit: "kN" },
       { label: "Shot Volume", value: "1,204", unit: "cm³" },
@@ -80,25 +75,16 @@ const machines: MachineProfile[] = [
       { label: "Platen Size", value: "1,120 × 920", unit: "mm" },
       { label: "Dry Cycle Time", value: "2.8", unit: "s" },
       { label: "Injection Pressure", value: "2,300", unit: "bar" },
-      { label: "Hydraulic System", value: "Servo ecodrive", unit: "" },
-      { label: "Control System", value: "CC300", unit: "" },
-      { label: "Tolerance Capability", value: "±0.02", unit: "mm" },
+      { label: "Hydraulic System", value: "Servo ecodrive" },
+      { label: "Control System", value: "CC300" },
+      { label: "Tolerance", value: "±0.02", unit: "mm" },
     ],
-    capabilities: [
-      "Multi-component injection (2K)",
-      "Gas-assisted moulding",
-      "In-mould decoration (IMD)",
-      "MuCell® microcellular foaming",
-      "Automotive-grade surface finish (VDI 3400)",
-    ],
-    risks: [
-      "Hydraulic hose set approaching 5-year replacement cycle",
-    ],
-    atlasInsight: "Atlas AI detected thermal imaging anomaly on barrel zone 3 heater band — recommend thermographic inspection within 30 days to prevent unplanned downtime.",
+    capabilities: ["Multi-component injection (2K)", "Gas-assisted moulding", "In-mould decoration (IMD)", "MuCell® microcellular foaming", "VDI 3400 surface finish"],
+    risks: ["Hydraulic hose set approaching 5-year replacement cycle"],
+    atlasInsight: "Thermal imaging anomaly on barrel zone 3 heater band — recommend thermographic inspection within 30 days.",
   },
   {
     id: "M-002",
-    typePlateImage: "atlas-capture-002.jpg",
     manufacturer: "Haitian",
     model: "Mars III MA3200",
     serialNumber: "HT-2021-M3-78432",
@@ -120,8 +106,7 @@ const machines: MachineProfile[] = [
     energyClass: "B",
     co2PerYear: 22.8,
     clientSuitability: 'conditional',
-    clientSuitabilityReason: "Meets dimensional tolerance for non-Class-A surfaces only. Repeatability variance (Cpk 1.21) below BMW minimum of 1.33 for visible components.",
-    bmwRequirementsMet: false,
+    clientSuitabilityReason: "Cpk 1.21 below BMW minimum 1.33 for Class-A surfaces. Restrict to non-visible structural parts or upgrade servo drive.",
     specs: [
       { label: "Clamping Force", value: "3,200", unit: "kN" },
       { label: "Shot Volume", value: "980", unit: "cm³" },
@@ -130,25 +115,16 @@ const machines: MachineProfile[] = [
       { label: "Platen Size", value: "980 × 860", unit: "mm" },
       { label: "Dry Cycle Time", value: "3.6", unit: "s" },
       { label: "Injection Pressure", value: "1,850", unit: "bar" },
-      { label: "Hydraulic System", value: "Standard toggle", unit: "" },
-      { label: "Control System", value: "KEBA i700", unit: "" },
-      { label: "Tolerance Capability", value: "±0.05", unit: "mm" },
+      { label: "Hydraulic System", value: "Standard toggle" },
+      { label: "Control System", value: "KEBA i700" },
+      { label: "Tolerance", value: "±0.05", unit: "mm" },
     ],
-    capabilities: [
-      "Standard injection moulding",
-      "Basic insert moulding",
-      "Non-visible structural parts",
-    ],
-    risks: [
-      "Cpk variance on precision dimensions (1.21 vs. 1.33 BMW min)",
-      "Toggle mechanism showing wear — 8% higher energy draw vs. baseline",
-      "No servo drive — higher cycle-to-cycle variation",
-    ],
-    atlasInsight: "Atlas AI cross-referenced this machine's output data with BMW SLP requirements: 23% of parts from this machine required rework in Q4 2025. Recommend restricting to non-Class-A components or upgrading servo drive.",
+    capabilities: ["Standard injection moulding", "Basic insert moulding", "Non-visible structural parts"],
+    risks: ["Cpk variance 1.21 vs. 1.33 BMW min", "Toggle mechanism wear — 8% higher energy draw", "No servo drive — higher cycle variation"],
+    atlasInsight: "23% of parts from this machine required rework in Q4 2025. Recommend restricting to non-Class-A components or upgrading servo drive.",
   },
   {
     id: "M-003",
-    typePlateImage: "atlas-capture-003.jpg",
     manufacturer: "Zeiss",
     model: "CONTURA 7/10/6 RDS",
     serialNumber: "ZS-2022-CT-11094",
@@ -170,35 +146,33 @@ const machines: MachineProfile[] = [
     energyClass: "A++",
     co2PerYear: 1.6,
     clientSuitability: 'approved',
-    clientSuitabilityReason: "Exceeds BMW metrology requirements. MPEP ≤ 1.5µm certified, fully calibrated to ISO 10360-2.",
-    bmwRequirementsMet: true,
+    clientSuitabilityReason: "Exceeds BMW metrology requirements. MPEP ≤ 1.5µm certified, ISO 10360-2 calibrated.",
     specs: [
-      { label: "Measuring Range", value: "700 × 1000 × 600", unit: "mm" },
+      { label: "Range", value: "700 × 1000 × 600", unit: "mm" },
       { label: "Resolution", value: "0.1", unit: "µm" },
       { label: "MPEP", value: "1.5", unit: "µm" },
       { label: "Max Workpiece", value: "450", unit: "kg" },
-      { label: "Probe System", value: "VAST XXT", unit: "" },
-      { label: "Software", value: "CALYPSO 2024", unit: "" },
-      { label: "Temperature Comp.", value: "Active", unit: "" },
-      { label: "Calibration Status", value: "ISO 10360-2", unit: "" },
+      { label: "Probe System", value: "VAST XXT" },
+      { label: "Software", value: "CALYPSO 2024" },
+      { label: "Temp. Comp.", value: "Active" },
+      { label: "Calibration", value: "ISO 10360-2" },
     ],
-    capabilities: [
-      "Full GD&T dimensional inspection",
-      "Surface profile scanning",
-      "SPC data export to BMW Q-DAS",
-      "Automated measurement programs",
-      "First Article Inspection (FAI / PPAP)",
-    ],
+    capabilities: ["Full GD&T dimensional inspection", "Surface profile scanning", "SPC data export to Q-DAS", "Automated measurement programs", "FAI / PPAP"],
     risks: [],
-    atlasInsight: "Atlas AI verified calibration certificate validity until 2027-03. Measurement uncertainty budget within BMW Tier-1 acceptance criteria.",
+    atlasInsight: "Calibration certificate valid until 2027-03. Measurement uncertainty within BMW Tier-1 acceptance criteria.",
   },
 ];
 
-/* ── Helpers using project palette ── */
 const suitabilityConfig = {
-  'approved': { icon: CheckCircle2, color: 'text-accent', label: 'Approved' },
-  'conditional': { icon: AlertTriangle, color: 'text-warning', label: 'Conditional' },
-  'not-suitable': { icon: XCircle, color: 'text-destructive', label: 'Not Suitable' },
+  'approved': { icon: CheckCircle2, color: 'hsl(155, 24%, 55%)', label: 'Approved' },
+  'conditional': { icon: AlertTriangle, color: 'hsl(24, 72%, 63%)', label: 'Conditional' },
+  'not-suitable': { icon: XCircle, color: 'hsl(0, 48%, 46%)', label: 'Not Suitable' },
+};
+
+const conditionColor = (score: number) => {
+  if (score >= 85) return 'hsl(155, 24%, 55%)';
+  if (score >= 60) return 'hsl(24, 72%, 63%)';
+  return 'hsl(0, 48%, 46%)';
 };
 
 const originLabel = (tier: string) => {
@@ -210,187 +184,167 @@ const originLabel = (tier: string) => {
   }
 };
 
-const conditionScoreColor = (score: number) => {
-  if (score >= 85) return 'hsl(155, 24%, 55%)';
-  if (score >= 60) return 'hsl(24, 72%, 63%)';
-  return 'hsl(0, 48%, 46%)';
-};
+function MetricBar({ label, value, threshold, max = 100 }: { label: string; value: number; threshold: number; max?: number }) {
+  const color = value >= threshold ? 'hsl(155, 24%, 55%)' : value >= threshold * 0.88 ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)';
+  const pct = (value / max) * 100;
+  const threshPct = (threshold / max) * 100;
 
-function OEEGauge({ label, value, threshold }: { label: string; value: number; threshold: number }) {
-  const met = value >= threshold;
-  const color = met ? 'hsl(155, 24%, 55%)' : 'hsl(24, 72%, 63%)';
-  const trackColor = 'hsl(0, 0%, 78%)';
   return (
-    <div className="text-center">
-      <div className="relative w-16 h-16 mx-auto mb-1">
-        <svg viewBox="0 0 36 36" className="w-full h-full -rotate-90">
-          <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke={trackColor} strokeWidth="2.5" />
-          <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none"
-            stroke={color} strokeWidth="2.5" strokeDasharray={`${value}, 100`} strokeLinecap="butt" />
-        </svg>
-        <span className="absolute inset-0 flex items-center justify-center text-[13px] font-mono font-bold" style={{ color }}>
-          {value}%
-        </span>
+    <div className="flex items-center gap-3">
+      <span className="text-[12px] w-[50px] shrink-0" style={{ color: 'hsl(0,0%,45%)' }}>{label}</span>
+      <div className="flex-1 h-3 relative" style={{ background: 'hsl(0,0%,93%)' }}>
+        <div className="absolute top-0 h-full" style={{ width: `${pct}%`, background: color, opacity: 0.7 }} />
+        <div className="absolute top-0 bottom-0 w-px" style={{ left: `${threshPct}%`, borderLeft: '1px dashed hsl(0,0%,55%)' }} />
       </div>
-      <span className="text-[10px] font-medium uppercase tracking-[0.1em]" style={{ color: 'hsl(0,0%,45%)' }}>{label}</span>
+      <span className="text-[14px] font-mono font-bold w-[50px] text-right" style={{ color }}>{value}%</span>
     </div>
   );
 }
 
-/* ── Machine Card ── */
 function MachineCard({ machine }: { machine: MachineProfile }) {
   const [expanded, setExpanded] = useState(false);
   const suit = suitabilityConfig[machine.clientSuitability];
   const SuitIcon = suit.icon;
-  const cColor = conditionScoreColor(machine.conditionScore);
+  const cColor = conditionColor(machine.conditionScore);
+  const oeeColor = machine.oee >= 85 ? 'hsl(155, 24%, 55%)' : machine.oee >= 75 ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)';
 
   return (
-    <div style={{ background: 'hsla(0,0%,100%,0.7)', backdropFilter: 'blur(12px)', border: '1px solid hsl(0,0%,80%)' }}>
-      {/* Header */}
-      <div className="px-5 py-4 flex items-start justify-between gap-4">
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1 flex-wrap">
-            <span className="text-[10px] font-mono font-bold text-primary">{machine.id}</span>
-            <span className="text-[10px] text-[hsl(0,0%,50%)]">·</span>
-            <span className="text-[10px] text-[hsl(0,0%,50%)] font-medium">{originLabel(machine.originTier)}</span>
-            <span className="text-[10px] text-[hsl(0,0%,50%)]">·</span>
-            <span className="text-[10px] font-mono" style={{ color: cColor }}>
-              {machine.condition} {machine.conditionScore}/100
-            </span>
+    <div style={{ background: 'hsl(0,0%,100%)', border: '1px solid hsl(0,0%,85%)' }}>
+      {/* Header row: hero OEE + machine info + suitability */}
+      <div className="flex items-stretch gap-px" style={{ background: 'hsl(0,0%,85%)' }}>
+        {/* Hero OEE */}
+        <div className="w-[160px] shrink-0 p-5 flex flex-col items-center justify-center" style={{ background: 'hsl(0,0%,100%)' }}>
+          <div className="text-[42px] font-bold font-mono leading-none" style={{ color: oeeColor }}>{machine.oee}%</div>
+          <span className="text-[10px] uppercase tracking-wider font-semibold mt-1" style={{ color: 'hsl(0,0%,50%)' }}>OEE</span>
+        </div>
+
+        {/* Machine identity */}
+        <div className="flex-1 p-5" style={{ background: 'hsl(0,0%,100%)' }}>
+          <div className="flex items-center gap-3 mb-1.5">
+            <span className="text-[12px] font-mono font-bold" style={{ color: 'hsl(195, 89%, 34%)' }}>{machine.id}</span>
+            <span className="text-[11px] px-2 py-0.5" style={{ background: 'hsl(0,0%,93%)', color: 'hsl(0,0%,45%)' }}>{originLabel(machine.originTier)}</span>
+            <span className="text-[11px] px-2 py-0.5" style={{ background: `${cColor}10`, color: cColor }}>{machine.condition} · {machine.conditionScore}/100</span>
           </div>
-          <h4 className="text-[16px] font-light text-foreground tracking-tight leading-tight">
-            {machine.manufacturer} <span className="font-medium">{machine.model}</span>
+          <h4 className="text-[18px] font-bold text-foreground tracking-tight">
+            {machine.manufacturer} {machine.model}
           </h4>
-          <div className="flex items-center gap-3 mt-1.5 text-[11px] text-[hsl(0,0%,50%)]">
+          <div className="flex items-center gap-3 mt-1 text-[12px]" style={{ color: 'hsl(0,0%,50%)' }}>
             <span>{machine.category}</span>
-            <span className="text-border">|</span>
+            <span style={{ color: 'hsl(0,0%,80%)' }}>|</span>
             <span>{machine.location}</span>
-            <span className="text-border">|</span>
-            <span className="font-mono text-[10px]">S/N {machine.serialNumber}</span>
+            <span style={{ color: 'hsl(0,0%,80%)' }}>|</span>
+            <span className="font-mono text-[11px]">S/N {machine.serialNumber}</span>
+            <span style={{ color: 'hsl(0,0%,80%)' }}>|</span>
+            <span>{machine.yearManufactured} ({machine.age} yrs)</span>
           </div>
         </div>
-        <div className="flex items-center gap-1.5 shrink-0">
-          <SuitIcon className={cn("w-4 h-4", suit.color)} />
-          <span className={cn("text-[11px] font-semibold", suit.color)}>{suit.label}</span>
+
+        {/* BMW suitability badge */}
+        <div className="w-[140px] shrink-0 p-5 flex flex-col items-center justify-center" style={{ background: 'hsl(0,0%,100%)' }}>
+          <SuitIcon className="w-6 h-6 mb-1" style={{ color: suit.color }} />
+          <span className="text-[12px] font-bold" style={{ color: suit.color }}>{suit.label}</span>
+          <span className="text-[9px] uppercase tracking-wider mt-0.5" style={{ color: 'hsl(0,0%,55%)' }}>BMW Status</span>
         </div>
       </div>
 
-      {/* Metrics row */}
-      <div style={{ borderTop: '1px solid hsl(0,0%,80%)' }} className="grid grid-cols-6 divide-x divide-[hsl(0,0%,80%)]">
+      {/* Performance bars */}
+      <div className="p-5 space-y-2" style={{ borderTop: '1px solid hsl(0,0%,85%)' }}>
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-[10px] font-bold uppercase tracking-[0.12em]" style={{ color: 'hsl(0,0%,50%)' }}>Performance Breakdown</span>
+          <span className="text-[10px] font-mono" style={{ color: 'hsl(0,0%,55%)' }}>Dashed line = BMW threshold</span>
+        </div>
+        <MetricBar label="Avail." value={machine.availability} threshold={90} />
+        <MetricBar label="Perf." value={machine.performance} threshold={90} />
+        <MetricBar label="Quality" value={machine.quality} threshold={97} />
+      </div>
+
+      {/* Quick info row */}
+      <div className="flex items-stretch gap-px" style={{ background: 'hsl(0,0%,85%)', borderTop: '1px solid hsl(0,0%,85%)' }}>
         {[
-          { label: "Age", value: `${machine.age} yrs`, sub: String(machine.yearManufactured), icon: CalendarDays },
-          { label: "Energy", value: `${machine.energyConsumption} kWh`, sub: machine.energyClass, icon: Zap },
-          { label: "CO₂/yr", value: `${machine.co2PerYear} t`, sub: "", icon: Leaf },
-          { label: "Last Maint.", value: machine.lastMaintenance, sub: "", icon: Wrench },
-          { label: "Next Maint.", value: machine.nextMaintenance, sub: "", icon: CalendarDays },
-          { label: "Origin", value: machine.origin, sub: "", icon: Shield },
-        ].map((m, i) => (
-          <div key={i} className="px-3 py-3">
-            <div className="text-[9px] text-[hsl(0,0%,50%)] uppercase tracking-[0.1em] mb-0.5">{m.label}</div>
-            <div className="text-[12px] font-mono font-medium text-foreground">
-              {m.value}{m.sub && <span className="text-[10px] text-[hsl(0,0%,50%)] ml-1">{m.sub}</span>}
-            </div>
+          { label: 'Energy', value: `${machine.energyConsumption} kWh` },
+          { label: 'Class', value: machine.energyClass },
+          { label: 'CO₂/yr', value: `${machine.co2PerYear} t` },
+          { label: 'Last Maint.', value: machine.lastMaintenance },
+          { label: 'Next Maint.', value: machine.nextMaintenance },
+          { label: 'Origin', value: machine.origin },
+        ].map((item, i) => (
+          <div key={i} className="flex-1 px-3 py-3" style={{ background: 'hsl(0,0%,100%)' }}>
+            <span className="text-[9px] uppercase tracking-[0.1em] block" style={{ color: 'hsl(0,0%,50%)' }}>{item.label}</span>
+            <span className="text-[12px] font-mono font-medium text-foreground">{item.value}</span>
           </div>
         ))}
       </div>
 
-      {/* OEE Gauges */}
-      <div style={{ borderTop: "1px solid hsl(0,0%,80%)" }} className=" px-5 py-4">
-        <div className="flex items-center justify-between mb-3">
-          <span className="text-[10px] font-semibold text-foreground uppercase tracking-[0.12em] flex items-center gap-1.5">
-            <BarChart3 className="w-3.5 h-3.5 text-[hsl(0,0%,50%)]" /> OEE Performance
-          </span>
-          <span className="text-[9px] text-[hsl(0,0%,50%)] font-mono">Threshold ≥ 85%</span>
-        </div>
-        <div className="flex items-center justify-around">
-          <OEEGauge label="OEE" value={machine.oee} threshold={85} />
-          <OEEGauge label="Avail." value={machine.availability} threshold={90} />
-          <OEEGauge label="Perf." value={machine.performance} threshold={90} />
-          <OEEGauge label="Quality" value={machine.quality} threshold={97} />
-        </div>
+      {/* Suitability reason */}
+      <div className="px-5 py-3" style={{ borderTop: '1px solid hsl(0,0%,85%)' }}>
+        <p className="text-[13px] leading-relaxed" style={{ color: 'hsl(0,0%,40%)' }}>
+          <strong className="text-foreground">BMW Assessment:</strong> {machine.clientSuitabilityReason}
+        </p>
       </div>
 
-      {/* Client Suitability */}
-      <div style={{ borderTop: "1px solid hsl(0,0%,80%)" }} className=" px-5 py-3">
-        <div className="flex items-start gap-2">
-          <SuitIcon className={cn("w-3.5 h-3.5 mt-0.5 shrink-0", suit.color)} />
-          <div>
-            <span className="text-[10px] font-semibold text-[hsl(0,0%,50%)] uppercase tracking-[0.1em]">BMW Suitability</span>
-            <p className="text-[12px] text-foreground mt-0.5 leading-relaxed">{machine.clientSuitabilityReason}</p>
+      {/* Risks */}
+      {machine.risks.length > 0 && (
+        <div className="px-5 py-3" style={{ borderTop: '1px solid hsl(0,0%,85%)' }}>
+          <div className="flex items-center gap-2 mb-2">
+            <AlertTriangle className="w-3.5 h-3.5" style={{ color: 'hsl(24, 72%, 63%)' }} />
+            <span className="text-[10px] font-bold uppercase tracking-[0.12em]" style={{ color: 'hsl(24, 72%, 63%)' }}>
+              {machine.risks.length} Risk{machine.risks.length > 1 ? 's' : ''} Identified
+            </span>
           </div>
+          {machine.risks.map((risk, i) => (
+            <p key={i} className="text-[13px] pl-6 mb-1" style={{ color: 'hsl(0,0%,40%)' }}>• {risk}</p>
+          ))}
+        </div>
+      )}
+
+      {/* Atlas insight */}
+      <div className="px-5 py-3 flex items-start gap-3" style={{ borderTop: '1px solid hsl(0,0%,85%)', background: 'hsl(195, 89%, 34%, 0.03)' }}>
+        <Sparkles className="w-4 h-4 mt-0.5 shrink-0" style={{ color: 'hsl(195, 89%, 34%)' }} />
+        <div>
+          <span className="text-[10px] font-bold uppercase tracking-[0.12em]" style={{ color: 'hsl(195, 89%, 34%)' }}>Atlas AI</span>
+          <p className="text-[13px] mt-0.5 leading-relaxed" style={{ color: 'hsl(0,0%,40%)' }}>{machine.atlasInsight}</p>
         </div>
       </div>
 
-      {/* Expand toggle */}
+      {/* Expandable technical data */}
       <button
         onClick={() => setExpanded(!expanded)}
-        className="w-full px-5 py-2.5 flex items-center justify-between text-[11px] font-medium text-primary hover:bg-muted transition-colors"
+        className="w-full px-5 py-3 flex items-center justify-between text-[12px] font-medium transition-colors"
+        style={{ borderTop: '1px solid hsl(0,0%,85%)', color: 'hsl(195, 89%, 34%)' }}
       >
-        <span className="flex items-center gap-1.5">
-          <Settings2 className="w-3.5 h-3.5" />
+        <span className="flex items-center gap-2">
+          <Settings2 className="w-4 h-4" />
           {expanded ? "Hide" : "Show"} Technical Data Sheet
         </span>
-        {expanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+        {expanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
       </button>
 
       {expanded && (
-        <div style={{ borderTop: "1px solid hsl(0,0%,80%)" }} className="">
+        <div style={{ borderTop: '1px solid hsl(0,0%,85%)' }}>
           {/* Specs grid */}
-          <div className="px-5 py-4">
-            <h5 className="text-[10px] font-semibold text-foreground uppercase tracking-[0.12em] mb-3 flex items-center gap-1.5">
-              <Cpu className="w-3.5 h-3.5 text-[hsl(0,0%,50%)]" /> Technical Specifications
-            </h5>
-            <div className="grid grid-cols-5 gap-px bg-[hsl(0,0%,80%)]">
+          <div className="p-5">
+            <span className="text-[10px] font-bold uppercase tracking-[0.12em] mb-3 block" style={{ color: 'hsl(0,0%,50%)' }}>Specifications</span>
+            <div className="grid grid-cols-5 gap-px" style={{ background: 'hsl(0,0%,85%)' }}>
               {machine.specs.map((spec, i) => (
-                <div key={i} className="bg-[hsla(0,0%,100%,0.7)] px-3 py-2.5">
-                  <div className="text-[9px] text-[hsl(0,0%,50%)] uppercase tracking-[0.08em] mb-0.5">{spec.label}</div>
-                  <div className="text-[12px] font-mono font-medium text-foreground">
-                    {spec.value}{spec.unit && <span className="text-[9px] text-[hsl(0,0%,50%)] ml-0.5">{spec.unit}</span>}
-                  </div>
+                <div key={i} className="px-3 py-2.5" style={{ background: 'hsl(0,0%,100%)' }}>
+                  <span className="text-[9px] uppercase tracking-[0.08em] block" style={{ color: 'hsl(0,0%,50%)' }}>{spec.label}</span>
+                  <span className="text-[13px] font-mono font-medium text-foreground">
+                    {spec.value}{spec.unit && <span className="text-[10px] ml-0.5" style={{ color: 'hsl(0,0%,55%)' }}>{spec.unit}</span>}
+                  </span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Capabilities */}
-          <div style={{ borderTop: "1px solid hsl(0,0%,80%)" }} className=" px-5 py-4">
-            <h5 className="text-[10px] font-semibold text-foreground uppercase tracking-[0.12em] mb-2.5 flex items-center gap-1.5">
-              <Gauge className="w-3.5 h-3.5 text-[hsl(0,0%,50%)]" /> Process Capabilities
-            </h5>
+          <div className="px-5 pb-5">
+            <span className="text-[10px] font-bold uppercase tracking-[0.12em] mb-2 block" style={{ color: 'hsl(0,0%,50%)' }}>Capabilities</span>
             <div className="flex flex-wrap gap-1.5">
               {machine.capabilities.map((cap, i) => (
-                <span key={i} className="text-[10px] px-2 py-1 border border-[hsl(0,0%,80%)] text-foreground font-medium">
+                <span key={i} className="text-[11px] px-2.5 py-1 font-medium text-foreground" style={{ border: '1px solid hsl(0,0%,85%)' }}>
                   {cap}
                 </span>
               ))}
-            </div>
-          </div>
-
-          {/* Risks */}
-          {machine.risks.length > 0 && (
-            <div style={{ borderTop: "1px solid hsl(0,0%,80%)" }} className=" px-5 py-4">
-              <h5 className="text-[10px] font-semibold text-warning uppercase tracking-[0.12em] mb-2 flex items-center gap-1.5">
-                <AlertTriangle className="w-3.5 h-3.5" /> Identified Risks
-              </h5>
-              <ul className="space-y-1">
-                {machine.risks.map((risk, i) => (
-                  <li key={i} className="text-[11px] text-foreground flex items-start gap-2">
-                    <span className="w-1 h-1 bg-warning mt-1.5 shrink-0" />
-                    {risk}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* Atlas AI Insight */}
-          <div style={{ borderTop: "1px solid hsl(0,0%,80%)" }} className=" px-5 py-4">
-            <div className="flex items-start gap-2">
-              <Sparkles className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
-              <div>
-                <span className="text-[10px] font-semibold text-primary uppercase tracking-[0.1em]">Atlas AI Insight</span>
-                <p className="text-[11px] text-foreground mt-0.5 leading-relaxed">{machine.atlasInsight}</p>
-              </div>
             </div>
           </div>
         </div>
@@ -399,72 +353,60 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
   );
 }
 
-/* ── Main Section ── */
 export default function MachineParkIntelligence() {
   const totalMachines = machines.length;
   const approved = machines.filter(m => m.clientSuitability === 'approved').length;
   const conditional = machines.filter(m => m.clientSuitability === 'conditional').length;
   const avgOEE = (machines.reduce((s, m) => s + m.oee, 0) / totalMachines).toFixed(1);
   const avgAge = (machines.reduce((s, m) => s + m.age, 0) / totalMachines).toFixed(1);
-  const totalEnergy = machines.reduce((s, m) => s + m.energyConsumption, 0);
   const totalCO2 = machines.reduce((s, m) => s + m.co2PerYear, 0).toFixed(1);
   const oemPremium = machines.filter(m => m.originTier === 'oem-premium').length;
+  const belowThreshold = machines.filter(m => m.oee < 85).length;
 
   return (
-    <section id="machine-park" className="py-12">
-      {/* Section Header */}
-      <div className="flex items-center gap-3 mb-2">
-        <span className="text-[12px] font-medium tracking-[0.1em] text-[hsl(0,0%,50%)]">// 15</span>
-        <span className="w-1.5 h-1.5 bg-primary" />
-        <span className="text-[12px] font-medium tracking-[0.1em] text-[hsl(0,0%,50%)]">Machine Park Intelligence</span>
-        <div className="flex-1 h-px bg-[hsl(0,0%,80%)]" />
-        <div className="flex items-center gap-1.5">
-          <Camera className="w-3.5 h-3.5 text-primary" />
-          <span className="text-[10px] font-mono text-primary">{totalMachines} captured</span>
-        </div>
+    <section id="machine-park" className="py-10 space-y-6">
+      <div className="flex items-center gap-2 mb-3">
+        <div className="w-1 h-5" style={{ background: 'hsl(195, 89%, 34%)' }} />
+        <span className="text-[11px] font-semibold tracking-[0.15em] uppercase" style={{ color: 'hsl(0,0%,50%)' }}>Machine Park Intelligence</span>
       </div>
 
-      <h2 className="text-[28px] font-light text-foreground tracking-tight leading-none mb-3">Machine Park Intelligence</h2>
-      <p className="text-[13px] text-[hsl(0,0%,50%)] mb-8 max-w-[680px] leading-relaxed">
-        Atlas AI identifies equipment from type plate captures, cross-references manufacturer databases,
-        and evaluates capability against <span className="font-medium text-foreground">BMW Tier-1</span> requirements.
+      <h2 className="text-[32px] font-bold text-foreground tracking-[-0.02em] leading-tight">
+        {totalMachines} machines profiled — {belowThreshold > 0 ? `${belowThreshold} below OEE threshold` : 'all above OEE threshold'}
+      </h2>
+      <p className="text-[15px] max-w-2xl leading-relaxed" style={{ color: 'hsl(0,0%,45%)' }}>
+        Atlas AI identifies equipment from type plate captures and evaluates capability against BMW Tier-1 requirements.
       </p>
 
-      {/* Summary Stats */}
-      <div className="grid grid-cols-7 divide-x divide-[hsl(0,0%,80%)] border border-[hsl(0,0%,80%)] mb-8">
+      {/* Hero stat row */}
+      <div className="flex items-stretch gap-px" style={{ background: 'hsl(0,0%,85%)' }}>
         {[
-          { label: "Avg OEE", value: `${avgOEE}%`, ok: Number(avgOEE) >= 85 },
-          { label: "Avg Age", value: `${avgAge} yrs`, ok: Number(avgAge) <= 8 },
-          { label: "Energy", value: `${totalEnergy} kWh`, ok: true },
-          { label: "CO₂/yr", value: `${totalCO2} t`, ok: true },
-          { label: "OEM Premium", value: `${oemPremium}/${totalMachines}`, ok: oemPremium >= totalMachines * 0.5 },
-          { label: "Approved", value: `${approved}`, ok: true },
-          { label: "Conditional", value: `${conditional}`, ok: conditional === 0 },
-        ].map((s, i) => (
-          <div key={i} className="px-3 py-3 text-center">
-            <span className={cn("text-[15px] font-mono font-bold block", s.ok ? "text-foreground" : "text-warning")}>{s.value}</span>
-            <span className="text-[9px] text-[hsl(0,0%,50%)] uppercase tracking-[0.1em]">{s.label}</span>
+          { label: 'Fleet OEE', value: `${avgOEE}%`, color: Number(avgOEE) >= 85 ? 'hsl(155, 24%, 55%)' : 'hsl(24, 72%, 63%)' },
+          { label: 'Avg Age', value: `${avgAge} yrs`, color: 'hsl(0,0%,20%)' },
+          { label: 'OEM Premium', value: `${oemPremium}/${totalMachines}`, color: oemPremium >= totalMachines * 0.5 ? 'hsl(155, 24%, 55%)' : 'hsl(24, 72%, 63%)' },
+          { label: 'BMW Approved', value: String(approved), color: 'hsl(155, 24%, 55%)' },
+          { label: 'Conditional', value: String(conditional), color: conditional > 0 ? 'hsl(24, 72%, 63%)' : 'hsl(155, 24%, 55%)' },
+          { label: 'CO₂/yr', value: `${totalCO2} t`, color: 'hsl(0,0%,30%)' },
+        ].map(s => (
+          <div key={s.label} className="flex-1 p-4" style={{ background: 'hsl(0,0%,100%)' }}>
+            <span className="text-[10px] uppercase tracking-[0.12em] font-semibold block" style={{ color: 'hsl(0,0%,50%)' }}>{s.label}</span>
+            <div className="text-[24px] font-bold font-mono mt-1 leading-none" style={{ color: s.color }}>{s.value}</div>
           </div>
         ))}
       </div>
 
       {/* Machine Cards */}
       <div className="space-y-4">
-        {machines.map((machine) => (
+        {machines.map(machine => (
           <MachineCard key={machine.id} machine={machine} />
         ))}
       </div>
 
-      {/* Bottom Note */}
-      <div className="mt-6 px-4 py-3 border border-[hsl(0,0%,80%)] flex items-start gap-2.5">
-        <Sparkles className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
-        <div>
-          <span className="text-[10px] font-semibold text-foreground uppercase tracking-[0.1em]">Atlas AI Machine Intelligence</span>
-          <p className="text-[11px] text-[hsl(0,0%,50%)] mt-0.5 leading-relaxed">
-            All machine profiles are auto-generated from on-site type plate captures. Suitability assessments are
-            calibrated against BMW technical requirements and tolerance specifications.
-          </p>
-        </div>
+      {/* Bottom note */}
+      <div className="flex items-start gap-3 p-5" style={{ background: 'hsl(0,0%,97%)', border: '1px solid hsl(0,0%,88%)' }}>
+        <Sparkles className="w-4 h-4 mt-0.5 shrink-0" style={{ color: 'hsl(195, 89%, 34%)' }} />
+        <p className="text-[13px] leading-relaxed" style={{ color: 'hsl(0,0%,45%)' }}>
+          All machine profiles auto-generated from on-site type plate captures. Suitability assessments calibrated against BMW technical requirements and tolerance specifications.
+        </p>
       </div>
     </section>
   );
