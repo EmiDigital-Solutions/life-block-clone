@@ -1,5 +1,6 @@
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { Shield } from "lucide-react";
+import type { DepthLevel } from "@/data/auditReportData";
 
 function RiskGauge({ score }: { score: number }) {
   const color = score >= 70 ? 'hsl(155, 24%, 55%)' : score >= 40 ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)';
@@ -30,7 +31,7 @@ function RiskGauge({ score }: { score: number }) {
   );
 }
 
-export default function AtlasRiskScore() {
+export default function AtlasRiskScore({ depth = 'standard' }: { depth?: DepthLevel }) {
   const { stations, allNCRs, kpis, costImpactData } = useAuditReportContext();
 
   const healthScores = { green: 100, amber: 60, red: 20, grey: 50 };
@@ -59,6 +60,28 @@ export default function AtlasRiskScore() {
     { label: 'Cost Risk', value: Math.round(Math.max(0, 100 - (totalExposure / 10000))), weight: '20%', color: totalExposure > 500000 ? 'hsl(var(--destructive))' : 'hsl(var(--warning))' },
     { label: 'Overall Score', value: overallScore, weight: '10%', color: 'hsl(var(--primary))' },
   ];
+
+  if (depth === 'executive') {
+    const color = score >= 70 ? 'hsl(155, 24%, 55%)' : score >= 40 ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)';
+    return (
+      <section className="py-2">
+        <div className="border border-border">
+          <div className="px-4 py-2 flex items-center justify-between" style={{ background: 'hsl(220,20%,14%)' }}>
+            <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/80">Atlas AI Risk Score</span>
+            <span className="text-[18px] font-bold font-mono" style={{ color }}>{score}/100</span>
+          </div>
+          <div className="grid grid-cols-4 divide-x divide-border bg-card">
+            {components.map(c => (
+              <div key={c.label} className="px-3 py-2 text-center">
+                <div className="text-[9px] uppercase tracking-wider font-semibold text-muted-foreground">{c.label}</div>
+                <div className="text-[16px] font-bold font-mono mt-0.5" style={{ color: c.color }}>{c.value}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-12 space-y-8">

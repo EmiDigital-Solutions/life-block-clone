@@ -62,7 +62,7 @@ function GapBar({ label, supplierVal, targetVal }: { label: string; supplierVal:
   );
 }
 
-export default function ExecutiveRadarCharts() {
+export default function ExecutiveRadarCharts({ depth = 'standard' }: { depth?: import("@/data/auditReportData").DepthLevel }) {
   const productionGaps = productionData
     .map(d => ({ label: d.dimension, supplierVal: d.supplier, targetVal: d.clientMin, gap: d.supplier - d.clientMin }))
     .sort((a, b) => a.gap - b.gap);
@@ -72,6 +72,37 @@ export default function ExecutiveRadarCharts() {
     .sort((a, b) => a.gap - b.gap);
 
   const criticalCount = productionGaps.filter(g => g.gap < -15).length + commercialGaps.filter(g => g.gap < -15).length;
+
+  if (depth === 'executive') {
+    // Show only the takeaway bar in executive mode
+    return (
+      <section className="py-4">
+        <div className="border border-border">
+          <div className="px-4 py-2" style={{ background: 'hsl(220,20%,14%)' }}>
+            <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/80">Gap Analysis Summary</span>
+          </div>
+          <div className="flex items-center gap-6 p-4 bg-card">
+            <div className="flex items-center gap-4 shrink-0">
+              <div className="text-center">
+                <div className="text-[24px] font-bold font-mono leading-none text-destructive">{criticalCount}</div>
+                <span className="text-[9px] uppercase tracking-wider font-semibold text-muted-foreground">Critical Gaps</span>
+              </div>
+              <div className="w-px h-8 bg-border" />
+              <div className="text-center">
+                <div className="text-[24px] font-bold font-mono leading-none text-warning">
+                  {productionGaps.filter(g => g.gap < 0).length + commercialGaps.filter(g => g.gap < 0).length}
+                </div>
+                <span className="text-[9px] uppercase tracking-wider font-semibold text-muted-foreground">Below Target</span>
+              </div>
+            </div>
+            <p className="text-[12px] leading-snug text-muted-foreground">
+              Critical weaknesses in <strong className="text-foreground">resilience</strong>, <strong className="text-foreground">BCP</strong>, <strong className="text-foreground">ESG</strong>, and <strong className="text-foreground">automation</strong>.
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-12 space-y-8">

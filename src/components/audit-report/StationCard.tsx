@@ -159,6 +159,83 @@ export default function StationCard({ station, depth, totalStations }: StationCa
   const hasQuestions = station.auditQuestions && station.auditQuestions.length > 0;
   const hc = healthChip[station.health];
 
+  // ── Executive mode: Dense engineering document row ──
+  if (depth === 'executive') {
+    const majorNCRs = station.ncrs.filter(n => n.severity === 'major');
+    const minorNCRs = station.ncrs.filter(n => n.severity === 'minor');
+    const totalFindings = station.findings.length;
+    const criticalFindings = station.findings.filter(f => f.type === 'major-ncr' || f.type === 'minor-ncr');
+
+    return (
+      <section id={`station-${station.index}`} className="scroll-mt-20">
+        {/* Dark section header — engineering document style */}
+        <div className="flex items-stretch" style={{ background: 'hsl(220,20%,14%)' }}>
+          <div className="flex items-center gap-3 px-4 py-2.5 flex-1 min-w-0">
+            <span className="text-[11px] font-mono font-bold tabular-nums" style={{ color: 'hsl(220,20%,55%)' }}>
+              {String(station.index).padStart(2, '0')}
+            </span>
+            <div className="w-2.5 h-2.5" style={{ background: hc.color }} />
+            <span className="text-[13px] font-bold tracking-wide text-white uppercase">{station.name}</span>
+          </div>
+          <div className="flex items-center gap-4 px-4 shrink-0">
+            <div className="flex items-center gap-1.5 text-[10px] font-mono" style={{ color: 'hsl(220,20%,60%)' }}>
+              <Camera className="w-3 h-3" />{station.evidenceCount.photos}
+              {station.evidenceCount.measurements > 0 && <><span className="mx-1">·</span><Ruler className="w-3 h-3" />{station.evidenceCount.measurements}</>}
+            </div>
+            <span className="text-[10px] px-2 py-0.5 font-bold uppercase tracking-wider" style={{ background: `${hc.color}30`, color: hc.color }}>
+              {station.health === 'green' ? 'PASS' : station.health === 'amber' ? 'CONCERN' : station.health === 'red' ? 'FAIL' : 'N/A'}
+            </span>
+          </div>
+        </div>
+
+        {/* Compact body */}
+        <div className="border-x border-b border-border bg-card">
+          {/* Observation row */}
+          <div className="px-4 py-3 border-b border-border/50">
+            <p className="text-[13px] leading-snug text-foreground">{station.observation}</p>
+          </div>
+
+          {/* Findings table */}
+          {station.findings.length > 0 && (
+            <div className="divide-y divide-border/30">
+              {station.findings.map((finding, i) => {
+                const Icon = findingIcon[finding.type];
+                return (
+                  <div key={i} className="flex items-start gap-3 px-4 py-2">
+                    <Icon className={cn("w-3.5 h-3.5 mt-0.5 shrink-0", findingColor[finding.type])} />
+                    <div className="flex-1 min-w-0 flex items-baseline gap-2 flex-wrap">
+                      <span className="text-[12px] font-semibold text-foreground">{finding.title}</span>
+                      {finding.isoClause && (
+                        <span className="text-[9px] font-mono px-1 py-0.5 bg-primary/10 text-primary">§{finding.isoClause}</span>
+                      )}
+                      {finding.ncrId && (
+                        <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 text-destructive bg-destructive/10">{finding.ncrId}</span>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {/* NCR summary row */}
+          {(majorNCRs.length > 0 || minorNCRs.length > 0) && (
+            <div className="px-4 py-2 flex items-center gap-4 text-[11px] bg-muted/50 border-t border-border/50">
+              {majorNCRs.length > 0 && (
+                <span className="font-bold text-destructive">{majorNCRs.length} Major NCR</span>
+              )}
+              {minorNCRs.length > 0 && (
+                <span className="font-bold text-warning">{minorNCRs.length} Minor NCR</span>
+              )}
+              <span className="text-muted-foreground ml-auto">{totalFindings} findings total</span>
+            </div>
+          )}
+        </div>
+      </section>
+    );
+  }
+
+  // ── Standard / Full mode ──
   return (
     <section id={`station-${station.index}`} className="scroll-mt-20">
       {/* Sticky section header */}
@@ -205,7 +282,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
           </div>
 
           {/* WHAT IT MEANS */}
-          {depth !== 'executive' && (
+          {true && (
             <div>
               <div className="flex items-center gap-3 mb-3">
                 <h4 className="text-[11px] uppercase tracking-[0.15em] font-semibold" style={{ color: 'hsl(0,0%,50%)' }}>What it means</h4>
@@ -246,9 +323,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
                             </a>
                           )}
                         </div>
-                        {depth !== 'executive' && (
-                          <p className="text-[13px] font-light mt-1 leading-relaxed" style={{ color: 'hsl(0,0%,50%)' }}>{finding.description}</p>
-                        )}
+                        <p className="text-[13px] font-light mt-1 leading-relaxed" style={{ color: 'hsl(0,0%,50%)' }}>{finding.description}</p>
                         {finding.ncrId && (
                           <span className="inline-block mt-1.5 text-[11px] font-mono font-bold px-2 py-0.5 text-destructive" style={{ background: 'hsl(0, 48%, 46%, 0.1)' }}>{finding.ncrId}</span>
                         )}
@@ -261,7 +336,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
           )}
 
           {/* Sub-Categories */}
-          {station.subCategories && station.subCategories.length > 0 && depth !== 'executive' && (
+          {station.subCategories && station.subCategories.length > 0 && (
             <div>
               <h4 className="text-[11px] uppercase tracking-[0.12em] font-semibold mb-4" style={{ color: 'hsl(0,0%,50%)' }}>Process Element Breakdown</h4>
               <div className="space-y-3">
@@ -314,7 +389,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
           )}
 
           {/* Atlas AI Insights */}
-          {station.atlasInsights && station.atlasInsights.length > 0 && depth !== 'executive' && (
+          {station.atlasInsights && station.atlasInsights.length > 0 && (
             <div>
               <h4 className="text-[11px] uppercase tracking-[0.12em] font-semibold mb-4 flex items-center gap-2" style={{ color: 'hsl(0,0%,50%)' }}>
                 <Brain className="w-4 h-4 text-primary" /> Atlas Intelligence

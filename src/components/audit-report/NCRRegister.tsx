@@ -1,13 +1,15 @@
-import type { NCR } from "@/data/auditReportData";
+import { cn } from "@/lib/utils";
+import type { NCR, DepthLevel } from "@/data/auditReportData";
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import NCRCard from "./NCRCard";
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from "recharts";
 
 interface NCRRegisterProps {
   ncrs: NCR[];
+  depth?: DepthLevel;
 }
 
-export default function NCRRegister({ ncrs }: NCRRegisterProps) {
+export default function NCRRegister({ ncrs, depth = 'standard' }: NCRRegisterProps) {
   const { radarData, ncrSeverityData } = useAuditReportContext();
   const majorCount = ncrs.filter(n => n.severity === 'major').length;
 
@@ -29,6 +31,50 @@ export default function NCRRegister({ ncrs }: NCRRegisterProps) {
     { key: 'low-low', label: 'Low Severity · Low Effort', action: 'Quick Win', color: 'hsl(155, 24%, 55%)', position: 'bottom-left' },
     { key: 'low-high', label: 'Low Severity · High Effort', action: 'Monitor', color: 'hsl(0,0%,50%)', position: 'bottom-right' },
   ];
+
+  if (depth === 'executive') {
+    return (
+      <section id="station-10" className="scroll-mt-20">
+        <div className="border border-border">
+          <div className="px-4 py-2.5 flex items-center justify-between" style={{ background: 'hsl(220,20%,14%)' }}>
+            <div className="flex items-center gap-3">
+              <div className="w-2.5 h-2.5 bg-destructive" />
+              <span className="text-[11px] font-bold tracking-[0.12em] uppercase text-white">NCR Register</span>
+            </div>
+            <span className="text-[11px] font-mono font-bold text-white/70">{ncrs.length} NCRs · {majorCount} Major</span>
+          </div>
+          <div className="bg-card divide-y divide-border/50">
+            {/* Table header */}
+            <div className="grid grid-cols-12 gap-2 px-4 py-1.5 bg-muted/50 text-[9px] font-bold uppercase tracking-wider text-muted-foreground">
+              <div className="col-span-2">NCR ID</div>
+              <div className="col-span-4">Title</div>
+              <div className="col-span-2">Station</div>
+              <div className="col-span-1">Severity</div>
+              <div className="col-span-1">ISO Clause</div>
+              <div className="col-span-2">Status</div>
+            </div>
+            {ncrs.map(ncr => {
+              const sevColor = ncr.severity === 'major' ? 'text-destructive' : 'text-warning';
+              return (
+                <div key={ncr.id} className="grid grid-cols-12 gap-2 px-4 py-2 items-center text-[12px]">
+                  <div className="col-span-2 font-mono font-bold text-foreground">{ncr.id}</div>
+                  <div className="col-span-4 text-foreground truncate">{ncr.title}</div>
+                  <div className="col-span-2 text-muted-foreground">{ncr.station}</div>
+                  <div className={cn("col-span-1 font-bold uppercase text-[10px]", sevColor)}>{ncr.severity}</div>
+                  <div className="col-span-1 font-mono text-[10px] text-primary">{ncr.isoClause}</div>
+                  <div className="col-span-2">
+                    <span className={cn("text-[9px] font-bold uppercase px-1.5 py-0.5", ncr.status === 'open' ? 'bg-destructive/10 text-destructive' : 'bg-accent/10 text-accent')}>
+                      {ncr.status}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="station-10" className="scroll-mt-20 py-12 space-y-8">

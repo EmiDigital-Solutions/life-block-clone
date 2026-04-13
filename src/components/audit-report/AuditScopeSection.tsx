@@ -1,8 +1,34 @@
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { CheckCircle2, XCircle } from "lucide-react";
 
-export default function AuditScopeSection() {
+export default function AuditScopeSection({ depth = 'standard' }: { depth?: import("@/data/auditReportData").DepthLevel }) {
   const { auditScope } = useAuditReportContext();
+
+  if (depth === 'executive') {
+    return (
+      <section id="station-2" className="scroll-mt-20 py-2">
+        <div className="border border-border">
+          <div className="px-4 py-2" style={{ background: 'hsl(220,20%,14%)' }}>
+            <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/80">Audit Scope</span>
+          </div>
+          <div className="grid grid-cols-3 divide-x divide-border bg-card">
+            <div className="px-4 py-2">
+              <div className="text-[8px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Standard</div>
+              <div className="text-[12px] font-semibold text-foreground mt-0.5">{auditScope.standard}</div>
+            </div>
+            <div className="px-4 py-2">
+              <div className="text-[8px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Audit Type</div>
+              <div className="text-[12px] font-semibold text-foreground mt-0.5">{auditScope.auditType}</div>
+            </div>
+            <div className="px-4 py-2">
+              <div className="text-[8px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Scope</div>
+              <div className="text-[11px] text-foreground mt-0.5 line-clamp-2">{auditScope.scope}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="station-2" className="scroll-mt-20 space-y-6">
