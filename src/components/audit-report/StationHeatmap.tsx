@@ -30,7 +30,7 @@ export default function StationHeatmap({ activeStation, onStationClick }: Statio
                 className={cn(
                   "w-3 h-3 transition-all",
                   healthColor[s.health],
-                  activeStation === s.index && "ring-1 ring-white ring-offset-1 ring-offset-[#0A0A0A]"
+                  activeStation === s.index && "ring-1 ring-white ring-offset-1 ring-offset-foreground"
                 )}
               />
             </TooltipTrigger>
