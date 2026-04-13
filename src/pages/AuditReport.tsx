@@ -256,8 +256,8 @@ function AuditReportInner() {
               <div className="flex items-center gap-2">
                 {/* Reading progress + time */}
                 <div className="hidden md:flex items-center gap-2">
-                  <span className="text-[10px] font-mono tabular-nums" style={{ color: 'hsl(0,0%,50%)' }}>{readingProgress}%</span>
-                  <span className="text-[10px] flex items-center gap-1" style={{ color: 'hsl(0,0%,55%)' }}>
+                  <span className="text-[10px] font-mono tabular-nums text-muted-foreground">{readingProgress}%</span>
+                  <span className="text-[10px] flex items-center gap-1 text-muted-foreground">
                     <Clock className="w-3 h-3" />
                     {readingTimeEstimates[depth]}
                   </span>
@@ -292,15 +292,14 @@ function AuditReportInner() {
                       onClick={() => setDepth(d)}
                       className={cn(
                         "px-2.5 py-1 text-[9px] font-medium uppercase tracking-wider transition-colors cursor-pointer",
-                        depth === d ? "bg-primary text-white" : "hover:bg-[hsl(0,0%,72%)]"
+                        depth === d ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-muted/80"
                       )}
-                      style={depth !== d ? { background: 'hsl(0,0%,78%)', color: 'hsl(0,0%,45%)' } : undefined}
                     >
                       {depthLabels[d]}
                     </button>
                   ))}
                 </div>
-                <button className="hidden md:block px-2.5 py-1 text-[9px] font-medium uppercase tracking-wider cursor-pointer hover:bg-[hsl(0,0%,72%)] transition-colors" style={{ background: 'hsl(0,0%,78%)', color: 'hsl(0,0%,45%)' }}>
+                <button className="hidden md:block px-2.5 py-1 text-[9px] font-medium uppercase tracking-wider cursor-pointer bg-muted text-muted-foreground hover:bg-muted/80 transition-colors">
                   Export pdf
                 </button>
                 <button
@@ -312,7 +311,7 @@ function AuditReportInner() {
               </div>
             </div>
             {/* Reading progress bar */}
-            <div className="h-[2px]" style={{ background: 'hsl(0,0%,80%)' }}>
+            <div className="h-[2px] bg-border">
               <div className="h-full bg-primary transition-all duration-150" style={{ width: `${readingProgress}%` }} />
             </div>
           </div>
