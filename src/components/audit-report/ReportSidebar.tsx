@@ -154,11 +154,11 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
           className={cn(
             "flex items-center gap-2.5 w-full px-3 py-2 text-left transition-all duration-150 border-l-2",
             isActive
-              ? "border-primary bg-primary/20 text-primary"
-              : "border-transparent text-[hsl(0,0%,65%)] hover:text-[hsl(0,0%,85%)] hover:bg-[hsl(0,0%,24%)]"
+              ? "border-primary bg-primary/10 text-primary"
+              : "border-transparent text-muted-foreground hover:text-foreground hover:bg-muted/50"
           )}
         >
-          <span className="text-[12px] font-medium tabular-nums w-6 shrink-0" style={{ color: isActive ? undefined : 'hsl(0,0%,45%)' }}>
+          <span className="text-[12px] font-medium tabular-nums w-6 shrink-0" style={{ color: isActive ? undefined : 'hsl(0,0%,60%)' }}>
             {item.index <= 4
               ? `${item.index}.0`
               : item.index <= 11
@@ -183,7 +183,7 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
 
         {/* Sub-items */}
         {item.children && isActive && (
-          <div className="ml-9" style={{ borderLeft: '1px solid hsl(0,0%,35%)' }}>
+          <div className="ml-9" style={{ borderLeft: '1px solid hsl(0,0%,88%)' }}>
             {item.children.map((child, ci) => (
               <button
                 key={child.id}
@@ -191,11 +191,11 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
                   "flex items-center gap-2 w-full px-3 py-1.5 text-left text-[11px] transition-colors",
                   ci === 0
                     ? "text-primary font-medium"
-                    : "text-[hsl(0,0%,50%)] hover:text-[hsl(0,0%,70%)]"
+                    : "text-muted-foreground hover:text-foreground"
                 )}
                 style={ci === 0 ? { background: 'hsl(195, 89%, 34%, 0.1)' } : undefined}
               >
-                <span className="tabular-nums w-8" style={{ color: 'hsl(0,0%,40%)' }}>5.3.{ci + 1}</span>
+                <span className="tabular-nums w-8" style={{ color: 'hsl(0,0%,65%)' }}>5.3.{ci + 1}</span>
                 <span>{child.label}</span>
               </button>
             ))}
@@ -208,10 +208,10 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
   return (
     <aside
       className={cn("flex flex-col overflow-y-auto", className)}
-      style={{ background: 'hsl(0,0%,28%)', borderRight: '1px solid hsl(0,0%,22%)' }}
+      style={{ background: 'hsl(0,0%,97%)', borderRight: '1px solid hsl(0,0%,90%)' }}
     >
       {/* Document outline header */}
-      <div className="px-3 py-4" style={{ borderBottom: '1px solid hsl(0,0%,22%)' }}>
+      <div className="px-3 py-4" style={{ borderBottom: '1px solid hsl(0,0%,90%)' }}>
         <div className="flex items-center gap-2 mb-1.5">
           <div className="w-5 h-5 bg-primary flex items-center justify-center">
             <span className="text-white text-[9px] font-bold">AI</span>
@@ -220,7 +220,7 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
             ScanPro+
           </span>
         </div>
-        <h3 className="text-[13px] font-semibold" style={{ color: 'hsl(0,0%,88%)' }}>Process audit report</h3>
+        <h3 className="text-[13px] font-semibold text-foreground">Process audit report</h3>
         <p className="text-[11px] mt-0.5" style={{ color: 'hsl(0,0%,50%)' }}>
           47 pages · {totalSections} sections · {ncrCount} ncrs
         </p>

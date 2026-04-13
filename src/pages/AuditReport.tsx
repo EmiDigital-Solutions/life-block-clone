@@ -189,14 +189,14 @@ function AuditReportInner() {
       </div>
 
       {/* Main content area — three-column layout */}
-      <div className="flex-1 flex overflow-hidden" style={{ background: 'hsl(0,0%,85%)' }}>
+      <div className="flex-1 flex overflow-hidden" style={{ background: 'hsl(0,0%,95%)' }}>
         {/* Mobile sidebar overlay */}
         {isMobile && sidebarOpen && (
           <div className="fixed inset-0 z-50 flex">
             <div className="absolute inset-0 bg-foreground/40 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
-            <div className="relative z-10 w-[280px]" style={{ background: 'hsl(0,0%,28%)' }}>
-              <div className="flex items-center justify-between px-4 py-3" style={{ borderBottom: '1px solid hsl(0,0%,22%)' }}>
-                <span className="text-[13px] font-semibold text-white/90">Document Outline</span>
+            <div className="relative z-10 w-[280px]" style={{ background: 'hsl(0,0%,97%)' }}>
+              <div className="flex items-center justify-between px-4 py-3" style={{ borderBottom: '1px solid hsl(0,0%,90%)' }}>
+                <span className="text-[13px] font-semibold text-foreground">Document Outline</span>
                 <button onClick={() => setSidebarOpen(false)} className="p-1"><X className="w-4 h-4 text-white/50" /></button>
               </div>
               <ReportSidebar activeStation={activeStation} onStationClick={scrollToStation} onScrollToId={scrollToId} />
