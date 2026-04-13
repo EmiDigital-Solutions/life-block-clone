@@ -42,7 +42,7 @@ export default function EvidenceVault() {
                   Stn {String(item.station).padStart(2, '0')}
                 </span>
                 {item.ncr && (
-                  <span className="absolute top-2 right-2 text-[10px] px-2 py-0.5 rounded bg-destructive/10 text-destructive font-mono flex items-center gap-1 border border-destructive/20">
+                  <span className="absolute top-2 right-2 text-[10px] px-2 py-0.5 rounded bg-destructive/10 text-destructive font-mono flex items-center gap-1 border-none">
                     <Link2 className="w-3 h-3" /> {item.ncr}
                   </span>
                 )}

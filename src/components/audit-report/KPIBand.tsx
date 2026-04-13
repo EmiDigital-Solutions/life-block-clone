@@ -27,7 +27,7 @@ function MiniSparkline({ data, color }: { data: number[]; color: string }) {
 
 export default function KPIBand({ kpis }: KPIBandProps) {
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-border">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
       {kpis.map((kpi, i) => {
         const Icon = trendIcon[kpi.trend];
         const isNegativeTrend = (kpi.trend === 'up' && (kpi.label.includes('NCR') || kpi.label.includes('DPPM') || kpi.label.includes('Cost')))

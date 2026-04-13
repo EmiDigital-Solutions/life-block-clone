@@ -96,7 +96,7 @@ export default function RecommendationSection() {
       <CommentingAnnotation />
 
       {/* Switch to Supplier View */}
-      <div className="border border-dashed border-grey-mid p-6 text-center">
+      <div className="border-none p-6 text-center">
         <p className="text-[14px] text-muted-foreground mb-3">Share this report from the supplier's perspective</p>
         <button className="px-6 py-2.5 text-[13px] font-medium text-foreground hover:bg-muted/60 transition-colors">
           Switch to Supplier View →

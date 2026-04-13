@@ -61,7 +61,7 @@ export default function AtlasIntelligence() {
       </p>
 
       {/* Tab bar */}
-      <div className="flex items-center gap-1 p-1  bg-muted border border-border overflow-x-auto">
+      <div className="flex items-center gap-1 p-1  bg-muted border-none overflow-x-auto">
         {tabs.map(tab => (
           <button
             key={tab.id}
@@ -81,12 +81,12 @@ export default function AtlasIntelligence() {
       {activeTab === 'cost' && (
         <div className="space-y-4">
           <div className="grid grid-cols-3 gap-4">
-            <div className=" border border-destructive/20 bg-destructive/5 p-5">
+            <div className=" border-none bg-destructive/5 p-5">
               <span className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold">Total Exposure</span>
               <p className="text-[32px] font-light text-destructive leading-none mt-2 tabular-nums">€{(totalExposure / 1000).toFixed(0)}K</p>
               <span className="text-[12px] text-muted-foreground mt-1 block">if no action taken</span>
             </div>
-            <div className=" border border-accent/20 bg-accent/5 p-5">
+            <div className=" border-none bg-accent/5 p-5">
               <span className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold">After Mitigation</span>
               <p className="text-[32px] font-light text-accent leading-none mt-2 tabular-nums">€{(totalMitigated / 1000).toFixed(0)}K</p>
               <span className="text-[12px] text-muted-foreground mt-1 block">with full remediation</span>
@@ -246,7 +246,7 @@ export default function AtlasIntelligence() {
       {/* HIDDEN PATTERNS */}
       {activeTab === 'correlations' && (
         <div className="space-y-4">
-          <div className="border border-secondary bg-secondary/10 p-5">
+          <div className="border-none bg-secondary/10 p-5">
             <div className="flex items-center gap-2 mb-2">
               <Brain className="w-4 h-4 text-primary" />
               <span className="text-[13px] font-semibold text-foreground">What Atlas sees that humans don't</span>
