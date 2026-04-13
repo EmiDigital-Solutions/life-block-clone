@@ -15,13 +15,6 @@ function getTurtleData(station: Station) {
   const idx = station.index;
   const name = station.name;
 
-  // Generic but meaningful data derived from station context
-  const subCats = station.subCategories || [];
-  const personnelSub = subCats.find(s => s.name.toLowerCase().includes('personnel') || s.name.toLowerCase().includes('personal'));
-  const machineSub = subCats.find(s => s.name.toLowerCase().includes('machine') || s.name.toLowerCase().includes('equipment'));
-  const methodSub = subCats.find(s => s.name.toLowerCase().includes('method') || s.name.toLowerCase().includes('process'));
-  const materialSub = subCats.find(s => s.name.toLowerCase().includes('material'));
-
   const baseData: Record<number, { inputs: string[]; outputs: string[]; personnel: string[]; equipment: string[]; methods: string[]; kpis: string[] }> = {
     2: {
       inputs: ['Customer requirements', 'Technical specifications', 'Quality targets', 'Feasibility study'],
