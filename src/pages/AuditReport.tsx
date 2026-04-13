@@ -25,6 +25,7 @@ import CostWaterfallChart from "@/components/audit-report/CostWaterfallChart";
 import CAPAGantt from "@/components/audit-report/CAPAGantt";
 import StationHeatmap from "@/components/audit-report/StationHeatmap";
 import { Menu, X, Sparkles, AlertTriangle, Clock, Search } from "lucide-react";
+import VDA63ScoringTable from "@/components/audit-report/VDA63ScoringTable";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Navigation from "@/components/Navigation";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
