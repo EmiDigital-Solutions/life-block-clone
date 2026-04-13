@@ -3,42 +3,11 @@ import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import type { StationHealth } from "@/data/auditReportData";
 
 const healthDotColor: Record<StationHealth, string> = {
-  green: 'bg-accent',
-  amber: 'bg-warning',
-  red: 'bg-destructive',
-  grey: 'bg-[hsl(0,0%,45%)]',
+  green: 'hsl(155, 24%, 50%)',
+  amber: 'hsl(24, 72%, 58%)',
+  red: 'hsl(0, 48%, 50%)',
+  grey: 'hsl(220, 10%, 40%)',
 };
-
-const stationSparklines: Record<number, number[]> = {
-  1: [82, 78, 76, 74, 72],
-  2: [80, 82, 85, 84, 86],
-  3: [78, 80, 82, 83, 85],
-  4: [72, 68, 65, 62, 58],
-  5: [65, 60, 55, 48, 42],
-  6: [88, 87, 89, 90, 91],
-  7: [70, 62, 55, 48, 38],
-  8: [82, 84, 85, 86, 88],
-  9: [68, 65, 60, 58, 55],
-};
-
-function SidebarSparkline({ data }: { data: number[] }) {
-  if (!data || data.length < 2) return null;
-  const max = Math.max(...data);
-  const min = Math.min(...data);
-  const range = max - min || 1;
-  const h = 12;
-  const w = 32;
-  const step = w / (data.length - 1);
-  const points = data.map((v, i) => `${i * step},${h - ((v - min) / range) * h}`).join(' ');
-  const lastVal = data[data.length - 1];
-  const color = lastVal >= 70 ? 'hsl(155, 24%, 55%)' : lastVal >= 50 ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)';
-
-  return (
-    <svg width={w} height={h} className="shrink-0 opacity-60">
-      <polyline points={points} fill="none" stroke={color} strokeWidth="1" strokeLinecap="round" />
-    </svg>
-  );
-}
 
 interface SidebarItem {
   id: string;
@@ -114,15 +83,12 @@ interface ReportSidebarProps {
   className?: string;
 }
 
-function SectionGroup({ label, children }: { label: string; children: React.ReactNode }) {
+function SectionLabel({ label }: { label: string }) {
   return (
-    <div className="mb-1">
-      <div className="px-3 pt-5 pb-2">
-        <span className="text-[10px] font-bold tracking-[0.15em] uppercase" style={{ color: 'hsl(0,0%,55%)' }}>
-          {label}
-        </span>
-      </div>
-      {children}
+    <div className="px-5 pt-7 pb-2">
+      <span className="text-[10px] font-semibold tracking-[0.2em] uppercase" style={{ color: 'hsl(220, 10%, 45%)' }}>
+        {label}
+      </span>
     </div>
   );
 }
@@ -130,7 +96,6 @@ function SectionGroup({ label, children }: { label: string; children: React.Reac
 export default function ReportSidebar({ activeStation, onStationClick, onScrollToId, className }: ReportSidebarProps) {
   const { stations, allNCRs } = useAuditReportContext();
   const totalSections = stations.filter(s => s.observation || s.index <= 1).length + 6;
-  const ncrCount = allNCRs.length;
 
   const frontItems = sidebarStructure.filter(s => s.section === 'front');
   const findingsItems = sidebarStructure.filter(s => s.section === 'findings');
@@ -140,63 +105,46 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
     const targetStation = scrollMap[item.index] || 1;
     const isActive = activeStation === targetStation;
     const isCustomId = !item.id.startsWith('station-') && item.id !== 'signatures' && item.id !== 'revision';
+    const dotColor = item.health ? healthDotColor[item.health] : undefined;
 
     return (
       <div key={item.index}>
         <button
           onClick={() => {
-            if (isCustomId && onScrollToId) {
-              onScrollToId(item.id);
-            } else {
-              onStationClick(targetStation);
-            }
+            if (isCustomId && onScrollToId) onScrollToId(item.id);
+            else onStationClick(targetStation);
           }}
           className={cn(
-            "flex items-center gap-2.5 w-full px-3 py-2 text-left transition-all duration-150 border-l-2",
+            "flex items-center gap-3 w-full px-5 py-2.5 text-left transition-all duration-150",
             isActive
-              ? "border-primary bg-primary/20 text-primary"
-              : "border-transparent text-[hsl(0,0%,65%)] hover:text-[hsl(0,0%,85%)] hover:bg-[hsl(0,0%,24%)]"
+              ? "text-white"
+              : "text-white/50 hover:text-white/80 hover:bg-white/5"
           )}
+          style={isActive ? { background: 'hsl(195, 89%, 34%, 0.12)' } : undefined}
         >
-          <span className="text-[12px] font-medium tabular-nums w-6 shrink-0" style={{ color: isActive ? undefined : 'hsl(0,0%,45%)' }}>
-            {item.index <= 4
-              ? `${item.index}.0`
-              : item.index <= 11
-              ? `5.${item.index - 4}`
-              : `${item.index - 6}.0`}
-          </span>
+          {isActive && <div className="w-[3px] h-5 bg-primary absolute left-0" />}
+          {dotColor && (
+            <div className="w-2 h-2 shrink-0" style={{ background: dotColor }} />
+          )}
           <span className={cn(
-            "text-[12px] flex-1 truncate",
-            isActive ? "font-semibold" : "font-normal"
+            "text-[13px] flex-1 truncate",
+            isActive ? "font-medium" : "font-normal"
           )}>
             {item.label}
           </span>
-          {item.health && (
-            <div className="flex items-center gap-1 shrink-0">
-              {stationSparklines[item.index] && (
-                <SidebarSparkline data={stationSparklines[item.index]} />
-              )}
-              <div className={cn("w-2 h-2", healthDotColor[item.health])} />
-            </div>
-          )}
         </button>
 
-        {/* Sub-items */}
         {item.children && isActive && (
-          <div className="ml-9" style={{ borderLeft: '1px solid hsl(0,0%,35%)' }}>
+          <div className="ml-10 py-1">
             {item.children.map((child, ci) => (
               <button
                 key={child.id}
                 className={cn(
-                  "flex items-center gap-2 w-full px-3 py-1.5 text-left text-[11px] transition-colors",
-                  ci === 0
-                    ? "text-primary font-medium"
-                    : "text-[hsl(0,0%,50%)] hover:text-[hsl(0,0%,70%)]"
+                  "block w-full px-4 py-1.5 text-left text-[12px] transition-colors",
+                  ci === 0 ? "text-primary font-medium" : "text-white/40 hover:text-white/60"
                 )}
-                style={ci === 0 ? { background: 'hsl(195, 89%, 34%, 0.1)' } : undefined}
               >
-                <span className="tabular-nums w-8" style={{ color: 'hsl(0,0%,40%)' }}>5.3.{ci + 1}</span>
-                <span>{child.label}</span>
+                {child.label}
               </button>
             ))}
           </div>
@@ -207,36 +155,36 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
 
   return (
     <aside
-      className={cn("flex flex-col overflow-y-auto", className)}
-      style={{ background: 'hsl(0,0%,28%)', borderRight: '1px solid hsl(0,0%,22%)' }}
+      className={cn("flex flex-col overflow-y-auto relative", className)}
+      style={{ background: 'hsl(220, 18%, 13%)', borderRight: '1px solid hsl(220, 14%, 18%)' }}
     >
-      {/* Document outline header */}
-      <div className="px-3 py-4" style={{ borderBottom: '1px solid hsl(0,0%,22%)' }}>
-        <div className="flex items-center gap-2 mb-1.5">
-          <div className="w-5 h-5 bg-primary flex items-center justify-center">
-            <span className="text-white text-[9px] font-bold">AI</span>
-          </div>
-          <span className="text-[10px] font-bold tracking-[0.15em] uppercase" style={{ color: 'hsl(0,0%,55%)' }}>
-            ScanPro+
-          </span>
-        </div>
-        <h3 className="text-[13px] font-semibold" style={{ color: 'hsl(0,0%,88%)' }}>Process audit report</h3>
-        <p className="text-[11px] mt-0.5" style={{ color: 'hsl(0,0%,50%)' }}>
-          47 pages · {totalSections} sections · {ncrCount} ncrs
+      {/* Header */}
+      <div className="px-5 py-5" style={{ borderBottom: '1px solid hsl(220, 14%, 20%)' }}>
+        <h3 className="text-[14px] font-semibold text-white/90 mb-1">Process Audit Report</h3>
+        <p className="text-[12px] text-white/40">
+          {totalSections} sections · {allNCRs.length} NCRs
         </p>
       </div>
 
-      <SectionGroup label="Front Matter">
-        {frontItems.map(renderItem)}
-      </SectionGroup>
+      <SectionLabel label="Front Matter" />
+      {frontItems.map(renderItem)}
 
-      <SectionGroup label="Process Audit Findings">
-        {findingsItems.map(renderItem)}
-      </SectionGroup>
+      <SectionLabel label="Process Findings" />
+      {findingsItems.map(renderItem)}
 
-      <SectionGroup label="Back Matter">
-        {backItems.map(renderItem)}
-      </SectionGroup>
+      <SectionLabel label="Analysis & Actions" />
+      {backItems.map(renderItem)}
+
+      <div className="mt-auto px-5 py-4" style={{ borderTop: '1px solid hsl(220, 14%, 20%)' }}>
+        <div className="flex items-center gap-3">
+          <div className="flex gap-1.5">
+            <div className="w-2 h-2" style={{ background: 'hsl(155, 24%, 50%)' }} />
+            <div className="w-2 h-2" style={{ background: 'hsl(24, 72%, 58%)' }} />
+            <div className="w-2 h-2" style={{ background: 'hsl(0, 48%, 50%)' }} />
+          </div>
+          <span className="text-[11px] text-white/30">Pass · Concern · Fail</span>
+        </div>
+      </div>
     </aside>
   );
 }
