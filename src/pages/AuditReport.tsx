@@ -226,20 +226,20 @@ function AuditReportInner() {
           <div className={cn(
             "sticky top-0 z-40 transition-all duration-300",
             scrolledPastHero ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
-          )} style={{ background: 'hsl(0,0%,88%)', borderBottom: '1px solid hsl(0,0%,78%)' }}>
+          )} style={{ background: 'hsl(220,14%,96%)', borderBottom: '1px solid hsl(220,13%,89%)' }}>
             <div className="flex items-center justify-between px-3 h-10">
               <div className="flex items-center gap-3">
                 {isMobile && (
-                  <button onClick={() => setSidebarOpen(true)} className="p-1.5 hover:bg-[hsl(0,0%,82%)] transition-colors">
-                    <Menu className="w-4 h-4" style={{ color: 'hsl(0,0%,45%)' }} />
+                  <button onClick={() => setSidebarOpen(true)} className="p-1.5 hover:bg-muted transition-colors">
+                    <Menu className="w-4 h-4 text-muted-foreground" />
                   </button>
                 )}
                 <span className="text-[10px] font-bold uppercase tracking-wider text-primary">yvoo+</span>
-                <span className="text-[10px]" style={{ color: 'hsl(0,0%,55%)' }}>SCANPRO+ · ATLAS AI</span>
-                <span className="text-[10px]" style={{ color: 'hsl(0,0%,72%)' }}>|</span>
-                <span className="text-[11px] font-medium" style={{ color: 'hsl(0,0%,30%)' }}>{reportMeta.supplier}</span>
+                <span className="text-[10px] text-muted-foreground">SCANPRO+ · ATLAS AI</span>
+                <span className="text-[10px] text-border">|</span>
+                <span className="text-[11px] font-medium text-foreground">{reportMeta.supplier}</span>
                 <span className="text-[10px] font-semibold text-warning ml-1">{reportMeta.verdictLabel}</span>
-                <span className="text-[10px]" style={{ color: 'hsl(0,0%,55%)' }}>· {allNCRs.length} NCRs</span>
+                <span className="text-[10px] text-muted-foreground">· {allNCRs.length} NCRs</span>
 
                 {/* Station heatmap strip */}
                 <div className="hidden md:flex items-center gap-2 ml-2 pl-2" style={{ borderLeft: '1px solid hsl(0,0%,72%)' }}>
