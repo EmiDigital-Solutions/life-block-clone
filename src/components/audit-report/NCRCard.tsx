@@ -28,7 +28,7 @@ export default function NCRCard({ ncr, compact, onAssign, onAction }: NCRCardPro
 
   if (compact) {
     return (
-      <div className="flex items-center gap-3 px-3 py-2.5" style={{ background: 'hsla(0,0%,100%,0.7)', border: `1px solid ${sev.borderColor}` }}>
+      <div className="flex items-center gap-3 px-3 py-2.5" style={{ background: 'hsla(0,0%,100%,0.7)', border: 'none' }}>
         <Icon className={cn("w-4 h-4 shrink-0", sev.color)} />
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
@@ -45,7 +45,7 @@ export default function NCRCard({ ncr, compact, onAssign, onAction }: NCRCardPro
   }
 
   return (
-    <div className="p-5 transition-all" style={{ background: 'hsla(0,0%,100%,0.7)', backdropFilter: 'blur(12px)', border: `1px solid ${sev.borderColor}` }}>
+    <div className="p-5 transition-all" style={{ background: 'hsla(0,0%,100%,0.7)', backdropFilter: 'blur(12px)', border: 'none' }}>
       <div className="flex items-center gap-3 mb-3">
         <div className="w-8 h-8 flex items-center justify-center" style={{ background: sev.bg }}>
           <Icon className={cn("w-4 h-4", sev.color)} />
@@ -76,7 +76,7 @@ export default function NCRCard({ ncr, compact, onAssign, onAction }: NCRCardPro
 
       <p className="text-[13px] leading-relaxed mb-3" style={{ color: 'hsl(0,0%,45%)' }}>{ncr.observation}</p>
 
-      <div className="p-3 mb-4" style={{ background: 'hsl(0,0%,92%)', border: '1px solid hsl(0,0%,85%)' }}>
+      <div className="p-3 mb-4" style={{ background: 'hsl(0,0%,92%)', border: 'none' }}>
         <span className="text-[11px] uppercase tracking-wider font-semibold" style={{ color: 'hsl(0,0%,50%)' }}>Root Cause (AI)</span>
         <p className="text-[13px] mt-1" style={{ color: 'hsl(0,0%,25%)' }}>{ncr.rootCause}</p>
       </div>
@@ -87,12 +87,12 @@ export default function NCRCard({ ncr, compact, onAssign, onAction }: NCRCardPro
         <button
           onClick={() => onAssign?.(ncr.id)}
           className="flex items-center gap-2 px-3 py-1.5 text-[12px] transition-colors cursor-pointer"
-          style={{ border: '1px dashed hsl(0,0%,72%)', color: 'hsl(0,0%,50%)' }}
+          style={{ border: 'none', color: 'hsl(0,0%,50%)' }}
         >
           <User className="w-3.5 h-3.5" />
           {ncr.owner || 'Assign owner'}
         </button>
-        <button className="flex items-center gap-2 px-3 py-1.5 text-[12px] transition-colors cursor-pointer" style={{ border: '1px dashed hsl(0,0%,72%)', color: 'hsl(0,0%,50%)' }}>
+        <button className="flex items-center gap-2 px-3 py-1.5 text-[12px] transition-colors cursor-pointer" style={{ border: 'none', color: 'hsl(0,0%,50%)' }}>
           <Calendar className="w-3.5 h-3.5" />
           {ncr.dueDate || 'Set due date'}
         </button>

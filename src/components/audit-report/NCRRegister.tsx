@@ -77,7 +77,7 @@ export default function NCRRegister({ ncrs }: NCRRegisterProps) {
       </div>
 
       {/* Priority Matrix with actual NCR dots */}
-      <div className="p-6 bg-card border border-border">
+      <div className="p-6 bg-card/60 backdrop-blur-sm">
         <h4 className="text-[11px] uppercase tracking-[0.12em] font-semibold mb-4 text-muted-foreground">Priority Matrix — Severity × Effort</h4>
         <div className="grid grid-cols-2 gap-px bg-border" style={{ aspectRatio: '2.5/1' }}>
           {quadrants.map(q => {

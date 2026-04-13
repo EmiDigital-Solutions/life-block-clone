@@ -35,14 +35,14 @@ export default function EvidenceVault() {
         {evidenceItems.map((item) => {
           const Icon = typeIcon[item.type as keyof typeof typeIcon] || Camera;
           return (
-            <div key={item.id} className=" border border-border bg-white overflow-hidden group hover:shadow-md transition-all cursor-pointer">
+            <div key={item.id} className=" bg-white/60 backdrop-blur-sm overflow-hidden group hover:shadow-md transition-all cursor-pointer">
               <div className="aspect-[4/3] bg-muted flex items-center justify-center relative">
                 <Icon className="w-8 h-8 text-grey-mid" />
                 <span className="absolute bottom-2 left-2 text-[10px] px-2 py-0.5 rounded bg-white/80 text-muted-foreground font-mono border border-border">
                   Stn {String(item.station).padStart(2, '0')}
                 </span>
                 {item.ncr && (
-                  <span className="absolute top-2 right-2 text-[10px] px-2 py-0.5 rounded bg-destructive/10 text-destructive font-mono flex items-center gap-1 border border-destructive/20">
+                  <span className="absolute top-2 right-2 text-[10px] px-2 py-0.5 rounded bg-destructive/10 text-destructive font-mono flex items-center gap-1 border-none">
                     <Link2 className="w-3 h-3" /> {item.ncr}
                   </span>
                 )}

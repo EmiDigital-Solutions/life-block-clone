@@ -69,7 +69,7 @@ export default function CAPAGantt() {
       </div>
 
       {/* Timeline */}
-      <div className="p-8 bg-card border border-border">
+      <div className="p-8 bg-card/60 backdrop-blur-sm">
         <div className="flex justify-between mb-4 text-[11px] font-mono text-muted-foreground">
           <span>Apr 8</span>
           <span>Apr 22</span>
@@ -93,7 +93,7 @@ export default function CAPAGantt() {
             };
 
             return (
-              <div key={item.id} className="flex items-center gap-4 py-3 border-b border-border/50">
+              <div key={item.id} className="flex items-center gap-4 py-3 ">
                 {/* Left info */}
                 <div className="w-[280px] shrink-0">
                   <div className="flex items-center gap-2 mb-1">

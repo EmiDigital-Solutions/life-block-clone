@@ -39,7 +39,7 @@ function GapBar({ label, supplierVal, targetVal }: { label: string; supplierVal:
   const barWidth = Math.min(100, Math.abs(gap) * 2.5);
 
   return (
-    <div className="flex items-center gap-3 py-2.5 border-b border-border/50">
+    <div className="flex items-center gap-3 py-2.5 ">
       <span className="text-[13px] text-foreground w-[140px] shrink-0">{label}</span>
       <div className="flex-1 flex items-center gap-3">
         <div className="flex-1 h-2 relative bg-muted">
@@ -90,7 +90,7 @@ export default function ExecutiveRadarCharts() {
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
         {/* Manufacturing Radar */}
-        <div className="p-8 bg-card border border-border">
+        <div className="p-8 bg-card/60 backdrop-blur-sm">
           <div className="flex items-center justify-between mb-6">
             <div>
               <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-warning">Manufacturing</span>
@@ -122,7 +122,7 @@ export default function ExecutiveRadarCharts() {
             </ResponsiveContainer>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-border">
+          <div className="mt-6 pt-4 border-t border-transparent">
             <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Gap to BMW requirement</span>
             <div className="mt-3">
               {productionGaps.filter(g => g.gap < 0).slice(0, 5).map(g => (
@@ -133,7 +133,7 @@ export default function ExecutiveRadarCharts() {
         </div>
 
         {/* Commercial Radar */}
-        <div className="p-8 bg-card border border-border">
+        <div className="p-8 bg-card/60 backdrop-blur-sm">
           <div className="flex items-center justify-between mb-6">
             <div>
               <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-accent">Commercial</span>
@@ -165,7 +165,7 @@ export default function ExecutiveRadarCharts() {
             </ResponsiveContainer>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-border">
+          <div className="mt-6 pt-4 border-t border-transparent">
             <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Gap to benchmark</span>
             <div className="mt-3">
               {commercialGaps.filter(g => g.gap < 0).slice(0, 5).map(g => (
@@ -177,7 +177,7 @@ export default function ExecutiveRadarCharts() {
       </div>
 
       {/* Takeaway bar */}
-      <div className="flex items-center gap-8 p-6 bg-surface-sunken border border-border">
+      <div className="flex items-center gap-8 p-6 bg-muted/30 backdrop-blur-sm">
         <div className="flex items-center gap-6 shrink-0">
           <div className="text-center">
             <div className="text-[36px] font-bold font-mono leading-none text-destructive">{criticalCount}</div>

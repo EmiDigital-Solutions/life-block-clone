@@ -29,11 +29,11 @@ export default function DigitalSignatureWorkflow() {
         <span className="text-[10px] px-2 py-0.5 bg-warning/10 text-warning font-semibold uppercase tracking-wider">1 of 3 signed</span>
       </div>
 
-      <div className="border border-border bg-white">
+      <div className="bg-white/60 backdrop-blur-sm">
         {signatureSteps.map((step, i) => {
           const Icon = statusIcon[step.status];
           return (
-            <div key={i} className="flex items-start gap-4 p-4 border-b border-border last:border-b-0">
+            <div key={i} className="flex items-start gap-4 p-4 border-b border-muted last:border-b-0">
               <div className="flex flex-col items-center gap-1 pt-0.5">
                 <Icon className={`w-5 h-5 ${statusColor[step.status]}`} />
                 {i < signatureSteps.length - 1 && <div className="w-px h-8 bg-border" />}
@@ -45,7 +45,7 @@ export default function DigitalSignatureWorkflow() {
                     <p className="text-[13px] text-foreground mt-0.5">{step.name}</p>
                   </div>
                   {step.status === 'pending' && (
-                    <button className="px-3 py-1.5 text-[11px] font-medium text-primary border border-primary/20 hover:bg-primary/5 transition-colors">
+                    <button className="px-3 py-1.5 text-[11px] font-medium text-primary border-none hover:bg-primary/5 transition-colors">
                       Request Signature
                     </button>
                   )}
@@ -74,7 +74,7 @@ export default function DigitalSignatureWorkflow() {
       </button>
 
       {expanded && (
-        <div className="border border-dashed border-grey-mid p-4 space-y-2">
+        <div className="border-none p-4 space-y-2">
           <p className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground font-semibold mb-3">Immutable Audit Trail</p>
           {[
             { time: '2025-01-15 14:32', action: 'Report signed by Lead Auditor', hash: '0x7a3f…e91b' },

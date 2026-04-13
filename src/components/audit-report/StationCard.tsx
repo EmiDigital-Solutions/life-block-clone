@@ -46,11 +46,11 @@ function EvidenceGrid({ evidence }: { evidence: SubCategoryEvidence[] }) {
         {evidence.map(ev => {
           const Icon = evidenceTypeIcon[ev.type] || FileText;
           return (
-            <button key={ev.id} className="flex items-center gap-1.5 px-2.5 py-1.5 text-[11px] transition-colors cursor-pointer" style={{ background: 'hsla(0,0%,100%,0.7)', border: '1px solid hsl(0,0%,80%)', color: 'hsl(0,0%,30%)' }}>
+            <button key={ev.id} className="flex items-center gap-1.5 px-2.5 py-1.5 text-[11px] transition-colors cursor-pointer" style={{ background: 'hsla(0,0%,100%,0.7)', border: 'none', color: 'hsl(0,0%,30%)' }}>
               {ev.thumbnail ? (
-                <img src={ev.thumbnail} alt={ev.label} className="w-8 h-8 object-cover" style={{ border: '1px solid hsl(0,0%,80%)' }} />
+                <img src={ev.thumbnail} alt={ev.label} className="w-8 h-8 object-cover" style={{ border: 'none' }} />
               ) : (
-                <div className="w-8 h-8 flex items-center justify-center" style={{ background: 'hsl(0,0%,92%)', border: '1px solid hsl(0,0%,80%)' }}>
+                <div className="w-8 h-8 flex items-center justify-center" style={{ background: 'hsl(0,0%,92%)', border: 'none' }}>
                   <Icon className="w-3.5 h-3.5 text-primary" />
                 </div>
               )}
@@ -69,7 +69,7 @@ function InlineEvidenceThumbnails({ evidence }: { evidence: SubCategoryEvidence[
   return (
     <div className="flex items-center gap-1 mt-2">
       {photos.map(p => (
-        <div key={p.id} className="w-8 h-8 overflow-hidden" style={{ background: 'hsl(0,0%,92%)', border: '1px solid hsl(0,0%,80%)' }}>
+        <div key={p.id} className="w-8 h-8 overflow-hidden" style={{ background: 'hsl(0,0%,92%)', border: 'none' }}>
           {p.thumbnail ? (
             <img src={p.thumbnail} alt={p.label} className="w-full h-full object-cover" />
           ) : (
@@ -128,7 +128,7 @@ function BMWImpactPanel({ impact }: { impact: BMWImpact }) {
         {items.map(({ key, label, icon: Icon, data }) => {
           const color = impactRatingColor[data.rating];
           return (
-            <div key={key} className="p-2.5" style={{ background: 'hsla(0,0%,100%,0.7)', border: '1px solid hsl(0,0%,80%)' }}>
+            <div key={key} className="p-2.5" style={{ background: 'hsla(0,0%,100%,0.7)', border: 'none' }}>
               <div className="flex items-center gap-1.5 mb-1">
                 <Icon className="w-3 h-3" style={{ color }} />
                 <span className="text-[10px] font-semibold text-foreground">{label}</span>
@@ -165,7 +165,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
       <div className="sticky top-12 z-20 -mx-4 md:-mx-8 px-4 md:px-8 py-3 mb-4" style={{
         background: 'hsla(0,0%,85%,0.92)',
         backdropFilter: 'blur(12px)',
-        borderBottom: '1px solid hsl(0,0%,78%)',
+        borderBottom: 'none',
       }}>
         <div className="flex items-center gap-3">
           <span className="text-[12px] font-medium tracking-[0.1em]" style={{ color: 'hsl(0,0%,50%)' }}>// {String(station.index).padStart(2, '0')}</span>
@@ -187,14 +187,14 @@ export default function StationCard({ station, depth, totalStations }: StationCa
       <h2 className="text-[28px] font-light text-foreground tracking-tight leading-none mb-8">{station.name}</h2>
 
       {station.observation && (
-        <div className="p-6 md:p-8 space-y-8" style={{ background: 'hsla(0,0%,100%,0.7)', backdropFilter: 'blur(12px)', border: '1px solid hsl(0,0%,80%)' }}>
+        <div className="p-6 md:p-8 space-y-8" style={{ background: 'hsla(0,0%,100%,0.7)', backdropFilter: 'blur(12px)', border: 'none' }}>
           {/* Hero photo */}
           {station.heroPhoto ? (
-            <div className="aspect-video overflow-hidden" style={{ border: '1px solid hsl(0,0%,80%)' }}>
+            <div className="aspect-video overflow-hidden" style={{ border: 'none' }}>
               <img src={station.heroPhoto} alt={`Factory photo — ${station.name}`} className="w-full h-full object-cover" loading="lazy" width={960} height={540} />
             </div>
           ) : (
-            <div className="aspect-video flex items-center justify-center" style={{ background: 'hsl(0,0%,92%)', border: '1px solid hsl(0,0%,80%)' }}>
+            <div className="aspect-video flex items-center justify-center" style={{ background: 'hsl(0,0%,92%)', border: 'none' }}>
               <div className="text-center">
                 <Camera className="w-8 h-8 mx-auto mb-2" style={{ color: 'hsl(0,0%,55%)' }} />
                 <span className="text-[13px]" style={{ color: 'hsl(0,0%,50%)' }}>Factory photo — Station {station.index}</span>
@@ -232,7 +232,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
                 {station.findings.map((finding, i) => {
                   const Icon = findingIcon[finding.type];
                   return (
-                    <div key={i} className="flex gap-3 p-4" style={{ background: 'hsl(0,0%,92%)', border: '1px solid hsl(0,0%,85%)' }}>
+                    <div key={i} className="flex gap-3 p-4" style={{ background: 'hsl(0,0%,92%)', border: 'none' }}>
                       <Icon className={cn("w-4 h-4 mt-0.5 shrink-0", findingColor[finding.type])} />
                       <div className="min-w-0">
                         <div className="flex items-center gap-2 flex-wrap">
@@ -272,7 +272,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
                 {station.subCategories.map(sub => {
                   const subHealthColor = sub.health === 'green' ? 'hsl(155, 24%, 55%)' : sub.health === 'amber' ? 'hsl(24, 72%, 63%)' : sub.health === 'red' ? 'hsl(0, 48%, 46%)' : 'hsl(0, 0%, 75%)';
                   return (
-                    <div key={sub.id} className="p-4 space-y-3" style={{ background: 'hsl(0,0%,92%)', border: '1px solid hsl(0,0%,85%)' }}>
+                    <div key={sub.id} className="p-4 space-y-3" style={{ background: 'hsl(0,0%,92%)', border: 'none' }}>
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <div className="w-2 h-2" style={{ background: subHealthColor }} />
@@ -356,7 +356,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
 
           {/* Audit Questions */}
           {hasQuestions && depth === 'full' && (
-            <div className="pt-6" style={{ borderTop: '1px solid hsl(0,0%,80%)' }}>
+            <div className="pt-6" style={{ borderTop: 'none' }}>
               <button onClick={() => setQuestionsOpen(!questionsOpen)} className="flex items-center gap-2 text-[13px] font-medium transition-colors mb-4 cursor-pointer" style={{ color: 'hsl(0,0%,45%)' }}>
                 <BookOpen className="w-4 h-4" />
                 <span>ISO 9001 Audit Checklist — {station.auditQuestions!.length} questions</span>
@@ -365,7 +365,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
               {questionsOpen && (
                 <div className="space-y-2">
                   {station.auditQuestions!.map((q) => (
-                    <div key={q.id} className="flex gap-3 p-3" style={{ background: 'hsl(0,0%,92%)', border: '1px solid hsl(0,0%,85%)' }}>
+                    <div key={q.id} className="flex gap-3 p-3" style={{ background: 'hsl(0,0%,92%)', border: 'none' }}>
                       <div className="shrink-0 w-10 text-center">
                         <span className="text-[18px] font-mono font-light tabular-nums" style={{ color: scoreColor(q.score) }}>{q.score ?? '—'}</span>
                         <div className="w-full h-1 mt-1 overflow-hidden" style={{ background: 'hsl(0,0%,82%)' }}>
@@ -389,7 +389,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
 
           {/* Evidence footer */}
           {(station.evidenceCount.photos > 0 || station.evidenceCount.measurements > 0 || station.evidenceCount.videos > 0) && (
-            <div className="flex items-center justify-between pt-4" style={{ borderTop: '1px solid hsl(0,0%,80%)' }}>
+            <div className="flex items-center justify-between pt-4" style={{ borderTop: 'none' }}>
               <div className="flex items-center gap-4 text-[12px]" style={{ color: 'hsl(0,0%,50%)' }}>
                 {station.evidenceCount.photos > 0 && <span className="flex items-center gap-1.5"><Camera className="w-3.5 h-3.5" /> {station.evidenceCount.photos} photos</span>}
                 {station.evidenceCount.measurements > 0 && <span className="flex items-center gap-1.5"><Ruler className="w-3.5 h-3.5" /> {station.evidenceCount.measurements} measurements</span>}

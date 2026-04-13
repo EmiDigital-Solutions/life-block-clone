@@ -60,7 +60,7 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
           </div>
           <div className="flex items-center gap-2">
             {['ISO 9001', 'IATF 16949', 'VDA 6.3'].map(badge => (
-              <span key={badge} className="text-[9px] font-bold tracking-[0.1em] uppercase px-2 py-1" style={{ background: 'hsl(0,0%,88%)', color: 'hsl(0,0%,45%)', border: '1px solid hsl(0,0%,80%)' }}>
+              <span key={badge} className="text-[9px] font-bold tracking-[0.1em] uppercase px-2 py-1" style={{ background: 'hsl(0,0%,88%)', color: 'hsl(0,0%,45%)', border: 'none' }}>
                 {badge}
               </span>
             ))}
@@ -71,7 +71,7 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
         <div className="p-8 md:p-10 mb-6" style={{
           background: 'hsla(0,0%,100%,0.7)',
           backdropFilter: 'blur(12px)',
-          border: '1px solid hsl(0,0%,80%)',
+          border: 'none',
         }}>
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
             <div className="flex-1 min-w-0">
@@ -102,7 +102,7 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
               </p>
 
               {/* Executive Summary */}
-              <div className="mt-5 p-4" style={{ background: 'hsl(0,0%,92%)', border: '1px solid hsl(0,0%,85%)' }}>
+              <div className="mt-5 p-4" style={{ background: 'hsl(0,0%,92%)', border: 'none' }}>
                 <div className="text-[10px] font-bold tracking-[0.12em] uppercase mb-2" style={{ color: 'hsl(0,0%,50%)' }}>Executive Summary</div>
                 <ul className="space-y-2 text-[13px] leading-relaxed" style={{ color: 'hsl(0,0%,30%)' }}>
                   <li className="flex items-start gap-2">
@@ -158,7 +158,7 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
 
             {/* Right — IATF score panel */}
             <div className="w-full md:w-[300px] shrink-0">
-              <div className="p-5" style={{ background: 'hsla(0,0%,100%,0.5)', border: '1px solid hsl(0,0%,80%)' }}>
+              <div className="p-5" style={{ background: 'hsla(0,0%,100%,0.5)', border: 'none' }}>
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <div className="text-[10px] font-bold tracking-[0.12em] uppercase" style={{ color: 'hsl(0,0%,50%)' }}>IATF 16949</div>
@@ -197,7 +197,7 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
         </div>
 
         {/* Cost exposure banner */}
-        <div className="p-4 mb-6" style={{ background: 'hsla(0,0%,100%,0.7)', backdropFilter: 'blur(12px)', border: '1px solid hsl(0,0%,80%)' }}>
+        <div className="p-4 mb-6" style={{ background: 'hsla(0,0%,100%,0.7)', backdropFilter: 'blur(12px)', border: 'none' }}>
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 flex items-center justify-center" style={{ background: 'hsl(0, 48%, 46%, 0.1)' }}>
