@@ -324,7 +324,6 @@ export default function StationCard({ station, depth, totalStations }: StationCa
                           )}
                         </div>
                         <p className="text-[13px] font-light mt-1 leading-relaxed" style={{ color: 'hsl(0,0%,50%)' }}>{finding.description}</p>
-                        )}
                         {finding.ncrId && (
                           <span className="inline-block mt-1.5 text-[11px] font-mono font-bold px-2 py-0.5 text-destructive" style={{ background: 'hsl(0, 48%, 46%, 0.1)' }}>{finding.ncrId}</span>
                         )}
