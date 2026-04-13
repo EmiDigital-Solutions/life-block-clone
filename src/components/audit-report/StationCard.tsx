@@ -282,7 +282,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
           </div>
 
           {/* WHAT IT MEANS */}
-          {depth !== 'executive' && (
+          {true && (
             <div>
               <div className="flex items-center gap-3 mb-3">
                 <h4 className="text-[11px] uppercase tracking-[0.15em] font-semibold" style={{ color: 'hsl(0,0%,50%)' }}>What it means</h4>
@@ -323,8 +323,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
                             </a>
                           )}
                         </div>
-                        {depth !== 'executive' && (
-                          <p className="text-[13px] font-light mt-1 leading-relaxed" style={{ color: 'hsl(0,0%,50%)' }}>{finding.description}</p>
+                        <p className="text-[13px] font-light mt-1 leading-relaxed" style={{ color: 'hsl(0,0%,50%)' }}>{finding.description}</p>
                         )}
                         {finding.ncrId && (
                           <span className="inline-block mt-1.5 text-[11px] font-mono font-bold px-2 py-0.5 text-destructive" style={{ background: 'hsl(0, 48%, 46%, 0.1)' }}>{finding.ncrId}</span>
