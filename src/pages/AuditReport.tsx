@@ -394,7 +394,7 @@ function AuditReportInner() {
                       <EvidenceVault />
                     </div>
                   </>
-                )
+                )}
 
                 {/* Ask Atlas — toolbar style */}
                 <div className="sticky bottom-4 z-30 mb-8">
