@@ -31,7 +31,7 @@ function RiskGauge({ score }: { score: number }) {
   );
 }
 
-export default function AtlasRiskScore() {
+export default function AtlasRiskScore({ depth = 'standard' }: { depth?: DepthLevel }) {
   const { stations, allNCRs, kpis, costImpactData } = useAuditReportContext();
 
   const healthScores = { green: 100, amber: 60, red: 20, grey: 50 };
