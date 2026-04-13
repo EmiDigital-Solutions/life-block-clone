@@ -219,19 +219,20 @@ const conditionScoreColor = (score: number) => {
 function OEEGauge({ label, value, threshold }: { label: string; value: number; threshold: number }) {
   const met = value >= threshold;
   const color = met ? 'hsl(155, 24%, 55%)' : 'hsl(24, 72%, 63%)';
+  const trackColor = 'hsl(0, 0%, 78%)';
   return (
     <div className="text-center">
-      <div className="relative w-14 h-14 mx-auto mb-1">
+      <div className="relative w-16 h-16 mx-auto mb-1">
         <svg viewBox="0 0 36 36" className="w-full h-full -rotate-90">
-          <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="hsl(var(--border))" strokeWidth="2.5" />
+          <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke={trackColor} strokeWidth="2.5" />
           <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none"
             stroke={color} strokeWidth="2.5" strokeDasharray={`${value}, 100`} strokeLinecap="butt" />
         </svg>
-        <span className="absolute inset-0 flex items-center justify-center text-[11px] font-mono font-bold" style={{ color }}>
+        <span className="absolute inset-0 flex items-center justify-center text-[13px] font-mono font-bold" style={{ color }}>
           {value}%
         </span>
       </div>
-      <span className="text-[9px] text-muted-foreground font-medium uppercase tracking-[0.1em]">{label}</span>
+      <span className="text-[10px] font-medium uppercase tracking-[0.1em]" style={{ color: 'hsl(0,0%,45%)' }}>{label}</span>
     </div>
   );
 }
