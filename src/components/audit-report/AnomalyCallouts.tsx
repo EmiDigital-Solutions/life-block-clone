@@ -18,6 +18,28 @@ export default function AnomalyCallouts({ depth = 'standard' }: { depth?: import
 
   const criticalSignals = supplierRiskSignals.filter(s => s.status === 'critical');
 
+  if (depth === 'executive') {
+    return (
+      <section className="py-2">
+        <div className="border border-border">
+          <div className="px-4 py-2" style={{ background: 'hsl(220,20%,14%)' }}>
+            <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/80">AI Anomaly Detection — {topAnomalies.length} patterns</span>
+          </div>
+          <div className="bg-card divide-y divide-border/50">
+            {topAnomalies.map(a => (
+              <div key={a.id} className="flex items-center gap-3 px-4 py-2">
+                <Zap className="w-3.5 h-3.5 shrink-0" style={{ color: severityColor[a.severity] }} />
+                <span className="text-[9px] font-bold uppercase px-1 py-0.5" style={{ color: severityColor[a.severity], background: `${severityColor[a.severity]}10` }}>{a.severity}</span>
+                <span className="text-[12px] font-semibold text-foreground flex-1 truncate">{a.title}</span>
+                <span className="text-[10px] font-mono text-muted-foreground">{a.confidence}%</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="py-12 space-y-8">
       <div className="flex items-center gap-2">
