@@ -196,9 +196,9 @@ const machines: MachineProfile[] = [
 
 /* ── Helpers using project palette ── */
 const suitabilityConfig = {
-  'approved': { icon: CheckCircle2, color: 'text-[#6EA996]', label: 'Approved' },
-  'conditional': { icon: AlertTriangle, color: 'text-[#E39B5C]', label: 'Conditional' },
-  'not-suitable': { icon: XCircle, color: 'text-[#AD3D3D]', label: 'Not Suitable' },
+  'approved': { icon: CheckCircle2, color: 'text-accent', label: 'Approved' },
+  'conditional': { icon: AlertTriangle, color: 'text-warning', label: 'Conditional' },
+  'not-suitable': { icon: XCircle, color: 'text-destructive', label: 'Not Suitable' },
 };
 
 const originLabel = (tier: string) => {
@@ -211,14 +211,14 @@ const originLabel = (tier: string) => {
 };
 
 const conditionScoreColor = (score: number) => {
-  if (score >= 85) return '#6EA996';
-  if (score >= 60) return '#E39B5C';
-  return '#AD3D3D';
+  if (score >= 85) return 'hsl(155, 24%, 55%)';
+  if (score >= 60) return 'hsl(24, 72%, 63%)';
+  return 'hsl(0, 48%, 46%)';
 };
 
 function OEEGauge({ label, value, threshold }: { label: string; value: number; threshold: number }) {
   const met = value >= threshold;
-  const color = met ? '#6EA996' : '#E39B5C';
+  const color = met ? 'hsl(155, 24%, 55%)' : 'hsl(24, 72%, 63%)';
   return (
     <div className="text-center">
       <div className="relative w-14 h-14 mx-auto mb-1">
@@ -231,7 +231,7 @@ function OEEGauge({ label, value, threshold }: { label: string; value: number; t
           {value}%
         </span>
       </div>
-      <span className="text-[9px] text-[#7B8E80] font-medium uppercase tracking-[0.1em]">{label}</span>
+      <span className="text-[9px] text-muted-foreground font-medium uppercase tracking-[0.1em]">{label}</span>
     </div>
   );
 }
@@ -244,23 +244,23 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
   const cColor = conditionScoreColor(machine.conditionScore);
 
   return (
-    <div className="border border-[#E5E7EB] bg-white">
+    <div className="border border-border bg-white">
       {/* Header */}
       <div className="px-5 py-4 flex items-start justify-between gap-4">
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1 flex-wrap">
-            <span className="text-[10px] font-mono font-bold text-[#0A7FA5]">{machine.id}</span>
-            <span className="text-[10px] text-[#7B8E80]">·</span>
-            <span className="text-[10px] text-[#7B8E80] font-medium">{originLabel(machine.originTier)}</span>
-            <span className="text-[10px] text-[#7B8E80]">·</span>
+            <span className="text-[10px] font-mono font-bold text-primary">{machine.id}</span>
+            <span className="text-[10px] text-muted-foreground">·</span>
+            <span className="text-[10px] text-muted-foreground font-medium">{originLabel(machine.originTier)}</span>
+            <span className="text-[10px] text-muted-foreground">·</span>
             <span className="text-[10px] font-mono" style={{ color: cColor }}>
               {machine.condition} {machine.conditionScore}/100
             </span>
           </div>
-          <h4 className="text-[16px] font-light text-[#0A0A0A] tracking-tight leading-tight">
+          <h4 className="text-[16px] font-light text-foreground tracking-tight leading-tight">
             {machine.manufacturer} <span className="font-medium">{machine.model}</span>
           </h4>
-          <div className="flex items-center gap-3 mt-1.5 text-[11px] text-[#7B8E80]">
+          <div className="flex items-center gap-3 mt-1.5 text-[11px] text-muted-foreground">
             <span>{machine.category}</span>
             <span className="text-[#E5E7EB]">|</span>
             <span>{machine.location}</span>
@@ -275,7 +275,7 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
       </div>
 
       {/* Metrics row */}
-      <div className="border-t border-[#E5E7EB] grid grid-cols-6 divide-x divide-[#E5E7EB]">
+      <div className="border-t border-border grid grid-cols-6 divide-x divide-border">
         {[
           { label: "Age", value: `${machine.age} yrs`, sub: String(machine.yearManufactured), icon: CalendarDays },
           { label: "Energy", value: `${machine.energyConsumption} kWh`, sub: machine.energyClass, icon: Zap },
@@ -285,21 +285,21 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
           { label: "Origin", value: machine.origin, sub: "", icon: Shield },
         ].map((m, i) => (
           <div key={i} className="px-3 py-3">
-            <div className="text-[9px] text-[#7B8E80] uppercase tracking-[0.1em] mb-0.5">{m.label}</div>
-            <div className="text-[12px] font-mono font-medium text-[#0A0A0A]">
-              {m.value}{m.sub && <span className="text-[10px] text-[#7B8E80] ml-1">{m.sub}</span>}
+            <div className="text-[9px] text-muted-foreground uppercase tracking-[0.1em] mb-0.5">{m.label}</div>
+            <div className="text-[12px] font-mono font-medium text-foreground">
+              {m.value}{m.sub && <span className="text-[10px] text-muted-foreground ml-1">{m.sub}</span>}
             </div>
           </div>
         ))}
       </div>
 
       {/* OEE Gauges */}
-      <div className="border-t border-[#E5E7EB] px-5 py-4">
+      <div className="border-t border-border px-5 py-4">
         <div className="flex items-center justify-between mb-3">
-          <span className="text-[10px] font-semibold text-[#0A0A0A] uppercase tracking-[0.12em] flex items-center gap-1.5">
-            <BarChart3 className="w-3.5 h-3.5 text-[#7B8E80]" /> OEE Performance
+          <span className="text-[10px] font-semibold text-foreground uppercase tracking-[0.12em] flex items-center gap-1.5">
+            <BarChart3 className="w-3.5 h-3.5 text-muted-foreground" /> OEE Performance
           </span>
-          <span className="text-[9px] text-[#7B8E80] font-mono">Threshold ≥ 85%</span>
+          <span className="text-[9px] text-muted-foreground font-mono">Threshold ≥ 85%</span>
         </div>
         <div className="flex items-center justify-around">
           <OEEGauge label="OEE" value={machine.oee} threshold={85} />
@@ -310,12 +310,12 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
       </div>
 
       {/* Client Suitability */}
-      <div className="border-t border-[#E5E7EB] px-5 py-3">
+      <div className="border-t border-border px-5 py-3">
         <div className="flex items-start gap-2">
           <SuitIcon className={cn("w-3.5 h-3.5 mt-0.5 shrink-0", suit.color)} />
           <div>
-            <span className="text-[10px] font-semibold text-[#7B8E80] uppercase tracking-[0.1em]">BMW Suitability</span>
-            <p className="text-[12px] text-[#0A0A0A] mt-0.5 leading-relaxed">{machine.clientSuitabilityReason}</p>
+            <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-[0.1em]">BMW Suitability</span>
+            <p className="text-[12px] text-foreground mt-0.5 leading-relaxed">{machine.clientSuitabilityReason}</p>
           </div>
         </div>
       </div>
@@ -323,7 +323,7 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
       {/* Expand toggle */}
       <button
         onClick={() => setExpanded(!expanded)}
-        className="w-full border-t border-[#E5E7EB] px-5 py-2.5 flex items-center justify-between text-[11px] font-medium text-[#0A7FA5] hover:bg-[#FAFAFA] transition-colors"
+        className="w-full border-t border-border px-5 py-2.5 flex items-center justify-between text-[11px] font-medium text-primary hover:bg-[#FAFAFA] transition-colors"
       >
         <span className="flex items-center gap-1.5">
           <Settings2 className="w-3.5 h-3.5" />
@@ -333,18 +333,18 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
       </button>
 
       {expanded && (
-        <div className="border-t border-[#E5E7EB]">
+        <div className="border-t border-border">
           {/* Specs grid */}
           <div className="px-5 py-4">
-            <h5 className="text-[10px] font-semibold text-[#0A0A0A] uppercase tracking-[0.12em] mb-3 flex items-center gap-1.5">
-              <Cpu className="w-3.5 h-3.5 text-[#7B8E80]" /> Technical Specifications
+            <h5 className="text-[10px] font-semibold text-foreground uppercase tracking-[0.12em] mb-3 flex items-center gap-1.5">
+              <Cpu className="w-3.5 h-3.5 text-muted-foreground" /> Technical Specifications
             </h5>
-            <div className="grid grid-cols-5 gap-px bg-[#E5E7EB]">
+            <div className="grid grid-cols-5 gap-px bg-border">
               {machine.specs.map((spec, i) => (
                 <div key={i} className="bg-white px-3 py-2.5">
-                  <div className="text-[9px] text-[#7B8E80] uppercase tracking-[0.08em] mb-0.5">{spec.label}</div>
-                  <div className="text-[12px] font-mono font-medium text-[#0A0A0A]">
-                    {spec.value}{spec.unit && <span className="text-[9px] text-[#7B8E80] ml-0.5">{spec.unit}</span>}
+                  <div className="text-[9px] text-muted-foreground uppercase tracking-[0.08em] mb-0.5">{spec.label}</div>
+                  <div className="text-[12px] font-mono font-medium text-foreground">
+                    {spec.value}{spec.unit && <span className="text-[9px] text-muted-foreground ml-0.5">{spec.unit}</span>}
                   </div>
                 </div>
               ))}
@@ -352,13 +352,13 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
           </div>
 
           {/* Capabilities */}
-          <div className="border-t border-[#E5E7EB] px-5 py-4">
-            <h5 className="text-[10px] font-semibold text-[#0A0A0A] uppercase tracking-[0.12em] mb-2.5 flex items-center gap-1.5">
-              <Gauge className="w-3.5 h-3.5 text-[#7B8E80]" /> Process Capabilities
+          <div className="border-t border-border px-5 py-4">
+            <h5 className="text-[10px] font-semibold text-foreground uppercase tracking-[0.12em] mb-2.5 flex items-center gap-1.5">
+              <Gauge className="w-3.5 h-3.5 text-muted-foreground" /> Process Capabilities
             </h5>
             <div className="flex flex-wrap gap-1.5">
               {machine.capabilities.map((cap, i) => (
-                <span key={i} className="text-[10px] px-2 py-1 border border-[#E5E7EB] text-[#0A0A0A] font-medium">
+                <span key={i} className="text-[10px] px-2 py-1 border border-border text-foreground font-medium">
                   {cap}
                 </span>
               ))}
@@ -367,14 +367,14 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
 
           {/* Risks */}
           {machine.risks.length > 0 && (
-            <div className="border-t border-[#E5E7EB] px-5 py-4">
-              <h5 className="text-[10px] font-semibold text-[#E39B5C] uppercase tracking-[0.12em] mb-2 flex items-center gap-1.5">
+            <div className="border-t border-border px-5 py-4">
+              <h5 className="text-[10px] font-semibold text-warning uppercase tracking-[0.12em] mb-2 flex items-center gap-1.5">
                 <AlertTriangle className="w-3.5 h-3.5" /> Identified Risks
               </h5>
               <ul className="space-y-1">
                 {machine.risks.map((risk, i) => (
-                  <li key={i} className="text-[11px] text-[#0A0A0A] flex items-start gap-2">
-                    <span className="w-1 h-1 bg-[#E39B5C] mt-1.5 shrink-0" />
+                  <li key={i} className="text-[11px] text-foreground flex items-start gap-2">
+                    <span className="w-1 h-1 bg-warning mt-1.5 shrink-0" />
                     {risk}
                   </li>
                 ))}
@@ -383,12 +383,12 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
           )}
 
           {/* Atlas AI Insight */}
-          <div className="border-t border-[#E5E7EB] px-5 py-4">
+          <div className="border-t border-border px-5 py-4">
             <div className="flex items-start gap-2">
-              <Sparkles className="w-3.5 h-3.5 text-[#0A7FA5] mt-0.5 shrink-0" />
+              <Sparkles className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
               <div>
-                <span className="text-[10px] font-semibold text-[#0A7FA5] uppercase tracking-[0.1em]">Atlas AI Insight</span>
-                <p className="text-[11px] text-[#0A0A0A] mt-0.5 leading-relaxed">{machine.atlasInsight}</p>
+                <span className="text-[10px] font-semibold text-primary uppercase tracking-[0.1em]">Atlas AI Insight</span>
+                <p className="text-[11px] text-foreground mt-0.5 leading-relaxed">{machine.atlasInsight}</p>
               </div>
             </div>
           </div>
@@ -413,24 +413,24 @@ export default function MachineParkIntelligence() {
     <section id="machine-park" className="py-12">
       {/* Section Header */}
       <div className="flex items-center gap-3 mb-2">
-        <span className="text-[12px] font-medium tracking-[0.1em] text-[#7B8E80]">// 15</span>
-        <span className="w-1.5 h-1.5 bg-[#0A7FA5]" />
-        <span className="text-[12px] font-medium tracking-[0.1em] text-[#7B8E80]">Machine Park Intelligence</span>
-        <div className="flex-1 h-px bg-[#E5E7EB]" />
+        <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">// 15</span>
+        <span className="w-1.5 h-1.5 bg-primary" />
+        <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">Machine Park Intelligence</span>
+        <div className="flex-1 h-px bg-border" />
         <div className="flex items-center gap-1.5">
-          <Camera className="w-3.5 h-3.5 text-[#0A7FA5]" />
-          <span className="text-[10px] font-mono text-[#0A7FA5]">{totalMachines} captured</span>
+          <Camera className="w-3.5 h-3.5 text-primary" />
+          <span className="text-[10px] font-mono text-primary">{totalMachines} captured</span>
         </div>
       </div>
 
-      <h2 className="text-[28px] font-light text-[#0A0A0A] tracking-tight leading-none mb-3">Machine Park Intelligence</h2>
-      <p className="text-[13px] text-[#7B8E80] mb-8 max-w-[680px] leading-relaxed">
+      <h2 className="text-[28px] font-light text-foreground tracking-tight leading-none mb-3">Machine Park Intelligence</h2>
+      <p className="text-[13px] text-muted-foreground mb-8 max-w-[680px] leading-relaxed">
         Atlas AI identifies equipment from type plate captures, cross-references manufacturer databases,
-        and evaluates capability against <span className="font-medium text-[#0A0A0A]">BMW Tier-1</span> requirements.
+        and evaluates capability against <span className="font-medium text-foreground">BMW Tier-1</span> requirements.
       </p>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-7 divide-x divide-[#E5E7EB] border border-[#E5E7EB] mb-8">
+      <div className="grid grid-cols-7 divide-x divide-border border border-border mb-8">
         {[
           { label: "Avg OEE", value: `${avgOEE}%`, ok: Number(avgOEE) >= 85 },
           { label: "Avg Age", value: `${avgAge} yrs`, ok: Number(avgAge) <= 8 },
@@ -441,8 +441,8 @@ export default function MachineParkIntelligence() {
           { label: "Conditional", value: `${conditional}`, ok: conditional === 0 },
         ].map((s, i) => (
           <div key={i} className="px-3 py-3 text-center">
-            <span className={cn("text-[15px] font-mono font-bold block", s.ok ? "text-[#0A0A0A]" : "text-[#E39B5C]")}>{s.value}</span>
-            <span className="text-[9px] text-[#7B8E80] uppercase tracking-[0.1em]">{s.label}</span>
+            <span className={cn("text-[15px] font-mono font-bold block", s.ok ? "text-foreground" : "text-warning")}>{s.value}</span>
+            <span className="text-[9px] text-muted-foreground uppercase tracking-[0.1em]">{s.label}</span>
           </div>
         ))}
       </div>
@@ -455,11 +455,11 @@ export default function MachineParkIntelligence() {
       </div>
 
       {/* Bottom Note */}
-      <div className="mt-6 px-4 py-3 border border-[#E5E7EB] flex items-start gap-2.5">
-        <Sparkles className="w-3.5 h-3.5 text-[#0A7FA5] mt-0.5 shrink-0" />
+      <div className="mt-6 px-4 py-3 border border-border flex items-start gap-2.5">
+        <Sparkles className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
         <div>
-          <span className="text-[10px] font-semibold text-[#0A0A0A] uppercase tracking-[0.1em]">Atlas AI Machine Intelligence</span>
-          <p className="text-[11px] text-[#7B8E80] mt-0.5 leading-relaxed">
+          <span className="text-[10px] font-semibold text-foreground uppercase tracking-[0.1em]">Atlas AI Machine Intelligence</span>
+          <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed">
             All machine profiles are auto-generated from on-site type plate captures. Suitability assessments are
             calibrated against BMW technical requirements and tolerance specifications.
           </p>

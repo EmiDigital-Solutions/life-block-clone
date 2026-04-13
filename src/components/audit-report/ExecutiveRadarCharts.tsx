@@ -113,7 +113,7 @@ export default function ExecutiveRadarCharts() {
     <section className="py-12">
       {/* Section header */}
       <div className="flex items-center gap-3 mb-2">
-        <div className="w-1 h-5 rounded-full bg-[#0A7FA5]" />
+        <div className="w-1 h-5 rounded-full bg-primary" />
         <span className="text-[11px] font-semibold tracking-[0.15em] uppercase text-[#64748B]">Supplier Assessment</span>
       </div>
       <h2 className="text-[24px] md:text-[28px] font-bold text-[#0F172A] tracking-[-0.02em] mb-2">
@@ -134,7 +134,7 @@ export default function ExecutiveRadarCharts() {
 
           {/* Custom legend */}
           <div className="flex items-center gap-5 mb-4">
-            <RadarLegendItem color="#0A7FA5" label="MV Motors (actual)" />
+            <RadarLegendItem color="hsl(195, 89%, 34%)" label="MV Motors (actual)" />
             <RadarLegendItem color="#D97706" label="BMW/Linde requirement" />
             <RadarLegendItem color="#CBD5E1" label="Industry minimum" />
           </div>
@@ -157,7 +157,7 @@ export default function ExecutiveRadarCharts() {
                 />
                 <Radar name="Industry Min" dataKey="industryMin" stroke="#CBD5E1" fill="#CBD5E1" fillOpacity={0.08} strokeWidth={1} strokeDasharray="4 4" />
                 <Radar name="BMW/Linde Req." dataKey="clientMin" stroke="#D97706" fill="#D97706" fillOpacity={0.06} strokeWidth={1.5} strokeDasharray="6 3" />
-                <Radar name="MV Motors" dataKey="supplier" stroke="#0A7FA5" fill="#0A7FA5" fillOpacity={0.15} strokeWidth={2} dot={{ r: 3, fill: '#0A7FA5' }} />
+                <Radar name="MV Motors" dataKey="supplier" stroke="hsl(195, 89%, 34%)" fill="hsl(195, 89%, 34%)" fillOpacity={0.15} strokeWidth={2} dot={{ r: 3, fill: 'hsl(195, 89%, 34%)' }} />
                 <Tooltip content={<CustomTooltip />} />
               </RadarChart>
             </ResponsiveContainer>
@@ -186,7 +186,7 @@ export default function ExecutiveRadarCharts() {
 
           {/* Custom legend */}
           <div className="flex items-center gap-5 mb-4">
-            <RadarLegendItem color="#0A7FA5" label="MV Motors (actual)" />
+            <RadarLegendItem color="hsl(195, 89%, 34%)" label="MV Motors (actual)" />
             <RadarLegendItem color="#16A34A" label="Tier-2 benchmark" />
           </div>
 
@@ -207,7 +207,7 @@ export default function ExecutiveRadarCharts() {
                   axisLine={false}
                 />
                 <Radar name="Tier-2 Benchmark" dataKey="benchmark" stroke="#16A34A" fill="#16A34A" fillOpacity={0.06} strokeWidth={1.5} strokeDasharray="6 3" />
-                <Radar name="MV Motors" dataKey="supplier" stroke="#0A7FA5" fill="#0A7FA5" fillOpacity={0.15} strokeWidth={2} dot={{ r: 3, fill: '#0A7FA5' }} />
+                <Radar name="MV Motors" dataKey="supplier" stroke="hsl(195, 89%, 34%)" fill="hsl(195, 89%, 34%)" fillOpacity={0.15} strokeWidth={2} dot={{ r: 3, fill: 'hsl(195, 89%, 34%)' }} />
                 <Tooltip content={<CustomTooltip />} />
               </RadarChart>
             </ResponsiveContainer>
@@ -248,7 +248,7 @@ export default function ExecutiveRadarCharts() {
             </div>
             <div className="w-px h-10 bg-[#E2E8F0]" />
             <div className="text-center">
-              <div className="text-[28px] font-bold text-[#0A7FA5] leading-none tabular-nums">{commercialGaps.length}</div>
+              <div className="text-[28px] font-bold text-primary leading-none tabular-nums">{commercialGaps.length}</div>
               <div className="text-[10px] text-[#94A3B8] font-medium uppercase mt-1">Commercial</div>
             </div>
           </div>

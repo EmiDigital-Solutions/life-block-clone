@@ -3,7 +3,7 @@ import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { Sparkles, Shield, TrendingUp } from "lucide-react";
 
 function RiskGauge({ score }: { score: number }) {
-  const color = score >= 70 ? '#6EA996' : score >= 40 ? '#E39B5C' : '#AD3D3D';
+  const color = score >= 70 ? 'hsl(155, 24%, 55%)' : score >= 40 ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)';
   const label = score >= 70 ? 'LOW RISK' : score >= 40 ? 'MODERATE RISK' : 'HIGH RISK';
   const angle = (score / 100) * 180;
 
@@ -59,40 +59,40 @@ export default function AtlasRiskScore() {
   const totalAudits = 47;
 
   return (
-    <section className="py-12 border-b border-[#E5E7EB]">
+    <section className="py-12 border-b border-border">
       <div className="flex items-center gap-3 mb-6">
-        <span className="text-[12px] font-medium tracking-[0.1em] text-[#7B8E80]">// ATLAS</span>
-        <Sparkles className="w-3.5 h-3.5 text-[#0A7FA5]" />
-        <span className="text-[12px] font-medium tracking-[0.1em] text-[#7B8E80]">Composite Risk Score</span>
-        <div className="flex-1 h-px bg-[#E5E7EB]" />
+        <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">// ATLAS</span>
+        <Sparkles className="w-3.5 h-3.5 text-primary" />
+        <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">Composite Risk Score</span>
+        <div className="flex-1 h-px bg-border" />
       </div>
 
-      <div className="border border-[#E5E7EB] bg-white p-6 md:p-8">
+      <div className="border border-border bg-white p-6 md:p-8">
         <div className="flex flex-col md:flex-row items-center gap-8">
           <RiskGauge score={score} />
           <div className="flex-1 space-y-3">
-            <h3 className="text-[18px] font-semibold text-[#0A0A0A]">Atlas Risk Score</h3>
-            <p className="text-[13px] text-[#7B8E80] leading-relaxed">
+            <h3 className="text-[18px] font-semibold text-foreground">Atlas Risk Score</h3>
+            <p className="text-[13px] text-muted-foreground leading-relaxed">
               Composite score combining station health, NCR severity, machine OEE, cost exposure, and delay probability into a single metric.
             </p>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
               {[
-                { label: 'Station Health', value: `${Math.round(stationAvg)}%`, color: stationAvg >= 70 ? '#6EA996' : '#E39B5C' },
-                { label: 'NCR Impact', value: `${ncrScore}/100`, color: ncrScore >= 50 ? '#E39B5C' : '#AD3D3D' },
-                { label: 'Cost Risk', value: `€${Math.round(totalExposure / 1000)}K`, color: totalExposure > 500000 ? '#AD3D3D' : '#E39B5C' },
-                { label: 'OEE Avg', value: '82%', color: '#E39B5C' },
+                { label: 'Station Health', value: `${Math.round(stationAvg)}%`, color: stationAvg >= 70 ? 'hsl(155, 24%, 55%)' : 'hsl(24, 72%, 63%)' },
+                { label: 'NCR Impact', value: `${ncrScore}/100`, color: ncrScore >= 50 ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)' },
+                { label: 'Cost Risk', value: `€${Math.round(totalExposure / 1000)}K`, color: totalExposure > 500000 ? 'hsl(0, 48%, 46%)' : 'hsl(24, 72%, 63%)' },
+                { label: 'OEE Avg', value: '82%', color: 'hsl(24, 72%, 63%)' },
               ].map(item => (
-                <div key={item.label} className="border border-[#E5E7EB] p-3">
-                  <span className="text-[10px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold">{item.label}</span>
+                <div key={item.label} className="border border-border p-3">
+                  <span className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground font-semibold">{item.label}</span>
                   <div className="text-[16px] font-mono font-bold mt-1" style={{ color: item.color }}>{item.value}</div>
                 </div>
               ))}
             </div>
 
-            <div className="flex items-center gap-2 mt-4 p-3 bg-[#0A7FA5]/5 border border-[#0A7FA5]/10">
-              <TrendingUp className="w-4 h-4 text-[#0A7FA5]" />
-              <span className="text-[12px] text-[#0A0A0A]">
+            <div className="flex items-center gap-2 mt-4 p-3 bg-primary/5 border border-primary/10">
+              <TrendingUp className="w-4 h-4 text-primary" />
+              <span className="text-[12px] text-foreground">
                 This supplier scores in the <strong>{percentile}rd percentile</strong> compared to {totalAudits} audits in Automotive Plastics
               </span>
             </div>

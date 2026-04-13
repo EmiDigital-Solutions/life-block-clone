@@ -15,32 +15,32 @@ const stages: FlowStage[] = [
   {
     title: 'Findings',
     nodes: [
-      { label: 'Observations', count: 12, color: '#7B8E80' },
-      { label: 'Concerns', count: 5, color: '#E39B5C' },
-      { label: 'Non-Conformities', count: 4, color: '#AD3D3D' },
+      { label: 'Observations', count: 12, color: 'hsl(135, 8%, 52%)' },
+      { label: 'Concerns', count: 5, color: 'hsl(24, 72%, 63%)' },
+      { label: 'Non-Conformities', count: 4, color: 'hsl(0, 48%, 46%)' },
     ],
   },
   {
     title: 'NCRs',
     nodes: [
-      { label: 'Major NCR', count: 1, color: '#AD3D3D' },
-      { label: 'Minor NCR', count: 3, color: '#E39B5C' },
+      { label: 'Major NCR', count: 1, color: 'hsl(0, 48%, 46%)' },
+      { label: 'Minor NCR', count: 3, color: 'hsl(24, 72%, 63%)' },
     ],
   },
   {
     title: 'CAPA Actions',
     nodes: [
-      { label: 'Immediate', count: 2, color: '#AD3D3D' },
-      { label: 'Short-term', count: 3, color: '#E39B5C' },
-      { label: 'Long-term', count: 1, color: '#7B8E80' },
+      { label: 'Immediate', count: 2, color: 'hsl(0, 48%, 46%)' },
+      { label: 'Short-term', count: 3, color: 'hsl(24, 72%, 63%)' },
+      { label: 'Long-term', count: 1, color: 'hsl(135, 8%, 52%)' },
     ],
   },
   {
     title: 'Resolution',
     nodes: [
-      { label: 'Closed', count: 1, color: '#6EA996' },
-      { label: 'In Progress', count: 3, color: '#E39B5C' },
-      { label: 'Open', count: 2, color: '#AD3D3D' },
+      { label: 'Closed', count: 1, color: 'hsl(155, 24%, 55%)' },
+      { label: 'In Progress', count: 3, color: 'hsl(24, 72%, 63%)' },
+      { label: 'Open', count: 2, color: 'hsl(0, 48%, 46%)' },
     ],
   },
 ];
@@ -49,17 +49,17 @@ export default function FindingSankeyDiagram() {
   return (
     <section className="space-y-4">
       <div className="flex items-center gap-3 mb-2">
-        <span className="text-[12px] font-medium tracking-[0.1em] text-[#7B8E80]">// FLOW</span>
-        <span className="w-1.5 h-1.5 rounded-full bg-[#0A7FA5]" />
-        <span className="text-[12px] font-medium tracking-[0.1em] text-[#7B8E80]">Finding Resolution Pipeline</span>
-        <div className="flex-1 h-px bg-[#E5E7EB]" />
+        <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">// FLOW</span>
+        <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+        <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">Finding Resolution Pipeline</span>
+        <div className="flex-1 h-px bg-border" />
       </div>
 
-      <div className="border border-[#E5E7EB] bg-white p-6">
+      <div className="border border-border bg-white p-6">
         <div className="grid grid-cols-4 gap-4">
           {stages.map((stage, si) => (
             <div key={si} className="space-y-3">
-              <h4 className="text-[10px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold text-center">{stage.title}</h4>
+              <h4 className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground font-semibold text-center">{stage.title}</h4>
               <div className="space-y-2">
                 {stage.nodes.map((node, ni) => {
                   const barWidth = Math.max(20, (node.count / 12) * 100);
@@ -80,7 +80,7 @@ export default function FindingSankeyDiagram() {
               </div>
               {si < stages.length - 1 && (
                 <div className="flex justify-center">
-                  <ArrowRight className="w-4 h-4 text-[#C0C0C0]" />
+                  <ArrowRight className="w-4 h-4 text-grey-mid" />
                 </div>
               )}
             </div>

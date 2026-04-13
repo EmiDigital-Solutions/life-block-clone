@@ -4,10 +4,10 @@ import type { StationHealth } from "@/data/auditReportData";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const healthColor: Record<StationHealth, string> = {
-  green: 'bg-[#6EA996]',
-  amber: 'bg-[#E39B5C]',
-  red: 'bg-[#AD3D3D]',
-  grey: 'bg-[#C0C0C0]',
+  green: 'bg-accent',
+  amber: 'bg-warning',
+  red: 'bg-destructive',
+  grey: 'bg-grey-mid',
 };
 
 interface StationHeatmapProps {
