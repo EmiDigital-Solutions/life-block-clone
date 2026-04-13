@@ -165,7 +165,6 @@ export default function StationCard({ station, depth, totalStations }: StationCa
       <div className="sticky top-12 z-20 -mx-4 md:-mx-8 px-4 md:px-8 py-3 mb-4" style={{
         background: 'hsla(0,0%,85%,0.92)',
         backdropFilter: 'blur(12px)',
-        ,
       }}>
         <div className="flex items-center gap-3">
           <span className="text-[12px] font-medium tracking-[0.1em]" style={{ color: 'hsl(0,0%,50%)' }}>// {String(station.index).padStart(2, '0')}</span>

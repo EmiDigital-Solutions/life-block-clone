@@ -71,7 +71,6 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
         <div className="p-8 md:p-10 mb-6" style={{
           background: 'hsla(0,0%,100%,0.7)',
           backdropFilter: 'blur(12px)',
-          ,
         }}>
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
             <div className="flex-1 min-w-0">
