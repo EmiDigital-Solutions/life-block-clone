@@ -27,6 +27,35 @@ function MiniSparkline({ data, color }: { data: number[]; color: string }) {
 }
 
 export default function KPIBand({ kpis, depth = 'standard' }: KPIBandProps) {
+  if (depth === 'executive') {
+    return (
+      <div className="border border-border bg-card">
+        <div className="px-4 py-2 flex items-center" style={{ background: 'hsl(220,20%,14%)' }}>
+          <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/80">Key Performance Indicators</span>
+        </div>
+        <div className="grid grid-cols-4 divide-x divide-border">
+          {kpis.map((kpi, i) => {
+            const Icon = trendIcon[kpi.trend];
+            const isNegativeTrend = (kpi.trend === 'up' && (kpi.label.includes('NCR') || kpi.label.includes('DPPM') || kpi.label.includes('Cost')))
+              || (kpi.trend === 'down' && !kpi.label.includes('NCR') && !kpi.label.includes('DPPM') && !kpi.label.includes('Cost'));
+            const trendColor = kpi.trend === 'flat' ? 'hsl(var(--muted-foreground))' : isNegativeTrend ? 'hsl(var(--destructive))' : 'hsl(var(--accent))';
+
+            return (
+              <div key={i} className="px-4 py-3 text-center">
+                <div className="text-[9px] uppercase tracking-[0.12em] font-semibold text-muted-foreground mb-1">{kpi.label}</div>
+                <div className="text-[22px] font-bold font-mono tabular-nums text-foreground leading-none">{kpi.value}{kpi.unit && <span className="text-[12px] text-muted-foreground ml-0.5">{kpi.unit}</span>}</div>
+                <div className="flex items-center justify-center gap-1 mt-1">
+                  <Icon className="w-3 h-3" style={{ color: trendColor }} />
+                  <span className="text-[10px] font-mono" style={{ color: trendColor }}>{kpi.trendValue}</span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
       {kpis.map((kpi, i) => {
@@ -60,6 +89,9 @@ export default function KPIBand({ kpis, depth = 'standard' }: KPIBandProps) {
             </div>
           </div>
         );
+      })}
+    </div>
+  );
       })}
     </div>
   );
