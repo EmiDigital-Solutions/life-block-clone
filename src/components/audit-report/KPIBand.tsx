@@ -27,17 +27,17 @@ function MiniSparkline({ data, color }: { data: number[]; color: string }) {
 
 export default function KPIBand({ kpis }: KPIBandProps) {
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-px" style={{ background: 'hsl(0,0%,85%)' }}>
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-border">
       {kpis.map((kpi, i) => {
         const Icon = trendIcon[kpi.trend];
         const isNegativeTrend = (kpi.trend === 'up' && (kpi.label.includes('NCR') || kpi.label.includes('DPPM') || kpi.label.includes('Cost')))
           || (kpi.trend === 'down' && !kpi.label.includes('NCR') && !kpi.label.includes('DPPM') && !kpi.label.includes('Cost'));
-        const trendColor = kpi.trend === 'flat' ? 'hsl(0,0%,50%)' : isNegativeTrend ? 'hsl(0, 48%, 46%)' : 'hsl(155, 24%, 55%)';
-        const sparkColor = isNegativeTrend ? 'hsl(0, 48%, 46%)' : 'hsl(195, 89%, 34%)';
+        const trendColor = kpi.trend === 'flat' ? 'hsl(var(--muted-foreground))' : isNegativeTrend ? 'hsl(var(--destructive))' : 'hsl(var(--accent))';
+        const sparkColor = isNegativeTrend ? 'hsl(var(--destructive))' : 'hsl(var(--primary))';
 
         return (
-          <div key={i} className="p-5" style={{ background: 'hsl(0,0%,100%)' }}>
-            <span className="text-[10px] uppercase tracking-[0.12em] font-semibold" style={{ color: 'hsl(0,0%,50%)' }}>
+          <div key={i} className="p-5 bg-card">
+            <span className="text-[10px] uppercase tracking-[0.12em] font-semibold text-muted-foreground">
               {kpi.label}
             </span>
             <div className="flex items-end justify-between mt-3 gap-3">
@@ -46,16 +46,16 @@ export default function KPIBand({ kpis }: KPIBandProps) {
                   {kpi.value}
                 </span>
                 {kpi.unit && (
-                  <span className="text-[14px]" style={{ color: 'hsl(0,0%,50%)' }}>{kpi.unit}</span>
+                  <span className="text-[14px] text-muted-foreground">{kpi.unit}</span>
                 )}
               </div>
               {kpi.sparkline && <MiniSparkline data={kpi.sparkline} color={sparkColor} />}
             </div>
 
-            <div className="flex items-center gap-2 mt-3 pt-3" style={{ borderTop: '1px solid hsl(0,0%,90%)' }}>
+            <div className="flex items-center gap-2 mt-3 pt-3 border-t border-border">
               <Icon className="w-4 h-4" style={{ color: trendColor }} />
               <span className="text-[13px] font-mono font-medium" style={{ color: trendColor }}>{kpi.trendValue}</span>
-              <span className="text-[11px]" style={{ color: 'hsl(0,0%,55%)' }}>vs. prior</span>
+              <span className="text-[11px] text-muted-foreground">vs. prior</span>
             </div>
           </div>
         );
