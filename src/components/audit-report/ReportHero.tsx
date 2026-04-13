@@ -180,7 +180,7 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
                     />
                   ))}
                 </div>
-                <div className="mt-3 pt-3" style={{ borderTop: '1px solid hsl(0,0%,85%)' }}>
+                <div className="mt-3 pt-3" >
                   <div className="flex items-center justify-between text-[10px]">
                     <span style={{ color: 'hsl(0,0%,55%)' }}>Previous audit</span>
                     <span className="font-mono font-semibold" style={{ color: 'hsl(0,0%,45%)' }}>{reportMeta.previousScore}%</span>
