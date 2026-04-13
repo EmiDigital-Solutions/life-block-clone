@@ -248,7 +248,7 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
         </div>
 
         {/* Audit metadata footer */}
-        <div className="pt-5" style={{ borderTop: '1px solid hsl(0,0%,80%)' }}>
+        <div className="pt-5" style={{ borderTop: 'none' }}>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { label: 'Lead Auditor', value: 'I. Petrović', sub: 'IRCA Cert. #A21849' },
