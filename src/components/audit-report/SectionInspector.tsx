@@ -60,7 +60,7 @@ export default function SectionInspector({ activeStation, isOpen, onClose }: Sec
 
   return (
     <aside className={cn(
-      "flex flex-col border-l border-border bg-white transition-all duration-300 overflow-hidden",
+      "flex flex-col border-l border-border bg-card transition-all duration-300 overflow-hidden",
       isOpen ? "w-[320px] xl:w-[340px] opacity-100" : "w-0 opacity-0"
     )}>
       {/* Auto-save */}

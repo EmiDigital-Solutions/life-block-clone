@@ -27,7 +27,7 @@ export default function NCRCard({ ncr, compact, onAssign, onAction }: NCRCardPro
 
   if (compact) {
     return (
-      <div className={cn("flex items-center gap-3 px-3 py-2.5  border bg-white", sev.border)}>
+      <div className={cn("flex items-center gap-3 px-3 py-2.5 audit-glass-card", sev.border)}>
         <Icon className={cn("w-4 h-4 shrink-0", sev.color)} />
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
@@ -44,7 +44,7 @@ export default function NCRCard({ ncr, compact, onAssign, onAction }: NCRCardPro
   }
 
   return (
-    <div className={cn(" border p-5 transition-all bg-white", sev.border)}>
+    <div className={cn("audit-glass-card p-5 transition-all", sev.border)}>
       <div className="flex items-center gap-3 mb-3">
         <div className={cn("w-8 h-8  flex items-center justify-center", sev.bg)}>
           <Icon className={cn("w-4 h-4", sev.color)} />
@@ -74,7 +74,7 @@ export default function NCRCard({ ncr, compact, onAssign, onAction }: NCRCardPro
 
       <p className="text-[13px] text-muted-foreground leading-relaxed mb-3">{ncr.observation}</p>
 
-      <div className=" bg-muted border border-border p-3 mb-4">
+      <div className="audit-surface-sunken p-3 mb-4">
         <span className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold">Root Cause (AI)</span>
         <p className="text-[13px] text-charcoal mt-1">{ncr.rootCause}</p>
       </div>

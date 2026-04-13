@@ -158,8 +158,8 @@ export default function StationCard({ station, depth, totalStations }: StationCa
 
   return (
     <section id={`station-${station.index}`} className="scroll-mt-20">
-      {/* Sticky section header */}
-      <div className="sticky top-12 z-20 bg-white/95 backdrop-blur-sm border-b border-border -mx-4 md:-mx-8 px-4 md:px-8 py-3 mb-4">
+      {/* Sticky section header — glass */}
+      <div className="sticky top-12 z-20 backdrop-blur-md border-b border-border -mx-4 md:-mx-8 px-4 md:px-8 py-3 mb-4" style={{ background: 'hsl(var(--background) / 0.85)' }}>
         <div className="flex items-center gap-3">
           <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">// {String(station.index).padStart(2, '0')}</span>
           <div className={cn("w-2 h-2", station.health === 'green' ? 'bg-accent' : station.health === 'amber' ? 'bg-warning' : station.health === 'red' ? 'bg-destructive' : 'bg-grey-mid')} />
@@ -180,7 +180,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
       <h2 className="text-[28px] font-light text-foreground tracking-tight leading-none mb-8">{station.name}</h2>
 
       {station.observation && (
-        <div className=" border border-border bg-white p-6 md:p-8 space-y-8">
+        <div className="audit-glass-card p-6 md:p-8 space-y-8">
           {/* Hero photo */}
           {station.heroPhoto ? (
             <div className="aspect-video  overflow-hidden border border-border">
@@ -225,7 +225,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
                 {station.findings.map((finding, i) => {
                   const Icon = findingIcon[finding.type];
                   return (
-                    <div key={i} className="flex gap-3 p-4 border border-border bg-muted">
+                    <div key={i} className="flex gap-3 p-4 audit-surface-sunken">
                       <Icon className={cn("w-4 h-4 mt-0.5 shrink-0", findingColor[finding.type])} />
                       <div className="min-w-0">
                         <div className="flex items-center gap-2 flex-wrap">
@@ -265,7 +265,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
                 {station.subCategories.map(sub => {
                   const subHealthColor = sub.health === 'green' ? 'hsl(155, 24%, 55%)' : sub.health === 'amber' ? 'hsl(24, 72%, 63%)' : sub.health === 'red' ? 'hsl(0, 48%, 46%)' : 'hsl(0, 0%, 75%)';
                   return (
-                    <div key={sub.id} className=" border border-border bg-muted p-4 space-y-3">
+                    <div key={sub.id} className="audit-surface-sunken p-4 space-y-3">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <div className="w-2 h-2 rounded-full" style={{ background: subHealthColor }} />
