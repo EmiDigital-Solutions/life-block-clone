@@ -31,7 +31,7 @@ export default function VersionComparison() {
         <span className="text-[10px] text-grey-mid">· 5 changes</span>
       </div>
 
-      <div className="bg-white/60 backdrop-blur-sm divide-y divide-border">
+      <div className="bg-white/60 backdrop-blur-sm divide-y divide-muted">
         {diffItems.map((item, i) => {
           const Icon = typeIcon[item.type];
           return (

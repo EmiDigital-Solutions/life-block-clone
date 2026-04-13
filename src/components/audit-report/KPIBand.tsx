@@ -52,7 +52,7 @@ export default function KPIBand({ kpis }: KPIBandProps) {
               {kpi.sparkline && <MiniSparkline data={kpi.sparkline} color={sparkColor} />}
             </div>
 
-            <div className="flex items-center gap-2 mt-3 pt-3 border-t border-border">
+            <div className="flex items-center gap-2 mt-3 pt-3 border-t border-transparent">
               <Icon className="w-4 h-4" style={{ color: trendColor }} />
               <span className="text-[13px] font-mono font-medium" style={{ color: trendColor }}>{kpi.trendValue}</span>
               <span className="text-[11px] text-muted-foreground">vs. prior</span>

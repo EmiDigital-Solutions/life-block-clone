@@ -39,7 +39,7 @@ function GapBar({ label, supplierVal, targetVal }: { label: string; supplierVal:
   const barWidth = Math.min(100, Math.abs(gap) * 2.5);
 
   return (
-    <div className="flex items-center gap-3 py-2.5 border-b border-border/50">
+    <div className="flex items-center gap-3 py-2.5 ">
       <span className="text-[13px] text-foreground w-[140px] shrink-0">{label}</span>
       <div className="flex-1 flex items-center gap-3">
         <div className="flex-1 h-2 relative bg-muted">
@@ -122,7 +122,7 @@ export default function ExecutiveRadarCharts() {
             </ResponsiveContainer>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-border">
+          <div className="mt-6 pt-4 border-t border-transparent">
             <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Gap to BMW requirement</span>
             <div className="mt-3">
               {productionGaps.filter(g => g.gap < 0).slice(0, 5).map(g => (
@@ -165,7 +165,7 @@ export default function ExecutiveRadarCharts() {
             </ResponsiveContainer>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-border">
+          <div className="mt-6 pt-4 border-t border-transparent">
             <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Gap to benchmark</span>
             <div className="mt-3">
               {commercialGaps.filter(g => g.gap < 0).slice(0, 5).map(g => (

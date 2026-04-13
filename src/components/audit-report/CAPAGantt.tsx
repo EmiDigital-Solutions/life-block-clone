@@ -93,7 +93,7 @@ export default function CAPAGantt() {
             };
 
             return (
-              <div key={item.id} className="flex items-center gap-4 py-3 border-b border-border/50">
+              <div key={item.id} className="flex items-center gap-4 py-3 ">
                 {/* Left info */}
                 <div className="w-[280px] shrink-0">
                   <div className="flex items-center gap-2 mb-1">

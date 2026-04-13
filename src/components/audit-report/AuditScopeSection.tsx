@@ -65,7 +65,7 @@ export default function AuditScopeSection() {
               ))}
             </div>
             {auditScope.productScope.map(p => (
-              <div key={p.partNumber} className="grid grid-cols-4 gap-0 px-4 py-2.5 border-t border-border">
+              <div key={p.partNumber} className="grid grid-cols-4 gap-0 px-4 py-2.5 border-t border-transparent">
                 <span className="text-[13px] font-mono text-primary">{p.partNumber}</span>
                 <span className="text-[13px] text-foreground">{p.description}</span>
                 <span className="text-[13px] text-charcoal tabular-nums">{p.volume}</span>
