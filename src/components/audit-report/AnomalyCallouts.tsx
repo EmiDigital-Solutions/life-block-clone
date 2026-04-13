@@ -4,7 +4,7 @@ import { Zap, AlertTriangle, TrendingDown } from "lucide-react";
 const severityColor: Record<string, string> = {
   critical: 'hsl(0, 48%, 46%)',
   high: 'hsl(24, 72%, 63%)',
-  medium: '#D4A843',
+  medium: 'hsl(24, 72%, 63%)',
   low: 'hsl(155, 24%, 55%)',
 };
 

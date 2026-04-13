@@ -223,7 +223,7 @@ function OEEGauge({ label, value, threshold }: { label: string; value: number; t
     <div className="text-center">
       <div className="relative w-14 h-14 mx-auto mb-1">
         <svg viewBox="0 0 36 36" className="w-full h-full -rotate-90">
-          <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#E5E7EB" strokeWidth="2.5" />
+          <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="hsl(var(--border))" strokeWidth="2.5" />
           <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none"
             stroke={color} strokeWidth="2.5" strokeDasharray={`${value}, 100`} strokeLinecap="butt" />
         </svg>
@@ -262,9 +262,9 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
           </h4>
           <div className="flex items-center gap-3 mt-1.5 text-[11px] text-muted-foreground">
             <span>{machine.category}</span>
-            <span className="text-[#E5E7EB]">|</span>
+            <span className="text-border">|</span>
             <span>{machine.location}</span>
-            <span className="text-[#E5E7EB]">|</span>
+            <span className="text-border">|</span>
             <span className="font-mono text-[10px]">S/N {machine.serialNumber}</span>
           </div>
         </div>
@@ -323,7 +323,7 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
       {/* Expand toggle */}
       <button
         onClick={() => setExpanded(!expanded)}
-        className="w-full border-t border-border px-5 py-2.5 flex items-center justify-between text-[11px] font-medium text-primary hover:bg-[#FAFAFA] transition-colors"
+        className="w-full border-t border-border px-5 py-2.5 flex items-center justify-between text-[11px] font-medium text-primary hover:bg-muted transition-colors"
       >
         <span className="flex items-center gap-1.5">
           <Settings2 className="w-3.5 h-3.5" />

@@ -156,7 +156,7 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
           className={cn(
             "flex items-center gap-3 w-full px-4 py-2 text-left transition-all duration-150 group",
             isActive
-              ? "bg-primary/5 text-primary border-l-2 border-[#0A7FA5]"
+              ? "bg-primary/5 text-primary border-l-2 border-primary"
               : "text-charcoal hover:bg-muted border-l-2 border-transparent"
           )}
         >

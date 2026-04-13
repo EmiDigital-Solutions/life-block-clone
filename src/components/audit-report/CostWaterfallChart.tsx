@@ -62,12 +62,12 @@ export default function CostWaterfallChart() {
 
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={chartData} margin={{ top: 10, right: 10, left: 10, bottom: 40 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" vertical={false} />
-            <XAxis dataKey="name" tick={{ fill: 'hsl(135, 8%, 52%)', fontSize: 10 }} axisLine={false} tickLine={false} angle={-30} textAnchor="end" height={60} />
-            <YAxis tick={{ fill: 'hsl(135, 8%, 52%)', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v) => `€${v}K`} />
+            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" vertical={false} />
+            <XAxis dataKey="name" tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 10 }} axisLine={false} tickLine={false} angle={-30} textAnchor="end" height={60} />
+            <YAxis tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v) => `€${v}K`} />
             <Tooltip
               formatter={(value: number, name: string) => [`€${value}K`, name === 'exposure' ? 'At Risk' : 'After Mitigation']}
-              contentStyle={{ fontSize: 12, border: '1px solid #E5E7EB', borderRadius: 0 }}
+              contentStyle={{ fontSize: 12, border: '1px solid hsl(var(--border))', borderRadius: 0 }}
             />
             <Bar dataKey="exposure" fill="hsl(0, 48%, 46%)" opacity={0.7} name="At Risk" />
             <Bar dataKey="mitigated" fill="hsl(155, 24%, 55%)" name="After Mitigation" />
@@ -76,7 +76,7 @@ export default function CostWaterfallChart() {
 
         <div className="mt-4 space-y-2">
           {costImpactData.map(item => (
-            <div key={item.category} className="flex items-center gap-3 py-2 border-b border-[#F5F5F5] last:border-0">
+            <div key={item.category} className="flex items-center gap-3 py-2 border-b border-muted last:border-0">
               <div className="flex-1 min-w-0">
                 <span className="text-[13px] font-medium text-foreground">{item.category}</span>
                 <p className="text-[11px] text-muted-foreground truncate">{item.driver.substring(0, 80)}...</p>

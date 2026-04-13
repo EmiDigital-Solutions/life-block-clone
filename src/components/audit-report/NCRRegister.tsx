@@ -34,7 +34,7 @@ export default function NCRRegister({ ncrs }: NCRRegisterProps) {
           <h4 className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold mb-4">Station Health Radar</h4>
           <ResponsiveContainer width="100%" height={240}>
             <RadarChart data={radarData}>
-              <PolarGrid stroke="#E5E7EB" />
+              <PolarGrid stroke="hsl(var(--border))" />
               <PolarAngleAxis dataKey="station" tick={{ fill: 'hsl(135, 8%, 52%)', fontSize: 12 }} />
               <PolarRadiusAxis angle={90} domain={[0, 100]} tick={false} axisLine={false} />
               <Radar dataKey="score" stroke="hsl(195, 89%, 34%)" fill="hsl(195, 89%, 34%)" fillOpacity={0.08} strokeWidth={2} />
@@ -47,7 +47,7 @@ export default function NCRRegister({ ncrs }: NCRRegisterProps) {
           <ResponsiveContainer width="100%" height={240}>
             <BarChart data={ncrSeverityData} layout="vertical" margin={{ left: 60 }}>
               <XAxis type="number" tick={{ fill: 'hsl(135, 8%, 52%)', fontSize: 12 }} axisLine={false} tickLine={false} />
-              <YAxis type="category" dataKey="name" tick={{ fill: '#1A1A1A', fontSize: 12 }} axisLine={false} tickLine={false} width={60} />
+              <YAxis type="category" dataKey="name" tick={{ fill: 'hsl(var(--charcoal))', fontSize: 12 }} axisLine={false} tickLine={false} width={60} />
               <Bar dataKey="count" radius={[0, 4, 4, 0]} barSize={20}>
                 {ncrSeverityData.map((entry, index) => (
                   <Cell key={index} fill={entry.color} />
