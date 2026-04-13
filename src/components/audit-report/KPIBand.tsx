@@ -91,8 +91,4 @@ export default function KPIBand({ kpis, depth = 'standard' }: KPIBandProps) {
         );
       })}
     </div>
-  );
-      })}
-    </div>
-  );
 }
