@@ -4,7 +4,6 @@ import { TrendingUp, TrendingDown, Minus } from "lucide-react";
 
 const trendIcon = { up: TrendingUp, down: TrendingDown, flat: Minus };
 
-// BMW/client thresholds for comparison columns
 const kpiThresholds: Record<string, { threshold: string; label: string }> = {
   'Overall Score': { threshold: '70', label: 'BMW Min' },
   'IATF Score': { threshold: '70%', label: 'BMW Min' },
@@ -45,14 +44,14 @@ export default function KPIBand({ kpis }: KPIBandProps) {
         const Icon = trendIcon[kpi.trend];
         const isNegativeTrend = (kpi.trend === 'up' && (kpi.label.includes('NCR') || kpi.label.includes('DPPM') || kpi.label.includes('Cost')))
           || (kpi.trend === 'down' && !kpi.label.includes('NCR') && !kpi.label.includes('DPPM') && !kpi.label.includes('Cost'));
-        const trendColor = kpi.trend === 'flat' ? 'hsl(135, 8%, 52%)' : isNegativeTrend ? 'hsl(0, 48%, 46%)' : 'hsl(155, 24%, 55%)';
-        const sparkColor = isNegativeTrend ? 'hsl(0, 48%, 46%)' : 'hsl(195, 89%, 34%)';
+        const trendColor = kpi.trend === 'flat' ? 'hsl(var(--muted-foreground))' : isNegativeTrend ? 'hsl(var(--destructive))' : 'hsl(var(--accent))';
+        const sparkColor = isNegativeTrend ? 'hsl(var(--destructive))' : 'hsl(var(--primary))';
         const threshold = kpiThresholds[kpi.label];
 
         return (
           <div
             key={i}
-            className="border border-border bg-white p-5 hover:shadow-md transition-all duration-300 group cursor-pointer"
+            className="border border-border bg-background p-5 hover:shadow-md transition-all duration-300 group cursor-pointer"
           >
             <span className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold">
               {kpi.label}
@@ -69,9 +68,8 @@ export default function KPIBand({ kpis }: KPIBandProps) {
               {kpi.sparkline && <MiniSparkline data={kpi.sparkline} color={sparkColor} />}
             </div>
 
-            {/* Comparison: Supplier Actual vs. BMW Threshold */}
             {threshold && (
-              <div className="flex items-center justify-between mt-3 pt-2 border-t border-[#F5F5F5]">
+              <div className="flex items-center justify-between mt-3 pt-2 border-t border-muted">
                 <div className="text-[10px]">
                   <span className="text-grey-mid">Actual</span>
                   <span className="font-mono font-semibold text-foreground ml-1">{kpi.value}{kpi.unit || ''}</span>
