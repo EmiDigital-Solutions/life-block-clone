@@ -164,69 +164,146 @@ export default function StationCard({ station, depth, totalStations }: StationCa
     const majorNCRs = station.ncrs.filter(n => n.severity === 'major');
     const minorNCRs = station.ncrs.filter(n => n.severity === 'minor');
     const totalFindings = station.findings.length;
-    const criticalFindings = station.findings.filter(f => f.type === 'major-ncr' || f.type === 'minor-ncr');
+
+    // Calculate element score from audit questions
+    const avgScore = hasQuestions
+      ? (station.auditQuestions!.reduce((sum, q) => sum + (q.score || 0), 0) / station.auditQuestions!.length)
+      : null;
+    const elementPct = avgScore !== null ? Math.round(avgScore * 10) : null;
+    const elementColor = elementPct !== null
+      ? elementPct >= 80 ? 'hsl(155, 24%, 40%)' : elementPct >= 60 ? 'hsl(24, 72%, 53%)' : 'hsl(0, 48%, 46%)'
+      : 'hsl(0,0%,55%)';
 
     return (
       <section id={`station-${station.index}`} className="scroll-mt-20">
-        {/* Dark section header — engineering document style */}
+        {/* Dark section header — formal VDA element header */}
         <div className="flex items-stretch" style={{ background: 'hsl(220,20%,14%)' }}>
           <div className="flex items-center gap-3 px-4 py-2.5 flex-1 min-w-0">
-            <span className="text-[11px] font-mono font-bold tabular-nums" style={{ color: 'hsl(220,20%,55%)' }}>
-              {String(station.index).padStart(2, '0')}
+            <span className="text-[10px] font-mono font-bold tabular-nums text-white/50">
+              §{station.index}
             </span>
             <div className="w-2.5 h-2.5" style={{ background: hc.color }} />
-            <span className="text-[13px] font-bold tracking-wide text-white uppercase">{station.name}</span>
+            <span className="text-[12px] font-bold tracking-wide text-white uppercase">{station.name}</span>
           </div>
           <div className="flex items-center gap-4 px-4 shrink-0">
-            <div className="flex items-center gap-1.5 text-[10px] font-mono" style={{ color: 'hsl(220,20%,60%)' }}>
-              <Camera className="w-3 h-3" />{station.evidenceCount.photos}
-              {station.evidenceCount.measurements > 0 && <><span className="mx-1">·</span><Ruler className="w-3 h-3" />{station.evidenceCount.measurements}</>}
-            </div>
+            {elementPct !== null && (
+              <div className="flex items-center gap-2">
+                <span className="text-[9px] font-bold uppercase text-white/40">Element Score</span>
+                <span className="text-[14px] font-bold font-mono" style={{ color: elementColor }}>{elementPct}%</span>
+              </div>
+            )}
             <span className="text-[10px] px-2 py-0.5 font-bold uppercase tracking-wider" style={{ background: `${hc.color}30`, color: hc.color }}>
-              {station.health === 'green' ? 'PASS' : station.health === 'amber' ? 'CONCERN' : station.health === 'red' ? 'FAIL' : 'N/A'}
+              {station.health === 'green' ? 'CONFORM' : station.health === 'amber' ? 'DEVIATION' : station.health === 'red' ? 'NON-CONFORM' : 'N/A'}
             </span>
           </div>
         </div>
 
-        {/* Compact body */}
         <div className="border-x border-b border-border bg-card">
-          {/* Observation row */}
+          {/* Observation */}
           <div className="px-4 py-3 border-b border-border/50">
-            <p className="text-[13px] leading-snug text-foreground">{station.observation}</p>
+            <div className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground mb-1">Auditor Observation</div>
+            <p className="text-[11px] leading-relaxed text-foreground/80">{station.observation}</p>
           </div>
 
-          {/* Findings table */}
-          {station.findings.length > 0 && (
-            <div className="divide-y divide-border/30">
-              {station.findings.map((finding, i) => {
-                const Icon = findingIcon[finding.type];
-                return (
-                  <div key={i} className="flex items-start gap-3 px-4 py-2">
-                    <Icon className={cn("w-3.5 h-3.5 mt-0.5 shrink-0", findingColor[finding.type])} />
-                    <div className="flex-1 min-w-0 flex items-baseline gap-2 flex-wrap">
-                      <span className="text-[12px] font-semibold text-foreground">{finding.title}</span>
-                      {finding.isoClause && (
-                        <span className="text-[9px] font-mono px-1 py-0.5 bg-primary/10 text-primary">§{finding.isoClause}</span>
-                      )}
-                      {finding.ncrId && (
-                        <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 text-destructive bg-destructive/10">{finding.ncrId}</span>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
+          {/* Audit question scoring table — VDA 6.3 format */}
+          {hasQuestions && (
+            <div>
+              <div className="px-4 py-1.5" style={{ background: 'hsl(220,14%,92%)' }}>
+                <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">Audit Questions — Scoring per VDA 6.3 (0/4/6/8/10)</span>
+              </div>
+              <table className="w-full border-collapse text-left">
+                <thead>
+                  <tr style={{ background: 'hsl(220,14%,96%)' }}>
+                    <th className="px-3 py-1.5 text-[8px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border w-[50px]">Ref.</th>
+                    <th className="px-3 py-1.5 text-[8px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l">Clause</th>
+                    <th className="px-3 py-1.5 text-[8px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l">Question</th>
+                    <th className="px-3 py-1.5 text-[8px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l w-[50px] text-center">Score</th>
+                    <th className="px-3 py-1.5 text-[8px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l">Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {station.auditQuestions!.map(q => {
+                    const s = q.score || 0;
+                    const qColor = s >= 8 ? 'hsl(155, 24%, 40%)' : s >= 6 ? 'hsl(24, 72%, 53%)' : 'hsl(0, 48%, 46%)';
+                    return (
+                      <tr key={q.id} className="border-b border-border/30 hover:bg-muted/20">
+                        <td className="px-3 py-1.5 text-[10px] font-mono font-bold text-primary">{q.id}</td>
+                        <td className="px-3 py-1.5 text-[10px] font-mono text-muted-foreground border-l border-border/30">§{q.clause}</td>
+                        <td className="px-3 py-1.5 text-[10px] text-foreground border-l border-border/30 max-w-[400px]">{q.question}</td>
+                        <td className="px-3 py-1.5 border-l border-border/30 text-center">
+                          <span className="text-[12px] font-bold font-mono" style={{ color: qColor }}>{s}</span>
+                          <span className="text-[9px] text-muted-foreground">/10</span>
+                        </td>
+                        <td className="px-3 py-1.5 text-[10px] text-muted-foreground border-l border-border/30">{q.notes}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+                <tfoot>
+                  <tr style={{ background: 'hsl(220,14%,92%)' }}>
+                    <td colSpan={3} className="px-3 py-1.5 text-[10px] font-bold uppercase text-foreground border-t border-border">
+                      Element Result
+                    </td>
+                    <td className="px-3 py-1.5 text-center border-t border-border border-l">
+                      <span className="text-[13px] font-bold font-mono" style={{ color: elementColor }}>{elementPct}%</span>
+                    </td>
+                    <td className="px-3 py-1.5 text-[10px] font-bold border-t border-border border-l" style={{ color: elementColor }}>
+                      {elementPct !== null && elementPct >= 80 ? 'Qualified' : elementPct !== null && elementPct >= 60 ? 'Conditionally Qualified' : 'Not Qualified'}
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
             </div>
           )}
 
-          {/* NCR summary row */}
+          {/* Findings as formal table */}
+          {station.findings.length > 0 && (
+            <div className="border-t border-border/50">
+              <div className="px-4 py-1.5" style={{ background: 'hsl(220,14%,92%)' }}>
+                <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">Findings</span>
+              </div>
+              <table className="w-full border-collapse text-left">
+                <thead>
+                  <tr style={{ background: 'hsl(220,14%,96%)' }}>
+                    <th className="px-3 py-1 text-[8px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border w-[80px]">Type</th>
+                    <th className="px-3 py-1 text-[8px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l">Finding</th>
+                    <th className="px-3 py-1 text-[8px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l w-[70px]">Clause</th>
+                    <th className="px-3 py-1 text-[8px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l w-[80px]">NCR Ref.</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {station.findings.map((finding, i) => {
+                    const Icon = findingIcon[finding.type];
+                    return (
+                      <tr key={i} className="border-b border-border/30">
+                        <td className="px-3 py-1.5">
+                          <div className="flex items-center gap-1.5">
+                            <Icon className={cn("w-3 h-3 shrink-0", findingColor[finding.type])} />
+                            <span className={cn("text-[9px] font-bold uppercase", findingColor[finding.type])}>
+                              {finding.type === 'major-ncr' ? 'Major' : finding.type === 'minor-ncr' ? 'Minor' : finding.type === 'pass' ? 'Pass' : finding.type === 'concern' ? 'Concern' : finding.type === 'observation' ? 'Obs.' : 'N/A'}
+                            </span>
+                          </div>
+                        </td>
+                        <td className="px-3 py-1.5 text-[10px] text-foreground border-l border-border/30">{finding.title}</td>
+                        <td className="px-3 py-1.5 text-[10px] font-mono text-primary border-l border-border/30">{finding.isoClause ? `§${finding.isoClause}` : '—'}</td>
+                        <td className="px-3 py-1.5 border-l border-border/30">
+                          {finding.ncrId ? (
+                            <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 text-destructive bg-destructive/10">{finding.ncrId}</span>
+                          ) : <span className="text-[10px] text-muted-foreground">—</span>}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          )}
+
+          {/* NCR summary */}
           {(majorNCRs.length > 0 || minorNCRs.length > 0) && (
-            <div className="px-4 py-2 flex items-center gap-4 text-[11px] bg-muted/50 border-t border-border/50">
-              {majorNCRs.length > 0 && (
-                <span className="font-bold text-destructive">{majorNCRs.length} Major NCR</span>
-              )}
-              {minorNCRs.length > 0 && (
-                <span className="font-bold text-warning">{minorNCRs.length} Minor NCR</span>
-              )}
+            <div className="px-4 py-2 flex items-center gap-4 text-[10px] border-t border-border" style={{ background: 'hsl(0, 48%, 46%, 0.05)' }}>
+              {majorNCRs.length > 0 && <span className="font-bold text-destructive">▪ {majorNCRs.length} Major NCR — Corrective action required per §10.2</span>}
+              {minorNCRs.length > 0 && <span className="font-bold text-warning">▪ {minorNCRs.length} Minor NCR — Action within 90 days</span>}
               <span className="text-muted-foreground ml-auto">{totalFindings} findings total</span>
             </div>
           )}

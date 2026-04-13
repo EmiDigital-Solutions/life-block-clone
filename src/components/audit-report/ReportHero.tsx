@@ -50,100 +50,177 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
 
   // ── Executive mode: Dense formal engineering document header ──
   if (depth === 'executive') {
+    const overallCls = iatfWeightedScore >= 90 ? { grade: 'A', color: 'hsl(155, 24%, 40%)', bg: 'hsl(155, 24%, 40%, 0.12)' }
+      : iatfWeightedScore >= 80 ? { grade: 'AB', color: 'hsl(155, 24%, 50%)', bg: 'hsl(155, 24%, 50%, 0.12)' }
+      : iatfWeightedScore >= 60 ? { grade: 'B', color: 'hsl(24, 72%, 53%)', bg: 'hsl(24, 72%, 53%, 0.12)' }
+      : { grade: 'C', color: 'hsl(0, 48%, 46%)', bg: 'hsl(0, 48%, 46%, 0.12)' };
+
     return (
-      <section id="station-1" className="scroll-mt-20 pt-6 pb-4">
-        <div className="border border-border">
-          {/* Dark formal header */}
-          <div className="px-6 py-4" style={{ background: 'hsl(220,20%,14%)' }}>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="text-[10px] font-bold tracking-[0.15em] uppercase" style={{ color: config.color }}>
-                  {verdict === 'go' ? '■' : '▲'} VERDICT
+      <section id="station-1" className="scroll-mt-20 pt-6 pb-2">
+        {/* ══════ FORMAL AUDIT REPORT COVER SHEET ══════ */}
+        <div className="border-2 border-foreground/20">
+          {/* Document title block — ISO standard cover page */}
+          <div className="px-6 py-5 text-center border-b-2 border-foreground/20" style={{ background: 'hsl(220,20%,14%)' }}>
+            <div className="text-[9px] font-bold tracking-[0.2em] uppercase text-white/40 mb-1">Confidential — For Authorized Recipients Only</div>
+            <h1 className="text-[20px] font-bold tracking-[0.08em] uppercase text-white leading-tight">
+              Process Audit Report
+            </h1>
+            <div className="text-[12px] font-medium text-white/60 mt-1">
+              per VDA 6.3:2023 / ISO 9001:2015 / IATF 16949:2016
+            </div>
+          </div>
+
+          {/* Report identification table */}
+          <table className="w-full border-collapse text-left">
+            <tbody>
+              {[
+                ['Report No.', `PA-${date.replace(/-/g, '')}-001`, 'Revision', '1.0'],
+                ['Supplier', supplier, 'DUNS No.', '36-421-8847'],
+                ['Client / OEM', reportMeta.client, 'End Customer', 'BMW AG'],
+                ['Site Address', location, 'Production Area', '4,200 m²'],
+                ['Audit Date', new Date(date).toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' }), 'Audit Duration', '2.0 days'],
+                ['Audit Type', reportMeta.auditType, 'Previous Audit', reportMeta.previousAuditDate],
+                ['Lead Auditor', 'I. Petrović, IRCA #A21849', 'Co-Auditor', 'M. Kovačević (VDA 6.3)'],
+                ['Cert. Body', reportMeta.certBody, 'Cert. No.', reportMeta.certNumber],
+                ['PO Reference', po, 'Cert. Expiry', reportMeta.certExpiry],
+              ].map(([k1, v1, k2, v2], i) => (
+                <tr key={i} className="border-b border-border/60">
+                  <td className="px-4 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground w-[130px]" style={{ background: 'hsl(220,14%,94%)' }}>{k1}</td>
+                  <td className="px-4 py-2 text-[12px] font-medium text-foreground">{v1}</td>
+                  <td className="px-4 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground w-[130px] border-l border-border/60" style={{ background: 'hsl(220,14%,94%)' }}>{k2}</td>
+                  <td className="px-4 py-2 text-[12px] font-medium text-foreground border-l border-border/60">{v2}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          {/* ── AUDIT RESULT ── */}
+          <div className="border-t-2 border-foreground/20">
+            <div className="px-4 py-2" style={{ background: 'hsl(220,20%,14%)' }}>
+              <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-white/80">§10 — Audit Result</span>
+            </div>
+            <div className="grid grid-cols-5 divide-x divide-border">
+              {/* VDA Score */}
+              <div className="px-4 py-4 text-center">
+                <div className="text-[8px] font-bold uppercase tracking-wider text-muted-foreground mb-1">VDA 6.3 Score</div>
+                <div className="text-[28px] font-bold font-mono tabular-nums leading-none" style={{ color: overallCls.color }}>{Math.round(iatfWeightedScore)}%</div>
+                <div className="text-[11px] font-bold px-2 py-0.5 mt-1.5 inline-block" style={{ background: overallCls.bg, color: overallCls.color }}>
+                  Grade {overallCls.grade}
                 </div>
-                <span className="text-[28px] font-bold tracking-[-0.02em] text-white leading-none">{verdictLabel}</span>
               </div>
-              <div className="flex items-center gap-3">
-                {['ISO 9001', 'IATF 16949', 'VDA 6.3'].map(badge => (
-                  <span key={badge} className="text-[8px] font-bold tracking-[0.1em] uppercase px-2 py-0.5" style={{ background: 'hsl(220,20%,22%)', color: 'hsl(220,20%,60%)' }}>
-                    {badge}
-                  </span>
-                ))}
+              {/* Verdict */}
+              <div className="px-4 py-4 text-center">
+                <div className="text-[8px] font-bold uppercase tracking-wider text-muted-foreground mb-1">Verdict</div>
+                <div className="text-[22px] font-bold leading-none" style={{ color: config.color }}>{verdictLabel}</div>
+                <div className="text-[10px] mt-1.5 text-muted-foreground">{verdict === 'conditional' ? 'With Conditions' : verdict === 'go' ? 'Without Conditions' : 'Rejected'}</div>
               </div>
-            </div>
-          </div>
-
-          {/* Dense metadata grid */}
-          <div className="grid grid-cols-6 divide-x divide-border bg-card">
-            {[
-              { label: 'Supplier', value: supplier },
-              { label: 'Client', value: reportMeta.client },
-              { label: 'PO', value: po },
-              { label: 'Lead Auditor', value: 'I. Petrović' },
-              { label: 'Date', value: date },
-              { label: 'Location', value: location.split(' — ')[0] },
-            ].map((item, i) => (
-              <div key={i} className="px-3 py-2">
-                <div className="text-[8px] font-bold tracking-[0.12em] uppercase text-muted-foreground">{item.label}</div>
-                <div className="text-[12px] font-semibold text-foreground mt-0.5 truncate">{item.value}</div>
+              {/* Previous */}
+              <div className="px-4 py-4 text-center">
+                <div className="text-[8px] font-bold uppercase tracking-wider text-muted-foreground mb-1">Previous Score</div>
+                <div className="text-[28px] font-bold font-mono tabular-nums leading-none text-foreground">{reportMeta.previousScore}%</div>
+                <div className="text-[10px] mt-1.5 font-mono" style={{ color: iatfWeightedScore < reportMeta.previousScore ? 'hsl(0,48%,46%)' : 'hsl(155,24%,45%)' }}>
+                  {iatfWeightedScore >= reportMeta.previousScore ? '▲' : '▼'} {Math.abs(Math.round(iatfWeightedScore) - reportMeta.previousScore)}pts
+                </div>
               </div>
-            ))}
-          </div>
-
-          {/* Scores + NCR summary row */}
-          <div className="grid grid-cols-5 divide-x divide-border border-t border-border bg-muted/30">
-            <div className="px-3 py-2 text-center">
-              <div className="text-[8px] font-bold tracking-[0.12em] uppercase text-muted-foreground">IATF Score</div>
-              <div className="text-[20px] font-bold font-mono tabular-nums leading-none mt-1" style={{ color: config.color }}>{Math.round(iatfWeightedScore)}%</div>
-            </div>
-            <div className="px-3 py-2 text-center">
-              <div className="text-[8px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Previous</div>
-              <div className="text-[20px] font-bold font-mono tabular-nums leading-none mt-1 text-foreground">{reportMeta.previousScore}%</div>
-            </div>
-            <div className="px-3 py-2 text-center">
-              <div className="text-[8px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Major NCR</div>
-              <div className="text-[20px] font-bold font-mono tabular-nums leading-none mt-1 text-destructive">{majorNCRs}</div>
-            </div>
-            <div className="px-3 py-2 text-center">
-              <div className="text-[8px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Minor NCR</div>
-              <div className="text-[20px] font-bold font-mono tabular-nums leading-none mt-1 text-warning">{minorNCRs}</div>
-            </div>
-            <div className="px-3 py-2 text-center">
-              <div className="text-[8px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Cost Exposure</div>
-              <div className="text-[20px] font-bold font-mono tabular-nums leading-none mt-1 text-destructive">€{(reportMeta.totalCostExposure / 1000).toFixed(0)}K</div>
-            </div>
-          </div>
-
-          {/* Executive summary bullets — dense */}
-          <div className="px-6 py-3 border-t border-border bg-card">
-            <div className="text-[9px] font-bold tracking-[0.12em] uppercase text-muted-foreground mb-2">Executive Summary</div>
-            <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-[11px] leading-snug text-foreground/80">
-              <div className="flex items-start gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-destructive mt-1.5 shrink-0" />
-                <span><strong>Critical:</strong> Bore ID Cpk 0.98 (BMW min: 1.33). CNC calibration overdue 2 machines.</span>
+              {/* NCRs */}
+              <div className="px-4 py-4 text-center">
+                <div className="text-[8px] font-bold uppercase tracking-wider text-muted-foreground mb-1">Non-Conformities</div>
+                <div className="flex items-center justify-center gap-3">
+                  <div>
+                    <div className="text-[22px] font-bold font-mono text-destructive leading-none">{majorNCRs}</div>
+                    <div className="text-[9px] uppercase text-destructive font-bold">Major</div>
+                  </div>
+                  <div className="w-px h-8 bg-border" />
+                  <div>
+                    <div className="text-[22px] font-bold font-mono text-warning leading-none">{minorNCRs}</div>
+                    <div className="text-[9px] uppercase text-warning font-bold">Minor</div>
+                  </div>
+                </div>
               </div>
-              <div className="flex items-start gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-warning mt-1.5 shrink-0" />
-                <span><strong>Warning:</strong> DPPM 410 vs. target 50. Accelerating trend since Oct 2025.</span>
-              </div>
-              <div className="flex items-start gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
-                <span><strong>Strength:</strong> Workforce competency above benchmark. CEO engagement confirmed.</span>
-              </div>
-              <div className="flex items-start gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
-                <span><strong>Action:</strong> 2 major NCRs require owners + dates before PO release. €937K exposure.</span>
+              {/* Cost */}
+              <div className="px-4 py-4 text-center">
+                <div className="text-[8px] font-bold uppercase tracking-wider text-muted-foreground mb-1">Risk Exposure</div>
+                <div className="text-[22px] font-bold font-mono tabular-nums leading-none text-destructive">€{(reportMeta.totalCostExposure / 1000).toFixed(0)}K</div>
+                <div className="text-[10px] mt-1.5 text-muted-foreground">Mitigatable to €{(reportMeta.mitigatedCostExposure / 1000).toFixed(0)}K</div>
               </div>
             </div>
           </div>
 
-          {/* CTAs */}
-          <div className="flex items-center gap-2 px-6 py-3 border-t border-border bg-card">
-            <button onClick={onDecide} className="px-4 py-1.5 text-[10px] font-bold text-white uppercase tracking-wider bg-primary hover:bg-primary/90 cursor-pointer">
-              Review & decide →
-            </button>
-            <button onClick={onWalk} className="px-4 py-1.5 text-[10px] font-bold uppercase tracking-wider cursor-pointer bg-muted text-foreground hover:bg-muted/80">
-              Walk the factory ↓
-            </button>
+          {/* ── EXECUTIVE SUMMARY ── */}
+          <div className="border-t-2 border-foreground/20">
+            <div className="px-4 py-2" style={{ background: 'hsl(220,20%,14%)' }}>
+              <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-white/80">§1 — Executive Summary</span>
+            </div>
+            <div className="px-6 py-4 bg-card">
+              <table className="w-full border-collapse">
+                <tbody>
+                  <tr className="border-b border-border/40">
+                    <td className="py-2 pr-4 align-top w-[24px]"><div className="w-3 h-3 bg-destructive mt-0.5" /></td>
+                    <td className="py-2 pr-3 text-[10px] font-bold uppercase text-destructive w-[80px] align-top">Critical</td>
+                    <td className="py-2 text-[12px] leading-snug text-foreground">Bore ID Cpk 0.98 — below BMW minimum 1.33 (§8.5.1). CNC machines #2 & #4 calibration overdue. Process capability not demonstrated per IATF 16949 §9.1.1.1.</td>
+                  </tr>
+                  <tr className="border-b border-border/40">
+                    <td className="py-2 pr-4 align-top"><div className="w-3 h-3 bg-warning mt-0.5" /></td>
+                    <td className="py-2 pr-3 text-[10px] font-bold uppercase text-warning align-top">Warning</td>
+                    <td className="py-2 text-[12px] leading-snug text-foreground">DPPM 410 vs. target 50. Accelerating trend since Oct 2025. 6/42 supplier re-evaluations overdue (§8.4.1). CAPA closure rate 62.5% — below 90% threshold.</td>
+                  </tr>
+                  <tr className="border-b border-border/40">
+                    <td className="py-2 pr-4 align-top"><div className="w-3 h-3 bg-accent mt-0.5" /></td>
+                    <td className="py-2 pr-3 text-[10px] font-bold uppercase text-accent align-top">Strength</td>
+                    <td className="py-2 text-[12px] leading-snug text-foreground">Workforce competency above benchmark (P6 score 88%). CEO engagement confirmed (§5.1). Customer care score highest across all process elements.</td>
+                  </tr>
+                  <tr>
+                    <td className="py-2 pr-4 align-top"><div className="w-3 h-3 bg-primary mt-0.5" /></td>
+                    <td className="py-2 pr-3 text-[10px] font-bold uppercase text-primary align-top">Action Req.</td>
+                    <td className="py-2 text-[12px] leading-snug text-foreground">2 major NCRs require assigned owners + corrective action deadlines before PO release. Re-audit within 90 days per VDA 6.3 §10.3.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* ── IATF PROCESS SCORE BARS ── */}
+          <div className="border-t border-foreground/20">
+            <div className="px-4 py-2" style={{ background: 'hsl(220,20%,14%)' }}>
+              <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-white/80">§9 — Process Element Scores (Overview)</span>
+            </div>
+            <div className="px-6 py-3 bg-card">
+              {iatfProcessScores.map((p, i) => {
+                const sc = p.score;
+                const barColor = sc >= 80 ? 'hsl(155, 24%, 45%)' : sc >= 60 ? 'hsl(24, 72%, 53%)' : 'hsl(0, 48%, 46%)';
+                return (
+                  <div key={i} className="flex items-center gap-3 py-1.5 border-b border-border/30 last:border-0">
+                    <span className="text-[10px] font-mono font-bold w-[24px] text-muted-foreground shrink-0">P{i + 1}</span>
+                    <span className="text-[11px] text-foreground w-[180px] shrink-0 truncate">{p.process.split(' — ')[1]}</span>
+                    <div className="flex-1 h-[10px] bg-muted overflow-hidden">
+                      <div className="h-full" style={{ width: `${sc}%`, background: barColor }} />
+                    </div>
+                    <span className="text-[12px] font-bold font-mono tabular-nums w-[36px] text-right" style={{ color: barColor }}>{sc}%</span>
+                    {/* BMW threshold marker */}
+                    <div className="w-[40px] text-center">
+                      {sc < 70 && <span className="text-[8px] font-bold px-1.5 py-0.5 bg-destructive/10 text-destructive">FAIL</span>}
+                      {sc >= 70 && sc < 80 && <span className="text-[8px] font-bold px-1.5 py-0.5 bg-warning/10 text-warning">RISK</span>}
+                      {sc >= 80 && <span className="text-[8px] font-bold px-1.5 py-0.5 bg-accent/10 text-accent">OK</span>}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Actions */}
+          <div className="flex items-center justify-between px-6 py-3 border-t-2 border-foreground/20 bg-card">
+            <div className="text-[9px] text-muted-foreground">
+              Document generated: {new Date().toLocaleDateString('de-DE')} · Distribution: Restricted
+            </div>
+            <div className="flex items-center gap-2">
+              <button onClick={onWalk} className="px-4 py-1.5 text-[10px] font-bold uppercase tracking-wider cursor-pointer bg-muted text-foreground hover:bg-muted/80">
+                Detailed Findings ↓
+              </button>
+              <button onClick={onDecide} className="px-4 py-1.5 text-[10px] font-bold text-white uppercase tracking-wider bg-primary hover:bg-primary/90 cursor-pointer">
+                Review & Sign Off →
+              </button>
+            </div>
           </div>
         </div>
       </section>
