@@ -53,10 +53,51 @@ const semanticStyles: Record<string, { bg: string; text: string; bar: string }> 
   muted: { bg: 'bg-muted', text: 'text-muted-foreground', bar: 'bg-muted-foreground' },
 };
 
-export default function FindingSankeyDiagram() {
+export default function FindingSankeyDiagram({ depth = 'standard' }: { depth?: import("@/data/auditReportData").DepthLevel }) {
   const totalFindings = stages[0].nodes.reduce((a, n) => a + n.count, 0);
   const openCount = stages[3].nodes.find(n => n.label === 'Open')?.count || 0;
   const maxCount = Math.max(...stages.flatMap(s => s.nodes.map(n => n.count)));
+
+  if (depth === 'executive') {
+    return (
+      <div className="border border-border">
+        <div className="px-4 py-2" style={{ background: 'hsl(220,20%,14%)' }}>
+          <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/80">
+            Resolution Pipeline — {openCount} of {totalFindings} Open
+          </span>
+        </div>
+        <div className="bg-card px-4 py-3">
+          <div className="grid grid-cols-4 gap-3">
+            {stages.map((stage, si) => (
+              <div key={si}>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[9px] uppercase tracking-[0.1em] font-semibold text-muted-foreground">{stage.title}</span>
+                  <span className="text-[14px] font-mono font-bold text-foreground tabular-nums">
+                    {stage.nodes.reduce((a, n) => a + n.count, 0)}
+                  </span>
+                </div>
+                {stage.nodes.map((node, ni) => {
+                  const style = semanticStyles[node.semantic];
+                  const barWidth = Math.max(20, (node.count / maxCount) * 100);
+                  return (
+                    <div key={ni} className="mb-1.5">
+                      <div className="flex items-center justify-between mb-0.5">
+                        <span className={`text-[10px] ${style.text}`}>{node.label}</span>
+                        <span className={`text-[11px] font-mono font-bold tabular-nums ${style.text}`}>{node.count}</span>
+                      </div>
+                      <div className="h-[4px] bg-muted overflow-hidden">
+                        <div className={`h-full ${style.bar}`} style={{ width: `${barWidth}%` }} />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <section className="py-12 space-y-8">

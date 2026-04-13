@@ -31,9 +31,56 @@ function OEEBar({ value, label, threshold }: { value: number; label: string; thr
   );
 }
 
-export default function OEEGaugeCluster() {
+export default function OEEGaugeCluster({ depth = 'standard' }: { depth?: import("@/data/auditReportData").DepthLevel }) {
   const avgOEE = Math.round(machines.reduce((s, m) => s + m.oee, 0) / machines.length);
   const belowThreshold = machines.filter(m => m.oee < BMW_THRESHOLD).length;
+
+  if (depth === 'executive') {
+    return (
+      <div className="border border-border">
+        <div className="px-4 py-2 flex items-center justify-between" style={{ background: 'hsl(220,20%,14%)' }}>
+          <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/80">OEE Fleet Performance</span>
+          <span className="text-[10px] font-mono text-white/60">BMW Threshold: {BMW_THRESHOLD}%</span>
+        </div>
+        <div className="bg-card">
+          <div className="grid grid-cols-5 divide-x divide-border">
+            {machines.map(m => {
+              const oeeColor = m.oee >= BMW_THRESHOLD ? 'hsl(var(--accent))' : m.oee >= 75 ? 'hsl(var(--warning))' : 'hsl(var(--destructive))';
+              return (
+                <div key={m.id} className="px-3 py-3 text-center">
+                  <div className="text-[9px] font-mono text-muted-foreground mb-1">{m.id}</div>
+                  <div className="text-[22px] font-bold font-mono leading-none mb-1" style={{ color: oeeColor }}>{m.oee}%</div>
+                  <div className="text-[9px] text-muted-foreground truncate">{m.name.split(' ').slice(0, 2).join(' ')}</div>
+                  <div className="mt-2 space-y-1">
+                    {[
+                      { label: 'A', value: m.availability },
+                      { label: 'P', value: m.performance },
+                      { label: 'Q', value: m.quality },
+                    ].map(sub => {
+                      const c = sub.value >= BMW_THRESHOLD ? 'hsl(var(--accent))' : sub.value >= 75 ? 'hsl(var(--warning))' : 'hsl(var(--destructive))';
+                      return (
+                        <div key={sub.label} className="flex items-center gap-1">
+                          <span className="text-[8px] text-muted-foreground w-[10px]">{sub.label}</span>
+                          <div className="flex-1 h-[3px] bg-muted">
+                            <div className="h-full" style={{ width: `${sub.value}%`, background: c }} />
+                          </div>
+                          <span className="text-[8px] font-mono w-[22px] text-right" style={{ color: c }}>{sub.value}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <div className="flex items-center gap-4 px-4 py-2 border-t border-border text-[9px] text-muted-foreground">
+            <span>Fleet Avg: <strong className="text-foreground font-mono">{avgOEE}%</strong></span>
+            {belowThreshold > 0 && <span className="text-destructive font-semibold">{belowThreshold} below threshold</span>}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <section className="py-12 space-y-8">
