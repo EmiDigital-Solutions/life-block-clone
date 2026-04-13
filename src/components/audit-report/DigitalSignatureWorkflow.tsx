@@ -29,7 +29,7 @@ export default function DigitalSignatureWorkflow() {
         <span className="text-[10px] px-2 py-0.5 bg-warning/10 text-warning font-semibold uppercase tracking-wider">1 of 3 signed</span>
       </div>
 
-      <div className="bg-white/60 backdrop-blur-sm">
+      <div className="bg-card shadow-sm">
         {signatureSteps.map((step, i) => {
           const Icon = statusIcon[step.status];
           return (

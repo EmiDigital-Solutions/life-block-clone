@@ -71,7 +71,7 @@ export default function AtlasRiskScore() {
         Composite risk score: {score}/100
       </h2>
 
-      <div className="p-8 bg-card/60 backdrop-blur-sm">
+      <div className="p-8 bg-card shadow-sm">
         <div className="flex flex-col md:flex-row items-center gap-12">
           <RiskGauge score={score} />
 

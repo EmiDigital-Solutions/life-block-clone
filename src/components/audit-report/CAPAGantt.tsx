@@ -69,7 +69,7 @@ export default function CAPAGantt() {
       </div>
 
       {/* Timeline */}
-      <div className="p-8 bg-card/60 backdrop-blur-sm">
+      <div className="p-8 bg-card shadow-sm">
         <div className="flex justify-between mb-4 text-[11px] font-mono text-muted-foreground">
           <span>Apr 8</span>
           <span>Apr 22</span>
