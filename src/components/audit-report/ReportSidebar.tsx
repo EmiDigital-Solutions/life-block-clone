@@ -32,7 +32,7 @@ function SidebarSparkline({ data }: { data: number[] }) {
   const step = w / (data.length - 1);
   const points = data.map((v, i) => `${i * step},${h - ((v - min) / range) * h}`).join(' ');
   const lastVal = data[data.length - 1];
-  const color = lastVal >= 70 ? '#6EA996' : lastVal >= 50 ? '#E39B5C' : '#AD3D3D';
+  const color = lastVal >= 70 ? 'hsl(155, 24%, 55%)' : lastVal >= 50 ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)';
 
   return (
     <svg width={w} height={h} className="shrink-0 opacity-60">

@@ -72,10 +72,10 @@ export default function CAPAGantt() {
         <div className="space-y-3">
           {capaItems.map(item => {
             const style = statusColors[item.status];
-            const barColor = item.severity === 'major' ? '#AD3D3D' : '#E39B5C';
+            const barColor = item.severity === 'major' ? 'hsl(0, 48%, 46%)' : 'hsl(24, 72%, 63%)';
             const startPct = dayOffset(item.startDate);
             const endPct = dayOffset(item.dueDate);
-            const successColor = item.predictedSuccess >= 80 ? '#6EA996' : item.predictedSuccess >= 60 ? '#E39B5C' : '#AD3D3D';
+            const successColor = item.predictedSuccess >= 80 ? 'hsl(155, 24%, 55%)' : item.predictedSuccess >= 60 ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)';
 
             return (
               <div key={item.id} className={cn("border p-3", style.border)}>

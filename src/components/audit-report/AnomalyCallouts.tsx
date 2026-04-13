@@ -2,10 +2,10 @@ import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { Zap, AlertTriangle, TrendingDown } from "lucide-react";
 
 const severityColor: Record<string, string> = {
-  critical: '#AD3D3D',
-  high: '#E39B5C',
+  critical: 'hsl(0, 48%, 46%)',
+  high: 'hsl(24, 72%, 63%)',
   medium: '#D4A843',
-  low: '#6EA996',
+  low: 'hsl(155, 24%, 55%)',
 };
 
 export default function AnomalyCallouts() {

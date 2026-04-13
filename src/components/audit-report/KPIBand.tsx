@@ -45,8 +45,8 @@ export default function KPIBand({ kpis }: KPIBandProps) {
         const Icon = trendIcon[kpi.trend];
         const isNegativeTrend = (kpi.trend === 'up' && (kpi.label.includes('NCR') || kpi.label.includes('DPPM') || kpi.label.includes('Cost')))
           || (kpi.trend === 'down' && !kpi.label.includes('NCR') && !kpi.label.includes('DPPM') && !kpi.label.includes('Cost'));
-        const trendColor = kpi.trend === 'flat' ? '#7B8E80' : isNegativeTrend ? '#AD3D3D' : '#6EA996';
-        const sparkColor = isNegativeTrend ? '#AD3D3D' : '#0A7FA5';
+        const trendColor = kpi.trend === 'flat' ? 'hsl(135, 8%, 52%)' : isNegativeTrend ? 'hsl(0, 48%, 46%)' : 'hsl(155, 24%, 55%)';
+        const sparkColor = isNegativeTrend ? 'hsl(0, 48%, 46%)' : 'hsl(195, 89%, 34%)';
         const threshold = kpiThresholds[kpi.label];
 
         return (

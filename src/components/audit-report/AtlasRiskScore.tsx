@@ -3,7 +3,7 @@ import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { Sparkles, Shield, TrendingUp } from "lucide-react";
 
 function RiskGauge({ score }: { score: number }) {
-  const color = score >= 70 ? '#6EA996' : score >= 40 ? '#E39B5C' : '#AD3D3D';
+  const color = score >= 70 ? 'hsl(155, 24%, 55%)' : score >= 40 ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)';
   const label = score >= 70 ? 'LOW RISK' : score >= 40 ? 'MODERATE RISK' : 'HIGH RISK';
   const angle = (score / 100) * 180;
 
@@ -78,10 +78,10 @@ export default function AtlasRiskScore() {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
               {[
-                { label: 'Station Health', value: `${Math.round(stationAvg)}%`, color: stationAvg >= 70 ? '#6EA996' : '#E39B5C' },
-                { label: 'NCR Impact', value: `${ncrScore}/100`, color: ncrScore >= 50 ? '#E39B5C' : '#AD3D3D' },
-                { label: 'Cost Risk', value: `€${Math.round(totalExposure / 1000)}K`, color: totalExposure > 500000 ? '#AD3D3D' : '#E39B5C' },
-                { label: 'OEE Avg', value: '82%', color: '#E39B5C' },
+                { label: 'Station Health', value: `${Math.round(stationAvg)}%`, color: stationAvg >= 70 ? 'hsl(155, 24%, 55%)' : 'hsl(24, 72%, 63%)' },
+                { label: 'NCR Impact', value: `${ncrScore}/100`, color: ncrScore >= 50 ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)' },
+                { label: 'Cost Risk', value: `€${Math.round(totalExposure / 1000)}K`, color: totalExposure > 500000 ? 'hsl(0, 48%, 46%)' : 'hsl(24, 72%, 63%)' },
+                { label: 'OEE Avg', value: '82%', color: 'hsl(24, 72%, 63%)' },
               ].map(item => (
                 <div key={item.label} className="border border-border p-3">
                   <span className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground font-semibold">{item.label}</span>

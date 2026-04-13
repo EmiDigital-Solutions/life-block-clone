@@ -13,9 +13,9 @@ import {
 } from "lucide-react";
 
 const trendIcon = { improving: TrendingUp, declining: TrendingDown, stable: Minus };
-const trendColor = { improving: '#6EA996', declining: '#AD3D3D', stable: '#7B8E80' };
-const severityColor = { critical: '#AD3D3D', high: '#E39B5C', medium: '#E39B5C', low: '#7B8E80' };
-const statusColor = { safe: '#6EA996', warning: '#E39B5C', critical: '#AD3D3D' };
+const trendColor = { improving: 'hsl(155, 24%, 55%)', declining: 'hsl(0, 48%, 46%)', stable: 'hsl(135, 8%, 52%)' };
+const severityColor = { critical: 'hsl(0, 48%, 46%)', high: 'hsl(24, 72%, 63%)', medium: 'hsl(24, 72%, 63%)', low: 'hsl(135, 8%, 52%)' };
+const statusColor = { safe: 'hsl(155, 24%, 55%)', warning: 'hsl(24, 72%, 63%)', critical: 'hsl(0, 48%, 46%)' };
 
 export default function AtlasIntelligence() {
   const {
@@ -144,14 +144,14 @@ export default function AtlasIntelligence() {
             <ResponsiveContainer width="100%" height={280}>
               <AreaChart data={trajectoryData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
-                <XAxis dataKey="month" tick={{ fill: '#7B8E80', fontSize: 12 }} axisLine={false} tickLine={false} />
-                <YAxis tick={{ fill: '#7B8E80', fontSize: 12 }} axisLine={false} tickLine={false} />
+                <XAxis dataKey="month" tick={{ fill: 'hsl(135, 8%, 52%)', fontSize: 12 }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fill: 'hsl(135, 8%, 52%)', fontSize: 12 }} axisLine={false} tickLine={false} />
                 <Tooltip contentStyle={{ background: '#fff', border: '1px solid #E5E7EB', borderRadius: '8px', fontSize: '13px', color: '#0A0A0A' }} />
-                <Area type="monotone" dataKey="upperBound" stroke="none" fill="#0A7FA5" fillOpacity={0.04} />
+                <Area type="monotone" dataKey="upperBound" stroke="none" fill="hsl(195, 89%, 34%)" fillOpacity={0.04} />
                 <Area type="monotone" dataKey="lowerBound" stroke="none" fill="#fff" fillOpacity={1} />
-                <Area type="monotone" dataKey="predicted" stroke="#0A7FA5" strokeWidth={2} fill="#0A7FA5" fillOpacity={0.06} strokeDasharray="6 3" />
-                <Area type="monotone" dataKey="actual" stroke="#0A0A0A" strokeWidth={2} fill="none" dot={{ r: 4, fill: '#0A0A0A' }} connectNulls={false} />
-                <Area type="monotone" dataKey={() => 50} stroke="#AD3D3D" strokeWidth={1} strokeDasharray="4 4" fill="none" />
+                <Area type="monotone" dataKey="predicted" stroke="hsl(195, 89%, 34%)" strokeWidth={2} fill="hsl(195, 89%, 34%)" fillOpacity={0.06} strokeDasharray="6 3" />
+                <Area type="monotone" dataKey="actual" stroke="hsl(0, 0%, 4%)" strokeWidth={2} fill="none" dot={{ r: 4, fill: '#0A0A0A' }} connectNulls={false} />
+                <Area type="monotone" dataKey={() => 50} stroke="hsl(0, 48%, 46%)" strokeWidth={1} strokeDasharray="4 4" fill="none" />
               </AreaChart>
             </ResponsiveContainer>
             <div className="flex items-center gap-6 mt-4 text-[12px] text-muted-foreground">
@@ -186,10 +186,10 @@ export default function AtlasIntelligence() {
               <ResponsiveContainer width="100%" height={280}>
                 <RadarChart data={innovationSignals.map(s => ({ dimension: s.dimension.replace(/\s/g, '\n'), score: s.score, benchmark: s.benchmark }))}>
                   <PolarGrid stroke="#E5E7EB" />
-                  <PolarAngleAxis dataKey="dimension" tick={{ fill: '#7B8E80', fontSize: 11 }} />
+                  <PolarAngleAxis dataKey="dimension" tick={{ fill: 'hsl(135, 8%, 52%)', fontSize: 11 }} />
                   <PolarRadiusAxis angle={90} domain={[0, 100]} tick={false} axisLine={false} />
-                  <Radar dataKey="benchmark" stroke="#C0C0C0" fill="none" strokeWidth={1} strokeDasharray="4 4" />
-                  <Radar dataKey="score" stroke="#0A7FA5" fill="#0A7FA5" fillOpacity={0.08} strokeWidth={2} />
+                  <Radar dataKey="benchmark" stroke="hsl(0, 0%, 75%)" fill="none" strokeWidth={1} strokeDasharray="4 4" />
+                  <Radar dataKey="score" stroke="hsl(195, 89%, 34%)" fill="hsl(195, 89%, 34%)" fillOpacity={0.08} strokeWidth={2} />
                 </RadarChart>
               </ResponsiveContainer>
               <div className="flex items-center gap-6 mt-2 text-[12px] text-muted-foreground">
@@ -207,7 +207,7 @@ export default function AtlasIntelligence() {
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-[13px] text-foreground font-medium">{signal.dimension}</span>
                       <div className="flex items-center gap-2">
-                        <span className="text-[16px] font-mono tabular-nums" style={{ color: signal.score >= signal.benchmark ? '#6EA996' : '#E39B5C' }}>{signal.score}</span>
+                        <span className="text-[16px] font-mono tabular-nums" style={{ color: signal.score >= signal.benchmark ? 'hsl(155, 24%, 55%)' : 'hsl(24, 72%, 63%)' }}>{signal.score}</span>
                         <span className="text-[12px] text-muted-foreground">/ {signal.benchmark}</span>
                         <TIcon className="w-3.5 h-3.5" style={{ color: trendColor[signal.trend] }} />
                       </div>
@@ -230,11 +230,11 @@ export default function AtlasIntelligence() {
             </div>
             <ResponsiveContainer width="100%" height={200}>
               <BarChart data={iatfProcessScores} margin={{ left: 120 }} layout="vertical">
-                <XAxis type="number" domain={[0, 100]} tick={{ fill: '#7B8E80', fontSize: 12 }} axisLine={false} tickLine={false} />
+                <XAxis type="number" domain={[0, 100]} tick={{ fill: 'hsl(135, 8%, 52%)', fontSize: 12 }} axisLine={false} tickLine={false} />
                 <YAxis type="category" dataKey="process" tick={{ fill: '#1A1A1A', fontSize: 12 }} axisLine={false} tickLine={false} width={120} />
                 <Bar dataKey="score" radius={[0, 4, 4, 0]} barSize={16}>
                   {iatfProcessScores.map((entry, index) => (
-                    <Cell key={index} fill={entry.score >= 80 ? '#6EA996' : entry.score >= 60 ? '#E39B5C' : '#AD3D3D'} />
+                    <Cell key={index} fill={entry.score >= 80 ? 'hsl(155, 24%, 55%)' : entry.score >= 60 ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)'} />
                   ))}
                 </Bar>
               </BarChart>
@@ -324,13 +324,13 @@ export default function AtlasIntelligence() {
                     </div>
                     <div>
                       <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">Cost</span>
-                      <p className="text-[24px] font-mono font-light tabular-nums" style={{ color: sc.costImpact > 200000 ? '#AD3D3D' : sc.costImpact > 100000 ? '#E39B5C' : '#6EA996' }}>
+                      <p className="text-[24px] font-mono font-light tabular-nums" style={{ color: sc.costImpact > 200000 ? 'hsl(0, 48%, 46%)' : sc.costImpact > 100000 ? 'hsl(24, 72%, 63%)' : 'hsl(155, 24%, 55%)' }}>
                         €{(sc.costImpact / 1000).toFixed(0)}K
                       </p>
                     </div>
                   </div>
                   <p className="text-[13px] text-muted-foreground leading-relaxed">{sc.qualityRisk}</p>
-                  <p className="text-[12px] font-medium" style={{ color: isRecommended ? '#6EA996' : '#7B8E80' }}>{sc.recommendation}</p>
+                  <p className="text-[12px] font-medium" style={{ color: isRecommended ? 'hsl(155, 24%, 55%)' : 'hsl(135, 8%, 52%)' }}>{sc.recommendation}</p>
                 </div>
               );
             })}

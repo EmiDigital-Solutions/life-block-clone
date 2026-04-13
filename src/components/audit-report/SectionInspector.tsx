@@ -9,10 +9,10 @@ const severityDot: Record<string, string> = {
 };
 
 const healthLabel: Record<string, { label: string; color: string }> = {
-  green: { label: 'Conforming', color: '#6EA996' },
-  amber: { label: 'Observation', color: '#E39B5C' },
-  red: { label: 'Critical', color: '#AD3D3D' },
-  grey: { label: 'N/A', color: '#C0C0C0' },
+  green: { label: 'Conforming', color: 'hsl(155, 24%, 55%)' },
+  amber: { label: 'Observation', color: 'hsl(24, 72%, 63%)' },
+  red: { label: 'Critical', color: 'hsl(0, 48%, 46%)' },
+  grey: { label: 'N/A', color: 'hsl(0, 0%, 75%)' },
 };
 
 function gradeFromScore(score: number): string {
@@ -24,9 +24,9 @@ function gradeFromScore(score: number): string {
 }
 
 function riskFromHealth(health: string): { label: string; color: string } {
-  if (health === 'red') return { label: 'High', color: '#AD3D3D' };
-  if (health === 'amber') return { label: 'Medium', color: '#E39B5C' };
-  return { label: 'Low', color: '#6EA996' };
+  if (health === 'red') return { label: 'High', color: 'hsl(0, 48%, 46%)' };
+  if (health === 'amber') return { label: 'Medium', color: 'hsl(24, 72%, 63%)' };
+  return { label: 'Low', color: 'hsl(155, 24%, 55%)' };
 }
 
 interface SectionInspectorProps {
@@ -48,14 +48,14 @@ export default function SectionInspector({ activeStation, isOpen, onClose }: Sec
     : null;
 
   const timelineEvents = [
-    { time: '08 apr · 09:14', label: 'Audit started', color: '#6EA996' },
-    { time: '08 apr · 11:12', label: `Entered ${station.name.toLowerCase()}`, color: '#6EA996' },
+    { time: '08 apr · 09:14', label: 'Audit started', color: 'hsl(155, 24%, 55%)' },
+    { time: '08 apr · 11:12', label: `Entered ${station.name.toLowerCase()}`, color: 'hsl(155, 24%, 55%)' },
     ...(stationNCRs.length > 0 ? stationNCRs.map(n => ({
       time: '08 apr · 11:42',
       label: `${n.id} raised`,
-      color: '#0A7FA5',
+      color: 'hsl(195, 89%, 34%)',
     })) : []),
-    { time: '08 apr · 12:20', label: `Exit ${station.name.toLowerCase()}`, color: '#C0C0C0' },
+    { time: '08 apr · 12:20', label: `Exit ${station.name.toLowerCase()}`, color: 'hsl(0, 0%, 75%)' },
   ];
 
   return (
@@ -87,14 +87,14 @@ export default function SectionInspector({ activeStation, isOpen, onClose }: Sec
           <span className="text-[10px] font-semibold tracking-[0.15em] uppercase text-muted-foreground mb-3 block">Properties</span>
           <div className="space-y-2.5">
             <PropertyRow label="Section id" value={`5.${activeStation > 1 ? activeStation - 1 : 1}`} />
-            <PropertyRow label="Process element" value={`P${Math.min(activeStation + 3, 7)} · ${station.name}`} valueColor="#0A7FA5" />
-            <PropertyRow label="Standard" value="VDA 6.3" valueColor="#0A7FA5" />
+            <PropertyRow label="Process element" value={`P${Math.min(activeStation + 3, 7)} · ${station.name}`} valueColor="hsl(195, 89%, 34%)" />
+            <PropertyRow label="Standard" value="VDA 6.3" valueColor="hsl(195, 89%, 34%)" />
             <PropertyRow label="Classification" value={hl.label} valueColor={hl.color} />
-            <PropertyRow label="Score" value={avgScore ? `${avgScore} / 100` : '—'} valueColor={avgScore && avgScore >= 70 ? '#6EA996' : '#E39B5C'} />
+            <PropertyRow label="Score" value={avgScore ? `${avgScore} / 100` : '—'} valueColor={avgScore && avgScore >= 70 ? 'hsl(155, 24%, 55%)' : 'hsl(24, 72%, 63%)'} />
             <PropertyRow label="Grade" value={avgScore ? gradeFromScore(avgScore) : '—'} />
             <PropertyRow label="Risk" value={risk.label} valueColor={risk.color} />
-            <PropertyRow label="Created" value="2026-04-08 11:12" valueColor="#0A7FA5" />
-            <PropertyRow label="Last modified" value="2026-04-08 16:44" valueColor="#0A7FA5" />
+            <PropertyRow label="Created" value="2026-04-08 11:12" valueColor="hsl(195, 89%, 34%)" />
+            <PropertyRow label="Last modified" value="2026-04-08 16:44" valueColor="hsl(195, 89%, 34%)" />
           </div>
         </div>
 
@@ -106,7 +106,7 @@ export default function SectionInspector({ activeStation, isOpen, onClose }: Sec
               {stationNCRs.map(ncr => (
                 <div key={ncr.id} className="flex items-center gap-3 py-1.5">
                   <div className={cn("w-5 h-5 rounded flex items-center justify-center", ncr.severity === 'major' ? 'bg-destructive/10' : 'bg-warning/10')}>
-                    <AlertTriangle className="w-3 h-3" style={{ color: ncr.severity === 'major' ? '#AD3D3D' : '#E39B5C' }} />
+                    <AlertTriangle className="w-3 h-3" style={{ color: ncr.severity === 'major' ? 'hsl(0, 48%, 46%)' : 'hsl(24, 72%, 63%)' }} />
                   </div>
                   <span className="text-[13px] font-medium text-foreground flex-1">{ncr.id} · {ncr.title.toLowerCase().split(' ').slice(0, 2).join(' ')}</span>
                   <span className="text-[12px] text-muted-foreground capitalize">{ncr.severity}</span>

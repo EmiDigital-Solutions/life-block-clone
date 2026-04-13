@@ -46,7 +46,7 @@ export default function DelayForecast() {
                 background: item.predicted > item.contracted ? 'rgba(227,155,92,0.15)' : 'rgba(110,169,150,0.15)',
               }}>
                 <div className="absolute right-0 top-0 bottom-0 w-0.5" style={{
-                  background: item.predicted > item.contracted ? '#E39B5C' : '#6EA996'
+                  background: item.predicted > item.contracted ? 'hsl(24, 72%, 63%)' : 'hsl(155, 24%, 55%)'
                 }} />
               </div>
             </div>

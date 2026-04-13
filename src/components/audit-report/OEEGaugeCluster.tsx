@@ -23,14 +23,14 @@ function MiniGauge({ value, label, size = 48 }: { value: number; label: string; 
   const radius = (size - 8) / 2;
   const circumference = Math.PI * radius;
   const offset = circumference - (value / 100) * circumference;
-  const color = value >= BMW_THRESHOLD ? '#6EA996' : value >= 75 ? '#E39B5C' : '#AD3D3D';
+  const color = value >= BMW_THRESHOLD ? 'hsl(155, 24%, 55%)' : value >= 75 ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)';
 
   return (
     <div className="flex flex-col items-center gap-0.5">
       <svg width={size} height={size / 2 + 4} viewBox={`0 0 ${size} ${size / 2 + 4}`}>
         <path
           d={`M 4 ${size / 2} A ${radius} ${radius} 0 0 1 ${size - 4} ${size / 2}`}
-          fill="none" stroke="#F5F5F5" strokeWidth={3} strokeLinecap="round"
+          fill="none" stroke="hsl(0, 0%, 96%)" strokeWidth={3} strokeLinecap="round"
         />
         <path
           d={`M 4 ${size / 2} A ${radius} ${radius} 0 0 1 ${size - 4} ${size / 2}`}

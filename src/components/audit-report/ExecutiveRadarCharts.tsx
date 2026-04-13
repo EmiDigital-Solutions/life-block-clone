@@ -134,7 +134,7 @@ export default function ExecutiveRadarCharts() {
 
           {/* Custom legend */}
           <div className="flex items-center gap-5 mb-4">
-            <RadarLegendItem color="#0A7FA5" label="MV Motors (actual)" />
+            <RadarLegendItem color="hsl(195, 89%, 34%)" label="MV Motors (actual)" />
             <RadarLegendItem color="#D97706" label="BMW/Linde requirement" />
             <RadarLegendItem color="#CBD5E1" label="Industry minimum" />
           </div>
@@ -157,7 +157,7 @@ export default function ExecutiveRadarCharts() {
                 />
                 <Radar name="Industry Min" dataKey="industryMin" stroke="#CBD5E1" fill="#CBD5E1" fillOpacity={0.08} strokeWidth={1} strokeDasharray="4 4" />
                 <Radar name="BMW/Linde Req." dataKey="clientMin" stroke="#D97706" fill="#D97706" fillOpacity={0.06} strokeWidth={1.5} strokeDasharray="6 3" />
-                <Radar name="MV Motors" dataKey="supplier" stroke="#0A7FA5" fill="#0A7FA5" fillOpacity={0.15} strokeWidth={2} dot={{ r: 3, fill: '#0A7FA5' }} />
+                <Radar name="MV Motors" dataKey="supplier" stroke="hsl(195, 89%, 34%)" fill="hsl(195, 89%, 34%)" fillOpacity={0.15} strokeWidth={2} dot={{ r: 3, fill: 'hsl(195, 89%, 34%)' }} />
                 <Tooltip content={<CustomTooltip />} />
               </RadarChart>
             </ResponsiveContainer>
@@ -186,7 +186,7 @@ export default function ExecutiveRadarCharts() {
 
           {/* Custom legend */}
           <div className="flex items-center gap-5 mb-4">
-            <RadarLegendItem color="#0A7FA5" label="MV Motors (actual)" />
+            <RadarLegendItem color="hsl(195, 89%, 34%)" label="MV Motors (actual)" />
             <RadarLegendItem color="#16A34A" label="Tier-2 benchmark" />
           </div>
 
@@ -207,7 +207,7 @@ export default function ExecutiveRadarCharts() {
                   axisLine={false}
                 />
                 <Radar name="Tier-2 Benchmark" dataKey="benchmark" stroke="#16A34A" fill="#16A34A" fillOpacity={0.06} strokeWidth={1.5} strokeDasharray="6 3" />
-                <Radar name="MV Motors" dataKey="supplier" stroke="#0A7FA5" fill="#0A7FA5" fillOpacity={0.15} strokeWidth={2} dot={{ r: 3, fill: '#0A7FA5' }} />
+                <Radar name="MV Motors" dataKey="supplier" stroke="hsl(195, 89%, 34%)" fill="hsl(195, 89%, 34%)" fillOpacity={0.15} strokeWidth={2} dot={{ r: 3, fill: 'hsl(195, 89%, 34%)' }} />
                 <Tooltip content={<CustomTooltip />} />
               </RadarChart>
             </ResponsiveContainer>

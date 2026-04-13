@@ -15,32 +15,32 @@ const stages: FlowStage[] = [
   {
     title: 'Findings',
     nodes: [
-      { label: 'Observations', count: 12, color: '#7B8E80' },
-      { label: 'Concerns', count: 5, color: '#E39B5C' },
-      { label: 'Non-Conformities', count: 4, color: '#AD3D3D' },
+      { label: 'Observations', count: 12, color: 'hsl(135, 8%, 52%)' },
+      { label: 'Concerns', count: 5, color: 'hsl(24, 72%, 63%)' },
+      { label: 'Non-Conformities', count: 4, color: 'hsl(0, 48%, 46%)' },
     ],
   },
   {
     title: 'NCRs',
     nodes: [
-      { label: 'Major NCR', count: 1, color: '#AD3D3D' },
-      { label: 'Minor NCR', count: 3, color: '#E39B5C' },
+      { label: 'Major NCR', count: 1, color: 'hsl(0, 48%, 46%)' },
+      { label: 'Minor NCR', count: 3, color: 'hsl(24, 72%, 63%)' },
     ],
   },
   {
     title: 'CAPA Actions',
     nodes: [
-      { label: 'Immediate', count: 2, color: '#AD3D3D' },
-      { label: 'Short-term', count: 3, color: '#E39B5C' },
-      { label: 'Long-term', count: 1, color: '#7B8E80' },
+      { label: 'Immediate', count: 2, color: 'hsl(0, 48%, 46%)' },
+      { label: 'Short-term', count: 3, color: 'hsl(24, 72%, 63%)' },
+      { label: 'Long-term', count: 1, color: 'hsl(135, 8%, 52%)' },
     ],
   },
   {
     title: 'Resolution',
     nodes: [
-      { label: 'Closed', count: 1, color: '#6EA996' },
-      { label: 'In Progress', count: 3, color: '#E39B5C' },
-      { label: 'Open', count: 2, color: '#AD3D3D' },
+      { label: 'Closed', count: 1, color: 'hsl(155, 24%, 55%)' },
+      { label: 'In Progress', count: 3, color: 'hsl(24, 72%, 63%)' },
+      { label: 'Open', count: 2, color: 'hsl(0, 48%, 46%)' },
     ],
   },
 ];

@@ -14,7 +14,7 @@ export default function CostWaterfallChart() {
       value: item.currentExposure / 1000,
       mitigated: item.mitigatedCost / 1000,
       start: start / 1000,
-      fill: item.currentExposure > 100000 ? '#AD3D3D' : '#E39B5C',
+      fill: item.currentExposure > 100000 ? 'hsl(0, 48%, 46%)' : 'hsl(24, 72%, 63%)',
     };
   });
 
@@ -63,14 +63,14 @@ export default function CostWaterfallChart() {
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={chartData} margin={{ top: 10, right: 10, left: 10, bottom: 40 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" vertical={false} />
-            <XAxis dataKey="name" tick={{ fill: '#7B8E80', fontSize: 10 }} axisLine={false} tickLine={false} angle={-30} textAnchor="end" height={60} />
-            <YAxis tick={{ fill: '#7B8E80', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v) => `€${v}K`} />
+            <XAxis dataKey="name" tick={{ fill: 'hsl(135, 8%, 52%)', fontSize: 10 }} axisLine={false} tickLine={false} angle={-30} textAnchor="end" height={60} />
+            <YAxis tick={{ fill: 'hsl(135, 8%, 52%)', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v) => `€${v}K`} />
             <Tooltip
               formatter={(value: number, name: string) => [`€${value}K`, name === 'exposure' ? 'At Risk' : 'After Mitigation']}
               contentStyle={{ fontSize: 12, border: '1px solid #E5E7EB', borderRadius: 0 }}
             />
-            <Bar dataKey="exposure" fill="#AD3D3D" opacity={0.7} name="At Risk" />
-            <Bar dataKey="mitigated" fill="#6EA996" name="After Mitigation" />
+            <Bar dataKey="exposure" fill="hsl(0, 48%, 46%)" opacity={0.7} name="At Risk" />
+            <Bar dataKey="mitigated" fill="hsl(155, 24%, 55%)" name="After Mitigation" />
           </BarChart>
         </ResponsiveContainer>
 

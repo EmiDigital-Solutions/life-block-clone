@@ -22,13 +22,13 @@ const scoreColor = (score: number | null) => {
   return 'text-destructive';
 };
 const scoreBar = (score: number | null) => {
-  if (score === null) return '#C0C0C0';
-  if (score >= 8) return '#6EA996';
-  if (score >= 6) return '#E39B5C';
-  return '#AD3D3D';
+  if (score === null) return 'hsl(0, 0%, 75%)';
+  if (score >= 8) return 'hsl(155, 24%, 55%)';
+  if (score >= 6) return 'hsl(24, 72%, 63%)';
+  return 'hsl(0, 48%, 46%)';
 };
 const impactRatingColor: Record<string, string> = {
-  critical: '#AD3D3D', high: '#E39B5C', medium: '#D4A843', low: '#6EA996', none: '#C0C0C0',
+  critical: 'hsl(0, 48%, 46%)', high: 'hsl(24, 72%, 63%)', medium: '#D4A843', low: 'hsl(155, 24%, 55%)', none: 'hsl(0, 0%, 75%)',
 };
 const evidenceTypeIcon: Record<string, React.ElementType> = {
   photo: Image, document: FileText, video: Film, measurement: Gauge,
@@ -263,7 +263,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
               <h4 className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold mb-4">Process Element Breakdown</h4>
               <div className="space-y-3">
                 {station.subCategories.map(sub => {
-                  const subHealthColor = sub.health === 'green' ? '#6EA996' : sub.health === 'amber' ? '#E39B5C' : sub.health === 'red' ? '#AD3D3D' : '#C0C0C0';
+                  const subHealthColor = sub.health === 'green' ? 'hsl(155, 24%, 55%)' : sub.health === 'amber' ? 'hsl(24, 72%, 63%)' : sub.health === 'red' ? 'hsl(0, 48%, 46%)' : 'hsl(0, 0%, 75%)';
                   return (
                     <div key={sub.id} className=" border border-border bg-muted p-4 space-y-3">
                       <div className="flex items-center justify-between">

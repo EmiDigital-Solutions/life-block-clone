@@ -211,14 +211,14 @@ const originLabel = (tier: string) => {
 };
 
 const conditionScoreColor = (score: number) => {
-  if (score >= 85) return '#6EA996';
-  if (score >= 60) return '#E39B5C';
-  return '#AD3D3D';
+  if (score >= 85) return 'hsl(155, 24%, 55%)';
+  if (score >= 60) return 'hsl(24, 72%, 63%)';
+  return 'hsl(0, 48%, 46%)';
 };
 
 function OEEGauge({ label, value, threshold }: { label: string; value: number; threshold: number }) {
   const met = value >= threshold;
-  const color = met ? '#6EA996' : '#E39B5C';
+  const color = met ? 'hsl(155, 24%, 55%)' : 'hsl(24, 72%, 63%)';
   return (
     <div className="text-center">
       <div className="relative w-14 h-14 mx-auto mb-1">
