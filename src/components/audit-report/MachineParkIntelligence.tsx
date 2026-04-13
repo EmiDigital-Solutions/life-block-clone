@@ -276,7 +276,7 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
       </div>
 
       {/* Metrics row */}
-      <div style={{ borderTop: '1px solid hsl(0,0%,80%)' }} className="grid grid-cols-6 divide-x" />
+      <div style={{ borderTop: '1px solid hsl(0,0%,80%)' }} className="grid grid-cols-6 divide-x divide-[hsl(0,0%,80%)]">
         {[
           { label: "Age", value: `${machine.age} yrs`, sub: String(machine.yearManufactured), icon: CalendarDays },
           { label: "Energy", value: `${machine.energyConsumption} kWh`, sub: machine.energyClass, icon: Zap },
