@@ -1,13 +1,14 @@
-import type { NCR } from "@/data/auditReportData";
+import type { NCR, DepthLevel } from "@/data/auditReportData";
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import NCRCard from "./NCRCard";
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from "recharts";
 
 interface NCRRegisterProps {
   ncrs: NCR[];
+  depth?: DepthLevel;
 }
 
-export default function NCRRegister({ ncrs }: NCRRegisterProps) {
+export default function NCRRegister({ ncrs, depth = 'standard' }: NCRRegisterProps) {
   const { radarData, ncrSeverityData } = useAuditReportContext();
   const majorCount = ncrs.filter(n => n.severity === 'major').length;
 

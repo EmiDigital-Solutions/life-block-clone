@@ -1,10 +1,11 @@
-import type { KPITile } from "@/data/auditReportData";
+import type { KPITile, DepthLevel } from "@/data/auditReportData";
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
 
 const trendIcon = { up: TrendingUp, down: TrendingDown, flat: Minus };
 
 interface KPIBandProps {
   kpis: KPITile[];
+  depth?: DepthLevel;
 }
 
 function MiniSparkline({ data, color }: { data: number[]; color: string }) {
@@ -25,7 +26,7 @@ function MiniSparkline({ data, color }: { data: number[]; color: string }) {
   );
 }
 
-export default function KPIBand({ kpis }: KPIBandProps) {
+export default function KPIBand({ kpis, depth = 'standard' }: KPIBandProps) {
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
       {kpis.map((kpi, i) => {

@@ -1,7 +1,7 @@
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { CheckCircle2, XCircle } from "lucide-react";
 
-export default function AuditScopeSection() {
+export default function AuditScopeSection({ depth = 'standard' }: { depth?: import("@/data/auditReportData").DepthLevel }) {
   const { auditScope } = useAuditReportContext();
 
   return (

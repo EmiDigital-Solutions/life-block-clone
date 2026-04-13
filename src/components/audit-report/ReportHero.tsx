@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import type { VerdictType } from "@/data/auditReportData";
+import type { VerdictType, DepthLevel } from "@/data/auditReportData";
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { Shield, AlertTriangle, Clock, TrendingDown, ChevronDown, FileCheck } from "lucide-react";
 
@@ -39,9 +39,10 @@ interface ReportHeroProps {
   location: string;
   onDecide: () => void;
   onWalk: () => void;
+  depth?: DepthLevel;
 }
 
-export default function ReportHero({ verdict, verdictLabel, heroReason, supplier, po, auditor, date, location, onDecide, onWalk }: ReportHeroProps) {
+export default function ReportHero({ verdict, verdictLabel, heroReason, supplier, po, auditor, date, location, onDecide, onWalk, depth = 'standard' }: ReportHeroProps) {
   const { reportMeta, allNCRs, iatfProcessScores, iatfWeightedScore } = useAuditReportContext();
   const config = verdictConfig[verdict];
   const majorNCRs = allNCRs.filter(n => n.severity === 'major').length;

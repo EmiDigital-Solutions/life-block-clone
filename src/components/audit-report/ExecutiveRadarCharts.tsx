@@ -62,7 +62,7 @@ function GapBar({ label, supplierVal, targetVal }: { label: string; supplierVal:
   );
 }
 
-export default function ExecutiveRadarCharts() {
+export default function ExecutiveRadarCharts({ depth = 'standard' }: { depth?: import("@/data/auditReportData").DepthLevel }) {
   const productionGaps = productionData
     .map(d => ({ label: d.dimension, supplierVal: d.supplier, targetVal: d.clientMin, gap: d.supplier - d.clientMin }))
     .sort((a, b) => a.gap - b.gap);

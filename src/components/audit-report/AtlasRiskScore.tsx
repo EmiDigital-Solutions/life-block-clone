@@ -1,5 +1,6 @@
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { Shield } from "lucide-react";
+import type { DepthLevel } from "@/data/auditReportData";
 
 function RiskGauge({ score }: { score: number }) {
   const color = score >= 70 ? 'hsl(155, 24%, 55%)' : score >= 40 ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)';

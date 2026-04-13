@@ -8,7 +8,7 @@ const severityColor: Record<string, string> = {
   low: 'hsl(155, 24%, 55%)',
 };
 
-export default function AnomalyCallouts() {
+export default function AnomalyCallouts({ depth = 'standard' }: { depth?: import("@/data/auditReportData").DepthLevel }) {
   const { crossCorrelations, supplierRiskSignals } = useAuditReportContext();
 
   const topAnomalies = crossCorrelations
