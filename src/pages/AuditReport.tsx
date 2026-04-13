@@ -371,13 +371,13 @@ function AuditReportInner() {
 
                 {/* Ask Atlas — toolbar style */}
                 <div className="sticky bottom-4 z-30 mb-8">
-                  <div className="max-w-[640px] mx-auto flex items-center gap-2 px-3 py-2" style={{ background: 'hsla(0,0%,100%,0.7)', backdropFilter: 'blur(12px)', border: '1px solid hsl(0,0%,80%)' }}>
+                  <div className="max-w-[640px] mx-auto flex items-center gap-2 px-3 py-2 bg-card border border-border shadow-sm">
                     <Sparkles className="w-4 h-4 text-primary shrink-0" />
                     <input
                       value={askAtlasInput}
                       onChange={e => setAskAtlasInput(e.target.value)}
                       placeholder="Ask Atlas about this audit..."
-                      className="flex-1 bg-transparent text-[12px] text-foreground placeholder:text-[hsl(0,0%,55%)] outline-none"
+                      className="flex-1 bg-transparent text-[12px] text-foreground placeholder:text-muted-foreground outline-none"
                     />
                     <button className="px-2.5 py-1 text-[9px] font-medium uppercase tracking-wider bg-primary text-white cursor-pointer hover:bg-primary/90 transition-colors">
                       Ask
