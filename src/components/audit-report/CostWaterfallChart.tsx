@@ -38,7 +38,7 @@ export default function CostWaterfallChart() {
       </div>
 
       {/* Horizontal bar chart */}
-      <div className="p-8 bg-card border border-border">
+      <div className="p-8 bg-card/60 backdrop-blur-sm">
         <div className="flex items-center gap-6 mb-6 text-[11px] text-muted-foreground">
           <span className="flex items-center gap-2">
             <span className="w-3 h-2 inline-block bg-destructive opacity-70" /> At Risk

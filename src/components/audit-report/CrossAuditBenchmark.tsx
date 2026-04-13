@@ -21,7 +21,7 @@ export default function CrossAuditBenchmark() {
         {worstArea.label} ranks P{worstArea.percentile} — bottom quartile vs. {benchmarkData[0].totalAudits} peers
       </h2>
 
-      <div className="p-8 bg-card border border-border">
+      <div className="p-8 bg-card/60 backdrop-blur-sm">
         <div className="space-y-6">
           {benchmarkData.map((item) => (
             <div key={item.label}>

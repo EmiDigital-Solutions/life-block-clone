@@ -36,7 +36,7 @@ export default function AnomalyCallouts() {
         {topAnomalies.map((anomaly) => {
           const color = severityColor[anomaly.severity];
           return (
-            <div key={anomaly.id} className="flex gap-6 p-6 bg-card border border-border">
+            <div key={anomaly.id} className="flex gap-6 p-6 bg-card/60 backdrop-blur-sm">
               <div className="flex flex-col items-center gap-2 shrink-0">
                 <div className="w-10 h-10 flex items-center justify-center" style={{ background: `${color}10` }}>
                   <Zap className="w-5 h-5" style={{ color }} />

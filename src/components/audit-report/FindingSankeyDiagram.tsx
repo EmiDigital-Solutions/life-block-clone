@@ -60,7 +60,7 @@ export default function FindingSankeyDiagram() {
         {openCount} of {totalFindings} findings still open
       </h2>
 
-      <div className="p-8 bg-card border border-border">
+      <div className="p-8 bg-card/60 backdrop-blur-sm">
         <div className="flex items-start gap-0">
           {stages.map((stage, si) => (
             <div key={si} className="flex items-start flex-1">

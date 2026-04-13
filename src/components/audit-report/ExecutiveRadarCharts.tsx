@@ -90,7 +90,7 @@ export default function ExecutiveRadarCharts() {
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
         {/* Manufacturing Radar */}
-        <div className="p-8 bg-card border border-border">
+        <div className="p-8 bg-card/60 backdrop-blur-sm">
           <div className="flex items-center justify-between mb-6">
             <div>
               <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-warning">Manufacturing</span>
@@ -133,7 +133,7 @@ export default function ExecutiveRadarCharts() {
         </div>
 
         {/* Commercial Radar */}
-        <div className="p-8 bg-card border border-border">
+        <div className="p-8 bg-card/60 backdrop-blur-sm">
           <div className="flex items-center justify-between mb-6">
             <div>
               <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-accent">Commercial</span>
