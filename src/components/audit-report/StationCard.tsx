@@ -9,17 +9,19 @@ const findingIcon: Record<FindingSeverity, React.ElementType> = {
 };
 const findingColor: Record<FindingSeverity, string> = {
   pass: 'text-accent', observation: 'text-muted-foreground', concern: 'text-warning',
-  'minor-ncr': 'text-warning', 'major-ncr': 'text-destructive', na: 'text-grey-mid',
+  'minor-ncr': 'text-warning', 'major-ncr': 'text-destructive', na: 'text-[hsl(0,0%,55%)]',
 };
-const healthChip: Record<string, string> = {
-  green: 'bg-accent/10 text-accent', amber: 'bg-warning/10 text-warning',
-  red: 'bg-destructive/10 text-destructive', grey: 'bg-muted text-grey-mid',
+const healthChip: Record<string, { bg: string; color: string }> = {
+  green: { bg: 'hsl(155, 24%, 55%, 0.1)', color: 'hsl(155, 24%, 55%)' },
+  amber: { bg: 'hsl(24, 72%, 63%, 0.1)', color: 'hsl(24, 72%, 63%)' },
+  red: { bg: 'hsl(0, 48%, 46%, 0.1)', color: 'hsl(0, 48%, 46%)' },
+  grey: { bg: 'hsl(0,0%,88%)', color: 'hsl(0,0%,55%)' },
 };
 const scoreColor = (score: number | null) => {
-  if (score === null) return 'text-grey-mid';
-  if (score >= 8) return 'text-accent';
-  if (score >= 6) return 'text-warning';
-  return 'text-destructive';
+  if (score === null) return 'hsl(0,0%,55%)';
+  if (score >= 8) return 'hsl(155, 24%, 55%)';
+  if (score >= 6) return 'hsl(24, 72%, 63%)';
+  return 'hsl(0, 48%, 46%)';
 };
 const scoreBar = (score: number | null) => {
   if (score === null) return 'hsl(0, 0%, 75%)';
@@ -39,16 +41,16 @@ const evidenceTypeIcon: Record<string, React.ElementType> = {
 function EvidenceGrid({ evidence }: { evidence: SubCategoryEvidence[] }) {
   return (
     <div className="mt-3">
-      <span className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground font-semibold">Evidence</span>
+      <span className="text-[10px] uppercase tracking-[0.12em] font-semibold" style={{ color: 'hsl(0,0%,50%)' }}>Evidence</span>
       <div className="flex flex-wrap gap-2 mt-1.5">
         {evidence.map(ev => {
           const Icon = evidenceTypeIcon[ev.type] || FileText;
           return (
-            <button key={ev.id} className="flex items-center gap-1.5 px-2.5 py-1.5 border border-border bg-white hover:bg-muted transition-colors text-[11px] text-charcoal">
+            <button key={ev.id} className="flex items-center gap-1.5 px-2.5 py-1.5 text-[11px] transition-colors cursor-pointer" style={{ background: 'hsla(0,0%,100%,0.7)', border: '1px solid hsl(0,0%,80%)', color: 'hsl(0,0%,30%)' }}>
               {ev.thumbnail ? (
-                <img src={ev.thumbnail} alt={ev.label} className="w-8 h-8 object-cover border border-border" />
+                <img src={ev.thumbnail} alt={ev.label} className="w-8 h-8 object-cover" style={{ border: '1px solid hsl(0,0%,80%)' }} />
               ) : (
-                <div className="w-8 h-8 bg-muted border border-border flex items-center justify-center">
+                <div className="w-8 h-8 flex items-center justify-center" style={{ background: 'hsl(0,0%,92%)', border: '1px solid hsl(0,0%,80%)' }}>
                   <Icon className="w-3.5 h-3.5 text-primary" />
                 </div>
               )}
@@ -67,18 +69,18 @@ function InlineEvidenceThumbnails({ evidence }: { evidence: SubCategoryEvidence[
   return (
     <div className="flex items-center gap-1 mt-2">
       {photos.map(p => (
-        <div key={p.id} className="w-8 h-8 bg-muted border border-border overflow-hidden">
+        <div key={p.id} className="w-8 h-8 overflow-hidden" style={{ background: 'hsl(0,0%,92%)', border: '1px solid hsl(0,0%,80%)' }}>
           {p.thumbnail ? (
             <img src={p.thumbnail} alt={p.label} className="w-full h-full object-cover" />
           ) : (
             <div className="w-full h-full flex items-center justify-center">
-              <Image className="w-3 h-3 text-grey-mid" />
+              <Image className="w-3 h-3" style={{ color: 'hsl(0,0%,55%)' }} />
             </div>
           )}
         </div>
       ))}
       {evidence.length > 4 && (
-        <span className="text-[9px] text-muted-foreground ml-1">+{evidence.length - 4}</span>
+        <span className="text-[9px] ml-1" style={{ color: 'hsl(0,0%,50%)' }}>+{evidence.length - 4}</span>
       )}
     </div>
   );
@@ -87,20 +89,20 @@ function InlineEvidenceThumbnails({ evidence }: { evidence: SubCategoryEvidence[
 function AIPatternsList({ patterns }: { patterns: AIPattern[] }) {
   return (
     <div className="mt-3 space-y-2">
-      <span className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground font-semibold flex items-center gap-1.5">
+      <span className="text-[10px] uppercase tracking-[0.12em] font-semibold flex items-center gap-1.5" style={{ color: 'hsl(0,0%,50%)' }}>
         <Zap className="w-3 h-3 text-primary" /> AI-Identified Patterns & Predictions
       </span>
       {patterns.map(p => {
         const color = impactRatingColor[p.impact];
         return (
-          <div key={p.id} className=" border border-primary/10 bg-primary/3 p-3">
+          <div key={p.id} className="p-3" style={{ border: '1px solid hsl(195, 89%, 34%, 0.15)', background: 'hsl(195, 89%, 34%, 0.03)' }}>
             <div className="flex items-center gap-2 mb-1 flex-wrap">
-              <span className="text-[9px] px-1.5 py-0.5 rounded-full font-semibold uppercase tracking-wider" style={{ background: `${color}15`, color }}>{p.type}</span>
-              <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-muted text-muted-foreground font-mono">{p.confidence}%</span>
-              {p.timeframe && <span className="text-[9px] text-muted-foreground">⏱ {p.timeframe}</span>}
+              <span className="text-[9px] px-1.5 py-0.5 font-semibold uppercase tracking-wider" style={{ background: `${color}15`, color }}>{p.type}</span>
+              <span className="text-[9px] px-1.5 py-0.5 font-mono" style={{ background: 'hsl(0,0%,88%)', color: 'hsl(0,0%,50%)' }}>{p.confidence}%</span>
+              {p.timeframe && <span className="text-[9px]" style={{ color: 'hsl(0,0%,50%)' }}>⏱ {p.timeframe}</span>}
             </div>
             <p className="text-[12px] font-medium text-foreground">{p.title}</p>
-            <p className="text-[11px] text-muted-foreground leading-relaxed mt-0.5">{p.body}</p>
+            <p className="text-[11px] leading-relaxed mt-0.5" style={{ color: 'hsl(0,0%,50%)' }}>{p.body}</p>
           </div>
         );
       })}
@@ -119,20 +121,20 @@ function BMWImpactPanel({ impact }: { impact: BMWImpact }) {
 
   return (
     <div className="mt-3">
-      <span className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground font-semibold flex items-center gap-1.5">
+      <span className="text-[10px] uppercase tracking-[0.12em] font-semibold flex items-center gap-1.5" style={{ color: 'hsl(0,0%,50%)' }}>
         <AlertTriangle className="w-3 h-3 text-warning" /> BMW Impact Assessment
       </span>
       <div className="grid grid-cols-3 gap-2 mt-1.5">
         {items.map(({ key, label, icon: Icon, data }) => {
           const color = impactRatingColor[data.rating];
           return (
-            <div key={key} className=" border border-border bg-white p-2.5">
+            <div key={key} className="p-2.5" style={{ background: 'hsla(0,0%,100%,0.7)', border: '1px solid hsl(0,0%,80%)' }}>
               <div className="flex items-center gap-1.5 mb-1">
                 <Icon className="w-3 h-3" style={{ color }} />
                 <span className="text-[10px] font-semibold text-foreground">{label}</span>
-                <span className="text-[8px] px-1.5 py-0.5 rounded-full font-bold uppercase ml-auto" style={{ background: `${color}15`, color }}>{data.rating}</span>
+                <span className="text-[8px] px-1.5 py-0.5 font-bold uppercase ml-auto" style={{ background: `${color}15`, color }}>{data.rating}</span>
               </div>
-              <p className="text-[10px] text-muted-foreground leading-relaxed">{data.detail}</p>
+              <p className="text-[10px] leading-relaxed" style={{ color: 'hsl(0,0%,50%)' }}>{data.detail}</p>
             </div>
           );
         })}
@@ -155,21 +157,26 @@ export default function StationCard({ station, depth, totalStations }: StationCa
   if (!station.observation && station.index !== 10 && station.index !== 11 && station.index !== 12) return null;
 
   const hasQuestions = station.auditQuestions && station.auditQuestions.length > 0;
+  const hc = healthChip[station.health];
 
   return (
     <section id={`station-${station.index}`} className="scroll-mt-20">
-      {/* Sticky section header — glass */}
-      <div className="sticky top-12 z-20 backdrop-blur-md border-b border-border -mx-4 md:-mx-8 px-4 md:px-8 py-3 mb-4" style={{ background: 'hsl(var(--background) / 0.85)' }}>
+      {/* Sticky section header */}
+      <div className="sticky top-12 z-20 -mx-4 md:-mx-8 px-4 md:px-8 py-3 mb-4" style={{
+        background: 'hsla(0,0%,85%,0.92)',
+        backdropFilter: 'blur(12px)',
+        borderBottom: '1px solid hsl(0,0%,78%)',
+      }}>
         <div className="flex items-center gap-3">
-          <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">// {String(station.index).padStart(2, '0')}</span>
-          <div className={cn("w-2 h-2", station.health === 'green' ? 'bg-accent' : station.health === 'amber' ? 'bg-warning' : station.health === 'red' ? 'bg-destructive' : 'bg-grey-mid')} />
+          <span className="text-[12px] font-medium tracking-[0.1em]" style={{ color: 'hsl(0,0%,50%)' }}>// {String(station.index).padStart(2, '0')}</span>
+          <div className="w-2 h-2" style={{ background: hc.color }} />
           <span className="text-[13px] font-semibold text-foreground">{station.name}</span>
-          <div className="flex-1 h-px bg-border" />
-          <span className={cn("text-[10px] px-2.5 py-1 uppercase tracking-wider font-semibold", healthChip[station.health])}>
+          <div className="flex-1 h-px" style={{ background: 'hsl(0,0%,78%)' }} />
+          <span className="text-[10px] px-2.5 py-1 uppercase tracking-wider font-semibold" style={{ background: hc.bg, color: hc.color }}>
             {station.health === 'green' ? 'Pass' : station.health === 'amber' ? 'Concern' : station.health === 'red' ? 'Fail' : 'N/A'}
           </span>
           {/* Evidence count summary */}
-          <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
+          <div className="flex items-center gap-2 text-[10px]" style={{ color: 'hsl(0,0%,55%)' }}>
             {station.evidenceCount.photos > 0 && <span className="flex items-center gap-0.5"><Camera className="w-3 h-3" />{station.evidenceCount.photos}</span>}
             {station.evidenceCount.videos > 0 && <span className="flex items-center gap-0.5"><Video className="w-3 h-3" />{station.evidenceCount.videos}</span>}
             {station.evidenceCount.measurements > 0 && <span className="flex items-center gap-0.5"><Ruler className="w-3 h-3" />{station.evidenceCount.measurements}</span>}
@@ -180,63 +187,63 @@ export default function StationCard({ station, depth, totalStations }: StationCa
       <h2 className="text-[28px] font-light text-foreground tracking-tight leading-none mb-8">{station.name}</h2>
 
       {station.observation && (
-        <div className="audit-glass-card p-6 md:p-8 space-y-8">
+        <div className="p-6 md:p-8 space-y-8" style={{ background: 'hsla(0,0%,100%,0.7)', backdropFilter: 'blur(12px)', border: '1px solid hsl(0,0%,80%)' }}>
           {/* Hero photo */}
           {station.heroPhoto ? (
-            <div className="aspect-video  overflow-hidden border border-border">
+            <div className="aspect-video overflow-hidden" style={{ border: '1px solid hsl(0,0%,80%)' }}>
               <img src={station.heroPhoto} alt={`Factory photo — ${station.name}`} className="w-full h-full object-cover" loading="lazy" width={960} height={540} />
             </div>
           ) : (
-            <div className="aspect-video  bg-muted border border-border flex items-center justify-center">
+            <div className="aspect-video flex items-center justify-center" style={{ background: 'hsl(0,0%,92%)', border: '1px solid hsl(0,0%,80%)' }}>
               <div className="text-center">
-                <Camera className="w-8 h-8 text-grey-mid mx-auto mb-2" />
-                <span className="text-[13px] text-muted-foreground">Factory photo — Station {station.index}</span>
+                <Camera className="w-8 h-8 mx-auto mb-2" style={{ color: 'hsl(0,0%,55%)' }} />
+                <span className="text-[13px]" style={{ color: 'hsl(0,0%,50%)' }}>Factory photo — Station {station.index}</span>
               </div>
             </div>
           )}
 
-          {/* WHAT WE SAW — font-light for observations */}
+          {/* WHAT WE SAW */}
           <div>
-            <h4 className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground font-semibold mb-3">What we saw</h4>
-            <p className="text-[15px] font-light text-charcoal leading-relaxed">{station.observation}</p>
+            <h4 className="text-[11px] uppercase tracking-[0.15em] font-semibold mb-3" style={{ color: 'hsl(0,0%,50%)' }}>What we saw</h4>
+            <p className="text-[15px] font-light leading-relaxed" style={{ color: 'hsl(0,0%,25%)' }}>{station.observation}</p>
           </div>
 
           {/* WHAT IT MEANS */}
           {depth !== 'executive' && (
             <div>
               <div className="flex items-center gap-3 mb-3">
-                <h4 className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground font-semibold">What it means</h4>
+                <h4 className="text-[11px] uppercase tracking-[0.15em] font-semibold" style={{ color: 'hsl(0,0%,50%)' }}>What it means</h4>
                 {station.confidence > 0 && (
-                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-primary/5">
+                  <div className="flex items-center gap-1.5 px-2 py-0.5" style={{ background: 'hsl(195, 89%, 34%, 0.05)' }}>
                     <Sparkles className="w-3 h-3 text-primary" />
                     <span className="text-[11px] font-mono text-primary">Atlas · {station.confidence}%</span>
                   </div>
                 )}
               </div>
-              <p className="text-[14px] text-muted-foreground leading-relaxed">{station.interpretation}</p>
+              <p className="text-[14px] leading-relaxed" style={{ color: 'hsl(0,0%,45%)' }}>{station.interpretation}</p>
             </div>
           )}
 
           {/* Findings */}
           {station.findings.length > 0 && (
             <div>
-              <h4 className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground font-semibold mb-4">What you should do</h4>
+              <h4 className="text-[11px] uppercase tracking-[0.15em] font-semibold mb-4" style={{ color: 'hsl(0,0%,50%)' }}>What you should do</h4>
               <div className="grid gap-3 md:grid-cols-2">
                 {station.findings.map((finding, i) => {
                   const Icon = findingIcon[finding.type];
                   return (
-                    <div key={i} className="flex gap-3 p-4 audit-surface-sunken">
+                    <div key={i} className="flex gap-3 p-4" style={{ background: 'hsl(0,0%,92%)', border: '1px solid hsl(0,0%,85%)' }}>
                       <Icon className={cn("w-4 h-4 mt-0.5 shrink-0", findingColor[finding.type])} />
                       <div className="min-w-0">
                         <div className="flex items-center gap-2 flex-wrap">
-                          {/* font-semibold for findings */}
                           <p className="text-[14px] font-semibold text-foreground">{finding.title}</p>
                           {finding.isoClause && (
                             <a
                               href={`https://www.iso.org/standard/62085.html`}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-[10px] font-mono px-1.5 py-0.5 bg-primary/10 text-primary hover:bg-primary/20 transition-colors cursor-pointer"
+                              className="text-[10px] font-mono px-1.5 py-0.5 text-primary cursor-pointer transition-colors"
+                              style={{ background: 'hsl(195, 89%, 34%, 0.1)' }}
                               title={`ISO 9001:2015 Clause ${finding.isoClause}`}
                             >
                               §{finding.isoClause}
@@ -244,10 +251,10 @@ export default function StationCard({ station, depth, totalStations }: StationCa
                           )}
                         </div>
                         {depth !== 'executive' && (
-                          <p className="text-[13px] font-light text-muted-foreground mt-1 leading-relaxed">{finding.description}</p>
+                          <p className="text-[13px] font-light mt-1 leading-relaxed" style={{ color: 'hsl(0,0%,50%)' }}>{finding.description}</p>
                         )}
                         {finding.ncrId && (
-                          <span className="inline-block mt-1.5 text-[11px] font-mono font-bold px-2 py-0.5 bg-destructive/10 text-destructive">{finding.ncrId}</span>
+                          <span className="inline-block mt-1.5 text-[11px] font-mono font-bold px-2 py-0.5 text-destructive" style={{ background: 'hsl(0, 48%, 46%, 0.1)' }}>{finding.ncrId}</span>
                         )}
                       </div>
                     </div>
@@ -257,52 +264,49 @@ export default function StationCard({ station, depth, totalStations }: StationCa
             </div>
           )}
 
-          {/* Sub-Categories with enriched data */}
+          {/* Sub-Categories */}
           {station.subCategories && station.subCategories.length > 0 && depth !== 'executive' && (
             <div>
-              <h4 className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold mb-4">Process Element Breakdown</h4>
+              <h4 className="text-[11px] uppercase tracking-[0.12em] font-semibold mb-4" style={{ color: 'hsl(0,0%,50%)' }}>Process Element Breakdown</h4>
               <div className="space-y-3">
                 {station.subCategories.map(sub => {
                   const subHealthColor = sub.health === 'green' ? 'hsl(155, 24%, 55%)' : sub.health === 'amber' ? 'hsl(24, 72%, 63%)' : sub.health === 'red' ? 'hsl(0, 48%, 46%)' : 'hsl(0, 0%, 75%)';
                   return (
-                    <div key={sub.id} className="audit-surface-sunken p-4 space-y-3">
+                    <div key={sub.id} className="p-4 space-y-3" style={{ background: 'hsl(0,0%,92%)', border: '1px solid hsl(0,0%,85%)' }}>
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <div className="w-2 h-2 rounded-full" style={{ background: subHealthColor }} />
+                          <div className="w-2 h-2" style={{ background: subHealthColor }} />
                           <span className="text-[14px] font-medium text-foreground">{sub.label}</span>
                         </div>
                         <span className="text-[16px] font-mono tabular-nums" style={{ color: subHealthColor }}>{sub.score}/100</span>
                       </div>
-                      <div className="h-1.5 bg-border rounded-full overflow-hidden">
-                        <div className="h-full rounded-full transition-all" style={{ width: `${sub.score}%`, background: subHealthColor }} />
+                      <div className="h-1.5 overflow-hidden" style={{ background: 'hsl(0,0%,82%)' }}>
+                        <div className="h-full transition-all" style={{ width: `${sub.score}%`, background: subHealthColor }} />
                       </div>
                       {sub.findings.map((f, fi) => {
                         const FIcon = findingIcon[f.type];
                         return (
                           <div key={fi} className="flex items-start gap-2 text-[13px]">
                             <FIcon className={cn("w-3.5 h-3.5 mt-0.5 shrink-0", findingColor[f.type])} />
-                            <span className="text-charcoal"><strong>{f.title}</strong> — {f.description}</span>
+                            <span style={{ color: 'hsl(0,0%,25%)' }}><strong>{f.title}</strong> — {f.description}</span>
                           </div>
                         );
                       })}
                       {depth === 'full' && (
-                        <div className="flex gap-2 p-3  bg-primary/5 border border-primary/10">
+                        <div className="flex gap-2 p-3" style={{ background: 'hsl(195, 89%, 34%, 0.05)', border: '1px solid hsl(195, 89%, 34%, 0.1)' }}>
                           <Sparkles className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
                           <div>
                             <span className="text-[10px] font-semibold uppercase tracking-wider text-primary">Atlas AI · {sub.aiConfidence}%</span>
-                            <p className="text-[12px] text-charcoal leading-relaxed mt-1">{sub.aiInsight}</p>
+                            <p className="text-[12px] leading-relaxed mt-1" style={{ color: 'hsl(0,0%,25%)' }}>{sub.aiInsight}</p>
                           </div>
                         </div>
                       )}
-                      {/* Evidence */}
                       {sub.evidence && sub.evidence.length > 0 && (
                         <EvidenceGrid evidence={sub.evidence} />
                       )}
-                      {/* AI Patterns & Predictions */}
                       {sub.aiPatterns && sub.aiPatterns.length > 0 && depth === 'full' && (
                         <AIPatternsList patterns={sub.aiPatterns} />
                       )}
-                      {/* BMW Impact */}
                       {sub.bmwImpact && (
                         <BMWImpactPanel impact={sub.bmwImpact} />
                       )}
@@ -316,24 +320,24 @@ export default function StationCard({ station, depth, totalStations }: StationCa
           {/* Atlas AI Insights */}
           {station.atlasInsights && station.atlasInsights.length > 0 && depth !== 'executive' && (
             <div>
-              <h4 className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold mb-4 flex items-center gap-2">
+              <h4 className="text-[11px] uppercase tracking-[0.12em] font-semibold mb-4 flex items-center gap-2" style={{ color: 'hsl(0,0%,50%)' }}>
                 <Brain className="w-4 h-4 text-primary" /> Atlas Intelligence
               </h4>
               <div className="space-y-3">
                 {station.atlasInsights.map((insight, ii) => {
                   const ic = impactRatingColor[insight.impact];
                   return (
-                    <div key={ii} className=" border border-primary/15 bg-primary/3 p-4">
+                    <div key={ii} className="p-4" style={{ border: '1px solid hsl(195, 89%, 34%, 0.15)', background: 'hsl(195, 89%, 34%, 0.03)' }}>
                       <div className="flex items-center gap-2 mb-2 flex-wrap">
-                        <span className="text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-wider" style={{ background: `${ic}15`, color: ic }}>{insight.impact}</span>
-                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-muted text-muted-foreground font-mono">{insight.confidence}% conf.</span>
-                        {insight.dataPointsAnalyzed && <span className="text-[10px] text-muted-foreground">{insight.dataPointsAnalyzed.toLocaleString()} data points</span>}
+                        <span className="text-[10px] px-2 py-0.5 font-semibold uppercase tracking-wider" style={{ background: `${ic}15`, color: ic }}>{insight.impact}</span>
+                        <span className="text-[10px] px-2 py-0.5 font-mono" style={{ background: 'hsl(0,0%,88%)', color: 'hsl(0,0%,50%)' }}>{insight.confidence}% conf.</span>
+                        {insight.dataPointsAnalyzed && <span className="text-[10px]" style={{ color: 'hsl(0,0%,50%)' }}>{insight.dataPointsAnalyzed.toLocaleString()} data points</span>}
                       </div>
                       <p className="text-[14px] font-medium text-foreground mb-1">{insight.title}</p>
-                      <p className="text-[13px] text-muted-foreground leading-relaxed">{insight.body}</p>
+                      <p className="text-[13px] leading-relaxed" style={{ color: 'hsl(0,0%,50%)' }}>{insight.body}</p>
                       {insight.connectedNCRs && insight.connectedNCRs.length > 0 && (
                         <div className="flex items-center gap-2 mt-2">
-                          {insight.connectedNCRs.map(n => <span key={n} className="text-[10px] font-mono px-2 py-0.5 rounded bg-destructive/10 text-destructive">{n}</span>)}
+                          {insight.connectedNCRs.map(n => <span key={n} className="text-[10px] font-mono px-2 py-0.5 text-destructive" style={{ background: 'hsl(0, 48%, 46%, 0.1)' }}>{n}</span>)}
                         </div>
                       )}
                     </div>
@@ -352,8 +356,8 @@ export default function StationCard({ station, depth, totalStations }: StationCa
 
           {/* Audit Questions */}
           {hasQuestions && depth === 'full' && (
-            <div className="border-t border-border pt-6">
-              <button onClick={() => setQuestionsOpen(!questionsOpen)} className="flex items-center gap-2 text-[13px] font-medium text-muted-foreground hover:text-foreground transition-colors mb-4">
+            <div className="pt-6" style={{ borderTop: '1px solid hsl(0,0%,80%)' }}>
+              <button onClick={() => setQuestionsOpen(!questionsOpen)} className="flex items-center gap-2 text-[13px] font-medium transition-colors mb-4 cursor-pointer" style={{ color: 'hsl(0,0%,45%)' }}>
                 <BookOpen className="w-4 h-4" />
                 <span>ISO 9001 Audit Checklist — {station.auditQuestions!.length} questions</span>
                 {questionsOpen ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronRight className="w-3.5 h-3.5" />}
@@ -361,20 +365,20 @@ export default function StationCard({ station, depth, totalStations }: StationCa
               {questionsOpen && (
                 <div className="space-y-2">
                   {station.auditQuestions!.map((q) => (
-                    <div key={q.id} className="flex gap-3 p-3  border border-border bg-muted">
+                    <div key={q.id} className="flex gap-3 p-3" style={{ background: 'hsl(0,0%,92%)', border: '1px solid hsl(0,0%,85%)' }}>
                       <div className="shrink-0 w-10 text-center">
-                        <span className={cn("text-[18px] font-mono font-light tabular-nums", scoreColor(q.score))}>{q.score ?? '—'}</span>
-                        <div className="w-full h-1 rounded-full bg-border mt-1 overflow-hidden">
-                          <div className="h-full rounded-full" style={{ width: `${(q.score ?? 0) * 10}%`, background: scoreBar(q.score) }} />
+                        <span className="text-[18px] font-mono font-light tabular-nums" style={{ color: scoreColor(q.score) }}>{q.score ?? '—'}</span>
+                        <div className="w-full h-1 mt-1 overflow-hidden" style={{ background: 'hsl(0,0%,82%)' }}>
+                          <div className="h-full" style={{ width: `${(q.score ?? 0) * 10}%`, background: scoreBar(q.score) }} />
                         </div>
                       </div>
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-2 mb-0.5">
-                          <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-border text-muted-foreground">§{q.clause}</span>
-                          <span className="text-[10px] font-mono text-grey-mid">{q.id}</span>
+                          <span className="text-[10px] font-mono px-1.5 py-0.5" style={{ background: 'hsl(0,0%,85%)', color: 'hsl(0,0%,50%)' }}>§{q.clause}</span>
+                          <span className="text-[10px] font-mono" style={{ color: 'hsl(0,0%,55%)' }}>{q.id}</span>
                         </div>
                         <p className="text-[13px] text-foreground leading-snug">{q.question}</p>
-                        <p className="text-[12px] text-muted-foreground mt-1 leading-relaxed">{q.notes}</p>
+                        <p className="text-[12px] mt-1 leading-relaxed" style={{ color: 'hsl(0,0%,50%)' }}>{q.notes}</p>
                       </div>
                     </div>
                   ))}
@@ -385,13 +389,13 @@ export default function StationCard({ station, depth, totalStations }: StationCa
 
           {/* Evidence footer */}
           {(station.evidenceCount.photos > 0 || station.evidenceCount.measurements > 0 || station.evidenceCount.videos > 0) && (
-            <div className="flex items-center justify-between pt-4 border-t border-border">
-              <div className="flex items-center gap-4 text-[12px] text-muted-foreground">
+            <div className="flex items-center justify-between pt-4" style={{ borderTop: '1px solid hsl(0,0%,80%)' }}>
+              <div className="flex items-center gap-4 text-[12px]" style={{ color: 'hsl(0,0%,50%)' }}>
                 {station.evidenceCount.photos > 0 && <span className="flex items-center gap-1.5"><Camera className="w-3.5 h-3.5" /> {station.evidenceCount.photos} photos</span>}
                 {station.evidenceCount.measurements > 0 && <span className="flex items-center gap-1.5"><Ruler className="w-3.5 h-3.5" /> {station.evidenceCount.measurements} measurements</span>}
                 {station.evidenceCount.videos > 0 && <span className="flex items-center gap-1.5"><Video className="w-3.5 h-3.5" /> {station.evidenceCount.videos} video</span>}
               </div>
-              <button className="text-[12px] text-primary hover:text-primary/80 transition-colors font-medium">View evidence →</button>
+              <button className="text-[12px] text-primary font-medium cursor-pointer transition-colors">View evidence →</button>
             </div>
           )}
         </div>
