@@ -12,10 +12,10 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%; /* #FFFFFF */
+    --background: 220 14% 96%; /* Warm light grey — not flat white */
     --foreground: 0 0% 4%; /* Deep Neutral Black #0A0A0A */
 
-    --hero-background: 0 0% 5%;
+    --hero-background: 220 20% 7%;
 
     --card: 0 0% 100%;
     --card-foreground: 0 0% 4%;
@@ -29,7 +29,7 @@ All colors MUST be HSL.
     --secondary: 207 33% 75%; /* BlueGrey Light #ACC5D9 */
     --secondary-foreground: 0 0% 4%;
 
-    --muted: 0 0% 96%; /* Snow White #F5F5F5 */
+    --muted: 220 14% 92%; /* Subtle warm grey */
     --muted-foreground: 0 0% 45%;
 
     --accent: 155 24% 55%; /* Hero Green #6EA996 */
@@ -53,11 +53,25 @@ All colors MUST be HSL.
     --audit-red: 0 48% 46%; /* Audit Red #AD3D3D */
     --amber: 24 72% 63%; /* Amber Soft #E39B5C */
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
+    --border: 220 13% 89%;
+    --input: 220 13% 89%;
     --ring: 195 89% 34%; /* CTA Blue-Teal for focus rings */
 
     --radius: 0.25rem;
+
+    /* Glass & depth tokens */
+    --glass-bg: 0 0% 100% / 0.7;
+    --glass-border: 0 0% 100% / 0.2;
+    --glass-shadow: 220 20% 10%;
+    --surface-elevated: 0 0% 100%;
+    --surface-sunken: 220 14% 94%;
+
+    /* Sidebar dark theme */
+    --sidebar-bg: 220 20% 7%;
+    --sidebar-fg: 220 14% 80%;
+    --sidebar-muted: 220 14% 20%;
+    --sidebar-accent: 195 89% 45%;
+    --sidebar-border: 220 14% 15%;
 
     /* Architecture theme colors */
     --hero-overlay: 0 0% 5% / 0.8;
@@ -80,15 +94,15 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 0 0% 4%; /* #0A0A0A */
+    --background: 220 20% 5%;
     --foreground: 0 0% 96%;
 
-    --hero-background: 0 0% 5%;
+    --hero-background: 220 20% 4%;
 
-    --card: 0 0% 10%;
+    --card: 220 18% 10%;
     --card-foreground: 0 0% 96%;
 
-    --popover: 0 0% 10%;
+    --popover: 220 18% 10%;
     --popover-foreground: 0 0% 96%;
 
     --primary: 195 89% 40%; /* CTA Blue-Teal lighter for dark */
@@ -97,7 +111,7 @@ All colors MUST be HSL.
     --secondary: 207 25% 55%; /* BlueGrey muted for dark */
     --secondary-foreground: 0 0% 4%;
 
-    --muted: 0 0% 15%;
+    --muted: 220 18% 14%;
     --muted-foreground: 0 0% 65%;
 
     --accent: 155 24% 45%; /* Hero Green darker for dark mode */
@@ -121,9 +135,24 @@ All colors MUST be HSL.
     --audit-red: 0 48% 50%;
     --amber: 24 72% 55%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
+    --border: 220 14% 18%;
+    --input: 220 14% 18%;
     --ring: 195 89% 40%;
+
+    /* Glass & depth for dark */
+    --glass-bg: 220 18% 12% / 0.7;
+    --glass-border: 220 14% 25% / 0.5;
+    --glass-shadow: 0 0% 0%;
+    --surface-elevated: 220 18% 12%;
+    --surface-sunken: 220 20% 6%;
+
+    /* Sidebar dark */
+    --sidebar-bg: 220 20% 4%;
+    --sidebar-fg: 220 14% 70%;
+    --sidebar-muted: 220 14% 15%;
+    --sidebar-accent: 195 89% 45%;
+    --sidebar-border: 220 14% 12%;
+
     --font-sans: Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
     --radius: 0.125rem;
   }
@@ -146,41 +175,23 @@ All colors MUST be HSL.
   }
 
   @keyframes scroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
   }
 
   @keyframes marquee {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
   }
 
   @keyframes count-up {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   @keyframes pulse-soft {
-    0%, 100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.05);
-    }
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
   }
 
   .animate-marquee {
@@ -254,21 +265,13 @@ All colors MUST be HSL.
   }
 
   @keyframes gradient {
-    0%, 100% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
   }
 
   @keyframes brushed-steel-diagonal {
-    0% {
-      background-position: 0% 0%;
-    }
-    100% {
-      background-position: 200% 200%;
-    }
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 200%; }
   }
 
   .brushed-steel-waves {
@@ -294,5 +297,75 @@ All colors MUST be HSL.
     );
     background-size: 200% 200%;
     animation: brushed-steel-diagonal 10s linear infinite;
+  }
+
+  /* ── Audit Report Glass & Depth System ──────────── */
+  .audit-glass-card {
+    background: hsl(var(--glass-bg));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--glass-border));
+    box-shadow: 
+      0 1px 2px hsl(var(--glass-shadow) / 0.04),
+      0 4px 16px hsl(var(--glass-shadow) / 0.06);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .audit-glass-card:hover {
+    box-shadow: 
+      0 2px 4px hsl(var(--glass-shadow) / 0.06),
+      0 8px 24px hsl(var(--glass-shadow) / 0.1);
+    border-color: hsl(var(--glass-border));
+  }
+
+  .audit-surface {
+    background: hsl(var(--surface-elevated));
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 1px 3px hsl(var(--glass-shadow) / 0.04);
+  }
+
+  .audit-surface-sunken {
+    background: hsl(var(--surface-sunken));
+    border: 1px solid hsl(var(--border));
+  }
+
+  /* Dark sidebar for audit report */
+  .audit-sidebar {
+    background: hsl(var(--sidebar-bg));
+    color: hsl(var(--sidebar-fg));
+    border-color: hsl(var(--sidebar-border));
+  }
+
+  .audit-sidebar .sidebar-item {
+    color: hsl(var(--sidebar-fg));
+    transition: all 0.15s ease;
+  }
+
+  .audit-sidebar .sidebar-item:hover {
+    background: hsl(var(--sidebar-muted));
+    color: hsl(0 0% 95%);
+  }
+
+  .audit-sidebar .sidebar-item.active {
+    background: hsl(var(--sidebar-accent) / 0.12);
+    color: hsl(var(--sidebar-accent));
+    border-left: 2px solid hsl(var(--sidebar-accent));
+  }
+
+  /* Top bar glass effect */
+  .audit-topbar {
+    background: hsl(var(--sidebar-bg) / 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid hsl(var(--sidebar-border));
+  }
+
+  /* Subtle grid background for content */
+  .audit-grid-bg {
+    background-image: 
+      linear-gradient(hsl(var(--border)) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px);
+    background-size: 48px 48px;
+    background-position: -1px -1px;
   }
 }

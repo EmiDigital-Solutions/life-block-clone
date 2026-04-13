@@ -79,8 +79,17 @@ export default {
   				light: 'hsl(var(--navy-light))'
   			},
   			slate: 'hsl(var(--slate))',
-  			cream: 'hsl(var(--cream))',
-  			project: {
+			cream: 'hsl(var(--cream))',
+			'surface-elevated': 'hsl(var(--surface-elevated))',
+			'surface-sunken': 'hsl(var(--surface-sunken))',
+			sidebar: {
+				bg: 'hsl(var(--sidebar-bg))',
+				fg: 'hsl(var(--sidebar-fg))',
+				muted: 'hsl(var(--sidebar-muted))',
+				accent: 'hsl(var(--sidebar-accent))',
+				border: 'hsl(var(--sidebar-border))',
+			},
+			project: {
   				blue: 'hsl(var(--project-blue))',
   				brown: 'hsl(var(--project-brown))',
   				teal: 'hsl(var(--project-teal))',

@@ -4,10 +4,10 @@ import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { Shield, AlertTriangle, Clock, TrendingDown, ChevronDown, FileCheck } from "lucide-react";
 
 const verdictConfig: Record<VerdictType, { label: string; color: string; accent: string; iconBg: string; borderColor: string }> = {
-  go: { label: 'APPROVED', color: 'hsl(155, 24%, 55%)', accent: 'hsl(155, 24%, 45%)', iconBg: 'bg-accent/10', borderColor: 'border-accent/30' },
-  conditional: { label: 'CONDITIONAL', color: 'hsl(24, 72%, 63%)', accent: 'hsl(24, 72%, 53%)', iconBg: 'bg-warning/10', borderColor: 'border-warning/30' },
-  hold: { label: 'ON HOLD', color: 'hsl(0, 48%, 46%)', accent: 'hsl(0, 48%, 36%)', iconBg: 'bg-destructive/10', borderColor: 'border-destructive/30' },
-  nogo: { label: 'REJECTED', color: 'hsl(0, 48%, 36%)', accent: 'hsl(0, 48%, 30%)', iconBg: 'bg-destructive/15', borderColor: 'border-destructive/40' },
+  go: { label: 'APPROVED', color: 'hsl(155, 24%, 55%)', accent: 'hsl(155, 24%, 45%)', iconBg: 'bg-accent/10', borderColor: 'border-accent/20' },
+  conditional: { label: 'CONDITIONAL', color: 'hsl(24, 72%, 63%)', accent: 'hsl(24, 72%, 53%)', iconBg: 'bg-warning/10', borderColor: 'border-warning/20' },
+  hold: { label: 'ON HOLD', color: 'hsl(0, 48%, 46%)', accent: 'hsl(0, 48%, 36%)', iconBg: 'bg-destructive/10', borderColor: 'border-destructive/20' },
+  nogo: { label: 'REJECTED', color: 'hsl(0, 48%, 36%)', accent: 'hsl(0, 48%, 30%)', iconBg: 'bg-destructive/15', borderColor: 'border-destructive/20' },
 };
 
 function ProcessScoreBar({ label, fullName, score }: { label: string; fullName: string; score: number }) {
@@ -50,12 +50,6 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
 
   return (
     <section id="station-1" className="min-h-[100dvh] flex flex-col justify-center relative scroll-mt-20 py-12">
-      {/* Subtle grid background */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
-        backgroundImage: 'linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)',
-        backgroundSize: '40px 40px'
-      }} />
-
       <div className="relative z-10 max-w-[880px] mx-auto w-full">
         {/* Top bar */}
         <div className="flex items-center justify-between mb-8">
@@ -67,16 +61,16 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
           </div>
           <div className="flex items-center gap-2">
             {['ISO 9001', 'IATF 16949', 'VDA 6.3'].map(badge => (
-              <span key={badge} className="text-[9px] font-bold tracking-[0.1em] uppercase px-2 py-1 bg-muted border border-border text-muted-foreground">
+              <span key={badge} className="text-[9px] font-bold tracking-[0.1em] uppercase px-2 py-1 audit-surface-sunken text-muted-foreground">
                 {badge}
               </span>
             ))}
           </div>
         </div>
 
-        {/* Verdict block */}
-        <div className={cn("border p-8 md:p-10 mb-6", config.borderColor)} style={{
-          background: `linear-gradient(135deg, ${config.color}08, white 60%)`,
+        {/* Verdict block — glassmorphic */}
+        <div className={cn("audit-glass-card p-8 md:p-10 mb-6", config.borderColor)} style={{
+          background: `linear-gradient(135deg, ${config.color}06, hsl(var(--card)) 60%)`,
         }}>
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
             <div className="flex-1 min-w-0">
@@ -106,8 +100,8 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
                 {heroReason}
               </p>
 
-              {/* Executive Summary */}
-              <div className="mt-5 p-4 bg-muted border border-border">
+              {/* Executive Summary — elevated surface */}
+              <div className="mt-5 p-4 audit-surface-sunken">
                 <div className="text-[10px] font-bold tracking-[0.12em] uppercase text-muted-foreground mb-2">Executive Summary</div>
                 <ul className="space-y-2 text-[13px] text-charcoal leading-relaxed">
                   <li className="flex items-start gap-2">
@@ -163,7 +157,7 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
 
             {/* Right — IATF score panel */}
             <div className="w-full md:w-[300px] shrink-0">
-              <div className="border border-border bg-background p-5 shadow-sm">
+              <div className="audit-glass-card p-5">
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <div className="text-[10px] font-bold tracking-[0.12em] uppercase text-muted-foreground">IATF 16949</div>
@@ -201,8 +195,8 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
           </div>
         </div>
 
-        {/* Cost exposure banner */}
-        <div className="border border-border bg-muted p-4 mb-6">
+        {/* Cost exposure banner — glass */}
+        <div className="audit-glass-card p-4 mb-6">
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 bg-destructive/10 flex items-center justify-center">
@@ -231,20 +225,20 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
         <div className="flex items-center gap-3 mb-8">
           <button
             onClick={onDecide}
-            className="px-7 py-3 text-[13px] font-semibold text-white shadow-md hover:shadow-lg transition-all duration-200 active:scale-[0.98]"
+            className="px-7 py-3 text-[13px] font-semibold text-white transition-all duration-200 active:scale-[0.98] hover:shadow-lg"
             style={{ background: `linear-gradient(135deg, ${config.color}, ${config.accent})` }}
           >
             Review & decide →
           </button>
           <button
             onClick={onWalk}
-            className="px-7 py-3 text-[13px] font-semibold text-muted-foreground border border-border bg-background hover:bg-muted transition-all duration-200 active:scale-[0.98]"
+            className="px-7 py-3 text-[13px] font-semibold text-muted-foreground audit-surface hover:bg-muted transition-all duration-200 active:scale-[0.98]"
           >
             Walk the factory
             <ChevronDown className="w-3.5 h-3.5 inline ml-1.5 -mt-0.5" />
           </button>
           <button
-            className="px-7 py-3 text-[13px] font-semibold text-muted-foreground border border-border bg-background hover:bg-muted transition-all duration-200 active:scale-[0.98]"
+            className="px-7 py-3 text-[13px] font-semibold text-muted-foreground audit-surface hover:bg-muted transition-all duration-200 active:scale-[0.98]"
           >
             <FileCheck className="w-3.5 h-3.5 inline mr-1.5 -mt-0.5" />
             Export PDF
