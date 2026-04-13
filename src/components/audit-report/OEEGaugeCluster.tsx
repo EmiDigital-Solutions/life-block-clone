@@ -1,5 +1,3 @@
-import { Gauge } from "lucide-react";
-
 interface MachineOEE {
   id: string;
   name: string;
@@ -20,13 +18,13 @@ const machines: MachineOEE[] = [
 const BMW_THRESHOLD = 85;
 
 function OEEBar({ value, label, threshold }: { value: number; label: string; threshold: number }) {
-  const color = value >= threshold ? 'hsl(155, 24%, 55%)' : value >= 75 ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)';
+  const color = value >= threshold ? 'hsl(var(--accent))' : value >= 75 ? 'hsl(var(--warning))' : 'hsl(var(--destructive))';
   return (
     <div className="flex items-center gap-3">
-      <span className="text-[11px] w-[40px] shrink-0" style={{ color: 'hsl(0,0%,50%)' }}>{label}</span>
-      <div className="flex-1 h-4 relative" style={{ background: 'hsl(0,0%,93%)' }}>
-        <div className="absolute top-0 h-full" style={{ width: `${value}%`, background: color, opacity: 0.7 }} />
-        <div className="absolute top-0 bottom-0 w-px" style={{ left: `${threshold}%`, background: 'hsl(0,0%,60%)', borderLeft: '1px dashed hsl(0,0%,60%)' }} />
+      <span className="text-[11px] w-[40px] shrink-0 text-muted-foreground">{label}</span>
+      <div className="flex-1 h-4 relative bg-muted">
+        <div className="absolute top-0 h-full opacity-70" style={{ width: `${value}%`, background: color }} />
+        <div className="absolute top-0 bottom-0 w-px border-l border-dashed border-muted-foreground/40" style={{ left: `${threshold}%` }} />
       </div>
       <span className="text-[13px] font-mono font-bold w-[40px] text-right" style={{ color }}>{value}%</span>
     </div>
@@ -38,10 +36,10 @@ export default function OEEGaugeCluster() {
   const belowThreshold = machines.filter(m => m.oee < BMW_THRESHOLD).length;
 
   return (
-    <section className="space-y-6">
-      <div className="flex items-center gap-2 mb-3">
-        <div className="w-1 h-5" style={{ background: 'hsl(195, 89%, 34%)' }} />
-        <span className="text-[11px] font-semibold tracking-[0.15em] uppercase" style={{ color: 'hsl(0,0%,50%)' }}>OEE Performance</span>
+    <section className="py-12 space-y-8">
+      <div className="flex items-center gap-2">
+        <div className="w-1 h-5 bg-primary" />
+        <span className="text-[11px] font-semibold tracking-[0.15em] uppercase text-muted-foreground">OEE Performance</span>
       </div>
 
       <h2 className="text-[32px] font-bold text-foreground tracking-[-0.02em] leading-tight">
@@ -51,28 +49,26 @@ export default function OEEGaugeCluster() {
       {/* Machine cards */}
       <div className="space-y-3">
         {machines.map(m => {
-          const oeeColor = m.oee >= BMW_THRESHOLD ? 'hsl(155, 24%, 55%)' : m.oee >= 75 ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)';
+          const oeeColor = m.oee >= BMW_THRESHOLD ? 'hsl(var(--accent))' : m.oee >= 75 ? 'hsl(var(--warning))' : 'hsl(var(--destructive))';
           const isBelow = m.oee < BMW_THRESHOLD;
 
           return (
-            <div key={m.id} className="flex items-stretch gap-px" style={{ background: 'hsl(0,0%,85%)' }}>
-              {/* Left: machine info + OEE hero number */}
-              <div className="w-[240px] shrink-0 p-5 flex items-center gap-4" style={{ background: 'hsl(0,0%,100%)' }}>
+            <div key={m.id} className="flex items-stretch gap-px bg-border">
+              <div className="w-[240px] shrink-0 p-5 flex items-center gap-4 bg-card">
                 <div>
                   <div className="text-[36px] font-bold font-mono leading-none" style={{ color: oeeColor }}>{m.oee}%</div>
-                  <span className="text-[10px] uppercase tracking-wider font-semibold" style={{ color: 'hsl(0,0%,50%)' }}>OEE</span>
+                  <span className="text-[10px] uppercase tracking-wider font-semibold text-muted-foreground">OEE</span>
                 </div>
                 <div className="ml-auto text-right">
-                  <span className="text-[11px] font-mono font-bold" style={{ color: 'hsl(0,0%,40%)' }}>{m.id}</span>
+                  <span className="text-[11px] font-mono font-bold text-muted-foreground">{m.id}</span>
                   <p className="text-[13px] font-medium text-foreground">{m.name}</p>
                   {isBelow && (
-                    <span className="text-[9px] font-bold uppercase tracking-wider" style={{ color: 'hsl(0, 48%, 46%)' }}>Below {BMW_THRESHOLD}%</span>
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-destructive">Below {BMW_THRESHOLD}%</span>
                   )}
                 </div>
               </div>
 
-              {/* Right: sub-metric bars */}
-              <div className="flex-1 p-5 space-y-2" style={{ background: 'hsl(0,0%,100%)' }}>
+              <div className="flex-1 p-5 space-y-2 bg-card">
                 <OEEBar value={m.availability} label="Avail." threshold={BMW_THRESHOLD} />
                 <OEEBar value={m.performance} label="Perf." threshold={BMW_THRESHOLD} />
                 <OEEBar value={m.quality} label="Qual." threshold={95} />
@@ -82,16 +78,16 @@ export default function OEEGaugeCluster() {
         })}
       </div>
 
-      {/* Threshold legend */}
-      <div className="flex items-center gap-6 text-[11px]" style={{ color: 'hsl(0,0%,50%)' }}>
+      {/* Legend */}
+      <div className="flex items-center gap-6 text-[11px] text-muted-foreground">
         <span className="flex items-center gap-2">
-          <span className="w-px h-3 inline-block" style={{ borderLeft: '1px dashed hsl(0,0%,60%)' }} /> BMW Threshold ({BMW_THRESHOLD}%)
+          <span className="w-px h-3 inline-block border-l border-dashed border-muted-foreground/40" /> BMW Threshold ({BMW_THRESHOLD}%)
         </span>
         <span className="flex items-center gap-2">
-          <span className="w-3 h-2 inline-block" style={{ background: 'hsl(155, 24%, 55%)' }} /> Above target
+          <span className="w-3 h-2 inline-block bg-accent" /> Above target
         </span>
         <span className="flex items-center gap-2">
-          <span className="w-3 h-2 inline-block" style={{ background: 'hsl(0, 48%, 46%)' }} /> Below target
+          <span className="w-3 h-2 inline-block bg-destructive" /> Below target
         </span>
       </div>
     </section>
