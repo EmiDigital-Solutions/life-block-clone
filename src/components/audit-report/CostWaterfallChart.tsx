@@ -1,12 +1,58 @@
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 
-export default function CostWaterfallChart() {
+export default function CostWaterfallChart({ depth = 'standard' }: { depth?: import("@/data/auditReportData").DepthLevel }) {
   const { costImpactData } = useAuditReportContext();
 
   const totalExposure = costImpactData.reduce((a, c) => a + c.currentExposure, 0);
   const totalMitigated = costImpactData.reduce((a, c) => a + c.mitigatedCost, 0);
   const savings = totalExposure - totalMitigated;
   const maxExposure = Math.max(...costImpactData.map(c => c.currentExposure));
+
+  if (depth === 'executive') {
+    return (
+      <div className="border border-border">
+        <div className="px-4 py-2" style={{ background: 'hsl(220,20%,14%)' }}>
+          <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/80">Cost Exposure Analysis</span>
+        </div>
+        <div className="grid grid-cols-4 divide-x divide-border bg-card">
+          {[
+            { label: 'Total Exposure', value: `€${Math.round(totalExposure / 1000)}K`, color: 'hsl(var(--destructive))' },
+            { label: 'After Mitigation', value: `€${Math.round(totalMitigated / 1000)}K`, color: 'hsl(var(--accent))' },
+            { label: 'Recoverable', value: `€${Math.round(savings / 1000)}K`, color: 'hsl(var(--primary))' },
+            { label: 'Confidence', value: `${Math.round(costImpactData.reduce((a, c) => a + c.confidence, 0) / costImpactData.length)}%`, color: 'hsl(var(--foreground))' },
+          ].map(stat => (
+            <div key={stat.label} className="px-4 py-3 text-center">
+              <div className="text-[9px] uppercase tracking-[0.12em] font-semibold text-muted-foreground">{stat.label}</div>
+              <div className="text-[20px] font-bold font-mono tabular-nums leading-none mt-1" style={{ color: stat.color }}>{stat.value}</div>
+            </div>
+          ))}
+        </div>
+        <div className="px-4 py-3 border-t border-border bg-card space-y-2">
+          {costImpactData.slice(0, 4).map(item => {
+            const exposurePct = (item.currentExposure / maxExposure) * 100;
+            const mitigatedPct = (item.mitigatedCost / maxExposure) * 100;
+            const name = item.category.split(' — ')[0];
+            return (
+              <div key={item.category}>
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-[11px] font-medium text-foreground">{name}</span>
+                  <div className="flex items-center gap-2 text-[10px] font-mono tabular-nums">
+                    <span className="text-destructive">€{Math.round(item.currentExposure / 1000)}K</span>
+                    <span className="text-muted-foreground">→</span>
+                    <span className="text-accent">€{Math.round(item.mitigatedCost / 1000)}K</span>
+                  </div>
+                </div>
+                <div className="relative h-3 bg-muted">
+                  <div className="absolute top-0 h-full bg-destructive opacity-20" style={{ width: `${exposurePct}%` }} />
+                  <div className="absolute top-0 h-full bg-accent opacity-60" style={{ width: `${mitigatedPct}%` }} />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <section className="scroll-mt-20 py-12 space-y-8">

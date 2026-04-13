@@ -352,7 +352,13 @@ function AuditReportInner() {
                   ))}
                   <NCRRegister ncrs={allNCRs} depth={depth} />
                   
-                  {depth !== 'executive' && (
+                  {depth === 'executive' ? (
+                    <div className="space-y-4">
+                      <FindingSankeyDiagram depth="executive" />
+                      <CostWaterfallChart depth="executive" />
+                      <OEEGaugeCluster depth="executive" />
+                    </div>
+                  ) : (
                     <>
                       <FindingSankeyDiagram />
                       <CostWaterfallChart />

@@ -62,6 +62,34 @@ function GapBar({ label, supplierVal, targetVal }: { label: string; supplierVal:
   );
 }
 
+function CompactGapBar({ label, supplierVal, targetVal }: { label: string; supplierVal: number; targetVal: number }) {
+  const gap = supplierVal - targetVal;
+  const isBelow = gap < 0;
+  const color = isBelow ? 'hsl(var(--destructive))' : 'hsl(var(--accent))';
+  const barWidth = Math.min(100, Math.abs(gap) * 2.5);
+
+  return (
+    <div className="flex items-center gap-2 py-1">
+      <span className="text-[10px] text-foreground w-[90px] shrink-0 truncate">{label}</span>
+      <div className="flex-1 h-[5px] relative bg-muted">
+        <div
+          className="absolute top-0 h-full opacity-80"
+          style={{
+            background: color,
+            width: `${barWidth}%`,
+            left: isBelow ? undefined : '50%',
+            right: isBelow ? '50%' : undefined,
+          }}
+        />
+        <div className="absolute top-0 bottom-0 w-px left-1/2 bg-muted-foreground/20" />
+      </div>
+      <span className="text-[10px] font-mono font-bold w-[32px] text-right" style={{ color }}>
+        {isBelow ? '' : '+'}{gap}
+      </span>
+    </div>
+  );
+}
+
 export default function ExecutiveRadarCharts({ depth = 'standard' }: { depth?: import("@/data/auditReportData").DepthLevel }) {
   const productionGaps = productionData
     .map(d => ({ label: d.dimension, supplierVal: d.supplier, targetVal: d.clientMin, gap: d.supplier - d.clientMin }))
@@ -72,31 +100,101 @@ export default function ExecutiveRadarCharts({ depth = 'standard' }: { depth?: i
     .sort((a, b) => a.gap - b.gap);
 
   const criticalCount = productionGaps.filter(g => g.gap < -15).length + commercialGaps.filter(g => g.gap < -15).length;
+  const belowTargetCount = productionGaps.filter(g => g.gap < 0).length + commercialGaps.filter(g => g.gap < 0).length;
 
   if (depth === 'executive') {
-    // Show only the takeaway bar in executive mode
+    const prodAvg = Math.round(productionData.reduce((a, d) => a + d.supplier, 0) / productionData.length);
+    const commAvg = Math.round(commercialData.reduce((a, d) => a + d.supplier, 0) / commercialData.length);
+
     return (
-      <section className="py-4">
+      <section className="py-4 space-y-4">
         <div className="border border-border">
           <div className="px-4 py-2" style={{ background: 'hsl(220,20%,14%)' }}>
-            <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/80">Gap Analysis Summary</span>
+            <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/80">Gap Analysis — {criticalCount} Critical Gaps</span>
           </div>
-          <div className="flex items-center gap-6 p-4 bg-card">
-            <div className="flex items-center gap-4 shrink-0">
-              <div className="text-center">
-                <div className="text-[24px] font-bold font-mono leading-none text-destructive">{criticalCount}</div>
-                <span className="text-[9px] uppercase tracking-wider font-semibold text-muted-foreground">Critical Gaps</span>
-              </div>
-              <div className="w-px h-8 bg-border" />
-              <div className="text-center">
-                <div className="text-[24px] font-bold font-mono leading-none text-warning">
-                  {productionGaps.filter(g => g.gap < 0).length + commercialGaps.filter(g => g.gap < 0).length}
+
+          <div className="grid grid-cols-2 divide-x divide-border">
+            {/* Manufacturing Radar — compact */}
+            <div className="bg-card">
+              <div className="flex items-center justify-between px-4 pt-3 pb-1">
+                <div>
+                  <span className="text-[9px] font-bold tracking-[0.12em] uppercase text-warning">Manufacturing</span>
+                  <div className="text-[13px] font-bold text-foreground">Production Capability</div>
                 </div>
-                <span className="text-[9px] uppercase tracking-wider font-semibold text-muted-foreground">Below Target</span>
+                <div className="text-right">
+                  <div className="text-[20px] font-bold font-mono text-foreground leading-none">{prodAvg}</div>
+                  <span className="text-[9px] text-muted-foreground">avg</span>
+                </div>
+              </div>
+
+              <div style={{ height: 240 }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <RadarChart cx="50%" cy="50%" outerRadius="65%" data={productionData}>
+                    <PolarGrid stroke="hsl(var(--border))" />
+                    <PolarAngleAxis dataKey="dimension" tick={{ fontSize: 8, fill: 'hsl(0,0%,50%)' }} tickLine={false} />
+                    <PolarRadiusAxis angle={90} domain={[0, 100]} tick={false} axisLine={false} />
+                    <Radar name="BMW Req." dataKey="clientMin" stroke="hsl(24, 72%, 63%)" fill="hsl(24, 72%, 63%)" fillOpacity={0.04} strokeWidth={1} strokeDasharray="4 2" />
+                    <Radar name="Supplier" dataKey="supplier" stroke="hsl(195, 89%, 34%)" fill="hsl(195, 89%, 34%)" fillOpacity={0.12} strokeWidth={2} dot={{ r: 2, fill: 'hsl(195, 89%, 34%)' }} />
+                  </RadarChart>
+                </ResponsiveContainer>
+              </div>
+
+              <div className="px-4 pb-3 border-t border-border/40">
+                <span className="text-[8px] font-bold tracking-[0.1em] uppercase text-muted-foreground">Top Gaps</span>
+                {productionGaps.filter(g => g.gap < 0).slice(0, 4).map(g => (
+                  <CompactGapBar key={g.label} label={g.label} supplierVal={g.supplierVal} targetVal={g.targetVal} />
+                ))}
               </div>
             </div>
-            <p className="text-[12px] leading-snug text-muted-foreground">
-              Critical weaknesses in <strong className="text-foreground">resilience</strong>, <strong className="text-foreground">BCP</strong>, <strong className="text-foreground">ESG</strong>, and <strong className="text-foreground">automation</strong>.
+
+            {/* Commercial Radar — compact */}
+            <div className="bg-card">
+              <div className="flex items-center justify-between px-4 pt-3 pb-1">
+                <div>
+                  <span className="text-[9px] font-bold tracking-[0.12em] uppercase text-accent">Commercial</span>
+                  <div className="text-[13px] font-bold text-foreground">Business & Risk</div>
+                </div>
+                <div className="text-right">
+                  <div className="text-[20px] font-bold font-mono text-foreground leading-none">{commAvg}</div>
+                  <span className="text-[9px] text-muted-foreground">avg</span>
+                </div>
+              </div>
+
+              <div style={{ height: 240 }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <RadarChart cx="50%" cy="50%" outerRadius="65%" data={commercialData}>
+                    <PolarGrid stroke="hsl(var(--border))" />
+                    <PolarAngleAxis dataKey="dimension" tick={{ fontSize: 8, fill: 'hsl(0,0%,50%)' }} tickLine={false} />
+                    <PolarRadiusAxis angle={90} domain={[0, 100]} tick={false} axisLine={false} />
+                    <Radar name="Benchmark" dataKey="benchmark" stroke="hsl(155, 24%, 55%)" fill="hsl(155, 24%, 55%)" fillOpacity={0.04} strokeWidth={1} strokeDasharray="4 2" />
+                    <Radar name="Supplier" dataKey="supplier" stroke="hsl(195, 89%, 34%)" fill="hsl(195, 89%, 34%)" fillOpacity={0.12} strokeWidth={2} dot={{ r: 2, fill: 'hsl(195, 89%, 34%)' }} />
+                  </RadarChart>
+                </ResponsiveContainer>
+              </div>
+
+              <div className="px-4 pb-3 border-t border-border/40">
+                <span className="text-[8px] font-bold tracking-[0.1em] uppercase text-muted-foreground">Top Gaps</span>
+                {commercialGaps.filter(g => g.gap < 0).slice(0, 4).map(g => (
+                  <CompactGapBar key={g.label} label={g.label} supplierVal={g.supplierVal} targetVal={g.targetVal} />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Summary strip */}
+          <div className="flex items-center gap-6 px-4 py-2.5 border-t border-border bg-muted/30">
+            <div className="flex items-center gap-3">
+              <span className="text-[20px] font-bold font-mono text-destructive leading-none">{criticalCount}</span>
+              <span className="text-[9px] uppercase tracking-wider font-semibold text-muted-foreground">Critical</span>
+            </div>
+            <div className="w-px h-5 bg-border" />
+            <div className="flex items-center gap-3">
+              <span className="text-[20px] font-bold font-mono text-warning leading-none">{belowTargetCount}</span>
+              <span className="text-[9px] uppercase tracking-wider font-semibold text-muted-foreground">Below Target</span>
+            </div>
+            <div className="w-px h-5 bg-border" />
+            <p className="text-[10px] leading-snug text-muted-foreground">
+              Critical: <strong className="text-foreground">resilience</strong>, <strong className="text-foreground">BCP</strong>, <strong className="text-foreground">ESG</strong>, <strong className="text-foreground">automation</strong>, <strong className="text-foreground">calibration</strong>
             </p>
           </div>
         </div>
@@ -217,7 +315,7 @@ export default function ExecutiveRadarCharts({ depth = 'standard' }: { depth?: i
           <div className="w-px h-12 bg-border" />
           <div className="text-center">
             <div className="text-[36px] font-bold font-mono leading-none text-warning">
-              {productionGaps.filter(g => g.gap < 0).length + commercialGaps.filter(g => g.gap < 0).length}
+              {belowTargetCount}
             </div>
             <span className="text-[10px] uppercase tracking-wider font-semibold text-muted-foreground">Total Below Target</span>
           </div>
