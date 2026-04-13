@@ -32,12 +32,12 @@ export default function DecisionTray({ ncrs, isOpen, onClose, className }: Decis
 
       <div className="grid grid-cols-3 gap-2 p-4 border-b border-border/40">
         <div className="text-center">
-          <AlertCircle className="w-4 h-4 text-destructive mx-auto mb-1" />
+          <AlertCircle className="w-4 h-4 text-warning mx-auto mb-1" />
           <span className="text-[18px] font-light text-foreground tabular-nums">{pending}</span>
           <span className="block text-[10px] text-muted-foreground uppercase tracking-wider">Pending</span>
         </div>
         <div className="text-center">
-          <Clock className="w-4 h-4 text-warning mx-auto mb-1" />
+          <Clock className="w-4 h-4 text-primary mx-auto mb-1" />
           <span className="text-[18px] font-light text-foreground tabular-nums">{assigned}</span>
           <span className="block text-[10px] text-muted-foreground uppercase tracking-wider">Assigned</span>
         </div>
