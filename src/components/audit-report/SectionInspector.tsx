@@ -57,7 +57,7 @@ export default function SectionInspector({ activeStation, isOpen, onClose }: Sec
     <aside className={cn(
       "flex flex-col transition-all duration-300 overflow-hidden",
       isOpen ? "w-[320px] xl:w-[340px] opacity-100" : "w-0 opacity-0"
-    )} style={{ background: 'hsl(0,0%,82%)', borderLeft: '1px solid hsl(0,0%,76%)' }}>
+    )} style={{ background: 'hsl(0,0%,97%)', borderLeft: '1px solid hsl(0,0%,90%)' }}>
       {/* Auto-save */}
       <div className="text-right px-4 pt-3 pb-1">
         <span className="text-[11px]" style={{ color: 'hsl(0,0%,50%)' }}>Last saved <span className="text-primary font-medium">2 min ago</span> · Auto-save on</span>
