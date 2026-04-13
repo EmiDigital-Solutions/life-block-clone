@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import type { NCR, DepthLevel } from "@/data/auditReportData";
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import NCRCard from "./NCRCard";
