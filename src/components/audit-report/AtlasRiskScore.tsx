@@ -1,6 +1,5 @@
-import { cn } from "@/lib/utils";
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
-import { Sparkles, Shield, TrendingUp } from "lucide-react";
+import { Shield } from "lucide-react";
 
 function RiskGauge({ score }: { score: number }) {
   const color = score >= 70 ? 'hsl(155, 24%, 55%)' : score >= 40 ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)';
@@ -9,23 +8,23 @@ function RiskGauge({ score }: { score: number }) {
 
   return (
     <div className="flex flex-col items-center">
-      <svg viewBox="0 0 120 70" className="w-[200px]">
-        <path d="M 10 65 A 50 50 0 0 1 110 65" fill="none" stroke="hsl(var(--border))" strokeWidth="6" strokeLinecap="round" />
+      <svg viewBox="0 0 160 90" className="w-[240px]">
+        <path d="M 12 80 A 68 68 0 0 1 148 80" fill="none" stroke="hsl(0,0%,90%)" strokeWidth="8" strokeLinecap="round" />
         <path
-          d="M 10 65 A 50 50 0 0 1 110 65"
+          d="M 12 80 A 68 68 0 0 1 148 80"
           fill="none"
           stroke={color}
-          strokeWidth="6"
+          strokeWidth="8"
           strokeLinecap="round"
-          strokeDasharray={`${(angle / 180) * 157} 157`}
+          strokeDasharray={`${(angle / 180) * 213} 213`}
         />
-        <text x="60" y="58" textAnchor="middle" className="text-[28px] font-bold" fill={color} style={{ fontFamily: 'monospace' }}>
+        <text x="80" y="72" textAnchor="middle" fontSize="36" fontWeight="800" fill={color} fontFamily="ui-monospace, monospace">
           {score}
         </text>
       </svg>
-      <div className="flex items-center gap-1.5 mt-1">
-        <Shield className="w-3 h-3" style={{ color }} />
-        <span className="text-[10px] font-bold tracking-[0.15em] uppercase" style={{ color }}>{label}</span>
+      <div className="flex items-center gap-2 mt-2">
+        <Shield className="w-4 h-4" style={{ color }} />
+        <span className="text-[12px] font-bold tracking-[0.15em] uppercase" style={{ color }}>{label}</span>
       </div>
     </div>
   );
@@ -34,7 +33,6 @@ function RiskGauge({ score }: { score: number }) {
 export default function AtlasRiskScore() {
   const { stations, allNCRs, kpis, costImpactData } = useAuditReportContext();
 
-  // Compute composite Atlas Risk Score 0-100
   const healthScores = { green: 100, amber: 60, red: 20, grey: 50 };
   const stationStations = stations.filter(s => s.index >= 2 && s.index <= 9);
   const stationAvg = stationStations.length > 0
@@ -55,46 +53,45 @@ export default function AtlasRiskScore() {
     stationAvg * 0.4 + ncrScore * 0.3 + costScore * 0.2 + overallScore * 0.1
   )));
 
-  const percentile = 23;
-  const totalAudits = 47;
+  const components = [
+    { label: 'Station Health', value: Math.round(stationAvg), weight: '40%', color: stationAvg >= 70 ? 'hsl(155, 24%, 55%)' : 'hsl(24, 72%, 63%)' },
+    { label: 'NCR Impact', value: ncrScore, weight: '30%', color: ncrScore >= 50 ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)' },
+    { label: 'Cost Risk', value: Math.round(Math.max(0, 100 - (totalExposure / 10000))), weight: '20%', color: totalExposure > 500000 ? 'hsl(0, 48%, 46%)' : 'hsl(24, 72%, 63%)' },
+    { label: 'Overall Score', value: overallScore, weight: '10%', color: 'hsl(195, 89%, 34%)' },
+  ];
 
   return (
-    <section className="py-12 border-b border-border">
-      <div className="flex items-center gap-3 mb-6">
-        <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">// ATLAS</span>
-        <Sparkles className="w-3.5 h-3.5 text-primary" />
-        <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">Composite Risk Score</span>
-        <div className="flex-1 h-px bg-border" />
+    <section className="py-10 space-y-6">
+      <div className="flex items-center gap-2 mb-3">
+        <div className="w-1 h-5" style={{ background: 'hsl(195, 89%, 34%)' }} />
+        <span className="text-[11px] font-semibold tracking-[0.15em] uppercase" style={{ color: 'hsl(0,0%,50%)' }}>Atlas AI</span>
       </div>
 
-      <div className="border border-border bg-white p-6 md:p-8">
-        <div className="flex flex-col md:flex-row items-center gap-8">
+      <h2 className="text-[32px] font-bold text-foreground tracking-[-0.02em] leading-tight">
+        Composite risk score: {score}/100
+      </h2>
+
+      <div className="p-8" style={{ background: 'hsl(0,0%,100%)', border: '1px solid hsl(0,0%,85%)' }}>
+        <div className="flex flex-col md:flex-row items-center gap-12">
           <RiskGauge score={score} />
-          <div className="flex-1 space-y-3">
-            <h3 className="text-[18px] font-semibold text-foreground">Atlas Risk Score</h3>
-            <p className="text-[13px] text-muted-foreground leading-relaxed">
-              Composite score combining station health, NCR severity, machine OEE, cost exposure, and delay probability into a single metric.
+
+          <div className="flex-1 space-y-4 w-full">
+            <p className="text-[15px] leading-relaxed" style={{ color: 'hsl(0,0%,40%)' }}>
+              Weighted composite of station health, NCR severity, cost exposure, and overall audit performance. This supplier ranks in the <strong className="text-foreground">23rd percentile</strong> across 47 automotive plastics audits.
             </p>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
-              {[
-                { label: 'Station Health', value: `${Math.round(stationAvg)}%`, color: stationAvg >= 70 ? 'hsl(155, 24%, 55%)' : 'hsl(24, 72%, 63%)' },
-                { label: 'NCR Impact', value: `${ncrScore}/100`, color: ncrScore >= 50 ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)' },
-                { label: 'Cost Risk', value: `€${Math.round(totalExposure / 1000)}K`, color: totalExposure > 500000 ? 'hsl(0, 48%, 46%)' : 'hsl(24, 72%, 63%)' },
-                { label: 'OEE Avg', value: '82%', color: 'hsl(24, 72%, 63%)' },
-              ].map(item => (
-                <div key={item.label} className="border border-border p-3">
-                  <span className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground font-semibold">{item.label}</span>
-                  <div className="text-[16px] font-mono font-bold mt-1" style={{ color: item.color }}>{item.value}</div>
+            {/* Score components as horizontal bars */}
+            <div className="space-y-3 mt-6">
+              {components.map(comp => (
+                <div key={comp.label} className="flex items-center gap-4">
+                  <span className="text-[13px] text-foreground w-[120px] shrink-0">{comp.label}</span>
+                  <span className="text-[10px] font-mono w-[36px] shrink-0" style={{ color: 'hsl(0,0%,55%)' }}>{comp.weight}</span>
+                  <div className="flex-1 h-3 relative" style={{ background: 'hsl(0,0%,93%)' }}>
+                    <div className="absolute top-0 h-full" style={{ width: `${comp.value}%`, background: comp.color, opacity: 0.7 }} />
+                  </div>
+                  <span className="text-[14px] font-mono font-bold w-[40px] text-right" style={{ color: comp.color }}>{comp.value}</span>
                 </div>
               ))}
-            </div>
-
-            <div className="flex items-center gap-2 mt-4 p-3 bg-primary/5 border border-primary/10">
-              <TrendingUp className="w-4 h-4 text-primary" />
-              <span className="text-[12px] text-foreground">
-                This supplier scores in the <strong>{percentile}rd percentile</strong> compared to {totalAudits} audits in Automotive Plastics
-              </span>
             </div>
           </div>
         </div>

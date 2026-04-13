@@ -15,13 +15,13 @@ const stages: FlowStage[] = [
   {
     title: 'Findings',
     nodes: [
-      { label: 'Observations', count: 12, color: 'hsl(135, 8%, 52%)' },
+      { label: 'Observations', count: 12, color: 'hsl(155, 24%, 55%)' },
       { label: 'Concerns', count: 5, color: 'hsl(24, 72%, 63%)' },
       { label: 'Non-Conformities', count: 4, color: 'hsl(0, 48%, 46%)' },
     ],
   },
   {
-    title: 'NCRs',
+    title: 'NCRs Raised',
     nodes: [
       { label: 'Major NCR', count: 1, color: 'hsl(0, 48%, 46%)' },
       { label: 'Minor NCR', count: 3, color: 'hsl(24, 72%, 63%)' },
@@ -32,11 +32,11 @@ const stages: FlowStage[] = [
     nodes: [
       { label: 'Immediate', count: 2, color: 'hsl(0, 48%, 46%)' },
       { label: 'Short-term', count: 3, color: 'hsl(24, 72%, 63%)' },
-      { label: 'Long-term', count: 1, color: 'hsl(135, 8%, 52%)' },
+      { label: 'Long-term', count: 1, color: 'hsl(155, 24%, 55%)' },
     ],
   },
   {
-    title: 'Resolution',
+    title: 'Status',
     nodes: [
       { label: 'Closed', count: 1, color: 'hsl(155, 24%, 55%)' },
       { label: 'In Progress', count: 3, color: 'hsl(24, 72%, 63%)' },
@@ -46,41 +46,41 @@ const stages: FlowStage[] = [
 ];
 
 export default function FindingSankeyDiagram() {
+  const totalFindings = stages[0].nodes.reduce((a, n) => a + n.count, 0);
+  const openCount = stages[3].nodes.find(n => n.label === 'Open')?.count || 0;
+
   return (
-    <section className="space-y-4">
-      <div className="flex items-center gap-3 mb-2">
-        <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">// FLOW</span>
-        <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-        <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">Finding Resolution Pipeline</span>
-        <div className="flex-1 h-px bg-border" />
+    <section className="space-y-6">
+      <div className="flex items-center gap-2 mb-3">
+        <div className="w-1 h-5" style={{ background: 'hsl(195, 89%, 34%)' }} />
+        <span className="text-[11px] font-semibold tracking-[0.15em] uppercase" style={{ color: 'hsl(0,0%,50%)' }}>Resolution Pipeline</span>
       </div>
 
-      <div className="border border-border bg-white p-6">
-        <div className="grid grid-cols-4 gap-4">
+      <h2 className="text-[32px] font-bold text-foreground tracking-[-0.02em] leading-tight">
+        {openCount} of {totalFindings} findings still open
+      </h2>
+
+      <div className="p-8" style={{ background: 'hsl(0,0%,100%)', border: '1px solid hsl(0,0%,85%)' }}>
+        <div className="grid grid-cols-4 gap-6">
           {stages.map((stage, si) => (
-            <div key={si} className="space-y-3">
-              <h4 className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground font-semibold text-center">{stage.title}</h4>
-              <div className="space-y-2">
+            <div key={si}>
+              <h4 className="text-[11px] uppercase tracking-[0.12em] font-semibold mb-4 text-center" style={{ color: 'hsl(0,0%,50%)' }}>{stage.title}</h4>
+              <div className="space-y-3">
                 {stage.nodes.map((node, ni) => {
-                  const barWidth = Math.max(20, (node.count / 12) * 100);
+                  const barHeight = Math.max(36, (node.count / 12) * 120);
                   return (
-                    <div key={ni} className="relative">
-                      <div className="flex items-center gap-2">
-                        <div
-                          className="h-7 flex items-center px-2 transition-all"
-                          style={{ width: `${barWidth}%`, backgroundColor: `${node.color}15`, borderLeft: `3px solid ${node.color}` }}
-                        >
-                          <span className="text-[10px] font-medium truncate" style={{ color: node.color }}>{node.label}</span>
-                        </div>
-                        <span className="text-[12px] font-mono font-bold shrink-0" style={{ color: node.color }}>{node.count}</span>
+                    <div key={ni} className="relative overflow-hidden" style={{ height: barHeight, background: `${node.color}10`, borderLeft: `3px solid ${node.color}` }}>
+                      <div className="absolute inset-0 flex items-center justify-between px-4">
+                        <span className="text-[13px] font-medium" style={{ color: node.color }}>{node.label}</span>
+                        <span className="text-[18px] font-mono font-bold" style={{ color: node.color }}>{node.count}</span>
                       </div>
                     </div>
                   );
                 })}
               </div>
               {si < stages.length - 1 && (
-                <div className="flex justify-center">
-                  <ArrowRight className="w-4 h-4 text-grey-mid" />
+                <div className="flex justify-center mt-4">
+                  <ArrowRight className="w-5 h-5" style={{ color: 'hsl(0,0%,70%)' }} />
                 </div>
               )}
             </div>
