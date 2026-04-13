@@ -209,9 +209,9 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
   const oeeColor = machine.oee >= 85 ? 'hsl(155, 24%, 55%)' : machine.oee >= 75 ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)';
 
   return (
-    <div style={{ background: 'hsl(0,0%,100%)', border: 'none' }}>
+    <div style={{ background: 'hsl(0,0%,100%)' }}>
       {/* Header row: hero OEE + machine info + suitability */}
-      <div className="flex items-stretch gap-px" style={{ background: 'hsl(0,0%,85%)' }}>
+      <div className="flex items-stretch gap-3">
         {/* Hero OEE */}
         <div className="w-[160px] shrink-0 p-5 flex flex-col items-center justify-center" style={{ background: 'hsl(0,0%,100%)' }}>
           <div className="text-[42px] font-bold font-mono leading-none" style={{ color: oeeColor }}>{machine.oee}%</div>
@@ -248,7 +248,7 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
       </div>
 
       {/* Performance bars */}
-      <div className="p-5 space-y-2" style={{ borderTop: 'none' }}>
+      <div className="p-5 space-y-2">
         <div className="flex items-center justify-between mb-3">
           <span className="text-[10px] font-bold uppercase tracking-[0.12em]" style={{ color: 'hsl(0,0%,50%)' }}>Performance Breakdown</span>
           <span className="text-[10px] font-mono" style={{ color: 'hsl(0,0%,55%)' }}>Dashed line = BMW threshold</span>
@@ -259,7 +259,7 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
       </div>
 
       {/* Quick info row */}
-      <div className="flex items-stretch gap-px" style={{ background: 'hsl(0,0%,90%)' }}>
+      <div className="flex items-stretch gap-3">
         {[
           { label: 'Energy', value: `${machine.energyConsumption} kWh` },
           { label: 'Class', value: machine.energyClass },
@@ -276,7 +276,7 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
       </div>
 
       {/* Suitability reason */}
-      <div className="px-5 py-3" style={{ borderTop: 'none' }}>
+      <div className="px-5 py-3">
         <p className="text-[13px] leading-relaxed" style={{ color: 'hsl(0,0%,40%)' }}>
           <strong className="text-foreground">BMW Assessment:</strong> {machine.clientSuitabilityReason}
         </p>
@@ -284,7 +284,7 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
 
       {/* Risks */}
       {machine.risks.length > 0 && (
-        <div className="px-5 py-3" style={{ borderTop: 'none' }}>
+        <div className="px-5 py-3">
           <div className="flex items-center gap-2 mb-2">
             <AlertTriangle className="w-3.5 h-3.5" style={{ color: 'hsl(24, 72%, 63%)' }} />
             <span className="text-[10px] font-bold uppercase tracking-[0.12em]" style={{ color: 'hsl(24, 72%, 63%)' }}>
@@ -298,7 +298,7 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
       )}
 
       {/* Atlas insight */}
-      <div className="px-5 py-3 flex items-start gap-3" style={{ borderTop: 'none', background: 'hsl(195, 89%, 34%, 0.03)' }}>
+      <div className="px-5 py-3 flex items-start gap-3" style={{ background: 'hsl(195, 89%, 34%, 0.03)' }}>
         <Sparkles className="w-4 h-4 mt-0.5 shrink-0" style={{ color: 'hsl(195, 89%, 34%)' }} />
         <div>
           <span className="text-[10px] font-bold uppercase tracking-[0.12em]" style={{ color: 'hsl(195, 89%, 34%)' }}>Atlas AI</span>
@@ -310,7 +310,7 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
       <button
         onClick={() => setExpanded(!expanded)}
         className="w-full px-5 py-3 flex items-center justify-between text-[12px] font-medium transition-colors"
-        style={{ borderTop: 'none', color: 'hsl(195, 89%, 34%)' }}
+        style={{ color: 'hsl(195, 89%, 34%)' }}
       >
         <span className="flex items-center gap-2">
           <Settings2 className="w-4 h-4" />
@@ -320,11 +320,11 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
       </button>
 
       {expanded && (
-        <div style={{ borderTop: 'none' }}>
+        <div>
           {/* Specs grid */}
           <div className="p-5">
             <span className="text-[10px] font-bold uppercase tracking-[0.12em] mb-3 block" style={{ color: 'hsl(0,0%,50%)' }}>Specifications</span>
-            <div className="grid grid-cols-5 gap-px" style={{ background: 'hsl(0,0%,85%)' }}>
+            <div className="grid grid-cols-5 gap-3">
               {machine.specs.map((spec, i) => (
                 <div key={i} className="px-3 py-2.5" style={{ background: 'hsl(0,0%,100%)' }}>
                   <span className="text-[9px] uppercase tracking-[0.08em] block" style={{ color: 'hsl(0,0%,50%)' }}>{spec.label}</span>
@@ -341,7 +341,7 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
             <span className="text-[10px] font-bold uppercase tracking-[0.12em] mb-2 block" style={{ color: 'hsl(0,0%,50%)' }}>Capabilities</span>
             <div className="flex flex-wrap gap-1.5">
               {machine.capabilities.map((cap, i) => (
-                <span key={i} className="text-[11px] px-2.5 py-1 font-medium text-foreground" style={{ border: 'none' }}>
+                <span key={i} className="text-[11px] px-2.5 py-1 font-medium text-foreground">
                   {cap}
                 </span>
               ))}
@@ -378,7 +378,7 @@ export default function MachineParkIntelligence() {
       </p>
 
       {/* Hero stat row */}
-      <div className="flex items-stretch gap-px" style={{ background: 'hsl(0,0%,85%)' }}>
+      <div className="flex items-stretch gap-3">
         {[
           { label: 'Fleet OEE', value: `${avgOEE}%`, color: Number(avgOEE) >= 85 ? 'hsl(155, 24%, 55%)' : 'hsl(24, 72%, 63%)' },
           { label: 'Avg Age', value: `${avgAge} yrs`, color: 'hsl(0,0%,20%)' },
@@ -402,7 +402,7 @@ export default function MachineParkIntelligence() {
       </div>
 
       {/* Bottom note */}
-      <div className="flex items-start gap-3 p-5" style={{ background: 'hsl(0,0%,97%)', border: 'none' }}>
+      <div className="flex items-start gap-3 p-5" style={{ background: 'hsl(0,0%,97%)' }}>
         <Sparkles className="w-4 h-4 mt-0.5 shrink-0" style={{ color: 'hsl(195, 89%, 34%)' }} />
         <p className="text-[13px] leading-relaxed" style={{ color: 'hsl(0,0%,45%)' }}>
           All machine profiles auto-generated from on-site type plate captures. Suitability assessments calibrated against BMW technical requirements and tolerance specifications.
