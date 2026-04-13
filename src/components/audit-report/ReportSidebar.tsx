@@ -190,10 +190,9 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
                 className={cn(
                   "flex items-center gap-2 w-full px-3 py-1.5 text-left text-[11px] transition-colors",
                   ci === 0
-                    ? "text-primary font-medium"
+                    ? "text-primary font-medium bg-primary/10"
                     : "text-muted-foreground hover:text-foreground"
                 )}
-                className={ci === 0 ? "bg-primary/10" : undefined}
               >
                 <span className="tabular-nums w-8 text-muted-foreground">5.3.{ci + 1}</span>
                 <span>{child.label}</span>
