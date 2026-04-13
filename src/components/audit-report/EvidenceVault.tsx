@@ -18,15 +18,15 @@ export default function EvidenceVault() {
   return (
     <section id="station-14" className="scroll-mt-20 space-y-6">
       <div className="flex items-center gap-3 mb-2">
-        <span className="text-[12px] font-medium tracking-[0.1em] text-[#7B8E80]">// 14</span>
+        <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">// 14</span>
         <span className="w-1.5 h-1.5 rounded-full bg-[#0A7FA5]" />
-        <span className="text-[12px] font-medium tracking-[0.1em] text-[#7B8E80]">Evidence Vault</span>
-        <div className="flex-1 h-px bg-[#E5E7EB]" />
+        <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">Evidence Vault</span>
+        <div className="flex-1 h-px bg-border" />
       </div>
 
       <div className="flex items-center gap-3">
-        <h2 className="text-[28px] font-light text-[#0A0A0A] tracking-tight leading-none">Evidence Vault</h2>
-        <span className="text-[11px] px-2.5 py-1 rounded-full uppercase tracking-wider font-semibold bg-[#F5F5F5] text-[#7B8E80]">
+        <h2 className="text-[28px] font-light text-foreground tracking-tight leading-none">Evidence Vault</h2>
+        <span className="text-[11px] px-2.5 py-1 rounded-full uppercase tracking-wider font-semibold bg-muted text-muted-foreground">
           {evidenceItems.length} files
         </span>
       </div>
@@ -35,21 +35,21 @@ export default function EvidenceVault() {
         {evidenceItems.map((item) => {
           const Icon = typeIcon[item.type as keyof typeof typeIcon] || Camera;
           return (
-            <div key={item.id} className=" border border-[#E5E7EB] bg-white overflow-hidden group hover:shadow-md transition-all cursor-pointer">
-              <div className="aspect-[4/3] bg-[#F5F5F5] flex items-center justify-center relative">
-                <Icon className="w-8 h-8 text-[#C0C0C0]" />
-                <span className="absolute bottom-2 left-2 text-[10px] px-2 py-0.5 rounded bg-white/80 text-[#7B8E80] font-mono border border-[#E5E7EB]">
+            <div key={item.id} className=" border border-border bg-white overflow-hidden group hover:shadow-md transition-all cursor-pointer">
+              <div className="aspect-[4/3] bg-muted flex items-center justify-center relative">
+                <Icon className="w-8 h-8 text-grey-mid" />
+                <span className="absolute bottom-2 left-2 text-[10px] px-2 py-0.5 rounded bg-white/80 text-muted-foreground font-mono border border-border">
                   Stn {String(item.station).padStart(2, '0')}
                 </span>
                 {item.ncr && (
-                  <span className="absolute top-2 right-2 text-[10px] px-2 py-0.5 rounded bg-[#AD3D3D]/10 text-[#AD3D3D] font-mono flex items-center gap-1 border border-[#AD3D3D]/20">
+                  <span className="absolute top-2 right-2 text-[10px] px-2 py-0.5 rounded bg-destructive/10 text-destructive font-mono flex items-center gap-1 border border-destructive/20">
                     <Link2 className="w-3 h-3" /> {item.ncr}
                   </span>
                 )}
               </div>
               <div className="p-3">
-                <p className="text-[12px] text-[#0A0A0A] font-medium line-clamp-1">{item.name}</p>
-                <div className="flex items-center gap-3 mt-1.5 text-[11px] text-[#7B8E80]">
+                <p className="text-[12px] text-foreground font-medium line-clamp-1">{item.name}</p>
+                <div className="flex items-center gap-3 mt-1.5 text-[11px] text-muted-foreground">
                   <span className="font-mono">{item.id}</span>
                   <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {item.time}</span>
                 </div>

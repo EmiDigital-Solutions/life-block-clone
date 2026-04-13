@@ -32,31 +32,31 @@ export default function CostWaterfallChart() {
   return (
     <section className="scroll-mt-20 space-y-6">
       <div className="flex items-center gap-3 mb-2">
-        <span className="text-[12px] font-medium tracking-[0.1em] text-[#7B8E80]">// COST</span>
+        <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">// COST</span>
         <span className="w-1.5 h-1.5 bg-[#0A7FA5]" />
-        <span className="text-[12px] font-medium tracking-[0.1em] text-[#7B8E80]">Cost Exposure Waterfall</span>
-        <div className="flex-1 h-px bg-[#E5E7EB]" />
+        <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">Cost Exposure Waterfall</span>
+        <div className="flex-1 h-px bg-border" />
       </div>
 
-      <h2 className="text-[28px] font-light text-[#0A0A0A] tracking-tight leading-none">
+      <h2 className="text-[28px] font-light text-foreground tracking-tight leading-none">
         Cost Exposure Analysis
       </h2>
 
-      <div className="border border-[#E5E7EB] bg-white p-6">
-        <div className="flex items-center gap-6 mb-6 pb-4 border-b border-[#E5E7EB]">
+      <div className="border border-border bg-white p-6">
+        <div className="flex items-center gap-6 mb-6 pb-4 border-b border-border">
           <div>
-            <span className="text-[10px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold">Total Exposure</span>
-            <div className="text-[24px] font-bold text-[#AD3D3D] font-mono tabular-nums">€{Math.round(totalExposure / 1000)}K</div>
+            <span className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground font-semibold">Total Exposure</span>
+            <div className="text-[24px] font-bold text-destructive font-mono tabular-nums">€{Math.round(totalExposure / 1000)}K</div>
           </div>
-          <div className="w-px h-10 bg-[#E5E7EB]" />
+          <div className="w-px h-10 bg-border" />
           <div>
-            <span className="text-[10px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold">After Mitigation</span>
-            <div className="text-[24px] font-bold text-[#6EA996] font-mono tabular-nums">€{Math.round(totalMitigated / 1000)}K</div>
+            <span className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground font-semibold">After Mitigation</span>
+            <div className="text-[24px] font-bold text-accent font-mono tabular-nums">€{Math.round(totalMitigated / 1000)}K</div>
           </div>
-          <div className="w-px h-10 bg-[#E5E7EB]" />
+          <div className="w-px h-10 bg-border" />
           <div>
-            <span className="text-[10px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold">Savings</span>
-            <div className="text-[24px] font-bold text-[#0A7FA5] font-mono tabular-nums">€{Math.round((totalExposure - totalMitigated) / 1000)}K</div>
+            <span className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground font-semibold">Savings</span>
+            <div className="text-[24px] font-bold text-primary font-mono tabular-nums">€{Math.round((totalExposure - totalMitigated) / 1000)}K</div>
           </div>
         </div>
 
@@ -78,20 +78,20 @@ export default function CostWaterfallChart() {
           {costImpactData.map(item => (
             <div key={item.category} className="flex items-center gap-3 py-2 border-b border-[#F5F5F5] last:border-0">
               <div className="flex-1 min-w-0">
-                <span className="text-[13px] font-medium text-[#0A0A0A]">{item.category}</span>
-                <p className="text-[11px] text-[#7B8E80] truncate">{item.driver.substring(0, 80)}...</p>
+                <span className="text-[13px] font-medium text-foreground">{item.category}</span>
+                <p className="text-[11px] text-muted-foreground truncate">{item.driver.substring(0, 80)}...</p>
               </div>
               <div className="flex items-center gap-4 shrink-0 text-right">
                 <div>
-                  <div className="text-[13px] font-mono font-bold text-[#AD3D3D] tabular-nums">€{(item.currentExposure / 1000).toFixed(0)}K</div>
-                  <div className="text-[9px] text-[#C0C0C0]">at risk</div>
+                  <div className="text-[13px] font-mono font-bold text-destructive tabular-nums">€{(item.currentExposure / 1000).toFixed(0)}K</div>
+                  <div className="text-[9px] text-grey-mid">at risk</div>
                 </div>
-                <span className="text-[11px] text-[#C0C0C0]">→</span>
+                <span className="text-[11px] text-grey-mid">→</span>
                 <div>
-                  <div className="text-[13px] font-mono font-bold text-[#6EA996] tabular-nums">€{(item.mitigatedCost / 1000).toFixed(0)}K</div>
-                  <div className="text-[9px] text-[#C0C0C0]">mitigated</div>
+                  <div className="text-[13px] font-mono font-bold text-accent tabular-nums">€{(item.mitigatedCost / 1000).toFixed(0)}K</div>
+                  <div className="text-[9px] text-grey-mid">mitigated</div>
                 </div>
-                <span className="text-[9px] font-mono px-1.5 py-0.5 bg-[#F5F5F5] text-[#7B8E80]">{item.confidence}%</span>
+                <span className="text-[9px] font-mono px-1.5 py-0.5 bg-muted text-muted-foreground">{item.confidence}%</span>
               </div>
             </div>
           ))}

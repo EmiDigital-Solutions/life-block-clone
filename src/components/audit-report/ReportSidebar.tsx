@@ -120,7 +120,7 @@ function SectionGroup({ label, children }: { label: string; children: React.Reac
   return (
     <div className="mb-2">
       <div className="px-4 pt-5 pb-2">
-        <span className="text-[10px] font-semibold tracking-[0.15em] uppercase text-[#7B8E80]">
+        <span className="text-[10px] font-semibold tracking-[0.15em] uppercase text-muted-foreground">
           {label}
         </span>
       </div>
@@ -156,11 +156,11 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
           className={cn(
             "flex items-center gap-3 w-full px-4 py-2 text-left transition-all duration-150 group",
             isActive
-              ? "bg-[#0A7FA5]/5 text-[#0A7FA5] border-l-2 border-[#0A7FA5]"
-              : "text-[#1A1A1A] hover:bg-[#F5F5F5] border-l-2 border-transparent"
+              ? "bg-primary/5 text-primary border-l-2 border-[#0A7FA5]"
+              : "text-charcoal hover:bg-muted border-l-2 border-transparent"
           )}
         >
-          <span className="text-[13px] font-medium tabular-nums text-[#C0C0C0] w-6 shrink-0">
+          <span className="text-[13px] font-medium tabular-nums text-grey-mid w-6 shrink-0">
             {item.index <= 4
               ? `${item.index}.0`
               : item.index <= 11
@@ -169,7 +169,7 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
           </span>
           <span className={cn(
             "text-[13px] flex-1 truncate",
-            isActive ? "font-semibold text-[#0A7FA5]" : "font-normal"
+            isActive ? "font-semibold text-primary" : "font-normal"
           )}>
             {item.label}
           </span>
@@ -185,18 +185,18 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
 
         {/* Sub-items */}
         {item.children && isActive && (
-          <div className="ml-10 border-l border-[#E5E7EB]">
+          <div className="ml-10 border-l border-border">
             {item.children.map((child, ci) => (
               <button
                 key={child.id}
                 className={cn(
                   "flex items-center gap-2 w-full px-4 py-1.5 text-left text-[12px] transition-colors",
                   ci === 0
-                    ? "text-[#0A7FA5] font-medium bg-[#0A7FA5]/5"
-                    : "text-[#7B8E80] hover:text-[#1A1A1A]"
+                    ? "text-primary font-medium bg-primary/5"
+                    : "text-muted-foreground hover:text-charcoal"
                 )}
               >
-                <span className="tabular-nums text-[#C0C0C0] w-8">5.3.{ci + 1}</span>
+                <span className="tabular-nums text-grey-mid w-8">5.3.{ci + 1}</span>
                 <span>{child.label}</span>
               </button>
             ))}
@@ -209,12 +209,12 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
   return (
     <aside className={cn("flex flex-col overflow-y-auto", className)}>
       {/* Document outline header */}
-      <div className="px-4 py-5 border-b border-[#E5E7EB]">
-        <span className="text-[10px] font-semibold tracking-[0.15em] uppercase text-[#7B8E80]">
+      <div className="px-4 py-5 border-b border-border">
+        <span className="text-[10px] font-semibold tracking-[0.15em] uppercase text-muted-foreground">
           Document Outline
         </span>
-        <h3 className="text-[15px] font-semibold text-[#0A0A0A] mt-1">Process audit report</h3>
-        <p className="text-[12px] text-[#7B8E80] mt-0.5">
+        <h3 className="text-[15px] font-semibold text-foreground mt-1">Process audit report</h3>
+        <p className="text-[12px] text-muted-foreground mt-0.5">
           47 pages · {totalSections} sections · {ncrCount} ncrs
         </p>
       </div>

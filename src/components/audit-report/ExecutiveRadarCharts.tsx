@@ -248,7 +248,7 @@ export default function ExecutiveRadarCharts() {
             </div>
             <div className="w-px h-10 bg-[#E2E8F0]" />
             <div className="text-center">
-              <div className="text-[28px] font-bold text-[#0A7FA5] leading-none tabular-nums">{commercialGaps.length}</div>
+              <div className="text-[28px] font-bold text-primary leading-none tabular-nums">{commercialGaps.length}</div>
               <div className="text-[10px] text-[#94A3B8] font-medium uppercase mt-1">Commercial</div>
             </div>
           </div>

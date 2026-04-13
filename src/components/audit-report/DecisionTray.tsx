@@ -16,11 +16,11 @@ export default function DecisionTray({ ncrs, isOpen, onClose, className }: Decis
 
   return (
     <aside className={cn(
-      "flex flex-col border-l border-[#E5E7EB] bg-[#FAFBFC] transition-all duration-300 overflow-hidden",
+      "flex flex-col border-l border-border bg-[#FAFBFC] transition-all duration-300 overflow-hidden",
       isOpen ? "w-[300px] opacity-100" : "w-0 opacity-0",
       className
     )}>
-      <div className="flex items-center justify-between px-4 py-4 border-b border-[#E5E7EB]">
+      <div className="flex items-center justify-between px-4 py-4 border-b border-border">
         <div>
           <h3 className="text-[14px] font-semibold text-[#111827]">Decision Tray</h3>
           <p className="text-[12px] text-[#9CA3AF] mt-0.5">{pending} pending · {assigned} assigned</p>
@@ -30,7 +30,7 @@ export default function DecisionTray({ ncrs, isOpen, onClose, className }: Decis
         </button>
       </div>
 
-      <div className="grid grid-cols-3 gap-2 p-4 border-b border-[#E5E7EB]">
+      <div className="grid grid-cols-3 gap-2 p-4 border-b border-border">
         <div className="text-center">
           <AlertCircle className="w-4 h-4 text-[#EF4444] mx-auto mb-1" />
           <span className="text-[18px] font-light text-[#111827] tabular-nums">{pending}</span>
@@ -48,7 +48,7 @@ export default function DecisionTray({ ncrs, isOpen, onClose, className }: Decis
         </div>
       </div>
 
-      <div className="px-4 py-3 border-b border-[#E5E7EB]">
+      <div className="px-4 py-3 border-b border-border">
         <p className="text-[12px] text-[#6B7280]">
           Est. <span className="text-[#111827] font-medium">12 min</span> to sign off
         </p>
@@ -58,7 +58,7 @@ export default function DecisionTray({ ncrs, isOpen, onClose, className }: Decis
         {ncrs.map(ncr => <NCRCard key={ncr.id} ncr={ncr} compact />)}
       </div>
 
-      <div className="p-4 border-t border-[#E5E7EB]">
+      <div className="p-4 border-t border-border">
         <button
           disabled={pending > 0}
           className={cn(

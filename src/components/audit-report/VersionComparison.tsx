@@ -16,22 +16,22 @@ const diffItems: DiffItem[] = [
 
 const typeIcon = { added: Plus, removed: Minus, changed: Edit3 };
 const typeColor = {
-  added: 'text-[#6EA996] bg-[#6EA996]/10',
-  removed: 'text-[#AD3D3D] bg-[#AD3D3D]/10',
-  changed: 'text-[#E39B5C] bg-[#E39B5C]/10',
+  added: 'text-accent bg-accent/10',
+  removed: 'text-destructive bg-destructive/10',
+  changed: 'text-warning bg-warning/10',
 };
 
 export default function VersionComparison() {
   return (
     <section className="space-y-4">
       <div className="flex items-center gap-3">
-        <GitCompare className="w-4 h-4 text-[#0A7FA5]" />
-        <h3 className="text-[14px] font-semibold text-[#0A0A0A]">Version Comparison</h3>
-        <span className="text-[11px] font-mono text-[#7B8E80]">v1 → v2</span>
-        <span className="text-[10px] text-[#C0C0C0]">· 5 changes</span>
+        <GitCompare className="w-4 h-4 text-primary" />
+        <h3 className="text-[14px] font-semibold text-foreground">Version Comparison</h3>
+        <span className="text-[11px] font-mono text-muted-foreground">v1 → v2</span>
+        <span className="text-[10px] text-grey-mid">· 5 changes</span>
       </div>
 
-      <div className="border border-[#E5E7EB] bg-white divide-y divide-[#E5E7EB]">
+      <div className="border border-border bg-white divide-y divide-[#E5E7EB]">
         {diffItems.map((item, i) => {
           const Icon = typeIcon[item.type];
           return (
@@ -40,8 +40,8 @@ export default function VersionComparison() {
                 <Icon className="w-3.5 h-3.5" />
               </div>
               <div className="min-w-0">
-                <span className="text-[11px] font-semibold text-[#0A0A0A]">{item.section}</span>
-                <p className="text-[12px] text-[#7B8E80] mt-0.5">{item.description}</p>
+                <span className="text-[11px] font-semibold text-foreground">{item.section}</span>
+                <p className="text-[12px] text-muted-foreground mt-0.5">{item.description}</p>
               </div>
             </div>
           );

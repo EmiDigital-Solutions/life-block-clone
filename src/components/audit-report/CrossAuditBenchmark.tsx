@@ -11,20 +11,20 @@ export default function CrossAuditBenchmark() {
   return (
     <section className="space-y-4">
       <div className="flex items-center gap-3 mb-2">
-        <BarChart3 className="w-4 h-4 text-[#0A7FA5]" />
-        <h3 className="text-[14px] font-semibold text-[#0A0A0A]">Cross-Audit Benchmarking</h3>
-        <span className="text-[11px] text-[#7B8E80]">vs. {benchmarkData[0].totalAudits} audits in {benchmarkData[0].industry}</span>
+        <BarChart3 className="w-4 h-4 text-primary" />
+        <h3 className="text-[14px] font-semibold text-foreground">Cross-Audit Benchmarking</h3>
+        <span className="text-[11px] text-muted-foreground">vs. {benchmarkData[0].totalAudits} audits in {benchmarkData[0].industry}</span>
       </div>
 
       <div className="grid md:grid-cols-2 gap-3">
         {benchmarkData.map((item) => (
-          <div key={item.label} className="border border-[#E5E7EB] bg-white p-4 space-y-3">
+          <div key={item.label} className="border border-border bg-white p-4 space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-[12px] font-medium text-[#0A0A0A]">{item.label}</span>
-              <span className="text-[11px] font-mono text-[#7B8E80]">{item.supplier}/100</span>
+              <span className="text-[12px] font-medium text-foreground">{item.label}</span>
+              <span className="text-[11px] font-mono text-muted-foreground">{item.supplier}/100</span>
             </div>
             {/* Percentile bar */}
-            <div className="relative h-6 bg-[#F5F5F5]">
+            <div className="relative h-6 bg-muted">
               <div
                 className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#AD3D3D]/20 via-[#E39B5C]/20 to-[#6EA996]/20"
                 style={{ width: '100%' }}
@@ -34,7 +34,7 @@ export default function CrossAuditBenchmark() {
                 style={{ left: `${item.percentile}%` }}
               />
               <div
-                className="absolute -top-5 text-[9px] font-mono text-[#0A7FA5] font-bold whitespace-nowrap"
+                className="absolute -top-5 text-[9px] font-mono text-primary font-bold whitespace-nowrap"
                 style={{ left: `${item.percentile}%`, transform: 'translateX(-50%)' }}
               >
                 P{item.percentile}
@@ -42,11 +42,11 @@ export default function CrossAuditBenchmark() {
             </div>
             <div className="flex items-center gap-1.5">
               {item.percentile < 30 ? (
-                <TrendingDown className="w-3 h-3 text-[#AD3D3D]" />
+                <TrendingDown className="w-3 h-3 text-destructive" />
               ) : (
-                <TrendingUp className="w-3 h-3 text-[#6EA996]" />
+                <TrendingUp className="w-3 h-3 text-accent" />
               )}
-              <span className="text-[10px] text-[#7B8E80]">
+              <span className="text-[10px] text-muted-foreground">
                 {item.percentile < 30
                   ? `Bottom quartile — below ${100 - item.percentile}% of peers`
                   : `Above ${item.percentile}% of peers`}

@@ -49,17 +49,17 @@ export default function FindingSankeyDiagram() {
   return (
     <section className="space-y-4">
       <div className="flex items-center gap-3 mb-2">
-        <span className="text-[12px] font-medium tracking-[0.1em] text-[#7B8E80]">// FLOW</span>
+        <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">// FLOW</span>
         <span className="w-1.5 h-1.5 rounded-full bg-[#0A7FA5]" />
-        <span className="text-[12px] font-medium tracking-[0.1em] text-[#7B8E80]">Finding Resolution Pipeline</span>
-        <div className="flex-1 h-px bg-[#E5E7EB]" />
+        <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">Finding Resolution Pipeline</span>
+        <div className="flex-1 h-px bg-border" />
       </div>
 
-      <div className="border border-[#E5E7EB] bg-white p-6">
+      <div className="border border-border bg-white p-6">
         <div className="grid grid-cols-4 gap-4">
           {stages.map((stage, si) => (
             <div key={si} className="space-y-3">
-              <h4 className="text-[10px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold text-center">{stage.title}</h4>
+              <h4 className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground font-semibold text-center">{stage.title}</h4>
               <div className="space-y-2">
                 {stage.nodes.map((node, ni) => {
                   const barWidth = Math.max(20, (node.count / 12) * 100);
@@ -80,7 +80,7 @@ export default function FindingSankeyDiagram() {
               </div>
               {si < stages.length - 1 && (
                 <div className="flex justify-center">
-                  <ArrowRight className="w-4 h-4 text-[#C0C0C0]" />
+                  <ArrowRight className="w-4 h-4 text-grey-mid" />
                 </div>
               )}
             </div>

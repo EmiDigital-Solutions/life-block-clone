@@ -52,18 +52,18 @@ export default function KPIBand({ kpis }: KPIBandProps) {
         return (
           <div
             key={i}
-            className="border border-[#E5E7EB] bg-white p-5 hover:shadow-md transition-all duration-300 group cursor-pointer"
+            className="border border-border bg-white p-5 hover:shadow-md transition-all duration-300 group cursor-pointer"
           >
-            <span className="text-[11px] uppercase tracking-[0.12em] text-[#7B8E80] font-semibold">
+            <span className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold">
               {kpi.label}
             </span>
             <div className="flex items-end justify-between mt-3 gap-2">
               <div className="flex items-baseline gap-1">
-                <span className="text-[32px] font-light text-[#0A0A0A] leading-none tracking-tight tabular-nums">
+                <span className="text-[32px] font-light text-foreground leading-none tracking-tight tabular-nums">
                   {kpi.value}
                 </span>
                 {kpi.unit && (
-                  <span className="text-[14px] text-[#C0C0C0] font-light">{kpi.unit}</span>
+                  <span className="text-[14px] text-grey-mid font-light">{kpi.unit}</span>
                 )}
               </div>
               {kpi.sparkline && <MiniSparkline data={kpi.sparkline} color={sparkColor} />}
@@ -73,12 +73,12 @@ export default function KPIBand({ kpis }: KPIBandProps) {
             {threshold && (
               <div className="flex items-center justify-between mt-3 pt-2 border-t border-[#F5F5F5]">
                 <div className="text-[10px]">
-                  <span className="text-[#C0C0C0]">Actual</span>
-                  <span className="font-mono font-semibold text-[#0A0A0A] ml-1">{kpi.value}{kpi.unit || ''}</span>
+                  <span className="text-grey-mid">Actual</span>
+                  <span className="font-mono font-semibold text-foreground ml-1">{kpi.value}{kpi.unit || ''}</span>
                 </div>
                 <div className="text-[10px]">
-                  <span className="text-[#C0C0C0]">{threshold.label}</span>
-                  <span className="font-mono font-semibold text-[#7B8E80] ml-1">{threshold.threshold}</span>
+                  <span className="text-grey-mid">{threshold.label}</span>
+                  <span className="font-mono font-semibold text-muted-foreground ml-1">{threshold.threshold}</span>
                 </div>
               </div>
             )}
@@ -86,9 +86,9 @@ export default function KPIBand({ kpis }: KPIBandProps) {
             <div className="flex items-center gap-1.5 mt-2">
               <Icon className="w-3.5 h-3.5" style={{ color: trendColor }} />
               <span className="text-[12px] font-mono font-medium" style={{ color: trendColor }}>{kpi.trendValue}</span>
-              <span className="text-[11px] text-[#C0C0C0]">vs. prior</span>
+              <span className="text-[11px] text-grey-mid">vs. prior</span>
             </div>
-            <p className="text-[12px] text-[#7B8E80] mt-2 opacity-0 group-hover:opacity-100 transition-opacity leading-relaxed">{kpi.interpretation}</p>
+            <p className="text-[12px] text-muted-foreground mt-2 opacity-0 group-hover:opacity-100 transition-opacity leading-relaxed">{kpi.interpretation}</p>
           </div>
         );
       })}
