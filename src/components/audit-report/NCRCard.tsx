@@ -3,15 +3,15 @@ import type { NCR } from "@/data/auditReportData";
 import { Diamond, Square, User, Calendar, ChevronRight } from "lucide-react";
 
 const severityConfig = {
-  minor: { icon: Diamond, color: 'text-warning', bg: 'bg-warning/10', border: 'border-warning/30', label: 'Minor' },
-  major: { icon: Square, color: 'text-destructive', bg: 'bg-destructive/10', border: 'border-destructive/30', label: 'Major' },
+  minor: { icon: Diamond, color: 'text-warning', bg: 'hsl(24, 72%, 63%, 0.1)', label: 'Minor', borderColor: 'hsl(24, 72%, 63%, 0.3)' },
+  major: { icon: Square, color: 'text-destructive', bg: 'hsl(0, 48%, 46%, 0.1)', label: 'Major', borderColor: 'hsl(0, 48%, 46%, 0.3)' },
 };
 
-const statusConfig: Record<string, string> = {
-  open: 'bg-destructive/10 text-destructive',
-  'in-progress': 'bg-warning/10 text-warning',
-  closed: 'bg-accent/10 text-accent',
-  escalated: 'bg-primary/10 text-primary',
+const statusConfig: Record<string, { bg: string; color: string }> = {
+  open: { bg: 'hsl(0, 48%, 46%, 0.1)', color: 'hsl(0, 48%, 46%)' },
+  'in-progress': { bg: 'hsl(24, 72%, 63%, 0.1)', color: 'hsl(24, 72%, 63%)' },
+  closed: { bg: 'hsl(155, 24%, 55%, 0.1)', color: 'hsl(155, 24%, 55%)' },
+  escalated: { bg: 'hsl(195, 89%, 34%, 0.1)', color: 'hsl(195, 89%, 34%)' },
 };
 
 interface NCRCardProps {
@@ -24,35 +24,36 @@ interface NCRCardProps {
 export default function NCRCard({ ncr, compact, onAssign, onAction }: NCRCardProps) {
   const sev = severityConfig[ncr.severity];
   const Icon = sev.icon;
+  const status = statusConfig[ncr.status] || statusConfig.open;
 
   if (compact) {
     return (
-      <div className={cn("flex items-center gap-3 px-3 py-2.5 audit-glass-card", sev.border)}>
+      <div className="flex items-center gap-3 px-3 py-2.5" style={{ background: 'hsla(0,0%,100%,0.7)', border: `1px solid ${sev.borderColor}` }}>
         <Icon className={cn("w-4 h-4 shrink-0", sev.color)} />
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
-            <span className="text-[12px] font-mono text-muted-foreground">{ncr.id}</span>
-            <span className={cn("text-[10px] px-1.5 py-0.5 rounded-full uppercase font-medium", statusConfig[ncr.status])}>
+            <span className="text-[12px] font-mono" style={{ color: 'hsl(0,0%,50%)' }}>{ncr.id}</span>
+            <span className="text-[10px] px-1.5 py-0.5 uppercase font-medium" style={{ background: status.bg, color: status.color }}>
               {ncr.status}
             </span>
           </div>
           <p className="text-[13px] text-foreground truncate">{ncr.title}</p>
         </div>
-        <ChevronRight className="w-4 h-4 text-grey-mid" />
+        <ChevronRight className="w-4 h-4" style={{ color: 'hsl(0,0%,55%)' }} />
       </div>
     );
   }
 
   return (
-    <div className={cn("audit-glass-card p-5 transition-all", sev.border)}>
+    <div className="p-5 transition-all" style={{ background: 'hsla(0,0%,100%,0.7)', backdropFilter: 'blur(12px)', border: `1px solid ${sev.borderColor}` }}>
       <div className="flex items-center gap-3 mb-3">
-        <div className={cn("w-8 h-8  flex items-center justify-center", sev.bg)}>
+        <div className="w-8 h-8 flex items-center justify-center" style={{ background: sev.bg }}>
           <Icon className={cn("w-4 h-4", sev.color)} />
         </div>
         <div className="flex-1">
           <div className="flex items-center gap-2">
-            <span className="text-[13px] font-mono text-muted-foreground">{ncr.id}</span>
-            <span className={cn("text-[10px] px-2 py-0.5 rounded-full uppercase font-semibold tracking-wider", sev.bg, sev.color)}>
+            <span className="text-[13px] font-mono" style={{ color: 'hsl(0,0%,50%)' }}>{ncr.id}</span>
+            <span className="text-[10px] px-2 py-0.5 uppercase font-semibold tracking-wider" style={{ background: sev.bg, color: sev.color === 'text-warning' ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)' }}>
               {sev.label}
             </span>
           </div>
@@ -62,7 +63,8 @@ export default function NCRCard({ ncr, compact, onAssign, onAction }: NCRCardPro
               href={`https://www.iso.org/standard/62085.html`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[10px] font-mono px-1.5 py-0.5 bg-primary/10 text-primary hover:bg-primary/20 transition-colors mt-1 inline-flex items-center gap-1 cursor-pointer"
+              className="text-[10px] font-mono px-1.5 py-0.5 text-primary mt-1 inline-flex items-center gap-1 cursor-pointer transition-colors"
+              style={{ background: 'hsl(195, 89%, 34%, 0.1)' }}
               title={`ISO 9001:2015 / IATF 16949 Clause ${ncr.isoClause}`}
             >
               <span>ISO 9001 §{ncr.isoClause}</span>
@@ -72,11 +74,11 @@ export default function NCRCard({ ncr, compact, onAssign, onAction }: NCRCardPro
         </div>
       </div>
 
-      <p className="text-[13px] text-muted-foreground leading-relaxed mb-3">{ncr.observation}</p>
+      <p className="text-[13px] leading-relaxed mb-3" style={{ color: 'hsl(0,0%,45%)' }}>{ncr.observation}</p>
 
-      <div className="audit-surface-sunken p-3 mb-4">
-        <span className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold">Root Cause (AI)</span>
-        <p className="text-[13px] text-charcoal mt-1">{ncr.rootCause}</p>
+      <div className="p-3 mb-4" style={{ background: 'hsl(0,0%,92%)', border: '1px solid hsl(0,0%,85%)' }}>
+        <span className="text-[11px] uppercase tracking-wider font-semibold" style={{ color: 'hsl(0,0%,50%)' }}>Root Cause (AI)</span>
+        <p className="text-[13px] mt-1" style={{ color: 'hsl(0,0%,25%)' }}>{ncr.rootCause}</p>
       </div>
 
       <p className="text-[14px] text-foreground mb-4 leading-relaxed">{ncr.recommendedAction}</p>
@@ -84,12 +86,13 @@ export default function NCRCard({ ncr, compact, onAssign, onAction }: NCRCardPro
       <div className="flex items-center gap-4 mb-4">
         <button
           onClick={() => onAssign?.(ncr.id)}
-          className="flex items-center gap-2 px-3 py-1.5  border border-dashed border-grey-mid text-[12px] text-muted-foreground hover:border-primary hover:text-primary transition-colors"
+          className="flex items-center gap-2 px-3 py-1.5 text-[12px] transition-colors cursor-pointer"
+          style={{ border: '1px dashed hsl(0,0%,72%)', color: 'hsl(0,0%,50%)' }}
         >
           <User className="w-3.5 h-3.5" />
           {ncr.owner || 'Assign owner'}
         </button>
-        <button className="flex items-center gap-2 px-3 py-1.5  border border-dashed border-grey-mid text-[12px] text-muted-foreground hover:border-primary hover:text-primary transition-colors">
+        <button className="flex items-center gap-2 px-3 py-1.5 text-[12px] transition-colors cursor-pointer" style={{ border: '1px dashed hsl(0,0%,72%)', color: 'hsl(0,0%,50%)' }}>
           <Calendar className="w-3.5 h-3.5" />
           {ncr.dueDate || 'Set due date'}
         </button>
@@ -98,22 +101,22 @@ export default function NCRCard({ ncr, compact, onAssign, onAction }: NCRCardPro
       <div className="flex items-center gap-2">
         {ncr.severity === 'major' ? (
           <>
-            <button onClick={() => onAction?.(ncr.id, 'reject')} className="px-3 py-1.5  bg-destructive/10 text-destructive text-[12px] font-medium hover:bg-destructive/20 transition-colors">Reject</button>
-            <button onClick={() => onAction?.(ncr.id, 'escalate')} className="px-3 py-1.5  bg-primary/10 text-primary text-[12px] font-medium hover:bg-primary/20 transition-colors">Escalate</button>
-            <button onClick={() => onAction?.(ncr.id, 'accept-deviation')} className="px-3 py-1.5  bg-muted text-muted-foreground text-[12px] font-medium hover:bg-border transition-colors">Accept w/ deviation</button>
+            <button onClick={() => onAction?.(ncr.id, 'reject')} className="px-3 py-1.5 text-[12px] font-medium text-destructive cursor-pointer transition-colors" style={{ background: 'hsl(0, 48%, 46%, 0.1)' }}>Reject</button>
+            <button onClick={() => onAction?.(ncr.id, 'escalate')} className="px-3 py-1.5 text-[12px] font-medium text-primary cursor-pointer transition-colors" style={{ background: 'hsl(195, 89%, 34%, 0.1)' }}>Escalate</button>
+            <button onClick={() => onAction?.(ncr.id, 'accept-deviation')} className="px-3 py-1.5 text-[12px] font-medium cursor-pointer transition-colors" style={{ background: 'hsl(0,0%,88%)', color: 'hsl(0,0%,45%)' }}>Accept w/ deviation</button>
           </>
         ) : (
           <>
-            <button onClick={() => onAction?.(ncr.id, 'accept')} className="px-3 py-1.5  bg-accent/10 text-accent text-[12px] font-medium hover:bg-accent/20 transition-colors">Accept</button>
-            <button onClick={() => onAction?.(ncr.id, 'rework')} className="px-3 py-1.5  bg-warning/10 text-warning text-[12px] font-medium hover:bg-warning/20 transition-colors">Rework</button>
-            <button onClick={() => onAction?.(ncr.id, 'reject')} className="px-3 py-1.5  bg-destructive/10 text-destructive text-[12px] font-medium hover:bg-destructive/20 transition-colors">Reject</button>
-            <button onClick={() => onAction?.(ncr.id, 'escalate')} className="px-3 py-1.5  bg-muted text-muted-foreground text-[12px] font-medium hover:bg-border transition-colors">Escalate</button>
+            <button onClick={() => onAction?.(ncr.id, 'accept')} className="px-3 py-1.5 text-[12px] font-medium text-accent cursor-pointer transition-colors" style={{ background: 'hsl(155, 24%, 55%, 0.1)' }}>Accept</button>
+            <button onClick={() => onAction?.(ncr.id, 'rework')} className="px-3 py-1.5 text-[12px] font-medium text-warning cursor-pointer transition-colors" style={{ background: 'hsl(24, 72%, 63%, 0.1)' }}>Rework</button>
+            <button onClick={() => onAction?.(ncr.id, 'reject')} className="px-3 py-1.5 text-[12px] font-medium text-destructive cursor-pointer transition-colors" style={{ background: 'hsl(0, 48%, 46%, 0.1)' }}>Reject</button>
+            <button onClick={() => onAction?.(ncr.id, 'escalate')} className="px-3 py-1.5 text-[12px] font-medium cursor-pointer transition-colors" style={{ background: 'hsl(0,0%,88%)', color: 'hsl(0,0%,45%)' }}>Escalate</button>
           </>
         )}
       </div>
 
-      <div className="mt-3 pt-3 border-t border-border">
-        <span className="text-[12px] text-muted-foreground">
+      <div className="mt-3 pt-3" style={{ borderTop: '1px solid hsl(0,0%,85%)' }}>
+        <span className="text-[12px]" style={{ color: 'hsl(0,0%,50%)' }}>
           Evidence: {ncr.evidenceIds.length} files · {ncr.evidenceIds.join(', ')}
         </span>
       </div>

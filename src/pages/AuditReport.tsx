@@ -24,7 +24,7 @@ import AnomalyCallouts from "@/components/audit-report/AnomalyCallouts";
 import CostWaterfallChart from "@/components/audit-report/CostWaterfallChart";
 import CAPAGantt from "@/components/audit-report/CAPAGantt";
 import StationHeatmap from "@/components/audit-report/StationHeatmap";
-import { Menu, X, Sparkles, AlertTriangle, Clock } from "lucide-react";
+import { Menu, X, Sparkles, AlertTriangle, Clock, Search } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Navigation from "@/components/Navigation";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -165,212 +165,237 @@ function AuditReportInner() {
   return (
     <>
     <Navigation />
-    <div className="h-[100dvh] flex text-foreground pt-16" style={{ fontFamily: "'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
-      {/* Mobile sidebar overlay */}
-      {isMobile && sidebarOpen && (
-        <div className="fixed inset-0 z-50 flex">
-          <div className="absolute inset-0 bg-foreground/40 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
-          <div className="relative z-10 w-[280px] audit-sidebar">
-            <div className="flex items-center justify-between px-4 py-3 border-b border-sidebar-border">
-              <span className="text-[13px] font-semibold text-white/90">Document Outline</span>
-              <button onClick={() => setSidebarOpen(false)} className="p-1"><X className="w-4 h-4 text-white/50" /></button>
-            </div>
-            <ReportSidebar activeStation={activeStation} onStationClick={scrollToStation} onScrollToId={scrollToId} />
-          </div>
+    {/* Outer app shell — industrial grey like SupplierDatabaseDemo */}
+    <div className="h-[100dvh] flex flex-col text-foreground pt-16" style={{ fontFamily: "'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
+      {/* Window title bar — matches SupplierDatabaseDemo chrome */}
+      <div className="h-8 flex items-center px-3 border-b flex-shrink-0" style={{ background: 'hsl(0,0%,88%)', borderColor: 'hsl(0,0%,80%)' }}>
+        <span className="text-[10px] font-medium" style={{ color: 'hsl(0,0%,35%)' }}>
+          SCANPRO+ Audit Report — {reportMeta.supplier} · {reportMeta.po} · {allNCRs.length} NCRs
+        </span>
+        <div className="ml-auto flex gap-1">
+          {(['Report', 'Evidence', 'CAPA'] as const).map((label, i) => (
+            <button
+              key={i}
+              className={cn(
+                "px-2 py-0.5 text-[9px] font-medium uppercase tracking-wider transition-colors cursor-pointer",
+                i === 0 ? 'bg-primary text-white' : 'text-[hsl(0,0%,45%)] hover:bg-[hsl(0,0%,72%)]'
+              )}
+              style={i !== 0 ? { background: 'hsl(0,0%,78%)' } : undefined}
+            >
+              {label}
+            </button>
+          ))}
         </div>
-      )}
+      </div>
 
-      {/* Desktop sidebar — dark theme */}
-      {!isMobile && (
-        <ReportSidebar
-          activeStation={activeStation}
-          onStationClick={scrollToStation}
-          onScrollToId={scrollToId}
-          className="w-[260px] xl:w-[280px] shrink-0 audit-sidebar border-r border-sidebar-border"
-        />
-      )}
-
-      {/* Main content */}
-      <div className="flex-1 flex flex-col min-w-0 relative bg-background">
-        {/* Verdict color band */}
-        <div className={cn(
-          "h-[2px] transition-all duration-300",
-          scrolledPastHero ? "opacity-100" : "opacity-0"
-        )} style={{ background: verdictBandColor }} />
-
-        {/* Top document bar — dark glass */}
-        <div className={cn(
-          "sticky top-0 z-40 audit-topbar transition-all duration-300",
-          scrolledPastHero ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
-        )}>
-          <div className="flex items-center justify-between px-4 md:px-6 h-12">
-            <div className="flex items-center gap-4">
-              {isMobile && (
-                <button onClick={() => setSidebarOpen(true)} className="p-1.5 hover:bg-white/5 transition-colors">
-                  <Menu className="w-4 h-4 text-white/50" />
-                </button>
-              )}
-              <span className="text-[11px] font-semibold text-accent tracking-wider">yvoo+</span>
-              <span className="text-[11px] text-white/40">SCANPRO+ · ATLAS AI</span>
-              <span className="text-[11px] text-white/20">|</span>
-              <span className="text-[12px] text-white/70 font-medium">{reportMeta.supplier}</span>
-              <span className="text-[11px] font-medium text-warning ml-2">{reportMeta.verdictLabel}</span>
-              <span className="text-[11px] text-white/40">· {allNCRs.length} NCRs</span>
-
-              {/* Station heatmap strip */}
-              <div className="hidden md:flex items-center gap-2 ml-2 pl-2 border-l border-white/10">
-                <StationHeatmap activeStation={activeStation} onStationClick={scrollToStation} />
+      {/* Main content area — three-column layout */}
+      <div className="flex-1 flex overflow-hidden" style={{ background: 'hsl(0,0%,85%)' }}>
+        {/* Mobile sidebar overlay */}
+        {isMobile && sidebarOpen && (
+          <div className="fixed inset-0 z-50 flex">
+            <div className="absolute inset-0 bg-foreground/40 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
+            <div className="relative z-10 w-[280px]" style={{ background: 'hsl(0,0%,28%)' }}>
+              <div className="flex items-center justify-between px-4 py-3" style={{ borderBottom: '1px solid hsl(0,0%,22%)' }}>
+                <span className="text-[13px] font-semibold text-white/90">Document Outline</span>
+                <button onClick={() => setSidebarOpen(false)} className="p-1"><X className="w-4 h-4 text-white/50" /></button>
               </div>
-
-              {/* Breadcrumb progress */}
-              <div className="hidden lg:flex items-center gap-1.5 ml-2 pl-2 border-l border-white/10">
-                <span className="text-[10px] font-mono text-white/40 tabular-nums">
-                  Reviewed {reviewedStations.size}/{totalStations}
-                </span>
-              </div>
+              <ReportSidebar activeStation={activeStation} onStationClick={scrollToStation} onScrollToId={scrollToId} />
             </div>
-            <div className="flex items-center gap-3">
-              {/* Reading progress + time */}
-              <div className="hidden md:flex items-center gap-2">
-                <span className="text-[10px] font-mono text-white/40 tabular-nums">{readingProgress}%</span>
-                <span className="text-[10px] text-white/30 flex items-center gap-1">
-                  <Clock className="w-3 h-3" />
-                  {readingTimeEstimates[depth]}
-                </span>
-              </div>
+          </div>
+        )}
 
-              {/* Jump to worst */}
-              {worstStation && (
-                <TooltipProvider delayDuration={200}>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <button
-                        onClick={() => scrollToStation(worstStation.index)}
-                        className="flex items-center gap-1.5 px-2.5 py-1.5 text-[10px] font-semibold text-destructive bg-destructive/15 hover:bg-destructive/25 transition-colors uppercase tracking-wider"
-                      >
-                        <AlertTriangle className="w-3 h-3" />
-                        Worst
-                      </button>
-                    </TooltipTrigger>
-                    <TooltipContent side="bottom" className="text-[11px]">
-                      Jump to {worstStation.name} — lowest scoring station
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              )}
+        {/* Desktop sidebar — dark panel */}
+        {!isMobile && (
+          <ReportSidebar
+            activeStation={activeStation}
+            onStationClick={scrollToStation}
+            onScrollToId={scrollToId}
+            className="w-[220px] xl:w-[260px] shrink-0"
+          />
+        )}
 
-              <div className="flex items-center border border-white/10 overflow-hidden">
-                {(['executive', 'standard', 'full'] as DepthLevel[]).map(d => (
-                  <button
-                    key={d}
-                    onClick={() => setDepth(d)}
-                    className={cn(
-                      "px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider transition-colors",
-                      depth === d ? "bg-primary text-white" : "text-white/40 hover:text-white/70 hover:bg-white/5"
-                    )}
-                  >
-                    {depthLabels[d]}
+        {/* Center content */}
+        <div className="flex-1 flex flex-col min-w-0 relative">
+          {/* Verdict color band */}
+          <div className={cn(
+            "h-[2px] transition-all duration-300",
+            scrolledPastHero ? "opacity-100" : "opacity-0"
+          )} style={{ background: verdictBandColor }} />
+
+          {/* Toolbar — matches SupplierDatabaseDemo toolbar */}
+          <div className={cn(
+            "sticky top-0 z-40 transition-all duration-300",
+            scrolledPastHero ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
+          )} style={{ background: 'hsl(0,0%,88%)', borderBottom: '1px solid hsl(0,0%,78%)' }}>
+            <div className="flex items-center justify-between px-3 h-10">
+              <div className="flex items-center gap-3">
+                {isMobile && (
+                  <button onClick={() => setSidebarOpen(true)} className="p-1.5 hover:bg-[hsl(0,0%,82%)] transition-colors">
+                    <Menu className="w-4 h-4" style={{ color: 'hsl(0,0%,45%)' }} />
                   </button>
-                ))}
+                )}
+                <span className="text-[10px] font-bold uppercase tracking-wider text-primary">yvoo+</span>
+                <span className="text-[10px]" style={{ color: 'hsl(0,0%,55%)' }}>SCANPRO+ · ATLAS AI</span>
+                <span className="text-[10px]" style={{ color: 'hsl(0,0%,72%)' }}>|</span>
+                <span className="text-[11px] font-medium" style={{ color: 'hsl(0,0%,30%)' }}>{reportMeta.supplier}</span>
+                <span className="text-[10px] font-semibold text-warning ml-1">{reportMeta.verdictLabel}</span>
+                <span className="text-[10px]" style={{ color: 'hsl(0,0%,55%)' }}>· {allNCRs.length} NCRs</span>
+
+                {/* Station heatmap strip */}
+                <div className="hidden md:flex items-center gap-2 ml-2 pl-2" style={{ borderLeft: '1px solid hsl(0,0%,72%)' }}>
+                  <StationHeatmap activeStation={activeStation} onStationClick={scrollToStation} />
+                </div>
+
+                {/* Breadcrumb progress */}
+                <div className="hidden lg:flex items-center gap-1.5 ml-2 pl-2" style={{ borderLeft: '1px solid hsl(0,0%,72%)' }}>
+                  <span className="text-[10px] font-mono tabular-nums" style={{ color: 'hsl(0,0%,50%)' }}>
+                    Reviewed {reviewedStations.size}/{totalStations}
+                  </span>
+                </div>
               </div>
-              <button className="hidden md:block px-3 py-1.5 text-[11px] font-medium text-white/60 border border-white/10 hover:bg-white/5 transition-colors">
-                Export pdf
-              </button>
-              <button className="hidden lg:block px-3 py-1.5 text-[11px] font-medium text-white/60 border border-white/10 hover:bg-white/5 transition-colors">
-                Print
-              </button>
-              <button
-                onClick={() => setInspectorOpen(!inspectorOpen)}
-                className="px-4 py-1.5 text-[11px] font-semibold text-white bg-accent hover:bg-accent/80 transition-colors"
-              >
-                Sign off ({allNCRs.filter(n => n.status === 'open').length})
-              </button>
+              <div className="flex items-center gap-2">
+                {/* Reading progress + time */}
+                <div className="hidden md:flex items-center gap-2">
+                  <span className="text-[10px] font-mono tabular-nums" style={{ color: 'hsl(0,0%,50%)' }}>{readingProgress}%</span>
+                  <span className="text-[10px] flex items-center gap-1" style={{ color: 'hsl(0,0%,55%)' }}>
+                    <Clock className="w-3 h-3" />
+                    {readingTimeEstimates[depth]}
+                  </span>
+                </div>
+
+                {/* Jump to worst */}
+                {worstStation && (
+                  <TooltipProvider delayDuration={200}>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <button
+                          onClick={() => scrollToStation(worstStation.index)}
+                          className="flex items-center gap-1.5 px-2.5 py-1 text-[9px] font-semibold text-destructive uppercase tracking-wider cursor-pointer"
+                          style={{ background: 'hsl(0, 48%, 46%, 0.12)' }}
+                        >
+                          <AlertTriangle className="w-3 h-3" />
+                          Worst
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent side="bottom" className="text-[11px]">
+                        Jump to {worstStation.name} — lowest scoring station
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                )}
+
+                {/* Depth toggle — matches SupplierDatabaseDemo filter buttons */}
+                <div className="flex gap-px">
+                  {(['executive', 'standard', 'full'] as DepthLevel[]).map(d => (
+                    <button
+                      key={d}
+                      onClick={() => setDepth(d)}
+                      className={cn(
+                        "px-2.5 py-1 text-[9px] font-medium uppercase tracking-wider transition-colors cursor-pointer",
+                        depth === d ? "bg-primary text-white" : "hover:bg-[hsl(0,0%,72%)]"
+                      )}
+                      style={depth !== d ? { background: 'hsl(0,0%,78%)', color: 'hsl(0,0%,45%)' } : undefined}
+                    >
+                      {depthLabels[d]}
+                    </button>
+                  ))}
+                </div>
+                <button className="hidden md:block px-2.5 py-1 text-[9px] font-medium uppercase tracking-wider cursor-pointer hover:bg-[hsl(0,0%,72%)] transition-colors" style={{ background: 'hsl(0,0%,78%)', color: 'hsl(0,0%,45%)' }}>
+                  Export pdf
+                </button>
+                <button
+                  onClick={() => setInspectorOpen(!inspectorOpen)}
+                  className="px-3 py-1 text-[9px] font-semibold text-white bg-primary uppercase tracking-wider cursor-pointer hover:bg-primary/90 transition-colors"
+                >
+                  Sign off ({allNCRs.filter(n => n.status === 'open').length})
+                </button>
+              </div>
+            </div>
+            {/* Reading progress bar */}
+            <div className="h-[2px]" style={{ background: 'hsl(0,0%,80%)' }}>
+              <div className="h-full bg-primary transition-all duration-150" style={{ width: `${readingProgress}%` }} />
             </div>
           </div>
-          {/* Reading progress bar */}
-          <div className="h-[2px] bg-white/5">
-            <div className="h-full bg-primary transition-all duration-150" style={{ width: `${readingProgress}%` }} />
-          </div>
-        </div>
 
-        {/* Scrollable content */}
-        <div className="flex-1 flex overflow-hidden">
-          <div ref={contentRef} className="flex-1 overflow-y-auto">
-            <div className="max-w-[960px] mx-auto px-4 md:px-8">
-              <ReportHero
-                verdict={reportMeta.verdict}
-                verdictLabel={reportMeta.verdictLabel}
-                heroReason={reportMeta.heroReason}
-                supplier={reportMeta.supplier}
-                po={reportMeta.po}
-                auditor={reportMeta.auditor}
-                date={reportMeta.date}
-                location={reportMeta.location}
-                onDecide={() => setInspectorOpen(true)}
-                onWalk={() => scrollToStation(2)}
-              />
+          {/* Scrollable content */}
+          <div className="flex-1 flex overflow-hidden">
+            <div ref={contentRef} className="flex-1 overflow-y-auto">
+              <div className="max-w-[960px] mx-auto px-4 md:px-8">
+                <ReportHero
+                  verdict={reportMeta.verdict}
+                  verdictLabel={reportMeta.verdictLabel}
+                  heroReason={reportMeta.heroReason}
+                  supplier={reportMeta.supplier}
+                  po={reportMeta.po}
+                  auditor={reportMeta.auditor}
+                  date={reportMeta.date}
+                  location={reportMeta.location}
+                  onDecide={() => setInspectorOpen(true)}
+                  onWalk={() => scrollToStation(2)}
+                />
 
-              <AtlasRiskScore />
+                <AtlasRiskScore />
 
-              <section className="py-16 md:py-24">
-                <KPIBand kpis={kpis} />
-              </section>
+                <section className="py-16 md:py-24">
+                  <KPIBand kpis={kpis} />
+                </section>
 
-              <ExecutiveRadarCharts />
+                <ExecutiveRadarCharts />
 
-              <AuditScopeSection />
+                <AuditScopeSection />
 
-              <AnomalyCallouts />
+                <AnomalyCallouts />
 
-              <div className="space-y-16 md:space-y-24 pb-16 mt-16">
-                {displayStations.map((station) => (
-                  <StationCard key={station.index} station={station} depth={depth} totalStations={14} />
-                ))}
-                <NCRRegister ncrs={allNCRs} />
-                
-                <FindingSankeyDiagram />
+                <div className="space-y-16 md:space-y-24 pb-16 mt-16">
+                  {displayStations.map((station) => (
+                    <StationCard key={station.index} station={station} depth={depth} totalStations={14} />
+                  ))}
+                  <NCRRegister ncrs={allNCRs} />
+                  
+                  <FindingSankeyDiagram />
 
-                <CostWaterfallChart />
+                  <CostWaterfallChart />
 
-                <CAPAGantt />
+                  <CAPAGantt />
 
-                <AtlasIntelligence />
-                <div id="machine-park">
-                  <OEEGaugeCluster />
-                  <div className="mt-16">
-                    <MachineParkIntelligence />
+                  <AtlasIntelligence />
+                  <div id="machine-park">
+                    <OEEGaugeCluster />
+                    <div className="mt-16">
+                      <MachineParkIntelligence />
+                    </div>
+                  </div>
+                  <DelayForecast />
+                  <RecommendationSection />
+                  <EvidenceVault />
+                </div>
+
+                {/* Ask Atlas — toolbar style */}
+                <div className="sticky bottom-4 z-30 mb-8">
+                  <div className="max-w-[640px] mx-auto flex items-center gap-2 px-3 py-2" style={{ background: 'hsla(0,0%,100%,0.7)', backdropFilter: 'blur(12px)', border: '1px solid hsl(0,0%,80%)' }}>
+                    <Sparkles className="w-4 h-4 text-primary shrink-0" />
+                    <input
+                      value={askAtlasInput}
+                      onChange={e => setAskAtlasInput(e.target.value)}
+                      placeholder="Ask Atlas about this audit..."
+                      className="flex-1 bg-transparent text-[12px] text-foreground placeholder:text-[hsl(0,0%,55%)] outline-none"
+                    />
+                    <button className="px-2.5 py-1 text-[9px] font-medium uppercase tracking-wider bg-primary text-white cursor-pointer hover:bg-primary/90 transition-colors">
+                      Ask
+                    </button>
                   </div>
                 </div>
-                <DelayForecast />
-                <RecommendationSection />
-                <EvidenceVault />
-              </div>
-
-              {/* Ask Atlas — glass style */}
-              <div className="sticky bottom-4 z-30 mb-8">
-                <div className="max-w-[640px] mx-auto flex items-center gap-2 px-4 py-2.5 audit-glass-card">
-                  <Sparkles className="w-4 h-4 text-primary shrink-0" />
-                  <input
-                    value={askAtlasInput}
-                    onChange={e => setAskAtlasInput(e.target.value)}
-                    placeholder="Ask Atlas about this audit..."
-                    className="flex-1 bg-transparent text-[14px] text-foreground placeholder:text-grey-mid outline-none"
-                  />
-                  <button className="px-3 py-1 text-[12px] font-medium text-primary hover:bg-primary/5 transition-colors">
-                    Ask
-                  </button>
-                </div>
               </div>
             </div>
-          </div>
 
-          {!isMobile && (
-            <SectionInspector
-              activeStation={activeStation}
-              isOpen={inspectorOpen}
-              onClose={() => setInspectorOpen(false)}
-            />
-          )}
+            {!isMobile && (
+              <SectionInspector
+                activeStation={activeStation}
+                isOpen={inspectorOpen}
+                onClose={() => setInspectorOpen(false)}
+              />
+            )}
+          </div>
         </div>
       </div>
     </div>
