@@ -319,7 +319,7 @@ function AuditReportInner() {
           {/* Scrollable content */}
           <div className="flex-1 flex overflow-hidden">
             <div ref={contentRef} className="flex-1 overflow-y-auto">
-              <div className="max-w-[960px] mx-auto px-4 md:px-8">
+              <div className={cn("mx-auto", depth === 'executive' ? "max-w-[1100px] px-4 md:px-6" : "max-w-[960px] px-4 md:px-8")}>
                 <ReportHero
                   verdict={reportMeta.verdict}
                   verdictLabel={reportMeta.verdictLabel}
@@ -331,42 +331,44 @@ function AuditReportInner() {
                   location={reportMeta.location}
                   onDecide={() => setInspectorOpen(true)}
                   onWalk={() => scrollToStation(2)}
+                  depth={depth}
                 />
 
-                <AtlasRiskScore />
+                <AtlasRiskScore depth={depth} />
 
-                <section className="py-16 md:py-24">
-                  <KPIBand kpis={kpis} />
+                <section className={depth === 'executive' ? "py-6" : "py-16 md:py-24"}>
+                  <KPIBand kpis={kpis} depth={depth} />
                 </section>
 
-                <ExecutiveRadarCharts />
+                <ExecutiveRadarCharts depth={depth} />
 
-                <AuditScopeSection />
+                <AuditScopeSection depth={depth} />
 
-                <AnomalyCallouts />
+                <AnomalyCallouts depth={depth} />
 
-                <div className="space-y-16 md:space-y-24 pb-16 mt-16">
+                <div className={cn("pb-16", depth === 'executive' ? "space-y-4 mt-6" : "space-y-16 md:space-y-24 mt-16")}>
                   {displayStations.map((station) => (
                     <StationCard key={station.index} station={station} depth={depth} totalStations={14} />
                   ))}
-                  <NCRRegister ncrs={allNCRs} />
+                  <NCRRegister ncrs={allNCRs} depth={depth} />
                   
-                  <FindingSankeyDiagram />
-
-                  <CostWaterfallChart />
-
-                  <CAPAGantt />
-
-                  <AtlasIntelligence />
-                  <div id="machine-park">
-                    <OEEGaugeCluster />
-                    <div className="mt-16">
-                      <MachineParkIntelligence />
-                    </div>
-                  </div>
-                  <DelayForecast />
-                  <RecommendationSection />
-                  <EvidenceVault />
+                  {depth !== 'executive' && (
+                    <>
+                      <FindingSankeyDiagram />
+                      <CostWaterfallChart />
+                      <CAPAGantt />
+                      <AtlasIntelligence />
+                      <div id="machine-park">
+                        <OEEGaugeCluster />
+                        <div className="mt-16">
+                          <MachineParkIntelligence />
+                        </div>
+                      </div>
+                      <DelayForecast />
+                      <RecommendationSection />
+                      <EvidenceVault />
+                    </>
+                  )}
                 </div>
 
                 {/* Ask Atlas — toolbar style */}
