@@ -128,7 +128,7 @@ function BMWImpactPanel({ impact }: { impact: BMWImpact }) {
         {items.map(({ key, label, icon: Icon, data }) => {
           const color = impactRatingColor[data.rating];
           return (
-            <div key={key} className="p-2.5" style={{ background: 'hsla(0,0%,100%,0.7)' }}>
+            <div key={key} className="p-2.5" className="bg-card" >
               <div className="flex items-center gap-1.5 mb-1">
                 <Icon className="w-3 h-3" style={{ color }} />
                 <span className="text-[10px] font-semibold text-foreground">{label}</span>
@@ -186,7 +186,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
       <h2 className="text-[28px] font-light text-foreground tracking-tight leading-none mb-8">{station.name}</h2>
 
       {station.observation && (
-        <div className="p-6 md:p-8 space-y-8" style={{ background: 'hsla(0,0%,100%,0.7)', backdropFilter: 'blur(12px)' }}>
+        <div className="p-6 md:p-8 space-y-8" className="bg-card shadow-sm" >
           {/* Hero photo */}
           {station.heroPhoto ? (
             <div className="aspect-video overflow-hidden">
