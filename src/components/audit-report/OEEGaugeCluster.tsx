@@ -19,29 +19,58 @@ const machines: MachineOEE[] = [
 
 const BMW_THRESHOLD = 85;
 
-function MiniGauge({ value, label, size = 48 }: { value: number; label: string; size?: number }) {
+function OEECockpitGauge({ value, label, size = 64 }: { value: number; label: string; size?: number }) {
+  const radius = (size - 10) / 2;
+  const circumference = Math.PI * radius;
+  const offset = circumference - (value / 100) * circumference;
+  const color = value >= BMW_THRESHOLD ? 'hsl(155, 24%, 55%)' : value >= 75 ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)';
+  const trackColor = 'hsl(0, 0%, 78%)';
+
+  return (
+    <div className="flex flex-col items-center gap-1">
+      <svg width={size} height={size / 2 + 8} viewBox={`0 0 ${size} ${size / 2 + 8}`}>
+        <path
+          d={`M 5 ${size / 2} A ${radius} ${radius} 0 0 1 ${size - 5} ${size / 2}`}
+          fill="none" stroke={trackColor} strokeWidth={4} strokeLinecap="round"
+        />
+        <path
+          d={`M 5 ${size / 2} A ${radius} ${radius} 0 0 1 ${size - 5} ${size / 2}`}
+          fill="none" stroke={color} strokeWidth={4} strokeLinecap="round"
+          strokeDasharray={circumference} strokeDashoffset={offset}
+        />
+        <text x={size / 2} y={size / 2} textAnchor="middle" fontSize="14" fontWeight="700" fill={color} fontFamily="ui-monospace, monospace">
+          {value}%
+        </text>
+      </svg>
+      <span className="text-[9px] uppercase tracking-wider font-semibold" style={{ color: 'hsl(0,0%,45%)' }}>{label}</span>
+    </div>
+  );
+}
+
+function SmallGauge({ value, label, size = 44 }: { value: number; label: string; size?: number }) {
   const radius = (size - 8) / 2;
   const circumference = Math.PI * radius;
   const offset = circumference - (value / 100) * circumference;
   const color = value >= BMW_THRESHOLD ? 'hsl(155, 24%, 55%)' : value >= 75 ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)';
+  const trackColor = 'hsl(0, 0%, 78%)';
 
   return (
     <div className="flex flex-col items-center gap-0.5">
-      <svg width={size} height={size / 2 + 4} viewBox={`0 0 ${size} ${size / 2 + 4}`}>
+      <svg width={size} height={size / 2 + 6} viewBox={`0 0 ${size} ${size / 2 + 6}`}>
         <path
           d={`M 4 ${size / 2} A ${radius} ${radius} 0 0 1 ${size - 4} ${size / 2}`}
-          fill="none" stroke="hsl(0, 0%, 96%)" strokeWidth={3} strokeLinecap="round"
+          fill="none" stroke={trackColor} strokeWidth={3} strokeLinecap="round"
         />
         <path
           d={`M 4 ${size / 2} A ${radius} ${radius} 0 0 1 ${size - 4} ${size / 2}`}
           fill="none" stroke={color} strokeWidth={3} strokeLinecap="round"
           strokeDasharray={circumference} strokeDashoffset={offset}
         />
-        <text x={size / 2} y={size / 2 - 2} textAnchor="middle" fontSize="11" fontWeight="700" fill={color}>
+        <text x={size / 2} y={size / 2 - 1} textAnchor="middle" fontSize="11" fontWeight="700" fill={color} fontFamily="ui-monospace, monospace">
           {value}%
         </text>
       </svg>
-      <span className="text-[8px] uppercase tracking-wider text-muted-foreground">{label}</span>
+      <span className="text-[8px] uppercase tracking-wider font-semibold" style={{ color: 'hsl(0,0%,50%)' }}>{label}</span>
     </div>
   );
 }
@@ -55,35 +84,51 @@ export default function OEEGaugeCluster() {
       <div className="flex items-center gap-3 mb-2">
         <Gauge className="w-4 h-4 text-primary" />
         <h3 className="text-[14px] font-semibold text-foreground">OEE Cockpit View</h3>
-        <span className="text-[11px] text-muted-foreground">Fleet avg: {avgOEE}%</span>
+        <span className="text-[11px]" style={{ color: 'hsl(0,0%,50%)' }}>Fleet avg: <span className="font-mono font-bold text-foreground">{avgOEE}%</span></span>
         {belowThreshold > 0 && (
-          <span className="text-[10px] px-2 py-0.5 bg-destructive/10 text-destructive font-semibold">
+          <span className="text-[10px] px-2 py-0.5 font-semibold text-destructive" style={{ background: 'hsl(0, 48%, 46%, 0.1)' }}>
             {belowThreshold} below BMW threshold ({BMW_THRESHOLD}%)
           </span>
         )}
       </div>
 
-      <div className="border border-border bg-white p-6">
+      <div className="p-6" style={{ background: 'hsla(0,0%,100%,0.7)', backdropFilter: 'blur(12px)', border: '1px solid hsl(0,0%,80%)' }}>
         {/* BMW threshold line label */}
-        <div className="flex items-center gap-2 mb-4">
-          <div className="h-px flex-1 border-t border-dashed border-primary/30" />
-          <span className="text-[9px] font-mono text-primary">BMW Threshold: {BMW_THRESHOLD}%</span>
-          <div className="h-px flex-1 border-t border-dashed border-primary/30" />
+        <div className="flex items-center gap-2 mb-5">
+          <div className="h-px flex-1" style={{ borderTop: '1px dashed hsl(195, 89%, 34%, 0.4)' }} />
+          <span className="text-[10px] font-mono text-primary font-semibold">BMW Threshold: {BMW_THRESHOLD}%</span>
+          <div className="h-px flex-1" style={{ borderTop: '1px dashed hsl(195, 89%, 34%, 0.4)' }} />
         </div>
 
         <div className="grid grid-cols-5 gap-4">
-          {machines.map(m => (
-            <div key={m.id} className="border border-border p-3 space-y-2 text-center">
-              <span className="text-[10px] font-mono text-muted-foreground">{m.id}</span>
-              <p className="text-[11px] font-medium text-foreground truncate">{m.name}</p>
-              <MiniGauge value={m.oee} label="OEE" size={56} />
-              <div className="flex justify-center gap-3">
-                <MiniGauge value={m.availability} label="A" size={36} />
-                <MiniGauge value={m.performance} label="P" size={36} />
-                <MiniGauge value={m.quality} label="Q" size={36} />
+          {machines.map(m => {
+            const oeeColor = m.oee >= BMW_THRESHOLD ? 'hsl(155, 24%, 55%)' : m.oee >= 75 ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)';
+            return (
+              <div key={m.id} className="p-4 space-y-3 text-center" style={{ background: 'hsla(0,0%,100%,0.5)', border: '1px solid hsl(0,0%,80%)' }}>
+                <div>
+                  <span className="text-[10px] font-mono font-bold text-primary">{m.id}</span>
+                  <p className="text-[12px] font-medium text-foreground truncate mt-0.5">{m.name}</p>
+                </div>
+
+                {/* Main OEE gauge — larger */}
+                <OEECockpitGauge value={m.oee} label="OEE" size={72} />
+
+                {/* Sub-metrics */}
+                <div className="flex justify-center gap-2">
+                  <SmallGauge value={m.availability} label="Avail" size={48} />
+                  <SmallGauge value={m.performance} label="Perf" size={48} />
+                  <SmallGauge value={m.quality} label="Qual" size={48} />
+                </div>
+
+                {/* Below threshold indicator */}
+                {m.oee < BMW_THRESHOLD && (
+                  <div className="text-[9px] font-semibold uppercase tracking-wider text-destructive pt-1" style={{ borderTop: '1px solid hsl(0,0%,85%)' }}>
+                    Below Threshold
+                  </div>
+                )}
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
