@@ -300,9 +300,6 @@ export default function StationCard({ station, depth, totalStations }: StationCa
             </div>
           )}
 
-          {/* Turtle Diagram */}
-          <TurtleDiagram station={station} />
-
           {/* NCR summary */}
           {(majorNCRs.length > 0 || minorNCRs.length > 0) && (
             <div className="px-4 py-2 flex items-center gap-4 text-[10px] border-t border-border" style={{ background: 'hsl(0, 48%, 46%, 0.05)' }}>
