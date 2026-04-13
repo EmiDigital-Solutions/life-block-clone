@@ -4,8 +4,8 @@ import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { X, AlertTriangle } from "lucide-react";
 
 const severityDot: Record<string, string> = {
-  minor: 'bg-[#E39B5C]',
-  major: 'bg-[#AD3D3D]',
+  minor: 'bg-warning',
+  major: 'bg-destructive',
 };
 
 const healthLabel: Record<string, { label: string; color: string }> = {

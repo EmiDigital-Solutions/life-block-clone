@@ -275,7 +275,7 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
       </div>
 
       {/* Metrics row */}
-      <div className="border-t border-border grid grid-cols-6 divide-x divide-[#E5E7EB]">
+      <div className="border-t border-border grid grid-cols-6 divide-x divide-border">
         {[
           { label: "Age", value: `${machine.age} yrs`, sub: String(machine.yearManufactured), icon: CalendarDays },
           { label: "Energy", value: `${machine.energyConsumption} kWh`, sub: machine.energyClass, icon: Zap },
@@ -374,7 +374,7 @@ function MachineCard({ machine }: { machine: MachineProfile }) {
               <ul className="space-y-1">
                 {machine.risks.map((risk, i) => (
                   <li key={i} className="text-[11px] text-foreground flex items-start gap-2">
-                    <span className="w-1 h-1 bg-[#E39B5C] mt-1.5 shrink-0" />
+                    <span className="w-1 h-1 bg-warning mt-1.5 shrink-0" />
                     {risk}
                   </li>
                 ))}
@@ -414,7 +414,7 @@ export default function MachineParkIntelligence() {
       {/* Section Header */}
       <div className="flex items-center gap-3 mb-2">
         <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">// 15</span>
-        <span className="w-1.5 h-1.5 bg-[#0A7FA5]" />
+        <span className="w-1.5 h-1.5 bg-primary" />
         <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">Machine Park Intelligence</span>
         <div className="flex-1 h-px bg-border" />
         <div className="flex items-center gap-1.5">
@@ -430,7 +430,7 @@ export default function MachineParkIntelligence() {
       </p>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-7 divide-x divide-[#E5E7EB] border border-border mb-8">
+      <div className="grid grid-cols-7 divide-x divide-border border border-border mb-8">
         {[
           { label: "Avg OEE", value: `${avgOEE}%`, ok: Number(avgOEE) >= 85 },
           { label: "Avg Age", value: `${avgAge} yrs`, ok: Number(avgAge) <= 8 },

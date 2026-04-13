@@ -74,7 +74,7 @@ export default function DigitalSignatureWorkflow() {
       </button>
 
       {expanded && (
-        <div className="border border-dashed border-[#C0C0C0] p-4 space-y-2">
+        <div className="border border-dashed border-grey-mid p-4 space-y-2">
           <p className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground font-semibold mb-3">Immutable Audit Trail</p>
           {[
             { time: '2025-01-15 14:32', action: 'Report signed by Lead Auditor', hash: '0x7a3f…e91b' },

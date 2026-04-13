@@ -43,7 +43,7 @@ export default function AtlasIntelligence() {
     <section id="station-11" className="scroll-mt-20 space-y-6">
       <div className="flex items-center gap-3 mb-2">
         <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">// 11</span>
-        <span className="w-1.5 h-1.5 rounded-full bg-[#0A7FA5]" />
+        <span className="w-1.5 h-1.5 rounded-full bg-primary" />
         <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">Atlas Intelligence</span>
         <div className="flex-1 h-px bg-border" />
       </div>
@@ -113,7 +113,7 @@ export default function AtlasIntelligence() {
                 </div>
                 <div className="relative h-2 bg-muted rounded-full overflow-hidden">
                   <div className="absolute inset-y-0 left-0 rounded-full bg-destructive/15" style={{ width: `${(item.currentExposure / totalExposure) * 100}%` }} />
-                  <div className="absolute inset-y-0 left-0 rounded-full bg-[#6EA996]" style={{ width: `${(item.mitigatedCost / totalExposure) * 100}%` }} />
+                  <div className="absolute inset-y-0 left-0 rounded-full bg-accent" style={{ width: `${(item.mitigatedCost / totalExposure) * 100}%` }} />
                 </div>
                 <p className="text-[12px] text-muted-foreground leading-relaxed">{item.driver}</p>
               </div>
@@ -135,7 +135,7 @@ export default function AtlasIntelligence() {
                 onClick={() => setShowMitigated(!showMitigated)}
                 className={cn(
                   "px-3 py-1.5  text-[11px] font-medium transition-all border",
-                  showMitigated ? "border-[#6EA996] text-accent bg-accent/5" : "border-border text-muted-foreground hover:text-foreground"
+                  showMitigated ? "border-accent text-accent bg-accent/5" : "border-border text-muted-foreground hover:text-foreground"
                 )}
               >
                 {showMitigated ? '✓ With remediation' : 'Show mitigated'}
@@ -156,8 +156,8 @@ export default function AtlasIntelligence() {
             </ResponsiveContainer>
             <div className="flex items-center gap-6 mt-4 text-[12px] text-muted-foreground">
               <span className="flex items-center gap-2"><span className="w-3 h-0.5 bg-foreground rounded-full inline-block" /> Actual</span>
-              <span className="flex items-center gap-2"><span className="w-3 h-0.5 bg-[#0A7FA5] rounded-full inline-block" /> Predicted</span>
-              <span className="flex items-center gap-2"><span className="w-3 h-0.5 bg-[#AD3D3D] rounded-full inline-block" /> BMW Target (50)</span>
+              <span className="flex items-center gap-2"><span className="w-3 h-0.5 bg-primary rounded-full inline-block" /> Predicted</span>
+              <span className="flex items-center gap-2"><span className="w-3 h-0.5 bg-destructive rounded-full inline-block" /> BMW Target (50)</span>
             </div>
           </div>
 
@@ -193,8 +193,8 @@ export default function AtlasIntelligence() {
                 </RadarChart>
               </ResponsiveContainer>
               <div className="flex items-center gap-6 mt-2 text-[12px] text-muted-foreground">
-                <span className="flex items-center gap-2"><span className="w-3 h-0.5 bg-[#0A7FA5] rounded-full inline-block" /> MV Motors</span>
-                <span className="flex items-center gap-2"><span className="w-3 h-0.5 bg-[#C0C0C0] rounded-full inline-block" /> Tier-2 Median</span>
+                <span className="flex items-center gap-2"><span className="w-3 h-0.5 bg-primary rounded-full inline-block" /> MV Motors</span>
+                <span className="flex items-center gap-2"><span className="w-3 h-0.5 bg-grey-mid rounded-full inline-block" /> Tier-2 Median</span>
               </div>
             </div>
 

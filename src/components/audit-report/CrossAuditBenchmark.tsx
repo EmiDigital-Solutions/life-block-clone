@@ -26,11 +26,11 @@ export default function CrossAuditBenchmark() {
             {/* Percentile bar */}
             <div className="relative h-6 bg-muted">
               <div
-                className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#AD3D3D]/20 via-[#E39B5C]/20 to-[#6EA996]/20"
+                className="absolute inset-y-0 left-0 bg-gradient-to-r from-destructive/20 via-warning/20 to-accent/20"
                 style={{ width: '100%' }}
               />
               <div
-                className="absolute top-0 bottom-0 w-0.5 bg-[#0A7FA5] z-10"
+                className="absolute top-0 bottom-0 w-0.5 bg-primary z-10"
                 style={{ left: `${item.percentile}%` }}
               />
               <div

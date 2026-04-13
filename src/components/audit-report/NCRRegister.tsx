@@ -15,7 +15,7 @@ export default function NCRRegister({ ncrs }: NCRRegisterProps) {
     <section id="station-10" className="scroll-mt-20 space-y-8">
       <div className="flex items-center gap-3 mb-2">
         <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">// 10</span>
-        <span className="w-1.5 h-1.5 rounded-full bg-[#0A7FA5]" />
+        <span className="w-1.5 h-1.5 rounded-full bg-primary" />
         <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">NCR Register</span>
         <div className="flex-1 h-px bg-border" />
       </div>
@@ -64,7 +64,7 @@ export default function NCRRegister({ ncrs }: NCRRegisterProps) {
           <div className="bg-white p-4 flex flex-col items-center justify-center">
             <span className="text-[10px] uppercase tracking-wider text-muted-foreground mb-2">High Severity · Low Effort</span>
             <span className="text-[13px] text-destructive font-medium">Fix First</span>
-            <div className="flex gap-2 mt-2"><span className="w-3 h-3 rounded-full bg-[#AD3D3D]" /></div>
+            <div className="flex gap-2 mt-2"><span className="w-3 h-3 rounded-full bg-destructive" /></div>
           </div>
           <div className="bg-white p-4 flex flex-col items-center justify-center">
             <span className="text-[10px] uppercase tracking-wider text-muted-foreground mb-2">High Severity · High Effort</span>
@@ -74,8 +74,8 @@ export default function NCRRegister({ ncrs }: NCRRegisterProps) {
             <span className="text-[10px] uppercase tracking-wider text-muted-foreground mb-2">Low Severity · Low Effort</span>
             <span className="text-[13px] text-accent font-medium">Quick Win</span>
             <div className="flex gap-2 mt-2">
-              <span className="w-3 h-3 rounded-full bg-[#E39B5C]" />
-              <span className="w-3 h-3 rounded-full bg-[#E39B5C]" />
+              <span className="w-3 h-3 rounded-full bg-warning" />
+              <span className="w-3 h-3 rounded-full bg-warning" />
             </div>
           </div>
           <div className="bg-white p-4 flex flex-col items-center justify-center">

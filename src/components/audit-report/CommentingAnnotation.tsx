@@ -42,7 +42,7 @@ export default function CommentingAnnotation() {
         <span className="text-[10px] px-2 py-0.5 bg-primary/10 text-primary font-semibold">{unresolved} unresolved</span>
       </div>
 
-      <div className="border border-border bg-white divide-y divide-[#E5E7EB]">
+      <div className="border border-border bg-white divide-y divide-border">
         {sampleComments.map((comment) => (
           <div key={comment.id} className="p-4 space-y-2">
             <div className="flex items-center justify-between">
@@ -85,7 +85,7 @@ export default function CommentingAnnotation() {
           placeholder="Add a comment... Use @name to mention"
           className="flex-1 bg-transparent text-[13px] text-foreground placeholder:text-grey-mid outline-none"
         />
-        <button className="px-3 py-1.5 text-[11px] font-medium text-white bg-[#0A7FA5] hover:bg-primary/90 transition-colors">
+        <button className="px-3 py-1.5 text-[11px] font-medium text-white bg-primary hover:bg-primary/90 transition-colors">
           Post
         </button>
       </div>

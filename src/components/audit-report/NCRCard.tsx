@@ -84,12 +84,12 @@ export default function NCRCard({ ncr, compact, onAssign, onAction }: NCRCardPro
       <div className="flex items-center gap-4 mb-4">
         <button
           onClick={() => onAssign?.(ncr.id)}
-          className="flex items-center gap-2 px-3 py-1.5  border border-dashed border-[#C0C0C0] text-[12px] text-muted-foreground hover:border-primary hover:text-primary transition-colors"
+          className="flex items-center gap-2 px-3 py-1.5  border border-dashed border-grey-mid text-[12px] text-muted-foreground hover:border-primary hover:text-primary transition-colors"
         >
           <User className="w-3.5 h-3.5" />
           {ncr.owner || 'Assign owner'}
         </button>
-        <button className="flex items-center gap-2 px-3 py-1.5  border border-dashed border-[#C0C0C0] text-[12px] text-muted-foreground hover:border-primary hover:text-primary transition-colors">
+        <button className="flex items-center gap-2 px-3 py-1.5  border border-dashed border-grey-mid text-[12px] text-muted-foreground hover:border-primary hover:text-primary transition-colors">
           <Calendar className="w-3.5 h-3.5" />
           {ncr.dueDate || 'Set due date'}
         </button>

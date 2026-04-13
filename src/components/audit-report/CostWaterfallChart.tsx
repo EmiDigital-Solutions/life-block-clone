@@ -33,7 +33,7 @@ export default function CostWaterfallChart() {
     <section className="scroll-mt-20 space-y-6">
       <div className="flex items-center gap-3 mb-2">
         <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">// COST</span>
-        <span className="w-1.5 h-1.5 bg-[#0A7FA5]" />
+        <span className="w-1.5 h-1.5 bg-primary" />
         <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">Cost Exposure Waterfall</span>
         <div className="flex-1 h-px bg-border" />
       </div>

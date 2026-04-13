@@ -19,7 +19,7 @@ export default function EvidenceVault() {
     <section id="station-14" className="scroll-mt-20 space-y-6">
       <div className="flex items-center gap-3 mb-2">
         <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">// 14</span>
-        <span className="w-1.5 h-1.5 rounded-full bg-[#0A7FA5]" />
+        <span className="w-1.5 h-1.5 rounded-full bg-primary" />
         <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">Evidence Vault</span>
         <div className="flex-1 h-px bg-border" />
       </div>

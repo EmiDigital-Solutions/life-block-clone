@@ -15,7 +15,7 @@ export default function RecommendationSection() {
     <section id="station-13" className="scroll-mt-20 space-y-8">
       <div className="flex items-center gap-3 mb-2">
         <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">// 13</span>
-        <span className="w-1.5 h-1.5 rounded-full bg-[#0A7FA5]" />
+        <span className="w-1.5 h-1.5 rounded-full bg-primary" />
         <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">Recommendation</span>
         <div className="flex-1 h-px bg-border" />
       </div>
@@ -96,7 +96,7 @@ export default function RecommendationSection() {
       <CommentingAnnotation />
 
       {/* Switch to Supplier View */}
-      <div className="border border-dashed border-[#C0C0C0] p-6 text-center">
+      <div className="border border-dashed border-grey-mid p-6 text-center">
         <p className="text-[14px] text-muted-foreground mb-3">Share this report from the supplier's perspective</p>
         <button className="px-6 py-2.5 text-[13px] font-medium text-foreground border border-border hover:bg-muted transition-colors">
           Switch to Supplier View →

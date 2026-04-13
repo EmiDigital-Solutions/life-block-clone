@@ -16,7 +16,7 @@ export default function DelayForecast() {
     <section id="station-12" className="scroll-mt-20 space-y-6">
       <div className="flex items-center gap-3 mb-2">
         <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">// 12</span>
-        <span className="w-1.5 h-1.5 rounded-full bg-[#0A7FA5]" />
+        <span className="w-1.5 h-1.5 rounded-full bg-primary" />
         <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">Delay Forecast</span>
         <div className="flex-1 h-px bg-border" />
       </div>
@@ -27,8 +27,8 @@ export default function DelayForecast() {
 
       <div className=" border border-border bg-white p-6 space-y-6">
         <div className="flex items-center gap-6 text-[12px] text-muted-foreground">
-          <span className="flex items-center gap-2"><span className="w-3 h-0.5 bg-[#0A7FA5] rounded-full inline-block" /> Contracted</span>
-          <span className="flex items-center gap-2"><span className="w-3 h-0.5 bg-[#E39B5C] rounded-full inline-block" /> Predicted</span>
+          <span className="flex items-center gap-2"><span className="w-3 h-0.5 bg-primary rounded-full inline-block" /> Contracted</span>
+          <span className="flex items-center gap-2"><span className="w-3 h-0.5 bg-warning rounded-full inline-block" /> Predicted</span>
         </div>
 
         {delayForecastData.map((item, i) => (
@@ -39,7 +39,7 @@ export default function DelayForecast() {
             </div>
             <div className="relative h-6 bg-muted  overflow-hidden">
               <div className="absolute top-1 h-4 bg-primary/10 rounded" style={{ left: '0%', width: `${dayOffset(item.contracted)}%` }}>
-                <div className="absolute right-0 top-0 bottom-0 w-0.5 bg-[#0A7FA5]" />
+                <div className="absolute right-0 top-0 bottom-0 w-0.5 bg-primary" />
               </div>
               <div className="absolute top-1 h-4 rounded" style={{
                 left: '0%', width: `${dayOffset(item.predicted)}%`,

@@ -162,7 +162,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
       <div className="sticky top-12 z-20 bg-white/95 backdrop-blur-sm border-b border-border -mx-4 md:-mx-8 px-4 md:px-8 py-3 mb-4">
         <div className="flex items-center gap-3">
           <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">// {String(station.index).padStart(2, '0')}</span>
-          <div className={cn("w-2 h-2", station.health === 'green' ? 'bg-[#6EA996]' : station.health === 'amber' ? 'bg-[#E39B5C]' : station.health === 'red' ? 'bg-[#AD3D3D]' : 'bg-[#C0C0C0]')} />
+          <div className={cn("w-2 h-2", station.health === 'green' ? 'bg-accent' : station.health === 'amber' ? 'bg-warning' : station.health === 'red' ? 'bg-destructive' : 'bg-grey-mid')} />
           <span className="text-[13px] font-semibold text-foreground">{station.name}</span>
           <div className="flex-1 h-px bg-border" />
           <span className={cn("text-[10px] px-2.5 py-1 uppercase tracking-wider font-semibold", healthChip[station.health])}>

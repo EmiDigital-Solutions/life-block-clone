@@ -113,7 +113,7 @@ export default function ExecutiveRadarCharts() {
     <section className="py-12">
       {/* Section header */}
       <div className="flex items-center gap-3 mb-2">
-        <div className="w-1 h-5 rounded-full bg-[#0A7FA5]" />
+        <div className="w-1 h-5 rounded-full bg-primary" />
         <span className="text-[11px] font-semibold tracking-[0.15em] uppercase text-[#64748B]">Supplier Assessment</span>
       </div>
       <h2 className="text-[24px] md:text-[28px] font-bold text-[#0F172A] tracking-[-0.02em] mb-2">

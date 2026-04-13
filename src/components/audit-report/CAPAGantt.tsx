@@ -63,9 +63,9 @@ export default function CAPAGantt() {
 
       <div className="border border-border bg-white p-6">
         <div className="flex items-center gap-4 text-[11px] text-muted-foreground mb-6 pb-3 border-b border-border">
-          <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-[#AD3D3D] inline-block" /> Major NCR</span>
-          <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-[#E39B5C] inline-block" /> Minor NCR</span>
-          <span className="flex items-center gap-1.5"><span className="w-px h-3 bg-[#0A7FA5] inline-block" /> Today</span>
+          <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-destructive inline-block" /> Major NCR</span>
+          <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-warning inline-block" /> Minor NCR</span>
+          <span className="flex items-center gap-1.5"><span className="w-px h-3 bg-primary inline-block" /> Today</span>
           <span className="ml-auto flex items-center gap-1.5"><AlertTriangle className="w-3 h-3 text-warning" /> AI Success Prediction</span>
         </div>
 
@@ -105,7 +105,7 @@ export default function CAPAGantt() {
                       background: barColor,
                     }}
                   />
-                  <div className="absolute top-0 bottom-0 w-px bg-[#0A7FA5]" style={{ left: `${todayOffset}%` }} />
+                  <div className="absolute top-0 bottom-0 w-px bg-primary" style={{ left: `${todayOffset}%` }} />
                 </div>
                 <div className="flex justify-between text-[9px] font-mono text-grey-mid mt-1">
                   <span>{item.startDate}</span>

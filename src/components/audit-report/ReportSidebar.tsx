@@ -3,10 +3,10 @@ import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import type { StationHealth } from "@/data/auditReportData";
 
 const healthDotColor: Record<StationHealth, string> = {
-  green: 'bg-[#6EA996]',
-  amber: 'bg-[#E39B5C]',
-  red: 'bg-[#AD3D3D]',
-  grey: 'bg-[#C0C0C0]',
+  green: 'bg-accent',
+  amber: 'bg-warning',
+  red: 'bg-destructive',
+  grey: 'bg-grey-mid',
 };
 
 // Mock sparkline data for cross-audit score trajectory per station
