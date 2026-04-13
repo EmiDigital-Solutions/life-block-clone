@@ -28,7 +28,7 @@ const scoreBar = (score: number | null) => {
   return 'hsl(0, 48%, 46%)';
 };
 const impactRatingColor: Record<string, string> = {
-  critical: 'hsl(0, 48%, 46%)', high: 'hsl(24, 72%, 63%)', medium: '#D4A843', low: 'hsl(155, 24%, 55%)', none: 'hsl(0, 0%, 75%)',
+  critical: 'hsl(0, 48%, 46%)', high: 'hsl(24, 72%, 63%)', medium: 'hsl(24, 72%, 63%)', low: 'hsl(155, 24%, 55%)', none: 'hsl(0, 0%, 75%)',
 };
 const evidenceTypeIcon: Record<string, React.ElementType> = {
   photo: Image, document: FileText, video: Film, measurement: Gauge,
@@ -391,7 +391,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
                 {station.evidenceCount.measurements > 0 && <span className="flex items-center gap-1.5"><Ruler className="w-3.5 h-3.5" /> {station.evidenceCount.measurements} measurements</span>}
                 {station.evidenceCount.videos > 0 && <span className="flex items-center gap-1.5"><Video className="w-3.5 h-3.5" /> {station.evidenceCount.videos} video</span>}
               </div>
-              <button className="text-[12px] text-primary hover:text-[#087A9E] transition-colors font-medium">View evidence →</button>
+              <button className="text-[12px] text-primary hover:text-primary/80 transition-colors font-medium">View evidence →</button>
             </div>
           )}
         </div>

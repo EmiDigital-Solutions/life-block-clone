@@ -143,14 +143,14 @@ export default function AtlasIntelligence() {
             </div>
             <ResponsiveContainer width="100%" height={280}>
               <AreaChart data={trajectoryData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
+                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
                 <XAxis dataKey="month" tick={{ fill: 'hsl(135, 8%, 52%)', fontSize: 12 }} axisLine={false} tickLine={false} />
                 <YAxis tick={{ fill: 'hsl(135, 8%, 52%)', fontSize: 12 }} axisLine={false} tickLine={false} />
-                <Tooltip contentStyle={{ background: '#fff', border: '1px solid #E5E7EB', borderRadius: '8px', fontSize: '13px', color: '#0A0A0A' }} />
+                <Tooltip contentStyle={{ background: 'hsl(var(--background))', border: '1px solid hsl(var(--border))', borderRadius: '0px', fontSize: '13px', color: 'hsl(var(--foreground))' }} />
                 <Area type="monotone" dataKey="upperBound" stroke="none" fill="hsl(195, 89%, 34%)" fillOpacity={0.04} />
                 <Area type="monotone" dataKey="lowerBound" stroke="none" fill="#fff" fillOpacity={1} />
                 <Area type="monotone" dataKey="predicted" stroke="hsl(195, 89%, 34%)" strokeWidth={2} fill="hsl(195, 89%, 34%)" fillOpacity={0.06} strokeDasharray="6 3" />
-                <Area type="monotone" dataKey="actual" stroke="hsl(0, 0%, 4%)" strokeWidth={2} fill="none" dot={{ r: 4, fill: '#0A0A0A' }} connectNulls={false} />
+                <Area type="monotone" dataKey="actual" stroke="hsl(var(--foreground))" strokeWidth={2} fill="none" dot={{ r: 4, fill: 'hsl(var(--foreground))' }} connectNulls={false} />
                 <Area type="monotone" dataKey={() => 50} stroke="hsl(0, 48%, 46%)" strokeWidth={1} strokeDasharray="4 4" fill="none" />
               </AreaChart>
             </ResponsiveContainer>
@@ -185,7 +185,7 @@ export default function AtlasIntelligence() {
               <h4 className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold mb-4">Innovation Radar vs. Tier-2</h4>
               <ResponsiveContainer width="100%" height={280}>
                 <RadarChart data={innovationSignals.map(s => ({ dimension: s.dimension.replace(/\s/g, '\n'), score: s.score, benchmark: s.benchmark }))}>
-                  <PolarGrid stroke="#E5E7EB" />
+                  <PolarGrid stroke="hsl(var(--border))" />
                   <PolarAngleAxis dataKey="dimension" tick={{ fill: 'hsl(135, 8%, 52%)', fontSize: 11 }} />
                   <PolarRadiusAxis angle={90} domain={[0, 100]} tick={false} axisLine={false} />
                   <Radar dataKey="benchmark" stroke="hsl(0, 0%, 75%)" fill="none" strokeWidth={1} strokeDasharray="4 4" />
@@ -214,7 +214,7 @@ export default function AtlasIntelligence() {
                     </div>
                     <div className="relative h-1.5 bg-border rounded-full overflow-hidden mb-2">
                       <div className="absolute inset-y-0 left-0 rounded-full bg-primary/40" style={{ width: `${signal.score}%` }} />
-                      <div className="absolute top-0 bottom-0 w-px bg-[#7B8E80]" style={{ left: `${signal.benchmark}%` }} />
+                      <div className="absolute top-0 bottom-0 w-px bg-muted-foreground" style={{ left: `${signal.benchmark}%` }} />
                     </div>
                     <p className="text-[12px] text-muted-foreground leading-relaxed">{signal.insight}</p>
                   </div>
@@ -231,7 +231,7 @@ export default function AtlasIntelligence() {
             <ResponsiveContainer width="100%" height={200}>
               <BarChart data={iatfProcessScores} margin={{ left: 120 }} layout="vertical">
                 <XAxis type="number" domain={[0, 100]} tick={{ fill: 'hsl(135, 8%, 52%)', fontSize: 12 }} axisLine={false} tickLine={false} />
-                <YAxis type="category" dataKey="process" tick={{ fill: '#1A1A1A', fontSize: 12 }} axisLine={false} tickLine={false} width={120} />
+                <YAxis type="category" dataKey="process" tick={{ fill: 'hsl(var(--charcoal))', fontSize: 12 }} axisLine={false} tickLine={false} width={120} />
                 <Bar dataKey="score" radius={[0, 4, 4, 0]} barSize={16}>
                   {iatfProcessScores.map((entry, index) => (
                     <Cell key={index} fill={entry.score >= 80 ? 'hsl(155, 24%, 55%)' : entry.score >= 60 ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)'} />
@@ -246,7 +246,7 @@ export default function AtlasIntelligence() {
       {/* HIDDEN PATTERNS */}
       {activeTab === 'correlations' && (
         <div className="space-y-4">
-          <div className=" border border-[#ACC5D9] bg-secondary/10 p-5">
+          <div className="border border-secondary bg-secondary/10 p-5">
             <div className="flex items-center gap-2 mb-2">
               <Brain className="w-4 h-4 text-primary" />
               <span className="text-[13px] font-semibold text-foreground">What Atlas sees that humans don't</span>

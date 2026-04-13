@@ -10,7 +10,7 @@ function RiskGauge({ score }: { score: number }) {
   return (
     <div className="flex flex-col items-center">
       <svg viewBox="0 0 120 70" className="w-[200px]">
-        <path d="M 10 65 A 50 50 0 0 1 110 65" fill="none" stroke="#E5E7EB" strokeWidth="6" strokeLinecap="round" />
+        <path d="M 10 65 A 50 50 0 0 1 110 65" fill="none" stroke="hsl(var(--border))" strokeWidth="6" strokeLinecap="round" />
         <path
           d="M 10 65 A 50 50 0 0 1 110 65"
           fill="none"

@@ -122,14 +122,14 @@ export default function SectionInspector({ activeStation, isOpen, onClose }: Sec
             <span className="text-[10px] font-semibold tracking-[0.15em] uppercase text-muted-foreground mb-3 block">Linked Evidence</span>
             <div className="grid grid-cols-2 gap-2">
               {Array.from({ length: Math.min(station.evidenceCount.photos, 4) }).map((_, i) => (
-                <div key={i} className="aspect-square  bg-gradient-to-br from-[#ACC5D9]/30 to-[#B2CDBC]/20 border border-border flex items-end p-2">
+                <div key={i} className="aspect-square bg-gradient-to-br from-secondary/30 to-mint/20 border border-border flex items-end p-2">
                   <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-foreground/60 text-white">
                     PHO-{String(27 + i).padStart(3, '0')}
                   </span>
                 </div>
               ))}
               {station.evidenceCount.videos > 0 && (
-                <div className="aspect-square  bg-gradient-to-br from-[#ACC5D9]/20 to-[#B2CDBC]/10 border border-border flex items-end p-2">
+                <div className="aspect-square bg-gradient-to-br from-secondary/20 to-mint/10 border border-border flex items-end p-2">
                   <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-foreground/60 text-white">
                     VID-002
                   </span>
@@ -173,7 +173,7 @@ function PropertyRow({ label, value, valueColor }: { label: string; value: strin
   return (
     <div className="flex items-center justify-between">
       <span className="text-[13px] text-muted-foreground">{label}</span>
-      <span className="text-[13px] font-medium tabular-nums" style={{ color: valueColor || '#0A0A0A' }}>{value}</span>
+      <span className="text-[13px] font-medium tabular-nums" style={{ color: valueColor || 'hsl(var(--foreground))' }}>{value}</span>
     </div>
   );
 }
