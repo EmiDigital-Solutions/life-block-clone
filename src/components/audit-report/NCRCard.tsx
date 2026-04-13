@@ -115,7 +115,7 @@ export default function NCRCard({ ncr, compact, onAssign, onAction }: NCRCardPro
         )}
       </div>
 
-      <div className="mt-3 pt-3" style={{ borderTop: '1px solid hsl(0,0%,85%)' }}>
+      <div className="mt-3 pt-3" >
         <span className="text-[12px]" style={{ color: 'hsl(0,0%,50%)' }}>
           Evidence: {ncr.evidenceIds.length} files · {ncr.evidenceIds.join(', ')}
         </span>
