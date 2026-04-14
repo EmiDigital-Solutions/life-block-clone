@@ -569,15 +569,23 @@ All colors MUST be HSL.
   margin: 48px 0;
 }
 
-/* Audit report header bar */
+/* Audit report header bar — light: CTA Blue-Teal, dark: deep charcoal */
 .ar-header {
-  background: var(--ar-bg-header);
+  background: #0A7FA5;
   color: #FFFFFF;
 }
 
 .ar-header-2 {
-  background: var(--ar-bg-header-2);
+  background: #087592;
   color: rgba(255,255,255,0.85);
+}
+
+[data-theme="dark"] .audit-report .ar-header {
+  background: var(--ar-bg-header);
+}
+
+[data-theme="dark"] .audit-report .ar-header-2 {
+  background: var(--ar-bg-header-2);
 }
 
 /* Audit report blockquote */
