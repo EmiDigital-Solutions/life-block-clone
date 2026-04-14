@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import {
@@ -10,6 +10,7 @@ import {
   Sparkles, Brain, TrendingDown, TrendingUp, Minus,
   Eye, ChevronDown, ChevronRight,
   DollarSign, Shield, Lightbulb, Link2, Target,
+  Volume2, VolumeX,
 } from "lucide-react";
 
 const trendIcon = { improving: TrendingUp, declining: TrendingDown, stable: Minus };
@@ -26,6 +27,53 @@ export default function AtlasIntelligence() {
   const [showMitigated, setShowMitigated] = useState(false);
   const [expandedCorrelation, setExpandedCorrelation] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'cost' | 'quality' | 'innovation' | 'correlations' | 'scenarios'>('cost');
+  const [speaking, setSpeaking] = useState(false);
+
+  const toggleVoice = useCallback(() => {
+    if (speaking) {
+      speechSynthesis.cancel();
+      setSpeaking(false);
+      return;
+    }
+
+    const totalExposure = costImpactData.reduce((s, c) => s + c.currentExposure, 0);
+    const totalMitigated = costImpactData.reduce((s, c) => s + c.mitigatedCost, 0);
+    const savingsPercent = ((1 - totalMitigated / totalExposure) * 100).toFixed(0);
+
+    const criticalPatterns = crossCorrelations.filter(c => c.severity === 'critical');
+    const hiddenPatterns = crossCorrelations.filter(c => !c.humanVisible);
+
+    const bestScenario = scenarioOutcomes.find(s => s.scenario === 'Full Remediation');
+    const worstScenario = scenarioOutcomes.find(s => s.scenario === 'No Action');
+
+    const text = [
+      `Atlas Intelligence Summary.`,
+      `Total cost exposure is ${(totalExposure / 1000).toFixed(0)} thousand euros, reducible to ${(totalMitigated / 1000).toFixed(0)} thousand with full mitigation — a ${savingsPercent} percent saving.`,
+      `Atlas identified ${crossCorrelations.length} cross-domain patterns, ${criticalPatterns.length} critical and ${hiddenPatterns.length} invisible to human auditors.`,
+      criticalPatterns.length > 0 ? `Most critical pattern: ${criticalPatterns[0].title}.` : '',
+      `IATF weighted process score: ${Math.round(iatfWeightedScore)} percent.`,
+      supplierRiskSignals.filter(s => s.status === 'critical').length > 0
+        ? `${supplierRiskSignals.filter(s => s.status === 'critical').length} supplier risk signals at critical level.`
+        : 'All supplier risk signals within acceptable thresholds.',
+      bestScenario ? `Recommended scenario: Full remediation with ${bestScenario.deliveryDelay} days delay and ${(bestScenario.costImpact / 1000).toFixed(0)} thousand euro cost.` : '',
+      worstScenario ? `No-action scenario risks ${(worstScenario.costImpact / 1000).toFixed(0)} thousand euros and ${worstScenario.deliveryDelay} days delivery delay.` : '',
+      `End of Atlas Intelligence briefing.`,
+    ].filter(Boolean).join(' ');
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    const voices = speechSynthesis.getVoices();
+    const enVoice = voices.find(v => v.lang === 'en-US' && v.name.includes('Google'))
+      || voices.find(v => v.lang === 'en-US')
+      || voices.find(v => v.lang.startsWith('en'));
+    if (enVoice) utterance.voice = enVoice;
+    utterance.rate = 0.92;
+    utterance.pitch = 1;
+    utterance.onend = () => setSpeaking(false);
+    utterance.onerror = () => setSpeaking(false);
+    setSpeaking(true);
+    speechSynthesis.speak(utterance);
+  }, [speaking, costImpactData, crossCorrelations, scenarioOutcomes, iatfWeightedScore, supplierRiskSignals]);
 
   const totalExposure = costImpactData.reduce((s, c) => s + c.currentExposure, 0);
   const totalMitigated = costImpactData.reduce((s, c) => s + c.mitigatedCost, 0);
@@ -53,6 +101,16 @@ export default function AtlasIntelligence() {
         <span className="text-[13px] px-2.5 py-1 rounded-full uppercase tracking-wider font-semibold bg-primary/10 text-primary">
           <Sparkles className="w-3 h-3 inline mr-1" />AI
         </span>
+        <button
+          onClick={toggleVoice}
+          className={cn(
+            "flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider transition-colors cursor-pointer rounded ml-2",
+            speaking ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-muted/80"
+          )}
+        >
+          {speaking ? <VolumeX className="w-3 h-3" /> : <Volume2 className="w-3 h-3" />}
+          {speaking ? 'Stop' : 'Brief'}
+        </button>
       </div>
 
       <p className="text-[14px] text-muted-foreground max-w-[640px] leading-relaxed">
