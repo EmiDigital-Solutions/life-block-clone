@@ -28,7 +28,7 @@ export default function AnomalyCallouts({ depth = 'standard' }: { depth?: import
           <div className="bg-card divide-y divide-border/50">
             {topAnomalies.map(a => (
               <div key={a.id} className="flex items-center gap-3 px-4 py-2">
-                <Zap className="w-3.5 h-3.5 shrink-0" style={{ color: severityColor[a.severity] }} />
+                <CircleAlert className="w-3.5 h-3.5 shrink-0" style={{ color: severityColor[a.severity] }} />
                 <span className="text-[11px] font-bold uppercase px-1 py-0.5" style={{ color: severityColor[a.severity], background: `${severityColor[a.severity]}10` }}>{a.severity}</span>
                 <span className="text-[14px] font-semibold text-foreground flex-1 truncate">{a.title}</span>
                 <span className="text-[12px] font-mono text-muted-foreground">{a.confidence}%</span>
@@ -61,7 +61,7 @@ export default function AnomalyCallouts({ depth = 'standard' }: { depth?: import
             <div key={anomaly.id} className="flex gap-6 p-6 bg-card shadow-sm">
               <div className="flex flex-col items-center gap-2 shrink-0">
                 <div className="w-10 h-10 flex items-center justify-center" style={{ background: `${color}10` }}>
-                  <Zap className="w-5 h-5" style={{ color }} />
+                  <CircleAlert className="w-5 h-5" style={{ color }} />
                 </div>
                 <span className="text-[11px] font-bold uppercase tracking-wider" style={{ color }}>{anomaly.severity}</span>
                 <span className="text-[13px] font-mono font-bold text-muted-foreground">{anomaly.confidence}%</span>
