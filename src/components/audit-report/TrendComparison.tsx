@@ -62,28 +62,28 @@ CURRENT AUDIT (${reportMeta.date}):
 - Verdict: ${reportMeta.verdictLabel}
 - Cost Exposure: ${reportMeta.totalCostExposure}
 
-FORMAT STRICTLY AS FOLLOWS — use ONLY markdown headers and bullet points. NO paragraphs. NO flowing text. Every single piece of information must be a bullet point.
+FORMAT STRICTLY AS FOLLOWS — use ONLY markdown headers and bullet points. NO paragraphs. NO flowing text. NO emoji or icons anywhere. Every single piece of information must be a bullet point.
 
-## 📊 Overall Direction
+## Overall Direction
 - **Status:** [Improving / Declining / Stagnant]
 - **Score Change:** [describe delta]
 - **Risk Trajectory:** [describe]
 
-## ✅ Key Improvements
+## Key Improvements
 - **[Area 1]:** [one-line description]
 - **[Area 2]:** [one-line description]
 - **[Area 3]:** [one-line description]
 
-## ⚠️ Persistent / New Issues
+## Persistent or New Issues
 - **[Issue 1]:** [one-line description]
 - **[Issue 2]:** [one-line description]
 
-## 🔮 Next Audit Prediction
+## Next Audit Prediction
 - **Near-term:** [one-line prediction]
 - **Long-term:** [one-line prediction]
 - **Required Action:** [one-line action]
 
-Max 250 words. Every line MUST start with "- **". No exceptions.`;
+CRITICAL: Do NOT use any emoji, icons, or special characters in headings or text. Plain text only. Max 250 words. Every line MUST start with "- **". No exceptions.`;
 
     try {
       const resp = await fetch(ATLAS_URL, {

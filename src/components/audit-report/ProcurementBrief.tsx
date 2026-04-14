@@ -74,37 +74,37 @@ NCRs:
 ${ncrSummary}
 
 FORMAT RULES — STRICT:
-Use ONLY markdown ## headings and bullet points. NO paragraphs. NO flowing text. Every piece of information MUST be a bullet point starting with "- **Label:** value".
+Use ONLY markdown ## headings and bullet points. NO paragraphs. NO flowing text. NO emoji or icons anywhere. Every piece of information MUST be a bullet point starting with "- **Label:** value".
 
-## 🟡 Verdict
+## Verdict
 - **Decision:** [Go / Conditional Go / No-Go]
 - **Rationale:** [one line]
 - **VDA Score:** [score] vs. threshold
 
-## 💰 Cost Exposure
-- **Total Exposure:** [€ amount]
+## Cost Exposure
+- **Total Exposure:** [amount]
 - **Primary Driver:** [NCR ID and description]
 - **Secondary Driver:** [NCR ID and description]
-- **Mitigation Potential:** [€ amount if actions taken]
+- **Mitigation Potential:** [amount if actions taken]
 
-## 🚚 Delivery Risk
+## Delivery Risk
 - **Risk Level:** [Low / Medium / High / Critical]
 - **Impact:** [one-line description]
 - **Timeline Risk:** [one-line description]
 
-## ✅ Top 3 Conditions for Approval
+## Top 3 Conditions for Approval
 - **Condition 1:** [specific action with standard reference]
 - **Condition 2:** [specific action with standard reference]
 - **Condition 3:** [specific action with standard reference]
 
-## 📋 Recommendation
+## Recommendation
 - **Action:** [Approve / Reject / Conditional]
 - **PO Volume Limit:** [recommendation]
 - **Follow-up Required:** [specific action + timeline]
 - **Owner:** [responsible role]
 - **Timeline:** [days]
 
-Max 350 words. Every line MUST be a bullet point. No exceptions. No paragraphs.`;
+CRITICAL: Do NOT use any emoji, icons, or special characters in headings or text. Plain text only. Max 350 words. Every line MUST be a bullet point. No exceptions. No paragraphs.`;
 
     try {
       const resp = await fetch(ATLAS_URL, {

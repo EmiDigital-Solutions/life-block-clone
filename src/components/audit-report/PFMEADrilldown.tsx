@@ -56,20 +56,20 @@ Root Cause: ${ncr.rootCause}
 ISO Clause: ${ncr.isoClause || 'N/A'}
 Supplier: ${reportMeta.supplier}
 
-FORMAT RULES — STRICT. Use ONLY ## headings and bullet points. NO paragraphs. Every piece of info MUST be a bullet.
+FORMAT RULES — STRICT. Use ONLY ## headings and bullet points. NO paragraphs. NO emoji or icons anywhere. Every piece of info MUST be a bullet.
 
-## ⚠️ Failure Mode
+## Failure Mode
 - **Mode:** [specific failure mode name]
 - **Process Step:** [where in the process]
 - **Detection Point:** [where it should have been caught]
 
-## 💥 Effect Analysis
+## Effect Analysis
 - **Local Effect:** [impact at station level]
 - **System Effect:** [impact on assembly/product]
 - **End User Effect:** [impact on BMW/customer]
 - **Regulatory Impact:** [any compliance implications]
 
-## 📊 Risk Priority Number
+## Risk Priority Number
 
 | Factor | Rating (1-10) | Justification |
 |--------|--------------|---------------|
@@ -78,25 +78,25 @@ FORMAT RULES — STRICT. Use ONLY ## headings and bullet points. NO paragraphs. 
 | Detection | X | [reason] |
 | **RPN** | **XXX** | **[risk level]** |
 
-## 🔍 Control Plan Gap
+## Control Plan Gap
 - **Expected Control:** [what should have prevented this]
 - **Failure Reason:** [why the control failed]
 - **Gap:** [specific gap identified]
 - **Standard Reference:** [IATF/ISO clause]
 
-## 🔗 Root Cause Chain (5-Why)
+## Root Cause Chain (5-Why)
 1. **Why 1:** [first why]
 2. **Why 2:** [second why]
 3. **Why 3:** [third why]
 4. **Why 4:** [fourth why]
 5. **Why 5 (Root):** [root cause]
 
-## 🔮 AI Prediction
+## AI Prediction
 - **Related Risk 1:** [potential cascading failure]
 - **Related Risk 2:** [potential cascading failure]
 - **Recommended Prevention:** [specific action]
 
-Be specific and technical. Max 400 words. Every line MUST be a bullet or table row.`;
+CRITICAL: Do NOT use any emoji, icons, or special characters in headings or text. Plain text only. Be specific and technical. Max 400 words. Every line MUST be a bullet or table row.`;
 
     try {
       const resp = await fetch(ATLAS_URL, {
