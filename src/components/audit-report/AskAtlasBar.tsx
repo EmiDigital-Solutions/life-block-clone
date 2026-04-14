@@ -28,6 +28,13 @@ const suggestedQuestions = [
   "Summarize for procurement",
 ];
 
+// Follow-up suggestions shown after each AI response
+const followUpSuggestions: Record<number, string[]> = {
+  1: ["Drill deeper into this risk", "What's the cost impact?", "Who should own the fix?"],
+  2: ["Compare to industry benchmark", "Show related NCRs", "What does the standard say?"],
+  3: ["Create an action plan", "Estimate timeline to fix", "What evidence is needed?"],
+};
+
 interface AskAtlasBarProps {
   activeStation: number;
 }
