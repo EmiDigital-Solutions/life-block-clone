@@ -370,36 +370,47 @@ All colors MUST be HSL.
   }
 }
 
-/* ── ScanPro+ Audit Report Design Tokens ──────────── */
+/* ── ScanPro+ Audit Report Design Tokens (YVOO Brand) ──────────── */
 .audit-report {
-  --ar-bg-page:    #FAFAF8;
+  /* Surfaces — Light Mode (YVOO Color Guidance) */
+  --ar-bg-page:    #F5F5F5;       /* Snow White */
   --ar-bg-surface: #FFFFFF;
-  --ar-bg-elevated:#FAFAFA;
-  --ar-bg-soft:    #F1F4F2;
-  --ar-bg-header:  #0E1614;
-  --ar-bg-header-2:#1A2422;
+  --ar-bg-elevated:#F5F5F5;
+  --ar-bg-soft:    #B2CDBC1A;     /* Mint Light at ~10% */
+  --ar-bg-header:  #0A0A0A;       /* Deep Neutral Black */
+  --ar-bg-header-2:#141414;       /* Charcoal */
 
-  --ar-bd-hair:    rgba(14,22,20,0.06);
-  --ar-bd-line:    rgba(14,22,20,0.10);
-  --ar-bd-strong:  rgba(14,22,20,0.18);
+  --ar-bd-hair:    rgba(10,10,10,0.06);
+  --ar-bd-line:    rgba(10,10,10,0.10);
+  --ar-bd-strong:  rgba(10,10,10,0.18);
 
-  --ar-tx-1: #0E1614;
-  --ar-tx-2: #4A5550;
-  --ar-tx-3: #7A857F;
-  --ar-tx-4: #B5BCB7;
+  /* Text — Light Mode */
+  --ar-tx-1: #0A0A0A;             /* Deep Neutral Black */
+  --ar-tx-2: #1A1A1A;             /* Charcoal */
+  --ar-tx-3: #7B8E80;             /* Muted */
+  --ar-tx-4: #C0C0C0;             /* Grey Mid */
 
-  --ar-accent:       #2F8B7F;
-  --ar-accent-dim:   #4F8771;
-  --ar-accent-light: #6EA996;
-  --ar-accent-bg:    rgba(47,139,127,0.07);
-  --ar-accent-bg-2:  rgba(47,139,127,0.12);
+  /* Brand Accent — Hero Green */
+  --ar-accent:       #6EA996;     /* Hero Green */
+  --ar-accent-dim:   #89A48D;     /* Muted Green */
+  --ar-accent-light: #B2CDBC;     /* Mint Light */
+  --ar-accent-bg:    rgba(110,169,150,0.07);
+  --ar-accent-bg-2:  rgba(110,169,150,0.12);
 
-  --ar-pass:    #2F8B7F;
-  --ar-pass-bg: rgba(47,139,127,0.07);
-  --ar-warn:    #B07424;
-  --ar-warn-bg: rgba(176,116,36,0.08);
-  --ar-fail:    #A53D3D;
-  --ar-fail-bg: rgba(165,61,61,0.07);
+  /* CTA — Blue-Teal */
+  --ar-cta:          #0A7FA5;     /* CTA Blue-Teal */
+  --ar-cta-hover:    #0990B8;
+
+  /* Status */
+  --ar-pass:    #6EA996;          /* Hero Green */
+  --ar-pass-bg: rgba(110,169,150,0.07);
+  --ar-warn:    #E39B5C;          /* Amber Soft */
+  --ar-warn-bg: rgba(227,155,92,0.08);
+  --ar-fail:    #AD3D3D;          /* Audit Red */
+  --ar-fail-bg: rgba(173,61,61,0.07);
+
+  /* Secondary */
+  --ar-blue-grey: #ACC5D9;        /* BlueGrey Light */
 
   --ar-radius: 0.75rem;
 
@@ -409,26 +420,46 @@ All colors MUST be HSL.
   color: var(--ar-tx-1);
 }
 
+/* Dark Mode (YVOO Dark Mode Style Guide) */
 [data-theme="dark"] .audit-report {
-  --ar-bg-page:    #0A0C0E;
-  --ar-bg-surface: #181B1F;
-  --ar-bg-elevated:#131619;
-  --ar-bg-soft:    #131619;
-  --ar-bg-header:  #0A0C0E;
-  --ar-bg-header-2:#1A2422;
+  --ar-bg-page:    #0A0A0A;       /* Deep Black */
+  --ar-bg-surface: #141414;       /* Charcoal */
+  --ar-bg-elevated:#1E1E1E;       /* Slate */
+  --ar-bg-soft:    #1E1E1E;
+  --ar-bg-header:  #0A0A0A;
+  --ar-bg-header-2:#141414;
+
   --ar-bd-hair:    rgba(255,255,255,0.06);
   --ar-bd-line:    rgba(255,255,255,0.11);
-  --ar-tx-1: #F5F5F5;
-  --ar-tx-2: #C5CCC8;
-  --ar-tx-3: #7B8E80;
+  --ar-bd-strong:  rgba(255,255,255,0.16);
+
+  /* Text — Dark Mode */
+  --ar-tx-1: #F5F5F5;             /* Primary Text */
+  --ar-tx-2: #C0C0C0;             /* Secondary Text */
+  --ar-tx-3: #7B8E80;             /* Muted Text */
   --ar-tx-4: #3E4348;
-  --ar-accent:       #8EDBD3;
-  --ar-accent-dim:   #5BA8A1;
-  --ar-accent-light: #C7E4E4;
-  --ar-accent-bg:    rgba(142,219,211,0.08);
-  --ar-pass:    #8EDBD3;
-  --ar-warn:    #E3B36B;
-  --ar-fail:    #E87A7A;
+
+  /* Brand — Dark Mode Adapted */
+  --ar-accent:       #7CC2A7;     /* Hero Green Brightened */
+  --ar-accent-dim:   #89A48D;
+  --ar-accent-light: #CBE2D1;     /* Mint Fresh */
+  --ar-accent-bg:    rgba(124,194,167,0.08);
+  --ar-accent-bg-2:  rgba(124,194,167,0.14);
+
+  /* CTA — Dark Mode */
+  --ar-cta:          #1391BF;     /* CTA Blue-Teal Brightened */
+  --ar-cta-hover:    #15A3D4;
+
+  /* Status — Dark Mode */
+  --ar-pass:    #7CC2A7;          /* Hero Green Brightened */
+  --ar-pass-bg: rgba(124,194,167,0.08);
+  --ar-warn:    #D8A860;          /* Warm Accent */
+  --ar-warn-bg: rgba(216,168,96,0.10);
+  --ar-fail:    #C4564F;          /* Audit Red Brightened */
+  --ar-fail-bg: rgba(196,86,79,0.08);
+
+  /* Secondary */
+  --ar-blue-grey: #C7E4E4;       /* Aqua Light */
 }
 
 /* Audit report section eyebrow */
