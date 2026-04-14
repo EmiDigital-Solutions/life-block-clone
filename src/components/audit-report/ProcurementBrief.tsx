@@ -15,6 +15,27 @@ interface ProcurementBriefProps {
 
 const ATLAS_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/atlas-copilot`;
 
+/* ── Shared prose classes for all AI-rendered markdown ── */
+const proseClasses = [
+  "prose prose-base max-w-none text-foreground/90",
+  // Headings
+  "[&_h2]:text-[17px] [&_h2]:font-bold [&_h2]:text-foreground [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:pb-2.5 [&_h2]:border-b [&_h2]:border-border/40",
+  "[&_h2:first-child]:mt-0",
+  "[&_h3]:text-[15px] [&_h3]:font-semibold [&_h3]:text-foreground [&_h3]:mt-6 [&_h3]:mb-3",
+  // Lists
+  "[&_ul]:space-y-2 [&_ul]:mt-3 [&_ul]:mb-5 [&_ul]:pl-0 [&_ul]:list-none",
+  "[&_ol]:space-y-2 [&_ol]:mt-3 [&_ol]:mb-5 [&_ol]:pl-5",
+  "[&_li]:text-[14px] [&_li]:leading-[1.75] [&_li]:pl-5 [&_li]:relative",
+  "[&_ul>li]:before:content-[''] [&_ul>li]:before:absolute [&_ul>li]:before:left-0 [&_ul>li]:before:top-[10px] [&_ul>li]:before:w-1.5 [&_ul>li]:before:h-1.5 [&_ul>li]:before:rounded-full [&_ul>li]:before:bg-primary/40",
+  // Text
+  "[&_p]:text-[14px] [&_p]:leading-[1.8] [&_p]:mb-3",
+  "[&_strong]:text-foreground [&_strong]:font-semibold",
+  // Tables
+  "[&_table]:w-full [&_table]:text-[13px] [&_table]:mt-3 [&_table]:mb-5",
+  "[&_th]:text-left [&_th]:p-3 [&_th]:bg-muted/40 [&_th]:font-semibold [&_th]:text-foreground [&_th]:border-b [&_th]:border-border",
+  "[&_td]:p-3 [&_td]:border-b [&_td]:border-border/30 [&_td]:text-muted-foreground",
+].join(" ");
+
 export default function ProcurementBrief({ open, onClose }: ProcurementBriefProps) {
   const { reportMeta, allNCRs, kpis, stations, iatfWeightedScore } = useAuditReportContext();
   const [brief, setBrief] = useState<string>("");
@@ -34,7 +55,7 @@ export default function ProcurementBrief({ open, onClose }: ProcurementBriefProp
       .map(n => `- ${n.id} [${n.severity.toUpperCase()}]: ${n.title} (${n.status})`)
       .join('\n');
 
-    const prompt = `You are a procurement intelligence analyst. Generate a concise procurement brief for this supplier audit. Format with markdown headings.
+    const prompt = `You are a procurement intelligence analyst. Generate a procurement brief for this supplier audit.
 
 AUDIT DATA:
 - Supplier: ${reportMeta.supplier}
@@ -50,14 +71,38 @@ ${stationSummary}
 NCRs:
 ${ncrSummary}
 
-REQUIRED SECTIONS:
-1. **VERDICT** — Go / Conditional / No-Go with one-line rationale
-2. **COST EXPOSURE** — Breakdown of financial risk in €
-3. **DELIVERY RISK** — Impact on supply chain timelines
-4. **TOP 3 CONDITIONS** — What must be resolved before approval
-5. **RECOMMENDATION** — Clear next steps for procurement team
+FORMAT RULES — STRICT:
+Use ONLY markdown ## headings and bullet points. NO paragraphs. NO flowing text. Every piece of information MUST be a bullet point starting with "- **Label:** value".
 
-Keep it under 400 words. Be direct, no filler. Use bullet points and structured lists, not paragraphs.`;
+## 🟡 Verdict
+- **Decision:** [Go / Conditional Go / No-Go]
+- **Rationale:** [one line]
+- **VDA Score:** [score] vs. threshold
+
+## 💰 Cost Exposure
+- **Total Exposure:** [€ amount]
+- **Primary Driver:** [NCR ID and description]
+- **Secondary Driver:** [NCR ID and description]
+- **Mitigation Potential:** [€ amount if actions taken]
+
+## 🚚 Delivery Risk
+- **Risk Level:** [Low / Medium / High / Critical]
+- **Impact:** [one-line description]
+- **Timeline Risk:** [one-line description]
+
+## ✅ Top 3 Conditions for Approval
+- **Condition 1:** [specific action with standard reference]
+- **Condition 2:** [specific action with standard reference]
+- **Condition 3:** [specific action with standard reference]
+
+## 📋 Recommendation
+- **Action:** [Approve / Reject / Conditional]
+- **PO Volume Limit:** [recommendation]
+- **Follow-up Required:** [specific action + timeline]
+- **Owner:** [responsible role]
+- **Timeline:** [days]
+
+Max 350 words. Every line MUST be a bullet point. No exceptions. No paragraphs.`;
 
     try {
       const resp = await fetch(ATLAS_URL, {
@@ -124,14 +169,16 @@ Keep it under 400 words. Be direct, no filler. Use bullet points and structured 
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-foreground/60 backdrop-blur-sm p-6">
-      <div className="bg-card border border-border rounded-xl shadow-2xl w-full max-w-[900px] max-h-[90vh] flex flex-col">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-foreground/60 backdrop-blur-sm p-4">
+      <div className="bg-card border border-border rounded-2xl shadow-2xl w-full max-w-[1000px] max-h-[92vh] flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between px-8 py-5 border-b border-border shrink-0">
-          <div className="flex items-center gap-3">
-            <FileText className="w-6 h-6 text-primary" />
+        <div className="flex items-center justify-between px-10 py-6 border-b border-border shrink-0">
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              <FileText className="w-5 h-5 text-primary" />
+            </div>
             <div>
-              <h2 className="text-[20px] font-bold text-foreground">Procurement Brief</h2>
+              <h2 className="text-[22px] font-bold text-foreground tracking-tight">Procurement Brief</h2>
               <p className="text-[14px] text-muted-foreground mt-0.5">AI-generated summary for procurement decision-making</p>
             </div>
           </div>
@@ -141,17 +188,19 @@ Keep it under 400 words. Be direct, no filler. Use bullet points and structured 
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto px-8 py-8">
+        <div className="flex-1 overflow-y-auto px-10 py-8">
           {!brief && !loading && (
-            <div className="text-center py-16">
-              <Sparkles className="w-12 h-12 text-primary mx-auto mb-5" />
-              <h3 className="text-[18px] font-semibold text-foreground mb-2">Generate Procurement Brief</h3>
-              <p className="text-[15px] text-muted-foreground mb-8 max-w-md mx-auto leading-relaxed">
+            <div className="text-center py-20">
+              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
+                <Sparkles className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-[20px] font-bold text-foreground mb-3">Generate Procurement Brief</h3>
+              <p className="text-[15px] text-muted-foreground mb-10 max-w-md mx-auto leading-relaxed">
                 Atlas AI will analyze the audit data and generate a structured brief covering verdict, cost exposure, delivery risk, and required conditions.
               </p>
               <button
                 onClick={generateBrief}
-                className="px-8 py-3.5 bg-primary text-primary-foreground text-[14px] font-bold uppercase tracking-wider rounded-lg hover:bg-primary/90 transition-colors cursor-pointer"
+                className="px-10 py-4 bg-primary text-primary-foreground text-[14px] font-bold uppercase tracking-wider rounded-xl hover:bg-primary/90 transition-colors cursor-pointer"
               >
                 Generate Brief for Procurement
               </button>
@@ -159,14 +208,14 @@ Keep it under 400 words. Be direct, no filler. Use bullet points and structured 
           )}
 
           {loading && !brief && (
-            <div className="flex items-center justify-center py-16 gap-3">
+            <div className="flex items-center justify-center py-20 gap-3">
               <Loader2 className="w-6 h-6 animate-spin text-primary" />
-              <span className="text-[15px] text-muted-foreground">Generating procurement brief...</span>
+              <span className="text-[15px] text-muted-foreground">Generating procurement brief…</span>
             </div>
           )}
 
           {brief && (
-            <div className="prose prose-base max-w-none text-foreground/90 [&_p]:text-[15px] [&_p]:leading-[1.8] [&_li]:text-[15px] [&_li]:leading-[1.7] [&_li]:mb-1 [&_strong]:text-foreground [&_h1]:text-[22px] [&_h1]:mb-4 [&_h1]:mt-8 [&_h2]:text-[18px] [&_h2]:mb-3 [&_h2]:mt-6 [&_h2]:pb-2 [&_h2]:border-b [&_h2]:border-border/40 [&_h3]:text-[16px] [&_h3]:mb-2 [&_h3]:mt-5 [&_ul]:space-y-1.5 [&_ol]:space-y-1.5">
+            <div className={proseClasses}>
               <ReactMarkdown>{brief}</ReactMarkdown>
               {loading && <span className="inline-block w-2 h-5 bg-primary animate-pulse ml-0.5" />}
             </div>
@@ -175,17 +224,17 @@ Keep it under 400 words. Be direct, no filler. Use bullet points and structured 
 
         {/* Footer */}
         {brief && !loading && (
-          <div className="px-8 py-4 border-t border-border flex gap-3 shrink-0">
+          <div className="px-10 py-5 border-t border-border flex gap-3 shrink-0">
             <button
               onClick={copyBrief}
-              className="flex items-center gap-2 px-5 py-2.5 bg-muted text-[13px] font-medium uppercase tracking-wider rounded-lg hover:bg-muted/80 cursor-pointer"
+              className="flex items-center gap-2 px-6 py-3 bg-muted text-[13px] font-semibold uppercase tracking-wider rounded-lg hover:bg-muted/80 cursor-pointer"
             >
               {copied ? <Check className="w-4 h-4 text-accent" /> : <Copy className="w-4 h-4" />}
               {copied ? 'Copied' : 'Copy Brief'}
             </button>
             <button
               onClick={generateBrief}
-              className="flex items-center gap-2 px-5 py-2.5 bg-primary/10 text-primary text-[13px] font-medium uppercase tracking-wider rounded-lg hover:bg-primary/20 cursor-pointer"
+              className="flex items-center gap-2 px-6 py-3 bg-primary/10 text-primary text-[13px] font-semibold uppercase tracking-wider rounded-lg hover:bg-primary/20 cursor-pointer"
             >
               <Sparkles className="w-4 h-4" /> Regenerate
             </button>

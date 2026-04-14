@@ -16,6 +16,22 @@ interface PFMEADrilldownProps {
 
 const ATLAS_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/atlas-copilot`;
 
+const proseClasses = [
+  "prose prose-base max-w-none text-foreground/90",
+  "[&_h2]:text-[17px] [&_h2]:font-bold [&_h2]:text-foreground [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:pb-2.5 [&_h2]:border-b [&_h2]:border-border/40",
+  "[&_h2:first-child]:mt-0",
+  "[&_h3]:text-[15px] [&_h3]:font-semibold [&_h3]:text-foreground [&_h3]:mt-6 [&_h3]:mb-3",
+  "[&_ul]:space-y-2 [&_ul]:mt-3 [&_ul]:mb-5 [&_ul]:pl-0 [&_ul]:list-none",
+  "[&_ol]:space-y-2 [&_ol]:mt-3 [&_ol]:mb-5 [&_ol]:pl-5",
+  "[&_li]:text-[14px] [&_li]:leading-[1.75] [&_li]:pl-5 [&_li]:relative",
+  "[&_ul>li]:before:content-[''] [&_ul>li]:before:absolute [&_ul>li]:before:left-0 [&_ul>li]:before:top-[10px] [&_ul>li]:before:w-1.5 [&_ul>li]:before:h-1.5 [&_ul>li]:before:rounded-full [&_ul>li]:before:bg-primary/40",
+  "[&_p]:text-[14px] [&_p]:leading-[1.8] [&_p]:mb-3",
+  "[&_strong]:text-foreground [&_strong]:font-semibold",
+  "[&_table]:w-full [&_table]:text-[13px] [&_table]:mt-3 [&_table]:mb-5",
+  "[&_th]:text-left [&_th]:p-3 [&_th]:bg-muted/40 [&_th]:font-semibold [&_th]:text-foreground [&_th]:border-b [&_th]:border-border",
+  "[&_td]:p-3 [&_td]:border-b [&_td]:border-border/30 [&_td]:text-muted-foreground",
+].join(" ");
+
 export default function PFMEADrilldown({ ncr, onClose }: PFMEADrilldownProps) {
   const { reportMeta } = useAuditReportContext();
   const [analysis, setAnalysis] = useState<string>("");
@@ -28,7 +44,7 @@ export default function PFMEADrilldown({ ncr, onClose }: PFMEADrilldownProps) {
     setAnalysis("");
     setGenerated(true);
 
-    const prompt = `You are an IATF 16949 PFMEA expert. For this NCR, generate a PFMEA drill-down analysis.
+    const prompt = `You are an IATF 16949 PFMEA expert. For this NCR, generate a PFMEA drill-down.
 
 NCR: ${ncr.id} — ${ncr.title}
 Severity: ${ncr.severity.toUpperCase()}
@@ -38,30 +54,47 @@ Root Cause: ${ncr.rootCause}
 ISO Clause: ${ncr.isoClause || 'N/A'}
 Supplier: ${reportMeta.supplier}
 
-Generate EXACTLY this structure using markdown:
-## Failure Mode
-What is the specific failure mode? Use bullet points.
+FORMAT RULES — STRICT. Use ONLY ## headings and bullet points. NO paragraphs. Every piece of info MUST be a bullet.
 
-## Effect Analysis
-- **Local Effect**: Impact at the station
-- **System Effect**: Impact on the assembly/product
-- **End User Effect**: Impact on BMW/customer
+## ⚠️ Failure Mode
+- **Mode:** [specific failure mode name]
+- **Process Step:** [where in the process]
+- **Detection Point:** [where it should have been caught]
 
-## Severity × Occurrence × Detection
-Rate each 1-10 and calculate RPN. Use a table format.
+## 💥 Effect Analysis
+- **Local Effect:** [impact at station level]
+- **System Effect:** [impact on assembly/product]
+- **End User Effect:** [impact on BMW/customer]
+- **Regulatory Impact:** [any compliance implications]
 
-## Control Plan Gap
-- What control was supposed to prevent this?
-- Why did it fail?
-- What is the gap?
+## 📊 Risk Priority Number
 
-## Root Cause Chain (5-Why)
-Walk through the 5-Why analysis as numbered list.
+| Factor | Rating (1-10) | Justification |
+|--------|--------------|---------------|
+| Severity | X | [reason] |
+| Occurrence | X | [reason] |
+| Detection | X | [reason] |
+| **RPN** | **XXX** | **[risk level]** |
 
-## AI Prediction
-Based on this pattern, what related failures might occur? Use bullet points.
+## 🔍 Control Plan Gap
+- **Expected Control:** [what should have prevented this]
+- **Failure Reason:** [why the control failed]
+- **Gap:** [specific gap identified]
+- **Standard Reference:** [IATF/ISO clause]
 
-Be specific and technical. Use real PFMEA methodology. Use bullet points and structured lists, not paragraphs.`;
+## 🔗 Root Cause Chain (5-Why)
+1. **Why 1:** [first why]
+2. **Why 2:** [second why]
+3. **Why 3:** [third why]
+4. **Why 4:** [fourth why]
+5. **Why 5 (Root):** [root cause]
+
+## 🔮 AI Prediction
+- **Related Risk 1:** [potential cascading failure]
+- **Related Risk 2:** [potential cascading failure]
+- **Recommended Prevention:** [specific action]
+
+Be specific and technical. Max 400 words. Every line MUST be a bullet or table row.`;
 
     try {
       const resp = await fetch(ATLAS_URL, {
@@ -120,17 +153,19 @@ Be specific and technical. Use real PFMEA methodology. Use bullet points and str
   if (!ncr) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-foreground/60 backdrop-blur-sm p-6">
-      <div className="bg-card border border-border rounded-xl shadow-2xl w-full max-w-[960px] max-h-[90vh] flex flex-col">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-foreground/60 backdrop-blur-sm p-4">
+      <div className="bg-card border border-border rounded-2xl shadow-2xl w-full max-w-[1000px] max-h-[92vh] flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between px-8 py-5 border-b border-border shrink-0">
-          <div className="flex items-center gap-3">
-            <Target className="w-6 h-6 text-primary" />
+        <div className="flex items-center justify-between px-10 py-6 border-b border-border shrink-0">
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              <Target className="w-5 h-5 text-primary" />
+            </div>
             <div>
-              <h2 className="text-[20px] font-bold text-foreground">PFMEA Drill-down</h2>
+              <h2 className="text-[22px] font-bold text-foreground tracking-tight">PFMEA Drill-down</h2>
               <p className="text-[14px] text-muted-foreground mt-0.5">Failure mode and effect analysis</p>
             </div>
-            <span className={`text-[12px] font-bold uppercase px-2.5 py-1 rounded ml-2 ${
+            <span className={`text-[12px] font-bold uppercase px-3 py-1 rounded-full ml-2 ${
               ncr.severity === 'major' ? 'bg-destructive/10 text-destructive' : 'bg-warning/10 text-warning'
             }`}>{ncr.severity}</span>
           </div>
@@ -140,23 +175,25 @@ Be specific and technical. Use real PFMEA methodology. Use bullet points and str
         </div>
 
         {/* NCR Summary */}
-        <div className="px-8 py-5 bg-muted/20 border-b border-border/30 shrink-0 space-y-4">
-          <div>
-            <div className="text-[16px] font-semibold text-foreground">{ncr.id}: {ncr.title}</div>
-            <div className="text-[14px] text-muted-foreground mt-1">{ncr.station} · {ncr.isoClause || 'No clause'}</div>
+        <div className="px-10 py-6 bg-muted/20 border-b border-border/30 shrink-0">
+          <div className="flex items-start justify-between gap-6 mb-5">
+            <div>
+              <div className="text-[18px] font-semibold text-foreground">{ncr.id}: {ncr.title}</div>
+              <div className="text-[14px] text-muted-foreground mt-1.5">{ncr.station} · {ncr.isoClause || 'No clause'}</div>
+            </div>
           </div>
 
           {/* FMEA Chain visualization */}
-          <div className="flex items-center gap-3 flex-wrap">
+          <div className="flex items-center gap-2 flex-wrap">
             {[
-              { icon: AlertTriangle, label: 'Finding', color: 'text-destructive' },
-              { icon: Cog, label: 'Root Cause', color: 'text-warning' },
-              { icon: FileCheck, label: 'Control Gap', color: 'text-primary' },
-              { icon: Target, label: 'CAPA', color: 'text-accent' },
+              { icon: AlertTriangle, label: 'Finding', color: 'text-destructive', bg: 'bg-destructive/5 border-destructive/20' },
+              { icon: Cog, label: 'Root Cause', color: 'text-warning', bg: 'bg-warning/5 border-warning/20' },
+              { icon: FileCheck, label: 'Control Gap', color: 'text-primary', bg: 'bg-primary/5 border-primary/20' },
+              { icon: Target, label: 'CAPA', color: 'text-accent', bg: 'bg-accent/5 border-accent/20' },
             ].map((step, i) => (
-              <div key={i} className="flex items-center gap-3">
-                {i > 0 && <ArrowRight className="w-4 h-4 text-muted-foreground" />}
-                <div className="flex items-center gap-2 px-3 py-2 bg-card border border-border/40 rounded-lg">
+              <div key={i} className="flex items-center gap-2">
+                {i > 0 && <ArrowRight className="w-4 h-4 text-muted-foreground/40" />}
+                <div className={`flex items-center gap-2 px-4 py-2.5 border rounded-lg ${step.bg}`}>
                   <step.icon className={`w-4 h-4 ${step.color}`} />
                   <span className="text-[13px] font-medium text-foreground">{step.label}</span>
                 </div>
@@ -166,17 +203,19 @@ Be specific and technical. Use real PFMEA methodology. Use bullet points and str
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto px-8 py-8">
+        <div className="flex-1 overflow-y-auto px-10 py-8">
           {!generated && (
-            <div className="text-center py-16">
-              <Sparkles className="w-12 h-12 text-primary mx-auto mb-5" />
-              <h3 className="text-[18px] font-semibold text-foreground mb-2">Generate PFMEA Analysis</h3>
-              <p className="text-[15px] text-muted-foreground mb-8 max-w-lg mx-auto leading-relaxed">
+            <div className="text-center py-20">
+              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
+                <Sparkles className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-[20px] font-bold text-foreground mb-3">Generate PFMEA Analysis</h3>
+              <p className="text-[15px] text-muted-foreground mb-10 max-w-lg mx-auto leading-relaxed">
                 Atlas AI will perform a full PFMEA analysis including failure mode identification, severity rating, control plan gap analysis, and 5-Why root cause chain.
               </p>
               <button
                 onClick={generate}
-                className="px-8 py-3.5 bg-primary text-primary-foreground text-[14px] font-bold uppercase tracking-wider rounded-lg hover:bg-primary/90 transition-colors cursor-pointer"
+                className="px-10 py-4 bg-primary text-primary-foreground text-[14px] font-bold uppercase tracking-wider rounded-xl hover:bg-primary/90 transition-colors cursor-pointer"
               >
                 Generate PFMEA Analysis
               </button>
@@ -184,14 +223,14 @@ Be specific and technical. Use real PFMEA methodology. Use bullet points and str
           )}
 
           {loading && !analysis && (
-            <div className="flex items-center justify-center py-16 gap-3">
+            <div className="flex items-center justify-center py-20 gap-3">
               <Loader2 className="w-6 h-6 animate-spin text-primary" />
-              <span className="text-[15px] text-muted-foreground">Analyzing failure mode...</span>
+              <span className="text-[15px] text-muted-foreground">Analyzing failure mode…</span>
             </div>
           )}
 
           {analysis && (
-            <div className="prose prose-base max-w-none text-foreground/90 [&_p]:text-[15px] [&_p]:leading-[1.8] [&_li]:text-[15px] [&_li]:leading-[1.7] [&_li]:mb-1 [&_strong]:text-foreground [&_h2]:text-[18px] [&_h2]:mb-3 [&_h2]:mt-8 [&_h2]:pb-2 [&_h2]:border-b [&_h2]:border-border/40 [&_h3]:text-[16px] [&_h3]:mb-2 [&_h3]:mt-5 [&_ul]:space-y-1.5 [&_ol]:space-y-2 [&_table]:w-full [&_th]:text-left [&_th]:p-3 [&_th]:bg-muted/30 [&_td]:p-3 [&_td]:border-t [&_td]:border-border/30">
+            <div className={proseClasses}>
               <ReactMarkdown>{analysis}</ReactMarkdown>
               {loading && <span className="inline-block w-2 h-5 bg-primary animate-pulse ml-0.5" />}
             </div>
