@@ -460,6 +460,25 @@ All colors MUST be HSL.
 
   /* Secondary */
   --ar-blue-grey: #C7E4E4;       /* Aqua Light */
+
+  /* Override shadcn tokens so bg-card, bg-background etc. match dark mode */
+  --background: 160 8% 9%;        /* #171C1B */
+  --foreground: 0 0% 94%;         /* #F0F0F0 */
+  --card: 160 6% 13%;             /* #1E2423 */
+  --card-foreground: 0 0% 94%;
+  --popover: 160 6% 13%;
+  --popover-foreground: 0 0% 94%;
+  --muted: 160 5% 16%;            /* #252B2A */
+  --muted-foreground: 155 8% 53%; /* #7B8E80 */
+  --border: 0 0% 100% / 0.12;
+  --input: 0 0% 100% / 0.12;
+  --ring: 155 24% 55%;
+  --primary: 195 82% 41%;         /* #1391BF */
+  --primary-foreground: 0 0% 100%;
+  --accent: 155 30% 62%;          /* #7CC2A7 */
+  --accent-foreground: 0 0% 100%;
+  --destructive: 4 43% 54%;       /* #C4564F */
+  --destructive-foreground: 0 0% 100%;
 }
 
 /* Audit report section eyebrow */
