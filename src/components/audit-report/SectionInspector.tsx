@@ -5,7 +5,7 @@ import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { 
   X, Sparkles, FileText, Monitor, Clock, AlertTriangle, TrendingUp, 
   TrendingDown, Eye, AlertTriangle as WarnIcon, Lightbulb, BarChart3, Camera,
-  Brain, Crosshair, Search, Volume2, VolumeX
+  Brain, Crosshair, Search, Volume2, VolumeX, Square
 } from "lucide-react";
 
 const SW = 1.5;
@@ -336,13 +336,25 @@ function AtlasTab({ intel, station, stationNCRs, brainTab, setBrainTab, predicti
           <span className="text-[13px] font-semibold tracking-wide text-muted-foreground">ATLAS BRAIN</span>
           <button
             onClick={toggleVoice}
-            className={cn(
-              "flex items-center gap-1 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider transition-colors cursor-pointer rounded ml-auto",
-              speaking ? "bg-primary text-white" : "bg-primary/10 text-primary hover:bg-primary/20"
-            )}
+            title={speaking ? "Stop listening" : "Listen to station briefing"}
+            className="relative flex items-center justify-center w-7 h-7 rounded-full cursor-pointer transition-all ml-auto"
           >
-            {speaking ? <VolumeX className="w-3 h-3" /> : <Volume2 className="w-3 h-3" />}
-            {speaking ? 'Stop' : 'Brief'}
+            {speaking && (
+              <>
+                <span className="absolute inset-0 rounded-full bg-[hsl(155,24%,55%)]/30 animate-ping" />
+                <span className="absolute inset-[-2px] rounded-full border-[1.5px] border-[hsl(155,24%,55%)]/25 animate-pulse" />
+              </>
+            )}
+            <span
+              className={cn(
+                "relative z-10 flex items-center justify-center w-7 h-7 rounded-full transition-colors",
+                speaking
+                  ? "bg-[hsl(155,24%,55%)] text-white"
+                  : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground"
+              )}
+            >
+              {speaking ? <Square className="w-2.5 h-2.5 fill-current" /> : <Volume2 className="w-3.5 h-3.5" />}
+            </span>
           </button>
         </div>
         <div className="flex gap-4">
