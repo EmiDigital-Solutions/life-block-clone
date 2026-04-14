@@ -369,3 +369,205 @@ All colors MUST be HSL.
     background-position: -1px -1px;
   }
 }
+
+/* ── ScanPro+ Audit Report Design Tokens ──────────── */
+.audit-report {
+  --ar-bg-page:    #FAFAF8;
+  --ar-bg-surface: #FFFFFF;
+  --ar-bg-elevated:#FAFAFA;
+  --ar-bg-soft:    #F1F4F2;
+  --ar-bg-header:  #0E1614;
+  --ar-bg-header-2:#1A2422;
+
+  --ar-bd-hair:    rgba(14,22,20,0.06);
+  --ar-bd-line:    rgba(14,22,20,0.10);
+  --ar-bd-strong:  rgba(14,22,20,0.18);
+
+  --ar-tx-1: #0E1614;
+  --ar-tx-2: #4A5550;
+  --ar-tx-3: #7A857F;
+  --ar-tx-4: #B5BCB7;
+
+  --ar-accent:       #2F8B7F;
+  --ar-accent-dim:   #4F8771;
+  --ar-accent-light: #6EA996;
+  --ar-accent-bg:    rgba(47,139,127,0.07);
+  --ar-accent-bg-2:  rgba(47,139,127,0.12);
+
+  --ar-pass:    #2F8B7F;
+  --ar-pass-bg: rgba(47,139,127,0.07);
+  --ar-warn:    #B07424;
+  --ar-warn-bg: rgba(176,116,36,0.08);
+  --ar-fail:    #A53D3D;
+  --ar-fail-bg: rgba(165,61,61,0.07);
+
+  --ar-radius: 0.75rem;
+
+  font-feature-settings: "tnum", "ss01", "cv11";
+  font-size: 13px;
+  background: var(--ar-bg-page);
+  color: var(--ar-tx-1);
+}
+
+[data-theme="dark"] .audit-report {
+  --ar-bg-page:    #0A0C0E;
+  --ar-bg-surface: #181B1F;
+  --ar-bg-elevated:#131619;
+  --ar-bg-soft:    #131619;
+  --ar-bg-header:  #0A0C0E;
+  --ar-bg-header-2:#1A2422;
+  --ar-bd-hair:    rgba(255,255,255,0.06);
+  --ar-bd-line:    rgba(255,255,255,0.11);
+  --ar-tx-1: #F5F5F5;
+  --ar-tx-2: #C5CCC8;
+  --ar-tx-3: #7B8E80;
+  --ar-tx-4: #3E4348;
+  --ar-accent:       #8EDBD3;
+  --ar-accent-dim:   #5BA8A1;
+  --ar-accent-light: #C7E4E4;
+  --ar-accent-bg:    rgba(142,219,211,0.08);
+  --ar-pass:    #8EDBD3;
+  --ar-warn:    #E3B36B;
+  --ar-fail:    #E87A7A;
+}
+
+/* Audit report section eyebrow */
+.ar-eyebrow {
+  font-family: 'Space Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ar-accent);
+}
+
+.ar-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--ar-accent);
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+/* Audit report H2 */
+.ar-h2 {
+  font-size: 32px;
+  font-weight: 200;
+  letter-spacing: -0.025em;
+  color: var(--ar-tx-1);
+  margin-top: 8px;
+  line-height: 1.15;
+}
+
+/* Audit report lede text */
+.ar-lede {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--ar-tx-2);
+  margin-top: 6px;
+  line-height: 1.55;
+}
+
+/* Audit report mono label */
+.ar-mono-label {
+  font-family: 'Space Mono', ui-monospace, monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ar-tx-3);
+}
+
+/* Audit report card */
+.ar-card {
+  background: var(--ar-bg-surface);
+  border: 1px solid var(--ar-bd-hair);
+  border-radius: var(--ar-radius);
+  padding: 24px;
+}
+
+/* Audit report soft card */
+.ar-card-soft {
+  background: var(--ar-bg-soft);
+  border-radius: var(--ar-radius);
+  padding: 28px;
+}
+
+/* Audit report section divider */
+.ar-divider {
+  border: none;
+  border-top: 1px solid var(--ar-bd-hair);
+  margin: 48px 0;
+}
+
+/* Audit report header bar */
+.ar-header {
+  background: var(--ar-bg-header);
+  color: #FFFFFF;
+}
+
+.ar-header-2 {
+  background: var(--ar-bg-header-2);
+  color: rgba(255,255,255,0.85);
+}
+
+/* Audit report blockquote */
+.ar-blockquote {
+  border-left: 3px solid var(--ar-accent);
+  padding-left: 16px;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 13px;
+  color: var(--ar-tx-1);
+  max-width: 320px;
+  line-height: 1.6;
+}
+
+/* Sidebar styling overrides for audit report */
+.ar-sidebar {
+  background: var(--ar-bg-surface);
+  border-right: 1px solid var(--ar-bd-hair);
+}
+
+.ar-sidebar-item {
+  font-size: 12px;
+  color: var(--ar-tx-2);
+  transition: all 0.15s ease;
+}
+
+.ar-sidebar-item:hover {
+  color: var(--ar-tx-1);
+  background: var(--ar-bg-soft);
+}
+
+.ar-sidebar-item.active {
+  background: var(--ar-accent-bg);
+  color: var(--ar-accent);
+  font-weight: 600;
+  border-left: 2px solid var(--ar-accent);
+}
+
+/* Status dots */
+.ar-dot { width: 7px; height: 7px; border-radius: 50%; }
+.ar-dot-pass { background: var(--ar-pass); }
+.ar-dot-warn { background: var(--ar-warn); }
+.ar-dot-fail { background: var(--ar-fail); }
+.ar-dot-grey { background: var(--ar-tx-4); }
+.ar-dot-pass.active { box-shadow: 0 0 4px var(--ar-pass); }
+.ar-dot-warn.active { box-shadow: 0 0 4px var(--ar-warn); }
+.ar-dot-fail.active { box-shadow: 0 0 4px var(--ar-fail); }
+
+/* Heatmap chiclets */
+.ar-chiclet {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.ar-chiclet:hover { transform: scale(1.2); }
+.ar-chiclet.active { outline: 2px solid var(--ar-accent); outline-offset: 1px; }
+.ar-chiclet-pass { background: var(--ar-pass); border: 1px solid rgba(47,139,127,0.3); }
+.ar-chiclet-warn { background: var(--ar-warn); border: 1px solid rgba(176,116,36,0.3); }
+.ar-chiclet-fail { background: var(--ar-fail); border: 1px solid rgba(165,61,61,0.3); }
+.ar-chiclet-grey { background: var(--ar-tx-4); border: 1px solid rgba(181,188,183,0.3); }
