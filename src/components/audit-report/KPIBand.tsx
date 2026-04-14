@@ -120,6 +120,7 @@ export default function KPIBand({ kpis, depth = 'standard' }: KPIBandProps) {
           || (kpi.trend === 'down' && !kpi.label.includes('NCR') && !kpi.label.includes('DPPM') && !kpi.label.includes('Cost'));
         const trendColor = kpi.trend === 'flat' ? 'hsl(var(--muted-foreground))' : isNegativeTrend ? 'hsl(var(--destructive))' : 'hsl(var(--accent))';
         const sparkColor = isNegativeTrend ? 'hsl(var(--destructive))' : 'hsl(var(--primary))';
+        const ai = getKPIInsight(kpi.label);
 
         return (
           <div key={i} className="p-5 bg-card shadow-sm">
@@ -127,14 +128,23 @@ export default function KPIBand({ kpis, depth = 'standard' }: KPIBandProps) {
               {kpi.label}
             </span>
             <div className="flex items-end justify-between mt-3 gap-3">
-              <div className="flex items-baseline gap-1.5">
-                <span className="text-[32px] font-bold text-foreground leading-none tracking-tight font-mono tabular-nums">
-                  {kpi.value}
-                </span>
-                {kpi.unit && (
-                  <span className="text-[14px] text-muted-foreground">{kpi.unit}</span>
-                )}
-              </div>
+              <AtlasTooltip
+                metric={kpi.label}
+                value={`${kpi.value}${kpi.unit || ''}`}
+                insight={ai.insight}
+                benchmark={ai.benchmark}
+                recommendation={ai.recommendation}
+                severity={ai.severity}
+              >
+                <div className="flex items-baseline gap-1.5 cursor-help">
+                  <span className="text-[32px] font-bold text-foreground leading-none tracking-tight font-mono tabular-nums">
+                    {kpi.value}
+                  </span>
+                  {kpi.unit && (
+                    <span className="text-[14px] text-muted-foreground">{kpi.unit}</span>
+                  )}
+                </div>
+              </AtlasTooltip>
               {kpi.sparkline && <MiniSparkline data={kpi.sparkline} color={sparkColor} />}
             </div>
 
