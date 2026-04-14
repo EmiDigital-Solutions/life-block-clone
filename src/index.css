@@ -598,7 +598,18 @@ All colors MUST be HSL.
 }
 .ar-chiclet:hover { transform: scale(1.2); }
 .ar-chiclet.active { outline: 2px solid var(--ar-accent); outline-offset: 1px; }
-.ar-chiclet-pass { background: var(--ar-pass); border: 1px solid rgba(47,139,127,0.3); }
-.ar-chiclet-warn { background: var(--ar-warn); border: 1px solid rgba(176,116,36,0.3); }
-.ar-chiclet-fail { background: var(--ar-fail); border: 1px solid rgba(165,61,61,0.3); }
-.ar-chiclet-grey { background: var(--ar-tx-4); border: 1px solid rgba(181,188,183,0.3); }
+.ar-chiclet-pass { background: var(--ar-pass); border: 1px solid color-mix(in srgb, var(--ar-pass) 40%, transparent); }
+.ar-chiclet-warn { background: var(--ar-warn); border: 1px solid color-mix(in srgb, var(--ar-warn) 40%, transparent); }
+.ar-chiclet-fail { background: var(--ar-fail); border: 1px solid color-mix(in srgb, var(--ar-fail) 40%, transparent); }
+.ar-chiclet-grey { background: var(--ar-tx-4); border: 1px solid color-mix(in srgb, var(--ar-tx-4) 40%, transparent); }
+
+/* CTA link style */
+.ar-cta-link {
+  color: var(--ar-cta);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.ar-cta-link:hover {
+  color: var(--ar-cta-hover);
+  text-decoration: underline;
+}
