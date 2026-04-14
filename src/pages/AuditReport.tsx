@@ -688,6 +688,7 @@ function AuditReportInner() {
           </div>
         </div>
       </div>
+    </div>
 
     {/* Modals */}
     <TrafficLightDashboard open={dashboardOpen} onClose={() => setDashboardOpen(false)} />
