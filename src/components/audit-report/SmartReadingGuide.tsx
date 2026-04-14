@@ -14,10 +14,10 @@ interface SmartReadingGuideProps {
 
 type Role = 'procurement' | 'quality' | 'executive';
 
-const roleConfig: Record<Role, { label: string; icon: typeof User; color: string; description: string }> = {
-  procurement: { label: 'Procurement', icon: Briefcase, color: 'text-primary', description: 'Focus on cost, risk, and supplier verdict' },
-  quality: { label: 'Quality Engineer', icon: Wrench, color: 'text-warning', description: 'Focus on technical findings, NCRs, and CAPA' },
-  executive: { label: 'Executive / C-Suite', icon: User, color: 'text-accent', description: 'Focus on summary, trajectory, and decision' },
+const roleConfig: Record<Role, { label: string; icon: typeof User; color: string; bg: string; description: string }> = {
+  procurement: { label: 'Procurement', icon: Briefcase, color: 'text-primary', bg: 'bg-primary/5 border-primary/25', description: 'Cost, risk, and supplier verdict' },
+  quality: { label: 'Quality Engineer', icon: Wrench, color: 'text-warning', bg: 'bg-warning/5 border-warning/25', description: 'Technical findings, NCRs, CAPA' },
+  executive: { label: 'Executive / C-Suite', icon: User, color: 'text-accent', bg: 'bg-accent/5 border-accent/25', description: 'Summary, trajectory, decision' },
 };
 
 interface Section {
@@ -74,15 +74,19 @@ export default function SmartReadingGuide({ open, onClose, onScrollToId }: Smart
 
   if (!open) return null;
 
+  const activeRoleCfg = roleConfig[role];
+
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-foreground/60 backdrop-blur-sm p-6">
-      <div className="bg-card border border-border rounded-xl shadow-2xl w-full max-w-[800px] max-h-[90vh] flex flex-col">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-foreground/60 backdrop-blur-sm p-4">
+      <div className="bg-card border border-border rounded-2xl shadow-2xl w-full max-w-[960px] max-h-[92vh] flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between px-8 py-5 border-b border-border shrink-0">
-          <div className="flex items-center gap-3">
-            <Sparkles className="w-6 h-6 text-primary" />
+        <div className="flex items-center justify-between px-10 py-6 border-b border-border shrink-0">
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              <BookOpen className="w-5 h-5 text-primary" />
+            </div>
             <div>
-              <h2 className="text-[20px] font-bold text-foreground">Smart Reading Guide</h2>
+              <h2 className="text-[22px] font-bold text-foreground tracking-tight">Smart Reading Guide</h2>
               <p className="text-[14px] text-muted-foreground mt-0.5">AI-recommended reading path based on your role</p>
             </div>
           </div>
@@ -92,24 +96,24 @@ export default function SmartReadingGuide({ open, onClose, onScrollToId }: Smart
         </div>
 
         {/* Role selector */}
-        <div className="px-8 py-4 border-b border-border/30 shrink-0">
-          <p className="text-[13px] text-muted-foreground mb-3 font-medium uppercase tracking-wide">Select your role</p>
-          <div className="grid grid-cols-3 gap-3">
+        <div className="px-10 py-6 border-b border-border/30 shrink-0">
+          <p className="text-[12px] text-muted-foreground mb-4 font-semibold uppercase tracking-[0.15em]">Select your role</p>
+          <div className="grid grid-cols-3 gap-4">
             {(Object.entries(roleConfig) as [Role, typeof roleConfig[Role]][]).map(([key, cfg]) => {
               const Icon = cfg.icon;
               return (
                 <button
                   key={key}
                   onClick={() => setRole(key)}
-                  className={`flex flex-col items-start gap-2 p-4 rounded-lg text-left transition-colors cursor-pointer border ${
+                  className={`flex flex-col items-start gap-2.5 p-5 rounded-xl text-left transition-all cursor-pointer border ${
                     role === key
-                      ? 'bg-primary/5 border-primary/30 text-foreground'
-                      : 'bg-muted/30 border-border/40 text-muted-foreground hover:bg-muted/50'
+                      ? `${cfg.bg} shadow-sm`
+                      : 'bg-card border-border/40 text-muted-foreground hover:bg-muted/30'
                   }`}
                 >
-                  <div className="flex items-center gap-2">
-                    <Icon className={`w-4 h-4 ${role === key ? cfg.color : ''}`} />
-                    <span className="text-[14px] font-semibold">{cfg.label}</span>
+                  <div className="flex items-center gap-2.5">
+                    <Icon className={`w-5 h-5 ${role === key ? cfg.color : 'text-muted-foreground'}`} />
+                    <span className={`text-[15px] font-semibold ${role === key ? 'text-foreground' : ''}`}>{cfg.label}</span>
                   </div>
                   <span className="text-[13px] leading-relaxed">{cfg.description}</span>
                 </button>
@@ -119,30 +123,30 @@ export default function SmartReadingGuide({ open, onClose, onScrollToId }: Smart
         </div>
 
         {/* Reading summary */}
-        <div className="px-8 py-4 bg-primary/3 border-b border-border/30 shrink-0">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2">
-              <BookOpen className="w-5 h-5 text-primary" />
-              <span className="text-[15px] font-semibold text-foreground">
+        <div className="px-10 py-4 bg-muted/20 border-b border-border/30 shrink-0">
+          <div className="flex items-center gap-8">
+            <div className="flex items-center gap-2.5">
+              <Sparkles className="w-4 h-4 text-primary" />
+              <span className="text-[14px] font-semibold text-foreground">
                 {mustReadCount} must-read sections
               </span>
             </div>
-            <div className="text-[14px] text-muted-foreground flex items-center gap-1.5">
+            <div className="text-[13px] text-muted-foreground flex items-center gap-1.5">
               <Clock className="w-4 h-4" />
-              ~{totalTime} min total reading time
+              ~{totalTime} min total
             </div>
           </div>
         </div>
 
         {/* Section list */}
-        <div className="flex-1 overflow-y-auto px-8 py-5 space-y-3">
+        <div className="flex-1 overflow-y-auto px-10 py-6 space-y-3">
           {sections.map((section, i) => (
             <button
               key={section.id}
               onClick={() => { onScrollToId(section.id); onClose(); }}
-              className="w-full flex items-center gap-4 p-5 rounded-lg border border-border/40 hover:bg-muted/30 transition-colors cursor-pointer text-left group"
+              className="w-full flex items-center gap-5 p-5 rounded-xl border border-border/40 hover:bg-muted/20 transition-colors cursor-pointer text-left group"
             >
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center text-[13px] font-bold shrink-0 ${
+              <div className={`w-9 h-9 rounded-full flex items-center justify-center text-[13px] font-bold shrink-0 ${
                 section.priority === 'must-read' ? 'bg-primary text-primary-foreground' :
                 section.priority === 'recommended' ? 'bg-warning/15 text-warning' :
                 'bg-muted text-muted-foreground'
@@ -150,18 +154,18 @@ export default function SmartReadingGuide({ open, onClose, onScrollToId }: Smart
                 {i + 1}
               </div>
               <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-3 mb-1">
+                <div className="flex items-center gap-3 mb-1.5">
                   <span className="text-[15px] font-semibold text-foreground">{section.label}</span>
-                  <span className={`text-[11px] font-bold uppercase px-2 py-0.5 rounded ${
+                  <span className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full ${
                     section.priority === 'must-read' ? 'bg-primary/10 text-primary' :
                     section.priority === 'recommended' ? 'bg-warning/10 text-warning' :
                     'bg-muted text-muted-foreground'
                   }`}>{section.priority.replace('-', ' ')}</span>
                 </div>
-                <span className="text-[14px] text-muted-foreground leading-relaxed">{section.reason}</span>
+                <span className="text-[13px] text-muted-foreground leading-relaxed">{section.reason}</span>
               </div>
-              <div className="flex items-center gap-3 shrink-0">
-                <span className="text-[13px] text-muted-foreground flex items-center gap-1.5">
+              <div className="flex items-center gap-4 shrink-0">
+                <span className="text-[12px] text-muted-foreground flex items-center gap-1.5 tabular-nums">
                   <Clock className="w-3.5 h-3.5" /> {section.readingTime}
                 </span>
                 <ChevronRight className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
