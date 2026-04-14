@@ -167,7 +167,7 @@ function AuditReportInner() {
     <>
     <Navigation />
     {/* Outer app shell — Premium Enterprise SaaS */}
-    <div className="h-[100dvh] flex flex-col text-foreground pt-16" style={{ fontFamily: "'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
+    <div className="h-[100dvh] flex flex-col text-foreground pt-16 font-sans">
       {/* Window title bar */}
       <div className="h-8 flex items-center px-3 border-b flex-shrink-0" style={{ background: 'hsl(220,14%,96%)', borderColor: 'hsl(220,13%,89%)' }}>
         <span className="text-[12px] font-medium" style={{ color: 'hsl(220,10%,40%)' }}>
