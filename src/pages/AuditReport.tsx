@@ -234,71 +234,107 @@ function AuditReportInner() {
 
           {/* ━━━ STICKY HEADER — Two-tier clean design ━━━ */}
           <div className={cn(
-            "sticky top-0 z-40 transition-all duration-300 bg-card border-b border-border",
+            "sticky top-0 z-40 transition-all duration-300",
             scrolledPastHero ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
           )}>
-            {/* Row 1: Identity + Verdict + Core Actions */}
-            <div className="flex items-center justify-between px-5 h-14 border-b border-border/40">
-              <div className="flex items-center gap-4">
+            {/* Row 1: Brand strip — dark */}
+            <div className="ar-header flex items-center justify-between px-5 h-12">
+              <div className="flex items-center gap-3">
                 {isMobile && (
-                  <button onClick={() => setSidebarOpen(true)} className="p-2 hover:bg-muted rounded-md transition-colors">
-                    <Menu className="w-5 h-5 text-muted-foreground" />
+                  <button onClick={() => setSidebarOpen(true)} className="p-2 hover:bg-white/10 rounded-md transition-colors">
+                    <Menu className="w-5 h-5 text-white/70" />
                   </button>
                 )}
-                <div className="flex items-center gap-2.5">
-                  <span className="text-[13px] font-bold uppercase tracking-wider text-primary">SCANPRO+</span>
-                  <ChevronRight className="w-3.5 h-3.5 text-border" />
-                  <span className="text-[15px] font-semibold text-foreground">{reportMeta.supplier}</span>
+                <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/50" style={{ fontFamily: "'Space Mono', monospace" }}>YVOO+</span>
+                <span className="text-white/20">›</span>
+                <span className="text-[12px] text-white/60">Audits</span>
+                <span className="text-white/20">›</span>
+                <span className="text-[12px] text-white/60">2026 Q2</span>
+                <span className="text-white/20">›</span>
+                <span className="text-[12px] text-white/90 font-medium">{reportMeta.supplier}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')}
+                  className="p-1.5 hover:bg-white/10 rounded-md transition-colors cursor-pointer"
+                  title={theme === 'light' ? 'Dark mode' : 'Light mode'}
+                >
+                  {theme === 'light' ? <Moon className="w-4 h-4 text-white/50" /> : <Sun className="w-4 h-4 text-white/50" />}
+                </button>
+                <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center">
+                  <User className="w-3.5 h-3.5 text-white/60" />
                 </div>
-                <div className="flex items-center gap-2 ml-1">
-                  <span className={cn(
-                    "px-2.5 py-1 rounded-full text-[12px] font-bold uppercase tracking-wide",
-                    reportMeta.verdict === 'go' && "bg-accent/15 text-accent",
-                    reportMeta.verdict === 'conditional' && "bg-warning/15 text-warning",
-                    (reportMeta.verdict === 'hold' || reportMeta.verdict === 'nogo') && "bg-destructive/15 text-destructive",
-                  )}>
+              </div>
+            </div>
+
+            {/* Row 2: Document control strip */}
+            <div className="ar-header-2 flex items-center justify-between px-5 h-14">
+              <div className="flex items-center gap-6">
+                {[
+                  { label: 'Document', value: reportMeta.po || 'SCP-26-0412' },
+                  { label: 'Rev.', value: '1.0' },
+                  { label: 'Standard', value: reportMeta.standard || 'VDA 6.3 · ISO 9001' },
+                  { label: 'Supplier', value: reportMeta.supplier },
+                  { label: 'Customer', value: reportMeta.client || 'BMW AG' },
+                ].map(cell => (
+                  <div key={cell.label} className="hidden md:flex flex-col">
+                    <span className="ar-mono-label" style={{ color: 'rgba(255,255,255,0.35)' }}>{cell.label}</span>
+                    <span className="text-[12px] text-white/85 font-medium mt-0.5">{cell.value}</span>
+                  </div>
+                ))}
+                <div className="flex flex-col">
+                  <span className="ar-mono-label" style={{ color: 'rgba(255,255,255,0.35)' }}>Verdict</span>
+                  <span className="text-[12px] font-semibold mt-0.5" style={{
+                    color: reportMeta.verdict === 'go' ? 'var(--ar-pass)' : reportMeta.verdict === 'conditional' ? 'var(--ar-warn)' : 'var(--ar-fail)'
+                  }}>
                     {reportMeta.verdictLabel}
                   </span>
-                  <span className="text-[13px] text-muted-foreground font-medium">{allNCRs.length} NCRs</span>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3">
-                {/* Reading progress */}
-                <div className="hidden lg:flex items-center gap-3 text-[13px] text-muted-foreground">
-                  <span className="font-mono tabular-nums">{readingProgress}%</span>
-                  <span className="text-border">·</span>
-                  <span className="flex items-center gap-1">
-                    <Clock className="w-3.5 h-3.5" />
-                    {readingTimeEstimates[depth]}
-                  </span>
-                  <span className="text-border">·</span>
-                  <span className="font-mono tabular-nums">{reviewedStations.size}/{totalStations} stations</span>
-                </div>
-
-                {/* Sign off CTA */}
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => {}}
+                  className="p-2 rounded-md hover:bg-white/10 transition-colors cursor-pointer"
+                  title="Share"
+                >
+                  <Share2 className="w-4 h-4 text-white/50" />
+                </button>
+                <button
+                  onClick={() => {}}
+                  className="p-2 rounded-md hover:bg-white/10 transition-colors cursor-pointer"
+                  title="Export"
+                >
+                  <FileDown className="w-4 h-4 text-white/50" />
+                </button>
                 <button
                   onClick={() => setInspectorOpen(!inspectorOpen)}
-                  className="px-4 py-2 text-[13px] font-semibold text-primary-foreground bg-primary rounded-md uppercase tracking-wider cursor-pointer hover:bg-primary/90 transition-colors"
+                  disabled={openNCRs === 0}
+                  className="px-4 py-1.5 text-[12px] font-semibold rounded-md cursor-pointer transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                  style={{
+                    background: 'var(--ar-accent-light)',
+                    color: 'var(--ar-bg-header)',
+                  }}
                 >
                   Sign off {openNCRs > 0 && `(${openNCRs})`}
                 </button>
               </div>
             </div>
 
-            {/* Row 2: Tools + Depth + Navigation */}
-            <div className="flex items-center justify-between px-5 h-11">
+            {/* Row 3: Toolbar */}
+            <div className="flex items-center justify-between px-5 h-11" style={{ background: 'var(--ar-bg-surface)', borderBottom: '1px solid var(--ar-bd-hair)' }}>
               <div className="flex items-center gap-1">
                 {/* Depth toggle */}
-                <div className="flex rounded-md overflow-hidden border border-border mr-1">
+                <div className="flex rounded-md overflow-hidden mr-1" style={{ border: '1px solid var(--ar-bd-line)' }}>
                   {(['executive', 'standard'] as DepthLevel[]).map(d => (
                     <button
                       key={d}
                       onClick={() => setDepth(d)}
-                      className={cn(
-                        "px-3 py-1.5 text-[12px] font-medium uppercase tracking-wide transition-colors cursor-pointer",
-                        depth === d ? "bg-primary text-primary-foreground" : "bg-card text-muted-foreground hover:bg-muted"
-                      )}
+                      className="px-3 py-1.5 text-[12px] font-medium transition-colors cursor-pointer"
+                      style={{
+                        background: depth === d ? 'var(--ar-accent)' : 'var(--ar-bg-surface)',
+                        color: depth === d ? '#fff' : 'var(--ar-tx-3)',
+                      }}
                     >
                       {depthLabels[d]}
                     </button>
@@ -307,43 +343,47 @@ function AuditReportInner() {
                 <VoiceBriefing />
 
                 {/* Station heatmap */}
-                <div className="hidden md:flex items-center gap-2 px-3 border-l border-border">
+                <div className="hidden md:flex items-center gap-2 px-3" style={{ borderLeft: '1px solid var(--ar-bd-hair)' }}>
                   <StationHeatmap activeStation={activeStation} onStationClick={scrollToStation} />
                 </div>
 
-                {/* Jump to worst */}
+                {/* Jump to red findings */}
                 {worstStation && (
                   <button
                     onClick={() => scrollToStation(worstStation.index)}
-                    className="flex items-center gap-1.5 px-3 py-1.5 ml-2 text-[12px] font-semibold text-destructive rounded-md cursor-pointer bg-destructive/8 hover:bg-destructive/15 transition-colors"
+                    className="flex items-center gap-1 px-2 py-1 ml-2 text-[12px] font-medium cursor-pointer transition-colors hover:underline"
+                    style={{ color: 'var(--ar-fail)' }}
                   >
-                    <AlertTriangle className="w-3.5 h-3.5" />
-                    Jump to worst
+                    Jump to red findings →
                   </button>
                 )}
               </div>
 
-              {/* Tool buttons — clean icon + label */}
+              {/* Tool buttons — grouped */}
               <div className="hidden md:flex items-center gap-1">
+                {/* Primary: Decision */}
+                <button
+                  onClick={() => setDashboardOpen(true)}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[12px] font-semibold transition-colors cursor-pointer"
+                  style={{ background: 'var(--ar-accent-bg-2)', color: 'var(--ar-accent)' }}
+                >
+                  <LayoutDashboard className="w-3.5 h-3.5" strokeWidth={1.75} />
+                  Decision
+                </button>
+
+                {/* Secondary: text tabs */}
                 {[
-                  { icon: LayoutDashboard, label: 'Decision', action: () => setDashboardOpen(true), highlight: true },
-                  { icon: FileBarChart, label: 'Brief', action: () => setBriefOpen(true) },
-                  { icon: ClipboardList, label: 'Actions', action: () => setChecklistOpen(true) },
-                  { icon: TrendingUp, label: 'Trend', action: () => setTrendOpen(true) },
-                  { icon: BookOpenCheck, label: 'Guide', action: () => setGuideOpen(true) },
-                  { icon: FileDown, label: 'Export', action: () => {} },
-                ].map(({ icon: Icon, label, action, highlight }) => (
+                  { label: 'Brief', action: () => setBriefOpen(true) },
+                  { label: 'Actions', action: () => setChecklistOpen(true) },
+                  { label: 'Trend', action: () => setTrendOpen(true) },
+                  { label: 'Guide', action: () => setGuideOpen(true) },
+                ].map(({ label, action }) => (
                   <button
                     key={label}
                     onClick={action}
-                    className={cn(
-                      "flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[12px] font-medium transition-colors cursor-pointer",
-                      highlight
-                        ? "bg-warning/10 text-warning hover:bg-warning/20"
-                        : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                    )}
+                    className="px-2.5 py-1.5 text-[12px] font-medium transition-colors cursor-pointer hover:underline"
+                    style={{ color: 'var(--ar-tx-3)' }}
                   >
-                    <Icon className="w-4 h-4" strokeWidth={1.75} />
                     {label}
                   </button>
                 ))}
@@ -351,8 +391,8 @@ function AuditReportInner() {
             </div>
 
             {/* Reading progress bar */}
-            <div className="h-[2px] bg-border/50">
-              <div className="h-full bg-primary transition-all duration-150" style={{ width: `${readingProgress}%` }} />
+            <div className="h-[2px]" style={{ background: 'var(--ar-bd-hair)' }}>
+              <div className="h-full transition-all duration-150" style={{ width: `${readingProgress}%`, background: 'var(--ar-accent)' }} />
             </div>
           </div>
 
