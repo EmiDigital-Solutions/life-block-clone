@@ -165,7 +165,7 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
         >
           <span className="text-[12px] font-medium tabular-nums w-6 shrink-0" style={{ 
             fontFamily: "'Space Mono', monospace",
-            color: isActive ? 'var(--ar-accent)' : 'var(--ar-tx-4)' 
+            color: isActive ? 'var(--ar-cta)' : 'var(--ar-tx-4)' 
           }}>
             {sectionNum}
           </span>
@@ -196,8 +196,8 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
                     : "hover:text-foreground"
                 )}
                 style={{
-                  color: ci === 0 ? 'var(--ar-accent)' : 'var(--ar-tx-3)',
-                  background: ci === 0 ? 'var(--ar-accent-bg)' : 'transparent',
+                  color: ci === 0 ? 'var(--ar-cta)' : 'var(--ar-tx-3)',
+                  background: ci === 0 ? 'rgba(10,127,165,0.08)' : 'transparent',
                 }}
               >
                 <span className="tabular-nums w-8" style={{ fontFamily: "'Space Mono', monospace", color: 'var(--ar-tx-4)', fontSize: '10px' }}>
