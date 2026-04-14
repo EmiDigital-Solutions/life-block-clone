@@ -47,6 +47,39 @@ export default function ProcurementBrief({ open, onClose }: ProcurementBriefProp
   const [brief, setBrief] = useState<string>("");
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [speaking, setSpeaking] = useState(false);
+
+  const toggleVoice = useCallback(() => {
+    if (speaking) {
+      speechSynthesis.cancel();
+      setSpeaking(false);
+      return;
+    }
+    if (!brief) return;
+
+    // Strip markdown formatting for cleaner speech
+    const plainText = brief
+      .replace(/#{1,3}\s/g, '')
+      .replace(/\*\*/g, '')
+      .replace(/- /g, '')
+      .replace(/\n+/g, '. ')
+      .replace(/\s{2,}/g, ' ')
+      .trim();
+
+    const utterance = new SpeechSynthesisUtterance(plainText);
+    utterance.lang = 'en-US';
+    const voices = speechSynthesis.getVoices();
+    const enVoice = voices.find(v => v.lang === 'en-US' && v.name.includes('Google'))
+      || voices.find(v => v.lang === 'en-US')
+      || voices.find(v => v.lang.startsWith('en'));
+    if (enVoice) utterance.voice = enVoice;
+    utterance.rate = 0.92;
+    utterance.pitch = 1;
+    utterance.onend = () => setSpeaking(false);
+    utterance.onerror = () => setSpeaking(false);
+    setSpeaking(true);
+    speechSynthesis.speak(utterance);
+  }, [speaking, brief]);
 
   const generateBrief = useCallback(async () => {
     setLoading(true);
