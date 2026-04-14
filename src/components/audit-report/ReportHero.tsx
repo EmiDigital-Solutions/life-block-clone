@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import ExecutiveRadarCharts from "@/components/audit-report/ExecutiveRadarCharts";
 import type { VerdictType, DepthLevel } from "@/data/auditReportData";
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { Shield, AlertTriangle, Clock, TrendingDown, ChevronDown, FileCheck } from "lucide-react";
@@ -179,33 +180,9 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
             </div>
           </div>
 
-          {/* ── IATF PROCESS SCORE BARS ── */}
+          {/* ── §9 — GAP ANALYSIS RADAR CHARTS ── */}
           <div className="border-t border-foreground/20">
-            <div className="px-4 py-2" style={{ background: 'hsl(220,20%,14%)' }}>
-              <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-white/80">§9 — Process Element Scores (Overview)</span>
-            </div>
-            <div className="px-6 py-3 bg-card">
-              {iatfProcessScores.map((p, i) => {
-                const sc = p.score;
-                const barColor = sc >= 80 ? 'hsl(155, 24%, 45%)' : sc >= 60 ? 'hsl(24, 72%, 53%)' : 'hsl(0, 48%, 46%)';
-                return (
-                  <div key={i} className="flex items-center gap-3 py-1.5 border-b border-border/30 last:border-0">
-                    <span className="text-[10px] font-mono font-bold w-[24px] text-muted-foreground shrink-0">P{i + 1}</span>
-                    <span className="text-[11px] text-foreground w-[180px] shrink-0 truncate">{p.process.split(' — ')[1]}</span>
-                    <div className="flex-1 h-[10px] bg-muted overflow-hidden">
-                      <div className="h-full" style={{ width: `${sc}%`, background: barColor }} />
-                    </div>
-                    <span className="text-[12px] font-bold font-mono tabular-nums w-[36px] text-right" style={{ color: barColor }}>{sc}%</span>
-                    {/* BMW threshold marker */}
-                    <div className="w-[40px] text-center">
-                      {sc < 70 && <span className="text-[8px] font-bold px-1.5 py-0.5 bg-destructive/10 text-destructive">FAIL</span>}
-                      {sc >= 70 && sc < 80 && <span className="text-[8px] font-bold px-1.5 py-0.5 bg-warning/10 text-warning">RISK</span>}
-                      {sc >= 80 && <span className="text-[8px] font-bold px-1.5 py-0.5 bg-accent/10 text-accent">OK</span>}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+            <ExecutiveRadarCharts depth="executive" />
           </div>
 
           {/* Actions */}
