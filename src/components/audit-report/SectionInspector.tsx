@@ -446,19 +446,19 @@ function AtlasTab({ intel, station, stationNCRs, brainTab, setBrainTab, predicti
 
           {/* Hidden Patterns */}
           {intel.hiddenPatterns.length > 0 && (
-            <div className="px-4 py-3" style={{ borderBottom: '1px solid hsl(0,0%,92%)' }}>
+            <div className="px-4 py-3" style={{ borderBottom: '1px solid var(--ar-bd-hair)' }}>
               <div className="flex items-center gap-2 mb-3">
-                <Search className="w-4 h-4 text-primary" />
-                <span className="text-[12px] font-bold tracking-[0.1em] uppercase text-muted-foreground">Hidden Patterns</span>
+                <Search className="w-4 h-4" style={{ color: 'var(--ar-accent)' }} />
+                <span className="ar-mono-label">Hidden patterns</span>
               </div>
               <div className="space-y-3">
                 {intel.hiddenPatterns.map((pattern: any, i: number) => (
-                  <div key={i} className="bg-primary/5 rounded-lg p-3 border border-primary/10">
-                    <h4 className="text-[13px] font-semibold text-foreground mb-1">{pattern.title}</h4>
-                    <p className="text-[12px] leading-relaxed text-muted-foreground">{pattern.body}</p>
+                  <div key={i} className="p-3" style={{ background: 'var(--ar-accent-bg)', borderRadius: 'var(--ar-radius)', border: '1px solid var(--ar-bd-hair)' }}>
+                    <h4 className="text-[12px] font-semibold mb-1" style={{ color: 'var(--ar-tx-1)' }}>{pattern.title}</h4>
+                    <p className="text-[11px] leading-relaxed" style={{ color: 'var(--ar-tx-2)' }}>{pattern.body}</p>
                     <div className="flex items-center gap-1.5 mt-2">
-                      <BarChart3 className="w-3 h-3 text-primary" />
-                      <span className="text-[11px] text-primary font-medium">{pattern.dataPoints.toLocaleString()} data points analyzed</span>
+                      <BarChart3 className="w-3 h-3" style={{ color: 'var(--ar-accent)' }} />
+                      <span className="text-[10px] font-medium" style={{ color: 'var(--ar-accent)', fontFamily: "'Space Mono', monospace" }}>{pattern.dataPoints.toLocaleString()} data points</span>
                     </div>
                   </div>
                 ))}
