@@ -87,13 +87,6 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <div className="flex items-center gap-1">
-                  {[1, 2, 3, 4].map(s => (
-                    <Star key={s} className="w-4 h-4 text-warning fill-warning" />
-                  ))}
-                  <Star className="w-4 h-4 text-muted-foreground/30" />
-                </div>
-                <div className="text-[13px] font-mono font-semibold text-muted-foreground">4.0 / 5</div>
                 <div className={cn(
                   "flex items-center gap-1.5 px-2.5 py-1 rounded",
                   verdict === 'go' ? "bg-accent/10 border border-accent/20" :
