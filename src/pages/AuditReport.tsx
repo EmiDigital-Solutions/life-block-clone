@@ -320,7 +320,7 @@ function AuditReportInner() {
         <div className="flex-1 flex flex-col min-w-0 relative">
 
           {/* Row 3: Toolbar */}
-          <div className="sticky top-[168px] z-30">
+          <div className="sticky top-0 z-30">
             <div className="flex items-center justify-between px-5 h-11" style={{ background: 'var(--ar-bg-surface)', borderBottom: '1px solid var(--ar-bd-hair)' }}>
               <div className="flex items-center gap-1">
                 {/* Depth toggle */}
