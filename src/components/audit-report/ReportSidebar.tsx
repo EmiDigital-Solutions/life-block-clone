@@ -92,19 +92,20 @@ const sidebarStructure: SidebarItem[] = [
   { id: 'station-8', index: 10, label: 'Packing & outgoing', health: 'green', section: 'findings' },
   { id: 'station-9', index: 11, label: 'Documentation & QMS', health: 'amber', section: 'findings' },
   { id: 'station-10', index: 12, label: 'NCR register', health: 'red', section: 'back' },
-  { id: 'station-11', index: 13, label: 'Atlas Intelligence', health: 'grey', section: 'back' },
-  { id: 'machine-park', index: 14, label: 'Machine Park Intelligence', health: 'amber', section: 'back' },
-  { id: 'station-12', index: 15, label: 'Delay & risk forecast', health: 'amber', section: 'back' },
-  { id: 'station-13', index: 16, label: 'Corrective actions', health: 'grey', section: 'back' },
-  { id: 'station-14', index: 17, label: 'Evidence register', health: 'grey', section: 'back' },
-  { id: 'signatures', index: 18, label: 'Signatures & approval', health: 'grey', section: 'back' },
-  { id: 'revision', index: 19, label: 'Revision history', health: 'green', section: 'back' },
+  { id: 'evidence-matrix', index: 13, label: 'Evidence traceability', health: 'grey', section: 'back' },
+  { id: 'csr-mapping', index: 14, label: 'CSR compliance (BMW)', health: 'amber', section: 'back' },
+  { id: 'station-11', index: 15, label: 'Finding analysis', health: 'grey', section: 'back' },
+  { id: 'machine-park', index: 16, label: 'Machine park', health: 'amber', section: 'back' },
+  { id: 'station-12', index: 17, label: 'CAPA actions', health: 'grey', section: 'back' },
+  { id: 'station-13', index: 18, label: 'Delay & risk forecast', health: 'amber', section: 'back' },
+  { id: 'station-14', index: 19, label: 'Evidence vault', health: 'grey', section: 'back' },
+  { id: 'signatures', index: 20, label: 'Approval & sign-off', health: 'grey', section: 'back' },
 ];
 
 const scrollMap: Record<number, number> = {
   1: 1, 2: 1, 3: 2, 4: 2,
   5: 3, 6: 4, 7: 5, 8: 6, 9: 7, 10: 8, 11: 9,
-  12: 10, 13: 11, 14: 12, 15: 13, 16: 14, 17: 14, 18: 14,
+  12: 10, 13: 10, 14: 10, 15: 11, 16: 12, 17: 12, 18: 13, 19: 14, 20: 14,
 };
 
 interface ReportSidebarProps {
