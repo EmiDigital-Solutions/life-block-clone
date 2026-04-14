@@ -166,15 +166,28 @@ export default function SectionInspector({ activeStation, isOpen, onClose }: Sec
   const { stations, allNCRs } = useAuditReportContext();
   const [activeTab, setActiveTab] = useState<TabId>('atlas');
   const [brainTab, setBrainTab] = useState<'intelligence' | 'timeline'>('intelligence');
-  
-  const station = stations.find(s => s.index === activeStation);
+
+  const resolvedStationIndex = useMemo(() => {
+    const exactMatch = stations.some((s) => s.index === activeStation);
+    if (exactMatch) return activeStation;
+
+    const previousStation = [...stations]
+      .sort((a, b) => a.index - b.index)
+      .reverse()
+      .find((s) => s.index < activeStation);
+
+    return previousStation?.index ?? stations[0]?.index ?? activeStation;
+  }, [activeStation, stations]);
+
+  const station = stations.find((s) => s.index === resolvedStationIndex);
   if (!station) return null;
 
-  const stationNCRs = allNCRs.filter(n => n.stationIndex === activeStation);
+  const stationNCRs = allNCRs.filter((n) => n.stationIndex === resolvedStationIndex);
   const hl = healthLabel[station.health];
-  
-  // Map station index to intelligence key (stations 2-9 map to keys 1-7)
-  const intellKey = activeStation >= 2 ? activeStation - 1 : activeStation;
+
+  // Atlas Brain data is authored for process stations 3-9.
+  // Keep the inspector synced to the nearest valid process-station dataset.
+  const intellKey = resolvedStationIndex <= 3 ? 1 : resolvedStationIndex >= 9 ? 7 : resolvedStationIndex - 2;
   const intel = stationIntelligence[intellKey] || stationIntelligence[1];
   const equipment = stationEquipment[intellKey] || [];
 
