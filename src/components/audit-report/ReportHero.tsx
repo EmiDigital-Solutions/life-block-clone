@@ -57,75 +57,79 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
       : { grade: 'C', color: 'hsl(0, 48%, 46%)', bg: 'hsl(0, 48%, 46%, 0.12)' };
 
     return (
-      <section id="station-1" className="scroll-mt-20 pt-6 pb-2">
-        {/* ══════ FORMAL AUDIT REPORT COVER SHEET ══════ */}
-        <div className="border border-border rounded-lg overflow-hidden bg-card">
-          {/* Document title block */}
-          <div className="px-6 py-5 text-center border-b border-border bg-muted/40">
-            <div className="text-[9px] font-bold tracking-[0.2em] uppercase text-muted-foreground mb-1">Confidential — For Authorized Recipients Only</div>
-            <h1 className="text-[20px] font-bold tracking-[0.08em] uppercase text-foreground leading-tight">
+      <section id="station-1" className="scroll-mt-20 pt-6 pb-2 space-y-4">
+        {/* Cover sheet */}
+        <div className="bg-card rounded-lg border border-border/60 overflow-hidden">
+          {/* Title */}
+          <div className="px-6 py-6 text-center">
+            <div className="text-[11px] text-muted-foreground mb-1">Confidential</div>
+            <h1 className="text-[22px] font-semibold text-foreground leading-tight">
               Process Audit Report
             </h1>
-            <div className="text-[12px] font-medium text-muted-foreground mt-1">
-              per VDA 6.3:2023 / ISO 9001:2015 / IATF 16949:2016
+            <div className="text-[13px] text-muted-foreground mt-1">
+              VDA 6.3:2023 · ISO 9001:2015 · IATF 16949:2016
             </div>
           </div>
 
-          {/* Report identification table */}
-          <table className="w-full border-collapse text-left">
-            <tbody>
+          {/* Report identification — clean key-value grid */}
+          <div className="border-t border-border/40 px-6 py-4">
+            <div className="grid grid-cols-2 gap-x-8 gap-y-2">
               {[
-                ['Report No.', `PA-${date.replace(/-/g, '')}-001`, 'Revision', '1.0'],
-                ['Supplier', supplier, 'DUNS No.', '36-421-8847'],
-                ['Client / OEM', reportMeta.client, 'End Customer', 'BMW AG'],
-                ['Site Address', location, 'Production Area', '4,200 m²'],
-                ['Audit Date', new Date(date).toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' }), 'Audit Duration', '2.0 days'],
-                ['Audit Type', reportMeta.auditType, 'Previous Audit', reportMeta.previousAuditDate],
-                ['Lead Auditor', 'I. Petrović, IRCA #A21849', 'Co-Auditor', 'M. Kovačević (VDA 6.3)'],
-                ['Cert. Body', reportMeta.certBody, 'Cert. No.', reportMeta.certNumber],
-                ['PO Reference', po, 'Cert. Expiry', reportMeta.certExpiry],
-              ].map(([k1, v1, k2, v2], i) => (
-                <tr key={i} className="border-b border-border/40">
-                  <td className="px-4 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground w-[130px] bg-muted/30">{k1}</td>
-                  <td className="px-4 py-2 text-[12px] font-medium text-foreground">{v1}</td>
-                  <td className="px-4 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground w-[130px] border-l border-border/40 bg-muted/30">{k2}</td>
-                  <td className="px-4 py-2 text-[12px] font-medium text-foreground border-l border-border/40">{v2}</td>
-                </tr>
+                ['Report No.', `PA-${date.replace(/-/g, '')}-001`],
+                ['Revision', '1.0'],
+                ['Supplier', supplier],
+                ['DUNS No.', '36-421-8847'],
+                ['Client / OEM', reportMeta.client],
+                ['End Customer', 'BMW AG'],
+                ['Site Address', location],
+                ['Production Area', '4,200 m²'],
+                ['Audit Date', new Date(date).toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' })],
+                ['Audit Duration', '2.0 days'],
+                ['Lead Auditor', 'I. Petrović, IRCA #A21849'],
+                ['Co-Auditor', 'M. Kovačević (VDA 6.3)'],
+                ['PO Reference', po],
+                ['Cert. Expiry', reportMeta.certExpiry],
+              ].map(([k, v], i) => (
+                <div key={i} className="flex justify-between py-1 border-b border-border/20">
+                  <span className="text-[11px] text-muted-foreground">{k}</span>
+                  <span className="text-[12px] font-medium text-foreground">{v}</span>
+                </div>
               ))}
-            </tbody>
-          </table>
-
-          {/* ── AUDIT RESULT ── */}
-          <div className="border-t border-border">
-            <div className="px-4 py-2.5 bg-muted/40">
-              <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-muted-foreground">§10 — Audit Result</span>
             </div>
-            <div className="grid grid-cols-5 divide-x divide-border">
+          </div>
+        </div>
+
+        {/* Audit Result */}
+        <div className="bg-card rounded-lg border border-border/60 overflow-hidden">
+          <div className="px-5 py-3 border-b border-border/40">
+            <span className="text-[13px] font-semibold text-foreground">Audit Result</span>
+          </div>
+          <div className="grid grid-cols-5 divide-x divide-border/30">
               {/* VDA Score */}
               <div className="px-4 py-4 text-center">
-                <div className="text-[8px] font-bold uppercase tracking-wider text-muted-foreground mb-1">VDA 6.3 Score</div>
-                <div className="text-[28px] font-bold font-mono tabular-nums leading-none" style={{ color: overallCls.color }}>{Math.round(iatfWeightedScore)}%</div>
+                <div className="text-[10px] text-muted-foreground mb-1">VDA 6.3 Score</div>
+                <div className="text-[28px] font-semibold font-mono tabular-nums leading-none" style={{ color: overallCls.color }}>{Math.round(iatfWeightedScore)}%</div>
                 <div className="text-[11px] font-bold px-2 py-0.5 mt-1.5 inline-block" style={{ background: overallCls.bg, color: overallCls.color }}>
                   Grade {overallCls.grade}
                 </div>
               </div>
               {/* Verdict */}
               <div className="px-4 py-4 text-center">
-                <div className="text-[8px] font-bold uppercase tracking-wider text-muted-foreground mb-1">Verdict</div>
+                <div className="text-[10px] text-muted-foreground mb-1">Verdict</div>
                 <div className="text-[22px] font-bold leading-none" style={{ color: config.color }}>{verdictLabel}</div>
                 <div className="text-[10px] mt-1.5 text-muted-foreground">{verdict === 'conditional' ? 'With Conditions' : verdict === 'go' ? 'Without Conditions' : 'Rejected'}</div>
               </div>
               {/* Previous */}
               <div className="px-4 py-4 text-center">
-                <div className="text-[8px] font-bold uppercase tracking-wider text-muted-foreground mb-1">Previous Score</div>
-                <div className="text-[28px] font-bold font-mono tabular-nums leading-none text-foreground">{reportMeta.previousScore}%</div>
+                <div className="text-[10px] text-muted-foreground mb-1">Previous Score</div>
+                <div className="text-[28px] font-semibold font-mono tabular-nums leading-none text-foreground">{reportMeta.previousScore}%</div>
                 <div className="text-[10px] mt-1.5 font-mono" style={{ color: iatfWeightedScore < reportMeta.previousScore ? 'hsl(0,48%,46%)' : 'hsl(155,24%,45%)' }}>
                   {iatfWeightedScore >= reportMeta.previousScore ? '▲' : '▼'} {Math.abs(Math.round(iatfWeightedScore) - reportMeta.previousScore)}pts
                 </div>
               </div>
               {/* NCRs */}
               <div className="px-4 py-4 text-center">
-                <div className="text-[8px] font-bold uppercase tracking-wider text-muted-foreground mb-1">Non-Conformities</div>
+                <div className="text-[10px] text-muted-foreground mb-1">Non-Conformities</div>
                 <div className="flex items-center justify-center gap-3">
                   <div>
                     <div className="text-[22px] font-bold font-mono text-destructive leading-none">{majorNCRs}</div>
@@ -140,9 +144,9 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
               </div>
               {/* Cost */}
               <div className="px-4 py-4 text-center">
-                <div className="text-[8px] font-bold uppercase tracking-wider text-muted-foreground mb-1">Risk Exposure</div>
-                <div className="text-[22px] font-bold font-mono tabular-nums leading-none text-destructive">€{(reportMeta.totalCostExposure / 1000).toFixed(0)}K</div>
-                <div className="text-[10px] mt-1.5 text-muted-foreground">Mitigatable to €{(reportMeta.mitigatedCostExposure / 1000).toFixed(0)}K</div>
+                <div className="text-[10px] text-muted-foreground mb-1">Risk Exposure</div>
+                <div className="text-[22px] font-semibold font-mono tabular-nums leading-none text-destructive">€{(reportMeta.totalCostExposure / 1000).toFixed(0)}K</div>
+                <div className="text-[11px] mt-1.5 text-muted-foreground">Mitigatable to €{(reportMeta.mitigatedCostExposure / 1000).toFixed(0)}K</div>
               </div>
             </div>
           </div>
