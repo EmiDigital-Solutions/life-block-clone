@@ -58,8 +58,8 @@ export default function VoiceBriefing() {
       {/* Animated green pulse rings when speaking */}
       {speaking && (
         <>
-          <span className="absolute inset-0 rounded-full bg-[hsl(155,24%,55%)] opacity-40 animate-ping" />
-          <span className="absolute inset-[-3px] rounded-full border-2 border-[hsl(155,24%,55%)] opacity-30 animate-pulse" />
+          <span className="absolute inset-0 rounded-full bg-[hsl(155,24%,55%)]/30 animate-ping" />
+          <span className="absolute inset-[-3px] rounded-full border-2 border-[hsl(155,24%,55%)]/25 animate-pulse" />
         </>
       )}
 
