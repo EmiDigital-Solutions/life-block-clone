@@ -149,59 +149,46 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
                 <div className="text-[11px] mt-1.5 text-muted-foreground">Mitigatable to €{(reportMeta.mitigatedCostExposure / 1000).toFixed(0)}K</div>
               </div>
             </div>
-          </div>
+        </div>
 
-          {/* ── EXECUTIVE SUMMARY ── */}
-          <div className="border-t border-border">
-            <div className="px-4 py-2.5 bg-muted/40">
-              <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-muted-foreground">§1 — Executive Summary</span>
-            </div>
-            <div className="px-6 py-4 bg-card">
-              <table className="w-full border-collapse">
-                <tbody>
-                  <tr className="border-b border-border/40">
-                    <td className="py-2 pr-4 align-top w-[24px]"><div className="w-3 h-3 bg-destructive mt-0.5" /></td>
-                    <td className="py-2 pr-3 text-[10px] font-bold uppercase text-destructive w-[80px] align-top">Critical</td>
-                    <td className="py-2 text-[12px] leading-snug text-foreground">Bore ID Cpk 0.98 — below BMW minimum 1.33 (§8.5.1). CNC machines #2 & #4 calibration overdue. Process capability not demonstrated per IATF 16949 §9.1.1.1.</td>
-                  </tr>
-                  <tr className="border-b border-border/40">
-                    <td className="py-2 pr-4 align-top"><div className="w-3 h-3 bg-warning mt-0.5" /></td>
-                    <td className="py-2 pr-3 text-[10px] font-bold uppercase text-warning align-top">Warning</td>
-                    <td className="py-2 text-[12px] leading-snug text-foreground">DPPM 410 vs. target 50. Accelerating trend since Oct 2025. 6/42 supplier re-evaluations overdue (§8.4.1). CAPA closure rate 62.5% — below 90% threshold.</td>
-                  </tr>
-                  <tr className="border-b border-border/40">
-                    <td className="py-2 pr-4 align-top"><div className="w-3 h-3 bg-accent mt-0.5" /></td>
-                    <td className="py-2 pr-3 text-[10px] font-bold uppercase text-accent align-top">Strength</td>
-                    <td className="py-2 text-[12px] leading-snug text-foreground">Workforce competency above benchmark (P6 score 88%). CEO engagement confirmed (§5.1). Customer care score highest across all process elements.</td>
-                  </tr>
-                  <tr>
-                    <td className="py-2 pr-4 align-top"><div className="w-3 h-3 bg-primary mt-0.5" /></td>
-                    <td className="py-2 pr-3 text-[10px] font-bold uppercase text-primary align-top">Action Req.</td>
-                    <td className="py-2 text-[12px] leading-snug text-foreground">2 major NCRs require assigned owners + corrective action deadlines before PO release. Re-audit within 90 days per VDA 6.3 §10.3.</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+        {/* Executive Summary */}
+        <div className="bg-card rounded-lg border border-border/60 overflow-hidden">
+          <div className="px-5 py-3 border-b border-border/40">
+            <span className="text-[13px] font-semibold text-foreground">Executive Summary</span>
           </div>
-
-          {/* ── §9 — GAP ANALYSIS RADAR CHARTS ── */}
-          <div className="border-t border-border">
-            <ExecutiveRadarCharts depth="executive" />
+          <div className="px-5 py-4 space-y-3">
+            {[
+              { color: 'bg-destructive', label: 'Critical', text: 'Bore ID Cpk 0.98 — below BMW minimum 1.33 (§8.5.1). CNC machines #2 & #4 calibration overdue.' },
+              { color: 'bg-warning', label: 'Warning', text: 'DPPM 410 vs. target 50. Accelerating trend since Oct 2025. CAPA closure rate 62.5% — below 90% threshold.' },
+              { color: 'bg-accent', label: 'Strength', text: 'Workforce competency above benchmark (P6 score 88%). CEO engagement confirmed.' },
+              { color: 'bg-primary', label: 'Action', text: '2 major NCRs require assigned owners + deadlines before PO release. Re-audit within 90 days.' },
+            ].map((item, i) => (
+              <div key={i} className="flex items-start gap-3">
+                <div className={`w-2 h-2 rounded-full ${item.color} mt-1.5 shrink-0`} />
+                <div>
+                  <span className="text-[12px] font-semibold text-foreground">{item.label}</span>
+                  <p className="text-[12px] text-muted-foreground leading-relaxed mt-0.5">{item.text}</p>
+                </div>
+              </div>
+            ))}
           </div>
+        </div>
 
-          {/* Actions */}
-          <div className="flex items-center justify-between px-6 py-3 border-t border-border bg-card">
-            <div className="text-[9px] text-muted-foreground">
-              Document generated: {new Date().toLocaleDateString('de-DE')} · Distribution: Restricted
-            </div>
-            <div className="flex items-center gap-2">
-              <button onClick={onWalk} className="px-4 py-1.5 text-[10px] font-bold uppercase tracking-wider cursor-pointer bg-muted text-foreground hover:bg-muted/80">
-                Detailed Findings ↓
-              </button>
-              <button onClick={onDecide} className="px-4 py-1.5 text-[10px] font-bold text-white uppercase tracking-wider bg-primary hover:bg-primary/90 cursor-pointer">
-                Review & Sign Off →
-              </button>
-            </div>
+        {/* Gap Analysis Radar Charts */}
+        <ExecutiveRadarCharts depth="executive" />
+
+        {/* Actions */}
+        <div className="flex items-center justify-between py-3">
+          <div className="text-[11px] text-muted-foreground">
+            Generated: {new Date().toLocaleDateString('de-DE')} · Restricted
+          </div>
+          <div className="flex items-center gap-2">
+            <button onClick={onWalk} className="px-4 py-2 text-[11px] font-medium rounded-lg cursor-pointer border border-border text-foreground hover:bg-muted/50 transition-colors">
+              Detailed Findings
+            </button>
+            <button onClick={onDecide} className="px-4 py-2 text-[11px] font-medium text-white rounded-lg bg-primary hover:bg-primary/90 cursor-pointer transition-colors">
+              Review & Sign Off
+            </button>
           </div>
         </div>
       </section>
