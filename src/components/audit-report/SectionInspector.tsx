@@ -396,14 +396,14 @@ function AtlasTab({ intel, station, stationNCRs, brainTab, setBrainTab, predicti
       {brainTab === 'intelligence' ? (
         <>
           {/* Client Priority */}
-          <div className="px-4 py-3" style={{ borderBottom: '1px solid var(--ar-bd-hair)' }}>
+           <div className="px-4 py-3" style={{ borderBottom: '1px solid var(--ar-bd-hair)' }}>
             <div className="flex items-center gap-2 mb-2">
               <span className="text-[12px] font-semibold" style={{ color: 'var(--ar-tx-1)' }}>Client priority</span>
               <span className="text-[9px] font-bold px-2 py-0.5 rounded-full uppercase" style={{
                 fontFamily: "'Space Mono', monospace",
                 letterSpacing: '0.1em',
-                background: 'var(--ar-accent-bg)',
-                color: 'var(--ar-accent)',
+                background: intel.clientPriority.level === 'HIGH' ? 'var(--ar-fail-bg)' : intel.clientPriority.level === 'MEDIUM' ? 'var(--ar-warn-bg)' : 'var(--ar-pass-bg)',
+                color: intel.clientPriority.level === 'HIGH' ? 'var(--ar-fail)' : intel.clientPriority.level === 'MEDIUM' ? 'var(--ar-warn)' : 'var(--ar-pass)',
               }}>
                 {intel.clientPriority.level}
               </span>
