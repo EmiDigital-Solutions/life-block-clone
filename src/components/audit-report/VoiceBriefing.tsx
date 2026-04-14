@@ -1,12 +1,11 @@
 /**
- * Voice Briefing button
- * SpeechSynthesis to narrate the executive summary on demand
+ * Voice Briefing — AI-powered executive audio summary
+ * Narrates the audit verdict, key risks, and required actions
  */
 import { useState, useCallback } from "react";
-import { Volume2, VolumeX, Loader2 } from "lucide-react";
-const SW = 1.5;
+import { Volume2, Square, Sparkles } from "lucide-react";
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 
 export default function VoiceBriefing() {
   const { reportMeta, allNCRs, kpis, iatfWeightedScore, stations } = useAuditReportContext();
@@ -37,10 +36,9 @@ export default function VoiceBriefing() {
 
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'en-US';
-    // Try to pick a native English voice
     const voices = speechSynthesis.getVoices();
-    const enVoice = voices.find(v => v.lang === 'en-US' && v.name.includes('Google')) 
-      || voices.find(v => v.lang === 'en-US') 
+    const enVoice = voices.find(v => v.lang === 'en-US' && v.name.includes('Google'))
+      || voices.find(v => v.lang === 'en-US')
       || voices.find(v => v.lang.startsWith('en'));
     if (enVoice) utterance.voice = enVoice;
     utterance.rate = 0.92;
@@ -52,23 +50,27 @@ export default function VoiceBriefing() {
   }, [speaking, reportMeta, allNCRs, kpis, iatfWeightedScore, stations]);
 
   return (
-    <TooltipProvider delayDuration={200}>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <button
-            onClick={toggle}
-            className={`flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider transition-colors cursor-pointer rounded ${
-              speaking ? 'bg-primary text-white' : 'bg-muted text-muted-foreground hover:bg-muted/80'
-            }`}
-          >
-            {speaking ? <VolumeX className="w-3 h-3" /> : <Volume2 className="w-3 h-3" />}
-            {speaking ? 'Stop' : 'Brief'}
-          </button>
-        </TooltipTrigger>
-        <TooltipContent side="bottom" className="text-[12px]">
-          {speaking ? 'Stop voice briefing' : 'Atlas AI narrates the executive summary'}
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <button
+      onClick={toggle}
+      className={cn(
+        "flex items-center gap-2 px-4 py-2 rounded-lg text-[13px] font-semibold uppercase tracking-wider transition-all cursor-pointer border",
+        speaking
+          ? "bg-primary text-white border-primary shadow-md shadow-primary/20"
+          : "bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 hover:border-primary/30"
+      )}
+    >
+      {speaking ? (
+        <>
+          <Square className="w-3.5 h-3.5 fill-current" />
+          <span>Stop Briefing</span>
+        </>
+      ) : (
+        <>
+          <Sparkles className="w-3.5 h-3.5" />
+          <Volume2 className="w-3.5 h-3.5" />
+          <span>AI Voice Summary</span>
+        </>
+      )}
+    </button>
   );
 }
