@@ -173,11 +173,8 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
             {item.label}
           </span>
           {item.health && (
-            <div className="flex items-center gap-1 shrink-0">
-              {stationSparklines[item.index] && (
-                <SidebarSparkline data={stationSparklines[item.index]} />
-              )}
-              <div className={cn("w-2 h-2", healthDotColor[item.health])} />
+            <div className="shrink-0">
+              <div className={cn("w-[7px] h-[7px] rounded-sm", healthDotColor[item.health])} />
             </div>
           )}
         </button>
