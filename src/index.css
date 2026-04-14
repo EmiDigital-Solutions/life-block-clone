@@ -299,6 +299,69 @@ All colors MUST be HSL.
     animation: brushed-steel-diagonal 10s linear infinite;
   }
 
+  /* ── Insights Dark Theme (Executive View) ──────── */
+  .insights-dark {
+    --background: 210 20% 4%;          /* #0A0C0E */
+    --foreground: 0 0% 96%;            /* #F5F5F5 */
+    --card: 214 16% 11%;               /* #181B1F */
+    --card-foreground: 0 0% 96%;
+    --popover: 214 16% 11%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 173 52% 71%;            /* #8EDBD3 accent */
+    --primary-foreground: 210 20% 4%;
+    --secondary: 214 18% 8%;           /* #131619 bg-elev */
+    --secondary-foreground: 0 0% 96%;
+    --muted: 214 18% 8%;
+    --muted-foreground: 215 6% 45%;    /* #6B7078 tx-3 */
+    --accent: 173 52% 71%;             /* #8EDBD3 */
+    --accent-foreground: 210 20% 4%;
+    --success: 173 52% 71%;
+    --success-foreground: 210 20% 4%;
+    --warning: 33 70% 65%;             /* #E3B36B */
+    --warning-foreground: 210 20% 4%;
+    --destructive: 0 68% 64%;          /* #E87A7A */
+    --destructive-foreground: 0 0% 96%;
+    --border: 0 0% 100% / 0.06;
+    --input: 0 0% 100% / 0.11;
+    --ring: 173 52% 71%;
+    --surface-elevated: 214 18% 8%;    /* #131619 */
+    --surface-sunken: 210 20% 4%;
+    --glass-bg: 214 16% 11% / 0.7;
+    --glass-border: 0 0% 100% / 0.06;
+    --glass-shadow: 0 0% 0%;
+    --sidebar-bg: 210 20% 4%;
+    --sidebar-fg: 215 6% 45%;
+    --sidebar-muted: 0 0% 100% / 0.04;
+    --sidebar-accent: 173 52% 71%;
+    --sidebar-border: 0 0% 100% / 0.06;
+
+    /* Custom insights tokens */
+    --insights-bg-elev: 214 18% 8%;
+    --insights-bg-card: 214 16% 11%;
+    --insights-tx-2: 213 5% 68%;       /* #A8ADB3 */
+    --insights-tx-3: 215 6% 45%;       /* #6B7078 */
+    --insights-tx-4: 210 6% 26%;       /* #3E4348 */
+    --insights-accent-dim: 173 30% 50%; /* #5BA8A1 */
+    --insights-accent-glow: 173 52% 71% / 0.22;
+
+    background: hsl(210, 20%, 4%);
+    background-image:
+      radial-gradient(ellipse 1200px 700px at 82% -8%, hsl(173 52% 71% / 0.09), transparent 60%),
+      radial-gradient(ellipse 900px 500px at 8% 40%, hsl(173 30% 50% / 0.05), transparent 60%),
+      radial-gradient(ellipse 800px 400px at 92% 88%, hsl(173 52% 71% / 0.04), transparent 60%);
+    color: hsl(0, 0%, 96%);
+  }
+
+  .insights-dark .audit-glass-card {
+    background: hsl(var(--insights-bg-card) / 0.7);
+    border-color: hsl(0 0% 100% / 0.06);
+  }
+
+  .insights-dark .audit-surface {
+    background: hsl(var(--insights-bg-elev));
+    border-color: hsl(0 0% 100% / 0.06);
+  }
+
   /* ── Audit Report Glass & Depth System ──────────── */
   .audit-glass-card {
     background: hsl(var(--glass-bg));
