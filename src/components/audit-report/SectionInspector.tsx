@@ -385,31 +385,29 @@ function AtlasTab({ intel, station, stationNCRs, brainTab, setBrainTab, predicti
       {brainTab === 'intelligence' ? (
         <>
           {/* Client Priority */}
-          <div className="px-4 py-3" style={{ borderBottom: '1px solid hsl(0,0%,92%)' }}>
+          <div className="px-4 py-3" style={{ borderBottom: '1px solid var(--ar-bd-hair)' }}>
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-[14px] font-semibold text-foreground">Client Priority</span>
-              <span className={cn(
-                "text-[10px] font-bold px-2 py-0.5 rounded-full uppercase",
-                intel.clientPriority.level === 'HIGH' ? 'bg-destructive/10 text-destructive' :
-                intel.clientPriority.level === 'MEDIUM' ? 'bg-warning/10 text-warning' :
-                'bg-accent/10 text-accent'
-              )}>
+              <span className="text-[12px] font-semibold" style={{ color: 'var(--ar-tx-1)' }}>Client priority</span>
+              <span className="text-[9px] font-bold px-2 py-0.5 rounded-full uppercase" style={{
+                fontFamily: "'Space Mono', monospace",
+                letterSpacing: '0.1em',
+                background: 'var(--ar-accent-bg)',
+                color: 'var(--ar-accent)',
+              }}>
                 {intel.clientPriority.level}
               </span>
             </div>
-            <p className="text-[13px] leading-relaxed text-muted-foreground">
+            <p className="text-[12px] leading-relaxed" style={{ color: 'var(--ar-tx-2)', lineHeight: '1.6' }}>
               {intel.clientPriority.reason}
             </p>
           </div>
 
           {/* Standard Requirement */}
-          <div className="px-4 py-3" style={{ borderBottom: '1px solid hsl(0,0%,92%)' }}>
-            <span className="text-[12px] font-bold tracking-[0.1em] uppercase text-muted-foreground mb-2 block">Standard Requirement</span>
-            <div className="bg-muted/50 rounded-lg px-3 py-2.5 border-l-2 border-primary/30">
-              <p className="text-[12px] leading-relaxed text-foreground/80 italic">
-                {intel.standardRequirement}
-              </p>
-            </div>
+          <div className="px-4 py-3" style={{ borderBottom: '1px solid var(--ar-bd-hair)' }}>
+            <span className="ar-mono-label block mb-2">Standard requirement</span>
+            <blockquote className="ar-blockquote">
+              {intel.standardRequirement}
+            </blockquote>
           </div>
 
           {/* Atlas Predictions */}
