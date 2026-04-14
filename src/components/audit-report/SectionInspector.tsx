@@ -238,7 +238,7 @@ export default function SectionInspector({ activeStation, isOpen, onClose }: Sec
           <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: 'var(--ar-accent)' }} />
           <span className="text-[13px] font-semibold" style={{ color: 'var(--ar-tx-1)' }}>Atlas · inspector</span>
         </div>
-        <button onClick={onClose} className="p-1.5 rounded-lg hover:bg-muted transition-colors cursor-pointer" style={{ color: 'var(--ar-tx-3)' }}>
+        <button onClick={onClose} className="p-1.5 rounded-lg transition-colors cursor-pointer" style={{ color: 'var(--ar-tx-3)' }}>
           <X className="w-4 h-4" />
         </button>
       </div>
