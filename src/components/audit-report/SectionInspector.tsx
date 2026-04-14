@@ -338,7 +338,7 @@ function AtlasTab({ intel, station, stationNCRs, brainTab, setBrainTab, predicti
       {/* Atlas Brain header */}
       <div className="px-4 pt-4 pb-2">
         <div className="flex items-center gap-2 mb-2">
-          <span className="text-[13px] font-semibold tracking-wide text-muted-foreground">ATLAS BRAIN</span>
+          <span className="ar-mono-label">Atlas brain</span>
           <button
             onClick={toggleVoice}
             title={speaking ? "Stop listening" : "Listen to station briefing"}
