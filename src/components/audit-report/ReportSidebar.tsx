@@ -217,9 +217,10 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
       className={cn("ar-sidebar flex flex-col overflow-y-auto", className)}
     >
 
-      <SectionGroup label="Front matter">
+      <div className="mb-1">
+        <div className="pt-5 pb-2" />
         {frontItems.map(renderItem)}
-      </SectionGroup>
+      </div>
 
       <SectionGroup label="Process audit findings">
         {findingsItems.map(renderItem)}
