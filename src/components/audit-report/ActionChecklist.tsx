@@ -3,7 +3,7 @@
  * Extracts ALL required actions from NCRs/findings into interactive checklist
  */
 import { useState, useMemo } from "react";
-import { X, CheckSquare, Square, AlertTriangle, Clock, User, ChevronDown, ChevronUp, Sparkles, ListChecks } from "lucide-react";
+import { X, CheckSquare, Square, Clock, User, ChevronDown, ChevronUp, ClipboardList } from "lucide-react";
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 
 interface ActionChecklistProps {
@@ -89,7 +89,7 @@ export default function ActionChecklist({ open, onClose }: ActionChecklistProps)
         <div className="flex items-center justify-between px-10 py-6 border-b border-border shrink-0">
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-              <ListChecks className="w-5 h-5 text-primary" />
+              <ClipboardList className="w-5 h-5 text-primary" strokeWidth={1.75} />
             </div>
             <div>
               <h2 className="text-[22px] font-bold text-foreground tracking-tight">AI Action Checklist</h2>

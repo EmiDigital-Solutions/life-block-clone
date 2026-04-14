@@ -3,7 +3,7 @@
  * Click any NCR → see FMEA chain → control plan gap → root cause prediction
  */
 import { useState, useCallback } from "react";
-import { X, Sparkles, Loader2, ArrowRight, AlertTriangle, Target, Cog, FileCheck } from "lucide-react";
+import { X, Sparkles, Loader2, ArrowRight, CircleAlert, Crosshair, Settings, FileCheck } from "lucide-react";
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import type { NCR } from "@/data/auditReportData";
 import ReactMarkdown from "react-markdown";
@@ -159,7 +159,7 @@ Be specific and technical. Max 400 words. Every line MUST be a bullet or table r
         <div className="flex items-center justify-between px-10 py-6 border-b border-border shrink-0">
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-              <Target className="w-5 h-5 text-primary" />
+              <Crosshair className="w-5 h-5 text-primary" strokeWidth={1.75} />
             </div>
             <div>
               <h2 className="text-[22px] font-bold text-foreground tracking-tight">PFMEA Drill-down</h2>
@@ -186,10 +186,10 @@ Be specific and technical. Max 400 words. Every line MUST be a bullet or table r
           {/* FMEA Chain visualization */}
           <div className="flex items-center gap-2 flex-wrap">
             {[
-              { icon: AlertTriangle, label: 'Finding', color: 'text-destructive', bg: 'bg-destructive/5 border-destructive/20' },
-              { icon: Cog, label: 'Root Cause', color: 'text-warning', bg: 'bg-warning/5 border-warning/20' },
+              { icon: CircleAlert, label: 'Finding', color: 'text-destructive', bg: 'bg-destructive/5 border-destructive/20' },
+              { icon: Settings, label: 'Root Cause', color: 'text-warning', bg: 'bg-warning/5 border-warning/20' },
               { icon: FileCheck, label: 'Control Gap', color: 'text-primary', bg: 'bg-primary/5 border-primary/20' },
-              { icon: Target, label: 'CAPA', color: 'text-accent', bg: 'bg-accent/5 border-accent/20' },
+              { icon: Crosshair, label: 'CAPA', color: 'text-accent', bg: 'bg-accent/5 border-accent/20' },
             ].map((step, i) => (
               <div key={i} className="flex items-center gap-2">
                 {i > 0 && <ArrowRight className="w-4 h-4 text-muted-foreground/40" />}

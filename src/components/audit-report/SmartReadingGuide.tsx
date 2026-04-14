@@ -3,7 +3,7 @@
  * Role-based section recommendations with reading time estimates
  */
 import { useState } from "react";
-import { X, BookOpen, Sparkles, Clock, ChevronRight, User, Wrench, Briefcase } from "lucide-react";
+import { X, BookOpenCheck, Sparkles, Clock, ChevronRight, User, Wrench, Briefcase } from "lucide-react";
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 
 interface SmartReadingGuideProps {
@@ -83,7 +83,7 @@ export default function SmartReadingGuide({ open, onClose, onScrollToId }: Smart
         <div className="flex items-center justify-between px-10 py-6 border-b border-border shrink-0">
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-              <BookOpen className="w-5 h-5 text-primary" />
+              <BookOpenCheck className="w-5 h-5 text-primary" strokeWidth={1.75} />
             </div>
             <div>
               <h2 className="text-[22px] font-bold text-foreground tracking-tight">Smart Reading Guide</h2>

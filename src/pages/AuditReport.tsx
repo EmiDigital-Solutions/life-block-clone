@@ -24,7 +24,7 @@ import AnomalyCallouts from "@/components/audit-report/AnomalyCallouts";
 import CostWaterfallChart from "@/components/audit-report/CostWaterfallChart";
 import CAPAGantt from "@/components/audit-report/CAPAGantt";
 import StationHeatmap from "@/components/audit-report/StationHeatmap";
-import { Menu, X, Sparkles, AlertTriangle, Clock, Search, FileText, Download, BarChart3, ListChecks, BookOpen, Volume2, TrendingUp, Zap, ChevronRight } from "lucide-react";
+import { Menu, X, AlertTriangle, Clock, FileDown, LayoutDashboard, ClipboardList, FileBarChart, BookOpenCheck, TrendingUp, ChevronRight } from "lucide-react";
 import VDA63ScoringTable from "@/components/audit-report/VDA63ScoringTable";
 import DocumentControlHeader from "@/components/audit-report/DocumentControlHeader";
 import NormativeReferences from "@/components/audit-report/NormativeReferences";
@@ -312,12 +312,12 @@ function AuditReportInner() {
               {/* Tool buttons — clean icon + label */}
               <div className="hidden md:flex items-center gap-1">
                 {[
-                  { icon: Zap, label: 'Decision', action: () => setDashboardOpen(true), highlight: true },
-                  { icon: FileText, label: 'Brief', action: () => setBriefOpen(true) },
-                  { icon: ListChecks, label: 'Actions', action: () => setChecklistOpen(true) },
+                  { icon: LayoutDashboard, label: 'Decision', action: () => setDashboardOpen(true), highlight: true },
+                  { icon: FileBarChart, label: 'Brief', action: () => setBriefOpen(true) },
+                  { icon: ClipboardList, label: 'Actions', action: () => setChecklistOpen(true) },
                   { icon: TrendingUp, label: 'Trend', action: () => setTrendOpen(true) },
-                  { icon: BookOpen, label: 'Guide', action: () => setGuideOpen(true) },
-                  { icon: Download, label: 'Export', action: () => {} },
+                  { icon: BookOpenCheck, label: 'Guide', action: () => setGuideOpen(true) },
+                  { icon: FileDown, label: 'Export', action: () => {} },
                 ].map(({ icon: Icon, label, action, highlight }) => (
                   <button
                     key={label}
@@ -329,7 +329,7 @@ function AuditReportInner() {
                         : "text-muted-foreground hover:bg-muted hover:text-foreground"
                     )}
                   >
-                    <Icon className="w-3.5 h-3.5" />
+                    <Icon className="w-4 h-4" strokeWidth={1.75} />
                     {label}
                   </button>
                 ))}

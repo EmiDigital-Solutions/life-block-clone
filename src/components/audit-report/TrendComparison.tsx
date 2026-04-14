@@ -3,7 +3,7 @@
  * Side-by-side current vs previous audit with AI narrative
  */
 import { useState, useCallback } from "react";
-import { X, TrendingUp, TrendingDown, Sparkles, Loader2, ArrowRight, BarChart3, AlertTriangle, CheckCircle2, Target } from "lucide-react";
+import { X, TrendingUp, TrendingDown, Sparkles, Loader2, ArrowRight, BarChart3, AlertCircle, CheckCircle2, Crosshair } from "lucide-react";
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
@@ -37,8 +37,8 @@ export default function TrendComparison({ open, onClose }: TrendComparisonProps)
 
   const metrics = [
     { label: 'VDA Score', prev: `${previousAudit.vdaScore}%`, curr: `${currentScore}%`, delta: scoreDelta, unit: '%', better: scoreDelta > 0, icon: BarChart3 },
-    { label: 'Total NCRs', prev: String(previousAudit.totalNCRs), curr: String(allNCRs.length), delta: ncrDelta, unit: '', better: ncrDelta < 0, icon: AlertTriangle },
-    { label: 'Major NCRs', prev: String(previousAudit.majorNCRs), curr: String(majorCount), delta: majorDelta, unit: '', better: majorDelta < 0, icon: Target },
+    { label: 'Total NCRs', prev: String(previousAudit.totalNCRs), curr: String(allNCRs.length), delta: ncrDelta, unit: '', better: ncrDelta < 0, icon: AlertCircle },
+    { label: 'Major NCRs', prev: String(previousAudit.majorNCRs), curr: String(majorCount), delta: majorDelta, unit: '', better: majorDelta < 0, icon: Crosshair },
     { label: 'Verdict', prev: 'Conditional', curr: reportMeta.verdictLabel, delta: 0, unit: '', better: reportMeta.verdict === 'go', icon: CheckCircle2 },
   ];
 
@@ -133,7 +133,7 @@ Max 250 words. Every line MUST start with "- **". No exceptions.`;
         <div className="flex items-center justify-between px-10 py-6 border-b border-border shrink-0">
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-              <TrendingUp className="w-5 h-5 text-primary" />
+              <TrendingUp className="w-5 h-5 text-primary" strokeWidth={1.75} />
             </div>
             <div>
               <h2 className="text-[22px] font-bold text-foreground tracking-tight">Trend Comparison</h2>
