@@ -74,7 +74,6 @@ export default function AtlasIntelligence() {
     setSpeaking(true);
     speechSynthesis.speak(utterance);
   }, [speaking, costImpactData, crossCorrelations, scenarioOutcomes, iatfWeightedScore, supplierRiskSignals]);
-  const [activeTab, setActiveTab] = useState<'cost' | 'quality' | 'innovation' | 'correlations' | 'scenarios'>('cost');
 
   const totalExposure = costImpactData.reduce((s, c) => s + c.currentExposure, 0);
   const totalMitigated = costImpactData.reduce((s, c) => s + c.mitigatedCost, 0);
