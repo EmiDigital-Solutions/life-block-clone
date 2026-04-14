@@ -10,6 +10,7 @@ import {
   Sparkles, Brain, TrendingDown, TrendingUp, Minus,
   Eye, ChevronDown, ChevronRight,
   DollarSign, Shield, Lightbulb, Link2, Target,
+  Volume2, VolumeX,
 } from "lucide-react";
 
 const trendIcon = { improving: TrendingUp, declining: TrendingDown, stable: Minus };
