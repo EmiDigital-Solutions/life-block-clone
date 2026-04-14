@@ -365,18 +365,19 @@ function AuditReportInner() {
                 />
 
                 {depth === 'executive' ? (
-                  <div className="space-y-16 md:space-y-20">
+                  <div className="space-y-20 md:space-y-24">
                     {/* §0 Document Control */}
-                    <section className="space-y-8">
+                    <section className="space-y-10">
                       <DocumentControlHeader />
                       <NormativeReferences />
                     </section>
 
                     {/* §1 Audit Scope */}
                     <section>
-                      <div className="mb-6 pb-3 border-b-2 border-foreground/10">
-                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§1</span>
-                        <h2 className="text-[22px] font-semibold text-foreground mt-1">Audit Scope & VDA Scoring</h2>
+                      <div className="mb-8 pb-4 border-b border-border">
+                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§1</span>
+                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">Audit Scope & VDA Scoring</h2>
+                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Assessment framework, process element definitions, and weighted scoring methodology</p>
                       </div>
                       <div className="space-y-10">
                         <AuditScopeSection depth={depth} />
@@ -386,33 +387,35 @@ function AuditReportInner() {
 
                     {/* §2 Key Performance Indicators */}
                     <section>
-                      <div className="mb-6 pb-3 border-b-2 border-foreground/10">
-                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§2</span>
-                        <h2 className="text-[22px] font-semibold text-foreground mt-1">Key Performance Indicators</h2>
+                      <div className="mb-8 pb-4 border-b border-border">
+                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§2</span>
+                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">Key Performance Indicators</h2>
+                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Quantitative metrics derived from station audits and NCR analysis</p>
                       </div>
                       <KPIBand kpis={kpis} depth={depth} />
-                      <div className="mt-8">
+                      <div className="mt-10">
                         <AnomalyCallouts depth={depth} />
                       </div>
                     </section>
 
                     {/* §3 CSR Compliance */}
                     <section>
-                      <div className="mb-6 pb-3 border-b-2 border-foreground/10">
-                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§3</span>
-                        <h2 className="text-[22px] font-semibold text-foreground mt-1">CSR Compliance Mapping</h2>
+                      <div className="mb-8 pb-4 border-b border-border">
+                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§3</span>
+                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">CSR Compliance Mapping</h2>
+                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Customer-specific requirements traceability and conformance status</p>
                       </div>
                       <CSRComplianceMapping depth="executive" />
                     </section>
 
                     {/* §4 Process Audit Findings */}
                     <section>
-                      <div className="mb-8 pb-3 border-b-2 border-foreground/10">
-                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§4 – §11</span>
-                        <h2 className="text-[22px] font-semibold text-foreground mt-1">Process Audit Findings</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1">{displayStations.length} stations audited per VDA 6.3</p>
+                      <div className="mb-10 pb-4 border-b border-border">
+                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§4 – §11</span>
+                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">Process Audit Findings</h2>
+                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">{displayStations.length} stations audited per VDA 6.3 process element structure</p>
                       </div>
-                      <div className="space-y-12">
+                      <div className="space-y-14">
                         {displayStations.map((station) => (
                           <StationCard key={station.index} station={station} depth={depth} totalStations={14} />
                         ))}
@@ -421,29 +424,32 @@ function AuditReportInner() {
 
                     {/* §12 NCR Register */}
                     <section id="station-10">
-                      <div className="mb-6 pb-3 border-b-2 border-foreground/10">
-                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§12</span>
-                        <h2 className="text-[22px] font-semibold text-foreground mt-1">Non-Conformance Register</h2>
+                      <div className="mb-8 pb-4 border-b border-border">
+                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§12</span>
+                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">Non-Conformance Register</h2>
+                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Complete NCR listing with severity, ownership, and resolution status</p>
                       </div>
                       <NCRRegister ncrs={allNCRs} depth={depth} />
                     </section>
 
                     {/* §13 Evidence Traceability */}
                     <section id="evidence-matrix">
-                      <div className="mb-6 pb-3 border-b-2 border-foreground/10">
-                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§13</span>
-                        <h2 className="text-[22px] font-semibold text-foreground mt-1">Evidence Traceability</h2>
+                      <div className="mb-8 pb-4 border-b border-border">
+                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§13</span>
+                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">Evidence Traceability</h2>
+                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Audit trail linking findings to photographic, documentary, and measurement evidence</p>
                       </div>
                       <EvidenceTraceabilityMatrix depth="executive" />
                     </section>
 
                     {/* §14 Analytics & Appendices */}
                     <section id="station-11">
-                      <div className="mb-6 pb-3 border-b-2 border-foreground/10">
-                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§14</span>
-                        <h2 className="text-[22px] font-semibold text-foreground mt-1">Analytics & Cost Analysis</h2>
+                      <div className="mb-8 pb-4 border-b border-border">
+                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§14</span>
+                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">Analytics & Cost Analysis</h2>
+                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Resolution pipeline, cost waterfall, and operational efficiency metrics</p>
                       </div>
-                      <div className="space-y-12">
+                      <div className="space-y-14">
                         <FindingSankeyDiagram depth="executive" />
                         <CostWaterfallChart depth="executive" />
                         <OEEGaugeCluster depth="executive" />
@@ -452,27 +458,30 @@ function AuditReportInner() {
 
                     {/* §15 CAPA Timeline */}
                     <section id="station-12">
-                      <div className="mb-6 pb-3 border-b-2 border-foreground/10">
-                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§15</span>
-                        <h2 className="text-[22px] font-semibold text-foreground mt-1">CAPA Action Plan</h2>
+                      <div className="mb-8 pb-4 border-b border-border">
+                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§15</span>
+                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">CAPA Action Plan</h2>
+                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Corrective and preventive action timeline with ownership tracking</p>
                       </div>
                       <CAPAGantt />
                     </section>
 
                     {/* §16 Delay Forecast */}
                     <section id="station-13">
-                      <div className="mb-6 pb-3 border-b-2 border-foreground/10">
-                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§16</span>
-                        <h2 className="text-[22px] font-semibold text-foreground mt-1">Delay & Risk Forecast</h2>
+                      <div className="mb-8 pb-4 border-b border-border">
+                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§16</span>
+                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">Delay & Risk Forecast</h2>
+                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Predictive analysis of delivery timeline risks and mitigation scenarios</p>
                       </div>
                       <DelayForecast />
                     </section>
 
                     {/* §17 Approval & Sign-Off */}
                     <section id="signatures" className="pb-24">
-                      <div className="mb-6 pb-3 border-b-2 border-foreground/10">
-                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§17</span>
-                        <h2 className="text-[22px] font-semibold text-foreground mt-1">Approval & Digital Sign-Off</h2>
+                      <div className="mb-8 pb-4 border-b border-border">
+                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§17</span>
+                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">Approval & Digital Sign-Off</h2>
+                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Multi-party approval workflow with digital signature verification</p>
                       </div>
                       <DigitalSignatureBlock />
                     </section>
