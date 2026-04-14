@@ -233,7 +233,7 @@ CRITICAL: Do NOT use any emoji, icons, or special characters in headings or text
                 [&_strong]:text-foreground [&_strong]:font-semibold
                 [&_p]:text-[14px] [&_p]:leading-[1.8] [&_p]:mb-3
               ">
-                <ReactMarkdown>{narrative}</ReactMarkdown>
+                <ReactMarkdown>{stripEmoji(narrative)}</ReactMarkdown>
                 {loading && <span className="inline-block w-2 h-5 bg-primary animate-pulse ml-0.5" />}
               </div>
             )}

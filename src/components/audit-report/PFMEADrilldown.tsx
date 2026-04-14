@@ -236,7 +236,7 @@ CRITICAL: Do NOT use any emoji, icons, or special characters in headings or text
 
           {analysis && (
             <div className={proseClasses}>
-              <ReactMarkdown>{analysis}</ReactMarkdown>
+              <ReactMarkdown>{stripEmoji(analysis)}</ReactMarkdown>
               {loading && <span className="inline-block w-2 h-5 bg-primary animate-pulse ml-0.5" />}
             </div>
           )}
