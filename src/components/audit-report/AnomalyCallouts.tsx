@@ -21,9 +21,9 @@ export default function AnomalyCallouts({ depth = 'standard' }: { depth?: import
   if (depth === 'executive') {
     return (
       <section className="py-2">
-        <div className="border border-border">
-          <div className="px-4 py-2" style={{ background: 'hsl(220,20%,14%)' }}>
-            <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/80">AI Anomaly Detection — {topAnomalies.length} patterns</span>
+        <div className="border border-border rounded-lg overflow-hidden">
+          <div className="px-4 py-2.5 bg-muted/40 border-b border-border">
+            <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-muted-foreground">AI Anomaly Detection — {topAnomalies.length} patterns</span>
           </div>
           <div className="bg-card divide-y divide-border/50">
             {topAnomalies.map(a => (

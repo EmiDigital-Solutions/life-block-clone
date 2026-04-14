@@ -177,29 +177,29 @@ export default function StationCard({ station, depth, totalStations }: StationCa
 
     return (
       <section id={`station-${station.index}`} className="scroll-mt-20">
-        {/* Dark section header — formal VDA element header */}
-        <div className="flex items-stretch" style={{ background: 'hsl(220,20%,14%)' }}>
+        {/* Light section header */}
+        <div className="flex items-stretch bg-muted/40 border border-border rounded-t-lg">
           <div className="flex items-center gap-3 px-4 py-2.5 flex-1 min-w-0">
-            <span className="text-[10px] font-mono font-bold tabular-nums text-white/50">
+            <span className="text-[10px] font-mono font-bold tabular-nums text-muted-foreground">
               §{station.index}
             </span>
-            <div className="w-2.5 h-2.5" style={{ background: hc.color }} />
-            <span className="text-[12px] font-bold tracking-wide text-white uppercase">{station.name}</span>
+            <div className="w-2.5 h-2.5 rounded-full" style={{ background: hc.color }} />
+            <span className="text-[12px] font-bold tracking-wide text-foreground uppercase">{station.name}</span>
           </div>
           <div className="flex items-center gap-4 px-4 shrink-0">
             {elementPct !== null && (
               <div className="flex items-center gap-2">
-                <span className="text-[9px] font-bold uppercase text-white/40">Element Score</span>
+                <span className="text-[9px] font-bold uppercase text-muted-foreground">Element Score</span>
                 <span className="text-[14px] font-bold font-mono" style={{ color: elementColor }}>{elementPct}%</span>
               </div>
             )}
-            <span className="text-[10px] px-2 py-0.5 font-bold uppercase tracking-wider" style={{ background: `${hc.color}30`, color: hc.color }}>
+            <span className="text-[10px] px-2 py-0.5 font-bold uppercase tracking-wider rounded" style={{ background: `${hc.color}15`, color: hc.color }}>
               {station.health === 'green' ? 'CONFORM' : station.health === 'amber' ? 'DEVIATION' : station.health === 'red' ? 'NON-CONFORM' : 'N/A'}
             </span>
           </div>
         </div>
 
-        <div className="border-x border-b border-border bg-card">
+        <div className="border-x border-b border-border rounded-b-lg bg-card">
           {/* Observation */}
           <div className="px-4 py-3 border-b border-border/50">
             <div className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground mb-1">Auditor Observation</div>
@@ -209,12 +209,12 @@ export default function StationCard({ station, depth, totalStations }: StationCa
           {/* Audit question scoring table — VDA 6.3 format */}
           {hasQuestions && (
             <div>
-              <div className="px-4 py-1.5" style={{ background: 'hsl(220,14%,92%)' }}>
+              <div className="px-4 py-1.5 bg-muted/30">
                 <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">Audit Questions — Scoring per VDA 6.3 (0/4/6/8/10)</span>
               </div>
               <table className="w-full border-collapse text-left">
                 <thead>
-                  <tr style={{ background: 'hsl(220,14%,96%)' }}>
+                   <tr className="bg-muted/20">
                     <th className="px-3 py-1.5 text-[8px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border w-[50px]">Ref.</th>
                     <th className="px-3 py-1.5 text-[8px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l">Clause</th>
                     <th className="px-3 py-1.5 text-[8px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l">Question</th>
@@ -241,7 +241,7 @@ export default function StationCard({ station, depth, totalStations }: StationCa
                   })}
                 </tbody>
                 <tfoot>
-                  <tr style={{ background: 'hsl(220,14%,92%)' }}>
+                  <tr className="bg-muted/30">
                     <td colSpan={3} className="px-3 py-1.5 text-[10px] font-bold uppercase text-foreground border-t border-border">
                       Element Result
                     </td>
@@ -260,12 +260,12 @@ export default function StationCard({ station, depth, totalStations }: StationCa
           {/* Findings as formal table */}
           {station.findings.length > 0 && (
             <div className="border-t border-border/50">
-              <div className="px-4 py-1.5" style={{ background: 'hsl(220,14%,92%)' }}>
+              <div className="px-4 py-1.5 bg-muted/30">
                 <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">Findings</span>
               </div>
               <table className="w-full border-collapse text-left">
                 <thead>
-                  <tr style={{ background: 'hsl(220,14%,96%)' }}>
+                  <tr className="bg-muted/20">
                     <th className="px-3 py-1 text-[8px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border w-[80px]">Type</th>
                     <th className="px-3 py-1 text-[8px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l">Finding</th>
                     <th className="px-3 py-1 text-[8px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l w-[70px]">Clause</th>

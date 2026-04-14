@@ -29,9 +29,9 @@ function MiniSparkline({ data, color }: { data: number[]; color: string }) {
 export default function KPIBand({ kpis, depth = 'standard' }: KPIBandProps) {
   if (depth === 'executive') {
     return (
-      <div className="border border-border bg-card">
-        <div className="px-4 py-2 flex items-center" style={{ background: 'hsl(220,20%,14%)' }}>
-          <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/80">Key Performance Indicators</span>
+      <div className="border border-border rounded-lg overflow-hidden bg-card">
+        <div className="px-4 py-2.5 flex items-center bg-muted/40 border-b border-border">
+          <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Key Performance Indicators</span>
         </div>
         <div className="grid grid-cols-4 divide-x divide-border">
           {kpis.map((kpi, i) => {

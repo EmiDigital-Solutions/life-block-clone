@@ -103,9 +103,9 @@ export default function ExecutiveRadarCharts({ depth = 'standard' }: { depth?: i
 
     return (
       <section className="py-4 space-y-4">
-        <div className="border border-border">
-          <div className="px-4 py-2" style={{ background: 'hsl(220,20%,14%)' }}>
-            <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/80">Gap Analysis — {criticalCount} Critical Gaps</span>
+        <div className="border border-border rounded-lg overflow-hidden">
+          <div className="px-4 py-2.5 bg-muted/40 border-b border-border">
+            <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Gap Analysis — {criticalCount} Critical Gaps</span>
           </div>
 
           <div className="grid grid-cols-2 divide-x divide-border">

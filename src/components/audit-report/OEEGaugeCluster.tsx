@@ -37,10 +37,10 @@ export default function OEEGaugeCluster({ depth = 'standard' }: { depth?: import
 
   if (depth === 'executive') {
     return (
-      <div className="border border-border">
-        <div className="px-4 py-2 flex items-center justify-between" style={{ background: 'hsl(220,20%,14%)' }}>
-          <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/80">OEE Fleet Performance</span>
-          <span className="text-[10px] font-mono text-white/60">BMW Threshold: {BMW_THRESHOLD}%</span>
+      <div className="border border-border rounded-lg overflow-hidden">
+        <div className="px-4 py-2.5 flex items-center justify-between bg-muted/40 border-b border-border">
+          <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-muted-foreground">OEE Fleet Performance</span>
+          <span className="text-[10px] font-mono text-muted-foreground">BMW Threshold: {BMW_THRESHOLD}%</span>
         </div>
         <div className="bg-card">
           <div className="grid grid-cols-5 divide-x divide-border">

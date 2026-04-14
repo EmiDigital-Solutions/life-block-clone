@@ -7,10 +7,10 @@ export default function AuditScopeSection({ depth = 'standard' }: { depth?: impo
   if (depth === 'executive') {
     return (
       <section id="station-2" className="scroll-mt-20 mt-4">
-        <div className="border border-border">
+        <div className="border border-border rounded-lg overflow-hidden">
           {/* Section header */}
-          <div className="px-4 py-2" style={{ background: 'hsl(220,20%,14%)' }}>
-            <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/80">§2 — Audit Scope & Boundaries</span>
+          <div className="px-4 py-2.5 bg-muted/40 border-b border-border">
+            <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-muted-foreground">§2 — Audit Scope & Boundaries</span>
           </div>
 
           {/* Scope metadata table */}
@@ -23,12 +23,12 @@ export default function AuditScopeSection({ depth = 'standard' }: { depth?: impo
                 ['Sampling', auditScope.samplingBasis],
               ].map(([label, value], i) => (
                 <tr key={i} className="border-b border-border/60">
-                  <td className="px-4 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground w-[130px] align-top" style={{ background: 'hsl(220,14%,94%)' }}>{label}</td>
+                  <td className="px-4 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground w-[130px] align-top bg-muted/30">{label}</td>
                   <td className="px-4 py-2 text-[11px] text-foreground leading-snug">{value}</td>
                 </tr>
               ))}
               <tr className="border-b border-border/60">
-                <td className="px-4 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground align-top" style={{ background: 'hsl(220,14%,94%)' }}>Exclusions</td>
+                <td className="px-4 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground align-top bg-muted/30">Exclusions</td>
                 <td className="px-4 py-2">
                   {auditScope.exclusions.map((ex, i) => (
                     <div key={i} className="flex items-start gap-1.5 text-[11px] text-foreground/80">
@@ -39,7 +39,7 @@ export default function AuditScopeSection({ depth = 'standard' }: { depth?: impo
                 </td>
               </tr>
               <tr className="border-b border-border/60">
-                <td className="px-4 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground align-top" style={{ background: 'hsl(220,14%,94%)' }}>Audit Team</td>
+                <td className="px-4 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground align-top bg-muted/30">Audit Team</td>
                 <td className="px-4 py-2">
                   {auditScope.auditorQualifications.map((aq, i) => (
                     <div key={i} className="text-[11px] text-foreground">{aq}</div>
@@ -51,7 +51,7 @@ export default function AuditScopeSection({ depth = 'standard' }: { depth?: impo
 
           {/* VDA 6.3 Process Elements */}
           <div className="border-t border-border">
-            <div className="px-4 py-1.5" style={{ background: 'hsl(220,14%,92%)' }}>
+            <div className="px-4 py-1.5 bg-muted/30">
               <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">VDA 6.3 Process Elements — Applicability</span>
             </div>
             <div className="grid grid-cols-7 divide-x divide-border/60 bg-card">

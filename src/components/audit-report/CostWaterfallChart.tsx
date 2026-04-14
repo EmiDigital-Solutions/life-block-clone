@@ -10,9 +10,9 @@ export default function CostWaterfallChart({ depth = 'standard' }: { depth?: imp
 
   if (depth === 'executive') {
     return (
-      <div className="border border-border">
-        <div className="px-4 py-2" style={{ background: 'hsl(220,20%,14%)' }}>
-          <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/80">Cost Exposure Analysis</span>
+      <div className="border border-border rounded-lg overflow-hidden">
+        <div className="px-4 py-2.5 bg-muted/40 border-b border-border">
+          <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Cost Exposure Analysis</span>
         </div>
         <div className="grid grid-cols-4 divide-x divide-border bg-card">
           {[
