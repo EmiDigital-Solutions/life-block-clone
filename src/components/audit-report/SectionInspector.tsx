@@ -468,25 +468,25 @@ function AtlasTab({ intel, station, stationNCRs, brainTab, setBrainTab, predicti
 
           {/* Audit Strategy */}
           <div className="px-4 py-3">
-            <span className="text-[12px] font-bold tracking-[0.1em] uppercase text-muted-foreground mb-3 block">Audit Strategy</span>
+            <span className="ar-mono-label block mb-3">Audit strategy</span>
             <div className="space-y-3">
               {intel.auditStrategy.map((step: any, i: number) => (
                 <div key={i}>
                   <div className="flex items-start gap-2.5">
-                    <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                      <span className="text-[11px] font-bold text-primary">{i + 1}</span>
+                    <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ background: 'var(--ar-accent-bg)', color: 'var(--ar-accent)' }}>
+                      <span className="text-[10px] font-bold" style={{ fontFamily: "'Space Mono', monospace" }}>{i + 1}</span>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h4 className="text-[13px] font-semibold text-foreground">{step.step}</h4>
-                      <p className="text-[12px] text-muted-foreground mt-0.5">{step.detail}</p>
+                      <h4 className="text-[12px] font-semibold" style={{ color: 'var(--ar-tx-1)' }}>{step.step}</h4>
+                      <p className="text-[11px] mt-0.5" style={{ color: 'var(--ar-tx-2)' }}>{step.detail}</p>
                       {step.evidenceRequired && (
-                        <div className="mt-1.5 bg-muted/60 rounded px-2 py-1.5">
-                          <span className="text-[11px] font-bold uppercase tracking-wide text-muted-foreground">{step.evidenceRequired}</span>
+                        <div className="mt-1.5 rounded px-2 py-1.5" style={{ background: 'var(--ar-bg-soft)' }}>
+                          <span className="ar-mono-label">{step.evidenceRequired}</span>
                         </div>
                       )}
                       {step.done && (
-                        <p className="text-[11px] text-primary font-medium mt-1.5">
-                          <span className="font-bold">Done when:</span> {step.done}
+                        <p className="text-[11px] font-medium mt-1.5" style={{ color: 'var(--ar-accent)' }}>
+                          <span className="font-bold">Done:</span> {step.done}
                         </p>
                       )}
                     </div>
