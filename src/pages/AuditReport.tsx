@@ -491,6 +491,14 @@ function AuditReportInner() {
         </div>
       </div>
     </div>
+
+    {/* Modals */}
+    <TrafficLightDashboard open={dashboardOpen} onClose={() => setDashboardOpen(false)} />
+    <ActionChecklist open={checklistOpen} onClose={() => setChecklistOpen(false)} />
+    <ProcurementBrief open={briefOpen} onClose={() => setBriefOpen(false)} />
+    <SmartReadingGuide open={guideOpen} onClose={() => setGuideOpen(false)} onScrollToId={scrollToId} />
+    <TrendComparison open={trendOpen} onClose={() => setTrendOpen(false)} />
+    <PFMEADrilldown ncr={pfmeaNCR} onClose={() => setPfmeaNCR(null)} />
     </>
   );
 }
