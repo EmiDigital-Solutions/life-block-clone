@@ -280,12 +280,57 @@ export default function SectionInspector({ activeStation, isOpen, onClose }: Sec
 // ─── Atlas Brain Tab ─────────────────────────────────────────
 
 function AtlasTab({ intel, station, stationNCRs, brainTab, setBrainTab, predictionIcon, impactColor, hl, timelineEvents }: any) {
+  const [speaking, setSpeaking] = useState(false);
+
+  const toggleVoice = useCallback(() => {
+    if (speaking) {
+      speechSynthesis.cancel();
+      setSpeaking(false);
+      return;
+    }
+
+    const predictions = intel.predictions.map((p: any) => `${p.title}: ${p.body}`).join('. ');
+    const patterns = intel.hiddenPatterns.map((p: any) => p.title).join(', ');
+
+    const text = [
+      `Atlas Brain briefing for station ${station.name}.`,
+      `Client priority: ${intel.clientPriority.level}. ${intel.clientPriority.reason}`,
+      `Predictions: ${predictions}`,
+      patterns ? `Hidden patterns detected: ${patterns}.` : '',
+      `This concludes the station briefing.`,
+    ].filter(Boolean).join(' ');
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    const voices = speechSynthesis.getVoices();
+    const enVoice = voices.find(v => v.lang === 'en-US' && v.name.includes('Google'))
+      || voices.find(v => v.lang === 'en-US')
+      || voices.find(v => v.lang.startsWith('en'));
+    if (enVoice) utterance.voice = enVoice;
+    utterance.rate = 0.92;
+    utterance.pitch = 1;
+    utterance.onend = () => setSpeaking(false);
+    utterance.onerror = () => setSpeaking(false);
+    setSpeaking(true);
+    speechSynthesis.speak(utterance);
+  }, [speaking, intel, station]);
+
   return (
     <div>
       {/* Atlas Brain header */}
       <div className="px-4 pt-4 pb-2">
         <div className="flex items-center gap-2 mb-2">
           <span className="text-[13px] font-semibold tracking-wide text-muted-foreground">ATLAS BRAIN</span>
+          <button
+            onClick={toggleVoice}
+            className={cn(
+              "flex items-center gap-1 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider transition-colors cursor-pointer rounded ml-auto",
+              speaking ? "bg-primary text-white" : "bg-primary/10 text-primary hover:bg-primary/20"
+            )}
+          >
+            {speaking ? <VolumeX className="w-3 h-3" /> : <Volume2 className="w-3 h-3" />}
+            {speaking ? 'Stop' : 'Brief'}
+          </button>
         </div>
         <div className="flex gap-4">
           <button 
