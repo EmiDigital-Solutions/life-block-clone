@@ -59,14 +59,14 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
     return (
       <section id="station-1" className="scroll-mt-20 pt-6 pb-2">
         {/* ══════ FORMAL AUDIT REPORT COVER SHEET ══════ */}
-        <div className="border-2 border-foreground/20">
-          {/* Document title block — ISO standard cover page */}
-          <div className="px-6 py-5 text-center border-b-2 border-foreground/20" style={{ background: 'hsl(220,20%,14%)' }}>
-            <div className="text-[9px] font-bold tracking-[0.2em] uppercase text-white/40 mb-1">Confidential — For Authorized Recipients Only</div>
-            <h1 className="text-[20px] font-bold tracking-[0.08em] uppercase text-white leading-tight">
+        <div className="border border-border rounded-lg overflow-hidden bg-card">
+          {/* Document title block */}
+          <div className="px-6 py-5 text-center border-b border-border bg-muted/40">
+            <div className="text-[9px] font-bold tracking-[0.2em] uppercase text-muted-foreground mb-1">Confidential — For Authorized Recipients Only</div>
+            <h1 className="text-[20px] font-bold tracking-[0.08em] uppercase text-foreground leading-tight">
               Process Audit Report
             </h1>
-            <div className="text-[12px] font-medium text-white/60 mt-1">
+            <div className="text-[12px] font-medium text-muted-foreground mt-1">
               per VDA 6.3:2023 / ISO 9001:2015 / IATF 16949:2016
             </div>
           </div>
@@ -85,20 +85,20 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
                 ['Cert. Body', reportMeta.certBody, 'Cert. No.', reportMeta.certNumber],
                 ['PO Reference', po, 'Cert. Expiry', reportMeta.certExpiry],
               ].map(([k1, v1, k2, v2], i) => (
-                <tr key={i} className="border-b border-border/60">
-                  <td className="px-4 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground w-[130px]" style={{ background: 'hsl(220,14%,94%)' }}>{k1}</td>
+                <tr key={i} className="border-b border-border/40">
+                  <td className="px-4 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground w-[130px] bg-muted/30">{k1}</td>
                   <td className="px-4 py-2 text-[12px] font-medium text-foreground">{v1}</td>
-                  <td className="px-4 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground w-[130px] border-l border-border/60" style={{ background: 'hsl(220,14%,94%)' }}>{k2}</td>
-                  <td className="px-4 py-2 text-[12px] font-medium text-foreground border-l border-border/60">{v2}</td>
+                  <td className="px-4 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground w-[130px] border-l border-border/40 bg-muted/30">{k2}</td>
+                  <td className="px-4 py-2 text-[12px] font-medium text-foreground border-l border-border/40">{v2}</td>
                 </tr>
               ))}
             </tbody>
           </table>
 
           {/* ── AUDIT RESULT ── */}
-          <div className="border-t-2 border-foreground/20">
-            <div className="px-4 py-2" style={{ background: 'hsl(220,20%,14%)' }}>
-              <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-white/80">§10 — Audit Result</span>
+          <div className="border-t border-border">
+            <div className="px-4 py-2.5 bg-muted/40">
+              <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-muted-foreground">§10 — Audit Result</span>
             </div>
             <div className="grid grid-cols-5 divide-x divide-border">
               {/* VDA Score */}
@@ -148,9 +148,9 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
           </div>
 
           {/* ── EXECUTIVE SUMMARY ── */}
-          <div className="border-t-2 border-foreground/20">
-            <div className="px-4 py-2" style={{ background: 'hsl(220,20%,14%)' }}>
-              <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-white/80">§1 — Executive Summary</span>
+          <div className="border-t border-border">
+            <div className="px-4 py-2.5 bg-muted/40">
+              <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-muted-foreground">§1 — Executive Summary</span>
             </div>
             <div className="px-6 py-4 bg-card">
               <table className="w-full border-collapse">
@@ -181,12 +181,12 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
           </div>
 
           {/* ── §9 — GAP ANALYSIS RADAR CHARTS ── */}
-          <div className="border-t border-foreground/20">
+          <div className="border-t border-border">
             <ExecutiveRadarCharts depth="executive" />
           </div>
 
           {/* Actions */}
-          <div className="flex items-center justify-between px-6 py-3 border-t-2 border-foreground/20 bg-card">
+          <div className="flex items-center justify-between px-6 py-3 border-t border-border bg-card">
             <div className="text-[9px] text-muted-foreground">
               Document generated: {new Date().toLocaleDateString('de-DE')} · Distribution: Restricted
             </div>
