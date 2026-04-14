@@ -3,7 +3,7 @@
  * Round button with animated green pulse when speaking
  */
 import { useState, useCallback } from "react";
-import { Volume2, Square } from "lucide-react";
+import { Speech, Square } from "lucide-react";
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { cn } from "@/lib/utils";
 
