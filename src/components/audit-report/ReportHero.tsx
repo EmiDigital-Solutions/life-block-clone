@@ -74,6 +74,32 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
             </div>
           </div>
 
+          {/* Auditor Firm */}
+          <div className="border-t border-border/40 px-6 py-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center overflow-hidden">
+                  <img src={logoNew} alt="YVOO" className="w-7 h-7 object-contain" />
+                </div>
+                <div>
+                  <div className="text-[15px] font-semibold text-foreground">YVOO GmbH</div>
+                  <div className="text-[12px] text-muted-foreground">Accredited Audit Firm · IRCA Certified Body</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1">
+                  {[1, 2, 3, 4, 5].map(s => (
+                    <Star key={s} className={cn("w-4 h-4", s <= 5 ? "text-warning fill-warning" : "text-muted-foreground/30")} />
+                  ))}
+                </div>
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-primary/10 border border-primary/20">
+                  <Shield className="w-3.5 h-3.5 text-primary" />
+                  <span className="text-[12px] font-bold text-primary">A+ Rated</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Report identification — clean key-value grid */}
           <div className="border-t border-border/40 px-6 py-4">
             <div className="grid grid-cols-2 gap-x-8 gap-y-2">
