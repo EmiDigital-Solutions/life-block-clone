@@ -31,6 +31,7 @@ import NormativeReferences from "@/components/audit-report/NormativeReferences";
 import EvidenceTraceabilityMatrix from "@/components/audit-report/EvidenceTraceabilityMatrix";
 import CSRComplianceMapping from "@/components/audit-report/CSRComplianceMapping";
 import DigitalSignatureBlock from "@/components/audit-report/DigitalSignatureBlock";
+import AskAtlasBar from "@/components/audit-report/AskAtlasBar";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Navigation from "@/components/Navigation";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
