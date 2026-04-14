@@ -217,11 +217,10 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
       className={cn("ar-sidebar flex flex-col overflow-y-auto", className)}
     >
       {/* Document outline header */}
-      <div className="px-3 py-4" style={{ borderBottom: '1px solid var(--ar-bd-hair)' }}>
-        <span className="ar-mono-label block mb-2">Document outline</span>
-        <h3 className="text-[13px] font-semibold" style={{ color: 'var(--ar-tx-1)' }}>Process audit report</h3>
-        <p className="text-[11px] mt-0.5" style={{ color: 'var(--ar-tx-3)' }}>
-          47 pages · {totalSections} sections · {ncrCount} NCRs
+      <div className="px-3 py-3" style={{ borderBottom: '1px solid var(--ar-bd-hair)' }}>
+        <span className="ar-mono-label block mb-1">Document outline</span>
+        <p className="text-[11px]" style={{ color: 'var(--ar-tx-3)' }}>
+          {totalSections} sections · {ncrCount} NCRs
         </p>
       </div>
 
