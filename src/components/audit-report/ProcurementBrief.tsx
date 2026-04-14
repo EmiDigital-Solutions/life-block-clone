@@ -3,7 +3,7 @@
  * One-click AI-generated brief: cost exposure, delivery risk, go/no-go
  */
 import { useState, useCallback } from "react";
-import { X, FileBarChart, Sparkles, Loader2, Copy, Check } from "lucide-react";
+import { X, FileBarChart, Sparkles, Loader2, Copy, Check, Volume2, VolumeX } from "lucide-react";
 
 const SW = 1.5;
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
