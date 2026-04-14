@@ -1,5 +1,6 @@
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
-import { Shield } from "lucide-react";
+import { AlertTriangle } from "lucide-react";
+const SW = 1.5;
 import type { DepthLevel } from "@/data/auditReportData";
 
 function RiskGauge({ score }: { score: number }) {

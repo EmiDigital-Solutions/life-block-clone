@@ -1,4 +1,5 @@
 import { TrendingUp, TrendingDown } from "lucide-react";
+const SW = 1.5;
 
 const benchmarkData = [
   { label: 'Overall Score', supplier: 72, percentile: 23, totalAudits: 47, industry: 'Automotive Plastics' },

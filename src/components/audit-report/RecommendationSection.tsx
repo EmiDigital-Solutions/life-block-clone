@@ -1,4 +1,5 @@
 import { Mail, CalendarPlus, ExternalLink, FileDown, Printer, Users, Eye } from "lucide-react";
+const SW = 1.5;
 import DigitalSignatureWorkflow from "./DigitalSignatureWorkflow";
 import CommentingAnnotation from "./CommentingAnnotation";
 import VersionComparison from "./VersionComparison";

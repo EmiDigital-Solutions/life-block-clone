@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { CheckCircle2, Circle, Clock, Shield, User, Fingerprint } from "lucide-react";
+import { CheckCircle2, Circle, Clock, User, Fingerprint } from "lucide-react";
+const SW = 1.5;
 
 interface SignatureStep {
   role: string;

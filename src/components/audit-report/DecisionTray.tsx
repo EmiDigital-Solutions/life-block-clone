@@ -1,7 +1,8 @@
 import { cn } from "@/lib/utils";
 import type { NCR } from "@/data/auditReportData";
 import NCRCard from "./NCRCard";
-import { X, CheckCircle2, Clock, AlertCircle } from "lucide-react";
+import { X, CheckCircle2, Clock, AlertTriangle } from "lucide-react";
+const SW = 1.5;
 
 interface DecisionTrayProps {
   ncrs: NCR[];

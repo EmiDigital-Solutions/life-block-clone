@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MessageSquare, AtSign, Check, Clock, User } from "lucide-react";
+const SW = 1.5;
 
 interface Comment {
   id: string;
