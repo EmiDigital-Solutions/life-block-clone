@@ -320,6 +320,22 @@ function AuditReportInner() {
                     </button>
                   ))}
                 </div>
+                <VoiceBriefing />
+                <button onClick={() => setGuideOpen(true)} className="hidden md:block px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider cursor-pointer bg-muted text-muted-foreground hover:bg-muted/80 transition-colors">
+                  Guide
+                </button>
+                <button onClick={() => setDashboardOpen(true)} className="hidden md:flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider cursor-pointer bg-amber-500/10 text-amber-600 hover:bg-amber-500/20 transition-colors">
+                  ⚡ Decision
+                </button>
+                <button onClick={() => setChecklistOpen(true)} className="hidden md:block px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider cursor-pointer bg-muted text-muted-foreground hover:bg-muted/80 transition-colors">
+                  Actions
+                </button>
+                <button onClick={() => setBriefOpen(true)} className="hidden md:block px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider cursor-pointer bg-muted text-muted-foreground hover:bg-muted/80 transition-colors">
+                  Brief
+                </button>
+                <button onClick={() => setTrendOpen(true)} className="hidden md:block px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider cursor-pointer bg-muted text-muted-foreground hover:bg-muted/80 transition-colors">
+                  Trend
+                </button>
                 <button className="hidden md:block px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider cursor-pointer bg-muted text-muted-foreground hover:bg-muted/80 transition-colors">
                   Export pdf
                 </button>
