@@ -94,6 +94,17 @@ function AuditReportInner() {
   const [guideOpen, setGuideOpen] = useState(false);
   const [trendOpen, setTrendOpen] = useState(false);
   const [pfmeaNCR, setPfmeaNCR] = useState<NCR | null>(null);
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    if (typeof window !== 'undefined') {
+      return (localStorage.getItem('audit_theme') as 'light' | 'dark') || 'light';
+    }
+    return 'light';
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('audit_theme', theme);
+  }, [theme]);
   const contentRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
 
