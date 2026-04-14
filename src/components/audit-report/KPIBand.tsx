@@ -4,6 +4,52 @@ import AtlasTooltip from "./AtlasTooltip";
 
 const trendIcon = { up: TrendingUp, down: TrendingDown, flat: Minus };
 
+// Atlas AI contextual insights for each KPI
+const kpiInsights: Record<string, { insight: string; benchmark: string; recommendation?: string; severity: 'info' | 'warning' | 'critical' }> = {
+  'DPPM': {
+    insight: 'Defective Parts Per Million has increased 720% vs. prior period. This trend correlates with CNC calibration gaps detected in Station 5.',
+    benchmark: 'BMW target: ≤50 DPPM. Industry avg (Tier-2 automotive): 120 DPPM. Current: 410 DPPM — 8.2× above OEM target.',
+    recommendation: 'Immediate containment sort required. Address CNC #2/#4 calibration to arrest trend within 2 weeks.',
+    severity: 'critical',
+  },
+  'NCR': {
+    insight: '5 Non-Conformity Reports issued — 2 Major, 3 Minor. Major NCRs block PO release per BMW QMT 0800 §7.1.',
+    benchmark: 'Industry avg for Tier-2 process audit: 2-3 NCRs. Previous audit: 3 NCRs (1 Major). Trend: worsening.',
+    recommendation: 'Assign owners and CAPA deadlines for both Major NCRs before sign-off.',
+    severity: 'critical',
+  },
+  'OEE': {
+    insight: 'Overall Equipment Effectiveness at 68% is driven by low availability on CNC cells. Performance and quality components are adequate.',
+    benchmark: 'World-class OEE: ≥85%. Automotive industry avg: 72%. This supplier: 68% — below sector median.',
+    recommendation: 'Focus on planned maintenance schedule adherence to recover 8-12% availability.',
+    severity: 'warning',
+  },
+  'Cost': {
+    insight: 'Total quality cost exposure of €937K represents 4.8% of contract value. €580K is mitigatable through CAPA implementation.',
+    benchmark: 'BMW target: quality costs <2% of contract. Current exposure: 4.8% — 2.4× above threshold.',
+    recommendation: 'Prioritize calibration fix (€340K exposure) and quarantine improvement (€180K) for highest ROI.',
+    severity: 'critical',
+  },
+  'Score': {
+    insight: 'VDA 6.3 weighted score of 72% places the supplier in Grade B — Conditionally Qualified. Score declined 6 points from previous audit.',
+    benchmark: 'BMW minimum for continued supply: 70% (Grade B). Re-qualification at <60% (Grade C). Current score: 2pts above threshold.',
+    severity: 'warning',
+  },
+  'Cpk': {
+    insight: 'Process capability index of 0.98 on critical bore ID dimension means ~6.8% of parts fall outside specification limits.',
+    benchmark: 'BMW minimum Cpk: 1.33 (≤63 ppm out-of-spec). Industry standard: 1.67. Current 0.98 = ~31,700 ppm defect rate.',
+    recommendation: 'Root cause: worn boring bar at 123% life + CNC drift. Replace tooling and recalibrate.',
+    severity: 'critical',
+  },
+};
+
+const getKPIInsight = (label: string) => {
+  for (const key of Object.keys(kpiInsights)) {
+    if (label.toUpperCase().includes(key.toUpperCase())) return kpiInsights[key];
+  }
+  return { insight: 'Atlas is analyzing this metric.', benchmark: 'Benchmark data being computed.', severity: 'info' as const };
+};
+
 interface KPIBandProps {
   kpis: KPITile[];
   depth?: DepthLevel;
