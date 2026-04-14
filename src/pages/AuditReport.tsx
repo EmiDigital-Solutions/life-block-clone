@@ -361,25 +361,50 @@ function AuditReportInner() {
                     {/* §2 CSR Compliance */}
                     <CSRComplianceMapping depth="executive" />
 
-                    <div className="space-y-3 mt-4">
+                    <div className="space-y-3 mt-4 pb-16">
                       {/* §3–§9 Station findings */}
                       {displayStations.map((station) => (
                         <StationCard key={station.index} station={station} depth={depth} totalStations={14} />
                       ))}
 
                       {/* §10 NCR Register */}
-                      <NCRRegister ncrs={allNCRs} depth={depth} />
+                      <div id="station-10">
+                        <NCRRegister ncrs={allNCRs} depth={depth} />
+                      </div>
 
                       {/* §11 Evidence Traceability */}
-                      <EvidenceTraceabilityMatrix depth="executive" />
+                      <div id="evidence-matrix">
+                        <EvidenceTraceabilityMatrix depth="executive" />
+                      </div>
 
-                      {/* §12 Appendices */}
-                      <FindingSankeyDiagram depth="executive" />
+                      {/* §12 CSR Compliance */}
+                      <div id="csr-mapping">
+                        <CSRComplianceMapping depth="executive" />
+                      </div>
+
+                      {/* §13 Appendices */}
+                      <div id="station-11">
+                        <FindingSankeyDiagram depth="executive" />
+                      </div>
                       <CostWaterfallChart depth="executive" />
                       <OEEGaugeCluster depth="executive" />
 
-                      {/* §13 Approval & Sign-Off */}
-                      <DigitalSignatureBlock />
+                      {/* §14 CAPA */}
+                      <div id="station-12">
+                        <CAPAGantt />
+                      </div>
+
+                      {/* §15 Delay Forecast */}
+                      <div id="station-13">
+                        <DelayForecast />
+                      </div>
+
+                      {/* §16 Approval & Sign-Off */}
+                      <div id="signatures">
+                        <DigitalSignatureBlock />
+                      </div>
+
+                      {/* §17 Revision — handled by DocumentControlHeader */}
                     </div>
                   </>
                 ) : (
