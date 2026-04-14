@@ -365,154 +365,248 @@ function AuditReportInner() {
                 />
 
                 {depth === 'executive' ? (
-                  <>
+                  <div className="space-y-16 md:space-y-20">
                     {/* §0 Document Control */}
-                    <div className="space-y-3 mt-4">
+                    <section className="space-y-8">
                       <DocumentControlHeader />
                       <NormativeReferences />
-                    </div>
-
-                    {/* §1 Audit Scope & VDA Scoring */}
-                    <AuditScopeSection depth={depth} />
-                    <VDA63ScoringTable />
-
-                    <section className="py-2">
-                      <KPIBand kpis={kpis} depth={depth} />
                     </section>
 
-                    <AnomalyCallouts depth={depth} />
-
-                    {/* §2 CSR Compliance */}
-                    <CSRComplianceMapping depth="executive" />
-
-                    <div className="space-y-3 mt-4 pb-16">
-                      {/* §3–§9 Station findings */}
-                      {displayStations.map((station) => (
-                        <StationCard key={station.index} station={station} depth={depth} totalStations={14} />
-                      ))}
-
-                      {/* §10 NCR Register */}
-                      <div id="station-10">
-                        <NCRRegister ncrs={allNCRs} depth={depth} />
+                    {/* §1 Audit Scope */}
+                    <section>
+                      <div className="mb-6 pb-3 border-b-2 border-foreground/10">
+                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§1</span>
+                        <h2 className="text-[22px] font-semibold text-foreground mt-1">Audit Scope & VDA Scoring</h2>
                       </div>
-
-                      {/* §11 Evidence Traceability */}
-                      <div id="evidence-matrix">
-                        <EvidenceTraceabilityMatrix depth="executive" />
+                      <div className="space-y-10">
+                        <AuditScopeSection depth={depth} />
+                        <VDA63ScoringTable />
                       </div>
-
-                      {/* §12 CSR Compliance */}
-                      <div id="csr-mapping">
-                        <CSRComplianceMapping depth="executive" />
-                      </div>
-
-                      {/* §13 Appendices */}
-                      <div id="station-11">
-                        <FindingSankeyDiagram depth="executive" />
-                      </div>
-                      <CostWaterfallChart depth="executive" />
-                      <OEEGaugeCluster depth="executive" />
-
-                      {/* §14 CAPA */}
-                      <div id="station-12">
-                        <CAPAGantt />
-                      </div>
-
-                      {/* §15 Delay Forecast */}
-                      <div id="station-13">
-                        <DelayForecast />
-                      </div>
-
-                      {/* §16 Approval & Sign-Off */}
-                      <div id="signatures">
-                        <DigitalSignatureBlock />
-                      </div>
-
-                      {/* §17 Revision — handled by DocumentControlHeader */}
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div className="mt-12">
-                      <AtlasRiskScore depth={depth} />
-                    </div>
-
-                    {/* ── Section Divider ── */}
-                    <div className="my-14 md:my-20 border-t border-border/60" />
-
-                    <section className="py-8 md:py-12">
-                      <KPIBand kpis={kpis} depth={depth} />
                     </section>
 
-                    {/* ── Section Divider ── */}
-                    <div className="my-14 md:my-20 border-t border-border/60" />
+                    {/* §2 Key Performance Indicators */}
+                    <section>
+                      <div className="mb-6 pb-3 border-b-2 border-foreground/10">
+                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§2</span>
+                        <h2 className="text-[22px] font-semibold text-foreground mt-1">Key Performance Indicators</h2>
+                      </div>
+                      <KPIBand kpis={kpis} depth={depth} />
+                      <div className="mt-8">
+                        <AnomalyCallouts depth={depth} />
+                      </div>
+                    </section>
 
-                    <ExecutiveRadarCharts depth={depth} />
+                    {/* §3 CSR Compliance */}
+                    <section>
+                      <div className="mb-6 pb-3 border-b-2 border-foreground/10">
+                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§3</span>
+                        <h2 className="text-[22px] font-semibold text-foreground mt-1">CSR Compliance Mapping</h2>
+                      </div>
+                      <CSRComplianceMapping depth="executive" />
+                    </section>
 
-                    {/* ── Section Divider ── */}
-                    <div className="my-14 md:my-20 border-t border-border/60" />
+                    {/* §4 Process Audit Findings */}
+                    <section>
+                      <div className="mb-8 pb-3 border-b-2 border-foreground/10">
+                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§4 – §11</span>
+                        <h2 className="text-[22px] font-semibold text-foreground mt-1">Process Audit Findings</h2>
+                        <p className="text-[14px] text-muted-foreground mt-1">{displayStations.length} stations audited per VDA 6.3</p>
+                      </div>
+                      <div className="space-y-12">
+                        {displayStations.map((station) => (
+                          <StationCard key={station.index} station={station} depth={depth} totalStations={14} />
+                        ))}
+                      </div>
+                    </section>
 
-                    <AuditScopeSection depth={depth} />
-
-                    <div className="mt-10">
-                      <AnomalyCallouts depth={depth} />
-                    </div>
-
-                    {/* ── Section Divider ── */}
-                    <div className="my-14 md:my-20 border-t border-border/60" />
-
-                    <div className="pb-24 space-y-16 md:space-y-24">
-                      {displayStations.map((station) => (
-                        <StationCard key={station.index} station={station} depth={depth} totalStations={14} />
-                      ))}
-
-                      {/* ── Section Divider ── */}
-                      <div className="border-t border-border/60" />
-
+                    {/* §12 NCR Register */}
+                    <section id="station-10">
+                      <div className="mb-6 pb-3 border-b-2 border-foreground/10">
+                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§12</span>
+                        <h2 className="text-[22px] font-semibold text-foreground mt-1">Non-Conformance Register</h2>
+                      </div>
                       <NCRRegister ncrs={allNCRs} depth={depth} />
+                    </section>
 
-                      <div className="border-t border-border/60" />
-
-                      <EvidenceTraceabilityMatrix depth={depth} />
-
-                      <div className="border-t border-border/60" />
-
-                      <CSRComplianceMapping depth={depth} />
-
-                      <div className="border-t border-border/60" />
-
-                      <FindingSankeyDiagram />
-                      <CostWaterfallChart />
-
-                      <div className="border-t border-border/60" />
-
-                      <CAPAGantt />
-                      <AtlasIntelligence />
-
-                      <div className="border-t border-border/60" />
-
-                      <div id="machine-park">
-                        <OEEGaugeCluster />
-                        <div className="mt-16">
-                          <MachineParkIntelligence />
-                        </div>
+                    {/* §13 Evidence Traceability */}
+                    <section id="evidence-matrix">
+                      <div className="mb-6 pb-3 border-b-2 border-foreground/10">
+                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§13</span>
+                        <h2 className="text-[22px] font-semibold text-foreground mt-1">Evidence Traceability</h2>
                       </div>
+                      <EvidenceTraceabilityMatrix depth="executive" />
+                    </section>
 
-                      <div className="border-t border-border/60" />
+                    {/* §14 Analytics & Appendices */}
+                    <section id="station-11">
+                      <div className="mb-6 pb-3 border-b-2 border-foreground/10">
+                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§14</span>
+                        <h2 className="text-[22px] font-semibold text-foreground mt-1">Analytics & Cost Analysis</h2>
+                      </div>
+                      <div className="space-y-12">
+                        <FindingSankeyDiagram depth="executive" />
+                        <CostWaterfallChart depth="executive" />
+                        <OEEGaugeCluster depth="executive" />
+                      </div>
+                    </section>
 
+                    {/* §15 CAPA Timeline */}
+                    <section id="station-12">
+                      <div className="mb-6 pb-3 border-b-2 border-foreground/10">
+                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§15</span>
+                        <h2 className="text-[22px] font-semibold text-foreground mt-1">CAPA Action Plan</h2>
+                      </div>
+                      <CAPAGantt />
+                    </section>
+
+                    {/* §16 Delay Forecast */}
+                    <section id="station-13">
+                      <div className="mb-6 pb-3 border-b-2 border-foreground/10">
+                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§16</span>
+                        <h2 className="text-[22px] font-semibold text-foreground mt-1">Delay & Risk Forecast</h2>
+                      </div>
                       <DelayForecast />
-                      <RecommendationSection />
-                      <EvidenceVault />
+                    </section>
 
-                      <div className="border-t border-border/60" />
-
+                    {/* §17 Approval & Sign-Off */}
+                    <section id="signatures" className="pb-24">
+                      <div className="mb-6 pb-3 border-b-2 border-foreground/10">
+                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§17</span>
+                        <h2 className="text-[22px] font-semibold text-foreground mt-1">Approval & Digital Sign-Off</h2>
+                      </div>
                       <DigitalSignatureBlock />
-                    </div>
-                  </>
+                    </section>
+                  </div>
+                ) : (
+                  <div className="space-y-20 md:space-y-28">
+                    {/* Risk Score */}
+                    <section>
+                      <AtlasRiskScore depth={depth} />
+                    </section>
+
+                    {/* KPIs */}
+                    <section>
+                      <div className="mb-8 pb-3 border-b-2 border-foreground/10">
+                        <h2 className="text-[26px] font-semibold text-foreground">Key Performance Indicators</h2>
+                      </div>
+                      <KPIBand kpis={kpis} depth={depth} />
+                    </section>
+
+                    {/* Radar Charts */}
+                    <section>
+                      <div className="mb-8 pb-3 border-b-2 border-foreground/10">
+                        <h2 className="text-[26px] font-semibold text-foreground">Gap Analysis</h2>
+                      </div>
+                      <ExecutiveRadarCharts depth={depth} />
+                    </section>
+
+                    {/* Scope */}
+                    <section>
+                      <div className="mb-8 pb-3 border-b-2 border-foreground/10">
+                        <h2 className="text-[26px] font-semibold text-foreground">Audit Scope</h2>
+                      </div>
+                      <AuditScopeSection depth={depth} />
+                      <div className="mt-10">
+                        <AnomalyCallouts depth={depth} />
+                      </div>
+                    </section>
+
+                    {/* Station Findings */}
+                    <section>
+                      <div className="mb-10 pb-3 border-b-2 border-foreground/10">
+                        <h2 className="text-[26px] font-semibold text-foreground">Process Audit Findings</h2>
+                        <p className="text-[15px] text-muted-foreground mt-1">{displayStations.length} stations · VDA 6.3 scoring</p>
+                      </div>
+                      <div className="space-y-16 md:space-y-20">
+                        {displayStations.map((station) => (
+                          <StationCard key={station.index} station={station} depth={depth} totalStations={14} />
+                        ))}
+                      </div>
+                    </section>
+
+                    {/* NCR Register */}
+                    <section>
+                      <div className="mb-8 pb-3 border-b-2 border-foreground/10">
+                        <h2 className="text-[26px] font-semibold text-foreground">Non-Conformance Register</h2>
+                      </div>
+                      <NCRRegister ncrs={allNCRs} depth={depth} />
+                    </section>
+
+                    {/* Evidence */}
+                    <section>
+                      <div className="mb-8 pb-3 border-b-2 border-foreground/10">
+                        <h2 className="text-[26px] font-semibold text-foreground">Evidence Traceability</h2>
+                      </div>
+                      <EvidenceTraceabilityMatrix depth={depth} />
+                    </section>
+
+                    {/* CSR Compliance */}
+                    <section>
+                      <div className="mb-8 pb-3 border-b-2 border-foreground/10">
+                        <h2 className="text-[26px] font-semibold text-foreground">CSR Compliance</h2>
+                      </div>
+                      <CSRComplianceMapping depth={depth} />
+                    </section>
+
+                    {/* Analytics */}
+                    <section>
+                      <div className="mb-8 pb-3 border-b-2 border-foreground/10">
+                        <h2 className="text-[26px] font-semibold text-foreground">Analytics & Cost Analysis</h2>
+                      </div>
+                      <div className="space-y-16">
+                        <FindingSankeyDiagram />
+                        <CostWaterfallChart />
+                      </div>
+                    </section>
+
+                    {/* CAPA & Intelligence */}
+                    <section>
+                      <div className="mb-8 pb-3 border-b-2 border-foreground/10">
+                        <h2 className="text-[26px] font-semibold text-foreground">CAPA & Atlas Intelligence</h2>
+                      </div>
+                      <div className="space-y-16">
+                        <CAPAGantt />
+                        <AtlasIntelligence />
+                      </div>
+                    </section>
+
+                    {/* Machine Park */}
+                    <section id="machine-park">
+                      <div className="mb-8 pb-3 border-b-2 border-foreground/10">
+                        <h2 className="text-[26px] font-semibold text-foreground">Machine Park Intelligence</h2>
+                      </div>
+                      <div className="space-y-16">
+                        <OEEGaugeCluster />
+                        <MachineParkIntelligence />
+                      </div>
+                    </section>
+
+                    {/* Forecast & Recommendations */}
+                    <section>
+                      <div className="mb-8 pb-3 border-b-2 border-foreground/10">
+                        <h2 className="text-[26px] font-semibold text-foreground">Risk Forecast & Recommendations</h2>
+                      </div>
+                      <div className="space-y-16">
+                        <DelayForecast />
+                        <RecommendationSection />
+                        <EvidenceVault />
+                      </div>
+                    </section>
+
+                    {/* Sign-Off */}
+                    <section className="pb-24">
+                      <div className="mb-8 pb-3 border-b-2 border-foreground/10">
+                        <h2 className="text-[26px] font-semibold text-foreground">Approval & Digital Sign-Off</h2>
+                      </div>
+                      <DigitalSignatureBlock />
+                    </section>
+                  </div>
                 )}
 
                 {/* Ask Atlas — Live AI Copilot */}
-                <AskAtlasBar activeStation={activeStation} />
+                <div className="pb-12">
+                  <AskAtlasBar activeStation={activeStation} />
+                </div>
               </div>
             </div>
 
