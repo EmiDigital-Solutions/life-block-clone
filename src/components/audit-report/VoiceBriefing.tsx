@@ -75,7 +75,7 @@ export default function VoiceBriefing() {
         {speaking ? (
           <Square className="w-3 h-3 fill-current" />
         ) : (
-          <Volume2 className="w-3.5 h-3.5" />
+          <Speech className="w-3.5 h-3.5" />
         )}
       </span>
     </button>
