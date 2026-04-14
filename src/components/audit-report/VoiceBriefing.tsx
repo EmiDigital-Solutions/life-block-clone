@@ -36,6 +36,13 @@ export default function VoiceBriefing() {
     ].filter(Boolean).join(' ');
 
     const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    // Try to pick a native English voice
+    const voices = speechSynthesis.getVoices();
+    const enVoice = voices.find(v => v.lang === 'en-US' && v.name.includes('Google')) 
+      || voices.find(v => v.lang === 'en-US') 
+      || voices.find(v => v.lang.startsWith('en'));
+    if (enVoice) utterance.voice = enVoice;
     utterance.rate = 0.92;
     utterance.pitch = 1;
     utterance.onend = () => setSpeaking(false);
