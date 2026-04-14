@@ -201,7 +201,7 @@ function AuditReportInner() {
   return (
     <>
     <Navigation />
-    <div className="h-[100dvh] flex flex-col text-foreground pt-16 font-sans bg-background">
+    <div className="audit-report h-[100dvh] flex flex-col font-sans pt-16" style={{ background: 'var(--ar-bg-page)', color: 'var(--ar-tx-1)' }}>
 
       {/* Main content area */}
       <div className="flex-1 flex overflow-hidden">
