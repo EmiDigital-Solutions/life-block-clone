@@ -167,9 +167,9 @@ function AuditReportInner() {
     <>
     <Navigation />
     {/* Outer app shell — Premium Enterprise SaaS */}
-    <div className="h-[100dvh] flex flex-col text-foreground pt-16" style={{ fontFamily: "'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
+    <div className={cn("h-[100dvh] flex flex-col text-foreground pt-16", depth === 'executive' && 'insights-dark')} style={{ fontFamily: "'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
       {/* Window title bar */}
-      <div className="h-8 flex items-center px-3 border-b flex-shrink-0" style={{ background: 'hsl(220,14%,96%)', borderColor: 'hsl(220,13%,89%)' }}>
+      <div className="h-8 flex items-center px-3 border-b flex-shrink-0" style={{ background: depth === 'executive' ? 'hsl(210,20%,4%,0.82)' : 'hsl(220,14%,96%)', borderColor: depth === 'executive' ? 'hsl(0,0%,100%,0.06)' : 'hsl(220,13%,89%)' }}>
         <span className="text-[10px] font-medium" style={{ color: 'hsl(220,10%,40%)' }}>
           SCANPRO+ Audit Report — {reportMeta.supplier} · {reportMeta.po} · {allNCRs.length} NCRs
         </span>
@@ -227,7 +227,7 @@ function AuditReportInner() {
           <div className={cn(
             "sticky top-0 z-40 transition-all duration-300",
             scrolledPastHero ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
-          )} style={{ background: 'hsl(220,14%,96%)', borderBottom: '1px solid hsl(220,13%,89%)' }}>
+          )} style={{ background: depth === 'executive' ? 'hsl(210,20%,4%,0.82)' : 'hsl(220,14%,96%)', borderBottom: depth === 'executive' ? '1px solid hsl(0,0%,100%,0.06)' : '1px solid hsl(220,13%,89%)', backdropFilter: depth === 'executive' ? 'blur(20px)' : undefined }}>
             <div className="flex items-center justify-between px-3 h-10">
               <div className="flex items-center gap-3">
                 {isMobile && (
