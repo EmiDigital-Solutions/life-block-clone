@@ -24,7 +24,7 @@ import AnomalyCallouts from "@/components/audit-report/AnomalyCallouts";
 import CostWaterfallChart from "@/components/audit-report/CostWaterfallChart";
 import CAPAGantt from "@/components/audit-report/CAPAGantt";
 import StationHeatmap from "@/components/audit-report/StationHeatmap";
-import { Menu, X, AlertTriangle, Clock, FileDown, LayoutDashboard, ClipboardList, FileBarChart, BookOpenCheck, TrendingUp, ChevronRight } from "lucide-react";
+import { Menu, X, AlertTriangle, Clock, FileDown, LayoutDashboard, ClipboardList, FileBarChart, BookOpenCheck, TrendingUp, ChevronRight, Sun, Moon, Share2, User } from "lucide-react";
 
 const SW = 1.5;
 import VDA63ScoringTable from "@/components/audit-report/VDA63ScoringTable";
@@ -94,6 +94,17 @@ function AuditReportInner() {
   const [guideOpen, setGuideOpen] = useState(false);
   const [trendOpen, setTrendOpen] = useState(false);
   const [pfmeaNCR, setPfmeaNCR] = useState<NCR | null>(null);
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    if (typeof window !== 'undefined') {
+      return (localStorage.getItem('audit_theme') as 'light' | 'dark') || 'light';
+    }
+    return 'light';
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('audit_theme', theme);
+  }, [theme]);
   const contentRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
 
@@ -190,7 +201,7 @@ function AuditReportInner() {
   return (
     <>
     <Navigation />
-    <div className="h-[100dvh] flex flex-col text-foreground pt-16 font-sans bg-background">
+    <div className="audit-report h-[100dvh] flex flex-col font-sans pt-16" style={{ background: 'var(--ar-bg-page)', color: 'var(--ar-tx-1)' }}>
 
       {/* Main content area */}
       <div className="flex-1 flex overflow-hidden">
@@ -199,7 +210,7 @@ function AuditReportInner() {
           <div className="fixed inset-0 z-50 flex">
             <div className="absolute inset-0 bg-foreground/40 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
             <div className="relative z-10 w-[280px] bg-card">
-              <div className="flex items-center justify-between px-4 py-3 border-b border-border">
+              <div className="flex items-center justify-between px-4 py-3 " style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
                 <span className="text-[15px] font-semibold text-foreground">Document Outline</span>
                 <button onClick={() => setSidebarOpen(false)} className="p-1"><X className="w-4 h-4 text-muted-foreground" /></button>
               </div>
@@ -223,71 +234,107 @@ function AuditReportInner() {
 
           {/* ━━━ STICKY HEADER — Two-tier clean design ━━━ */}
           <div className={cn(
-            "sticky top-0 z-40 transition-all duration-300 bg-card border-b border-border",
+            "sticky top-0 z-40 transition-all duration-300",
             scrolledPastHero ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
           )}>
-            {/* Row 1: Identity + Verdict + Core Actions */}
-            <div className="flex items-center justify-between px-5 h-14 border-b border-border/40">
-              <div className="flex items-center gap-4">
+            {/* Row 1: Brand strip — dark */}
+            <div className="ar-header flex items-center justify-between px-5 h-12">
+              <div className="flex items-center gap-3">
                 {isMobile && (
-                  <button onClick={() => setSidebarOpen(true)} className="p-2 hover:bg-muted rounded-md transition-colors">
-                    <Menu className="w-5 h-5 text-muted-foreground" />
+                  <button onClick={() => setSidebarOpen(true)} className="p-2 hover:bg-white/10 rounded-md transition-colors">
+                    <Menu className="w-5 h-5 text-white/70" />
                   </button>
                 )}
-                <div className="flex items-center gap-2.5">
-                  <span className="text-[13px] font-bold uppercase tracking-wider text-primary">SCANPRO+</span>
-                  <ChevronRight className="w-3.5 h-3.5 text-border" />
-                  <span className="text-[15px] font-semibold text-foreground">{reportMeta.supplier}</span>
+                <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/50" style={{ fontFamily: "'Space Mono', monospace" }}>YVOO+</span>
+                <span className="text-white/20">›</span>
+                <span className="text-[12px] text-white/60">Audits</span>
+                <span className="text-white/20">›</span>
+                <span className="text-[12px] text-white/60">2026 Q2</span>
+                <span className="text-white/20">›</span>
+                <span className="text-[12px] text-white/90 font-medium">{reportMeta.supplier}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')}
+                  className="p-1.5 hover:bg-white/10 rounded-md transition-colors cursor-pointer"
+                  title={theme === 'light' ? 'Dark mode' : 'Light mode'}
+                >
+                  {theme === 'light' ? <Moon className="w-4 h-4 text-white/50" /> : <Sun className="w-4 h-4 text-white/50" />}
+                </button>
+                <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center">
+                  <User className="w-3.5 h-3.5 text-white/60" />
                 </div>
-                <div className="flex items-center gap-2 ml-1">
-                  <span className={cn(
-                    "px-2.5 py-1 rounded-full text-[12px] font-bold uppercase tracking-wide",
-                    reportMeta.verdict === 'go' && "bg-accent/15 text-accent",
-                    reportMeta.verdict === 'conditional' && "bg-warning/15 text-warning",
-                    (reportMeta.verdict === 'hold' || reportMeta.verdict === 'nogo') && "bg-destructive/15 text-destructive",
-                  )}>
+              </div>
+            </div>
+
+            {/* Row 2: Document control strip */}
+            <div className="ar-header-2 flex items-center justify-between px-5 h-14">
+              <div className="flex items-center gap-6">
+                {[
+                  { label: 'Document', value: reportMeta.po || 'SCP-26-0412' },
+                  { label: 'Rev.', value: '1.0' },
+                  { label: 'Standard', value: reportMeta.standard || 'VDA 6.3 · ISO 9001' },
+                  { label: 'Supplier', value: reportMeta.supplier },
+                  { label: 'Customer', value: reportMeta.client || 'BMW AG' },
+                ].map(cell => (
+                  <div key={cell.label} className="hidden md:flex flex-col">
+                    <span className="ar-mono-label" style={{ color: 'rgba(255,255,255,0.35)' }}>{cell.label}</span>
+                    <span className="text-[12px] text-white/85 font-medium mt-0.5">{cell.value}</span>
+                  </div>
+                ))}
+                <div className="flex flex-col">
+                  <span className="ar-mono-label" style={{ color: 'rgba(255,255,255,0.35)' }}>Verdict</span>
+                  <span className="text-[12px] font-semibold mt-0.5" style={{
+                    color: reportMeta.verdict === 'go' ? 'var(--ar-pass)' : reportMeta.verdict === 'conditional' ? 'var(--ar-warn)' : 'var(--ar-fail)'
+                  }}>
                     {reportMeta.verdictLabel}
                   </span>
-                  <span className="text-[13px] text-muted-foreground font-medium">{allNCRs.length} NCRs</span>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3">
-                {/* Reading progress */}
-                <div className="hidden lg:flex items-center gap-3 text-[13px] text-muted-foreground">
-                  <span className="font-mono tabular-nums">{readingProgress}%</span>
-                  <span className="text-border">·</span>
-                  <span className="flex items-center gap-1">
-                    <Clock className="w-3.5 h-3.5" />
-                    {readingTimeEstimates[depth]}
-                  </span>
-                  <span className="text-border">·</span>
-                  <span className="font-mono tabular-nums">{reviewedStations.size}/{totalStations} stations</span>
-                </div>
-
-                {/* Sign off CTA */}
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => {}}
+                  className="p-2 rounded-md hover:bg-white/10 transition-colors cursor-pointer"
+                  title="Share"
+                >
+                  <Share2 className="w-4 h-4 text-white/50" />
+                </button>
+                <button
+                  onClick={() => {}}
+                  className="p-2 rounded-md hover:bg-white/10 transition-colors cursor-pointer"
+                  title="Export"
+                >
+                  <FileDown className="w-4 h-4 text-white/50" />
+                </button>
                 <button
                   onClick={() => setInspectorOpen(!inspectorOpen)}
-                  className="px-4 py-2 text-[13px] font-semibold text-primary-foreground bg-primary rounded-md uppercase tracking-wider cursor-pointer hover:bg-primary/90 transition-colors"
+                  disabled={openNCRs === 0}
+                  className="px-4 py-1.5 text-[12px] font-semibold rounded-md cursor-pointer transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                  style={{
+                    background: 'var(--ar-accent-light)',
+                    color: 'var(--ar-bg-header)',
+                  }}
                 >
                   Sign off {openNCRs > 0 && `(${openNCRs})`}
                 </button>
               </div>
             </div>
 
-            {/* Row 2: Tools + Depth + Navigation */}
-            <div className="flex items-center justify-between px-5 h-11">
+            {/* Row 3: Toolbar */}
+            <div className="flex items-center justify-between px-5 h-11" style={{ background: 'var(--ar-bg-surface)', borderBottom: '1px solid var(--ar-bd-hair)' }}>
               <div className="flex items-center gap-1">
                 {/* Depth toggle */}
-                <div className="flex rounded-md overflow-hidden border border-border mr-1">
+                <div className="flex rounded-md overflow-hidden mr-1" style={{ border: '1px solid var(--ar-bd-line)' }}>
                   {(['executive', 'standard'] as DepthLevel[]).map(d => (
                     <button
                       key={d}
                       onClick={() => setDepth(d)}
-                      className={cn(
-                        "px-3 py-1.5 text-[12px] font-medium uppercase tracking-wide transition-colors cursor-pointer",
-                        depth === d ? "bg-primary text-primary-foreground" : "bg-card text-muted-foreground hover:bg-muted"
-                      )}
+                      className="px-3 py-1.5 text-[12px] font-medium transition-colors cursor-pointer"
+                      style={{
+                        background: depth === d ? 'var(--ar-accent)' : 'var(--ar-bg-surface)',
+                        color: depth === d ? '#fff' : 'var(--ar-tx-3)',
+                      }}
                     >
                       {depthLabels[d]}
                     </button>
@@ -296,43 +343,47 @@ function AuditReportInner() {
                 <VoiceBriefing />
 
                 {/* Station heatmap */}
-                <div className="hidden md:flex items-center gap-2 px-3 border-l border-border">
+                <div className="hidden md:flex items-center gap-2 px-3" style={{ borderLeft: '1px solid var(--ar-bd-hair)' }}>
                   <StationHeatmap activeStation={activeStation} onStationClick={scrollToStation} />
                 </div>
 
-                {/* Jump to worst */}
+                {/* Jump to red findings */}
                 {worstStation && (
                   <button
                     onClick={() => scrollToStation(worstStation.index)}
-                    className="flex items-center gap-1.5 px-3 py-1.5 ml-2 text-[12px] font-semibold text-destructive rounded-md cursor-pointer bg-destructive/8 hover:bg-destructive/15 transition-colors"
+                    className="flex items-center gap-1 px-2 py-1 ml-2 text-[12px] font-medium cursor-pointer transition-colors hover:underline"
+                    style={{ color: 'var(--ar-fail)' }}
                   >
-                    <AlertTriangle className="w-3.5 h-3.5" />
-                    Jump to worst
+                    Jump to red findings →
                   </button>
                 )}
               </div>
 
-              {/* Tool buttons — clean icon + label */}
+              {/* Tool buttons — grouped */}
               <div className="hidden md:flex items-center gap-1">
+                {/* Primary: Decision */}
+                <button
+                  onClick={() => setDashboardOpen(true)}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[12px] font-semibold transition-colors cursor-pointer"
+                  style={{ background: 'var(--ar-accent-bg-2)', color: 'var(--ar-accent)' }}
+                >
+                  <LayoutDashboard className="w-3.5 h-3.5" strokeWidth={1.75} />
+                  Decision
+                </button>
+
+                {/* Secondary: text tabs */}
                 {[
-                  { icon: LayoutDashboard, label: 'Decision', action: () => setDashboardOpen(true), highlight: true },
-                  { icon: FileBarChart, label: 'Brief', action: () => setBriefOpen(true) },
-                  { icon: ClipboardList, label: 'Actions', action: () => setChecklistOpen(true) },
-                  { icon: TrendingUp, label: 'Trend', action: () => setTrendOpen(true) },
-                  { icon: BookOpenCheck, label: 'Guide', action: () => setGuideOpen(true) },
-                  { icon: FileDown, label: 'Export', action: () => {} },
-                ].map(({ icon: Icon, label, action, highlight }) => (
+                  { label: 'Brief', action: () => setBriefOpen(true) },
+                  { label: 'Actions', action: () => setChecklistOpen(true) },
+                  { label: 'Trend', action: () => setTrendOpen(true) },
+                  { label: 'Guide', action: () => setGuideOpen(true) },
+                ].map(({ label, action }) => (
                   <button
                     key={label}
                     onClick={action}
-                    className={cn(
-                      "flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[12px] font-medium transition-colors cursor-pointer",
-                      highlight
-                        ? "bg-warning/10 text-warning hover:bg-warning/20"
-                        : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                    )}
+                    className="px-2.5 py-1.5 text-[12px] font-medium transition-colors cursor-pointer hover:underline"
+                    style={{ color: 'var(--ar-tx-3)' }}
                   >
-                    <Icon className="w-4 h-4" strokeWidth={1.75} />
                     {label}
                   </button>
                 ))}
@@ -340,8 +391,8 @@ function AuditReportInner() {
             </div>
 
             {/* Reading progress bar */}
-            <div className="h-[2px] bg-border/50">
-              <div className="h-full bg-primary transition-all duration-150" style={{ width: `${readingProgress}%` }} />
+            <div className="h-[2px]" style={{ background: 'var(--ar-bd-hair)' }}>
+              <div className="h-full transition-all duration-150" style={{ width: `${readingProgress}%`, background: 'var(--ar-accent)' }} />
             </div>
           </div>
 
@@ -376,10 +427,10 @@ function AuditReportInner() {
 
                     {/* §1 Audit Scope */}
                     <section>
-                      <div className="mb-8 pb-4 border-b border-border">
-                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§1</span>
-                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">Audit Scope & VDA Scoring</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Assessment framework, process element definitions, and weighted scoring methodology</p>
+                      <div className="mb-8 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <span className="ar-eyebrow">§1</span>
+                        <h2 className="ar-h2">Audit Scope & VDA Scoring</h2>
+                        <p className="ar-lede">Assessment framework, process element definitions, and weighted scoring methodology</p>
                       </div>
                       <div className="space-y-10">
                         <AuditScopeSection depth={depth} />
@@ -389,10 +440,10 @@ function AuditReportInner() {
 
                     {/* §2 Key Performance Indicators */}
                     <section>
-                      <div className="mb-8 pb-4 border-b border-border">
-                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§2</span>
-                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">Key Performance Indicators</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Quantitative metrics derived from station audits and NCR analysis</p>
+                      <div className="mb-8 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <span className="ar-eyebrow">§2</span>
+                        <h2 className="ar-h2">Key Performance Indicators</h2>
+                        <p className="ar-lede">Quantitative metrics derived from station audits and NCR analysis</p>
                       </div>
                       <KPIBand kpis={kpis} depth={depth} />
                       <div className="mt-10">
@@ -402,20 +453,20 @@ function AuditReportInner() {
 
                     {/* §3 CSR Compliance */}
                     <section>
-                      <div className="mb-8 pb-4 border-b border-border">
-                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§3</span>
-                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">CSR Compliance Mapping</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Customer-specific requirements traceability and conformance status</p>
+                      <div className="mb-8 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <span className="ar-eyebrow">§3</span>
+                        <h2 className="ar-h2">CSR Compliance Mapping</h2>
+                        <p className="ar-lede">Customer-specific requirements traceability and conformance status</p>
                       </div>
                       <CSRComplianceMapping depth="executive" />
                     </section>
 
                     {/* §4 Process Audit Findings */}
                     <section>
-                      <div className="mb-10 pb-4 border-b border-border">
-                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§4 – §11</span>
-                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">Process Audit Findings</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">{displayStations.length} stations audited per VDA 6.3 process element structure</p>
+                      <div className="mb-10 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <span className="ar-eyebrow">§4 – §11</span>
+                        <h2 className="ar-h2">Process Audit Findings</h2>
+                        <p className="ar-lede">{displayStations.length} stations audited per VDA 6.3 process element structure</p>
                       </div>
                       <div className="space-y-14">
                         {displayStations.map((station) => (
@@ -426,30 +477,30 @@ function AuditReportInner() {
 
                     {/* §12 NCR Register */}
                     <section id="station-10">
-                      <div className="mb-8 pb-4 border-b border-border">
-                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§12</span>
-                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">Non-Conformance Register</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Complete NCR listing with severity, ownership, and resolution status</p>
+                      <div className="mb-8 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <span className="ar-eyebrow">§12</span>
+                        <h2 className="ar-h2">Non-Conformance Register</h2>
+                        <p className="ar-lede">Complete NCR listing with severity, ownership, and resolution status</p>
                       </div>
                       <NCRRegister ncrs={allNCRs} depth={depth} />
                     </section>
 
                     {/* §13 Evidence Traceability */}
                     <section id="evidence-matrix">
-                      <div className="mb-8 pb-4 border-b border-border">
-                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§13</span>
-                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">Evidence Traceability</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Audit trail linking findings to photographic, documentary, and measurement evidence</p>
+                      <div className="mb-8 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <span className="ar-eyebrow">§13</span>
+                        <h2 className="ar-h2">Evidence Traceability</h2>
+                        <p className="ar-lede">Audit trail linking findings to photographic, documentary, and measurement evidence</p>
                       </div>
                       <EvidenceTraceabilityMatrix depth="executive" />
                     </section>
 
                     {/* §14 Analytics & Appendices */}
                     <section id="station-11">
-                      <div className="mb-8 pb-4 border-b border-border">
-                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§14</span>
-                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">Analytics & Cost Analysis</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Resolution pipeline, cost waterfall, and operational efficiency metrics</p>
+                      <div className="mb-8 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <span className="ar-eyebrow">§14</span>
+                        <h2 className="ar-h2">Analytics & Cost Analysis</h2>
+                        <p className="ar-lede">Resolution pipeline, cost waterfall, and operational efficiency metrics</p>
                       </div>
                       <div className="space-y-14">
                         <FindingSankeyDiagram depth="executive" />
@@ -460,30 +511,30 @@ function AuditReportInner() {
 
                     {/* §15 CAPA Timeline */}
                     <section id="station-12">
-                      <div className="mb-8 pb-4 border-b border-border">
-                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§15</span>
-                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">CAPA Action Plan</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Corrective and preventive action timeline with ownership tracking</p>
+                      <div className="mb-8 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <span className="ar-eyebrow">§15</span>
+                        <h2 className="ar-h2">CAPA Action Plan</h2>
+                        <p className="ar-lede">Corrective and preventive action timeline with ownership tracking</p>
                       </div>
                       <CAPAGantt />
                     </section>
 
                     {/* §16 Delay Forecast */}
                     <section id="station-13">
-                      <div className="mb-8 pb-4 border-b border-border">
-                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§16</span>
-                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">Delay & Risk Forecast</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Predictive analysis of delivery timeline risks and mitigation scenarios</p>
+                      <div className="mb-8 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <span className="ar-eyebrow">§16</span>
+                        <h2 className="ar-h2">Delay & Risk Forecast</h2>
+                        <p className="ar-lede">Predictive analysis of delivery timeline risks and mitigation scenarios</p>
                       </div>
                       <DelayForecast />
                     </section>
 
                     {/* §17 Approval & Sign-Off */}
                     <section id="signatures" className="pb-24">
-                      <div className="mb-8 pb-4 border-b border-border">
-                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§17</span>
-                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">Approval & Digital Sign-Off</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Multi-party approval workflow with digital signature verification</p>
+                      <div className="mb-8 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <span className="ar-eyebrow">§17</span>
+                        <h2 className="ar-h2">Approval & Digital Sign-Off</h2>
+                        <p className="ar-lede">Multi-party approval workflow with digital signature verification</p>
                       </div>
                       <DigitalSignatureBlock />
                     </section>
@@ -497,27 +548,27 @@ function AuditReportInner() {
 
                     {/* KPIs */}
                     <section>
-                      <div className="mb-10 pb-4 border-b border-border">
-                        <h2 className="text-[26px] font-bold text-foreground tracking-tight">Key Performance Indicators</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Quantitative metrics from station audits and NCR analysis</p>
+                      <div className="mb-10 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <h2 className="ar-h2">Key Performance Indicators</h2>
+                        <p className="ar-lede">Quantitative metrics from station audits and NCR analysis</p>
                       </div>
                       <KPIBand kpis={kpis} depth={depth} />
                     </section>
 
                     {/* Radar Charts */}
                     <section>
-                      <div className="mb-10 pb-4 border-b border-border">
-                        <h2 className="text-[26px] font-bold text-foreground tracking-tight">Gap Analysis</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Manufacturing capability and commercial readiness assessment</p>
+                      <div className="mb-10 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <h2 className="ar-h2">Gap Analysis</h2>
+                        <p className="ar-lede">Manufacturing capability and commercial readiness assessment</p>
                       </div>
                       <ExecutiveRadarCharts depth={depth} />
                     </section>
 
                     {/* Scope */}
                     <section>
-                      <div className="mb-10 pb-4 border-b border-border">
-                        <h2 className="text-[26px] font-bold text-foreground tracking-tight">Audit Scope</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Assessment boundaries, standards applied, and sampling methodology</p>
+                      <div className="mb-10 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <h2 className="ar-h2">Audit Scope</h2>
+                        <p className="ar-lede">Assessment boundaries, standards applied, and sampling methodology</p>
                       </div>
                       <AuditScopeSection depth={depth} />
                       <div className="mt-12">
@@ -527,9 +578,9 @@ function AuditReportInner() {
 
                     {/* Station Findings */}
                     <section>
-                      <div className="mb-12 pb-4 border-b border-border">
-                        <h2 className="text-[26px] font-bold text-foreground tracking-tight">Process Audit Findings</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">{displayStations.length} stations · VDA 6.3 process element scoring</p>
+                      <div className="mb-12 pb-4 " style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <h2 className="ar-h2">Process Audit Findings</h2>
+                        <p className="ar-lede">{displayStations.length} stations · VDA 6.3 process element scoring</p>
                       </div>
                       <div className="space-y-16 md:space-y-20">
                         {displayStations.map((station) => (
@@ -540,36 +591,36 @@ function AuditReportInner() {
 
                     {/* NCR Register */}
                     <section>
-                      <div className="mb-10 pb-4 border-b border-border">
-                        <h2 className="text-[26px] font-bold text-foreground tracking-tight">Non-Conformance Register</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Complete NCR listing with severity classification and resolution tracking</p>
+                      <div className="mb-10 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <h2 className="ar-h2">Non-Conformance Register</h2>
+                        <p className="ar-lede">Complete NCR listing with severity classification and resolution tracking</p>
                       </div>
                       <NCRRegister ncrs={allNCRs} depth={depth} />
                     </section>
 
                     {/* Evidence */}
                     <section>
-                      <div className="mb-10 pb-4 border-b border-border">
-                        <h2 className="text-[26px] font-bold text-foreground tracking-tight">Evidence Traceability</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Finding-to-evidence chain with photographic and documentary references</p>
+                      <div className="mb-10 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <h2 className="ar-h2">Evidence Traceability</h2>
+                        <p className="ar-lede">Finding-to-evidence chain with photographic and documentary references</p>
                       </div>
                       <EvidenceTraceabilityMatrix depth={depth} />
                     </section>
 
                     {/* CSR Compliance */}
                     <section>
-                      <div className="mb-10 pb-4 border-b border-border">
-                        <h2 className="text-[26px] font-bold text-foreground tracking-tight">CSR Compliance</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Customer-specific requirements mapping and conformance assessment</p>
+                      <div className="mb-10 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <h2 className="ar-h2">CSR Compliance</h2>
+                        <p className="ar-lede">Customer-specific requirements mapping and conformance assessment</p>
                       </div>
                       <CSRComplianceMapping depth={depth} />
                     </section>
 
                     {/* Analytics */}
                     <section>
-                      <div className="mb-10 pb-4 border-b border-border">
-                        <h2 className="text-[26px] font-bold text-foreground tracking-tight">Analytics & Cost Analysis</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Resolution pipeline, cost exposure waterfall, and financial risk quantification</p>
+                      <div className="mb-10 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <h2 className="ar-h2">Analytics & Cost Analysis</h2>
+                        <p className="ar-lede">Resolution pipeline, cost exposure waterfall, and financial risk quantification</p>
                       </div>
                       <div className="space-y-16">
                         <FindingSankeyDiagram />
@@ -579,9 +630,9 @@ function AuditReportInner() {
 
                     {/* CAPA & Intelligence */}
                     <section>
-                      <div className="mb-10 pb-4 border-b border-border">
-                        <h2 className="text-[26px] font-bold text-foreground tracking-tight">CAPA & Atlas Intelligence</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Corrective actions, AI-powered risk scoring, and predictive analytics</p>
+                      <div className="mb-10 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <h2 className="ar-h2">CAPA & Atlas Intelligence</h2>
+                        <p className="ar-lede">Corrective actions, AI-powered risk scoring, and predictive analytics</p>
                       </div>
                       <div className="space-y-16">
                         <CAPAGantt />
@@ -591,9 +642,9 @@ function AuditReportInner() {
 
                     {/* Machine Park */}
                     <section id="machine-park">
-                      <div className="mb-10 pb-4 border-b border-border">
-                        <h2 className="text-[26px] font-bold text-foreground tracking-tight">Machine Park Intelligence</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Equipment capability, OEE analysis, and maintenance posture</p>
+                      <div className="mb-10 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <h2 className="ar-h2">Machine Park Intelligence</h2>
+                        <p className="ar-lede">Equipment capability, OEE analysis, and maintenance posture</p>
                       </div>
                       <div className="space-y-16">
                         <OEEGaugeCluster />
@@ -603,9 +654,9 @@ function AuditReportInner() {
 
                     {/* Forecast & Recommendations */}
                     <section>
-                      <div className="mb-10 pb-4 border-b border-border">
-                        <h2 className="text-[26px] font-bold text-foreground tracking-tight">Risk Forecast & Recommendations</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Delivery timeline predictions, expert recommendations, and evidence vault</p>
+                      <div className="mb-10 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <h2 className="ar-h2">Risk Forecast & Recommendations</h2>
+                        <p className="ar-lede">Delivery timeline predictions, expert recommendations, and evidence vault</p>
                       </div>
                       <div className="space-y-16">
                         <DelayForecast />
@@ -616,9 +667,9 @@ function AuditReportInner() {
 
                     {/* Sign-Off */}
                     <section className="pb-24">
-                      <div className="mb-10 pb-4 border-b border-border">
-                        <h2 className="text-[26px] font-bold text-foreground tracking-tight">Approval & Digital Sign-Off</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Multi-party approval workflow with digital signature verification</p>
+                      <div className="mb-10 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <h2 className="ar-h2">Approval & Digital Sign-Off</h2>
+                        <p className="ar-lede">Multi-party approval workflow with digital signature verification</p>
                       </div>
                       <DigitalSignatureBlock />
                     </section>

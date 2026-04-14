@@ -230,32 +230,37 @@ export default function SectionInspector({ activeStation, isOpen, onClose }: Sec
     <aside className={cn(
       "flex flex-col transition-all duration-300 overflow-hidden",
       isOpen ? "w-[340px] xl:w-[380px] opacity-100" : "w-0 opacity-0"
-    )} style={{ background: 'hsl(0,0%,98%)', borderLeft: '1px solid hsl(0,0%,90%)' }}>
+    )} style={{ background: 'var(--ar-bg-surface)', borderLeft: '1px solid var(--ar-bd-hair)' }}>
       
       {/* Header */}
-      <div className="px-4 pt-3 pb-2 flex items-center justify-between" style={{ borderBottom: '1px solid hsl(0,0%,90%)' }}>
+      <div className="px-4 pt-3 pb-2 flex items-center justify-between" style={{ borderBottom: '1px solid var(--ar-bd-hair)' }}>
         <div className="flex items-center gap-2">
-          <span className="text-[14px] font-semibold tracking-wide text-foreground">YVOO ATLAS</span>
+          <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: 'var(--ar-accent)' }} />
+          <span className="text-[13px] font-semibold" style={{ color: 'var(--ar-tx-1)' }}>Atlas · inspector</span>
         </div>
-        <button onClick={onClose} className="p-1.5 rounded-lg hover:bg-muted transition-colors cursor-pointer" style={{ color: 'hsl(0,0%,55%)' }}>
+        <button onClick={onClose} className="p-1.5 rounded-lg hover:bg-muted transition-colors cursor-pointer" style={{ color: 'var(--ar-tx-3)' }}>
           <X className="w-4 h-4" />
         </button>
       </div>
 
       {/* Tabs */}
-      <div className="flex border-b" style={{ borderColor: 'hsl(0,0%,90%)' }}>
+      <div className="flex" style={{ borderBottom: '1px solid var(--ar-bd-hair)', height: '36px' }}>
         {tabs.map(tab => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={cn(
-              "flex-1 flex flex-col items-center gap-1 py-2.5 text-[11px] font-medium transition-colors cursor-pointer",
+              "flex-1 flex flex-col items-center justify-center gap-0.5 text-[10px] font-medium transition-colors cursor-pointer uppercase tracking-[0.08em]",
               activeTab === tab.id 
-                ? "text-primary border-b-2 border-primary" 
-                : "text-muted-foreground hover:text-foreground"
+                ? "border-b-2"
+                : "hover:text-foreground"
             )}
+            style={{
+              fontFamily: "'Space Mono', monospace",
+              color: activeTab === tab.id ? 'var(--ar-accent)' : 'var(--ar-tx-3)',
+              borderColor: activeTab === tab.id ? 'var(--ar-accent)' : 'transparent',
+            }}
           >
-            {tab.icon}
             <span>{tab.label}</span>
           </button>
         ))}
@@ -333,7 +338,7 @@ function AtlasTab({ intel, station, stationNCRs, brainTab, setBrainTab, predicti
       {/* Atlas Brain header */}
       <div className="px-4 pt-4 pb-2">
         <div className="flex items-center gap-2 mb-2">
-          <span className="text-[13px] font-semibold tracking-wide text-muted-foreground">ATLAS BRAIN</span>
+          <span className="ar-mono-label">Atlas brain</span>
           <button
             onClick={toggleVoice}
             title={speaking ? "Stop listening" : "Listen to station briefing"}
@@ -380,62 +385,57 @@ function AtlasTab({ intel, station, stationNCRs, brainTab, setBrainTab, predicti
       {brainTab === 'intelligence' ? (
         <>
           {/* Client Priority */}
-          <div className="px-4 py-3" style={{ borderBottom: '1px solid hsl(0,0%,92%)' }}>
+          <div className="px-4 py-3" style={{ borderBottom: '1px solid var(--ar-bd-hair)' }}>
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-[14px] font-semibold text-foreground">Client Priority</span>
-              <span className={cn(
-                "text-[10px] font-bold px-2 py-0.5 rounded-full uppercase",
-                intel.clientPriority.level === 'HIGH' ? 'bg-destructive/10 text-destructive' :
-                intel.clientPriority.level === 'MEDIUM' ? 'bg-warning/10 text-warning' :
-                'bg-accent/10 text-accent'
-              )}>
+              <span className="text-[12px] font-semibold" style={{ color: 'var(--ar-tx-1)' }}>Client priority</span>
+              <span className="text-[9px] font-bold px-2 py-0.5 rounded-full uppercase" style={{
+                fontFamily: "'Space Mono', monospace",
+                letterSpacing: '0.1em',
+                background: 'var(--ar-accent-bg)',
+                color: 'var(--ar-accent)',
+              }}>
                 {intel.clientPriority.level}
               </span>
             </div>
-            <p className="text-[13px] leading-relaxed text-muted-foreground">
+            <p className="text-[12px] leading-relaxed" style={{ color: 'var(--ar-tx-2)', lineHeight: '1.6' }}>
               {intel.clientPriority.reason}
             </p>
           </div>
 
           {/* Standard Requirement */}
-          <div className="px-4 py-3" style={{ borderBottom: '1px solid hsl(0,0%,92%)' }}>
-            <span className="text-[12px] font-bold tracking-[0.1em] uppercase text-muted-foreground mb-2 block">Standard Requirement</span>
-            <div className="bg-muted/50 rounded-lg px-3 py-2.5 border-l-2 border-primary/30">
-              <p className="text-[12px] leading-relaxed text-foreground/80 italic">
-                {intel.standardRequirement}
-              </p>
-            </div>
+          <div className="px-4 py-3" style={{ borderBottom: '1px solid var(--ar-bd-hair)' }}>
+            <span className="ar-mono-label block mb-2">Standard requirement</span>
+            <blockquote className="ar-blockquote">
+              {intel.standardRequirement}
+            </blockquote>
           </div>
 
           {/* Atlas Predictions */}
-          <div className="px-4 py-3" style={{ borderBottom: '1px solid hsl(0,0%,92%)' }}>
+          <div className="px-4 py-3" style={{ borderBottom: '1px solid var(--ar-bd-hair)' }}>
             <div className="flex items-center gap-2 mb-3">
-              <Brain className="w-4 h-4 text-primary" />
-              <span className="text-[12px] font-bold tracking-[0.1em] uppercase text-muted-foreground">Atlas Predictions</span>
+              <Brain className="w-4 h-4" style={{ color: 'var(--ar-accent)' }} />
+              <span className="ar-mono-label">Atlas predictions</span>
             </div>
             <div className="space-y-3">
               {intel.predictions.map((pred: any, i: number) => {
                 const colors = impactColor(pred.impact);
                 return (
-                  <div key={i} className="bg-card rounded-lg border border-border/60 p-3">
+                  <div key={i} className="p-4" style={{ background: 'var(--ar-bg-soft)', border: '1px solid var(--ar-bd-hair)', borderRadius: 'var(--ar-radius)' }}>
                     <div className="flex items-start gap-2 mb-1.5">
-                      <div className="w-6 h-6 rounded-md flex items-center justify-center shrink-0 mt-0.5" style={{ background: colors.bg, color: colors.text }}>
+                      <div className="w-5 h-5 rounded flex items-center justify-center shrink-0 mt-0.5" style={{ color: colors.text }}>
                         {predictionIcon(pred.icon)}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h4 className="text-[13px] font-semibold text-foreground leading-tight">{pred.title}</h4>
+                        <h4 className="text-[12px] font-semibold" style={{ color: 'var(--ar-tx-1)' }}>{pred.title}</h4>
                       </div>
                     </div>
-                    <p className="text-[12px] leading-relaxed text-muted-foreground ml-8">{pred.body}</p>
-                    <div className="flex items-center gap-3 mt-2 ml-8">
-                      <div className="flex items-center gap-1">
-                        <div className="h-1.5 w-16 rounded-full bg-muted overflow-hidden">
-                          <div className="h-full rounded-full" style={{ width: `${pred.confidence}%`, background: colors.text }} />
-                        </div>
-                        <span className="text-[11px] font-mono tabular-nums" style={{ color: colors.text }}>{pred.confidence}%</span>
+                    <p className="text-[11px] leading-relaxed ml-7" style={{ color: 'var(--ar-tx-2)', lineHeight: '1.55' }}>{pred.body}</p>
+                    <div className="flex items-center gap-2 mt-2 ml-7">
+                      <div className="h-1.5 w-16 rounded-full overflow-hidden" style={{ background: 'var(--ar-bd-line)' }}>
+                        <div className="h-full rounded-full" style={{ width: `${pred.confidence}%`, background: colors.text }} />
                       </div>
-                      <span className="text-[10px] font-bold uppercase px-1.5 py-0.5 rounded" style={{ background: colors.bg, color: colors.text }}>
-                        {pred.impact}
+                      <span className="text-[10px] tabular-nums" style={{ fontFamily: "'Space Mono', monospace", color: 'var(--ar-tx-2)' }}>
+                        Atlas · {pred.confidence}%
                       </span>
                     </div>
                   </div>
@@ -446,19 +446,19 @@ function AtlasTab({ intel, station, stationNCRs, brainTab, setBrainTab, predicti
 
           {/* Hidden Patterns */}
           {intel.hiddenPatterns.length > 0 && (
-            <div className="px-4 py-3" style={{ borderBottom: '1px solid hsl(0,0%,92%)' }}>
+            <div className="px-4 py-3" style={{ borderBottom: '1px solid var(--ar-bd-hair)' }}>
               <div className="flex items-center gap-2 mb-3">
-                <Search className="w-4 h-4 text-primary" />
-                <span className="text-[12px] font-bold tracking-[0.1em] uppercase text-muted-foreground">Hidden Patterns</span>
+                <Search className="w-4 h-4" style={{ color: 'var(--ar-accent)' }} />
+                <span className="ar-mono-label">Hidden patterns</span>
               </div>
               <div className="space-y-3">
                 {intel.hiddenPatterns.map((pattern: any, i: number) => (
-                  <div key={i} className="bg-primary/5 rounded-lg p-3 border border-primary/10">
-                    <h4 className="text-[13px] font-semibold text-foreground mb-1">{pattern.title}</h4>
-                    <p className="text-[12px] leading-relaxed text-muted-foreground">{pattern.body}</p>
+                  <div key={i} className="p-3" style={{ background: 'var(--ar-accent-bg)', borderRadius: 'var(--ar-radius)', border: '1px solid var(--ar-bd-hair)' }}>
+                    <h4 className="text-[12px] font-semibold mb-1" style={{ color: 'var(--ar-tx-1)' }}>{pattern.title}</h4>
+                    <p className="text-[11px] leading-relaxed" style={{ color: 'var(--ar-tx-2)' }}>{pattern.body}</p>
                     <div className="flex items-center gap-1.5 mt-2">
-                      <BarChart3 className="w-3 h-3 text-primary" />
-                      <span className="text-[11px] text-primary font-medium">{pattern.dataPoints.toLocaleString()} data points analyzed</span>
+                      <BarChart3 className="w-3 h-3" style={{ color: 'var(--ar-accent)' }} />
+                      <span className="text-[10px] font-medium" style={{ color: 'var(--ar-accent)', fontFamily: "'Space Mono', monospace" }}>{pattern.dataPoints.toLocaleString()} data points</span>
                     </div>
                   </div>
                 ))}
@@ -468,25 +468,25 @@ function AtlasTab({ intel, station, stationNCRs, brainTab, setBrainTab, predicti
 
           {/* Audit Strategy */}
           <div className="px-4 py-3">
-            <span className="text-[12px] font-bold tracking-[0.1em] uppercase text-muted-foreground mb-3 block">Audit Strategy</span>
+            <span className="ar-mono-label block mb-3">Audit strategy</span>
             <div className="space-y-3">
               {intel.auditStrategy.map((step: any, i: number) => (
                 <div key={i}>
                   <div className="flex items-start gap-2.5">
-                    <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                      <span className="text-[11px] font-bold text-primary">{i + 1}</span>
+                    <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ background: 'var(--ar-accent-bg)', color: 'var(--ar-accent)' }}>
+                      <span className="text-[10px] font-bold" style={{ fontFamily: "'Space Mono', monospace" }}>{i + 1}</span>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h4 className="text-[13px] font-semibold text-foreground">{step.step}</h4>
-                      <p className="text-[12px] text-muted-foreground mt-0.5">{step.detail}</p>
+                      <h4 className="text-[12px] font-semibold" style={{ color: 'var(--ar-tx-1)' }}>{step.step}</h4>
+                      <p className="text-[11px] mt-0.5" style={{ color: 'var(--ar-tx-2)' }}>{step.detail}</p>
                       {step.evidenceRequired && (
-                        <div className="mt-1.5 bg-muted/60 rounded px-2 py-1.5">
-                          <span className="text-[11px] font-bold uppercase tracking-wide text-muted-foreground">{step.evidenceRequired}</span>
+                        <div className="mt-1.5 rounded px-2 py-1.5" style={{ background: 'var(--ar-bg-soft)' }}>
+                          <span className="ar-mono-label">{step.evidenceRequired}</span>
                         </div>
                       )}
                       {step.done && (
-                        <p className="text-[11px] text-primary font-medium mt-1.5">
-                          <span className="font-bold">Done when:</span> {step.done}
+                        <p className="text-[11px] font-medium mt-1.5" style={{ color: 'var(--ar-accent)' }}>
+                          <span className="font-bold">Done:</span> {step.done}
                         </p>
                       )}
                     </div>

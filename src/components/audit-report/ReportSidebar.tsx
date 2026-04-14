@@ -2,11 +2,11 @@ import { cn } from "@/lib/utils";
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import type { StationHealth } from "@/data/auditReportData";
 
-const healthDotColor: Record<StationHealth, string> = {
-  green: 'bg-accent',
-  amber: 'bg-warning',
-  red: 'bg-destructive',
-  grey: 'bg-[hsl(0,0%,45%)]',
+const healthDotClass: Record<StationHealth, string> = {
+  green: 'ar-dot ar-dot-pass',
+  amber: 'ar-dot ar-dot-warn',
+  red: 'ar-dot ar-dot-fail',
+  grey: 'ar-dot ar-dot-grey',
 };
 
 const stationSparklines: Record<number, number[]> = {
@@ -31,7 +31,7 @@ function SidebarSparkline({ data }: { data: number[] }) {
   const step = w / (data.length - 1);
   const points = data.map((v, i) => `${i * step},${h - ((v - min) / range) * h}`).join(' ');
   const lastVal = data[data.length - 1];
-  const color = lastVal >= 70 ? 'hsl(155, 24%, 55%)' : lastVal >= 50 ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)';
+  const color = lastVal >= 70 ? 'var(--ar-pass)' : lastVal >= 50 ? 'var(--ar-warn)' : 'var(--ar-fail)';
 
   return (
     <svg width={w} height={h} className="shrink-0 opacity-60">
@@ -118,8 +118,8 @@ interface ReportSidebarProps {
 function SectionGroup({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="mb-1">
-      <div className="px-3 pt-5 pb-2">
-        <span className="text-[12px] font-bold tracking-[0.15em] uppercase text-muted-foreground">
+      <div className="px-3 pt-5 pb-2" style={{ borderTop: '1px solid var(--ar-bd-hair)' }}>
+        <span className="ar-mono-label">
           {label}
         </span>
       </div>
@@ -142,6 +142,12 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
     const isActive = activeStation === targetStation;
     const isCustomId = !item.id.startsWith('station-');
 
+    const sectionNum = item.index <= 4
+      ? `${item.index}.0`
+      : item.index <= 11
+      ? `5.${item.index - 4}`
+      : `${item.index - 6}.0`;
+
     return (
       <div key={item.index}>
         <button
@@ -153,46 +159,50 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
             }
           }}
           className={cn(
-            "flex items-center gap-2.5 w-full px-3 py-2 text-left transition-all duration-150 border-l-2",
-            isActive
-              ? "border-primary bg-primary/10 text-primary"
-              : "border-transparent text-muted-foreground hover:text-foreground hover:bg-muted/50"
+            "ar-sidebar-item flex items-center gap-2.5 w-full px-3 py-2 text-left border-l-2",
+            isActive ? "active" : "border-transparent"
           )}
         >
-          <span className="text-[14px] font-medium tabular-nums w-6 shrink-0" style={{ color: isActive ? undefined : 'hsl(0,0%,60%)' }}>
-            {item.index <= 4
-              ? `${item.index}.0`
-              : item.index <= 11
-              ? `5.${item.index - 4}`
-              : `${item.index - 6}.0`}
+          <span className="text-[12px] font-medium tabular-nums w-6 shrink-0" style={{ 
+            fontFamily: "'Space Mono', monospace",
+            color: isActive ? 'var(--ar-accent)' : 'var(--ar-tx-4)' 
+          }}>
+            {sectionNum}
           </span>
           <span className={cn(
-            "text-[14px] flex-1 truncate",
+            "text-[12px] flex-1 truncate",
             isActive ? "font-semibold" : "font-normal"
           )}>
             {item.label}
           </span>
           {item.health && (
-            <div className="shrink-0">
-              <div className={cn("w-2.5 h-2.5 rounded-full", healthDotColor[item.health])} />
-            </div>
+            <div className={cn(
+              healthDotClass[item.health],
+              isActive && 'active'
+            )} />
           )}
         </button>
 
         {/* Sub-items */}
         {item.children && isActive && (
-          <div className="ml-9 border-l border-border">
+          <div className="ml-9" style={{ borderLeft: '1px solid var(--ar-bd-hair)' }}>
             {item.children.map((child, ci) => (
               <button
                 key={child.id}
                 className={cn(
-                  "flex items-center gap-2 w-full px-3 py-1.5 text-left text-[13px] transition-colors",
+                  "flex items-center gap-2 w-full px-3 py-1.5 text-left text-[11px] transition-colors",
                   ci === 0
-                    ? "text-primary font-medium bg-primary/10"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "font-medium"
+                    : "hover:text-foreground"
                 )}
+                style={{
+                  color: ci === 0 ? 'var(--ar-accent)' : 'var(--ar-tx-3)',
+                  background: ci === 0 ? 'var(--ar-accent-bg)' : 'transparent',
+                }}
               >
-                <span className="tabular-nums w-8 text-muted-foreground">5.3.{ci + 1}</span>
+                <span className="tabular-nums w-8" style={{ fontFamily: "'Space Mono', monospace", color: 'var(--ar-tx-4)', fontSize: '10px' }}>
+                  5.3.{ci + 1}
+                </span>
                 <span>{child.label}</span>
               </button>
             ))}
@@ -204,33 +214,26 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
 
   return (
     <aside
-      className={cn("flex flex-col overflow-y-auto bg-card border-r border-border", className)}
+      className={cn("ar-sidebar flex flex-col overflow-y-auto", className)}
     >
       {/* Document outline header */}
-      <div className="px-3 py-4 border-b border-border">
-        <div className="flex items-center gap-2 mb-1.5">
-          <div className="w-5 h-5 bg-primary flex items-center justify-center">
-            <span className="text-white text-[11px] font-bold">AI</span>
-          </div>
-          <span className="text-[12px] font-bold tracking-[0.15em] uppercase text-muted-foreground">
-            ScanPro+
-          </span>
-        </div>
-        <h3 className="text-[15px] font-semibold text-foreground">Process audit report</h3>
-        <p className="text-[13px] mt-0.5 text-muted-foreground">
-          47 pages · {totalSections} sections · {ncrCount} ncrs
+      <div className="px-3 py-4" style={{ borderBottom: '1px solid var(--ar-bd-hair)' }}>
+        <span className="ar-mono-label block mb-2">Document outline</span>
+        <h3 className="text-[13px] font-semibold" style={{ color: 'var(--ar-tx-1)' }}>Process audit report</h3>
+        <p className="text-[11px] mt-0.5" style={{ color: 'var(--ar-tx-3)' }}>
+          47 pages · {totalSections} sections · {ncrCount} NCRs
         </p>
       </div>
 
-      <SectionGroup label="Front Matter">
+      <SectionGroup label="Front matter">
         {frontItems.map(renderItem)}
       </SectionGroup>
 
-      <SectionGroup label="Process Audit Findings">
+      <SectionGroup label="Process audit findings">
         {findingsItems.map(renderItem)}
       </SectionGroup>
 
-      <SectionGroup label="Back Matter">
+      <SectionGroup label="Back matter">
         {backItems.map(renderItem)}
       </SectionGroup>
     </aside>
