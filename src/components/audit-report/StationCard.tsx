@@ -91,7 +91,7 @@ function AIPatternsList({ patterns }: { patterns: AIPattern[] }) {
   return (
     <div className="mt-3 space-y-2">
       <span className="text-[12px] uppercase tracking-[0.12em] font-semibold flex items-center gap-1.5" style={{ color: 'hsl(0,0%,50%)' }}>
-        <Zap className="w-3 h-3 text-primary" /> AI-Identified Patterns & Predictions
+        <Sparkles className="w-3 h-3 text-primary" /> AI-Identified Patterns & Predictions
       </span>
       {patterns.map(p => {
         const color = impactRatingColor[p.impact];
