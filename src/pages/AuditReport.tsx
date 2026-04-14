@@ -356,7 +356,7 @@ function AuditReportInner() {
           {/* Scrollable content */}
           <div className="flex-1 flex overflow-hidden">
             <div ref={contentRef} className="flex-1 overflow-y-auto">
-              <div className={cn("mx-auto", depth === 'executive' ? "max-w-[1100px] px-4 md:px-6" : "max-w-[960px] px-4 md:px-8")}>
+              <div className={cn("mx-auto", depth === 'executive' ? "max-w-[1400px] px-6 md:px-12 lg:px-16" : "max-w-[1200px] px-6 md:px-10 lg:px-14")}>
                 <ReportHero
                   verdict={reportMeta.verdict}
                   verdictLabel={reportMeta.verdictLabel}
@@ -440,36 +440,79 @@ function AuditReportInner() {
                   </>
                 ) : (
                   <>
-                    <AtlasRiskScore depth={depth} />
+                    <div className="mt-12">
+                      <AtlasRiskScore depth={depth} />
+                    </div>
 
-                    <section className="py-16 md:py-24">
+                    {/* ── Section Divider ── */}
+                    <div className="my-14 md:my-20 border-t border-border/60" />
+
+                    <section className="py-8 md:py-12">
                       <KPIBand kpis={kpis} depth={depth} />
                     </section>
 
-                    <ExecutiveRadarCharts depth={depth} />
-                    <AuditScopeSection depth={depth} />
-                    <AnomalyCallouts depth={depth} />
+                    {/* ── Section Divider ── */}
+                    <div className="my-14 md:my-20 border-t border-border/60" />
 
-                    <div className="pb-16 space-y-16 md:space-y-24 mt-16">
+                    <ExecutiveRadarCharts depth={depth} />
+
+                    {/* ── Section Divider ── */}
+                    <div className="my-14 md:my-20 border-t border-border/60" />
+
+                    <AuditScopeSection depth={depth} />
+
+                    <div className="mt-10">
+                      <AnomalyCallouts depth={depth} />
+                    </div>
+
+                    {/* ── Section Divider ── */}
+                    <div className="my-14 md:my-20 border-t border-border/60" />
+
+                    <div className="pb-24 space-y-16 md:space-y-24">
                       {displayStations.map((station) => (
                         <StationCard key={station.index} station={station} depth={depth} totalStations={14} />
                       ))}
+
+                      {/* ── Section Divider ── */}
+                      <div className="border-t border-border/60" />
+
                       <NCRRegister ncrs={allNCRs} depth={depth} />
+
+                      <div className="border-t border-border/60" />
+
                       <EvidenceTraceabilityMatrix depth={depth} />
+
+                      <div className="border-t border-border/60" />
+
                       <CSRComplianceMapping depth={depth} />
+
+                      <div className="border-t border-border/60" />
+
                       <FindingSankeyDiagram />
                       <CostWaterfallChart />
+
+                      <div className="border-t border-border/60" />
+
                       <CAPAGantt />
                       <AtlasIntelligence />
+
+                      <div className="border-t border-border/60" />
+
                       <div id="machine-park">
                         <OEEGaugeCluster />
                         <div className="mt-16">
                           <MachineParkIntelligence />
                         </div>
                       </div>
+
+                      <div className="border-t border-border/60" />
+
                       <DelayForecast />
                       <RecommendationSection />
                       <EvidenceVault />
+
+                      <div className="border-t border-border/60" />
+
                       <DigitalSignatureBlock />
                     </div>
                   </>
