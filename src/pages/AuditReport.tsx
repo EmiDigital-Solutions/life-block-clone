@@ -86,6 +86,12 @@ function AuditReportInner() {
   
   const [readingProgress, setReadingProgress] = useState(0);
   const [reviewedStations, setReviewedStations] = useState<Set<number>>(new Set());
+  const [dashboardOpen, setDashboardOpen] = useState(false);
+  const [checklistOpen, setChecklistOpen] = useState(false);
+  const [briefOpen, setBriefOpen] = useState(false);
+  const [guideOpen, setGuideOpen] = useState(false);
+  const [trendOpen, setTrendOpen] = useState(false);
+  const [pfmeaNCR, setPfmeaNCR] = useState<NCR | null>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
 
