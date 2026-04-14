@@ -1,5 +1,5 @@
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
-
+import AtlasTooltip from "./AtlasTooltip";
 /**
  * VDA 6.3 Process Element Scoring Table
  * Formal tabular layout matching real VDA 6.3:2023 audit reports
