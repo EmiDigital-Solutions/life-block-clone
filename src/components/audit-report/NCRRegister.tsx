@@ -35,13 +35,13 @@ export default function NCRRegister({ ncrs, depth = 'standard' }: NCRRegisterPro
   if (depth === 'executive') {
     return (
       <section id="station-10" className="scroll-mt-20">
-        <div className="border border-border">
-          <div className="px-4 py-2.5 flex items-center justify-between" style={{ background: 'hsl(220,20%,14%)' }}>
+        <div className="border border-border rounded-lg overflow-hidden">
+          <div className="px-4 py-2.5 flex items-center justify-between bg-muted/40 border-b border-border">
             <div className="flex items-center gap-3">
-              <div className="w-2.5 h-2.5 bg-destructive" />
-              <span className="text-[11px] font-bold tracking-[0.12em] uppercase text-white">NCR Register</span>
+              <div className="w-2.5 h-2.5 rounded-full bg-destructive" />
+              <span className="text-[11px] font-bold tracking-[0.12em] uppercase text-foreground">NCR Register</span>
             </div>
-            <span className="text-[11px] font-mono font-bold text-white/70">{ncrs.length} NCRs · {majorCount} Major</span>
+            <span className="text-[11px] font-mono font-bold text-muted-foreground">{ncrs.length} NCRs · {majorCount} Major</span>
           </div>
           <div className="bg-card divide-y divide-border/50">
             {/* Table header */}

@@ -67,20 +67,20 @@ export default function VDA63ScoringTable() {
 
   return (
     <section className="scroll-mt-20 mt-4">
-      <div className="border border-border">
+      <div className="border border-border rounded-lg overflow-hidden">
         {/* Header */}
-        <div className="px-4 py-3 flex items-center justify-between" style={{ background: 'hsl(220,20%,14%)' }}>
+        <div className="px-4 py-3 flex items-center justify-between bg-muted/40 border-b border-border">
           <div className="flex items-center gap-3">
-            <span className="text-[11px] font-bold tracking-[0.12em] uppercase text-white">
+            <span className="text-[11px] font-bold tracking-[0.12em] uppercase text-foreground">
               VDA 6.3 Process Audit — Element Scoring
             </span>
           </div>
           <div className="flex items-center gap-4">
-            <span className="text-[10px] font-mono text-white/60">VDA 6.3:2023</span>
+            <span className="text-[10px] font-mono text-muted-foreground">VDA 6.3:2023</span>
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-bold text-white/60 uppercase tracking-wider">Overall:</span>
+              <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Overall:</span>
               <span className="text-[18px] font-bold font-mono" style={{ color: overall.color }}>{Math.round(iatfWeightedScore)}%</span>
-              <span className="text-[14px] font-bold px-2 py-0.5" style={{ background: overall.bg, color: overall.color }}>
+              <span className="text-[14px] font-bold px-2 py-0.5 rounded" style={{ background: overall.bg, color: overall.color }}>
                 Grade {overall.grade}
               </span>
             </div>
@@ -101,7 +101,7 @@ export default function VDA63ScoringTable() {
         {/* Scoring table */}
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr style={{ background: 'hsl(220,14%,92%)' }}>
+            <tr className="bg-muted/20">
               <th className="px-4 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border w-[140px]">Element</th>
               <th className="px-3 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l">Score</th>
               <th className="px-3 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l w-[60px]">Weight</th>
@@ -169,7 +169,7 @@ export default function VDA63ScoringTable() {
             })}
           </tbody>
           <tfoot>
-            <tr style={{ background: 'hsl(220,14%,92%)' }}>
+            <tr className="bg-muted/30">
               <td className="px-4 py-2.5 text-[11px] font-bold uppercase tracking-wider text-foreground border-t border-border">
                 Overall Result
               </td>
