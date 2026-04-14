@@ -4,6 +4,8 @@
  */
 import { useState } from "react";
 import { X, LayoutDashboard, AlertTriangle, CheckCircle2, Clock, TrendingDown, Volume2, Loader2 } from "lucide-react";
+
+const SW = 1.5;
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 
 interface TrafficLightDashboardProps {

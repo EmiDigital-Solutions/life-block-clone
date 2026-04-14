@@ -1,4 +1,5 @@
 import { Camera, FileText, Video, Clock, Link2 } from "lucide-react";
+const SW = 1.5;
 
 const evidenceItems = [
   { id: 'EVD-001', type: 'photo', name: 'CNC Machine #2 — No calibration sticker', station: 5, ncr: 'NCR-0003', time: '09:14' },

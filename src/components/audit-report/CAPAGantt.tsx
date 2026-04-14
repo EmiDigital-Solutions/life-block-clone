@@ -1,5 +1,6 @@
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { User } from "lucide-react";
+const SW = 1.5;
 
 interface CAPAItem {
   id: string;

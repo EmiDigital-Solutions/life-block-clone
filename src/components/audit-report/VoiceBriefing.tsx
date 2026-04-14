@@ -4,6 +4,7 @@
  */
 import { useState, useCallback } from "react";
 import { Volume2, VolumeX, Loader2 } from "lucide-react";
+const SW = 1.5;
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 

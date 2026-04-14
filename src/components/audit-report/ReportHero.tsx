@@ -2,7 +2,9 @@ import { cn } from "@/lib/utils";
 import ExecutiveRadarCharts from "@/components/audit-report/ExecutiveRadarCharts";
 import type { VerdictType, DepthLevel } from "@/data/auditReportData";
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
-import { Shield, AlertTriangle, Clock, TrendingDown, ChevronDown, FileCheck } from "lucide-react";
+import { AlertTriangle, CheckCircle2, Clock, TrendingDown, ChevronDown, FileCheck } from "lucide-react";
+
+const SW = 1.5;
 
 const verdictConfig: Record<VerdictType, { label: string; color: string; accent: string; bg: string }> = {
   go: { label: 'APPROVED', color: 'hsl(var(--accent))', accent: 'hsl(155, 24%, 45%)', bg: 'hsl(var(--accent) / 0.08)' },
@@ -221,8 +223,8 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
           {/* Dark header band */}
           <div className="px-8 py-4 flex items-center gap-3" style={{ background: 'hsl(220,20%,12%)' }}>
             <div className="w-8 h-8 flex items-center justify-center" style={{ background: `${config.color}20` }}>
-              {verdict === 'go' ? <Shield className="w-4 h-4" style={{ color: config.color }} /> :
-               <AlertTriangle className="w-4 h-4" style={{ color: config.color }} />}
+              {verdict === 'go' ? <CheckCircle2 className="w-4 h-4" strokeWidth={SW} style={{ color: config.color }} /> :
+               <AlertTriangle className="w-4 h-4" strokeWidth={SW} style={{ color: config.color }} />}
             </div>
             <div className="text-[13px] font-bold tracking-[0.15em] uppercase" style={{ color: config.color }}>
               Verdict

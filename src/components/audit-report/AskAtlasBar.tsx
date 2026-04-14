@@ -5,6 +5,7 @@
 
 import { useState, useRef, useCallback, useEffect } from "react";
 import { Sparkles, Send, X, Loader2, ChevronUp, ChevronDown } from "lucide-react";
+const SW = 1.5;
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";

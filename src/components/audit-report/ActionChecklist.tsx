@@ -4,6 +4,8 @@
  */
 import { useState, useMemo } from "react";
 import { X, CheckSquare, Square, Clock, User, ChevronDown, ChevronUp, ClipboardList } from "lucide-react";
+
+const SW = 1.5;
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 
 interface ActionChecklistProps {

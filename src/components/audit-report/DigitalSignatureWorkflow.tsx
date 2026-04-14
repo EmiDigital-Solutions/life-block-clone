@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { CheckCircle2, Circle, Clock, Shield, User, Fingerprint } from "lucide-react";
+import { CheckCircle2, Circle, Clock, User, Fingerprint } from "lucide-react";
+const SW = 1.5;
 
 interface SignatureStep {
   role: string;
@@ -55,7 +56,7 @@ export default function DigitalSignatureWorkflow() {
                     <span className="text-[12px] font-mono text-muted-foreground">{step.timestamp}</span>
                     {step.hash && (
                       <span className="text-[12px] font-mono text-grey-mid flex items-center gap-1">
-                        <Shield className="w-3 h-3" /> {step.hash}
+                        <Fingerprint className="w-3 h-3" strokeWidth={SW} /> {step.hash}
                       </span>
                     )}
                   </div>

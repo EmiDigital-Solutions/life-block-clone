@@ -4,6 +4,7 @@ import {
   ChevronDown, ChevronUp, Sparkles,
   CheckCircle2, AlertTriangle, XCircle, Settings2
 } from "lucide-react";
+const SW = 1.5;
 
 /* ── Machine data ── */
 interface MachineSpec {

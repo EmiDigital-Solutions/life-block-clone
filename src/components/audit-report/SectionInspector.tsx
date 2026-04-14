@@ -4,9 +4,11 @@ import type { Station, NCR } from "@/data/auditReportData";
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { 
   X, Sparkles, FileText, Monitor, Clock, AlertTriangle, TrendingUp, 
-  TrendingDown, Eye, CircleAlert, Lightbulb, BarChart3, Camera,
+  TrendingDown, Eye, AlertTriangle as WarnIcon, Lightbulb, BarChart3, Camera,
   Brain, Crosshair, Search
 } from "lucide-react";
+
+const SW = 1.5;
 
 type TabId = 'atlas' | 'evidence' | 'equipment' | 'timeline';
 
@@ -198,7 +200,7 @@ export default function SectionInspector({ activeStation, isOpen, onClose }: Sec
   const predictionIcon = (icon: string) => {
     switch (icon) {
       case 'trend': return <TrendingUp className="w-4 h-4" />;
-      case 'alert': return <CircleAlert className="w-4 h-4" />;
+      case 'alert': return <AlertTriangle className="w-4 h-4" strokeWidth={SW} />;
       case 'eye': return <Eye className="w-4 h-4" />;
       case 'target': return <Crosshair className="w-4 h-4" />;
       default: return <Lightbulb className="w-4 h-4" />;

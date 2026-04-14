@@ -1,5 +1,6 @@
 import type { KPITile, DepthLevel } from "@/data/auditReportData";
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
+const SW = 1.5;
 import AtlasTooltip from "./AtlasTooltip";
 
 const trendIcon = { up: TrendingUp, down: TrendingDown, flat: Minus };

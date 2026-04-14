@@ -4,6 +4,8 @@
  */
 import { useState } from "react";
 import { X, BookOpenCheck, Sparkles, Clock, ChevronRight, User, Wrench, Briefcase } from "lucide-react";
+
+const SW = 1.5;
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 
 interface SmartReadingGuideProps {
