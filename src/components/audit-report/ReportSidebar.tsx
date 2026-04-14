@@ -140,7 +140,7 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
   const renderItem = (item: SidebarItem) => {
     const targetStation = scrollMap[item.index] || 1;
     const isActive = activeStation === targetStation;
-    const isCustomId = !item.id.startsWith('station-') && item.id !== 'signatures' && item.id !== 'revision';
+    const isCustomId = !item.id.startsWith('station-');
 
     return (
       <div key={item.index}>
