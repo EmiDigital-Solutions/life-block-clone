@@ -126,12 +126,20 @@ export default function VDA63ScoringTable() {
                     <div className="text-[12px] text-muted-foreground">{p.process.split(' — ')[1]}</div>
                   </td>
                   <td className="px-3 py-2.5 border-l border-border/60">
-                    <div className="flex items-center gap-2">
-                      <div className="w-[100px] h-[8px] bg-muted overflow-hidden">
-                        <div className="h-full transition-all" style={{ width: `${p.score}%`, background: cls.color }} />
+                    <AtlasTooltip
+                      metric={p.process}
+                      value={`${p.score}%`}
+                      insight={`${questions.length} questions assessed. ${questions.filter(q => q.score <= 4).length} scored ≤4 (requiring mandatory CAPA). ${questions.filter(q => q.star && q.score === 0).length > 0 ? 'DEGRADATION TRIGGERED: Star question scored 0 — element result forced to 0%.' : questions.filter(q => q.star).length > 0 ? `${questions.filter(q => q.star).length} star question(s) — all passed degradation check.` : ''}`}
+                      benchmark={`Grade ${cls.grade} (${cls.label}). Weight: ${(p.weight * 100).toFixed(0)}% of total score. Weighted contribution: ${weighted} pts.`}
+                      severity={p.score >= 80 ? 'info' : p.score >= 60 ? 'warning' : 'critical'}
+                    >
+                      <div className="flex items-center gap-2 cursor-help">
+                        <div className="w-[100px] h-[8px] bg-muted overflow-hidden">
+                          <div className="h-full transition-all" style={{ width: `${p.score}%`, background: cls.color }} />
+                        </div>
+                        <span className="text-[15px] font-bold font-mono tabular-nums" style={{ color: cls.color }}>{p.score}%</span>
                       </div>
-                      <span className="text-[15px] font-bold font-mono tabular-nums" style={{ color: cls.color }}>{p.score}%</span>
-                    </div>
+                    </AtlasTooltip>
                   </td>
                   <td className="px-3 py-2.5 border-l border-border/60 text-[13px] font-mono text-muted-foreground text-center">
                     {(p.weight * 100).toFixed(0)}%
