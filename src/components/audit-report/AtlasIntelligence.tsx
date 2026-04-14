@@ -101,6 +101,16 @@ export default function AtlasIntelligence() {
         <span className="text-[13px] px-2.5 py-1 rounded-full uppercase tracking-wider font-semibold bg-primary/10 text-primary">
           <Sparkles className="w-3 h-3 inline mr-1" />AI
         </span>
+        <button
+          onClick={toggleVoice}
+          className={cn(
+            "flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider transition-colors cursor-pointer rounded ml-2",
+            speaking ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-muted/80"
+          )}
+        >
+          {speaking ? <VolumeX className="w-3 h-3" /> : <Volume2 className="w-3 h-3" />}
+          {speaking ? 'Stop' : 'Brief'}
+        </button>
       </div>
 
       <p className="text-[14px] text-muted-foreground max-w-[640px] leading-relaxed">
