@@ -79,7 +79,7 @@ ${stationSummary}
 NCR REGISTER:
 ${ncrSummary}
 
-KPIs: Quality ${kpis.quality}%, Delivery ${kpis.delivery}%, Response ${kpis.response}h`;
+KPIs: ${kpis.map((k: any) => `${k.label}: ${k.value}`).join(', ')}`;
   }, [reportMeta, allNCRs, stations, kpis, iatfWeightedScore, activeStation]);
 
   const sendMessage = useCallback(async (text: string) => {
