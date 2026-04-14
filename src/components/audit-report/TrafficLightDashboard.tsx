@@ -3,7 +3,7 @@
  * Single-screen: Verdict → Top 3 Risks → Required Conditions → Sign-off
  */
 import { useState } from "react";
-import { X, Shield, AlertTriangle, CheckCircle2, Clock, TrendingDown, Volume2, Loader2, BarChart3 } from "lucide-react";
+import { X, LayoutDashboard, AlertTriangle, CheckCircle2, Clock, TrendingDown, Volume2, Loader2 } from "lucide-react";
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 
 interface TrafficLightDashboardProps {
@@ -68,7 +68,7 @@ export default function TrafficLightDashboard({ open, onClose }: TrafficLightDas
         <div className="flex items-center justify-between px-10 py-6 border-b border-border shrink-0">
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-              <Shield className="w-5 h-5 text-primary" />
+              <LayoutDashboard className="w-5 h-5 text-primary" strokeWidth={1.75} />
             </div>
             <div>
               <h2 className="text-[22px] font-bold text-foreground tracking-tight">Quick Decision Dashboard</h2>

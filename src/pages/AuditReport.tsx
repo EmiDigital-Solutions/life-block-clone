@@ -329,7 +329,7 @@ function AuditReportInner() {
                         : "text-muted-foreground hover:bg-muted hover:text-foreground"
                     )}
                   >
-                    <Icon className="w-3.5 h-3.5" />
+                    <Icon className="w-4 h-4" strokeWidth={1.75} />
                     {label}
                   </button>
                 ))}
