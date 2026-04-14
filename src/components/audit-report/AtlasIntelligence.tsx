@@ -104,12 +104,12 @@ export default function AtlasIntelligence() {
         <button
           onClick={toggleVoice}
           className={cn(
-            "flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider transition-colors cursor-pointer rounded ml-2",
-            speaking ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-muted/80"
+            "flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-semibold uppercase tracking-wider transition-colors cursor-pointer rounded-lg ml-2 border",
+            speaking ? "bg-primary text-white border-primary" : "bg-primary/10 text-primary border-primary/20 hover:bg-primary/20"
           )}
         >
-          {speaking ? <VolumeX className="w-3 h-3" /> : <Volume2 className="w-3 h-3" />}
-          {speaking ? 'Stop' : 'Brief'}
+          {speaking ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
+          {speaking ? 'Stop' : '▶ Voice Brief'}
         </button>
       </div>
 
