@@ -1,5 +1,5 @@
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
-import { CircleAlert, TrendingDown } from "lucide-react";
+import { AlertTriangle, TrendingDown } from "lucide-react";
 
 const severityColor: Record<string, string> = {
   critical: 'hsl(0, 48%, 46%)',
@@ -28,7 +28,7 @@ export default function AnomalyCallouts({ depth = 'standard' }: { depth?: import
           <div className="bg-card divide-y divide-border/50">
             {topAnomalies.map(a => (
               <div key={a.id} className="flex items-center gap-3 px-4 py-2">
-                <CircleAlert className="w-3.5 h-3.5 shrink-0" style={{ color: severityColor[a.severity] }} />
+                <AlertTriangle className="w-3.5 h-3.5 shrink-0" strokeWidth={1.5} style={{ color: severityColor[a.severity] }} />
                 <span className="text-[11px] font-bold uppercase px-1 py-0.5" style={{ color: severityColor[a.severity], background: `${severityColor[a.severity]}10` }}>{a.severity}</span>
                 <span className="text-[14px] font-semibold text-foreground flex-1 truncate">{a.title}</span>
                 <span className="text-[12px] font-mono text-muted-foreground">{a.confidence}%</span>
@@ -61,7 +61,7 @@ export default function AnomalyCallouts({ depth = 'standard' }: { depth?: import
             <div key={anomaly.id} className="flex gap-6 p-6 bg-card shadow-sm">
               <div className="flex flex-col items-center gap-2 shrink-0">
                 <div className="w-10 h-10 flex items-center justify-center" style={{ background: `${color}10` }}>
-                  <CircleAlert className="w-5 h-5" style={{ color }} />
+                  <AlertTriangle className="w-5 h-5" strokeWidth={1.5} style={{ color }} />
                 </div>
                 <span className="text-[11px] font-bold uppercase tracking-wider" style={{ color }}>{anomaly.severity}</span>
                 <span className="text-[13px] font-mono font-bold text-muted-foreground">{anomaly.confidence}%</span>
@@ -88,7 +88,7 @@ export default function AnomalyCallouts({ depth = 'standard' }: { depth?: import
           {criticalSignals.map(signal => (
             <div key={signal.signal} className="p-5 bg-card">
               <div className="flex items-center gap-2 mb-2">
-                <TrendingDown className="w-4 h-4 text-destructive" />
+                <TrendingDown className="w-4 h-4 text-destructive" strokeWidth={1.5} />
                 <span className="text-[12px] font-bold uppercase tracking-wider text-destructive">Critical Signal</span>
               </div>
               <p className="text-[14px] font-medium text-foreground">{signal.signal}</p>
