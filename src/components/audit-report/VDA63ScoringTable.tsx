@@ -20,7 +20,7 @@ const degradationRules = [
 ];
 
 // VDA 6.3 question-level data for each process element
-const vdaQuestions: Record<string, { id: string; question: string; score: number; max: number; notes: string }[]> = {
+const vdaQuestions: Record<string, { id: string; question: string; score: number; max: number; notes: string; star?: boolean }[]> = {
   'P1': [
     { id: 'P1.1', question: 'Is the supplier management system established for external provided products/services?', score: 8, max: 10, notes: 'System established. Matrix covers 42 suppliers.' },
     { id: 'P1.2', question: 'Are customer requirements considered in the potential analysis?', score: 8, max: 10, notes: 'BMW requirements mapped.' },
@@ -41,11 +41,11 @@ const vdaQuestions: Record<string, { id: string; question: string; score: number
   'P5': [
     { id: 'P5.1', question: 'Are only approved and released materials used for production?', score: 8, max: 10, notes: 'SAP release workflow enforced.' },
     { id: 'P5.2', question: 'Are production materials handled appropriately?', score: 8, max: 10, notes: 'Proper handling observed.' },
-    { id: 'P5.3', question: 'Is the equipment/tooling suitable to ensure product requirements?', score: 4, max: 10, notes: 'CNC #2, #4 out of calibration. Boring bar at 123% life.' },
-    { id: 'P5.4', question: 'Are the production processes controlled?', score: 4, max: 10, notes: 'Cpk 0.98 on bore ID — process not capable.' },
+    { id: 'P5.3*', question: 'Is the equipment/tooling suitable to ensure product requirements?', score: 4, max: 10, notes: 'CNC #2, #4 out of calibration. Boring bar at 123% life.', star: true },
+    { id: 'P5.4*', question: 'Are the production processes controlled?', score: 4, max: 10, notes: 'Cpk 0.98 on bore ID — process not capable.', star: true },
     { id: 'P5.5', question: 'Is the effectiveness of production monitored?', score: 6, max: 10, notes: 'OEE tracked but not displayed real-time.' },
     { id: 'P5.6', question: 'Can traceability be ensured during production?', score: 8, max: 10, notes: 'Full lot traceability via SAP.' },
-    { id: 'P5.7', question: 'Are nonconforming products segregated and managed?', score: 4, max: 10, notes: 'Red bin system in place but quarantine area unmarked.' },
+    { id: 'P5.7*', question: 'Are nonconforming products segregated and managed?', score: 4, max: 10, notes: 'Red bin system in place but quarantine area unmarked.', star: true },
   ],
   'P6': [
     { id: 'P6.1', question: 'Does the organization determine the requirements of customers?', score: 10, max: 10, notes: 'BMW CSR fully mapped.' },
@@ -55,7 +55,7 @@ const vdaQuestions: Record<string, { id: string; question: string; score: number
   ],
   'P7': [
     { id: 'P7.1', question: 'Is a process for continual improvement established?', score: 6, max: 10, notes: 'CI process exists. Limited Kaizen activity.' },
-    { id: 'P7.2', question: 'Are corrective and preventive actions implemented effectively?', score: 4, max: 10, notes: 'CAPA closure rate 62.5%. 3 overdue.' },
+    { id: 'P7.2*', question: 'Are corrective and preventive actions implemented effectively?', score: 4, max: 10, notes: 'CAPA closure rate 62.5%. 3 overdue.', star: true },
     { id: 'P7.3', question: 'Are lessons learned systematically documented?', score: 6, max: 10, notes: 'Lessons learned database exists. Inconsistent use.' },
     { id: 'P7.4', question: 'Is internal audit planning risk-based?', score: 6, max: 10, notes: 'Audit plan exists. Risk weighting weak.' },
   ],
@@ -143,12 +143,15 @@ export default function VDA63ScoringTable() {
                         return (
                           <div key={q.id} className="group relative">
                             <div
-                              className="w-5 h-5 flex items-center justify-center text-[8px] font-bold font-mono border"
+                              className={`w-5 h-5 flex items-center justify-center text-[8px] font-bold font-mono border ${q.star ? 'ring-1 ring-warning ring-offset-1' : ''}`}
                               style={{ background: qCls.bg, color: qCls.color, borderColor: `${qCls.color}40` }}
-                              title={`${q.id}: ${q.score}/${q.max} — ${q.notes}`}
+                              title={`${q.id}${q.star ? ' ★ STAR QUESTION' : ''}: ${q.score}/${q.max} — ${q.notes}`}
                             >
                               {q.score}
                             </div>
+                            {q.star && (
+                              <span className="absolute -top-1.5 -right-1.5 text-[7px] text-warning font-bold">★</span>
+                            )}
                           </div>
                         );
                       })}

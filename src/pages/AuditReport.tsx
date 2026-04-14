@@ -26,6 +26,11 @@ import CAPAGantt from "@/components/audit-report/CAPAGantt";
 import StationHeatmap from "@/components/audit-report/StationHeatmap";
 import { Menu, X, Sparkles, AlertTriangle, Clock, Search } from "lucide-react";
 import VDA63ScoringTable from "@/components/audit-report/VDA63ScoringTable";
+import DocumentControlHeader from "@/components/audit-report/DocumentControlHeader";
+import NormativeReferences from "@/components/audit-report/NormativeReferences";
+import EvidenceTraceabilityMatrix from "@/components/audit-report/EvidenceTraceabilityMatrix";
+import CSRComplianceMapping from "@/components/audit-report/CSRComplianceMapping";
+import DigitalSignatureBlock from "@/components/audit-report/DigitalSignatureBlock";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Navigation from "@/components/Navigation";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -337,7 +342,13 @@ function AuditReportInner() {
 
                 {depth === 'executive' ? (
                   <>
-                    {/* VDA 6.3 structured document flow */}
+                    {/* §0 Document Control */}
+                    <div className="space-y-3 mt-4">
+                      <DocumentControlHeader />
+                      <NormativeReferences />
+                    </div>
+
+                    {/* §1 Audit Scope & VDA Scoring */}
                     <AuditScopeSection depth={depth} />
                     <VDA63ScoringTable />
 
@@ -347,7 +358,10 @@ function AuditReportInner() {
 
                     <AnomalyCallouts depth={depth} />
 
-                    <div className="space-y-3 mt-4 pb-16">
+                    {/* §2 CSR Compliance */}
+                    <CSRComplianceMapping depth="executive" />
+
+                    <div className="space-y-3 mt-4">
                       {/* §3–§9 Station findings */}
                       {displayStations.map((station) => (
                         <StationCard key={station.index} station={station} depth={depth} totalStations={14} />
@@ -356,10 +370,16 @@ function AuditReportInner() {
                       {/* §10 NCR Register */}
                       <NCRRegister ncrs={allNCRs} depth={depth} />
 
-                      {/* §11 Appendices */}
+                      {/* §11 Evidence Traceability */}
+                      <EvidenceTraceabilityMatrix depth="executive" />
+
+                      {/* §12 Appendices */}
                       <FindingSankeyDiagram depth="executive" />
                       <CostWaterfallChart depth="executive" />
                       <OEEGaugeCluster depth="executive" />
+
+                      {/* §13 Approval & Sign-Off */}
+                      <DigitalSignatureBlock />
                     </div>
                   </>
                 ) : (
@@ -379,6 +399,8 @@ function AuditReportInner() {
                         <StationCard key={station.index} station={station} depth={depth} totalStations={14} />
                       ))}
                       <NCRRegister ncrs={allNCRs} depth={depth} />
+                      <EvidenceTraceabilityMatrix depth={depth} />
+                      <CSRComplianceMapping depth={depth} />
                       <FindingSankeyDiagram />
                       <CostWaterfallChart />
                       <CAPAGantt />
@@ -392,6 +414,7 @@ function AuditReportInner() {
                       <DelayForecast />
                       <RecommendationSection />
                       <EvidenceVault />
+                      <DigitalSignatureBlock />
                     </div>
                   </>
                 )}
