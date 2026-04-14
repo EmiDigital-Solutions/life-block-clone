@@ -28,6 +28,13 @@ const suggestedQuestions = [
   "Summarize for procurement",
 ];
 
+// Follow-up suggestions shown after each AI response
+const followUpSuggestions: Record<number, string[]> = {
+  1: ["Drill deeper into this risk", "What's the cost impact?", "Who should own the fix?"],
+  2: ["Compare to industry benchmark", "Show related NCRs", "What does the standard say?"],
+  3: ["Create an action plan", "Estimate timeline to fix", "What evidence is needed?"],
+};
+
 interface AskAtlasBarProps {
   activeStation: number;
 }
@@ -276,12 +283,28 @@ KPIs: ${kpis.map((k: any) => `${k.label}: ${k.value}`).join(', ')}`;
                   {msg.role === 'user' ? (
                     <p className="text-[13px]">{msg.content}</p>
                   ) : (
-                    <div className="prose prose-sm max-w-none text-foreground/90 [&_p]:text-[13px] [&_p]:leading-relaxed [&_li]:text-[13px] [&_strong]:text-foreground [&_h1]:text-[15px] [&_h2]:text-[14px] [&_h3]:text-[13px] [&_code]:text-[11px] [&_code]:bg-muted [&_code]:px-1 [&_code]:py-0.5">
-                      <ReactMarkdown>{stripEmoji(msg.content)}</ReactMarkdown>
-                      {isStreaming && i === messages.length - 1 && (
-                        <span className="inline-block w-1.5 h-4 bg-primary animate-pulse ml-0.5" />
+                    <>
+                      <div className="prose prose-sm max-w-none text-foreground/90 [&_p]:text-[13px] [&_p]:leading-relaxed [&_li]:text-[13px] [&_strong]:text-foreground [&_h1]:text-[15px] [&_h2]:text-[14px] [&_h3]:text-[13px] [&_code]:text-[11px] [&_code]:bg-muted [&_code]:px-1 [&_code]:py-0.5">
+                        <ReactMarkdown>{stripEmoji(msg.content)}</ReactMarkdown>
+                        {isStreaming && i === messages.length - 1 && (
+                          <span className="inline-block w-1.5 h-4 bg-primary animate-pulse ml-0.5" />
+                        )}
+                      </div>
+                      {/* Follow-up suggestions after last assistant message */}
+                      {i === messages.length - 1 && !isStreaming && msg.content && (
+                        <div className="flex flex-wrap gap-1.5 mt-2.5">
+                          {(followUpSuggestions[Math.min(Math.ceil(messages.filter(m => m.role === 'user').length / 1), 3)] || followUpSuggestions[3]).map((q, j) => (
+                            <button
+                              key={j}
+                              onClick={() => sendMessage(q)}
+                              className="px-2.5 py-1 text-[11px] text-primary bg-primary/5 hover:bg-primary/10 border border-primary/15 rounded-full transition-colors cursor-pointer"
+                            >
+                              {q}
+                            </button>
+                          ))}
+                        </div>
                       )}
-                    </div>
+                    </>
                   )}
                 </div>
               </div>
