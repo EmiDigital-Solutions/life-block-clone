@@ -2,11 +2,11 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import type { Station, DepthLevel, FindingSeverity, SubCategory, AtlasAIInsight, AIPattern, BMWImpact, SubCategoryEvidence } from "@/data/auditReportData";
 import NCRCard from "./NCRCard";
-import { CheckCircle2, Circle, Triangle, Diamond, Square, Minus, Camera, Ruler, Video, Sparkles, ChevronDown, ChevronRight, BookOpen, Brain, AlertTriangle, TrendingUp, FileText, Image, Film, Gauge, Clock, DollarSign, Zap, Eye } from "lucide-react";
+import { CheckCircle2, Info, AlertTriangle, CircleAlert, OctagonAlert, Minus, Camera, Ruler, Video, Sparkles, ChevronDown, ChevronRight, BookOpen, Brain, TrendingUp, FileText, Image, Film, Gauge, Clock, DollarSign, Eye } from "lucide-react";
 
 
 const findingIcon: Record<FindingSeverity, React.ElementType> = {
-  pass: CheckCircle2, observation: Circle, concern: Triangle, 'minor-ncr': Diamond, 'major-ncr': Square, na: Minus,
+  pass: CheckCircle2, observation: Info, concern: AlertTriangle, 'minor-ncr': CircleAlert, 'major-ncr': OctagonAlert, na: Minus,
 };
 const findingColor: Record<FindingSeverity, string> = {
   pass: 'text-accent', observation: 'text-muted-foreground', concern: 'text-warning',
