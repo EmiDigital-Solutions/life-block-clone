@@ -25,7 +25,7 @@ function RiskGauge({ score }: { score: number }) {
         </text>
       </svg>
       <div className="flex items-center gap-2 mt-2">
-        <Shield className="w-4 h-4" style={{ color }} />
+        <AlertTriangle className="w-4 h-4" strokeWidth={SW} style={{ color }} />
         <span className="text-[14px] font-bold tracking-[0.15em] uppercase" style={{ color }}>{label}</span>
       </div>
     </div>

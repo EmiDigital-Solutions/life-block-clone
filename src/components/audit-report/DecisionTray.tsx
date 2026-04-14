@@ -33,7 +33,7 @@ export default function DecisionTray({ ncrs, isOpen, onClose, className }: Decis
 
       <div className="grid grid-cols-3 gap-2 p-4 border-b border-border/40">
         <div className="text-center">
-          <AlertCircle className="w-4 h-4 text-warning mx-auto mb-1" />
+          <AlertTriangle className="w-4 h-4 text-warning mx-auto mb-1" strokeWidth={SW} />
           <span className="text-[18px] font-light text-foreground tabular-nums">{pending}</span>
           <span className="block text-[12px] text-muted-foreground uppercase tracking-wider">Pending</span>
         </div>
