@@ -216,11 +216,17 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
     <aside
       className={cn("ar-sidebar flex flex-col overflow-y-auto", className)}
     >
-
-      <div className="mb-1">
-        <div className="pt-8 pb-2" />
-        {frontItems.map(renderItem)}
+      {/* Document outline header */}
+      <div className="px-3 py-3" style={{ borderBottom: '1px solid var(--ar-bd-hair)' }}>
+        <span className="ar-mono-label block mb-1">Document outline</span>
+        <p className="text-[11px]" style={{ color: 'var(--ar-tx-3)' }}>
+          {totalSections} sections · {ncrCount} NCRs
+        </p>
       </div>
+
+      <SectionGroup label="Front matter">
+        {frontItems.map(renderItem)}
+      </SectionGroup>
 
       <SectionGroup label="Process audit findings">
         {findingsItems.map(renderItem)}
