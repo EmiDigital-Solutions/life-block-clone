@@ -32,9 +32,17 @@ import EvidenceTraceabilityMatrix from "@/components/audit-report/EvidenceTracea
 import CSRComplianceMapping from "@/components/audit-report/CSRComplianceMapping";
 import DigitalSignatureBlock from "@/components/audit-report/DigitalSignatureBlock";
 import AskAtlasBar from "@/components/audit-report/AskAtlasBar";
+import TrafficLightDashboard from "@/components/audit-report/TrafficLightDashboard";
+import ActionChecklist from "@/components/audit-report/ActionChecklist";
+import ProcurementBrief from "@/components/audit-report/ProcurementBrief";
+import SmartReadingGuide from "@/components/audit-report/SmartReadingGuide";
+import TrendComparison from "@/components/audit-report/TrendComparison";
+import PFMEADrilldown from "@/components/audit-report/PFMEADrilldown";
+import VoiceBriefing from "@/components/audit-report/VoiceBriefing";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Navigation from "@/components/Navigation";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import type { NCR } from "@/data/auditReportData";
 
 const depthLabels: Record<DepthLevel, string> = {
   executive: 'Executive',
