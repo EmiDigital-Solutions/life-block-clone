@@ -24,7 +24,7 @@ import AnomalyCallouts from "@/components/audit-report/AnomalyCallouts";
 import CostWaterfallChart from "@/components/audit-report/CostWaterfallChart";
 import CAPAGantt from "@/components/audit-report/CAPAGantt";
 import StationHeatmap from "@/components/audit-report/StationHeatmap";
-import { Menu, X, Sparkles, AlertTriangle, Clock, Search, FileText, Download, BarChart3, ListChecks, BookOpen, Volume2, TrendingUp, Zap, ChevronRight } from "lucide-react";
+import { Menu, X, AlertTriangle, Clock, FileDown, LayoutDashboard, ClipboardList, FileBarChart, BookOpenCheck, TrendingUp, ChevronRight } from "lucide-react";
 import VDA63ScoringTable from "@/components/audit-report/VDA63ScoringTable";
 import DocumentControlHeader from "@/components/audit-report/DocumentControlHeader";
 import NormativeReferences from "@/components/audit-report/NormativeReferences";
