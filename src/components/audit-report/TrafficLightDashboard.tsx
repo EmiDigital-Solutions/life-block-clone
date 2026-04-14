@@ -12,10 +12,10 @@ interface TrafficLightDashboardProps {
 }
 
 const verdictConfig: Record<string, { bg: string; border: string; text: string; label: string; icon: typeof Shield }> = {
-  go: { bg: 'bg-emerald-500/10', border: 'border-emerald-500/30', text: 'text-emerald-600', label: 'APPROVED', icon: CheckCircle2 },
-  conditional: { bg: 'bg-amber-500/10', border: 'border-amber-500/30', text: 'text-amber-600', label: 'CONDITIONAL', icon: AlertTriangle },
-  hold: { bg: 'bg-red-500/10', border: 'border-red-500/30', text: 'text-red-600', label: 'ON HOLD', icon: AlertTriangle },
-  nogo: { bg: 'bg-red-500/10', border: 'border-red-500/30', text: 'text-red-600', label: 'REJECTED', icon: X },
+  go: { bg: 'bg-accent/10', border: 'border-accent/30', text: 'text-accent', label: 'APPROVED', icon: CheckCircle2 },
+  conditional: { bg: 'bg-warning/10', border: 'border-warning/30', text: 'text-warning', label: 'CONDITIONAL', icon: AlertTriangle },
+  hold: { bg: 'bg-destructive/10', border: 'border-destructive/30', text: 'text-destructive', label: 'ON HOLD', icon: AlertTriangle },
+  nogo: { bg: 'bg-destructive/10', border: 'border-destructive/30', text: 'text-destructive', label: 'REJECTED', icon: X },
 };
 
 export default function TrafficLightDashboard({ open, onClose }: TrafficLightDashboardProps) {
@@ -29,7 +29,6 @@ export default function TrafficLightDashboard({ open, onClose }: TrafficLightDas
   const majorNCRs = allNCRs.filter(n => n.severity === 'major');
   const openNCRs = allNCRs.filter(n => n.status === 'open');
 
-  // Top 3 risks from worst stations
   const topRisks = stations
     .filter(s => s.index >= 2 && s.index <= 9)
     .sort((a, b) => {
@@ -44,7 +43,6 @@ export default function TrafficLightDashboard({ open, onClose }: TrafficLightDas
       observation: s.observation,
     }));
 
-  // Conditions for approval
   const conditions = [
     ...majorNCRs.map(n => `Close Major NCR ${n.id}: ${n.title}`),
     ...(iatfWeightedScore < 70 ? [`Raise VDA 6.3 score from ${Math.round(iatfWeightedScore)}% to ≥70%`] : []),
@@ -64,117 +62,125 @@ export default function TrafficLightDashboard({ open, onClose }: TrafficLightDas
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-foreground/60 backdrop-blur-sm">
-      <div className="bg-card border border-border rounded-lg shadow-2xl w-full max-w-[680px] max-h-[90vh] overflow-y-auto mx-4">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-foreground/60 backdrop-blur-sm p-6">
+      <div className="bg-card border border-border rounded-xl shadow-2xl w-full max-w-[960px] max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-border">
+        <div className="flex items-center justify-between px-8 py-5 border-b border-border">
           <div className="flex items-center gap-3">
-            <Shield className="w-5 h-5 text-primary" />
-            <span className="text-[14px] font-bold uppercase tracking-wider text-primary">Quick Decision Dashboard</span>
+            <Shield className="w-6 h-6 text-primary" />
+            <div>
+              <h2 className="text-[20px] font-bold text-foreground">Quick Decision Dashboard</h2>
+              <p className="text-[14px] text-muted-foreground mt-0.5">One-screen verdict for procurement sign-off</p>
+            </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <button
               onClick={speakSummary}
               disabled={speaking}
-              className="p-2 hover:bg-muted rounded transition-colors cursor-pointer"
+              className="p-2.5 hover:bg-muted rounded-lg transition-colors cursor-pointer"
               title="Voice briefing"
             >
-              {speaking ? <Loader2 className="w-4 h-4 animate-spin text-primary" /> : <Volume2 className="w-4 h-4 text-muted-foreground" />}
+              {speaking ? <Loader2 className="w-5 h-5 animate-spin text-primary" /> : <Volume2 className="w-5 h-5 text-muted-foreground" />}
             </button>
-            <button onClick={onClose} className="p-2 hover:bg-muted rounded transition-colors cursor-pointer">
-              <X className="w-4 h-4 text-muted-foreground" />
+            <button onClick={onClose} className="p-2.5 hover:bg-muted rounded-lg transition-colors cursor-pointer">
+              <X className="w-5 h-5 text-muted-foreground" />
             </button>
           </div>
         </div>
 
-        {/* Verdict Hero */}
-        <div className={`mx-6 mt-4 p-6 rounded-lg border ${v.bg} ${v.border}`}>
-          <div className="flex items-center gap-4">
-            <VerdictIcon className={`w-12 h-12 ${v.text}`} />
-            <div>
-              <div className={`text-[28px] font-black tracking-tight ${v.text}`}>{v.label}</div>
-              <div className="text-[14px] text-muted-foreground">{reportMeta.supplier} · {reportMeta.po}</div>
-            </div>
-            <div className="ml-auto text-right">
-              <div className="text-[24px] font-bold text-foreground">{typeof costExposure === 'number' ? `€${(costExposure / 1000).toFixed(0)}k` : costExposure}</div>
-              <div className="text-[12px] text-muted-foreground uppercase tracking-wider">Cost Exposure</div>
-            </div>
-          </div>
-          <div className="flex gap-6 mt-4 pt-4 border-t border-border/30">
-            <div className="text-center">
-              <div className="text-[20px] font-bold text-foreground">{allNCRs.length}</div>
-              <div className="text-[11px] text-muted-foreground uppercase">Total NCRs</div>
-            </div>
-            <div className="text-center">
-              <div className="text-[20px] font-bold text-destructive">{majorNCRs.length}</div>
-              <div className="text-[11px] text-muted-foreground uppercase">Major</div>
-            </div>
-            <div className="text-center">
-              <div className="text-[20px] font-bold text-foreground">{Math.round(iatfWeightedScore)}%</div>
-              <div className="text-[11px] text-muted-foreground uppercase">VDA Score</div>
-            </div>
-            <div className="text-center">
-              <div className="text-[20px] font-bold text-foreground">{openNCRs.length}</div>
-              <div className="text-[11px] text-muted-foreground uppercase">Open</div>
-            </div>
-          </div>
-        </div>
-
-        {/* Top 3 Risks */}
-        <div className="mx-6 mt-4">
-          <div className="text-[12px] font-bold uppercase tracking-wider text-muted-foreground mb-2 flex items-center gap-2">
-            <TrendingDown className="w-3.5 h-3.5" /> Top 3 Risks
-          </div>
-          <div className="space-y-2">
-            {topRisks.map((risk, i) => (
-              <div key={i} className="flex items-start gap-3 p-3 bg-muted/50 rounded border border-border/30">
-                <div className={`w-3 h-3 rounded-full mt-0.5 shrink-0 ${
-                  risk.health === 'red' ? 'bg-red-500' : risk.health === 'amber' ? 'bg-amber-500' : 'bg-emerald-500'
-                }`} />
-                <div className="min-w-0">
-                  <div className="text-[14px] font-semibold text-foreground">{risk.station}</div>
-                  <div className="text-[13px] text-muted-foreground line-clamp-2">{risk.observation}</div>
-                  {risk.ncrCount > 0 && (
-                    <span className="text-[11px] font-medium text-destructive">{risk.ncrCount} NCR{risk.ncrCount > 1 ? 's' : ''}</span>
-                  )}
-                </div>
+        <div className="p-8 space-y-8">
+          {/* Verdict Hero */}
+          <div className={`p-8 rounded-xl border-2 ${v.bg} ${v.border}`}>
+            <div className="flex items-center gap-6">
+              <VerdictIcon className={`w-16 h-16 ${v.text}`} />
+              <div className="flex-1">
+                <div className={`text-[36px] font-black tracking-tight ${v.text}`}>{v.label}</div>
+                <div className="text-[16px] text-muted-foreground mt-1">{reportMeta.supplier} · {reportMeta.po}</div>
               </div>
-            ))}
-          </div>
-        </div>
+              <div className="text-right">
+                <div className="text-[32px] font-bold text-foreground">{typeof costExposure === 'number' ? `€${(costExposure / 1000).toFixed(0)}k` : costExposure}</div>
+                <div className="text-[13px] text-muted-foreground uppercase tracking-wider mt-1">Cost Exposure</div>
+              </div>
+            </div>
 
-        {/* Required Conditions */}
-        <div className="mx-6 mt-4">
-          <div className="text-[12px] font-bold uppercase tracking-wider text-muted-foreground mb-2 flex items-center gap-2">
-            <Clock className="w-3.5 h-3.5" /> Required Conditions ({conditions.length})
-          </div>
-          {conditions.length > 0 ? (
-            <div className="space-y-1.5">
-              {conditions.map((c, i) => (
-                <div key={i} className="flex items-start gap-2 p-2 bg-amber-500/5 border border-amber-500/20 rounded">
-                  <AlertTriangle className="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" />
-                  <span className="text-[13px] text-foreground">{c}</span>
+            {/* Key metrics row */}
+            <div className="grid grid-cols-4 gap-6 mt-8 pt-6 border-t border-foreground/10">
+              {[
+                { value: allNCRs.length, label: 'Total NCRs', color: 'text-foreground' },
+                { value: majorNCRs.length, label: 'Major NCRs', color: 'text-destructive' },
+                { value: `${Math.round(iatfWeightedScore)}%`, label: 'VDA Score', color: 'text-foreground' },
+                { value: openNCRs.length, label: 'Open NCRs', color: 'text-foreground' },
+              ].map((m, i) => (
+                <div key={i} className="text-center">
+                  <div className={`text-[28px] font-bold ${m.color}`}>{m.value}</div>
+                  <div className="text-[12px] text-muted-foreground uppercase tracking-wider mt-1">{m.label}</div>
                 </div>
               ))}
             </div>
-          ) : (
-            <div className="p-3 bg-emerald-500/5 border border-emerald-500/20 rounded text-[13px] text-emerald-600">
-              No blocking conditions — ready for approval
-            </div>
-          )}
-        </div>
+          </div>
 
-        {/* Sign-off */}
-        <div className="mx-6 my-6 flex gap-3">
-          <button
-            className="flex-1 py-3 text-[13px] font-bold uppercase tracking-wider text-white bg-emerald-600 hover:bg-emerald-700 rounded transition-colors cursor-pointer disabled:opacity-40"
-            disabled={majorNCRs.filter(n => n.status === 'open').length > 0}
-          >
-            Approve with Conditions
-          </button>
-          <button className="px-6 py-3 text-[13px] font-bold uppercase tracking-wider text-destructive bg-destructive/10 hover:bg-destructive/20 rounded transition-colors cursor-pointer">
-            Reject
-          </button>
+          {/* Two-column layout: Risks + Conditions */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Top 3 Risks */}
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <TrendingDown className="w-4 h-4 text-destructive" />
+                <h3 className="text-[16px] font-bold text-foreground">Top 3 Risks</h3>
+              </div>
+              <div className="space-y-3">
+                {topRisks.map((risk, i) => (
+                  <div key={i} className="p-4 bg-muted/30 rounded-lg border border-border/40">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className={`w-3 h-3 rounded-full shrink-0 ${
+                        risk.health === 'red' ? 'bg-destructive' : risk.health === 'amber' ? 'bg-warning' : 'bg-accent'
+                      }`} />
+                      <span className="text-[15px] font-semibold text-foreground">{risk.station}</span>
+                      {risk.ncrCount > 0 && (
+                        <span className="text-[12px] font-semibold text-destructive ml-auto">{risk.ncrCount} NCR{risk.ncrCount > 1 ? 's' : ''}</span>
+                      )}
+                    </div>
+                    <p className="text-[14px] text-muted-foreground leading-relaxed line-clamp-2 pl-6">{risk.observation}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Required Conditions */}
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <Clock className="w-4 h-4 text-warning" />
+                <h3 className="text-[16px] font-bold text-foreground">Required Conditions</h3>
+                <span className="text-[13px] text-muted-foreground">({conditions.length})</span>
+              </div>
+              {conditions.length > 0 ? (
+                <div className="space-y-3">
+                  {conditions.map((c, i) => (
+                    <div key={i} className="flex items-start gap-3 p-4 bg-warning/5 border border-warning/20 rounded-lg">
+                      <AlertTriangle className="w-4 h-4 text-warning mt-0.5 shrink-0" />
+                      <span className="text-[14px] text-foreground leading-relaxed">{c}</span>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="p-4 bg-accent/5 border border-accent/20 rounded-lg text-[14px] text-accent">
+                  No blocking conditions — ready for approval
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Sign-off buttons */}
+          <div className="flex gap-4 pt-4 border-t border-border">
+            <button
+              className="flex-1 py-4 text-[14px] font-bold uppercase tracking-wider text-primary-foreground bg-accent hover:bg-accent/90 rounded-lg transition-colors cursor-pointer disabled:opacity-40"
+              disabled={majorNCRs.filter(n => n.status === 'open').length > 0}
+            >
+              Approve with Conditions
+            </button>
+            <button className="px-8 py-4 text-[14px] font-bold uppercase tracking-wider text-destructive bg-destructive/10 hover:bg-destructive/20 rounded-lg transition-colors cursor-pointer">
+              Reject
+            </button>
+          </div>
         </div>
       </div>
     </div>

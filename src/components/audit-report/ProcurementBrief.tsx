@@ -57,7 +57,7 @@ REQUIRED SECTIONS:
 4. **TOP 3 CONDITIONS** — What must be resolved before approval
 5. **RECOMMENDATION** — Clear next steps for procurement team
 
-Keep it under 400 words. Be direct, no filler.`;
+Keep it under 400 words. Be direct, no filler. Use bullet points and structured lists, not paragraphs.`;
 
     try {
       const resp = await fetch(ATLAS_URL, {
@@ -124,28 +124,34 @@ Keep it under 400 words. Be direct, no filler.`;
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-foreground/60 backdrop-blur-sm">
-      <div className="bg-card border border-border rounded-lg shadow-2xl w-full max-w-[680px] max-h-[85vh] flex flex-col mx-4">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-border shrink-0">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-foreground/60 backdrop-blur-sm p-6">
+      <div className="bg-card border border-border rounded-xl shadow-2xl w-full max-w-[900px] max-h-[90vh] flex flex-col">
+        {/* Header */}
+        <div className="flex items-center justify-between px-8 py-5 border-b border-border shrink-0">
           <div className="flex items-center gap-3">
-            <FileText className="w-4 h-4 text-primary" />
-            <span className="text-[14px] font-bold uppercase tracking-wider text-primary">Procurement Brief</span>
+            <FileText className="w-6 h-6 text-primary" />
+            <div>
+              <h2 className="text-[20px] font-bold text-foreground">Procurement Brief</h2>
+              <p className="text-[14px] text-muted-foreground mt-0.5">AI-generated summary for procurement decision-making</p>
+            </div>
           </div>
-          <button onClick={onClose} className="p-2 hover:bg-muted rounded transition-colors cursor-pointer">
-            <X className="w-4 h-4 text-muted-foreground" />
+          <button onClick={onClose} className="p-2.5 hover:bg-muted rounded-lg transition-colors cursor-pointer">
+            <X className="w-5 h-5 text-muted-foreground" />
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto px-6 py-4">
+        {/* Content */}
+        <div className="flex-1 overflow-y-auto px-8 py-8">
           {!brief && !loading && (
-            <div className="text-center py-12">
-              <Sparkles className="w-10 h-10 text-primary mx-auto mb-4" />
-              <p className="text-[14px] text-muted-foreground mb-4">
-                Atlas AI will generate a procurement-ready brief with verdict, cost exposure, delivery risk, and required conditions.
+            <div className="text-center py-16">
+              <Sparkles className="w-12 h-12 text-primary mx-auto mb-5" />
+              <h3 className="text-[18px] font-semibold text-foreground mb-2">Generate Procurement Brief</h3>
+              <p className="text-[15px] text-muted-foreground mb-8 max-w-md mx-auto leading-relaxed">
+                Atlas AI will analyze the audit data and generate a structured brief covering verdict, cost exposure, delivery risk, and required conditions.
               </p>
               <button
                 onClick={generateBrief}
-                className="px-6 py-3 bg-primary text-white text-[13px] font-bold uppercase tracking-wider rounded hover:bg-primary/90 transition-colors cursor-pointer"
+                className="px-8 py-3.5 bg-primary text-primary-foreground text-[14px] font-bold uppercase tracking-wider rounded-lg hover:bg-primary/90 transition-colors cursor-pointer"
               >
                 Generate Brief for Procurement
               </button>
@@ -153,34 +159,35 @@ Keep it under 400 words. Be direct, no filler.`;
           )}
 
           {loading && !brief && (
-            <div className="flex items-center justify-center py-12 gap-3">
-              <Loader2 className="w-5 h-5 animate-spin text-primary" />
-              <span className="text-[14px] text-muted-foreground">Generating procurement brief...</span>
+            <div className="flex items-center justify-center py-16 gap-3">
+              <Loader2 className="w-6 h-6 animate-spin text-primary" />
+              <span className="text-[15px] text-muted-foreground">Generating procurement brief...</span>
             </div>
           )}
 
           {brief && (
-            <div className="prose prose-sm max-w-none text-foreground/90 [&_p]:text-[14px] [&_p]:leading-relaxed [&_li]:text-[14px] [&_strong]:text-foreground [&_h1]:text-[18px] [&_h2]:text-[16px] [&_h3]:text-[14px]">
+            <div className="prose prose-base max-w-none text-foreground/90 [&_p]:text-[15px] [&_p]:leading-[1.8] [&_li]:text-[15px] [&_li]:leading-[1.7] [&_li]:mb-1 [&_strong]:text-foreground [&_h1]:text-[22px] [&_h1]:mb-4 [&_h1]:mt-8 [&_h2]:text-[18px] [&_h2]:mb-3 [&_h2]:mt-6 [&_h2]:pb-2 [&_h2]:border-b [&_h2]:border-border/40 [&_h3]:text-[16px] [&_h3]:mb-2 [&_h3]:mt-5 [&_ul]:space-y-1.5 [&_ol]:space-y-1.5">
               <ReactMarkdown>{brief}</ReactMarkdown>
-              {loading && <span className="inline-block w-1.5 h-4 bg-primary animate-pulse ml-0.5" />}
+              {loading && <span className="inline-block w-2 h-5 bg-primary animate-pulse ml-0.5" />}
             </div>
           )}
         </div>
 
+        {/* Footer */}
         {brief && !loading && (
-          <div className="px-6 py-3 border-t border-border flex gap-2 shrink-0">
+          <div className="px-8 py-4 border-t border-border flex gap-3 shrink-0">
             <button
               onClick={copyBrief}
-              className="flex items-center gap-2 px-4 py-2 bg-muted text-[12px] font-medium uppercase tracking-wider rounded hover:bg-muted/80 cursor-pointer"
+              className="flex items-center gap-2 px-5 py-2.5 bg-muted text-[13px] font-medium uppercase tracking-wider rounded-lg hover:bg-muted/80 cursor-pointer"
             >
-              {copied ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
+              {copied ? <Check className="w-4 h-4 text-accent" /> : <Copy className="w-4 h-4" />}
               {copied ? 'Copied' : 'Copy Brief'}
             </button>
             <button
               onClick={generateBrief}
-              className="flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary text-[12px] font-medium uppercase tracking-wider rounded hover:bg-primary/20 cursor-pointer"
+              className="flex items-center gap-2 px-5 py-2.5 bg-primary/10 text-primary text-[13px] font-medium uppercase tracking-wider rounded-lg hover:bg-primary/20 cursor-pointer"
             >
-              <Sparkles className="w-3.5 h-3.5" /> Regenerate
+              <Sparkles className="w-4 h-4" /> Regenerate
             </button>
           </div>
         )}
