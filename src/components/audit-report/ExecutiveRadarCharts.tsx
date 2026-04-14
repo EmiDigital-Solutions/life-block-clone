@@ -170,11 +170,11 @@ export default function ExecutiveRadarCharts({ depth = 'standard' }: { depth?: i
                 </div>
               </div>
 
-              <div style={{ height: 240 }}>
+              <div style={{ height: 340 }}>
                 <ResponsiveContainer width="100%" height="100%">
-                  <RadarChart cx="50%" cy="50%" outerRadius="65%" data={commercialData}>
+                  <RadarChart cx="50%" cy="50%" outerRadius="80%" data={commercialData}>
                     <PolarGrid stroke="hsl(var(--border))" />
-                    <PolarAngleAxis dataKey="dimension" tick={{ fontSize: 8, fill: 'hsl(0,0%,50%)' }} tickLine={false} />
+                    <PolarAngleAxis dataKey="dimension" tick={{ fontSize: 9, fill: 'hsl(0,0%,50%)' }} tickLine={false} />
                     <PolarRadiusAxis angle={90} domain={[0, 100]} tick={false} axisLine={false} />
                     <Radar name="Benchmark" dataKey="benchmark" stroke="hsl(155, 24%, 55%)" fill="hsl(155, 24%, 55%)" fillOpacity={0.04} strokeWidth={1} strokeDasharray="4 2" />
                     <Radar name="Supplier" dataKey="supplier" stroke="hsl(195, 89%, 34%)" fill="hsl(195, 89%, 34%)" fillOpacity={0.12} strokeWidth={2} dot={{ r: 2, fill: 'hsl(195, 89%, 34%)' }} />
