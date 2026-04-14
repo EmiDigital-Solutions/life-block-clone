@@ -24,7 +24,7 @@ import AnomalyCallouts from "@/components/audit-report/AnomalyCallouts";
 import CostWaterfallChart from "@/components/audit-report/CostWaterfallChart";
 import CAPAGantt from "@/components/audit-report/CAPAGantt";
 import StationHeatmap from "@/components/audit-report/StationHeatmap";
-import { Menu, X, Sparkles, AlertTriangle, Clock, Search } from "lucide-react";
+import { Menu, X, Sparkles, AlertTriangle, Clock, Search, FileText, Download, BarChart3, ListChecks, BookOpen, Volume2, TrendingUp, Zap, ChevronRight } from "lucide-react";
 import VDA63ScoringTable from "@/components/audit-report/VDA63ScoringTable";
 import DocumentControlHeader from "@/components/audit-report/DocumentControlHeader";
 import NormativeReferences from "@/components/audit-report/NormativeReferences";
@@ -183,180 +183,173 @@ function AuditReportInner() {
 
   const verdictBandColor = verdictColors[reportMeta.verdict] || 'hsl(24, 72%, 63%)';
 
+  const openNCRs = allNCRs.filter(n => n.status === 'open').length;
+
   return (
     <>
     <Navigation />
-    {/* Outer app shell — Premium Enterprise SaaS */}
-    <div className="h-[100dvh] flex flex-col text-foreground pt-16 font-sans">
-      {/* Window title bar */}
-      <div className="h-8 flex items-center px-3 border-b flex-shrink-0" style={{ background: 'hsl(220,14%,96%)', borderColor: 'hsl(220,13%,89%)' }}>
-        <span className="text-[12px] font-medium" style={{ color: 'hsl(220,10%,40%)' }}>
-          SCANPRO+ Audit Report — {reportMeta.supplier} · {reportMeta.po} · {allNCRs.length} NCRs
-        </span>
-        <div className="ml-auto flex gap-1">
-          {(['Report', 'Evidence', 'CAPA'] as const).map((label, i) => (
-            <button
-              key={i}
-              className={cn(
-                "px-2 py-0.5 text-[11px] font-medium uppercase tracking-wider transition-colors cursor-pointer",
-                i === 0 ? 'bg-primary text-white' : 'text-muted-foreground hover:bg-muted'
-              )}
-              style={i !== 0 ? { background: 'hsl(220,14%,90%)' } : undefined}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-      </div>
+    <div className="h-[100dvh] flex flex-col text-foreground pt-16 font-sans bg-background">
 
-      {/* Main content area — three-column layout */}
-      <div className="flex-1 flex overflow-hidden bg-background">
+      {/* Main content area */}
+      <div className="flex-1 flex overflow-hidden">
         {/* Mobile sidebar overlay */}
         {isMobile && sidebarOpen && (
           <div className="fixed inset-0 z-50 flex">
             <div className="absolute inset-0 bg-foreground/40 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
-            <div className="relative z-10 w-[280px]" style={{ background: 'hsl(0,0%,97%)' }}>
-              <div className="flex items-center justify-between px-4 py-3" style={{ borderBottom: '1px solid hsl(0,0%,90%)' }}>
+            <div className="relative z-10 w-[280px] bg-card">
+              <div className="flex items-center justify-between px-4 py-3 border-b border-border">
                 <span className="text-[15px] font-semibold text-foreground">Document Outline</span>
-                <button onClick={() => setSidebarOpen(false)} className="p-1"><X className="w-4 h-4 text-white/50" /></button>
+                <button onClick={() => setSidebarOpen(false)} className="p-1"><X className="w-4 h-4 text-muted-foreground" /></button>
               </div>
               <ReportSidebar activeStation={activeStation} onStationClick={scrollToStation} onScrollToId={scrollToId} />
             </div>
           </div>
         )}
 
-        {/* Desktop sidebar — dark panel */}
+        {/* Desktop sidebar */}
         {!isMobile && (
           <ReportSidebar
             activeStation={activeStation}
             onStationClick={scrollToStation}
             onScrollToId={scrollToId}
-            className="w-[220px] xl:w-[260px] shrink-0"
+            className="w-[240px] xl:w-[280px] shrink-0"
           />
         )}
 
-        {/* Center content */}
+        {/* Center content column */}
         <div className="flex-1 flex flex-col min-w-0 relative">
-          {/* Verdict color band */}
-          <div className={cn(
-            "h-[2px] transition-all duration-300",
-            scrolledPastHero ? "opacity-100" : "opacity-0"
-          )} style={{ background: verdictBandColor }} />
 
-          {/* Toolbar — matches SupplierDatabaseDemo toolbar */}
+          {/* ━━━ STICKY HEADER — Two-tier clean design ━━━ */}
           <div className={cn(
-            "sticky top-0 z-40 transition-all duration-300",
+            "sticky top-0 z-40 transition-all duration-300 bg-card border-b border-border",
             scrolledPastHero ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
-          )} style={{ background: 'hsl(220,14%,96%)', borderBottom: '1px solid hsl(220,13%,89%)' }}>
-            <div className="flex items-center justify-between px-3 h-10">
-              <div className="flex items-center gap-3">
+          )}>
+            {/* Row 1: Identity + Verdict + Core Actions */}
+            <div className="flex items-center justify-between px-5 h-14 border-b border-border/40">
+              <div className="flex items-center gap-4">
                 {isMobile && (
-                  <button onClick={() => setSidebarOpen(true)} className="p-1.5 hover:bg-muted transition-colors">
-                    <Menu className="w-4 h-4 text-muted-foreground" />
+                  <button onClick={() => setSidebarOpen(true)} className="p-2 hover:bg-muted rounded-md transition-colors">
+                    <Menu className="w-5 h-5 text-muted-foreground" />
                   </button>
                 )}
-                <span className="text-[12px] font-bold uppercase tracking-wider text-primary">yvoo+</span>
-                <span className="text-[12px] text-muted-foreground">SCANPRO+ · ATLAS AI</span>
-                <span className="text-[12px] text-border">|</span>
-                <span className="text-[13px] font-medium text-foreground">{reportMeta.supplier}</span>
-                <span className="text-[12px] font-semibold text-warning ml-1">{reportMeta.verdictLabel}</span>
-                <span className="text-[12px] text-muted-foreground">· {allNCRs.length} NCRs</span>
-
-                {/* Station heatmap strip */}
-                <div className="hidden md:flex items-center gap-2 ml-2 pl-2 border-l border-border">
-                  <StationHeatmap activeStation={activeStation} onStationClick={scrollToStation} />
+                <div className="flex items-center gap-2.5">
+                  <span className="text-[13px] font-bold uppercase tracking-wider text-primary">SCANPRO+</span>
+                  <ChevronRight className="w-3.5 h-3.5 text-border" />
+                  <span className="text-[15px] font-semibold text-foreground">{reportMeta.supplier}</span>
                 </div>
-
-                {/* Breadcrumb progress */}
-                <div className="hidden lg:flex items-center gap-1.5 ml-2 pl-2 border-l border-border">
-                  <span className="text-[12px] font-mono tabular-nums text-muted-foreground">
-                    Reviewed {reviewedStations.size}/{totalStations}
+                <div className="flex items-center gap-2 ml-1">
+                  <span className={cn(
+                    "px-2.5 py-1 rounded-full text-[12px] font-bold uppercase tracking-wide",
+                    reportMeta.verdict === 'go' && "bg-accent/15 text-accent",
+                    reportMeta.verdict === 'conditional' && "bg-warning/15 text-warning",
+                    (reportMeta.verdict === 'hold' || reportMeta.verdict === 'nogo') && "bg-destructive/15 text-destructive",
+                  )}>
+                    {reportMeta.verdictLabel}
                   </span>
+                  <span className="text-[13px] text-muted-foreground font-medium">{allNCRs.length} NCRs</span>
                 </div>
               </div>
-              <div className="flex items-center gap-2">
-                {/* Reading progress + time */}
-                <div className="hidden md:flex items-center gap-2">
-                  <span className="text-[12px] font-mono tabular-nums text-muted-foreground">{readingProgress}%</span>
-                  <span className="text-[12px] flex items-center gap-1 text-muted-foreground">
-                    <Clock className="w-3 h-3" />
+
+              <div className="flex items-center gap-3">
+                {/* Reading progress */}
+                <div className="hidden lg:flex items-center gap-3 text-[13px] text-muted-foreground">
+                  <span className="font-mono tabular-nums">{readingProgress}%</span>
+                  <span className="text-border">·</span>
+                  <span className="flex items-center gap-1">
+                    <Clock className="w-3.5 h-3.5" />
                     {readingTimeEstimates[depth]}
                   </span>
+                  <span className="text-border">·</span>
+                  <span className="font-mono tabular-nums">{reviewedStations.size}/{totalStations} stations</span>
                 </div>
 
-                {/* Jump to worst */}
-                {worstStation && (
-                  <TooltipProvider delayDuration={200}>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <button
-                          onClick={() => scrollToStation(worstStation.index)}
-                          className="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-semibold text-destructive uppercase tracking-wider cursor-pointer"
-                          style={{ background: 'hsl(0, 48%, 46%, 0.12)' }}
-                        >
-                          <AlertTriangle className="w-3 h-3" />
-                          Worst
-                        </button>
-                      </TooltipTrigger>
-                      <TooltipContent side="bottom" className="text-[13px]">
-                        Jump to {worstStation.name} — lowest scoring station
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                )}
+                {/* Sign off CTA */}
+                <button
+                  onClick={() => setInspectorOpen(!inspectorOpen)}
+                  className="px-4 py-2 text-[13px] font-semibold text-primary-foreground bg-primary rounded-md uppercase tracking-wider cursor-pointer hover:bg-primary/90 transition-colors"
+                >
+                  Sign off {openNCRs > 0 && `(${openNCRs})`}
+                </button>
+              </div>
+            </div>
 
-                {/* Depth toggle — matches SupplierDatabaseDemo filter buttons */}
-                <div className="flex gap-px">
+            {/* Row 2: Tools + Depth + Navigation */}
+            <div className="flex items-center justify-between px-5 h-11">
+              <div className="flex items-center gap-1">
+                {/* Depth toggle */}
+                <div className="flex rounded-md overflow-hidden border border-border mr-3">
                   {(['executive', 'standard', 'full'] as DepthLevel[]).map(d => (
                     <button
                       key={d}
                       onClick={() => setDepth(d)}
                       className={cn(
-                        "px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider transition-colors cursor-pointer",
-                        depth === d ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-muted/80"
+                        "px-3 py-1.5 text-[12px] font-medium uppercase tracking-wide transition-colors cursor-pointer",
+                        depth === d ? "bg-primary text-primary-foreground" : "bg-card text-muted-foreground hover:bg-muted"
                       )}
                     >
                       {depthLabels[d]}
                     </button>
                   ))}
                 </div>
+
+                {/* Station heatmap */}
+                <div className="hidden md:flex items-center gap-2 px-3 border-l border-border">
+                  <StationHeatmap activeStation={activeStation} onStationClick={scrollToStation} />
+                </div>
+
+                {/* Jump to worst */}
+                {worstStation && (
+                  <button
+                    onClick={() => scrollToStation(worstStation.index)}
+                    className="flex items-center gap-1.5 px-3 py-1.5 ml-2 text-[12px] font-semibold text-destructive rounded-md cursor-pointer bg-destructive/8 hover:bg-destructive/15 transition-colors"
+                  >
+                    <AlertTriangle className="w-3.5 h-3.5" />
+                    Jump to worst
+                  </button>
+                )}
+              </div>
+
+              {/* Tool buttons — clean icon + label */}
+              <div className="hidden md:flex items-center gap-1">
+                {[
+                  { icon: Zap, label: 'Decision', action: () => setDashboardOpen(true), highlight: true },
+                  { icon: FileText, label: 'Brief', action: () => setBriefOpen(true) },
+                  { icon: ListChecks, label: 'Actions', action: () => setChecklistOpen(true) },
+                  { icon: TrendingUp, label: 'Trend', action: () => setTrendOpen(true) },
+                  { icon: BookOpen, label: 'Guide', action: () => setGuideOpen(true) },
+                  { icon: Download, label: 'Export', action: () => {} },
+                ].map(({ icon: Icon, label, action, highlight }) => (
+                  <button
+                    key={label}
+                    onClick={action}
+                    className={cn(
+                      "flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[12px] font-medium transition-colors cursor-pointer",
+                      highlight
+                        ? "bg-warning/10 text-warning hover:bg-warning/20"
+                        : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                    )}
+                  >
+                    <Icon className="w-3.5 h-3.5" />
+                    {label}
+                  </button>
+                ))}
                 <VoiceBriefing />
-                <button onClick={() => setGuideOpen(true)} className="hidden md:block px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider cursor-pointer bg-muted text-muted-foreground hover:bg-muted/80 transition-colors">
-                  Guide
-                </button>
-                <button onClick={() => setDashboardOpen(true)} className="hidden md:flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider cursor-pointer bg-amber-500/10 text-amber-600 hover:bg-amber-500/20 transition-colors">
-                  ⚡ Decision
-                </button>
-                <button onClick={() => setChecklistOpen(true)} className="hidden md:block px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider cursor-pointer bg-muted text-muted-foreground hover:bg-muted/80 transition-colors">
-                  Actions
-                </button>
-                <button onClick={() => setBriefOpen(true)} className="hidden md:block px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider cursor-pointer bg-muted text-muted-foreground hover:bg-muted/80 transition-colors">
-                  Brief
-                </button>
-                <button onClick={() => setTrendOpen(true)} className="hidden md:block px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider cursor-pointer bg-muted text-muted-foreground hover:bg-muted/80 transition-colors">
-                  Trend
-                </button>
-                <button className="hidden md:block px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider cursor-pointer bg-muted text-muted-foreground hover:bg-muted/80 transition-colors">
-                  Export pdf
-                </button>
-                <button
-                  onClick={() => setInspectorOpen(!inspectorOpen)}
-                  className="px-3 py-1 text-[11px] font-semibold text-white bg-primary uppercase tracking-wider cursor-pointer hover:bg-primary/90 transition-colors"
-                >
-                  Sign off ({allNCRs.filter(n => n.status === 'open').length})
-                </button>
               </div>
             </div>
+
             {/* Reading progress bar */}
-            <div className="h-[2px] bg-border">
+            <div className="h-[2px] bg-border/50">
               <div className="h-full bg-primary transition-all duration-150" style={{ width: `${readingProgress}%` }} />
             </div>
           </div>
 
-          {/* Scrollable content */}
+          {/* ━━━ SCROLLABLE CONTENT ━━━ */}
           <div className="flex-1 flex overflow-hidden">
-            <div ref={contentRef} className="flex-1 overflow-y-auto">
-              <div className={cn("mx-auto", depth === 'executive' ? "max-w-[1400px] px-6 md:px-12 lg:px-16" : "max-w-[1200px] px-6 md:px-10 lg:px-14")}>
+            <div ref={contentRef} className="flex-1 overflow-y-auto scroll-smooth">
+              <div className={cn(
+                "mx-auto py-8",
+                depth === 'executive' ? "max-w-[1100px] px-8 md:px-16 lg:px-20" : "max-w-[1000px] px-8 md:px-12 lg:px-16"
+              )}>
                 <ReportHero
                   verdict={reportMeta.verdict}
                   verdictLabel={reportMeta.verdictLabel}
@@ -372,154 +365,248 @@ function AuditReportInner() {
                 />
 
                 {depth === 'executive' ? (
-                  <>
+                  <div className="space-y-16 md:space-y-20">
                     {/* §0 Document Control */}
-                    <div className="space-y-3 mt-4">
+                    <section className="space-y-8">
                       <DocumentControlHeader />
                       <NormativeReferences />
-                    </div>
-
-                    {/* §1 Audit Scope & VDA Scoring */}
-                    <AuditScopeSection depth={depth} />
-                    <VDA63ScoringTable />
-
-                    <section className="py-2">
-                      <KPIBand kpis={kpis} depth={depth} />
                     </section>
 
-                    <AnomalyCallouts depth={depth} />
-
-                    {/* §2 CSR Compliance */}
-                    <CSRComplianceMapping depth="executive" />
-
-                    <div className="space-y-3 mt-4 pb-16">
-                      {/* §3–§9 Station findings */}
-                      {displayStations.map((station) => (
-                        <StationCard key={station.index} station={station} depth={depth} totalStations={14} />
-                      ))}
-
-                      {/* §10 NCR Register */}
-                      <div id="station-10">
-                        <NCRRegister ncrs={allNCRs} depth={depth} />
+                    {/* §1 Audit Scope */}
+                    <section>
+                      <div className="mb-6 pb-3 border-b-2 border-foreground/10">
+                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§1</span>
+                        <h2 className="text-[22px] font-semibold text-foreground mt-1">Audit Scope & VDA Scoring</h2>
                       </div>
-
-                      {/* §11 Evidence Traceability */}
-                      <div id="evidence-matrix">
-                        <EvidenceTraceabilityMatrix depth="executive" />
+                      <div className="space-y-10">
+                        <AuditScopeSection depth={depth} />
+                        <VDA63ScoringTable />
                       </div>
-
-                      {/* §12 CSR Compliance */}
-                      <div id="csr-mapping">
-                        <CSRComplianceMapping depth="executive" />
-                      </div>
-
-                      {/* §13 Appendices */}
-                      <div id="station-11">
-                        <FindingSankeyDiagram depth="executive" />
-                      </div>
-                      <CostWaterfallChart depth="executive" />
-                      <OEEGaugeCluster depth="executive" />
-
-                      {/* §14 CAPA */}
-                      <div id="station-12">
-                        <CAPAGantt />
-                      </div>
-
-                      {/* §15 Delay Forecast */}
-                      <div id="station-13">
-                        <DelayForecast />
-                      </div>
-
-                      {/* §16 Approval & Sign-Off */}
-                      <div id="signatures">
-                        <DigitalSignatureBlock />
-                      </div>
-
-                      {/* §17 Revision — handled by DocumentControlHeader */}
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div className="mt-12">
-                      <AtlasRiskScore depth={depth} />
-                    </div>
-
-                    {/* ── Section Divider ── */}
-                    <div className="my-14 md:my-20 border-t border-border/60" />
-
-                    <section className="py-8 md:py-12">
-                      <KPIBand kpis={kpis} depth={depth} />
                     </section>
 
-                    {/* ── Section Divider ── */}
-                    <div className="my-14 md:my-20 border-t border-border/60" />
+                    {/* §2 Key Performance Indicators */}
+                    <section>
+                      <div className="mb-6 pb-3 border-b-2 border-foreground/10">
+                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§2</span>
+                        <h2 className="text-[22px] font-semibold text-foreground mt-1">Key Performance Indicators</h2>
+                      </div>
+                      <KPIBand kpis={kpis} depth={depth} />
+                      <div className="mt-8">
+                        <AnomalyCallouts depth={depth} />
+                      </div>
+                    </section>
 
-                    <ExecutiveRadarCharts depth={depth} />
+                    {/* §3 CSR Compliance */}
+                    <section>
+                      <div className="mb-6 pb-3 border-b-2 border-foreground/10">
+                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§3</span>
+                        <h2 className="text-[22px] font-semibold text-foreground mt-1">CSR Compliance Mapping</h2>
+                      </div>
+                      <CSRComplianceMapping depth="executive" />
+                    </section>
 
-                    {/* ── Section Divider ── */}
-                    <div className="my-14 md:my-20 border-t border-border/60" />
+                    {/* §4 Process Audit Findings */}
+                    <section>
+                      <div className="mb-8 pb-3 border-b-2 border-foreground/10">
+                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§4 – §11</span>
+                        <h2 className="text-[22px] font-semibold text-foreground mt-1">Process Audit Findings</h2>
+                        <p className="text-[14px] text-muted-foreground mt-1">{displayStations.length} stations audited per VDA 6.3</p>
+                      </div>
+                      <div className="space-y-12">
+                        {displayStations.map((station) => (
+                          <StationCard key={station.index} station={station} depth={depth} totalStations={14} />
+                        ))}
+                      </div>
+                    </section>
 
-                    <AuditScopeSection depth={depth} />
-
-                    <div className="mt-10">
-                      <AnomalyCallouts depth={depth} />
-                    </div>
-
-                    {/* ── Section Divider ── */}
-                    <div className="my-14 md:my-20 border-t border-border/60" />
-
-                    <div className="pb-24 space-y-16 md:space-y-24">
-                      {displayStations.map((station) => (
-                        <StationCard key={station.index} station={station} depth={depth} totalStations={14} />
-                      ))}
-
-                      {/* ── Section Divider ── */}
-                      <div className="border-t border-border/60" />
-
+                    {/* §12 NCR Register */}
+                    <section id="station-10">
+                      <div className="mb-6 pb-3 border-b-2 border-foreground/10">
+                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§12</span>
+                        <h2 className="text-[22px] font-semibold text-foreground mt-1">Non-Conformance Register</h2>
+                      </div>
                       <NCRRegister ncrs={allNCRs} depth={depth} />
+                    </section>
 
-                      <div className="border-t border-border/60" />
-
-                      <EvidenceTraceabilityMatrix depth={depth} />
-
-                      <div className="border-t border-border/60" />
-
-                      <CSRComplianceMapping depth={depth} />
-
-                      <div className="border-t border-border/60" />
-
-                      <FindingSankeyDiagram />
-                      <CostWaterfallChart />
-
-                      <div className="border-t border-border/60" />
-
-                      <CAPAGantt />
-                      <AtlasIntelligence />
-
-                      <div className="border-t border-border/60" />
-
-                      <div id="machine-park">
-                        <OEEGaugeCluster />
-                        <div className="mt-16">
-                          <MachineParkIntelligence />
-                        </div>
+                    {/* §13 Evidence Traceability */}
+                    <section id="evidence-matrix">
+                      <div className="mb-6 pb-3 border-b-2 border-foreground/10">
+                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§13</span>
+                        <h2 className="text-[22px] font-semibold text-foreground mt-1">Evidence Traceability</h2>
                       </div>
+                      <EvidenceTraceabilityMatrix depth="executive" />
+                    </section>
 
-                      <div className="border-t border-border/60" />
+                    {/* §14 Analytics & Appendices */}
+                    <section id="station-11">
+                      <div className="mb-6 pb-3 border-b-2 border-foreground/10">
+                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§14</span>
+                        <h2 className="text-[22px] font-semibold text-foreground mt-1">Analytics & Cost Analysis</h2>
+                      </div>
+                      <div className="space-y-12">
+                        <FindingSankeyDiagram depth="executive" />
+                        <CostWaterfallChart depth="executive" />
+                        <OEEGaugeCluster depth="executive" />
+                      </div>
+                    </section>
 
+                    {/* §15 CAPA Timeline */}
+                    <section id="station-12">
+                      <div className="mb-6 pb-3 border-b-2 border-foreground/10">
+                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§15</span>
+                        <h2 className="text-[22px] font-semibold text-foreground mt-1">CAPA Action Plan</h2>
+                      </div>
+                      <CAPAGantt />
+                    </section>
+
+                    {/* §16 Delay Forecast */}
+                    <section id="station-13">
+                      <div className="mb-6 pb-3 border-b-2 border-foreground/10">
+                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§16</span>
+                        <h2 className="text-[22px] font-semibold text-foreground mt-1">Delay & Risk Forecast</h2>
+                      </div>
                       <DelayForecast />
-                      <RecommendationSection />
-                      <EvidenceVault />
+                    </section>
 
-                      <div className="border-t border-border/60" />
-
+                    {/* §17 Approval & Sign-Off */}
+                    <section id="signatures" className="pb-24">
+                      <div className="mb-6 pb-3 border-b-2 border-foreground/10">
+                        <span className="text-[13px] font-mono text-muted-foreground tracking-wide">§17</span>
+                        <h2 className="text-[22px] font-semibold text-foreground mt-1">Approval & Digital Sign-Off</h2>
+                      </div>
                       <DigitalSignatureBlock />
-                    </div>
-                  </>
+                    </section>
+                  </div>
+                ) : (
+                  <div className="space-y-20 md:space-y-28">
+                    {/* Risk Score */}
+                    <section>
+                      <AtlasRiskScore depth={depth} />
+                    </section>
+
+                    {/* KPIs */}
+                    <section>
+                      <div className="mb-8 pb-3 border-b-2 border-foreground/10">
+                        <h2 className="text-[26px] font-semibold text-foreground">Key Performance Indicators</h2>
+                      </div>
+                      <KPIBand kpis={kpis} depth={depth} />
+                    </section>
+
+                    {/* Radar Charts */}
+                    <section>
+                      <div className="mb-8 pb-3 border-b-2 border-foreground/10">
+                        <h2 className="text-[26px] font-semibold text-foreground">Gap Analysis</h2>
+                      </div>
+                      <ExecutiveRadarCharts depth={depth} />
+                    </section>
+
+                    {/* Scope */}
+                    <section>
+                      <div className="mb-8 pb-3 border-b-2 border-foreground/10">
+                        <h2 className="text-[26px] font-semibold text-foreground">Audit Scope</h2>
+                      </div>
+                      <AuditScopeSection depth={depth} />
+                      <div className="mt-10">
+                        <AnomalyCallouts depth={depth} />
+                      </div>
+                    </section>
+
+                    {/* Station Findings */}
+                    <section>
+                      <div className="mb-10 pb-3 border-b-2 border-foreground/10">
+                        <h2 className="text-[26px] font-semibold text-foreground">Process Audit Findings</h2>
+                        <p className="text-[15px] text-muted-foreground mt-1">{displayStations.length} stations · VDA 6.3 scoring</p>
+                      </div>
+                      <div className="space-y-16 md:space-y-20">
+                        {displayStations.map((station) => (
+                          <StationCard key={station.index} station={station} depth={depth} totalStations={14} />
+                        ))}
+                      </div>
+                    </section>
+
+                    {/* NCR Register */}
+                    <section>
+                      <div className="mb-8 pb-3 border-b-2 border-foreground/10">
+                        <h2 className="text-[26px] font-semibold text-foreground">Non-Conformance Register</h2>
+                      </div>
+                      <NCRRegister ncrs={allNCRs} depth={depth} />
+                    </section>
+
+                    {/* Evidence */}
+                    <section>
+                      <div className="mb-8 pb-3 border-b-2 border-foreground/10">
+                        <h2 className="text-[26px] font-semibold text-foreground">Evidence Traceability</h2>
+                      </div>
+                      <EvidenceTraceabilityMatrix depth={depth} />
+                    </section>
+
+                    {/* CSR Compliance */}
+                    <section>
+                      <div className="mb-8 pb-3 border-b-2 border-foreground/10">
+                        <h2 className="text-[26px] font-semibold text-foreground">CSR Compliance</h2>
+                      </div>
+                      <CSRComplianceMapping depth={depth} />
+                    </section>
+
+                    {/* Analytics */}
+                    <section>
+                      <div className="mb-8 pb-3 border-b-2 border-foreground/10">
+                        <h2 className="text-[26px] font-semibold text-foreground">Analytics & Cost Analysis</h2>
+                      </div>
+                      <div className="space-y-16">
+                        <FindingSankeyDiagram />
+                        <CostWaterfallChart />
+                      </div>
+                    </section>
+
+                    {/* CAPA & Intelligence */}
+                    <section>
+                      <div className="mb-8 pb-3 border-b-2 border-foreground/10">
+                        <h2 className="text-[26px] font-semibold text-foreground">CAPA & Atlas Intelligence</h2>
+                      </div>
+                      <div className="space-y-16">
+                        <CAPAGantt />
+                        <AtlasIntelligence />
+                      </div>
+                    </section>
+
+                    {/* Machine Park */}
+                    <section id="machine-park">
+                      <div className="mb-8 pb-3 border-b-2 border-foreground/10">
+                        <h2 className="text-[26px] font-semibold text-foreground">Machine Park Intelligence</h2>
+                      </div>
+                      <div className="space-y-16">
+                        <OEEGaugeCluster />
+                        <MachineParkIntelligence />
+                      </div>
+                    </section>
+
+                    {/* Forecast & Recommendations */}
+                    <section>
+                      <div className="mb-8 pb-3 border-b-2 border-foreground/10">
+                        <h2 className="text-[26px] font-semibold text-foreground">Risk Forecast & Recommendations</h2>
+                      </div>
+                      <div className="space-y-16">
+                        <DelayForecast />
+                        <RecommendationSection />
+                        <EvidenceVault />
+                      </div>
+                    </section>
+
+                    {/* Sign-Off */}
+                    <section className="pb-24">
+                      <div className="mb-8 pb-3 border-b-2 border-foreground/10">
+                        <h2 className="text-[26px] font-semibold text-foreground">Approval & Digital Sign-Off</h2>
+                      </div>
+                      <DigitalSignatureBlock />
+                    </section>
+                  </div>
                 )}
 
                 {/* Ask Atlas — Live AI Copilot */}
-                <AskAtlasBar activeStation={activeStation} />
+                <div className="pb-12">
+                  <AskAtlasBar activeStation={activeStation} />
+                </div>
               </div>
             </div>
 
