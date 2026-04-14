@@ -26,6 +26,9 @@ const previousAudit = {
   costExposure: '€340,000',
 };
 
+const stripEmoji = (text: string) =>
+  text.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}\u{FE00}-\u{FE0F}\u{1FA00}-\u{1FAFF}\u{200D}\u{20E3}\u{E0020}-\u{E007F}\u{2700}-\u{27BF}\u{2B50}\u{2B55}\u{231A}-\u{23F3}\u{23E9}-\u{23EF}\u{25AA}-\u{25FE}\u{2934}-\u{2935}\u{2194}-\u{21AA}\u{3030}\u{303D}\u{3297}\u{3299}]/gu, '').replace(/\s{2,}/g, ' ').trim();
+
 export default function TrendComparison({ open, onClose }: TrendComparisonProps) {
   const { reportMeta, allNCRs, iatfWeightedScore } = useAuditReportContext();
   const [narrative, setNarrative] = useState("");
