@@ -199,8 +199,14 @@ KPIs: ${kpis.map((k: any) => `${k.label}: ${k.value}`).join(', ')}`;
       {/* Chat Panel */}
       <div
         className={cn(
-          "fixed bottom-20 right-6 z-50 w-[380px] max-h-[520px] flex flex-col bg-card border border-border rounded-2xl shadow-2xl transition-all duration-300 origin-bottom-right",
-          open ? "scale-100 opacity-100 pointer-events-auto" : "scale-95 opacity-0 pointer-events-none"
+          "fixed inset-0 z-50 flex items-center justify-center p-6 transition-all duration-300",
+          open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        )}
+      >
+      <div
+        className={cn(
+          "w-full max-w-[520px] max-h-[600px] flex flex-col bg-card border border-border rounded-2xl shadow-2xl transition-all duration-300",
+          open ? "scale-100" : "scale-95"
         )}
       >
         {/* Header */}
