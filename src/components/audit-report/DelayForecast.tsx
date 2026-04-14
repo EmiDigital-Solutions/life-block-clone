@@ -18,7 +18,7 @@ export default function DelayForecast() {
     <section id="station-12" className="scroll-mt-20 py-12 space-y-8">
       <div className="flex items-center gap-2">
         <div className="w-1 h-5 bg-warning" />
-        <span className="text-[11px] font-semibold tracking-[0.15em] uppercase text-muted-foreground">Delay Forecast</span>
+        <span className="text-[13px] font-semibold tracking-[0.15em] uppercase text-muted-foreground">Delay Forecast</span>
       </div>
 
       <h2 className="text-[32px] font-bold text-foreground tracking-[-0.02em] leading-tight">
@@ -26,7 +26,7 @@ export default function DelayForecast() {
       </h2>
 
       <div className="p-8 bg-card shadow-sm">
-        <div className="flex items-center gap-6 mb-6 text-[11px] text-muted-foreground">
+        <div className="flex items-center gap-6 mb-6 text-[13px] text-muted-foreground">
           <span className="flex items-center gap-2">
             <span className="w-3 h-2 inline-block bg-primary opacity-50" /> Contracted
           </span>
@@ -49,9 +49,9 @@ export default function DelayForecast() {
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-[15px] font-medium text-foreground">{item.milestone}</span>
                   <div className="flex items-center gap-3">
-                    <span className="text-[12px] font-mono text-muted-foreground">P{item.confidence}</span>
+                    <span className="text-[14px] font-mono text-muted-foreground">P{item.confidence}</span>
                     {isLate && (
-                      <span className="text-[11px] font-mono font-bold px-2 py-0.5 bg-warning/10 text-warning">
+                      <span className="text-[13px] font-mono font-bold px-2 py-0.5 bg-warning/10 text-warning">
                         +{Math.round((new Date(item.predicted).getTime() - new Date(item.contracted).getTime()) / (1000 * 60 * 60 * 24))}d
                       </span>
                     )}
@@ -69,7 +69,7 @@ export default function DelayForecast() {
                     </div>
                   )}
                 </div>
-                <div className="flex justify-between text-[11px] font-mono mt-1.5 text-muted-foreground">
+                <div className="flex justify-between text-[13px] font-mono mt-1.5 text-muted-foreground">
                   <span>{item.contracted}</span>
                   {isLate && <span className="text-warning">{item.predicted}</span>}
                 </div>

@@ -170,7 +170,7 @@ function AuditReportInner() {
     <div className="h-[100dvh] flex flex-col text-foreground pt-16" style={{ fontFamily: "'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
       {/* Window title bar */}
       <div className="h-8 flex items-center px-3 border-b flex-shrink-0" style={{ background: 'hsl(220,14%,96%)', borderColor: 'hsl(220,13%,89%)' }}>
-        <span className="text-[10px] font-medium" style={{ color: 'hsl(220,10%,40%)' }}>
+        <span className="text-[12px] font-medium" style={{ color: 'hsl(220,10%,40%)' }}>
           SCANPRO+ Audit Report — {reportMeta.supplier} · {reportMeta.po} · {allNCRs.length} NCRs
         </span>
         <div className="ml-auto flex gap-1">
@@ -178,7 +178,7 @@ function AuditReportInner() {
             <button
               key={i}
               className={cn(
-                "px-2 py-0.5 text-[9px] font-medium uppercase tracking-wider transition-colors cursor-pointer",
+                "px-2 py-0.5 text-[11px] font-medium uppercase tracking-wider transition-colors cursor-pointer",
                 i === 0 ? 'bg-primary text-white' : 'text-muted-foreground hover:bg-muted'
               )}
               style={i !== 0 ? { background: 'hsl(220,14%,90%)' } : undefined}
@@ -197,7 +197,7 @@ function AuditReportInner() {
             <div className="absolute inset-0 bg-foreground/40 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
             <div className="relative z-10 w-[280px]" style={{ background: 'hsl(0,0%,97%)' }}>
               <div className="flex items-center justify-between px-4 py-3" style={{ borderBottom: '1px solid hsl(0,0%,90%)' }}>
-                <span className="text-[13px] font-semibold text-foreground">Document Outline</span>
+                <span className="text-[15px] font-semibold text-foreground">Document Outline</span>
                 <button onClick={() => setSidebarOpen(false)} className="p-1"><X className="w-4 h-4 text-white/50" /></button>
               </div>
               <ReportSidebar activeStation={activeStation} onStationClick={scrollToStation} onScrollToId={scrollToId} />
@@ -235,12 +235,12 @@ function AuditReportInner() {
                     <Menu className="w-4 h-4 text-muted-foreground" />
                   </button>
                 )}
-                <span className="text-[10px] font-bold uppercase tracking-wider text-primary">yvoo+</span>
-                <span className="text-[10px] text-muted-foreground">SCANPRO+ · ATLAS AI</span>
-                <span className="text-[10px] text-border">|</span>
-                <span className="text-[11px] font-medium text-foreground">{reportMeta.supplier}</span>
-                <span className="text-[10px] font-semibold text-warning ml-1">{reportMeta.verdictLabel}</span>
-                <span className="text-[10px] text-muted-foreground">· {allNCRs.length} NCRs</span>
+                <span className="text-[12px] font-bold uppercase tracking-wider text-primary">yvoo+</span>
+                <span className="text-[12px] text-muted-foreground">SCANPRO+ · ATLAS AI</span>
+                <span className="text-[12px] text-border">|</span>
+                <span className="text-[13px] font-medium text-foreground">{reportMeta.supplier}</span>
+                <span className="text-[12px] font-semibold text-warning ml-1">{reportMeta.verdictLabel}</span>
+                <span className="text-[12px] text-muted-foreground">· {allNCRs.length} NCRs</span>
 
                 {/* Station heatmap strip */}
                 <div className="hidden md:flex items-center gap-2 ml-2 pl-2 border-l border-border">
@@ -249,7 +249,7 @@ function AuditReportInner() {
 
                 {/* Breadcrumb progress */}
                 <div className="hidden lg:flex items-center gap-1.5 ml-2 pl-2 border-l border-border">
-                  <span className="text-[10px] font-mono tabular-nums text-muted-foreground">
+                  <span className="text-[12px] font-mono tabular-nums text-muted-foreground">
                     Reviewed {reviewedStations.size}/{totalStations}
                   </span>
                 </div>
@@ -257,8 +257,8 @@ function AuditReportInner() {
               <div className="flex items-center gap-2">
                 {/* Reading progress + time */}
                 <div className="hidden md:flex items-center gap-2">
-                  <span className="text-[10px] font-mono tabular-nums text-muted-foreground">{readingProgress}%</span>
-                  <span className="text-[10px] flex items-center gap-1 text-muted-foreground">
+                  <span className="text-[12px] font-mono tabular-nums text-muted-foreground">{readingProgress}%</span>
+                  <span className="text-[12px] flex items-center gap-1 text-muted-foreground">
                     <Clock className="w-3 h-3" />
                     {readingTimeEstimates[depth]}
                   </span>
@@ -271,14 +271,14 @@ function AuditReportInner() {
                       <TooltipTrigger asChild>
                         <button
                           onClick={() => scrollToStation(worstStation.index)}
-                          className="flex items-center gap-1.5 px-2.5 py-1 text-[9px] font-semibold text-destructive uppercase tracking-wider cursor-pointer"
+                          className="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-semibold text-destructive uppercase tracking-wider cursor-pointer"
                           style={{ background: 'hsl(0, 48%, 46%, 0.12)' }}
                         >
                           <AlertTriangle className="w-3 h-3" />
                           Worst
                         </button>
                       </TooltipTrigger>
-                      <TooltipContent side="bottom" className="text-[11px]">
+                      <TooltipContent side="bottom" className="text-[13px]">
                         Jump to {worstStation.name} — lowest scoring station
                       </TooltipContent>
                     </Tooltip>
@@ -292,7 +292,7 @@ function AuditReportInner() {
                       key={d}
                       onClick={() => setDepth(d)}
                       className={cn(
-                        "px-2.5 py-1 text-[9px] font-medium uppercase tracking-wider transition-colors cursor-pointer",
+                        "px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider transition-colors cursor-pointer",
                         depth === d ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-muted/80"
                       )}
                     >
@@ -300,12 +300,12 @@ function AuditReportInner() {
                     </button>
                   ))}
                 </div>
-                <button className="hidden md:block px-2.5 py-1 text-[9px] font-medium uppercase tracking-wider cursor-pointer bg-muted text-muted-foreground hover:bg-muted/80 transition-colors">
+                <button className="hidden md:block px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider cursor-pointer bg-muted text-muted-foreground hover:bg-muted/80 transition-colors">
                   Export pdf
                 </button>
                 <button
                   onClick={() => setInspectorOpen(!inspectorOpen)}
-                  className="px-3 py-1 text-[9px] font-semibold text-white bg-primary uppercase tracking-wider cursor-pointer hover:bg-primary/90 transition-colors"
+                  className="px-3 py-1 text-[11px] font-semibold text-white bg-primary uppercase tracking-wider cursor-pointer hover:bg-primary/90 transition-colors"
                 >
                   Sign off ({allNCRs.filter(n => n.status === 'open').length})
                 </button>
@@ -404,9 +404,9 @@ function AuditReportInner() {
                       value={askAtlasInput}
                       onChange={e => setAskAtlasInput(e.target.value)}
                       placeholder="Ask Atlas about this audit..."
-                      className="flex-1 bg-transparent text-[12px] text-foreground placeholder:text-muted-foreground outline-none"
+                      className="flex-1 bg-transparent text-[14px] text-foreground placeholder:text-muted-foreground outline-none"
                     />
-                    <button className="px-2.5 py-1 text-[9px] font-medium uppercase tracking-wider bg-primary text-white cursor-pointer hover:bg-primary/90 transition-colors">
+                    <button className="px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider bg-primary text-white cursor-pointer hover:bg-primary/90 transition-colors">
                       Ask
                     </button>
                   </div>

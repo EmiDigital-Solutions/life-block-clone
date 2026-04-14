@@ -70,11 +70,11 @@ export default function VDA63ScoringTable() {
       <div className="bg-card rounded-lg border border-border/60 overflow-hidden">
         {/* Header */}
         <div className="flex items-center justify-between px-5 py-3 border-b border-border/40">
-          <span className="text-[13px] font-semibold text-foreground">VDA 6.3 Element Scoring</span>
+          <span className="text-[15px] font-semibold text-foreground">VDA 6.3 Element Scoring</span>
           <div className="flex items-center gap-3">
-            <span className="text-[12px] text-muted-foreground">VDA 6.3:2023</span>
+            <span className="text-[14px] text-muted-foreground">VDA 6.3:2023</span>
             <span className="text-[18px] font-semibold font-mono" style={{ color: overall.color }}>{Math.round(iatfWeightedScore)}%</span>
-            <span className="text-[12px] font-medium px-2 py-0.5 rounded-md" style={{ background: overall.bg, color: overall.color }}>
+            <span className="text-[14px] font-medium px-2 py-0.5 rounded-md" style={{ background: overall.bg, color: overall.color }}>
               Grade {overall.grade}
             </span>
           </div>
@@ -83,10 +83,10 @@ export default function VDA63ScoringTable() {
         {/* Classification banner */}
         <div className="px-4 py-2 flex items-center gap-3 border-b border-border" style={{ background: overall.bg }}>
           <div className="w-3 h-3" style={{ background: overall.color }} />
-          <span className="text-[12px] font-bold" style={{ color: overall.color }}>
+          <span className="text-[14px] font-bold" style={{ color: overall.color }}>
             Result: {overall.label}
           </span>
-          <span className="text-[11px] text-foreground/60 ml-auto">
+          <span className="text-[13px] text-foreground/60 ml-auto">
             Classification per VDA 6.3:2023 §10.2
           </span>
         </div>
@@ -95,12 +95,12 @@ export default function VDA63ScoringTable() {
         <table className="w-full text-left border-collapse">
           <thead>
             <tr className="bg-muted/20">
-              <th className="px-4 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border w-[140px]">Element</th>
-              <th className="px-3 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l">Score</th>
-              <th className="px-3 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l w-[60px]">Weight</th>
-              <th className="px-3 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l w-[80px]">Weighted</th>
-              <th className="px-3 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l w-[50px]">Grade</th>
-              <th className="px-4 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l">Score Distribution</th>
+              <th className="px-4 py-2 text-[11px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border w-[140px]">Element</th>
+              <th className="px-3 py-2 text-[11px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l">Score</th>
+              <th className="px-3 py-2 text-[11px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l w-[60px]">Weight</th>
+              <th className="px-3 py-2 text-[11px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l w-[80px]">Weighted</th>
+              <th className="px-3 py-2 text-[11px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l w-[50px]">Grade</th>
+              <th className="px-4 py-2 text-[11px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l">Score Distribution</th>
             </tr>
           </thead>
           <tbody>
@@ -113,25 +113,25 @@ export default function VDA63ScoringTable() {
               return (
                 <tr key={idx} className="border-b border-border/60 hover:bg-muted/30 transition-colors">
                   <td className="px-4 py-2.5">
-                    <div className="text-[11px] font-bold text-foreground">{p.process.split(' — ')[0]}</div>
-                    <div className="text-[10px] text-muted-foreground">{p.process.split(' — ')[1]}</div>
+                    <div className="text-[13px] font-bold text-foreground">{p.process.split(' — ')[0]}</div>
+                    <div className="text-[12px] text-muted-foreground">{p.process.split(' — ')[1]}</div>
                   </td>
                   <td className="px-3 py-2.5 border-l border-border/60">
                     <div className="flex items-center gap-2">
                       <div className="w-[100px] h-[8px] bg-muted overflow-hidden">
                         <div className="h-full transition-all" style={{ width: `${p.score}%`, background: cls.color }} />
                       </div>
-                      <span className="text-[13px] font-bold font-mono tabular-nums" style={{ color: cls.color }}>{p.score}%</span>
+                      <span className="text-[15px] font-bold font-mono tabular-nums" style={{ color: cls.color }}>{p.score}%</span>
                     </div>
                   </td>
-                  <td className="px-3 py-2.5 border-l border-border/60 text-[11px] font-mono text-muted-foreground text-center">
+                  <td className="px-3 py-2.5 border-l border-border/60 text-[13px] font-mono text-muted-foreground text-center">
                     {(p.weight * 100).toFixed(0)}%
                   </td>
-                  <td className="px-3 py-2.5 border-l border-border/60 text-[12px] font-bold font-mono tabular-nums text-foreground text-center">
+                  <td className="px-3 py-2.5 border-l border-border/60 text-[14px] font-bold font-mono tabular-nums text-foreground text-center">
                     {weighted}
                   </td>
                   <td className="px-3 py-2.5 border-l border-border/60 text-center">
-                    <span className="text-[11px] font-bold px-2 py-0.5" style={{ background: cls.bg, color: cls.color }}>
+                    <span className="text-[13px] font-bold px-2 py-0.5" style={{ background: cls.bg, color: cls.color }}>
                       {cls.grade}
                     </span>
                   </td>
@@ -153,7 +153,7 @@ export default function VDA63ScoringTable() {
                         );
                       })}
                       {questions.length === 0 && (
-                        <span className="text-[9px] text-muted-foreground italic">N/A</span>
+                        <span className="text-[11px] text-muted-foreground italic">N/A</span>
                       )}
                     </div>
                   </td>
@@ -163,22 +163,22 @@ export default function VDA63ScoringTable() {
           </tbody>
           <tfoot>
             <tr className="bg-muted/30">
-              <td className="px-4 py-2.5 text-[11px] font-bold uppercase tracking-wider text-foreground border-t border-border">
+              <td className="px-4 py-2.5 text-[13px] font-bold uppercase tracking-wider text-foreground border-t border-border">
                 Overall Result
               </td>
               <td className="px-3 py-2.5 border-t border-border border-l">
                 <span className="text-[15px] font-bold font-mono" style={{ color: overall.color }}>{Math.round(iatfWeightedScore)}%</span>
               </td>
-              <td className="px-3 py-2.5 border-t border-border border-l text-[11px] font-mono text-muted-foreground text-center">100%</td>
-              <td className="px-3 py-2.5 border-t border-border border-l text-[13px] font-bold font-mono text-foreground text-center">
+              <td className="px-3 py-2.5 border-t border-border border-l text-[13px] font-mono text-muted-foreground text-center">100%</td>
+              <td className="px-3 py-2.5 border-t border-border border-l text-[15px] font-bold font-mono text-foreground text-center">
                 {iatfWeightedScore.toFixed(1)}
               </td>
               <td className="px-3 py-2.5 border-t border-border border-l text-center">
-                <span className="text-[12px] font-bold px-2.5 py-1" style={{ background: overall.bg, color: overall.color }}>
+                <span className="text-[14px] font-bold px-2.5 py-1" style={{ background: overall.bg, color: overall.color }}>
                   {overall.grade}
                 </span>
               </td>
-              <td className="px-4 py-2.5 border-t border-border border-l text-[10px] text-muted-foreground">
+              <td className="px-4 py-2.5 border-t border-border border-l text-[12px] text-muted-foreground">
                 {overall.label}
               </td>
             </tr>
@@ -187,10 +187,10 @@ export default function VDA63ScoringTable() {
 
         {/* Degradation rules */}
         <div className="px-4 py-3 border-t border-border bg-muted/30">
-          <div className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground mb-1.5">Degradation Rules (VDA 6.3:2023 §10.1)</div>
+          <div className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground mb-1.5">Degradation Rules (VDA 6.3:2023 §10.1)</div>
           <div className="flex flex-wrap gap-x-6 gap-y-1">
             {degradationRules.map((rule, i) => (
-              <div key={i} className="flex items-start gap-1.5 text-[10px] text-foreground/70">
+              <div key={i} className="flex items-start gap-1.5 text-[12px] text-foreground/70">
                 <span className="text-[8px] mt-0.5 shrink-0">▪</span>
                 <span>{rule}</span>
               </div>
@@ -200,7 +200,7 @@ export default function VDA63ScoringTable() {
 
         {/* Classification legend */}
         <div className="px-4 py-2 border-t border-border bg-card flex items-center gap-6">
-          <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">Classification:</span>
+          <span className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">Classification:</span>
           {[
             { grade: 'A', range: '≥90%', color: 'hsl(155, 24%, 40%)' },
             { grade: 'AB', range: '80–89%', color: 'hsl(155, 24%, 50%)' },
@@ -209,8 +209,8 @@ export default function VDA63ScoringTable() {
           ].map(l => (
             <div key={l.grade} className="flex items-center gap-1.5">
               <div className="w-3 h-3" style={{ background: l.color }} />
-              <span className="text-[10px] font-bold" style={{ color: l.color }}>{l.grade}</span>
-              <span className="text-[10px] text-muted-foreground">{l.range}</span>
+              <span className="text-[12px] font-bold" style={{ color: l.color }}>{l.grade}</span>
+              <span className="text-[12px] text-muted-foreground">{l.range}</span>
             </div>
           ))}
         </div>

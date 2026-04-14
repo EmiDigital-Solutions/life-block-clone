@@ -16,7 +16,7 @@ function ProcessScoreBar({ label, fullName, score }: { label: string; fullName: 
   return (
     <div className="group flex items-center gap-3 py-1">
       <div className="flex items-center gap-2 w-[52px] shrink-0">
-        <span className="text-[10px] font-bold px-1.5 py-0.5" style={{ background: `${color}15`, color }}>{label}</span>
+        <span className="text-[12px] font-bold px-1.5 py-0.5" style={{ background: `${color}15`, color }}>{label}</span>
       </div>
       <div className="flex-1 h-[6px] overflow-hidden bg-muted">
         <div
@@ -24,7 +24,7 @@ function ProcessScoreBar({ label, fullName, score }: { label: string; fullName: 
           style={{ width: `${score}%`, background: `linear-gradient(90deg, ${color}CC, ${color})` }}
         />
       </div>
-      <span className="text-[12px] font-mono font-semibold text-foreground w-[32px] text-right tabular-nums">{score}</span>
+      <span className="text-[14px] font-mono font-semibold text-foreground w-[32px] text-right tabular-nums">{score}</span>
     </div>
   );
 }
@@ -62,11 +62,11 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
         <div className="bg-card rounded-lg border border-border/60 overflow-hidden">
           {/* Title */}
           <div className="px-6 py-6 text-center">
-            <div className="text-[11px] text-muted-foreground mb-1">Confidential</div>
+            <div className="text-[13px] text-muted-foreground mb-1">Confidential</div>
             <h1 className="text-[22px] font-semibold text-foreground leading-tight">
               Process Audit Report
             </h1>
-            <div className="text-[13px] text-muted-foreground mt-1">
+            <div className="text-[15px] text-muted-foreground mt-1">
               VDA 6.3:2023 · ISO 9001:2015 · IATF 16949:2016
             </div>
           </div>
@@ -91,8 +91,8 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
                 ['Cert. Expiry', reportMeta.certExpiry],
               ].map(([k, v], i) => (
                 <div key={i} className="flex justify-between py-1 border-b border-border/20">
-                  <span className="text-[11px] text-muted-foreground">{k}</span>
-                  <span className="text-[12px] font-medium text-foreground">{v}</span>
+                  <span className="text-[13px] text-muted-foreground">{k}</span>
+                  <span className="text-[14px] font-medium text-foreground">{v}</span>
                 </div>
               ))}
             </div>
@@ -102,51 +102,51 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
         {/* Audit Result */}
         <div className="bg-card rounded-lg border border-border/60 overflow-hidden">
           <div className="px-5 py-3 border-b border-border/40">
-            <span className="text-[13px] font-semibold text-foreground">Audit Result</span>
+            <span className="text-[15px] font-semibold text-foreground">Audit Result</span>
           </div>
           <div className="grid grid-cols-5 divide-x divide-border/30">
               {/* VDA Score */}
               <div className="px-4 py-4 text-center">
-                <div className="text-[10px] text-muted-foreground mb-1">VDA 6.3 Score</div>
+                <div className="text-[12px] text-muted-foreground mb-1">VDA 6.3 Score</div>
                 <div className="text-[28px] font-semibold font-mono tabular-nums leading-none" style={{ color: overallCls.color }}>{Math.round(iatfWeightedScore)}%</div>
-                <div className="text-[11px] font-bold px-2 py-0.5 mt-1.5 inline-block" style={{ background: overallCls.bg, color: overallCls.color }}>
+                <div className="text-[13px] font-bold px-2 py-0.5 mt-1.5 inline-block" style={{ background: overallCls.bg, color: overallCls.color }}>
                   Grade {overallCls.grade}
                 </div>
               </div>
               {/* Verdict */}
               <div className="px-4 py-4 text-center">
-                <div className="text-[10px] text-muted-foreground mb-1">Verdict</div>
+                <div className="text-[12px] text-muted-foreground mb-1">Verdict</div>
                 <div className="text-[22px] font-bold leading-none" style={{ color: config.color }}>{verdictLabel}</div>
-                <div className="text-[10px] mt-1.5 text-muted-foreground">{verdict === 'conditional' ? 'With Conditions' : verdict === 'go' ? 'Without Conditions' : 'Rejected'}</div>
+                <div className="text-[12px] mt-1.5 text-muted-foreground">{verdict === 'conditional' ? 'With Conditions' : verdict === 'go' ? 'Without Conditions' : 'Rejected'}</div>
               </div>
               {/* Previous */}
               <div className="px-4 py-4 text-center">
-                <div className="text-[10px] text-muted-foreground mb-1">Previous Score</div>
+                <div className="text-[12px] text-muted-foreground mb-1">Previous Score</div>
                 <div className="text-[28px] font-semibold font-mono tabular-nums leading-none text-foreground">{reportMeta.previousScore}%</div>
-                <div className="text-[10px] mt-1.5 font-mono" style={{ color: iatfWeightedScore < reportMeta.previousScore ? 'hsl(0,48%,46%)' : 'hsl(155,24%,45%)' }}>
+                <div className="text-[12px] mt-1.5 font-mono" style={{ color: iatfWeightedScore < reportMeta.previousScore ? 'hsl(0,48%,46%)' : 'hsl(155,24%,45%)' }}>
                   {iatfWeightedScore >= reportMeta.previousScore ? '▲' : '▼'} {Math.abs(Math.round(iatfWeightedScore) - reportMeta.previousScore)}pts
                 </div>
               </div>
               {/* NCRs */}
               <div className="px-4 py-4 text-center">
-                <div className="text-[10px] text-muted-foreground mb-1">Non-Conformities</div>
+                <div className="text-[12px] text-muted-foreground mb-1">Non-Conformities</div>
                 <div className="flex items-center justify-center gap-3">
                   <div>
                     <div className="text-[22px] font-bold font-mono text-destructive leading-none">{majorNCRs}</div>
-                    <div className="text-[9px] uppercase text-destructive font-bold">Major</div>
+                    <div className="text-[11px] uppercase text-destructive font-bold">Major</div>
                   </div>
                   <div className="w-px h-8 bg-border" />
                   <div>
                     <div className="text-[22px] font-bold font-mono text-warning leading-none">{minorNCRs}</div>
-                    <div className="text-[9px] uppercase text-warning font-bold">Minor</div>
+                    <div className="text-[11px] uppercase text-warning font-bold">Minor</div>
                   </div>
                 </div>
               </div>
               {/* Cost */}
               <div className="px-4 py-4 text-center">
-                <div className="text-[10px] text-muted-foreground mb-1">Risk Exposure</div>
+                <div className="text-[12px] text-muted-foreground mb-1">Risk Exposure</div>
                 <div className="text-[22px] font-semibold font-mono tabular-nums leading-none text-destructive">€{(reportMeta.totalCostExposure / 1000).toFixed(0)}K</div>
-                <div className="text-[11px] mt-1.5 text-muted-foreground">Mitigatable to €{(reportMeta.mitigatedCostExposure / 1000).toFixed(0)}K</div>
+                <div className="text-[13px] mt-1.5 text-muted-foreground">Mitigatable to €{(reportMeta.mitigatedCostExposure / 1000).toFixed(0)}K</div>
               </div>
             </div>
         </div>
@@ -154,7 +154,7 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
         {/* Executive Summary */}
         <div className="bg-card rounded-lg border border-border/60 overflow-hidden">
           <div className="px-5 py-3 border-b border-border/40">
-            <span className="text-[13px] font-semibold text-foreground">Executive Summary</span>
+            <span className="text-[15px] font-semibold text-foreground">Executive Summary</span>
           </div>
           <div className="px-5 py-4 space-y-3">
             {[
@@ -166,8 +166,8 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
               <div key={i} className="flex items-start gap-3">
                 <div className={`w-2 h-2 rounded-full ${item.color} mt-1.5 shrink-0`} />
                 <div>
-                  <span className="text-[12px] font-semibold text-foreground">{item.label}</span>
-                  <p className="text-[12px] text-muted-foreground leading-relaxed mt-0.5">{item.text}</p>
+                  <span className="text-[14px] font-semibold text-foreground">{item.label}</span>
+                  <p className="text-[14px] text-muted-foreground leading-relaxed mt-0.5">{item.text}</p>
                 </div>
               </div>
             ))}
@@ -179,14 +179,14 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
 
         {/* Actions */}
         <div className="flex items-center justify-between py-3">
-          <div className="text-[11px] text-muted-foreground">
+          <div className="text-[13px] text-muted-foreground">
             Generated: {new Date().toLocaleDateString('de-DE')} · Restricted
           </div>
           <div className="flex items-center gap-2">
-            <button onClick={onWalk} className="px-4 py-2 text-[11px] font-medium rounded-lg cursor-pointer border border-border text-foreground hover:bg-muted/50 transition-colors">
+            <button onClick={onWalk} className="px-4 py-2 text-[13px] font-medium rounded-lg cursor-pointer border border-border text-foreground hover:bg-muted/50 transition-colors">
               Detailed Findings
             </button>
-            <button onClick={onDecide} className="px-4 py-2 text-[11px] font-medium text-white rounded-lg bg-primary hover:bg-primary/90 cursor-pointer transition-colors">
+            <button onClick={onDecide} className="px-4 py-2 text-[13px] font-medium text-white rounded-lg bg-primary hover:bg-primary/90 cursor-pointer transition-colors">
               Review & Sign Off
             </button>
           </div>
@@ -203,13 +203,13 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-2">
             <div className="w-1 h-5" style={{ background: config.color }} />
-            <span className="text-[11px] font-semibold tracking-[0.15em] uppercase text-muted-foreground">Audit Report</span>
-            <span className="text-[11px] text-border">·</span>
-            <span className="text-[11px] font-mono text-muted-foreground">{po}</span>
+            <span className="text-[13px] font-semibold tracking-[0.15em] uppercase text-muted-foreground">Audit Report</span>
+            <span className="text-[13px] text-border">·</span>
+            <span className="text-[13px] font-mono text-muted-foreground">{po}</span>
           </div>
           <div className="flex items-center gap-2">
             {['ISO 9001', 'IATF 16949', 'VDA 6.3'].map(badge => (
-              <span key={badge} className="text-[9px] font-bold tracking-[0.1em] uppercase px-2 py-1 bg-muted text-muted-foreground">
+              <span key={badge} className="text-[11px] font-bold tracking-[0.1em] uppercase px-2 py-1 bg-muted text-muted-foreground">
                 {badge}
               </span>
             ))}
@@ -224,7 +224,7 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
               {verdict === 'go' ? <Shield className="w-4 h-4" style={{ color: config.color }} /> :
                <AlertTriangle className="w-4 h-4" style={{ color: config.color }} />}
             </div>
-            <div className="text-[11px] font-bold tracking-[0.15em] uppercase" style={{ color: config.color }}>
+            <div className="text-[13px] font-bold tracking-[0.15em] uppercase" style={{ color: config.color }}>
               Verdict
             </div>
           </div>
@@ -248,8 +248,8 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
 
                 {/* Executive Summary */}
                 <div className="mt-5 p-4 bg-muted">
-                  <div className="text-[10px] font-bold tracking-[0.12em] uppercase mb-2 text-muted-foreground">Executive Summary</div>
-                  <ul className="space-y-2 text-[13px] leading-relaxed text-foreground/80">
+                  <div className="text-[12px] font-bold tracking-[0.12em] uppercase mb-2 text-muted-foreground">Executive Summary</div>
+                  <ul className="space-y-2 text-[15px] leading-relaxed text-foreground/80">
                     <li className="flex items-start gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-destructive mt-1.5 shrink-0" />
                       <span><strong className="text-foreground">Critical:</strong> Bore ID Cpk dropped to 0.98 (BMW min: 1.33). CNC calibration overdue on 2 machines — root cause traced to single-person dependency in calibration scheduling.</span>
@@ -277,7 +277,7 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
                     </div>
                     <div>
                       <div className="text-[18px] font-bold text-foreground leading-none">{majorNCRs}</div>
-                      <div className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground">Major</div>
+                      <div className="text-[12px] font-medium uppercase tracking-wide text-muted-foreground">Major</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
@@ -286,7 +286,7 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
                     </div>
                     <div>
                       <div className="text-[18px] font-bold text-foreground leading-none">{minorNCRs}</div>
-                      <div className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground">Minor</div>
+                      <div className="text-[12px] font-medium uppercase tracking-wide text-muted-foreground">Minor</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
@@ -295,7 +295,7 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
                     </div>
                     <div>
                       <div className="text-[18px] font-bold text-foreground leading-none">{reportMeta.previousScore} → 72</div>
-                      <div className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground">Score trend</div>
+                      <div className="text-[12px] font-medium uppercase tracking-wide text-muted-foreground">Score trend</div>
                     </div>
                   </div>
                 </div>
@@ -306,8 +306,8 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
                 <div className="p-5 bg-muted/50 border border-border">
                   <div className="flex items-center justify-between mb-4">
                     <div>
-                      <div className="text-[10px] font-bold tracking-[0.12em] uppercase text-muted-foreground">IATF 16949</div>
-                      <div className="text-[10px] text-muted-foreground">Weighted Process Score</div>
+                      <div className="text-[12px] font-bold tracking-[0.12em] uppercase text-muted-foreground">IATF 16949</div>
+                      <div className="text-[12px] text-muted-foreground">Weighted Process Score</div>
                     </div>
                     <div className="text-right">
                       <div className="text-[32px] font-bold leading-none tabular-nums" style={{ color: config.color }}>
@@ -327,11 +327,11 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
                     ))}
                   </div>
                   <div className="mt-3 pt-3 border-t border-border">
-                    <div className="flex items-center justify-between text-[10px]">
+                    <div className="flex items-center justify-between text-[12px]">
                       <span className="text-muted-foreground">Previous audit</span>
                       <span className="font-mono font-semibold text-foreground">{reportMeta.previousScore}%</span>
                     </div>
-                    <div className="flex items-center justify-between text-[10px] mt-0.5">
+                    <div className="flex items-center justify-between text-[12px] mt-0.5">
                       <span className="text-muted-foreground">BMW threshold</span>
                       <span className="font-mono font-semibold text-destructive">70%</span>
                     </div>
@@ -350,19 +350,19 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
                 <TrendingDown className="w-4 h-4 text-destructive" />
               </div>
               <div>
-                <div className="text-[11px] font-bold tracking-[0.1em] uppercase text-muted-foreground">Total Cost Exposure</div>
-                <div className="text-[10px] text-muted-foreground">If no corrective action is taken</div>
+                <div className="text-[13px] font-bold tracking-[0.1em] uppercase text-muted-foreground">Total Cost Exposure</div>
+                <div className="text-[12px] text-muted-foreground">If no corrective action is taken</div>
               </div>
             </div>
             <div className="flex items-center gap-8">
               <div className="text-right">
                 <div className="text-[22px] font-bold text-destructive tabular-nums leading-none">€{(reportMeta.totalCostExposure / 1000).toFixed(0)}K</div>
-                <div className="text-[10px] text-muted-foreground">at risk</div>
+                <div className="text-[12px] text-muted-foreground">at risk</div>
               </div>
               <div className="w-px h-8 bg-border" />
               <div className="text-right">
                 <div className="text-[22px] font-bold text-accent tabular-nums leading-none">€{(reportMeta.mitigatedCostExposure / 1000).toFixed(0)}K</div>
-                <div className="text-[10px] text-muted-foreground">after mitigation</div>
+                <div className="text-[12px] text-muted-foreground">after mitigation</div>
               </div>
             </div>
           </div>
@@ -372,19 +372,19 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
         <div className="flex items-center gap-2 mb-8">
           <button
             onClick={onDecide}
-            className="px-5 py-2.5 text-[11px] font-semibold text-white uppercase tracking-wider transition-all duration-200 active:scale-[0.98] bg-primary hover:bg-primary/90 cursor-pointer"
+            className="px-5 py-2.5 text-[13px] font-semibold text-white uppercase tracking-wider transition-all duration-200 active:scale-[0.98] bg-primary hover:bg-primary/90 cursor-pointer"
           >
             Review & decide →
           </button>
           <button
             onClick={onWalk}
-            className="px-5 py-2.5 text-[11px] font-semibold uppercase tracking-wider transition-all duration-200 active:scale-[0.98] cursor-pointer bg-muted text-foreground hover:bg-muted/80"
+            className="px-5 py-2.5 text-[13px] font-semibold uppercase tracking-wider transition-all duration-200 active:scale-[0.98] cursor-pointer bg-muted text-foreground hover:bg-muted/80"
           >
             Walk the factory
             <ChevronDown className="w-3 h-3 inline ml-1 -mt-0.5" />
           </button>
           <button
-            className="px-5 py-2.5 text-[11px] font-semibold uppercase tracking-wider transition-all duration-200 active:scale-[0.98] cursor-pointer bg-muted text-foreground hover:bg-muted/80"
+            className="px-5 py-2.5 text-[13px] font-semibold uppercase tracking-wider transition-all duration-200 active:scale-[0.98] cursor-pointer bg-muted text-foreground hover:bg-muted/80"
           >
             <FileCheck className="w-3 h-3 inline mr-1 -mt-0.5" />
             Export PDF
@@ -401,9 +401,9 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
               { label: 'Cert. Body', value: reportMeta.certBody.split(' ')[0] + ' ' + reportMeta.certBody.split(' ')[1], sub: `Expires ${reportMeta.certExpiry}` },
             ].map((item, i) => (
               <div key={i}>
-                <div className="text-[10px] font-bold tracking-[0.1em] uppercase mb-1 text-muted-foreground">{item.label}</div>
-                <div className="text-[13px] font-medium text-foreground">{item.value}</div>
-                {item.sub && <div className="text-[11px] text-muted-foreground">{item.sub}</div>}
+                <div className="text-[12px] font-bold tracking-[0.1em] uppercase mb-1 text-muted-foreground">{item.label}</div>
+                <div className="text-[15px] font-medium text-foreground">{item.value}</div>
+                {item.sub && <div className="text-[13px] text-muted-foreground">{item.sub}</div>}
               </div>
             ))}
           </div>

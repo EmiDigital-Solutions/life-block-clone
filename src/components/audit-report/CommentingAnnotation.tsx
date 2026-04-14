@@ -39,7 +39,7 @@ export default function CommentingAnnotation() {
       <div className="flex items-center gap-3">
         <MessageSquare className="w-4 h-4 text-primary" />
         <h3 className="text-[14px] font-semibold text-foreground">Discussion & Annotations</h3>
-        <span className="text-[10px] px-2 py-0.5 bg-primary/10 text-primary font-semibold">{unresolved} unresolved</span>
+        <span className="text-[12px] px-2 py-0.5 bg-primary/10 text-primary font-semibold">{unresolved} unresolved</span>
       </div>
 
       <div className="bg-card shadow-sm divide-y divide-border/40">
@@ -50,20 +50,20 @@ export default function CommentingAnnotation() {
                 <div className="w-6 h-6 bg-primary/10 flex items-center justify-center">
                   <User className="w-3 h-3 text-primary" />
                 </div>
-                <span className="text-[12px] font-semibold text-foreground">{comment.author}</span>
-                <span className="text-[10px] text-muted-foreground">{comment.role}</span>
-                <span className="text-[10px] text-grey-mid">· {comment.timestamp}</span>
+                <span className="text-[14px] font-semibold text-foreground">{comment.author}</span>
+                <span className="text-[12px] text-muted-foreground">{comment.role}</span>
+                <span className="text-[12px] text-grey-mid">· {comment.timestamp}</span>
               </div>
               {!comment.resolved && (
-                <button className="flex items-center gap-1 px-2 py-1 text-[10px] text-accent hover:bg-accent/5 transition-colors">
+                <button className="flex items-center gap-1 px-2 py-1 text-[12px] text-accent hover:bg-accent/5 transition-colors">
                   <Check className="w-3 h-3" /> Resolve
                 </button>
               )}
             </div>
             {comment.stationRef && (
-              <span className="inline-block text-[10px] px-2 py-0.5 bg-muted text-muted-foreground font-mono">{comment.stationRef}</span>
+              <span className="inline-block text-[12px] px-2 py-0.5 bg-muted text-muted-foreground font-mono">{comment.stationRef}</span>
             )}
-            <p className="text-[13px] text-foreground leading-relaxed">
+            <p className="text-[15px] text-foreground leading-relaxed">
               {comment.text.split(/(@\w+\.\w+)/g).map((part, i) =>
                 part.startsWith('@') ? (
                   <span key={i} className="text-primary font-medium">{part}</span>
@@ -83,9 +83,9 @@ export default function CommentingAnnotation() {
           value={newComment}
           onChange={e => setNewComment(e.target.value)}
           placeholder="Add a comment... Use @name to mention"
-          className="flex-1 bg-transparent text-[13px] text-foreground placeholder:text-grey-mid outline-none"
+          className="flex-1 bg-transparent text-[15px] text-foreground placeholder:text-grey-mid outline-none"
         />
-        <button className="px-3 py-1.5 text-[11px] font-medium text-white bg-primary hover:bg-primary/90 transition-colors">
+        <button className="px-3 py-1.5 text-[13px] font-medium text-white bg-primary hover:bg-primary/90 transition-colors">
           Post
         </button>
       </div>

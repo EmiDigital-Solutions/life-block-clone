@@ -23,7 +23,7 @@ export default function DecisionTray({ ncrs, isOpen, onClose, className }: Decis
       <div className="flex items-center justify-between px-4 py-4 border-b border-border/40">
         <div>
           <h3 className="text-[14px] font-semibold text-foreground">Decision Tray</h3>
-          <p className="text-[12px] text-muted-foreground mt-0.5">{pending} pending · {assigned} assigned</p>
+          <p className="text-[14px] text-muted-foreground mt-0.5">{pending} pending · {assigned} assigned</p>
         </div>
         <button onClick={onClose} className="p-1.5 hover:bg-muted text-muted-foreground hover:text-foreground transition-colors">
           <X className="w-4 h-4" />
@@ -34,22 +34,22 @@ export default function DecisionTray({ ncrs, isOpen, onClose, className }: Decis
         <div className="text-center">
           <AlertCircle className="w-4 h-4 text-warning mx-auto mb-1" />
           <span className="text-[18px] font-light text-foreground tabular-nums">{pending}</span>
-          <span className="block text-[10px] text-muted-foreground uppercase tracking-wider">Pending</span>
+          <span className="block text-[12px] text-muted-foreground uppercase tracking-wider">Pending</span>
         </div>
         <div className="text-center">
           <Clock className="w-4 h-4 text-primary mx-auto mb-1" />
           <span className="text-[18px] font-light text-foreground tabular-nums">{assigned}</span>
-          <span className="block text-[10px] text-muted-foreground uppercase tracking-wider">Assigned</span>
+          <span className="block text-[12px] text-muted-foreground uppercase tracking-wider">Assigned</span>
         </div>
         <div className="text-center">
           <CheckCircle2 className="w-4 h-4 text-accent mx-auto mb-1" />
           <span className="text-[18px] font-light text-foreground tabular-nums">0</span>
-          <span className="block text-[10px] text-muted-foreground uppercase tracking-wider">Closed</span>
+          <span className="block text-[12px] text-muted-foreground uppercase tracking-wider">Closed</span>
         </div>
       </div>
 
       <div className="px-4 py-3 border-b border-border/40">
-        <p className="text-[12px] text-muted-foreground">
+        <p className="text-[14px] text-muted-foreground">
           Est. <span className="text-foreground font-medium">12 min</span> to sign off
         </p>
       </div>

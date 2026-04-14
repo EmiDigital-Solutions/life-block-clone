@@ -14,7 +14,7 @@ export default function CrossAuditBenchmark() {
     <section className="py-12 space-y-8">
       <div className="flex items-center gap-2">
         <div className="w-1 h-5 bg-primary" />
-        <span className="text-[11px] font-semibold tracking-[0.15em] uppercase text-muted-foreground">Cross-Audit Benchmarking</span>
+        <span className="text-[13px] font-semibold tracking-[0.15em] uppercase text-muted-foreground">Cross-Audit Benchmarking</span>
       </div>
 
       <h2 className="text-[32px] font-bold text-foreground tracking-[-0.02em] leading-tight">
@@ -28,8 +28,8 @@ export default function CrossAuditBenchmark() {
               <div className="flex items-center justify-between mb-2">
                 <span className="text-[15px] font-medium text-foreground">{item.label}</span>
                 <div className="flex items-center gap-3">
-                  <span className="text-[13px] font-mono text-muted-foreground">{item.supplier}/100</span>
-                  <span className="text-[13px] font-mono font-bold" style={{ color: item.percentile < 30 ? 'hsl(var(--destructive))' : 'hsl(var(--accent))' }}>
+                  <span className="text-[15px] font-mono text-muted-foreground">{item.supplier}/100</span>
+                  <span className="text-[15px] font-mono font-bold" style={{ color: item.percentile < 30 ? 'hsl(var(--destructive))' : 'hsl(var(--accent))' }}>
                     P{item.percentile}
                   </span>
                 </div>
@@ -47,7 +47,7 @@ export default function CrossAuditBenchmark() {
                 ) : (
                   <TrendingUp className="w-3.5 h-3.5 text-accent" />
                 )}
-                <span className="text-[12px] text-muted-foreground">
+                <span className="text-[14px] text-muted-foreground">
                   {item.percentile < 30
                     ? `Below ${100 - item.percentile}% of peers in ${item.industry}`
                     : `Above ${item.percentile}% of peers`}

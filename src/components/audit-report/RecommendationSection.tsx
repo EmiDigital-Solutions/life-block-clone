@@ -14,9 +14,9 @@ export default function RecommendationSection() {
   return (
     <section id="station-13" className="scroll-mt-20 space-y-8">
       <div className="flex items-center gap-3 mb-2">
-        <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">// 13</span>
+        <span className="text-[14px] font-medium tracking-[0.1em] text-muted-foreground">// 13</span>
         <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-        <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">Recommendation</span>
+        <span className="text-[14px] font-medium tracking-[0.1em] text-muted-foreground">Recommendation</span>
         <div className="flex-1 h-px bg-border" />
       </div>
 
@@ -26,14 +26,14 @@ export default function RecommendationSection() {
 
       {/* Monday Morning Actions */}
       <div className="bg-card shadow-sm p-6 md:p-8">
-        <h4 className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold mb-6">Monday Morning — 3 actions</h4>
+        <h4 className="text-[13px] uppercase tracking-[0.12em] text-muted-foreground font-semibold mb-6">Monday Morning — 3 actions</h4>
         <div className="space-y-3">
           {nextSteps.map((step, i) => (
             <div key={i} className="flex items-center gap-4 p-4 hover:bg-muted/60 transition-colors group">
               <span className="text-[16px] font-mono text-grey-mid w-6">{i + 1}.</span>
               <step.icon className="w-4 h-4 text-primary shrink-0" />
               <span className="text-[14px] text-foreground flex-1">{step.label}</span>
-              <button className="px-3 py-1.5 text-[12px] font-medium text-primary border border-primary/20 hover:bg-primary/5 opacity-0 group-hover:opacity-100 transition-all">
+              <button className="px-3 py-1.5 text-[14px] font-medium text-primary border border-primary/20 hover:bg-primary/5 opacity-0 group-hover:opacity-100 transition-all">
                 {step.action}
               </button>
             </div>
@@ -50,27 +50,27 @@ export default function RecommendationSection() {
       {/* Export & Role-Based Views */}
       <div className="grid md:grid-cols-2 gap-4">
         <div className="bg-card shadow-sm p-5 space-y-3">
-          <h4 className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold">Export</h4>
+          <h4 className="text-[13px] uppercase tracking-[0.12em] text-muted-foreground font-semibold">Export</h4>
           <div className="space-y-2">
             <button className="w-full flex items-center gap-3 px-4 py-3 hover:bg-muted/60 transition-colors text-left">
               <FileDown className="w-4 h-4 text-primary" />
               <div>
-                <span className="text-[13px] text-foreground font-medium">PDF with Corporate Branding</span>
-                <p className="text-[10px] text-muted-foreground">Client logo, custom header/footer, cover page</p>
+                <span className="text-[15px] text-foreground font-medium">PDF with Corporate Branding</span>
+                <p className="text-[12px] text-muted-foreground">Client logo, custom header/footer, cover page</p>
               </div>
             </button>
             <button className="w-full flex items-center gap-3 px-4 py-3 hover:bg-muted/60 transition-colors text-left">
               <Printer className="w-4 h-4 text-primary" />
               <div>
-                <span className="text-[13px] text-foreground font-medium">Print-Ready Format</span>
-                <p className="text-[10px] text-muted-foreground">Optimized for A4, grayscale safe</p>
+                <span className="text-[15px] text-foreground font-medium">Print-Ready Format</span>
+                <p className="text-[12px] text-muted-foreground">Optimized for A4, grayscale safe</p>
               </div>
             </button>
           </div>
         </div>
 
         <div className="bg-card shadow-sm p-5 space-y-3">
-          <h4 className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground font-semibold">Role-Based Views</h4>
+          <h4 className="text-[13px] uppercase tracking-[0.12em] text-muted-foreground font-semibold">Role-Based Views</h4>
           <div className="space-y-2">
             {[
               { role: 'Procurement', desc: 'Cost data, supplier terms, risk exposure', icon: Users },
@@ -80,8 +80,8 @@ export default function RecommendationSection() {
               <button key={i} className="w-full flex items-center gap-3 px-4 py-3 hover:bg-muted/60 transition-colors text-left">
                 <view.icon className="w-4 h-4 text-primary" />
                 <div>
-                  <span className="text-[13px] text-foreground font-medium">{view.role}</span>
-                  <p className="text-[10px] text-muted-foreground">{view.desc}</p>
+                  <span className="text-[15px] text-foreground font-medium">{view.role}</span>
+                  <p className="text-[12px] text-muted-foreground">{view.desc}</p>
                 </div>
               </button>
             ))}
@@ -98,7 +98,7 @@ export default function RecommendationSection() {
       {/* Switch to Supplier View */}
       <div className="border-none p-6 text-center">
         <p className="text-[14px] text-muted-foreground mb-3">Share this report from the supplier's perspective</p>
-        <button className="px-6 py-2.5 text-[13px] font-medium text-foreground hover:bg-muted/60 transition-colors">
+        <button className="px-6 py-2.5 text-[15px] font-medium text-foreground hover:bg-muted/60 transition-colors">
           Switch to Supplier View →
         </button>
       </div>

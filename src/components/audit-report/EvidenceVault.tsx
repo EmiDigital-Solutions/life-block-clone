@@ -18,15 +18,15 @@ export default function EvidenceVault() {
   return (
     <section id="station-14" className="scroll-mt-20 space-y-6">
       <div className="flex items-center gap-3 mb-2">
-        <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">// 14</span>
+        <span className="text-[14px] font-medium tracking-[0.1em] text-muted-foreground">// 14</span>
         <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-        <span className="text-[12px] font-medium tracking-[0.1em] text-muted-foreground">Evidence Vault</span>
+        <span className="text-[14px] font-medium tracking-[0.1em] text-muted-foreground">Evidence Vault</span>
         <div className="flex-1 h-px bg-border" />
       </div>
 
       <div className="flex items-center gap-3">
         <h2 className="text-[28px] font-light text-foreground tracking-tight leading-none">Evidence Vault</h2>
-        <span className="text-[11px] px-2.5 py-1 rounded-full uppercase tracking-wider font-semibold bg-muted text-muted-foreground">
+        <span className="text-[13px] px-2.5 py-1 rounded-full uppercase tracking-wider font-semibold bg-muted text-muted-foreground">
           {evidenceItems.length} files
         </span>
       </div>
@@ -38,18 +38,18 @@ export default function EvidenceVault() {
             <div key={item.id} className=" bg-card shadow-sm overflow-hidden group hover:shadow-md transition-all cursor-pointer">
               <div className="aspect-[4/3] bg-muted flex items-center justify-center relative">
                 <Icon className="w-8 h-8 text-grey-mid" />
-                <span className="absolute bottom-2 left-2 text-[10px] px-2 py-0.5 rounded bg-white/80 text-muted-foreground font-mono border border-border">
+                <span className="absolute bottom-2 left-2 text-[12px] px-2 py-0.5 rounded bg-white/80 text-muted-foreground font-mono border border-border">
                   Stn {String(item.station).padStart(2, '0')}
                 </span>
                 {item.ncr && (
-                  <span className="absolute top-2 right-2 text-[10px] px-2 py-0.5 rounded bg-destructive/10 text-destructive font-mono flex items-center gap-1 border-none">
+                  <span className="absolute top-2 right-2 text-[12px] px-2 py-0.5 rounded bg-destructive/10 text-destructive font-mono flex items-center gap-1 border-none">
                     <Link2 className="w-3 h-3" /> {item.ncr}
                   </span>
                 )}
               </div>
               <div className="p-3">
-                <p className="text-[12px] text-foreground font-medium line-clamp-1">{item.name}</p>
-                <div className="flex items-center gap-3 mt-1.5 text-[11px] text-muted-foreground">
+                <p className="text-[14px] text-foreground font-medium line-clamp-1">{item.name}</p>
+                <div className="flex items-center gap-3 mt-1.5 text-[13px] text-muted-foreground">
                   <span className="font-mono">{item.id}</span>
                   <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {item.time}</span>
                 </div>
