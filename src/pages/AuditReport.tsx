@@ -625,10 +625,7 @@ function AuditReportInner() {
                   </div>
                 )}
 
-                {/* Ask Atlas — Live AI Copilot */}
-                <div className="pb-12">
-                  <AskAtlasBar activeStation={activeStation} />
-                </div>
+                {/* Ask Atlas FAB rendered outside content flow */}
               </div>
             </div>
 
