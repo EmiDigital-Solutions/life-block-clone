@@ -3,7 +3,7 @@
  * Round button with animated green pulse when speaking
  */
 import { useState, useCallback } from "react";
-import { Volume2, Square } from "lucide-react";
+import { Speech, Square } from "lucide-react";
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { cn } from "@/lib/utils";
 
@@ -75,7 +75,7 @@ export default function VoiceBriefing() {
         {speaking ? (
           <Square className="w-3 h-3 fill-current" />
         ) : (
-          <Volume2 className="w-3.5 h-3.5" />
+          <Speech className="w-3.5 h-3.5" />
         )}
       </span>
     </button>
