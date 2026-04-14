@@ -205,7 +205,7 @@ KPIs: ${kpis.map((k: any) => `${k.label}: ${k.value}`).join(', ')}`;
       >
       <div
         className={cn(
-          "w-full max-w-[520px] max-h-[600px] flex flex-col bg-card border border-border rounded-2xl shadow-2xl transition-all duration-300",
+          "w-full max-w-[720px] h-[80vh] max-h-[700px] flex flex-col bg-card border border-border rounded-2xl shadow-2xl transition-all duration-300",
           open ? "scale-100" : "scale-95"
         )}
       >
@@ -242,7 +242,7 @@ KPIs: ${kpis.map((k: any) => `${k.label}: ${k.value}`).join(', ')}`;
         </div>
 
         {/* Messages */}
-        <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-3 space-y-3 min-h-[200px] max-h-[360px]">
+        <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
           {messages.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full gap-3 py-6">
               <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center">
