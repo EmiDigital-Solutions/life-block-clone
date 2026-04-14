@@ -59,10 +59,10 @@ const readingTimeEstimates: Record<DepthLevel, string> = {
 };
 
 const verdictColors: Record<string, string> = {
-  go: 'hsl(155, 24%, 55%)',
-  conditional: 'hsl(24, 72%, 63%)',
-  hold: 'hsl(0, 48%, 46%)',
-  nogo: 'hsl(0, 48%, 46%)',
+  go: 'var(--ar-pass)',
+  conditional: 'var(--ar-warn)',
+  hold: 'var(--ar-fail)',
+  nogo: 'var(--ar-fail)',
 };
 
 export default function AuditReport() {
@@ -312,8 +312,8 @@ function AuditReportInner() {
                   disabled={openNCRs === 0}
                   className="px-4 py-1.5 text-[12px] font-semibold rounded-md cursor-pointer transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
                   style={{
-                    background: 'var(--ar-accent-light)',
-                    color: 'var(--ar-bg-header)',
+                    background: 'var(--ar-cta)',
+                    color: '#FFFFFF',
                   }}
                 >
                   Sign off {openNCRs > 0 && `(${openNCRs})`}
@@ -332,7 +332,7 @@ function AuditReportInner() {
                       onClick={() => setDepth(d)}
                       className="px-3 py-1.5 text-[12px] font-medium transition-colors cursor-pointer"
                       style={{
-                        background: depth === d ? 'var(--ar-accent)' : 'var(--ar-bg-surface)',
+                        background: depth === d ? 'var(--ar-cta)' : 'var(--ar-bg-surface)',
                         color: depth === d ? '#fff' : 'var(--ar-tx-3)',
                       }}
                     >
@@ -365,7 +365,7 @@ function AuditReportInner() {
                 <button
                   onClick={() => setDashboardOpen(true)}
                   className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[12px] font-semibold transition-colors cursor-pointer"
-                  style={{ background: 'var(--ar-accent-bg-2)', color: 'var(--ar-accent)' }}
+                  style={{ background: 'var(--ar-cta)', color: '#fff' }}
                 >
                   <LayoutDashboard className="w-3.5 h-3.5" strokeWidth={1.75} />
                   Decision

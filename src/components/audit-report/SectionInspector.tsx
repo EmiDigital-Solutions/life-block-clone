@@ -13,10 +13,10 @@ const SW = 1.5;
 type TabId = 'atlas' | 'evidence' | 'equipment' | 'timeline';
 
 const healthLabel: Record<string, { label: string; color: string }> = {
-  green: { label: 'Conforming', color: 'hsl(155, 24%, 55%)' },
-  amber: { label: 'Observation', color: 'hsl(24, 72%, 63%)' },
-  red: { label: 'Critical', color: 'hsl(0, 48%, 46%)' },
-  grey: { label: 'N/A', color: 'hsl(0, 0%, 75%)' },
+  green: { label: 'Conforming', color: 'var(--ar-pass)' },
+  amber: { label: 'Observation', color: 'var(--ar-warn)' },
+  red: { label: 'Critical', color: 'var(--ar-fail)' },
+  grey: { label: 'N/A', color: 'var(--ar-tx-4)' },
 };
 
 // Station-specific Atlas Brain intelligence
@@ -199,15 +199,15 @@ export default function SectionInspector({ activeStation, isOpen, onClose }: Sec
   ];
 
   const timelineEvents = [
-    { time: '08 apr · 09:14', label: 'Audit started', color: 'hsl(155, 24%, 55%)' },
-    { time: '08 apr · 11:12', label: `Entered ${station.name.toLowerCase()}`, color: 'hsl(155, 24%, 55%)' },
+    { time: '08 apr · 09:14', label: 'Audit started', color: 'var(--ar-pass)' },
+    { time: '08 apr · 11:12', label: `Entered ${station.name.toLowerCase()}`, color: 'var(--ar-pass)' },
     ...(stationNCRs.length > 0 ? stationNCRs.map(n => ({
       time: '08 apr · 11:42',
       label: `${n.id} raised — ${n.severity}`,
-      color: n.severity === 'major' ? 'hsl(0, 48%, 46%)' : 'hsl(24, 72%, 63%)',
+      color: n.severity === 'major' ? 'var(--ar-fail)' : 'var(--ar-warn)',
     })) : []),
-    { time: '08 apr · 12:20', label: `Exit ${station.name.toLowerCase()}`, color: 'hsl(0, 0%, 75%)' },
-    { time: '08 apr · 12:22', label: 'Atlas analysis complete', color: 'hsl(195, 89%, 34%)' },
+    { time: '08 apr · 12:20', label: `Exit ${station.name.toLowerCase()}`, color: 'var(--ar-tx-4)' },
+    { time: '08 apr · 12:22', label: 'Atlas analysis complete', color: 'var(--ar-cta)' },
   ];
 
   const predictionIcon = (icon: string) => {
@@ -221,9 +221,9 @@ export default function SectionInspector({ activeStation, isOpen, onClose }: Sec
   };
 
   const impactColor = (impact: string) => {
-    if (impact === 'critical') return { bg: 'hsl(0, 48%, 46%, 0.1)', text: 'hsl(0, 48%, 46%)' };
-    if (impact === 'high') return { bg: 'hsl(24, 72%, 63%, 0.1)', text: 'hsl(24, 72%, 63%)' };
-    return { bg: 'hsl(155, 24%, 55%, 0.1)', text: 'hsl(155, 24%, 55%)' };
+    if (impact === 'critical') return { bg: 'var(--ar-fail-bg)', text: 'var(--ar-fail)' };
+    if (impact === 'high') return { bg: 'var(--ar-warn-bg)', text: 'var(--ar-warn)' };
+    return { bg: 'var(--ar-pass-bg)', text: 'var(--ar-pass)' };
   };
 
   return (
@@ -346,17 +346,20 @@ function AtlasTab({ intel, station, stationNCRs, brainTab, setBrainTab, predicti
           >
             {speaking && (
               <>
-                <span className="absolute inset-0 rounded-full bg-[hsl(155,24%,55%)]/30 animate-ping" />
-                <span className="absolute inset-[-2px] rounded-full border-[1.5px] border-[hsl(155,24%,55%)]/25 animate-pulse" />
+                <span className="absolute inset-0 rounded-full animate-ping" style={{ background: 'var(--ar-accent)', opacity: 0.3 }} />
+                <span className="absolute inset-[-2px] rounded-full animate-pulse" style={{ border: '1.5px solid var(--ar-accent)', opacity: 0.25 }} />
               </>
             )}
             <span
               className={cn(
                 "relative z-10 flex items-center justify-center w-7 h-7 rounded-full transition-colors",
                 speaking
-                  ? "bg-[hsl(155,24%,55%)] text-white"
-                  : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground"
+                  ? "text-white"
+                  : "text-muted-foreground hover:text-foreground"
               )}
+              style={{
+                background: speaking ? 'var(--ar-accent)' : 'var(--ar-bg-soft)',
+              }}
             >
               {speaking ? <Square className="w-2.5 h-2.5 fill-current" /> : <Volume2 className="w-3.5 h-3.5" />}
             </span>
@@ -366,16 +369,24 @@ function AtlasTab({ intel, station, stationNCRs, brainTab, setBrainTab, predicti
           <button 
             onClick={() => setBrainTab('intelligence')}
             className={cn("text-[13px] font-medium pb-1 cursor-pointer transition-colors", 
-              brainTab === 'intelligence' ? "text-primary border-b-2 border-primary" : "text-muted-foreground"
+              brainTab === 'intelligence' ? "border-b-2" : ""
             )}
+            style={{
+              color: brainTab === 'intelligence' ? 'var(--ar-cta)' : 'var(--ar-tx-3)',
+              borderColor: brainTab === 'intelligence' ? 'var(--ar-cta)' : 'transparent',
+            }}
           >
             Intelligence
           </button>
           <button 
             onClick={() => setBrainTab('timeline')}
             className={cn("text-[13px] font-medium pb-1 cursor-pointer transition-colors",
-              brainTab === 'timeline' ? "text-primary border-b-2 border-primary" : "text-muted-foreground"
+              brainTab === 'timeline' ? "border-b-2" : ""
             )}
+            style={{
+              color: brainTab === 'timeline' ? 'var(--ar-cta)' : 'var(--ar-tx-3)',
+              borderColor: brainTab === 'timeline' ? 'var(--ar-cta)' : 'transparent',
+            }}
           >
             Timeline
           </button>
