@@ -1,5 +1,5 @@
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
-
+import AtlasTooltip from "./AtlasTooltip";
 /**
  * VDA 6.3 Process Element Scoring Table
  * Formal tabular layout matching real VDA 6.3:2023 audit reports
@@ -73,7 +73,16 @@ export default function VDA63ScoringTable() {
           <span className="text-[15px] font-semibold text-foreground">VDA 6.3 Element Scoring</span>
           <div className="flex items-center gap-3">
             <span className="text-[14px] text-muted-foreground">VDA 6.3:2023</span>
-            <span className="text-[18px] font-semibold font-mono" style={{ color: overall.color }}>{Math.round(iatfWeightedScore)}%</span>
+            <AtlasTooltip
+              metric="VDA 6.3 Weighted Score"
+              value={`${Math.round(iatfWeightedScore)}%`}
+              insight={`Overall process maturity score. ${iatfWeightedScore >= 80 ? 'Supplier demonstrates adequate process control.' : iatfWeightedScore >= 60 ? 'Significant gaps in process control detected. Development program required.' : 'Critical deficiencies — supply risk is high.'}`}
+              benchmark={`A (≥90%): Qualified. AB (80–89%): Conditional. B (60–79%): Development required. C (<60%): Not qualified. BMW minimum for continued supply: 70%.`}
+              recommendation={iatfWeightedScore < 80 ? `Focus improvement on lowest-scoring elements P5 and P7 to gain maximum score improvement.` : undefined}
+              severity={iatfWeightedScore >= 80 ? 'info' : iatfWeightedScore >= 60 ? 'warning' : 'critical'}
+            >
+              <span className="text-[18px] font-semibold font-mono cursor-help" style={{ color: overall.color }}>{Math.round(iatfWeightedScore)}%</span>
+            </AtlasTooltip>
             <span className="text-[14px] font-medium px-2 py-0.5 rounded-md" style={{ background: overall.bg, color: overall.color }}>
               Grade {overall.grade}
             </span>
@@ -117,12 +126,20 @@ export default function VDA63ScoringTable() {
                     <div className="text-[12px] text-muted-foreground">{p.process.split(' — ')[1]}</div>
                   </td>
                   <td className="px-3 py-2.5 border-l border-border/60">
-                    <div className="flex items-center gap-2">
-                      <div className="w-[100px] h-[8px] bg-muted overflow-hidden">
-                        <div className="h-full transition-all" style={{ width: `${p.score}%`, background: cls.color }} />
+                    <AtlasTooltip
+                      metric={p.process}
+                      value={`${p.score}%`}
+                      insight={`${questions.length} questions assessed. ${questions.filter(q => q.score <= 4).length} scored ≤4 (requiring mandatory CAPA). ${questions.filter(q => q.star && q.score === 0).length > 0 ? 'DEGRADATION TRIGGERED: Star question scored 0 — element result forced to 0%.' : questions.filter(q => q.star).length > 0 ? `${questions.filter(q => q.star).length} star question(s) — all passed degradation check.` : ''}`}
+                      benchmark={`Grade ${cls.grade} (${cls.label}). Weight: ${(p.weight * 100).toFixed(0)}% of total score. Weighted contribution: ${weighted} pts.`}
+                      severity={p.score >= 80 ? 'info' : p.score >= 60 ? 'warning' : 'critical'}
+                    >
+                      <div className="flex items-center gap-2 cursor-help">
+                        <div className="w-[100px] h-[8px] bg-muted overflow-hidden">
+                          <div className="h-full transition-all" style={{ width: `${p.score}%`, background: cls.color }} />
+                        </div>
+                        <span className="text-[15px] font-bold font-mono tabular-nums" style={{ color: cls.color }}>{p.score}%</span>
                       </div>
-                      <span className="text-[15px] font-bold font-mono tabular-nums" style={{ color: cls.color }}>{p.score}%</span>
-                    </div>
+                    </AtlasTooltip>
                   </td>
                   <td className="px-3 py-2.5 border-l border-border/60 text-[13px] font-mono text-muted-foreground text-center">
                     {(p.weight * 100).toFixed(0)}%
