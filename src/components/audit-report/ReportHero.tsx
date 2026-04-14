@@ -2,7 +2,9 @@ import { cn } from "@/lib/utils";
 import ExecutiveRadarCharts from "@/components/audit-report/ExecutiveRadarCharts";
 import type { VerdictType, DepthLevel } from "@/data/auditReportData";
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
-import { Shield, AlertTriangle, Clock, TrendingDown, ChevronDown, FileCheck } from "lucide-react";
+import { AlertTriangle, Clock, TrendingDown, ChevronDown, FileCheck } from "lucide-react";
+
+const SW = 1.5;
 
 const verdictConfig: Record<VerdictType, { label: string; color: string; accent: string; bg: string }> = {
   go: { label: 'APPROVED', color: 'hsl(var(--accent))', accent: 'hsl(155, 24%, 45%)', bg: 'hsl(var(--accent) / 0.08)' },

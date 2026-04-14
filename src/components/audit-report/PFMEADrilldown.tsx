@@ -3,7 +3,9 @@
  * Click any NCR → see FMEA chain → control plan gap → root cause prediction
  */
 import { useState, useCallback } from "react";
-import { X, Sparkles, Loader2, ArrowRight, CircleAlert, Crosshair, Settings, FileCheck } from "lucide-react";
+import { X, Sparkles, Loader2, ArrowRight, AlertTriangle, Crosshair, Settings, FileCheck } from "lucide-react";
+
+const SW = 1.5;
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import type { NCR } from "@/data/auditReportData";
 import ReactMarkdown from "react-markdown";

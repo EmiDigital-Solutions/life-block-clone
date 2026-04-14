@@ -25,6 +25,8 @@ import CostWaterfallChart from "@/components/audit-report/CostWaterfallChart";
 import CAPAGantt from "@/components/audit-report/CAPAGantt";
 import StationHeatmap from "@/components/audit-report/StationHeatmap";
 import { Menu, X, AlertTriangle, Clock, FileDown, LayoutDashboard, ClipboardList, FileBarChart, BookOpenCheck, TrendingUp, ChevronRight } from "lucide-react";
+
+const SW = 1.5;
 import VDA63ScoringTable from "@/components/audit-report/VDA63ScoringTable";
 import DocumentControlHeader from "@/components/audit-report/DocumentControlHeader";
 import NormativeReferences from "@/components/audit-report/NormativeReferences";

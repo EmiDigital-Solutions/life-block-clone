@@ -1,6 +1,8 @@
 import { cn } from "@/lib/utils";
 import type { NCR } from "@/data/auditReportData";
-import { CircleAlert, AlertTriangle, User, Calendar, ChevronRight } from "lucide-react";
+import { AlertTriangle, AlertTriangle as MinorIcon, User, Calendar, ChevronRight } from "lucide-react";
+
+const SW = 1.5;
 
 const severityConfig = {
   minor: { icon: AlertTriangle, color: 'text-warning', bg: 'hsl(24, 72%, 63%, 0.1)', label: 'Minor', borderColor: 'hsl(24, 72%, 63%, 0.3)' },

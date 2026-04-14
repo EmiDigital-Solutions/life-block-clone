@@ -4,9 +4,11 @@ import type { Station, NCR } from "@/data/auditReportData";
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { 
   X, Sparkles, FileText, Monitor, Clock, AlertTriangle, TrendingUp, 
-  TrendingDown, Eye, CircleAlert, Lightbulb, BarChart3, Camera,
+  TrendingDown, Eye, AlertTriangle as WarnIcon, Lightbulb, BarChart3, Camera,
   Brain, Crosshair, Search
 } from "lucide-react";
+
+const SW = 1.5;
 
 type TabId = 'atlas' | 'evidence' | 'equipment' | 'timeline';
 

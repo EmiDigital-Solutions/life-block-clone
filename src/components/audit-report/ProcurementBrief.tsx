@@ -4,6 +4,8 @@
  */
 import { useState, useCallback } from "react";
 import { X, FileBarChart, Sparkles, Loader2, Copy, Check } from "lucide-react";
+
+const SW = 1.5;
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";

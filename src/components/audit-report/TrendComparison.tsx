@@ -3,7 +3,9 @@
  * Side-by-side current vs previous audit with AI narrative
  */
 import { useState, useCallback } from "react";
-import { X, TrendingUp, TrendingDown, Sparkles, Loader2, ArrowRight, BarChart3, AlertCircle, CheckCircle2, Crosshair } from "lucide-react";
+import { X, TrendingUp, TrendingDown, Sparkles, Loader2, ArrowRight, BarChart3, AlertTriangle, CheckCircle2, Crosshair } from "lucide-react";
+
+const SW = 1.5;
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
