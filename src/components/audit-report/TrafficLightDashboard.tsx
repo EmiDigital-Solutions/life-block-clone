@@ -11,7 +11,7 @@ interface TrafficLightDashboardProps {
   onClose: () => void;
 }
 
-const verdictConfig: Record<string, { bg: string; border: string; text: string; label: string; icon: typeof Shield }> = {
+const verdictConfig: Record<string, { bg: string; border: string; text: string; label: string; icon: typeof CheckCircle2 }> = {
   go: { bg: 'bg-accent/10', border: 'border-accent/30', text: 'text-accent', label: 'APPROVED', icon: CheckCircle2 },
   conditional: { bg: 'bg-warning/10', border: 'border-warning/30', text: 'text-warning', label: 'CONDITIONAL', icon: AlertTriangle },
   hold: { bg: 'bg-destructive/10', border: 'border-destructive/30', text: 'text-destructive', label: 'ON HOLD', icon: AlertTriangle },
