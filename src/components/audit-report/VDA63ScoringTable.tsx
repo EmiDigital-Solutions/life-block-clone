@@ -143,12 +143,15 @@ export default function VDA63ScoringTable() {
                         return (
                           <div key={q.id} className="group relative">
                             <div
-                              className="w-5 h-5 flex items-center justify-center text-[8px] font-bold font-mono border"
+                              className={`w-5 h-5 flex items-center justify-center text-[8px] font-bold font-mono border ${q.star ? 'ring-1 ring-warning ring-offset-1' : ''}`}
                               style={{ background: qCls.bg, color: qCls.color, borderColor: `${qCls.color}40` }}
-                              title={`${q.id}: ${q.score}/${q.max} — ${q.notes}`}
+                              title={`${q.id}${q.star ? ' ★ STAR QUESTION' : ''}: ${q.score}/${q.max} — ${q.notes}`}
                             >
                               {q.score}
                             </div>
+                            {q.star && (
+                              <span className="absolute -top-1.5 -right-1.5 text-[7px] text-warning font-bold">★</span>
+                            )}
                           </div>
                         );
                       })}
