@@ -1,10 +1,10 @@
 import { cn } from "@/lib/utils";
 import type { NCR } from "@/data/auditReportData";
-import { Diamond, Square, User, Calendar, ChevronRight } from "lucide-react";
+import { CircleAlert, AlertTriangle, User, Calendar, ChevronRight } from "lucide-react";
 
 const severityConfig = {
-  minor: { icon: Diamond, color: 'text-warning', bg: 'hsl(24, 72%, 63%, 0.1)', label: 'Minor', borderColor: 'hsl(24, 72%, 63%, 0.3)' },
-  major: { icon: Square, color: 'text-destructive', bg: 'hsl(0, 48%, 46%, 0.1)', label: 'Major', borderColor: 'hsl(0, 48%, 46%, 0.3)' },
+  minor: { icon: AlertTriangle, color: 'text-warning', bg: 'hsl(24, 72%, 63%, 0.1)', label: 'Minor', borderColor: 'hsl(24, 72%, 63%, 0.3)' },
+  major: { icon: CircleAlert, color: 'text-destructive', bg: 'hsl(0, 48%, 46%, 0.1)', label: 'Major', borderColor: 'hsl(0, 48%, 46%, 0.3)' },
 };
 
 const statusConfig: Record<string, { bg: string; color: string }> = {
