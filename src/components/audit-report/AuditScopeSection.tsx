@@ -7,10 +7,9 @@ export default function AuditScopeSection({ depth = 'standard' }: { depth?: impo
   if (depth === 'executive') {
     return (
       <section id="station-2" className="scroll-mt-20 mt-4">
-        <div className="border border-border rounded-lg overflow-hidden">
-          {/* Section header */}
-          <div className="px-4 py-2.5 bg-muted/40 border-b border-border">
-            <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-muted-foreground">§2 — Audit Scope & Boundaries</span>
+        <div className="bg-card rounded-lg border border-border/60 overflow-hidden">
+          <div className="px-5 py-3 border-b border-border/40">
+            <span className="text-[13px] font-semibold text-foreground">Audit Scope</span>
           </div>
 
           {/* Scope metadata table */}
@@ -22,13 +21,13 @@ export default function AuditScopeSection({ depth = 'standard' }: { depth?: impo
                 ['Scope', auditScope.scope],
                 ['Sampling', auditScope.samplingBasis],
               ].map(([label, value], i) => (
-                <tr key={i} className="border-b border-border/60">
-                  <td className="px-4 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground w-[130px] align-top bg-muted/30">{label}</td>
-                  <td className="px-4 py-2 text-[11px] text-foreground leading-snug">{value}</td>
+                <tr key={i} className="border-b border-border/20">
+                  <td className="px-5 py-2 text-[11px] text-muted-foreground w-[130px] align-top">{label}</td>
+                  <td className="px-4 py-2 text-[12px] text-foreground leading-snug">{value}</td>
                 </tr>
               ))}
-              <tr className="border-b border-border/60">
-                <td className="px-4 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground align-top bg-muted/30">Exclusions</td>
+              <tr className="border-b border-border/20">
+                <td className="px-5 py-2 text-[11px] text-muted-foreground align-top">Exclusions</td>
                 <td className="px-4 py-2">
                   {auditScope.exclusions.map((ex, i) => (
                     <div key={i} className="flex items-start gap-1.5 text-[11px] text-foreground/80">
@@ -38,8 +37,8 @@ export default function AuditScopeSection({ depth = 'standard' }: { depth?: impo
                   ))}
                 </td>
               </tr>
-              <tr className="border-b border-border/60">
-                <td className="px-4 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground align-top bg-muted/30">Audit Team</td>
+              <tr className="border-b border-border/20">
+                <td className="px-5 py-2 text-[11px] text-muted-foreground align-top">Audit Team</td>
                 <td className="px-4 py-2">
                   {auditScope.auditorQualifications.map((aq, i) => (
                     <div key={i} className="text-[11px] text-foreground">{aq}</div>

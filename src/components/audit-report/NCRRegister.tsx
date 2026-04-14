@@ -35,35 +35,34 @@ export default function NCRRegister({ ncrs, depth = 'standard' }: NCRRegisterPro
   if (depth === 'executive') {
     return (
       <section id="station-10" className="scroll-mt-20">
-        <div className="border border-border rounded-lg overflow-hidden">
-          <div className="px-4 py-2.5 flex items-center justify-between bg-muted/40 border-b border-border">
-            <div className="flex items-center gap-3">
-              <div className="w-2.5 h-2.5 rounded-full bg-destructive" />
-              <span className="text-[11px] font-bold tracking-[0.12em] uppercase text-foreground">NCR Register</span>
+        <div className="bg-card rounded-lg border border-border/60 overflow-hidden">
+          <div className="flex items-center justify-between px-5 py-3 border-b border-border/40">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-destructive" />
+              <span className="text-[13px] font-semibold text-foreground">NCR Register</span>
             </div>
-            <span className="text-[11px] font-mono font-bold text-muted-foreground">{ncrs.length} NCRs · {majorCount} Major</span>
+            <span className="text-[12px] text-muted-foreground">{ncrs.length} NCRs · {majorCount} Major</span>
           </div>
-          <div className="bg-card divide-y divide-border/50">
-            {/* Table header */}
-            <div className="grid grid-cols-12 gap-2 px-4 py-1.5 bg-muted/50 text-[9px] font-bold uppercase tracking-wider text-muted-foreground">
+          <div className="divide-y divide-border/20">
+            <div className="grid grid-cols-12 gap-2 px-5 py-2 text-[11px] font-medium text-muted-foreground border-b border-border/30">
               <div className="col-span-2">NCR ID</div>
               <div className="col-span-4">Title</div>
               <div className="col-span-2">Station</div>
               <div className="col-span-1">Severity</div>
-              <div className="col-span-1">ISO Clause</div>
+              <div className="col-span-1">Clause</div>
               <div className="col-span-2">Status</div>
             </div>
             {ncrs.map(ncr => {
               const sevColor = ncr.severity === 'major' ? 'text-destructive' : 'text-warning';
               return (
-                <div key={ncr.id} className="grid grid-cols-12 gap-2 px-4 py-2 items-center text-[12px]">
-                  <div className="col-span-2 font-mono font-bold text-foreground">{ncr.id}</div>
+                <div key={ncr.id} className="grid grid-cols-12 gap-2 px-5 py-2.5 items-center text-[12px]">
+                  <div className="col-span-2 font-mono font-medium text-foreground">{ncr.id}</div>
                   <div className="col-span-4 text-foreground truncate">{ncr.title}</div>
                   <div className="col-span-2 text-muted-foreground">{ncr.station}</div>
-                  <div className={cn("col-span-1 font-bold uppercase text-[10px]", sevColor)}>{ncr.severity}</div>
-                  <div className="col-span-1 font-mono text-[10px] text-primary">{ncr.isoClause}</div>
+                  <div className={cn("col-span-1 font-medium text-[11px]", sevColor)}>{ncr.severity}</div>
+                  <div className="col-span-1 font-mono text-[11px] text-primary">{ncr.isoClause}</div>
                   <div className="col-span-2">
-                    <span className={cn("text-[9px] font-bold uppercase px-1.5 py-0.5", ncr.status === 'open' ? 'bg-destructive/10 text-destructive' : 'bg-accent/10 text-accent')}>
+                    <span className={cn("text-[10px] font-medium px-2 py-0.5 rounded-md", ncr.status === 'open' ? 'bg-destructive/8 text-destructive' : 'bg-accent/8 text-accent')}>
                       {ncr.status}
                     </span>
                   </div>

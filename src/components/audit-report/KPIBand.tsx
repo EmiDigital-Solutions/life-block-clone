@@ -29,11 +29,8 @@ function MiniSparkline({ data, color }: { data: number[]; color: string }) {
 export default function KPIBand({ kpis, depth = 'standard' }: KPIBandProps) {
   if (depth === 'executive') {
     return (
-      <div className="border border-border rounded-lg overflow-hidden bg-card">
-        <div className="px-4 py-2.5 flex items-center bg-muted/40 border-b border-border">
-          <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Key Performance Indicators</span>
-        </div>
-        <div className="grid grid-cols-4 divide-x divide-border">
+      <div className="bg-card rounded-lg border border-border/60 overflow-hidden">
+        <div className="grid grid-cols-4 divide-x divide-border/30">
           {kpis.map((kpi, i) => {
             const Icon = trendIcon[kpi.trend];
             const isNegativeTrend = (kpi.trend === 'up' && (kpi.label.includes('NCR') || kpi.label.includes('DPPM') || kpi.label.includes('Cost')))
@@ -41,12 +38,12 @@ export default function KPIBand({ kpis, depth = 'standard' }: KPIBandProps) {
             const trendColor = kpi.trend === 'flat' ? 'hsl(var(--muted-foreground))' : isNegativeTrend ? 'hsl(var(--destructive))' : 'hsl(var(--accent))';
 
             return (
-              <div key={i} className="px-4 py-3 text-center">
-                <div className="text-[9px] uppercase tracking-[0.12em] font-semibold text-muted-foreground mb-1">{kpi.label}</div>
-                <div className="text-[22px] font-bold font-mono tabular-nums text-foreground leading-none">{kpi.value}{kpi.unit && <span className="text-[12px] text-muted-foreground ml-0.5">{kpi.unit}</span>}</div>
-                <div className="flex items-center justify-center gap-1 mt-1">
+              <div key={i} className="px-4 py-4 text-center">
+                <div className="text-[11px] text-muted-foreground mb-1">{kpi.label}</div>
+                <div className="text-[22px] font-semibold font-mono tabular-nums text-foreground leading-none">{kpi.value}{kpi.unit && <span className="text-[12px] text-muted-foreground ml-0.5">{kpi.unit}</span>}</div>
+                <div className="flex items-center justify-center gap-1 mt-1.5">
                   <Icon className="w-3 h-3" style={{ color: trendColor }} />
-                  <span className="text-[10px] font-mono" style={{ color: trendColor }}>{kpi.trendValue}</span>
+                  <span className="text-[11px] font-mono" style={{ color: trendColor }}>{kpi.trendValue}</span>
                 </div>
               </div>
             );
