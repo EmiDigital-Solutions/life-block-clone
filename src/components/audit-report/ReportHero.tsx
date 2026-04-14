@@ -231,22 +231,6 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
   return (
     <section id="station-1" className="min-h-[100dvh] flex flex-col justify-center relative scroll-mt-20 py-12">
       <div className="relative z-10 max-w-[880px] mx-auto w-full">
-        {/* Top bar */}
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-2">
-            <div className="w-1 h-5" style={{ background: config.color }} />
-            <span className="text-[13px] font-semibold tracking-[0.15em] uppercase text-muted-foreground">Audit Report</span>
-            <span className="text-[13px] text-border">·</span>
-            <span className="text-[13px] font-mono text-muted-foreground">{po}</span>
-          </div>
-          <div className="flex items-center gap-2">
-            {['ISO 9001', 'IATF 16949', 'VDA 6.3'].map(badge => (
-              <span key={badge} className="text-[11px] font-bold tracking-[0.1em] uppercase px-2 py-1 bg-muted text-muted-foreground">
-                {badge}
-              </span>
-            ))}
-          </div>
-        </div>
 
         {/* Verdict block — solid card */}
         <div className="bg-card shadow-sm mb-6">
