@@ -198,9 +198,9 @@ export default function SectionInspector({ activeStation, isOpen, onClose }: Sec
   const predictionIcon = (icon: string) => {
     switch (icon) {
       case 'trend': return <TrendingUp className="w-4 h-4" />;
-      case 'alert': return <ShieldAlert className="w-4 h-4" />;
+      case 'alert': return <CircleAlert className="w-4 h-4" />;
       case 'eye': return <Eye className="w-4 h-4" />;
-      case 'target': return <Target className="w-4 h-4" />;
+      case 'target': return <Crosshair className="w-4 h-4" />;
       default: return <Lightbulb className="w-4 h-4" />;
     }
   };
