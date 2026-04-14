@@ -6,7 +6,7 @@ const SW = 1.5;
 
 const severityConfig = {
   minor: { icon: AlertTriangle, color: 'text-warning', bg: 'hsl(24, 72%, 63%, 0.1)', label: 'Minor', borderColor: 'hsl(24, 72%, 63%, 0.3)' },
-  major: { icon: CircleAlert, color: 'text-destructive', bg: 'hsl(0, 48%, 46%, 0.1)', label: 'Major', borderColor: 'hsl(0, 48%, 46%, 0.3)' },
+  major: { icon: AlertTriangle, color: 'text-destructive', bg: 'hsl(0, 48%, 46%, 0.1)', label: 'Major', borderColor: 'hsl(0, 48%, 46%, 0.3)' },
 };
 
 const statusConfig: Record<string, { bg: string; color: string }> = {

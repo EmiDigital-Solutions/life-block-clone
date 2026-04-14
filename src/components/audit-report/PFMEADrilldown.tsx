@@ -188,7 +188,7 @@ Be specific and technical. Max 400 words. Every line MUST be a bullet or table r
           {/* FMEA Chain visualization */}
           <div className="flex items-center gap-2 flex-wrap">
             {[
-              { icon: CircleAlert, label: 'Finding', color: 'text-destructive', bg: 'bg-destructive/5 border-destructive/20' },
+              { icon: AlertTriangle, label: 'Finding', color: 'text-destructive', bg: 'bg-destructive/5 border-destructive/20' },
               { icon: Settings, label: 'Root Cause', color: 'text-warning', bg: 'bg-warning/5 border-warning/20' },
               { icon: FileCheck, label: 'Control Gap', color: 'text-primary', bg: 'bg-primary/5 border-primary/20' },
               { icon: Crosshair, label: 'CAPA', color: 'text-accent', bg: 'bg-accent/5 border-accent/20' },

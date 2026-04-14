@@ -39,7 +39,7 @@ export default function TrendComparison({ open, onClose }: TrendComparisonProps)
 
   const metrics = [
     { label: 'VDA Score', prev: `${previousAudit.vdaScore}%`, curr: `${currentScore}%`, delta: scoreDelta, unit: '%', better: scoreDelta > 0, icon: BarChart3 },
-    { label: 'Total NCRs', prev: String(previousAudit.totalNCRs), curr: String(allNCRs.length), delta: ncrDelta, unit: '', better: ncrDelta < 0, icon: AlertCircle },
+    { label: 'Total NCRs', prev: String(previousAudit.totalNCRs), curr: String(allNCRs.length), delta: ncrDelta, unit: '', better: ncrDelta < 0, icon: AlertTriangle },
     { label: 'Major NCRs', prev: String(previousAudit.majorNCRs), curr: String(majorCount), delta: majorDelta, unit: '', better: majorDelta < 0, icon: Crosshair },
     { label: 'Verdict', prev: 'Conditional', curr: reportMeta.verdictLabel, delta: 0, unit: '', better: reportMeta.verdict === 'go', icon: CheckCircle2 },
   ];
