@@ -203,37 +203,37 @@ function AuditReportInner() {
     <Navigation />
     <div className="audit-report h-[100dvh] flex flex-col font-sans pt-16" style={{ background: 'var(--ar-bg-page)', color: 'var(--ar-tx-1)' }}>
 
-      {/* Main content area */}
-      <div className="flex-1 flex overflow-hidden">
-        {/* Mobile sidebar overlay */}
-        {isMobile && sidebarOpen && (
-          <div className="fixed inset-0 z-50 flex">
-            <div className="absolute inset-0 bg-foreground/40 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
-            <div className="relative z-10 w-[280px] bg-card">
-              <div className="flex items-center justify-between px-4 py-3 " style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
-                <span className="text-[15px] font-semibold text-foreground">Document Outline</span>
-                <button onClick={() => setSidebarOpen(false)} className="p-1"><X className="w-4 h-4 text-muted-foreground" /></button>
-              </div>
-              <ReportSidebar activeStation={activeStation} onStationClick={scrollToStation} onScrollToId={scrollToId} />
+      {/* ━━━ FULL-WIDTH STICKY HEADER — Rows 1 & 2 ━━━ */}
+      <div className="sticky top-16 z-40">
+        {/* Row 1: Brand strip — dark */}
+        <div className="ar-header flex items-center justify-between px-5 h-12">
+          <div className="flex items-center gap-3">
+            {isMobile && (
+              <button onClick={() => setSidebarOpen(true)} className="p-2 hover:bg-white/10 rounded-md transition-colors">
+                <Menu className="w-5 h-5 text-white/70" />
+              </button>
+            )}
+            <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/50" style={{ fontFamily: "'Space Mono', monospace" }}>YVOO+</span>
+            <span className="text-white/20">›</span>
+            <span className="text-[12px] text-white/60">Audits</span>
+            <span className="text-white/20">›</span>
+            <span className="text-[12px] text-white/60">2026 Q2</span>
+            <span className="text-white/20">›</span>
+            <span className="text-[12px] text-white/90 font-medium">{reportMeta.supplier}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')}
+              className="p-1.5 hover:bg-white/10 rounded-md transition-colors cursor-pointer"
+              title={theme === 'light' ? 'Dark mode' : 'Light mode'}
+            >
+              {theme === 'light' ? <Moon className="w-4 h-4 text-white/50" /> : <Sun className="w-4 h-4 text-white/50" />}
+            </button>
+            <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center">
+              <User className="w-3.5 h-3.5 text-white/60" />
             </div>
           </div>
-        )}
-
-        {/* Desktop sidebar */}
-        {!isMobile && (
-          <ReportSidebar
-            activeStation={activeStation}
-            onStationClick={scrollToStation}
-            onScrollToId={scrollToId}
-            className="w-[240px] xl:w-[280px] shrink-0"
-          />
-        )}
-
-        {/* Center content column */}
-        <div className="flex-1 flex flex-col min-w-0 relative">
-
-          {/* ━━━ STICKY HEADER — Two-tier clean design ━━━ */}
-          <div className="sticky top-0 z-40">
+        </div>
             {/* Row 1: Brand strip — dark */}
             <div className="ar-header flex items-center justify-between px-5 h-12">
               <div className="flex items-center gap-3">
