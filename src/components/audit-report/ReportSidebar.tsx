@@ -118,7 +118,7 @@ function SectionGroup({ label, children }: { label: string; children: React.Reac
   return (
     <div className="mb-1">
       <div className="px-3 pt-5 pb-2">
-        <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-muted-foreground">
+        <span className="text-[12px] font-bold tracking-[0.15em] uppercase text-muted-foreground">
           {label}
         </span>
       </div>
@@ -158,7 +158,7 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
               : "border-transparent text-muted-foreground hover:text-foreground hover:bg-muted/50"
           )}
         >
-          <span className="text-[12px] font-medium tabular-nums w-6 shrink-0" style={{ color: isActive ? undefined : 'hsl(0,0%,60%)' }}>
+          <span className="text-[14px] font-medium tabular-nums w-6 shrink-0" style={{ color: isActive ? undefined : 'hsl(0,0%,60%)' }}>
             {item.index <= 4
               ? `${item.index}.0`
               : item.index <= 11
@@ -166,7 +166,7 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
               : `${item.index - 6}.0`}
           </span>
           <span className={cn(
-            "text-[12px] flex-1 truncate",
+            "text-[14px] flex-1 truncate",
             isActive ? "font-semibold" : "font-normal"
           )}>
             {item.label}
@@ -188,7 +188,7 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
               <button
                 key={child.id}
                 className={cn(
-                  "flex items-center gap-2 w-full px-3 py-1.5 text-left text-[11px] transition-colors",
+                  "flex items-center gap-2 w-full px-3 py-1.5 text-left text-[13px] transition-colors",
                   ci === 0
                     ? "text-primary font-medium bg-primary/10"
                     : "text-muted-foreground hover:text-foreground"
@@ -212,14 +212,14 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
       <div className="px-3 py-4 border-b border-border">
         <div className="flex items-center gap-2 mb-1.5">
           <div className="w-5 h-5 bg-primary flex items-center justify-center">
-            <span className="text-white text-[9px] font-bold">AI</span>
+            <span className="text-white text-[11px] font-bold">AI</span>
           </div>
-          <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-muted-foreground">
+          <span className="text-[12px] font-bold tracking-[0.15em] uppercase text-muted-foreground">
             ScanPro+
           </span>
         </div>
-        <h3 className="text-[13px] font-semibold text-foreground">Process audit report</h3>
-        <p className="text-[11px] mt-0.5 text-muted-foreground">
+        <h3 className="text-[15px] font-semibold text-foreground">Process audit report</h3>
+        <p className="text-[13px] mt-0.5 text-muted-foreground">
           47 pages · {totalSections} sections · {ncrCount} ncrs
         </p>
       </div>

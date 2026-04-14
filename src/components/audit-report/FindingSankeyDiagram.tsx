@@ -62,15 +62,15 @@ export default function FindingSankeyDiagram({ depth = 'standard' }: { depth?: i
     return (
       <div className="bg-card rounded-lg border border-border/60 overflow-hidden">
         <div className="px-5 py-3 border-b border-border/40">
-          <span className="text-[13px] font-semibold text-foreground">Resolution Pipeline</span>
-          <span className="text-[12px] text-muted-foreground ml-2">{openCount} of {totalFindings} open</span>
+          <span className="text-[15px] font-semibold text-foreground">Resolution Pipeline</span>
+          <span className="text-[14px] text-muted-foreground ml-2">{openCount} of {totalFindings} open</span>
         </div>
         <div className="bg-card px-4 py-3">
           <div className="grid grid-cols-4 gap-3">
             {stages.map((stage, si) => (
               <div key={si}>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-[9px] uppercase tracking-[0.1em] font-semibold text-muted-foreground">{stage.title}</span>
+                  <span className="text-[11px] uppercase tracking-[0.1em] font-semibold text-muted-foreground">{stage.title}</span>
                   <span className="text-[14px] font-mono font-bold text-foreground tabular-nums">
                     {stage.nodes.reduce((a, n) => a + n.count, 0)}
                   </span>
@@ -81,8 +81,8 @@ export default function FindingSankeyDiagram({ depth = 'standard' }: { depth?: i
                   return (
                     <div key={ni} className="mb-1.5">
                       <div className="flex items-center justify-between mb-0.5">
-                        <span className={`text-[10px] ${style.text}`}>{node.label}</span>
-                        <span className={`text-[11px] font-mono font-bold tabular-nums ${style.text}`}>{node.count}</span>
+                        <span className={`text-[12px] ${style.text}`}>{node.label}</span>
+                        <span className={`text-[13px] font-mono font-bold tabular-nums ${style.text}`}>{node.count}</span>
                       </div>
                       <div className="h-[4px] bg-muted overflow-hidden">
                         <div className={`h-full ${style.bar}`} style={{ width: `${barWidth}%` }} />
@@ -102,14 +102,14 @@ export default function FindingSankeyDiagram({ depth = 'standard' }: { depth?: i
     <section className="py-12 space-y-8">
       <div className="flex items-center gap-2">
         <div className="w-1 h-5 bg-primary" />
-        <span className="text-[11px] font-semibold tracking-[0.15em] uppercase text-muted-foreground">Resolution Pipeline</span>
+        <span className="text-[13px] font-semibold tracking-[0.15em] uppercase text-muted-foreground">Resolution Pipeline</span>
       </div>
 
       <div className="flex items-baseline gap-3">
         <h2 className="text-[32px] font-bold text-foreground tracking-[-0.02em] leading-tight">
           {openCount} of {totalFindings} findings still open
         </h2>
-        <span className="text-[13px] text-muted-foreground">
+        <span className="text-[15px] text-muted-foreground">
           — {Math.round(((totalFindings - openCount) / totalFindings) * 100)}% resolved
         </span>
       </div>
@@ -122,7 +122,7 @@ export default function FindingSankeyDiagram({ depth = 'standard' }: { depth?: i
               {/* Stage column */}
               <div key={`stage-${si}`} className="space-y-3">
                 <div className="text-center pb-3 border-b border-border/40 mb-1">
-                  <h4 className="text-[10px] uppercase tracking-[0.15em] font-semibold text-muted-foreground">{stage.title}</h4>
+                  <h4 className="text-[12px] uppercase tracking-[0.15em] font-semibold text-muted-foreground">{stage.title}</h4>
                   <span className="text-[20px] font-mono font-bold text-foreground tabular-nums">
                     {stage.nodes.reduce((a, n) => a + n.count, 0)}
                   </span>
@@ -133,7 +133,7 @@ export default function FindingSankeyDiagram({ depth = 'standard' }: { depth?: i
                   return (
                     <div key={ni} className={`p-3 ${style.bg}`}>
                       <div className="flex items-center justify-between mb-2">
-                        <span className={`text-[12px] font-medium ${style.text}`}>{node.label}</span>
+                        <span className={`text-[14px] font-medium ${style.text}`}>{node.label}</span>
                         <span className={`text-[16px] font-mono font-bold tabular-nums ${style.text}`}>{node.count}</span>
                       </div>
                       <div className="h-1.5 bg-background/60 overflow-hidden">
@@ -161,8 +161,8 @@ export default function FindingSankeyDiagram({ depth = 'standard' }: { depth?: i
             return (
               <div key={i} className="flex items-center gap-2">
                 <div className={`w-2.5 h-2.5 ${style.bar}`} />
-                <span className="text-[11px] text-muted-foreground">{node.label}</span>
-                <span className={`text-[12px] font-mono font-bold tabular-nums ${style.text}`}>{node.count}</span>
+                <span className="text-[13px] text-muted-foreground">{node.label}</span>
+                <span className={`text-[14px] font-mono font-bold tabular-nums ${style.text}`}>{node.count}</span>
               </div>
             );
           })}

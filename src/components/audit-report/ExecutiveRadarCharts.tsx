@@ -40,7 +40,7 @@ function GapBar({ label, supplierVal, targetVal }: { label: string; supplierVal:
 
   return (
     <div className="flex items-center gap-3 py-2.5 ">
-      <span className="text-[13px] text-foreground w-[140px] shrink-0">{label}</span>
+      <span className="text-[15px] text-foreground w-[140px] shrink-0">{label}</span>
       <div className="flex-1 flex items-center gap-3">
         <div className="flex-1 h-2 relative bg-muted">
           <div
@@ -54,7 +54,7 @@ function GapBar({ label, supplierVal, targetVal }: { label: string; supplierVal:
           />
           <div className="absolute top-0 bottom-0 w-px left-1/2 bg-muted-foreground/30" />
         </div>
-        <span className="text-[13px] font-mono font-bold w-[48px] text-right" style={{ color }}>
+        <span className="text-[15px] font-mono font-bold w-[48px] text-right" style={{ color }}>
           {isBelow ? '' : '+'}{gap}
         </span>
       </div>
@@ -71,14 +71,14 @@ function CompactGapBar({ label, supplierVal, targetVal }: { label: string; suppl
 
   return (
     <div className="flex items-center gap-2 py-1.5">
-      <span className="text-[11px] text-foreground w-[100px] shrink-0 truncate">{label}</span>
+      <span className="text-[13px] text-foreground w-[100px] shrink-0 truncate">{label}</span>
       <div className="flex-1 h-[6px] relative bg-muted/50 rounded-sm overflow-hidden">
         <div
           className="absolute top-0 left-0 h-full rounded-sm"
           style={{ background: color, width: `${barWidth}%` }}
         />
       </div>
-      <span className="text-[11px] font-mono font-bold w-[36px] text-right" style={{ color }}>
+      <span className="text-[13px] font-mono font-bold w-[36px] text-right" style={{ color }}>
         {isBelow ? '' : '+'}{gap}
       </span>
     </div>
@@ -105,8 +105,8 @@ export default function ExecutiveRadarCharts({ depth = 'standard' }: { depth?: i
       <section className="py-4 space-y-4">
         <div className="bg-card rounded-lg border border-border/60 overflow-hidden">
           <div className="px-5 py-3 border-b border-border/40">
-            <span className="text-[13px] font-semibold text-foreground">Gap Analysis</span>
-            <span className="text-[12px] text-muted-foreground ml-2">{criticalCount} critical gaps</span>
+            <span className="text-[15px] font-semibold text-foreground">Gap Analysis</span>
+            <span className="text-[14px] text-muted-foreground ml-2">{criticalCount} critical gaps</span>
           </div>
 
           <div className="grid grid-cols-2 divide-x divide-border">
@@ -114,12 +114,12 @@ export default function ExecutiveRadarCharts({ depth = 'standard' }: { depth?: i
             <div className="bg-card">
               <div className="flex items-center justify-between px-4 pt-3 pb-1">
                 <div>
-                  <span className="text-[9px] font-bold tracking-[0.12em] uppercase text-warning">Manufacturing</span>
-                  <div className="text-[13px] font-bold text-foreground">Production Capability</div>
+                  <span className="text-[11px] font-bold tracking-[0.12em] uppercase text-warning">Manufacturing</span>
+                  <div className="text-[15px] font-bold text-foreground">Production Capability</div>
                 </div>
                 <div className="text-right">
                   <div className="text-[20px] font-bold font-mono text-foreground leading-none">{prodAvg}</div>
-                  <span className="text-[9px] text-muted-foreground">avg</span>
+                  <span className="text-[11px] text-muted-foreground">avg</span>
                 </div>
               </div>
 
@@ -147,12 +147,12 @@ export default function ExecutiveRadarCharts({ depth = 'standard' }: { depth?: i
             <div className="bg-card">
               <div className="flex items-center justify-between px-4 pt-3 pb-1">
                 <div>
-                  <span className="text-[9px] font-bold tracking-[0.12em] uppercase text-accent">Commercial</span>
-                  <div className="text-[13px] font-bold text-foreground">Business & Risk</div>
+                  <span className="text-[11px] font-bold tracking-[0.12em] uppercase text-accent">Commercial</span>
+                  <div className="text-[15px] font-bold text-foreground">Business & Risk</div>
                 </div>
                 <div className="text-right">
                   <div className="text-[20px] font-bold font-mono text-foreground leading-none">{commAvg}</div>
-                  <span className="text-[9px] text-muted-foreground">avg</span>
+                  <span className="text-[11px] text-muted-foreground">avg</span>
                 </div>
               </div>
 
@@ -181,15 +181,15 @@ export default function ExecutiveRadarCharts({ depth = 'standard' }: { depth?: i
           <div className="flex items-center gap-6 px-4 py-2.5 border-t border-border bg-muted/30">
             <div className="flex items-center gap-3">
               <span className="text-[20px] font-bold font-mono text-destructive leading-none">{criticalCount}</span>
-              <span className="text-[9px] uppercase tracking-wider font-semibold text-muted-foreground">Critical</span>
+              <span className="text-[11px] uppercase tracking-wider font-semibold text-muted-foreground">Critical</span>
             </div>
             <div className="w-px h-5 bg-border" />
             <div className="flex items-center gap-3">
               <span className="text-[20px] font-bold font-mono text-warning leading-none">{belowTargetCount}</span>
-              <span className="text-[9px] uppercase tracking-wider font-semibold text-muted-foreground">Below Target</span>
+              <span className="text-[11px] uppercase tracking-wider font-semibold text-muted-foreground">Below Target</span>
             </div>
             <div className="w-px h-5 bg-border" />
-            <p className="text-[10px] leading-snug text-muted-foreground">
+            <p className="text-[12px] leading-snug text-muted-foreground">
               Critical: <strong className="text-foreground">resilience</strong>, <strong className="text-foreground">BCP</strong>, <strong className="text-foreground">ESG</strong>, <strong className="text-foreground">automation</strong>, <strong className="text-foreground">calibration</strong>
             </p>
           </div>
@@ -203,7 +203,7 @@ export default function ExecutiveRadarCharts({ depth = 'standard' }: { depth?: i
       <div>
         <div className="flex items-center gap-2 mb-3">
           <div className="w-1 h-5 bg-primary" />
-          <span className="text-[11px] font-semibold tracking-[0.15em] uppercase text-muted-foreground">Gap Analysis</span>
+          <span className="text-[13px] font-semibold tracking-[0.15em] uppercase text-muted-foreground">Gap Analysis</span>
         </div>
         <h2 className="text-[32px] font-bold text-foreground tracking-[-0.02em] leading-tight">
           {criticalCount} critical gaps identified
@@ -218,18 +218,18 @@ export default function ExecutiveRadarCharts({ depth = 'standard' }: { depth?: i
         <div className="p-8 bg-card shadow-sm">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-warning">Manufacturing</span>
+              <span className="text-[12px] font-bold tracking-[0.12em] uppercase text-warning">Manufacturing</span>
               <h3 className="text-[20px] font-bold text-foreground mt-1">Production Capability</h3>
             </div>
             <div className="text-right">
               <div className="text-[28px] font-bold font-mono text-foreground leading-none">
                 {Math.round(productionData.reduce((a, d) => a + d.supplier, 0) / productionData.length)}
               </div>
-              <span className="text-[11px] text-muted-foreground">avg. score</span>
+              <span className="text-[13px] text-muted-foreground">avg. score</span>
             </div>
           </div>
 
-          <div className="flex items-center gap-6 mb-4 text-[11px] text-muted-foreground">
+          <div className="flex items-center gap-6 mb-4 text-[13px] text-muted-foreground">
             <span className="flex items-center gap-2"><span className="w-3 h-[2px] inline-block bg-primary" /> Supplier</span>
             <span className="flex items-center gap-2"><span className="w-3 h-[2px] inline-block border-t border-dashed border-warning" /> BMW Requirement</span>
           </div>
@@ -248,7 +248,7 @@ export default function ExecutiveRadarCharts({ depth = 'standard' }: { depth?: i
           </div>
 
           <div className="mt-6 pt-4 border-t border-border/40">
-            <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Gap to BMW requirement</span>
+            <span className="text-[12px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Gap to BMW requirement</span>
             <div className="mt-3">
               {productionGaps.filter(g => g.gap < 0).slice(0, 5).map(g => (
                 <GapBar key={g.label} label={g.label} supplierVal={g.supplierVal} targetVal={g.targetVal} />
@@ -261,18 +261,18 @@ export default function ExecutiveRadarCharts({ depth = 'standard' }: { depth?: i
         <div className="p-8 bg-card shadow-sm">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-accent">Commercial</span>
+              <span className="text-[12px] font-bold tracking-[0.12em] uppercase text-accent">Commercial</span>
               <h3 className="text-[20px] font-bold text-foreground mt-1">Business & Risk Profile</h3>
             </div>
             <div className="text-right">
               <div className="text-[28px] font-bold font-mono text-foreground leading-none">
                 {Math.round(commercialData.reduce((a, d) => a + d.supplier, 0) / commercialData.length)}
               </div>
-              <span className="text-[11px] text-muted-foreground">avg. score</span>
+              <span className="text-[13px] text-muted-foreground">avg. score</span>
             </div>
           </div>
 
-          <div className="flex items-center gap-6 mb-4 text-[11px] text-muted-foreground">
+          <div className="flex items-center gap-6 mb-4 text-[13px] text-muted-foreground">
             <span className="flex items-center gap-2"><span className="w-3 h-[2px] inline-block bg-primary" /> Supplier</span>
             <span className="flex items-center gap-2"><span className="w-3 h-[2px] inline-block bg-accent" /> Tier-2 Benchmark</span>
           </div>
@@ -291,7 +291,7 @@ export default function ExecutiveRadarCharts({ depth = 'standard' }: { depth?: i
           </div>
 
           <div className="mt-6 pt-4 border-t border-border/40">
-            <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Gap to benchmark</span>
+            <span className="text-[12px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Gap to benchmark</span>
             <div className="mt-3">
               {commercialGaps.filter(g => g.gap < 0).slice(0, 5).map(g => (
                 <GapBar key={g.label} label={g.label} supplierVal={g.supplierVal} targetVal={g.targetVal} />
@@ -306,14 +306,14 @@ export default function ExecutiveRadarCharts({ depth = 'standard' }: { depth?: i
         <div className="flex items-center gap-6 shrink-0">
           <div className="text-center">
             <div className="text-[36px] font-bold font-mono leading-none text-destructive">{criticalCount}</div>
-            <span className="text-[10px] uppercase tracking-wider font-semibold text-muted-foreground">Critical Gaps</span>
+            <span className="text-[12px] uppercase tracking-wider font-semibold text-muted-foreground">Critical Gaps</span>
           </div>
           <div className="w-px h-12 bg-border" />
           <div className="text-center">
             <div className="text-[36px] font-bold font-mono leading-none text-warning">
               {belowTargetCount}
             </div>
-            <span className="text-[10px] uppercase tracking-wider font-semibold text-muted-foreground">Total Below Target</span>
+            <span className="text-[12px] uppercase tracking-wider font-semibold text-muted-foreground">Total Below Target</span>
           </div>
         </div>
         <p className="text-[14px] leading-relaxed text-muted-foreground">

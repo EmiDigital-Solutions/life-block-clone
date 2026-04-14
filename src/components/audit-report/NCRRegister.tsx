@@ -39,12 +39,12 @@ export default function NCRRegister({ ncrs, depth = 'standard' }: NCRRegisterPro
           <div className="flex items-center justify-between px-5 py-3 border-b border-border/40">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-destructive" />
-              <span className="text-[13px] font-semibold text-foreground">NCR Register</span>
+              <span className="text-[15px] font-semibold text-foreground">NCR Register</span>
             </div>
-            <span className="text-[12px] text-muted-foreground">{ncrs.length} NCRs · {majorCount} Major</span>
+            <span className="text-[14px] text-muted-foreground">{ncrs.length} NCRs · {majorCount} Major</span>
           </div>
           <div className="divide-y divide-border/20">
-            <div className="grid grid-cols-12 gap-2 px-5 py-2 text-[11px] font-medium text-muted-foreground border-b border-border/30">
+            <div className="grid grid-cols-12 gap-2 px-5 py-2 text-[13px] font-medium text-muted-foreground border-b border-border/30">
               <div className="col-span-2">NCR ID</div>
               <div className="col-span-4">Title</div>
               <div className="col-span-2">Station</div>
@@ -55,14 +55,14 @@ export default function NCRRegister({ ncrs, depth = 'standard' }: NCRRegisterPro
             {ncrs.map(ncr => {
               const sevColor = ncr.severity === 'major' ? 'text-destructive' : 'text-warning';
               return (
-                <div key={ncr.id} className="grid grid-cols-12 gap-2 px-5 py-2.5 items-center text-[12px]">
+                <div key={ncr.id} className="grid grid-cols-12 gap-2 px-5 py-2.5 items-center text-[14px]">
                   <div className="col-span-2 font-mono font-medium text-foreground">{ncr.id}</div>
                   <div className="col-span-4 text-foreground truncate">{ncr.title}</div>
                   <div className="col-span-2 text-muted-foreground">{ncr.station}</div>
-                  <div className={cn("col-span-1 font-medium text-[11px]", sevColor)}>{ncr.severity}</div>
-                  <div className="col-span-1 font-mono text-[11px] text-primary">{ncr.isoClause}</div>
+                  <div className={cn("col-span-1 font-medium text-[13px]", sevColor)}>{ncr.severity}</div>
+                  <div className="col-span-1 font-mono text-[13px] text-primary">{ncr.isoClause}</div>
                   <div className="col-span-2">
-                    <span className={cn("text-[10px] font-medium px-2 py-0.5 rounded-md", ncr.status === 'open' ? 'bg-destructive/8 text-destructive' : 'bg-accent/8 text-accent')}>
+                    <span className={cn("text-[12px] font-medium px-2 py-0.5 rounded-md", ncr.status === 'open' ? 'bg-destructive/8 text-destructive' : 'bg-accent/8 text-accent')}>
                       {ncr.status}
                     </span>
                   </div>
@@ -79,7 +79,7 @@ export default function NCRRegister({ ncrs, depth = 'standard' }: NCRRegisterPro
     <section id="station-10" className="scroll-mt-20 py-12 space-y-8">
       <div className="flex items-center gap-2">
         <div className="w-1 h-5 bg-destructive" />
-        <span className="text-[11px] font-semibold tracking-[0.15em] uppercase text-muted-foreground">NCR Register</span>
+        <span className="text-[13px] font-semibold tracking-[0.15em] uppercase text-muted-foreground">NCR Register</span>
       </div>
 
       <h2 className="text-[32px] font-bold text-foreground tracking-[-0.02em] leading-tight">
@@ -89,7 +89,7 @@ export default function NCRRegister({ ncrs, depth = 'standard' }: NCRRegisterPro
       <div className="grid md:grid-cols-2 gap-px bg-border">
         {/* Radar */}
         <div className="p-6 bg-card">
-          <h4 className="text-[11px] uppercase tracking-[0.12em] font-semibold mb-4 text-muted-foreground">Station Health Radar</h4>
+          <h4 className="text-[13px] uppercase tracking-[0.12em] font-semibold mb-4 text-muted-foreground">Station Health Radar</h4>
           <ResponsiveContainer width="100%" height={280}>
             <RadarChart data={radarData}>
               <PolarGrid stroke="hsl(var(--border))" />
@@ -102,14 +102,14 @@ export default function NCRRegister({ ncrs, depth = 'standard' }: NCRRegisterPro
 
         {/* Severity breakdown */}
         <div className="p-6 bg-card">
-          <h4 className="text-[11px] uppercase tracking-[0.12em] font-semibold mb-4 text-muted-foreground">Severity Distribution</h4>
+          <h4 className="text-[13px] uppercase tracking-[0.12em] font-semibold mb-4 text-muted-foreground">Severity Distribution</h4>
           <div className="space-y-4 mt-8">
             {ncrSeverityData.map(entry => {
               const maxCount = Math.max(...ncrSeverityData.map(e => e.count));
               const pct = (entry.count / maxCount) * 100;
               return (
                 <div key={entry.name} className="flex items-center gap-4">
-                  <span className="text-[13px] font-medium w-[100px] shrink-0 text-foreground">{entry.name}</span>
+                  <span className="text-[15px] font-medium w-[100px] shrink-0 text-foreground">{entry.name}</span>
                   <div className="flex-1 h-5 relative bg-muted">
                     <div className="absolute top-0 h-full" style={{ width: `${pct}%`, background: entry.color, opacity: 0.7 }} />
                   </div>
@@ -123,20 +123,20 @@ export default function NCRRegister({ ncrs, depth = 'standard' }: NCRRegisterPro
 
       {/* Priority Matrix with actual NCR dots */}
       <div className="p-6 bg-card shadow-sm">
-        <h4 className="text-[11px] uppercase tracking-[0.12em] font-semibold mb-4 text-muted-foreground">Priority Matrix — Severity × Effort</h4>
+        <h4 className="text-[13px] uppercase tracking-[0.12em] font-semibold mb-4 text-muted-foreground">Priority Matrix — Severity × Effort</h4>
         <div className="grid grid-cols-2 gap-px bg-border" style={{ aspectRatio: '2.5/1' }}>
           {quadrants.map(q => {
             const items = ncrPositions.filter(n => n.quadrant === q.key);
             return (
               <div key={q.key} className="p-5 flex flex-col items-center justify-center bg-card">
-                <span className="text-[10px] uppercase tracking-wider mb-3 text-muted-foreground">{q.label}</span>
+                <span className="text-[12px] uppercase tracking-wider mb-3 text-muted-foreground">{q.label}</span>
                 <span className="text-[14px] font-bold mb-3" style={{ color: q.color }}>{q.action}</span>
                 {items.length > 0 && (
                   <div className="flex flex-wrap gap-1.5 justify-center">
                     {items.map(item => (
                       <span
                         key={item.id}
-                        className="text-[10px] font-mono font-bold px-2 py-1"
+                        className="text-[12px] font-mono font-bold px-2 py-1"
                         style={{ background: `${q.color}12`, color: q.color, border: `1px solid ${q.color}30` }}
                       >
                         {item.label}
@@ -145,7 +145,7 @@ export default function NCRRegister({ ncrs, depth = 'standard' }: NCRRegisterPro
                   </div>
                 )}
                 {items.length === 0 && (
-                  <span className="text-[10px] text-muted-foreground">—</span>
+                  <span className="text-[12px] text-muted-foreground">—</span>
                 )}
               </div>
             );

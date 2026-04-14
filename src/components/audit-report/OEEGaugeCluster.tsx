@@ -21,12 +21,12 @@ function OEEBar({ value, label, threshold }: { value: number; label: string; thr
   const color = value >= threshold ? 'hsl(var(--accent))' : value >= 75 ? 'hsl(var(--warning))' : 'hsl(var(--destructive))';
   return (
     <div className="flex items-center gap-3">
-      <span className="text-[11px] w-[40px] shrink-0 text-muted-foreground">{label}</span>
+      <span className="text-[13px] w-[40px] shrink-0 text-muted-foreground">{label}</span>
       <div className="flex-1 h-4 relative bg-muted">
         <div className="absolute top-0 h-full opacity-70" style={{ width: `${value}%`, background: color }} />
         <div className="absolute top-0 bottom-0 w-px border-l border-dashed border-muted-foreground/40" style={{ left: `${threshold}%` }} />
       </div>
-      <span className="text-[13px] font-mono font-bold w-[40px] text-right" style={{ color }}>{value}%</span>
+      <span className="text-[15px] font-mono font-bold w-[40px] text-right" style={{ color }}>{value}%</span>
     </div>
   );
 }
@@ -39,8 +39,8 @@ export default function OEEGaugeCluster({ depth = 'standard' }: { depth?: import
     return (
       <div className="bg-card rounded-lg border border-border/60 overflow-hidden">
         <div className="flex items-center justify-between px-5 py-3 border-b border-border/40">
-          <span className="text-[13px] font-semibold text-foreground">OEE Fleet Performance</span>
-          <span className="text-[12px] text-muted-foreground">Threshold: {BMW_THRESHOLD}%</span>
+          <span className="text-[15px] font-semibold text-foreground">OEE Fleet Performance</span>
+          <span className="text-[14px] text-muted-foreground">Threshold: {BMW_THRESHOLD}%</span>
         </div>
         <div className="bg-card">
           <div className="grid grid-cols-5 divide-x divide-border">
@@ -48,9 +48,9 @@ export default function OEEGaugeCluster({ depth = 'standard' }: { depth?: import
               const oeeColor = m.oee >= BMW_THRESHOLD ? 'hsl(var(--accent))' : m.oee >= 75 ? 'hsl(var(--warning))' : 'hsl(var(--destructive))';
               return (
                 <div key={m.id} className="px-3 py-3 text-center">
-                  <div className="text-[9px] font-mono text-muted-foreground mb-1">{m.id}</div>
+                  <div className="text-[11px] font-mono text-muted-foreground mb-1">{m.id}</div>
                   <div className="text-[22px] font-bold font-mono leading-none mb-1" style={{ color: oeeColor }}>{m.oee}%</div>
-                  <div className="text-[9px] text-muted-foreground truncate">{m.name.split(' ').slice(0, 2).join(' ')}</div>
+                  <div className="text-[11px] text-muted-foreground truncate">{m.name.split(' ').slice(0, 2).join(' ')}</div>
                   <div className="mt-2 space-y-1">
                     {[
                       { label: 'A', value: m.availability },
@@ -73,7 +73,7 @@ export default function OEEGaugeCluster({ depth = 'standard' }: { depth?: import
               );
             })}
           </div>
-          <div className="flex items-center gap-4 px-4 py-2 border-t border-border text-[9px] text-muted-foreground">
+          <div className="flex items-center gap-4 px-4 py-2 border-t border-border text-[11px] text-muted-foreground">
             <span>Fleet Avg: <strong className="text-foreground font-mono">{avgOEE}%</strong></span>
             {belowThreshold > 0 && <span className="text-destructive font-semibold">{belowThreshold} below threshold</span>}
           </div>
@@ -86,7 +86,7 @@ export default function OEEGaugeCluster({ depth = 'standard' }: { depth?: import
     <section className="py-12 space-y-8">
       <div className="flex items-center gap-2">
         <div className="w-1 h-5 bg-primary" />
-        <span className="text-[11px] font-semibold tracking-[0.15em] uppercase text-muted-foreground">OEE Performance</span>
+        <span className="text-[13px] font-semibold tracking-[0.15em] uppercase text-muted-foreground">OEE Performance</span>
       </div>
 
       <h2 className="text-[32px] font-bold text-foreground tracking-[-0.02em] leading-tight">
@@ -104,13 +104,13 @@ export default function OEEGaugeCluster({ depth = 'standard' }: { depth?: import
               <div className="w-[240px] shrink-0 p-5 flex items-center gap-4 bg-card">
                 <div>
                   <div className="text-[36px] font-bold font-mono leading-none" style={{ color: oeeColor }}>{m.oee}%</div>
-                  <span className="text-[10px] uppercase tracking-wider font-semibold text-muted-foreground">OEE</span>
+                  <span className="text-[12px] uppercase tracking-wider font-semibold text-muted-foreground">OEE</span>
                 </div>
                 <div className="ml-auto text-right">
-                  <span className="text-[11px] font-mono font-bold text-muted-foreground">{m.id}</span>
-                  <p className="text-[13px] font-medium text-foreground">{m.name}</p>
+                  <span className="text-[13px] font-mono font-bold text-muted-foreground">{m.id}</span>
+                  <p className="text-[15px] font-medium text-foreground">{m.name}</p>
                   {isBelow && (
-                    <span className="text-[9px] font-bold uppercase tracking-wider text-destructive">Below {BMW_THRESHOLD}%</span>
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-destructive">Below {BMW_THRESHOLD}%</span>
                   )}
                 </div>
               </div>
@@ -126,7 +126,7 @@ export default function OEEGaugeCluster({ depth = 'standard' }: { depth?: import
       </div>
 
       {/* Legend */}
-      <div className="flex items-center gap-6 text-[11px] text-muted-foreground">
+      <div className="flex items-center gap-6 text-[13px] text-muted-foreground">
         <span className="flex items-center gap-2">
           <span className="w-px h-3 inline-block border-l border-dashed border-muted-foreground/40" /> BMW Threshold ({BMW_THRESHOLD}%)
         </span>

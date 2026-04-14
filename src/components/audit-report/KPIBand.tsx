@@ -39,11 +39,11 @@ export default function KPIBand({ kpis, depth = 'standard' }: KPIBandProps) {
 
             return (
               <div key={i} className="px-4 py-4 text-center">
-                <div className="text-[11px] text-muted-foreground mb-1">{kpi.label}</div>
-                <div className="text-[22px] font-semibold font-mono tabular-nums text-foreground leading-none">{kpi.value}{kpi.unit && <span className="text-[12px] text-muted-foreground ml-0.5">{kpi.unit}</span>}</div>
+                <div className="text-[13px] text-muted-foreground mb-1">{kpi.label}</div>
+                <div className="text-[22px] font-semibold font-mono tabular-nums text-foreground leading-none">{kpi.value}{kpi.unit && <span className="text-[14px] text-muted-foreground ml-0.5">{kpi.unit}</span>}</div>
                 <div className="flex items-center justify-center gap-1 mt-1.5">
                   <Icon className="w-3 h-3" style={{ color: trendColor }} />
-                  <span className="text-[11px] font-mono" style={{ color: trendColor }}>{kpi.trendValue}</span>
+                  <span className="text-[13px] font-mono" style={{ color: trendColor }}>{kpi.trendValue}</span>
                 </div>
               </div>
             );
@@ -64,7 +64,7 @@ export default function KPIBand({ kpis, depth = 'standard' }: KPIBandProps) {
 
         return (
           <div key={i} className="p-5 bg-card shadow-sm">
-            <span className="text-[10px] uppercase tracking-[0.12em] font-semibold text-muted-foreground">
+            <span className="text-[12px] uppercase tracking-[0.12em] font-semibold text-muted-foreground">
               {kpi.label}
             </span>
             <div className="flex items-end justify-between mt-3 gap-3">
@@ -81,8 +81,8 @@ export default function KPIBand({ kpis, depth = 'standard' }: KPIBandProps) {
 
             <div className="flex items-center gap-2 mt-3 pt-3 border-t border-border/50">
               <Icon className="w-4 h-4" style={{ color: trendColor }} />
-              <span className="text-[13px] font-mono font-medium" style={{ color: trendColor }}>{kpi.trendValue}</span>
-              <span className="text-[11px] text-muted-foreground">vs. prior</span>
+              <span className="text-[15px] font-mono font-medium" style={{ color: trendColor }}>{kpi.trendValue}</span>
+              <span className="text-[13px] text-muted-foreground">vs. prior</span>
             </div>
           </div>
         );

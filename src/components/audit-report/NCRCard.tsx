@@ -32,12 +32,12 @@ export default function NCRCard({ ncr, compact, onAssign, onAction }: NCRCardPro
         <Icon className={cn("w-4 h-4 shrink-0", sev.color)} />
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
-            <span className="text-[12px] font-mono" style={{ color: 'hsl(0,0%,50%)' }}>{ncr.id}</span>
-            <span className="text-[10px] px-1.5 py-0.5 uppercase font-medium" style={{ background: status.bg, color: status.color }}>
+            <span className="text-[14px] font-mono" style={{ color: 'hsl(0,0%,50%)' }}>{ncr.id}</span>
+            <span className="text-[12px] px-1.5 py-0.5 uppercase font-medium" style={{ background: status.bg, color: status.color }}>
               {ncr.status}
             </span>
           </div>
-          <p className="text-[13px] text-foreground truncate">{ncr.title}</p>
+          <p className="text-[15px] text-foreground truncate">{ncr.title}</p>
         </div>
         <ChevronRight className="w-4 h-4" style={{ color: 'hsl(0,0%,55%)' }} />
       </div>
@@ -52,8 +52,8 @@ export default function NCRCard({ ncr, compact, onAssign, onAction }: NCRCardPro
         </div>
         <div className="flex-1">
           <div className="flex items-center gap-2">
-            <span className="text-[13px] font-mono" style={{ color: 'hsl(0,0%,50%)' }}>{ncr.id}</span>
-            <span className="text-[10px] px-2 py-0.5 uppercase font-semibold tracking-wider" style={{ background: sev.bg, color: sev.color === 'text-warning' ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)' }}>
+            <span className="text-[15px] font-mono" style={{ color: 'hsl(0,0%,50%)' }}>{ncr.id}</span>
+            <span className="text-[12px] px-2 py-0.5 uppercase font-semibold tracking-wider" style={{ background: sev.bg, color: sev.color === 'text-warning' ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)' }}>
               {sev.label}
             </span>
           </div>
@@ -63,7 +63,7 @@ export default function NCRCard({ ncr, compact, onAssign, onAction }: NCRCardPro
               href={`https://www.iso.org/standard/62085.html`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[10px] font-mono px-1.5 py-0.5 text-primary mt-1 inline-flex items-center gap-1 cursor-pointer transition-colors"
+              className="text-[12px] font-mono px-1.5 py-0.5 text-primary mt-1 inline-flex items-center gap-1 cursor-pointer transition-colors"
               style={{ background: 'hsl(195, 89%, 34%, 0.1)' }}
               title={`ISO 9001:2015 / IATF 16949 Clause ${ncr.isoClause}`}
             >
@@ -74,11 +74,11 @@ export default function NCRCard({ ncr, compact, onAssign, onAction }: NCRCardPro
         </div>
       </div>
 
-      <p className="text-[13px] leading-relaxed mb-3" style={{ color: 'hsl(0,0%,45%)' }}>{ncr.observation}</p>
+      <p className="text-[15px] leading-relaxed mb-3" style={{ color: 'hsl(0,0%,45%)' }}>{ncr.observation}</p>
 
       <div className="p-3 mb-4" style={{ background: 'hsl(0,0%,92%)' }}>
-        <span className="text-[11px] uppercase tracking-wider font-semibold" style={{ color: 'hsl(0,0%,50%)' }}>Root Cause (AI)</span>
-        <p className="text-[13px] mt-1" style={{ color: 'hsl(0,0%,25%)' }}>{ncr.rootCause}</p>
+        <span className="text-[13px] uppercase tracking-wider font-semibold" style={{ color: 'hsl(0,0%,50%)' }}>Root Cause (AI)</span>
+        <p className="text-[15px] mt-1" style={{ color: 'hsl(0,0%,25%)' }}>{ncr.rootCause}</p>
       </div>
 
       <p className="text-[14px] text-foreground mb-4 leading-relaxed">{ncr.recommendedAction}</p>
@@ -86,13 +86,13 @@ export default function NCRCard({ ncr, compact, onAssign, onAction }: NCRCardPro
       <div className="flex items-center gap-4 mb-4">
         <button
           onClick={() => onAssign?.(ncr.id)}
-          className="flex items-center gap-2 px-3 py-1.5 text-[12px] transition-colors cursor-pointer"
+          className="flex items-center gap-2 px-3 py-1.5 text-[14px] transition-colors cursor-pointer"
           style={{ color: 'hsl(0,0%,50%)' }}
         >
           <User className="w-3.5 h-3.5" />
           {ncr.owner || 'Assign owner'}
         </button>
-        <button className="flex items-center gap-2 px-3 py-1.5 text-[12px] transition-colors cursor-pointer" style={{ color: 'hsl(0,0%,50%)' }}>
+        <button className="flex items-center gap-2 px-3 py-1.5 text-[14px] transition-colors cursor-pointer" style={{ color: 'hsl(0,0%,50%)' }}>
           <Calendar className="w-3.5 h-3.5" />
           {ncr.dueDate || 'Set due date'}
         </button>
@@ -101,22 +101,22 @@ export default function NCRCard({ ncr, compact, onAssign, onAction }: NCRCardPro
       <div className="flex items-center gap-2">
         {ncr.severity === 'major' ? (
           <>
-            <button onClick={() => onAction?.(ncr.id, 'reject')} className="px-3 py-1.5 text-[12px] font-medium text-destructive cursor-pointer transition-colors" style={{ background: 'hsl(0, 48%, 46%, 0.1)' }}>Reject</button>
-            <button onClick={() => onAction?.(ncr.id, 'escalate')} className="px-3 py-1.5 text-[12px] font-medium text-primary cursor-pointer transition-colors" style={{ background: 'hsl(195, 89%, 34%, 0.1)' }}>Escalate</button>
-            <button onClick={() => onAction?.(ncr.id, 'accept-deviation')} className="px-3 py-1.5 text-[12px] font-medium cursor-pointer transition-colors" style={{ background: 'hsl(0,0%,88%)', color: 'hsl(0,0%,45%)' }}>Accept w/ deviation</button>
+            <button onClick={() => onAction?.(ncr.id, 'reject')} className="px-3 py-1.5 text-[14px] font-medium text-destructive cursor-pointer transition-colors" style={{ background: 'hsl(0, 48%, 46%, 0.1)' }}>Reject</button>
+            <button onClick={() => onAction?.(ncr.id, 'escalate')} className="px-3 py-1.5 text-[14px] font-medium text-primary cursor-pointer transition-colors" style={{ background: 'hsl(195, 89%, 34%, 0.1)' }}>Escalate</button>
+            <button onClick={() => onAction?.(ncr.id, 'accept-deviation')} className="px-3 py-1.5 text-[14px] font-medium cursor-pointer transition-colors" style={{ background: 'hsl(0,0%,88%)', color: 'hsl(0,0%,45%)' }}>Accept w/ deviation</button>
           </>
         ) : (
           <>
-            <button onClick={() => onAction?.(ncr.id, 'accept')} className="px-3 py-1.5 text-[12px] font-medium text-accent cursor-pointer transition-colors" style={{ background: 'hsl(155, 24%, 55%, 0.1)' }}>Accept</button>
-            <button onClick={() => onAction?.(ncr.id, 'rework')} className="px-3 py-1.5 text-[12px] font-medium text-warning cursor-pointer transition-colors" style={{ background: 'hsl(24, 72%, 63%, 0.1)' }}>Rework</button>
-            <button onClick={() => onAction?.(ncr.id, 'reject')} className="px-3 py-1.5 text-[12px] font-medium text-destructive cursor-pointer transition-colors" style={{ background: 'hsl(0, 48%, 46%, 0.1)' }}>Reject</button>
-            <button onClick={() => onAction?.(ncr.id, 'escalate')} className="px-3 py-1.5 text-[12px] font-medium cursor-pointer transition-colors" style={{ background: 'hsl(0,0%,88%)', color: 'hsl(0,0%,45%)' }}>Escalate</button>
+            <button onClick={() => onAction?.(ncr.id, 'accept')} className="px-3 py-1.5 text-[14px] font-medium text-accent cursor-pointer transition-colors" style={{ background: 'hsl(155, 24%, 55%, 0.1)' }}>Accept</button>
+            <button onClick={() => onAction?.(ncr.id, 'rework')} className="px-3 py-1.5 text-[14px] font-medium text-warning cursor-pointer transition-colors" style={{ background: 'hsl(24, 72%, 63%, 0.1)' }}>Rework</button>
+            <button onClick={() => onAction?.(ncr.id, 'reject')} className="px-3 py-1.5 text-[14px] font-medium text-destructive cursor-pointer transition-colors" style={{ background: 'hsl(0, 48%, 46%, 0.1)' }}>Reject</button>
+            <button onClick={() => onAction?.(ncr.id, 'escalate')} className="px-3 py-1.5 text-[14px] font-medium cursor-pointer transition-colors" style={{ background: 'hsl(0,0%,88%)', color: 'hsl(0,0%,45%)' }}>Escalate</button>
           </>
         )}
       </div>
 
       <div className="mt-3 pt-3" >
-        <span className="text-[12px]" style={{ color: 'hsl(0,0%,50%)' }}>
+        <span className="text-[14px]" style={{ color: 'hsl(0,0%,50%)' }}>
           Evidence: {ncr.evidenceIds.length} files · {ncr.evidenceIds.join(', ')}
         </span>
       </div>

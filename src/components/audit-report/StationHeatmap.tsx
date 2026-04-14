@@ -36,7 +36,7 @@ export default function StationHeatmap({ activeStation, onStationClick }: Statio
                 }}
               />
             </TooltipTrigger>
-            <TooltipContent side="bottom" className="text-[11px]">
+            <TooltipContent side="bottom" className="text-[13px]">
               <span className="font-mono">{String(s.index).padStart(2, '0')}</span> {s.name}
             </TooltipContent>
           </Tooltip>

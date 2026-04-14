@@ -12,7 +12,7 @@ export default function CostWaterfallChart({ depth = 'standard' }: { depth?: imp
     return (
       <div className="bg-card rounded-lg border border-border/60 overflow-hidden">
         <div className="px-5 py-3 border-b border-border/40">
-          <span className="text-[13px] font-semibold text-foreground">Cost Exposure</span>
+          <span className="text-[15px] font-semibold text-foreground">Cost Exposure</span>
         </div>
         <div className="grid grid-cols-4 divide-x divide-border bg-card">
           {[
@@ -22,7 +22,7 @@ export default function CostWaterfallChart({ depth = 'standard' }: { depth?: imp
             { label: 'Confidence', value: `${Math.round(costImpactData.reduce((a, c) => a + c.confidence, 0) / costImpactData.length)}%`, color: 'hsl(var(--foreground))' },
           ].map(stat => (
             <div key={stat.label} className="px-4 py-3 text-center">
-              <div className="text-[9px] uppercase tracking-[0.12em] font-semibold text-muted-foreground">{stat.label}</div>
+              <div className="text-[11px] uppercase tracking-[0.12em] font-semibold text-muted-foreground">{stat.label}</div>
               <div className="text-[20px] font-bold font-mono tabular-nums leading-none mt-1" style={{ color: stat.color }}>{stat.value}</div>
             </div>
           ))}
@@ -35,8 +35,8 @@ export default function CostWaterfallChart({ depth = 'standard' }: { depth?: imp
             return (
               <div key={item.category}>
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-[11px] font-medium text-foreground">{name}</span>
-                  <div className="flex items-center gap-2 text-[10px] font-mono tabular-nums">
+                  <span className="text-[13px] font-medium text-foreground">{name}</span>
+                  <div className="flex items-center gap-2 text-[12px] font-mono tabular-nums">
                     <span className="text-destructive">€{Math.round(item.currentExposure / 1000)}K</span>
                     <span className="text-muted-foreground">→</span>
                     <span className="text-accent">€{Math.round(item.mitigatedCost / 1000)}K</span>
@@ -58,7 +58,7 @@ export default function CostWaterfallChart({ depth = 'standard' }: { depth?: imp
     <section className="scroll-mt-20 py-12 space-y-8">
       <div className="flex items-center gap-2">
         <div className="w-1 h-5 bg-destructive" />
-        <span className="text-[11px] font-semibold tracking-[0.15em] uppercase text-muted-foreground">Cost Analysis</span>
+        <span className="text-[13px] font-semibold tracking-[0.15em] uppercase text-muted-foreground">Cost Analysis</span>
       </div>
 
       <h2 className="text-[32px] font-bold text-foreground tracking-[-0.02em] leading-tight">
@@ -77,7 +77,7 @@ export default function CostWaterfallChart({ depth = 'standard' }: { depth?: imp
           { label: 'Avg. Confidence', value: `${Math.round(costImpactData.reduce((a, c) => a + c.confidence, 0) / costImpactData.length)}%`, color: 'hsl(var(--foreground))' },
         ].map(stat => (
           <div key={stat.label} className="flex-1 p-5 bg-card">
-            <span className="text-[10px] uppercase tracking-[0.12em] font-semibold text-muted-foreground">{stat.label}</span>
+            <span className="text-[12px] uppercase tracking-[0.12em] font-semibold text-muted-foreground">{stat.label}</span>
             <div className="text-[28px] font-bold font-mono tabular-nums mt-1 leading-none" style={{ color: stat.color }}>{stat.value}</div>
           </div>
         ))}
@@ -85,7 +85,7 @@ export default function CostWaterfallChart({ depth = 'standard' }: { depth?: imp
 
       {/* Horizontal bar chart */}
       <div className="p-8 bg-card shadow-sm">
-        <div className="flex items-center gap-6 mb-6 text-[11px] text-muted-foreground">
+        <div className="flex items-center gap-6 mb-6 text-[13px] text-muted-foreground">
           <span className="flex items-center gap-2">
             <span className="w-3 h-2 inline-block bg-destructive opacity-70" /> At Risk
           </span>
@@ -104,7 +104,7 @@ export default function CostWaterfallChart({ depth = 'standard' }: { depth?: imp
               <div key={item.category}>
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-[14px] font-medium text-foreground">{name}</span>
-                  <div className="flex items-center gap-4 text-[13px] font-mono tabular-nums">
+                  <div className="flex items-center gap-4 text-[15px] font-mono tabular-nums">
                     <span className="text-destructive">€{Math.round(item.currentExposure / 1000)}K</span>
                     <span className="text-muted-foreground">→</span>
                     <span className="text-accent">€{Math.round(item.mitigatedCost / 1000)}K</span>
@@ -114,7 +114,7 @@ export default function CostWaterfallChart({ depth = 'standard' }: { depth?: imp
                   <div className="absolute top-0 h-full bg-destructive opacity-20" style={{ width: `${exposurePct}%` }} />
                   <div className="absolute top-0 h-full bg-accent opacity-60" style={{ width: `${mitigatedPct}%` }} />
                 </div>
-                <p className="text-[12px] mt-1.5 leading-relaxed text-muted-foreground">
+                <p className="text-[14px] mt-1.5 leading-relaxed text-muted-foreground">
                   {item.driver.substring(0, 120)}{item.driver.length > 120 ? '…' : ''}
                 </p>
               </div>

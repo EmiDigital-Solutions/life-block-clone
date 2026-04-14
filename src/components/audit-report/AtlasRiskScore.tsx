@@ -25,7 +25,7 @@ function RiskGauge({ score }: { score: number }) {
       </svg>
       <div className="flex items-center gap-2 mt-2">
         <Shield className="w-4 h-4" style={{ color }} />
-        <span className="text-[12px] font-bold tracking-[0.15em] uppercase" style={{ color }}>{label}</span>
+        <span className="text-[14px] font-bold tracking-[0.15em] uppercase" style={{ color }}>{label}</span>
       </div>
     </div>
   );
@@ -67,13 +67,13 @@ export default function AtlasRiskScore({ depth = 'standard' }: { depth?: DepthLe
       <section className="py-2">
         <div className="bg-card rounded-lg border border-border/60 overflow-hidden">
           <div className="flex items-center justify-between px-5 py-3 border-b border-border/40">
-            <span className="text-[13px] font-semibold text-foreground">Atlas Risk Score</span>
+            <span className="text-[15px] font-semibold text-foreground">Atlas Risk Score</span>
             <span className="text-[18px] font-semibold font-mono" style={{ color }}>{score}/100</span>
           </div>
           <div className="grid grid-cols-4 divide-x divide-border bg-card">
             {components.map(c => (
               <div key={c.label} className="px-3 py-2 text-center">
-                <div className="text-[9px] uppercase tracking-wider font-semibold text-muted-foreground">{c.label}</div>
+                <div className="text-[11px] uppercase tracking-wider font-semibold text-muted-foreground">{c.label}</div>
                 <div className="text-[16px] font-bold font-mono mt-0.5" style={{ color: c.color }}>{c.value}</div>
               </div>
             ))}
@@ -87,7 +87,7 @@ export default function AtlasRiskScore({ depth = 'standard' }: { depth?: DepthLe
     <section className="py-12 space-y-8">
       <div className="flex items-center gap-2">
         <div className="w-1 h-5 bg-primary" />
-        <span className="text-[11px] font-semibold tracking-[0.15em] uppercase text-muted-foreground">Atlas AI</span>
+        <span className="text-[13px] font-semibold tracking-[0.15em] uppercase text-muted-foreground">Atlas AI</span>
       </div>
 
       <h2 className="text-[32px] font-bold text-foreground tracking-[-0.02em] leading-tight">
@@ -106,8 +106,8 @@ export default function AtlasRiskScore({ depth = 'standard' }: { depth?: DepthLe
             <div className="space-y-3 mt-6">
               {components.map(comp => (
                 <div key={comp.label} className="flex items-center gap-4">
-                  <span className="text-[13px] text-foreground w-[120px] shrink-0">{comp.label}</span>
-                  <span className="text-[10px] font-mono w-[36px] shrink-0 text-muted-foreground">{comp.weight}</span>
+                  <span className="text-[15px] text-foreground w-[120px] shrink-0">{comp.label}</span>
+                  <span className="text-[12px] font-mono w-[36px] shrink-0 text-muted-foreground">{comp.weight}</span>
                   <div className="flex-1 h-3 relative bg-muted">
                     <div className="absolute top-0 h-full opacity-70" style={{ width: `${comp.value}%`, background: comp.color }} />
                   </div>

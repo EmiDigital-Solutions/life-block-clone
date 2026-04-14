@@ -27,8 +27,8 @@ export default function VersionComparison() {
       <div className="flex items-center gap-3">
         <GitCompare className="w-4 h-4 text-primary" />
         <h3 className="text-[14px] font-semibold text-foreground">Version Comparison</h3>
-        <span className="text-[11px] font-mono text-muted-foreground">v1 → v2</span>
-        <span className="text-[10px] text-grey-mid">· 5 changes</span>
+        <span className="text-[13px] font-mono text-muted-foreground">v1 → v2</span>
+        <span className="text-[12px] text-grey-mid">· 5 changes</span>
       </div>
 
       <div className="bg-card shadow-sm divide-y divide-border/40">
@@ -40,8 +40,8 @@ export default function VersionComparison() {
                 <Icon className="w-3.5 h-3.5" />
               </div>
               <div className="min-w-0">
-                <span className="text-[11px] font-semibold text-foreground">{item.section}</span>
-                <p className="text-[12px] text-muted-foreground mt-0.5">{item.description}</p>
+                <span className="text-[13px] font-semibold text-foreground">{item.section}</span>
+                <p className="text-[14px] text-muted-foreground mt-0.5">{item.description}</p>
               </div>
             </div>
           );
