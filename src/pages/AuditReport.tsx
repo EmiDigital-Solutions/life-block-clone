@@ -32,9 +32,17 @@ import EvidenceTraceabilityMatrix from "@/components/audit-report/EvidenceTracea
 import CSRComplianceMapping from "@/components/audit-report/CSRComplianceMapping";
 import DigitalSignatureBlock from "@/components/audit-report/DigitalSignatureBlock";
 import AskAtlasBar from "@/components/audit-report/AskAtlasBar";
+import TrafficLightDashboard from "@/components/audit-report/TrafficLightDashboard";
+import ActionChecklist from "@/components/audit-report/ActionChecklist";
+import ProcurementBrief from "@/components/audit-report/ProcurementBrief";
+import SmartReadingGuide from "@/components/audit-report/SmartReadingGuide";
+import TrendComparison from "@/components/audit-report/TrendComparison";
+import PFMEADrilldown from "@/components/audit-report/PFMEADrilldown";
+import VoiceBriefing from "@/components/audit-report/VoiceBriefing";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Navigation from "@/components/Navigation";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import type { NCR } from "@/data/auditReportData";
 
 const depthLabels: Record<DepthLevel, string> = {
   executive: 'Executive',
@@ -78,6 +86,12 @@ function AuditReportInner() {
   
   const [readingProgress, setReadingProgress] = useState(0);
   const [reviewedStations, setReviewedStations] = useState<Set<number>>(new Set());
+  const [dashboardOpen, setDashboardOpen] = useState(false);
+  const [checklistOpen, setChecklistOpen] = useState(false);
+  const [briefOpen, setBriefOpen] = useState(false);
+  const [guideOpen, setGuideOpen] = useState(false);
+  const [trendOpen, setTrendOpen] = useState(false);
+  const [pfmeaNCR, setPfmeaNCR] = useState<NCR | null>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
 
@@ -306,6 +320,22 @@ function AuditReportInner() {
                     </button>
                   ))}
                 </div>
+                <VoiceBriefing />
+                <button onClick={() => setGuideOpen(true)} className="hidden md:block px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider cursor-pointer bg-muted text-muted-foreground hover:bg-muted/80 transition-colors">
+                  Guide
+                </button>
+                <button onClick={() => setDashboardOpen(true)} className="hidden md:flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider cursor-pointer bg-amber-500/10 text-amber-600 hover:bg-amber-500/20 transition-colors">
+                  ⚡ Decision
+                </button>
+                <button onClick={() => setChecklistOpen(true)} className="hidden md:block px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider cursor-pointer bg-muted text-muted-foreground hover:bg-muted/80 transition-colors">
+                  Actions
+                </button>
+                <button onClick={() => setBriefOpen(true)} className="hidden md:block px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider cursor-pointer bg-muted text-muted-foreground hover:bg-muted/80 transition-colors">
+                  Brief
+                </button>
+                <button onClick={() => setTrendOpen(true)} className="hidden md:block px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider cursor-pointer bg-muted text-muted-foreground hover:bg-muted/80 transition-colors">
+                  Trend
+                </button>
                 <button className="hidden md:block px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider cursor-pointer bg-muted text-muted-foreground hover:bg-muted/80 transition-colors">
                   Export pdf
                 </button>
@@ -461,6 +491,14 @@ function AuditReportInner() {
         </div>
       </div>
     </div>
+
+    {/* Modals */}
+    <TrafficLightDashboard open={dashboardOpen} onClose={() => setDashboardOpen(false)} />
+    <ActionChecklist open={checklistOpen} onClose={() => setChecklistOpen(false)} />
+    <ProcurementBrief open={briefOpen} onClose={() => setBriefOpen(false)} />
+    <SmartReadingGuide open={guideOpen} onClose={() => setGuideOpen(false)} onScrollToId={scrollToId} />
+    <TrendComparison open={trendOpen} onClose={() => setTrendOpen(false)} />
+    <PFMEADrilldown ncr={pfmeaNCR} onClose={() => setPfmeaNCR(null)} />
     </>
   );
 }
