@@ -232,6 +232,7 @@ function AuditReportInner() {
             <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center">
               <User className="w-3.5 h-3.5 text-white/60" />
             </div>
+          </div>
         </div>
 
         {/* Row 2: Document control strip */}
