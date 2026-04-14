@@ -470,8 +470,8 @@ All colors MUST be HSL.
   --popover-foreground: 0 0% 94%;
   --muted: 160 5% 16%;            /* #252B2A */
   --muted-foreground: 155 8% 53%; /* #7B8E80 */
-  --border: 0 0% 100% / 0.12;
-  --input: 0 0% 100% / 0.12;
+  --border: 155 10% 20%;
+    --input: 155 10% 20%;
   --ring: 155 24% 55%;
   --primary: 195 82% 41%;         /* #1391BF */
   --primary-foreground: 0 0% 100%;
