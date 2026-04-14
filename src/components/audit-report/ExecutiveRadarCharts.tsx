@@ -66,32 +66,17 @@ function CompactGapBar({ label, supplierVal, targetVal }: { label: string; suppl
   const gap = supplierVal - targetVal;
   const isBelow = gap < 0;
   const color = isBelow ? 'hsl(var(--destructive))' : 'hsl(var(--accent))';
-  const barWidth = Math.min(50, Math.abs(gap));
+  // Scale: max gap ~40, bar fills proportionally
+  const barWidth = Math.min(100, (Math.abs(gap) / 45) * 100);
 
   return (
     <div className="flex items-center gap-2 py-1.5">
       <span className="text-[11px] text-foreground w-[100px] shrink-0 truncate">{label}</span>
-      <div className="flex-1 h-[6px] relative bg-muted rounded-sm overflow-hidden">
-        {isBelow ? (
-          <div
-            className="absolute top-0 h-full"
-            style={{
-              background: color,
-              width: `${barWidth}%`,
-              right: '50%',
-            }}
-          />
-        ) : (
-          <div
-            className="absolute top-0 h-full"
-            style={{
-              background: color,
-              width: `${barWidth}%`,
-              left: '50%',
-            }}
-          />
-        )}
-        <div className="absolute top-0 bottom-0 w-px left-1/2 bg-muted-foreground/30" />
+      <div className="flex-1 h-[6px] relative bg-muted/50 rounded-sm overflow-hidden">
+        <div
+          className="absolute top-0 left-0 h-full rounded-sm"
+          style={{ background: color, width: `${barWidth}%` }}
+        />
       </div>
       <span className="text-[11px] font-mono font-bold w-[36px] text-right" style={{ color }}>
         {isBelow ? '' : '+'}{gap}
