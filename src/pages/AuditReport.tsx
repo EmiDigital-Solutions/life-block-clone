@@ -233,10 +233,7 @@ function AuditReportInner() {
         <div className="flex-1 flex flex-col min-w-0 relative">
 
           {/* ━━━ STICKY HEADER — Two-tier clean design ━━━ */}
-          <div className={cn(
-            "sticky top-0 z-40 transition-all duration-300",
-            scrolledPastHero ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
-          )}>
+          <div className="sticky top-0 z-40">
             {/* Row 1: Brand strip — dark */}
             <div className="ar-header flex items-center justify-between px-5 h-12">
               <div className="flex items-center gap-3">
