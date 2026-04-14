@@ -361,7 +361,7 @@ function AtlasTab({ intel, station, stationNCRs, brainTab, setBrainTab, predicti
                 background: speaking ? 'var(--ar-accent)' : 'var(--ar-bg-soft)',
               }}
             >
-              {speaking ? <Square className="w-2.5 h-2.5 fill-current" /> : <Volume2 className="w-3.5 h-3.5" />}
+              {speaking ? <Square className="w-4 h-4 fill-current" /> : <Speech className="w-5 h-5" />}
             </span>
           </button>
         </div>
