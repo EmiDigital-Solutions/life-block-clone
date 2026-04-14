@@ -481,6 +481,25 @@ All colors MUST be HSL.
   --destructive-foreground: 0 0% 100%;
 }
 
+/* Dark mode scrollbar for audit report */
+[data-theme="dark"] .audit-report ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+[data-theme="dark"] .audit-report ::-webkit-scrollbar-track {
+  background: #1E2423;
+}
+[data-theme="dark"] .audit-report ::-webkit-scrollbar-thumb {
+  background: #3D4845;
+  border-radius: 4px;
+}
+[data-theme="dark"] .audit-report ::-webkit-scrollbar-thumb:hover {
+  background: #5A6560;
+}
+[data-theme="dark"] .audit-report {
+  scrollbar-color: #3D4845 #1E2423;
+}
+
 /* Audit report section eyebrow */
 .ar-eyebrow {
   font-family: 'Space Mono', ui-monospace, monospace;
