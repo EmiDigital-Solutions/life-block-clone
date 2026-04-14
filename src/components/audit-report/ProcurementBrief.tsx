@@ -265,6 +265,15 @@ CRITICAL: Do NOT use any emoji, icons, or special characters in headings or text
         {brief && !loading && (
           <div className="px-10 py-5 border-t border-border flex gap-3 shrink-0">
             <button
+              onClick={toggleVoice}
+              className={`flex items-center gap-2 px-6 py-3 text-[13px] font-semibold uppercase tracking-wider rounded-lg cursor-pointer ${
+                speaking ? 'bg-primary text-white' : 'bg-primary/10 text-primary hover:bg-primary/20'
+              }`}
+            >
+              {speaking ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+              {speaking ? 'Stop' : 'Read Aloud'}
+            </button>
+            <button
               onClick={copyBrief}
               className="flex items-center gap-2 px-6 py-3 bg-muted text-[13px] font-semibold uppercase tracking-wider rounded-lg hover:bg-muted/80 cursor-pointer"
             >
