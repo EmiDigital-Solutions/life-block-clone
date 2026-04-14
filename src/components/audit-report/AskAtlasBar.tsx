@@ -205,7 +205,7 @@ KPIs: ${kpis.map((k: any) => `${k.label}: ${k.value}`).join(', ')}`;
       >
       <div
         className={cn(
-          "w-full max-w-[520px] max-h-[600px] flex flex-col bg-card border border-border rounded-2xl shadow-2xl transition-all duration-300",
+          "w-full max-w-[720px] h-[80vh] max-h-[700px] flex flex-col bg-card border border-border rounded-2xl shadow-2xl transition-all duration-300",
           open ? "scale-100" : "scale-95"
         )}
       >
