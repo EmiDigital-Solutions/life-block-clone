@@ -318,6 +318,7 @@ KPIs: ${kpis.map((k: any) => `${k.label}: ${k.value}`).join(', ')}`;
           )}
         </div>
       </div>
+      </div>
 
       {/* FAB Button */}
       <button
