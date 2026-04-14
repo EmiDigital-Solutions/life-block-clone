@@ -65,10 +65,10 @@ export default function AtlasRiskScore({ depth = 'standard' }: { depth?: DepthLe
     const color = score >= 70 ? 'hsl(155, 24%, 55%)' : score >= 40 ? 'hsl(24, 72%, 63%)' : 'hsl(0, 48%, 46%)';
     return (
       <section className="py-2">
-        <div className="border border-border rounded-lg overflow-hidden">
-          <div className="px-4 py-2.5 flex items-center justify-between bg-muted/40 border-b border-border">
-            <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-muted-foreground">Atlas AI Risk Score</span>
-            <span className="text-[18px] font-bold font-mono" style={{ color }}>{score}/100</span>
+        <div className="bg-card rounded-lg border border-border/60 overflow-hidden">
+          <div className="flex items-center justify-between px-5 py-3 border-b border-border/40">
+            <span className="text-[13px] font-semibold text-foreground">Atlas Risk Score</span>
+            <span className="text-[18px] font-semibold font-mono" style={{ color }}>{score}/100</span>
           </div>
           <div className="grid grid-cols-4 divide-x divide-border bg-card">
             {components.map(c => (

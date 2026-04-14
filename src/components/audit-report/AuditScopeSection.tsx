@@ -49,9 +49,9 @@ export default function AuditScopeSection({ depth = 'standard' }: { depth?: impo
           </table>
 
           {/* VDA 6.3 Process Elements */}
-          <div className="border-t border-border">
-            <div className="px-4 py-1.5 bg-muted/30">
-              <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">VDA 6.3 Process Elements — Applicability</span>
+          <div className="border-t border-border/30">
+            <div className="px-5 py-2">
+              <span className="text-[11px] text-muted-foreground">Process Elements</span>
             </div>
             <div className="grid grid-cols-7 divide-x divide-border/60 bg-card">
               {auditScope.processElements.map(pe => (
