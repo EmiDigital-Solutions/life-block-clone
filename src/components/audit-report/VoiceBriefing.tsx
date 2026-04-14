@@ -1,9 +1,9 @@
 /**
  * Voice Briefing — AI-powered executive audio summary
- * Narrates the audit verdict, key risks, and required actions
+ * Round button with animated green pulse when speaking
  */
 import { useState, useCallback } from "react";
-import { Volume2, Square, Sparkles } from "lucide-react";
+import { Volume2, Square } from "lucide-react";
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { cn } from "@/lib/utils";
 
@@ -53,24 +53,31 @@ export default function VoiceBriefing() {
     <button
       onClick={toggle}
       title={speaking ? "Stop listening" : "Listen to audit result"}
-      className={cn(
-        "flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-[11px] font-medium transition-all cursor-pointer border",
-        speaking
-          ? "bg-primary text-primary-foreground border-primary animate-pulse"
-          : "bg-muted/50 text-muted-foreground border-border hover:bg-muted hover:text-foreground"
-      )}
+      className="relative flex items-center justify-center w-8 h-8 rounded-full cursor-pointer transition-all ml-2"
     >
-      {speaking ? (
+      {/* Animated green pulse rings when speaking */}
+      {speaking && (
         <>
-          <Square className="w-3 h-3 fill-current" />
-          <span>Stop</span>
-        </>
-      ) : (
-        <>
-          <Volume2 className="w-3 h-3" />
-          <span>Listen</span>
+          <span className="absolute inset-0 rounded-full bg-[hsl(155,24%,55%)] opacity-40 animate-ping" />
+          <span className="absolute inset-[-3px] rounded-full border-2 border-[hsl(155,24%,55%)] opacity-30 animate-pulse" />
         </>
       )}
+
+      {/* Core circle */}
+      <span
+        className={cn(
+          "relative z-10 flex items-center justify-center w-8 h-8 rounded-full transition-colors",
+          speaking
+            ? "bg-[hsl(155,24%,55%)] text-white"
+            : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground"
+        )}
+      >
+        {speaking ? (
+          <Square className="w-3 h-3 fill-current" />
+        ) : (
+          <Volume2 className="w-3.5 h-3.5" />
+        )}
+      </span>
     </button>
   );
 }
