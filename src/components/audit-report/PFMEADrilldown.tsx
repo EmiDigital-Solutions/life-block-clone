@@ -34,6 +34,9 @@ const proseClasses = [
   "[&_td]:p-3 [&_td]:border-b [&_td]:border-border/30 [&_td]:text-muted-foreground",
 ].join(" ");
 
+const stripEmoji = (text: string) =>
+  text.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}\u{FE00}-\u{FE0F}\u{1FA00}-\u{1FAFF}\u{200D}\u{20E3}\u{E0020}-\u{E007F}\u{2700}-\u{27BF}\u{2B50}\u{2B55}\u{231A}-\u{23F3}\u{23E9}-\u{23EF}\u{25AA}-\u{25FE}\u{2934}-\u{2935}\u{2194}-\u{21AA}\u{3030}\u{303D}\u{3297}\u{3299}]/gu, '').replace(/\s{2,}/g, ' ').trim();
+
 export default function PFMEADrilldown({ ncr, onClose }: PFMEADrilldownProps) {
   const { reportMeta } = useAuditReportContext();
   const [analysis, setAnalysis] = useState<string>("");
@@ -56,20 +59,20 @@ Root Cause: ${ncr.rootCause}
 ISO Clause: ${ncr.isoClause || 'N/A'}
 Supplier: ${reportMeta.supplier}
 
-FORMAT RULES — STRICT. Use ONLY ## headings and bullet points. NO paragraphs. Every piece of info MUST be a bullet.
+FORMAT RULES — STRICT. Use ONLY ## headings and bullet points. NO paragraphs. NO emoji or icons anywhere. Every piece of info MUST be a bullet.
 
-## ⚠️ Failure Mode
+## Failure Mode
 - **Mode:** [specific failure mode name]
 - **Process Step:** [where in the process]
 - **Detection Point:** [where it should have been caught]
 
-## 💥 Effect Analysis
+## Effect Analysis
 - **Local Effect:** [impact at station level]
 - **System Effect:** [impact on assembly/product]
 - **End User Effect:** [impact on BMW/customer]
 - **Regulatory Impact:** [any compliance implications]
 
-## 📊 Risk Priority Number
+## Risk Priority Number
 
 | Factor | Rating (1-10) | Justification |
 |--------|--------------|---------------|
@@ -78,25 +81,25 @@ FORMAT RULES — STRICT. Use ONLY ## headings and bullet points. NO paragraphs. 
 | Detection | X | [reason] |
 | **RPN** | **XXX** | **[risk level]** |
 
-## 🔍 Control Plan Gap
+## Control Plan Gap
 - **Expected Control:** [what should have prevented this]
 - **Failure Reason:** [why the control failed]
 - **Gap:** [specific gap identified]
 - **Standard Reference:** [IATF/ISO clause]
 
-## 🔗 Root Cause Chain (5-Why)
+## Root Cause Chain (5-Why)
 1. **Why 1:** [first why]
 2. **Why 2:** [second why]
 3. **Why 3:** [third why]
 4. **Why 4:** [fourth why]
 5. **Why 5 (Root):** [root cause]
 
-## 🔮 AI Prediction
+## AI Prediction
 - **Related Risk 1:** [potential cascading failure]
 - **Related Risk 2:** [potential cascading failure]
 - **Recommended Prevention:** [specific action]
 
-Be specific and technical. Max 400 words. Every line MUST be a bullet or table row.`;
+CRITICAL: Do NOT use any emoji, icons, or special characters in headings or text. Plain text only. Be specific and technical. Max 400 words. Every line MUST be a bullet or table row.`;
 
     try {
       const resp = await fetch(ATLAS_URL, {
@@ -233,7 +236,7 @@ Be specific and technical. Max 400 words. Every line MUST be a bullet or table r
 
           {analysis && (
             <div className={proseClasses}>
-              <ReactMarkdown>{analysis}</ReactMarkdown>
+              <ReactMarkdown>{stripEmoji(analysis)}</ReactMarkdown>
               {loading && <span className="inline-block w-2 h-5 bg-primary animate-pulse ml-0.5" />}
             </div>
           )}

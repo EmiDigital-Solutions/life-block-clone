@@ -10,6 +10,9 @@ import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
 
+const stripEmoji = (text: string) =>
+  text.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}\u{FE00}-\u{FE0F}\u{1FA00}-\u{1FAFF}\u{200D}\u{20E3}\u{E0020}-\u{E007F}\u{2700}-\u{27BF}\u{2B50}\u{2B55}\u{231A}-\u{23F3}\u{23E9}-\u{23EF}\u{25AA}-\u{25FE}\u{2934}-\u{2935}\u{2194}-\u{21AA}\u{3030}\u{303D}\u{3297}\u{3299}]/gu, '').replace(/\s{2,}/g, ' ').trim();
+
 interface Message {
   role: "user" | "assistant";
   content: string;
@@ -269,7 +272,7 @@ export default function AskAtlasBar({ activeStation }: AskAtlasBarProps) {
                       <p className="text-[14px]">{msg.content}</p>
                     ) : (
                       <div className="prose prose-sm max-w-none text-foreground/90 [&_p]:text-[14px] [&_p]:leading-relaxed [&_li]:text-[14px] [&_strong]:text-foreground [&_h1]:text-[16px] [&_h2]:text-[15px] [&_h3]:text-[14px] [&_code]:text-[12px] [&_code]:bg-muted [&_code]:px-1 [&_code]:py-0.5">
-                        <ReactMarkdown>{msg.content}</ReactMarkdown>
+                        <ReactMarkdown>{stripEmoji(msg.content)}</ReactMarkdown>
                         {isStreaming && i === messages.length - 1 && (
                           <span className="inline-block w-1.5 h-4 bg-primary animate-pulse ml-0.5" />
                         )}

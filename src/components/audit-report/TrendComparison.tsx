@@ -26,6 +26,9 @@ const previousAudit = {
   costExposure: '€340,000',
 };
 
+const stripEmoji = (text: string) =>
+  text.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}\u{FE00}-\u{FE0F}\u{1FA00}-\u{1FAFF}\u{200D}\u{20E3}\u{E0020}-\u{E007F}\u{2700}-\u{27BF}\u{2B50}\u{2B55}\u{231A}-\u{23F3}\u{23E9}-\u{23EF}\u{25AA}-\u{25FE}\u{2934}-\u{2935}\u{2194}-\u{21AA}\u{3030}\u{303D}\u{3297}\u{3299}]/gu, '').replace(/\s{2,}/g, ' ').trim();
+
 export default function TrendComparison({ open, onClose }: TrendComparisonProps) {
   const { reportMeta, allNCRs, iatfWeightedScore } = useAuditReportContext();
   const [narrative, setNarrative] = useState("");
@@ -62,28 +65,28 @@ CURRENT AUDIT (${reportMeta.date}):
 - Verdict: ${reportMeta.verdictLabel}
 - Cost Exposure: ${reportMeta.totalCostExposure}
 
-FORMAT STRICTLY AS FOLLOWS — use ONLY markdown headers and bullet points. NO paragraphs. NO flowing text. Every single piece of information must be a bullet point.
+FORMAT STRICTLY AS FOLLOWS — use ONLY markdown headers and bullet points. NO paragraphs. NO flowing text. NO emoji or icons anywhere. Every single piece of information must be a bullet point.
 
-## 📊 Overall Direction
+## Overall Direction
 - **Status:** [Improving / Declining / Stagnant]
 - **Score Change:** [describe delta]
 - **Risk Trajectory:** [describe]
 
-## ✅ Key Improvements
+## Key Improvements
 - **[Area 1]:** [one-line description]
 - **[Area 2]:** [one-line description]
 - **[Area 3]:** [one-line description]
 
-## ⚠️ Persistent / New Issues
+## Persistent or New Issues
 - **[Issue 1]:** [one-line description]
 - **[Issue 2]:** [one-line description]
 
-## 🔮 Next Audit Prediction
+## Next Audit Prediction
 - **Near-term:** [one-line prediction]
 - **Long-term:** [one-line prediction]
 - **Required Action:** [one-line action]
 
-Max 250 words. Every line MUST start with "- **". No exceptions.`;
+CRITICAL: Do NOT use any emoji, icons, or special characters in headings or text. Plain text only. Max 250 words. Every line MUST start with "- **". No exceptions.`;
 
     try {
       const resp = await fetch(ATLAS_URL, {
@@ -230,7 +233,7 @@ Max 250 words. Every line MUST start with "- **". No exceptions.`;
                 [&_strong]:text-foreground [&_strong]:font-semibold
                 [&_p]:text-[14px] [&_p]:leading-[1.8] [&_p]:mb-3
               ">
-                <ReactMarkdown>{narrative}</ReactMarkdown>
+                <ReactMarkdown>{stripEmoji(narrative)}</ReactMarkdown>
                 {loading && <span className="inline-block w-2 h-5 bg-primary animate-pulse ml-0.5" />}
               </div>
             )}
