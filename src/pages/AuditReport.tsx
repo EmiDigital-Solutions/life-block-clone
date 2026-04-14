@@ -312,12 +312,12 @@ function AuditReportInner() {
               {/* Tool buttons — clean icon + label */}
               <div className="hidden md:flex items-center gap-1">
                 {[
-                  { icon: Zap, label: 'Decision', action: () => setDashboardOpen(true), highlight: true },
-                  { icon: FileText, label: 'Brief', action: () => setBriefOpen(true) },
-                  { icon: ListChecks, label: 'Actions', action: () => setChecklistOpen(true) },
+                  { icon: LayoutDashboard, label: 'Decision', action: () => setDashboardOpen(true), highlight: true },
+                  { icon: FileBarChart, label: 'Brief', action: () => setBriefOpen(true) },
+                  { icon: ClipboardList, label: 'Actions', action: () => setChecklistOpen(true) },
                   { icon: TrendingUp, label: 'Trend', action: () => setTrendOpen(true) },
-                  { icon: BookOpen, label: 'Guide', action: () => setGuideOpen(true) },
-                  { icon: Download, label: 'Export', action: () => {} },
+                  { icon: BookOpenCheck, label: 'Guide', action: () => setGuideOpen(true) },
+                  { icon: FileDown, label: 'Export', action: () => {} },
                 ].map(({ icon: Icon, label, action, highlight }) => (
                   <button
                     key={label}
