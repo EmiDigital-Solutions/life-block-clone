@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import ExecutiveRadarCharts from "@/components/audit-report/ExecutiveRadarCharts";
 import type { VerdictType, DepthLevel } from "@/data/auditReportData";
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { Shield, AlertTriangle, Clock, TrendingDown, ChevronDown, FileCheck } from "lucide-react";
