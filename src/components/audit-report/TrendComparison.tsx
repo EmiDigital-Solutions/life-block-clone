@@ -3,7 +3,7 @@
  * Side-by-side current vs previous audit with AI narrative
  */
 import { useState, useCallback } from "react";
-import { X, TrendingUp, TrendingDown, Sparkles, Loader2, ArrowRight } from "lucide-react";
+import { X, TrendingUp, TrendingDown, Sparkles, Loader2, ArrowRight, BarChart3, AlertTriangle, CheckCircle2, Target } from "lucide-react";
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
@@ -32,20 +32,21 @@ export default function TrendComparison({ open, onClose }: TrendComparisonProps)
   const currentScore = Math.round(iatfWeightedScore);
   const scoreDelta = currentScore - previousAudit.vdaScore;
   const ncrDelta = allNCRs.length - previousAudit.totalNCRs;
-  const majorDelta = allNCRs.filter(n => n.severity === 'major').length - previousAudit.majorNCRs;
+  const majorCount = allNCRs.filter(n => n.severity === 'major').length;
+  const majorDelta = majorCount - previousAudit.majorNCRs;
 
   const metrics = [
-    { label: 'VDA Score', prev: `${previousAudit.vdaScore}%`, curr: `${currentScore}%`, delta: scoreDelta, unit: '%', better: scoreDelta > 0 },
-    { label: 'Total NCRs', prev: String(previousAudit.totalNCRs), curr: String(allNCRs.length), delta: ncrDelta, unit: '', better: ncrDelta < 0 },
-    { label: 'Major NCRs', prev: String(previousAudit.majorNCRs), curr: String(allNCRs.filter(n => n.severity === 'major').length), delta: majorDelta, unit: '', better: majorDelta < 0 },
-    { label: 'Verdict', prev: 'Conditional', curr: reportMeta.verdictLabel, delta: 0, unit: '', better: reportMeta.verdict === 'go' },
+    { label: 'VDA Score', prev: `${previousAudit.vdaScore}%`, curr: `${currentScore}%`, delta: scoreDelta, unit: '%', better: scoreDelta > 0, icon: BarChart3 },
+    { label: 'Total NCRs', prev: String(previousAudit.totalNCRs), curr: String(allNCRs.length), delta: ncrDelta, unit: '', better: ncrDelta < 0, icon: AlertTriangle },
+    { label: 'Major NCRs', prev: String(previousAudit.majorNCRs), curr: String(majorCount), delta: majorDelta, unit: '', better: majorDelta < 0, icon: Target },
+    { label: 'Verdict', prev: 'Conditional', curr: reportMeta.verdictLabel, delta: 0, unit: '', better: reportMeta.verdict === 'go', icon: CheckCircle2 },
   ];
 
   const generateNarrative = useCallback(async () => {
     setLoading(true);
     setNarrative("");
 
-    const prompt = `You are a trend analyst for automotive supplier audits. Compare these two audits and explain the trajectory.
+    const prompt = `You are a senior automotive audit trajectory analyst. Compare these two audits.
 
 PREVIOUS AUDIT (${previousAudit.date}):
 - VDA Score: ${previousAudit.vdaScore}%
@@ -55,17 +56,32 @@ PREVIOUS AUDIT (${previousAudit.date}):
 
 CURRENT AUDIT (${reportMeta.date}):
 - VDA Score: ${currentScore}%
-- NCRs: ${allNCRs.length} (${allNCRs.filter(n => n.severity === 'major').length} major)
+- NCRs: ${allNCRs.length} (${majorCount} major)
 - Verdict: ${reportMeta.verdictLabel}
 - Cost Exposure: ${reportMeta.totalCostExposure}
 
-Write a concise trajectory analysis using bullet points covering:
-1. **Overall direction** — improving/declining/stagnant
-2. **Key improvements** — what got better
-3. **Persistent or new issues** — what remains problematic
-4. **Prediction** — forecast for next audit cycle
+FORMAT STRICTLY AS FOLLOWS — use ONLY markdown headers and bullet points. NO paragraphs. NO flowing text. Every single piece of information must be a bullet point.
 
-Use markdown with bullet lists. No paragraphs — only structured points. Max 200 words.`;
+## 📊 Overall Direction
+- **Status:** [Improving / Declining / Stagnant]
+- **Score Change:** [describe delta]
+- **Risk Trajectory:** [describe]
+
+## ✅ Key Improvements
+- **[Area 1]:** [one-line description]
+- **[Area 2]:** [one-line description]
+- **[Area 3]:** [one-line description]
+
+## ⚠️ Persistent / New Issues
+- **[Issue 1]:** [one-line description]
+- **[Issue 2]:** [one-line description]
+
+## 🔮 Next Audit Prediction
+- **Near-term:** [one-line prediction]
+- **Long-term:** [one-line prediction]
+- **Required Action:** [one-line action]
+
+Max 250 words. Every line MUST start with "- **". No exceptions.`;
 
     try {
       const resp = await fetch(ATLAS_URL, {
@@ -111,14 +127,16 @@ Use markdown with bullet lists. No paragraphs — only structured points. Max 20
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-foreground/60 backdrop-blur-sm p-6">
-      <div className="bg-card border border-border rounded-xl shadow-2xl w-full max-w-[900px] max-h-[90vh] flex flex-col">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-foreground/60 backdrop-blur-sm p-4">
+      <div className="bg-card border border-border rounded-2xl shadow-2xl w-full max-w-[1000px] max-h-[92vh] flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between px-8 py-5 border-b border-border shrink-0">
-          <div className="flex items-center gap-3">
-            <TrendingUp className="w-6 h-6 text-primary" />
+        <div className="flex items-center justify-between px-10 py-6 border-b border-border shrink-0">
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              <TrendingUp className="w-5 h-5 text-primary" />
+            </div>
             <div>
-              <h2 className="text-[20px] font-bold text-foreground">Trend Comparison</h2>
+              <h2 className="text-[22px] font-bold text-foreground tracking-tight">Trend Comparison</h2>
               <p className="text-[14px] text-muted-foreground mt-0.5">Performance trajectory across audit cycles</p>
             </div>
           </div>
@@ -127,64 +145,89 @@ Use markdown with bullet lists. No paragraphs — only structured points. Max 20
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto px-8 py-8 space-y-8">
+        <div className="flex-1 overflow-y-auto px-10 py-8 space-y-10">
           {/* Timeline header */}
-          <div className="flex items-center justify-between px-4">
+          <div className="flex items-center justify-between bg-muted/30 rounded-xl px-8 py-5">
             <div>
-              <div className="text-[12px] font-bold uppercase tracking-wider text-muted-foreground mb-1">Previous Audit</div>
-              <div className="text-[18px] font-semibold text-foreground">{previousAudit.date}</div>
+              <div className="text-[11px] font-bold uppercase tracking-[0.15em] text-muted-foreground mb-1">Previous Audit</div>
+              <div className="text-[20px] font-semibold text-foreground tabular-nums">{previousAudit.date}</div>
             </div>
-            <ArrowRight className="w-6 h-6 text-muted-foreground" />
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-[1px] bg-border" />
+              <ArrowRight className="w-5 h-5 text-muted-foreground" />
+              <div className="w-8 h-[1px] bg-border" />
+            </div>
             <div className="text-right">
-              <div className="text-[12px] font-bold uppercase tracking-wider text-primary mb-1">Current Audit</div>
-              <div className="text-[18px] font-semibold text-foreground">{reportMeta.date}</div>
+              <div className="text-[11px] font-bold uppercase tracking-[0.15em] text-primary mb-1">Current Audit</div>
+              <div className="text-[20px] font-semibold text-foreground tabular-nums">{reportMeta.date}</div>
             </div>
           </div>
 
           {/* Metrics comparison grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {metrics.map(m => (
-              <div key={m.label} className="p-5 border border-border/40 rounded-lg bg-muted/20">
-                <div className="text-[12px] font-bold uppercase tracking-wider text-muted-foreground mb-3">{m.label}</div>
-                <div className="flex items-end justify-between mb-2">
-                  <span className="text-[18px] text-muted-foreground">{m.prev}</span>
-                  <ArrowRight className="w-4 h-4 text-muted-foreground mx-2 mb-1" />
-                  <span className="text-[22px] font-bold text-foreground">{m.curr}</span>
-                </div>
-                {m.delta !== 0 && (
-                  <div className={`flex items-center gap-1.5 text-[13px] font-semibold ${m.better ? 'text-accent' : 'text-destructive'}`}>
-                    {m.better ? <TrendingUp className="w-4 h-4" /> : <TrendingDown className="w-4 h-4" />}
-                    {m.delta > 0 ? '+' : ''}{m.delta}{m.unit}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+            {metrics.map(m => {
+              const Icon = m.icon;
+              return (
+                <div key={m.label} className="p-6 border border-border/50 rounded-xl bg-card hover:shadow-md transition-shadow">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Icon className="w-4 h-4 text-muted-foreground" />
+                    <div className="text-[11px] font-bold uppercase tracking-[0.15em] text-muted-foreground">{m.label}</div>
                   </div>
-                )}
-              </div>
-            ))}
+                  
+                  <div className="space-y-3">
+                    <div className="flex items-baseline gap-3">
+                      <span className="text-[16px] text-muted-foreground line-through decoration-muted-foreground/30">{m.prev}</span>
+                      <ArrowRight className="w-3 h-3 text-muted-foreground shrink-0" />
+                      <span className="text-[24px] font-bold text-foreground leading-none">{m.curr}</span>
+                    </div>
+                    
+                    {m.delta !== 0 && (
+                      <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[12px] font-semibold ${
+                        m.better 
+                          ? 'bg-accent/10 text-accent' 
+                          : 'bg-destructive/10 text-destructive'
+                      }`}>
+                        {m.better ? <TrendingUp className="w-3.5 h-3.5" /> : <TrendingDown className="w-3.5 h-3.5" />}
+                        {m.delta > 0 ? '+' : ''}{m.delta}{m.unit}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
           {/* AI Narrative */}
-          <div className="pt-6 border-t border-border">
-            <h3 className="text-[16px] font-bold text-foreground mb-4 flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-primary" />
+          <div className="border-t border-border pt-8">
+            <h3 className="text-[18px] font-bold text-foreground mb-6 flex items-center gap-2.5">
+              <Sparkles className="w-5 h-5 text-primary" />
               AI Trajectory Analysis
             </h3>
 
             {!narrative && !loading && (
               <button
                 onClick={generateNarrative}
-                className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-primary/5 border border-primary/20 rounded-lg hover:bg-primary/10 transition-colors cursor-pointer"
+                className="w-full flex items-center justify-center gap-3 px-8 py-5 bg-primary/5 border border-primary/20 rounded-xl hover:bg-primary/10 transition-colors cursor-pointer"
               >
                 <Sparkles className="w-5 h-5 text-primary" />
                 <span className="text-[15px] font-semibold text-primary">Generate AI Trajectory Analysis</span>
               </button>
             )}
             {loading && !narrative && (
-              <div className="flex items-center justify-center py-8 gap-3">
+              <div className="flex items-center justify-center py-10 gap-3">
                 <Loader2 className="w-5 h-5 animate-spin text-primary" />
-                <span className="text-[15px] text-muted-foreground">Analyzing trend...</span>
+                <span className="text-[15px] text-muted-foreground">Analyzing audit trajectory…</span>
               </div>
             )}
             {narrative && (
-              <div className="prose prose-base max-w-none text-foreground/90 [&_p]:text-[15px] [&_p]:leading-[1.8] [&_li]:text-[15px] [&_li]:leading-[1.7] [&_li]:mb-1 [&_strong]:text-foreground [&_h2]:text-[18px] [&_h2]:mb-3 [&_h2]:mt-6 [&_h3]:text-[16px] [&_ul]:space-y-1.5 [&_ol]:space-y-1.5">
+              <div className="prose prose-base max-w-none text-foreground/90
+                [&_h2]:text-[16px] [&_h2]:font-bold [&_h2]:text-foreground [&_h2]:mt-8 [&_h2]:mb-4 [&_h2]:pb-2 [&_h2]:border-b [&_h2]:border-border/50
+                [&_h2:first-child]:mt-0
+                [&_ul]:space-y-2.5 [&_ul]:mt-3 [&_ul]:mb-6 [&_ul]:pl-0 [&_ul]:list-none
+                [&_li]:text-[14px] [&_li]:leading-[1.8] [&_li]:pl-5 [&_li]:relative [&_li]:before:content-[''] [&_li]:before:absolute [&_li]:before:left-0 [&_li]:before:top-[10px] [&_li]:before:w-2 [&_li]:before:h-2 [&_li]:before:rounded-full [&_li]:before:bg-primary/30
+                [&_strong]:text-foreground [&_strong]:font-semibold
+                [&_p]:text-[14px] [&_p]:leading-[1.8] [&_p]:mb-3
+              ">
                 <ReactMarkdown>{narrative}</ReactMarkdown>
                 {loading && <span className="inline-block w-2 h-5 bg-primary animate-pulse ml-0.5" />}
               </div>
