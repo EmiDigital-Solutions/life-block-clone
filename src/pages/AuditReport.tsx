@@ -279,8 +279,8 @@ function AuditReportInner() {
             <div className="flex items-center justify-between px-5 h-11">
               <div className="flex items-center gap-1">
                 {/* Depth toggle */}
-                <div className="flex rounded-md overflow-hidden border border-border mr-3">
-                  {(['executive', 'standard', 'full'] as DepthLevel[]).map(d => (
+                <div className="flex rounded-md overflow-hidden border border-border mr-1">
+                  {(['executive', 'standard'] as DepthLevel[]).map(d => (
                     <button
                       key={d}
                       onClick={() => setDepth(d)}
@@ -293,6 +293,7 @@ function AuditReportInner() {
                     </button>
                   ))}
                 </div>
+                <VoiceBriefing />
 
                 {/* Station heatmap */}
                 <div className="hidden md:flex items-center gap-2 px-3 border-l border-border">
@@ -335,7 +336,6 @@ function AuditReportInner() {
                     {label}
                   </button>
                 ))}
-                <VoiceBriefing />
               </div>
             </div>
 
