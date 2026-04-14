@@ -2,7 +2,8 @@ import { cn } from "@/lib/utils";
 import ExecutiveRadarCharts from "@/components/audit-report/ExecutiveRadarCharts";
 import type { VerdictType, DepthLevel } from "@/data/auditReportData";
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
-import { AlertTriangle, CheckCircle2, Clock, TrendingDown, ChevronDown, FileCheck } from "lucide-react";
+import { AlertTriangle, CheckCircle2, Clock, TrendingDown, ChevronDown, FileCheck, Star, Shield } from "lucide-react";
+import logoNew from "@/assets/logo-new.svg";
 
 const SW = 1.5;
 
@@ -70,6 +71,32 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
             </h1>
             <div className="text-[15px] text-muted-foreground mt-1">
               VDA 6.3:2023 · ISO 9001:2015 · IATF 16949:2016
+            </div>
+          </div>
+
+          {/* Auditor Firm */}
+          <div className="border-t border-border/40 px-6 py-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center overflow-hidden">
+                  <img src={logoNew} alt="YVOO" className="w-7 h-7 object-contain" />
+                </div>
+                <div>
+                  <div className="text-[15px] font-semibold text-foreground">YVOO GmbH</div>
+                  <div className="text-[12px] text-muted-foreground">Accredited Audit Firm · IRCA Certified Body</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1">
+                  {[1, 2, 3, 4, 5].map(s => (
+                    <Star key={s} className={cn("w-4 h-4", s <= 5 ? "text-warning fill-warning" : "text-muted-foreground/30")} />
+                  ))}
+                </div>
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-primary/10 border border-primary/20">
+                  <Shield className="w-3.5 h-3.5 text-primary" />
+                  <span className="text-[12px] font-bold text-primary">A+ Rated</span>
+                </div>
+              </div>
             </div>
           </div>
 
