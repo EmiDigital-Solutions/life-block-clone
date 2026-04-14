@@ -83,11 +83,23 @@ export default function KPIBand({ kpis, depth = 'standard' }: KPIBandProps) {
             const isNegativeTrend = (kpi.trend === 'up' && (kpi.label.includes('NCR') || kpi.label.includes('DPPM') || kpi.label.includes('Cost')))
               || (kpi.trend === 'down' && !kpi.label.includes('NCR') && !kpi.label.includes('DPPM') && !kpi.label.includes('Cost'));
             const trendColor = kpi.trend === 'flat' ? 'hsl(var(--muted-foreground))' : isNegativeTrend ? 'hsl(var(--destructive))' : 'hsl(var(--accent))';
+            const ai = getKPIInsight(kpi.label);
 
             return (
               <div key={i} className="px-4 py-4 text-center">
                 <div className="text-[13px] text-muted-foreground mb-1">{kpi.label}</div>
-                <div className="text-[22px] font-semibold font-mono tabular-nums text-foreground leading-none">{kpi.value}{kpi.unit && <span className="text-[14px] text-muted-foreground ml-0.5">{kpi.unit}</span>}</div>
+                <AtlasTooltip
+                  metric={kpi.label}
+                  value={`${kpi.value}${kpi.unit || ''}`}
+                  insight={ai.insight}
+                  benchmark={ai.benchmark}
+                  recommendation={ai.recommendation}
+                  severity={ai.severity}
+                >
+                  <div className="text-[22px] font-semibold font-mono tabular-nums text-foreground leading-none cursor-help">
+                    {kpi.value}{kpi.unit && <span className="text-[14px] text-muted-foreground ml-0.5">{kpi.unit}</span>}
+                  </div>
+                </AtlasTooltip>
                 <div className="flex items-center justify-center gap-1 mt-1.5">
                   <Icon className="w-3 h-3" style={{ color: trendColor }} />
                   <span className="text-[13px] font-mono" style={{ color: trendColor }}>{kpi.trendValue}</span>
