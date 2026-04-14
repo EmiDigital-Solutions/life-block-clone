@@ -5,7 +5,7 @@ import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { 
   X, Sparkles, FileText, Monitor, Clock, AlertTriangle, TrendingUp, 
   TrendingDown, Eye, AlertTriangle as WarnIcon, Lightbulb, BarChart3, Camera,
-  Brain, Crosshair, Search, Volume2, VolumeX, Square
+  Brain, Crosshair, Search, Speech, VolumeX, Square
 } from "lucide-react";
 
 const SW = 1.5;
