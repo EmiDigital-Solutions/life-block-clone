@@ -1,5 +1,5 @@
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
-import { Zap, TrendingDown } from "lucide-react";
+import { CircleAlert, TrendingDown } from "lucide-react";
 
 const severityColor: Record<string, string> = {
   critical: 'hsl(0, 48%, 46%)',
