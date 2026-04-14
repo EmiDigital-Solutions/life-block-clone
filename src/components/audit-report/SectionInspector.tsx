@@ -411,34 +411,31 @@ function AtlasTab({ intel, station, stationNCRs, brainTab, setBrainTab, predicti
           </div>
 
           {/* Atlas Predictions */}
-          <div className="px-4 py-3" style={{ borderBottom: '1px solid hsl(0,0%,92%)' }}>
+          <div className="px-4 py-3" style={{ borderBottom: '1px solid var(--ar-bd-hair)' }}>
             <div className="flex items-center gap-2 mb-3">
-              <Brain className="w-4 h-4 text-primary" />
-              <span className="text-[12px] font-bold tracking-[0.1em] uppercase text-muted-foreground">Atlas Predictions</span>
+              <Brain className="w-4 h-4" style={{ color: 'var(--ar-accent)' }} />
+              <span className="ar-mono-label">Atlas predictions</span>
             </div>
             <div className="space-y-3">
               {intel.predictions.map((pred: any, i: number) => {
                 const colors = impactColor(pred.impact);
                 return (
-                  <div key={i} className="bg-card rounded-lg border border-border/60 p-3">
+                  <div key={i} className="p-4" style={{ background: 'var(--ar-bg-soft)', border: '1px solid var(--ar-bd-hair)', borderRadius: 'var(--ar-radius)' }}>
                     <div className="flex items-start gap-2 mb-1.5">
-                      <div className="w-6 h-6 rounded-md flex items-center justify-center shrink-0 mt-0.5" style={{ background: colors.bg, color: colors.text }}>
+                      <div className="w-5 h-5 rounded flex items-center justify-center shrink-0 mt-0.5" style={{ color: colors.text }}>
                         {predictionIcon(pred.icon)}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h4 className="text-[13px] font-semibold text-foreground leading-tight">{pred.title}</h4>
+                        <h4 className="text-[12px] font-semibold" style={{ color: 'var(--ar-tx-1)' }}>{pred.title}</h4>
                       </div>
                     </div>
-                    <p className="text-[12px] leading-relaxed text-muted-foreground ml-8">{pred.body}</p>
-                    <div className="flex items-center gap-3 mt-2 ml-8">
-                      <div className="flex items-center gap-1">
-                        <div className="h-1.5 w-16 rounded-full bg-muted overflow-hidden">
-                          <div className="h-full rounded-full" style={{ width: `${pred.confidence}%`, background: colors.text }} />
-                        </div>
-                        <span className="text-[11px] font-mono tabular-nums" style={{ color: colors.text }}>{pred.confidence}%</span>
+                    <p className="text-[11px] leading-relaxed ml-7" style={{ color: 'var(--ar-tx-2)', lineHeight: '1.55' }}>{pred.body}</p>
+                    <div className="flex items-center gap-2 mt-2 ml-7">
+                      <div className="h-1.5 w-16 rounded-full overflow-hidden" style={{ background: 'var(--ar-bd-line)' }}>
+                        <div className="h-full rounded-full" style={{ width: `${pred.confidence}%`, background: colors.text }} />
                       </div>
-                      <span className="text-[10px] font-bold uppercase px-1.5 py-0.5 rounded" style={{ background: colors.bg, color: colors.text }}>
-                        {pred.impact}
+                      <span className="text-[10px] tabular-nums" style={{ fontFamily: "'Space Mono', monospace", color: 'var(--ar-tx-2)' }}>
+                        Atlas · {pred.confidence}%
                       </span>
                     </div>
                   </div>
