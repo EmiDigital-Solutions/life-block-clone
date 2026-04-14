@@ -1,11 +1,11 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import type { Station, NCR } from "@/data/auditReportData";
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
 import { 
   X, Sparkles, FileText, Monitor, Clock, AlertTriangle, TrendingUp, 
   TrendingDown, Eye, AlertTriangle as WarnIcon, Lightbulb, BarChart3, Camera,
-  Brain, Crosshair, Search
+  Brain, Crosshair, Search, Volume2, VolumeX
 } from "lucide-react";
 
 const SW = 1.5;
