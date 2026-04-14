@@ -174,7 +174,7 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
           </span>
           {item.health && (
             <div className="shrink-0">
-              <div className={cn("w-[7px] h-[7px] rounded-sm", healthDotColor[item.health])} />
+              <div className={cn("w-[7px] h-[7px] rounded-full", healthDotColor[item.health])} />
             </div>
           )}
         </button>
