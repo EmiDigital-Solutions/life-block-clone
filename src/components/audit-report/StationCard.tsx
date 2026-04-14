@@ -177,49 +177,40 @@ export default function StationCard({ station, depth, totalStations }: StationCa
 
     return (
       <section id={`station-${station.index}`} className="scroll-mt-20">
-        {/* Light section header */}
-        <div className="flex items-stretch bg-muted/40 border border-border rounded-t-lg">
-          <div className="flex items-center gap-3 px-4 py-2.5 flex-1 min-w-0">
-            <span className="text-[10px] font-mono font-bold tabular-nums text-muted-foreground">
-              §{station.index}
-            </span>
-            <div className="w-2.5 h-2.5 rounded-full" style={{ background: hc.color }} />
-            <span className="text-[12px] font-bold tracking-wide text-foreground uppercase">{station.name}</span>
+        <div className="bg-card rounded-lg border border-border/60 overflow-hidden">
+          {/* Clean header */}
+          <div className="flex items-center justify-between px-5 py-3 border-b border-border/40">
+            <div className="flex items-center gap-3">
+              <div className="w-2 h-2 rounded-full" style={{ background: hc.color }} />
+              <span className="text-[13px] font-semibold text-foreground">{station.name}</span>
+              <span className="text-[11px] text-muted-foreground">P{station.index}</span>
+            </div>
+            <div className="flex items-center gap-3">
+              {elementPct !== null && (
+                <span className="text-[13px] font-semibold font-mono" style={{ color: elementColor }}>{elementPct}%</span>
+              )}
+              <span className="text-[11px] px-2.5 py-1 font-medium rounded-md" style={{ background: `${hc.color}12`, color: hc.color }}>
+                {station.health === 'green' ? 'Conform' : station.health === 'amber' ? 'Deviation' : station.health === 'red' ? 'Non-Conform' : 'N/A'}
+              </span>
+            </div>
           </div>
-          <div className="flex items-center gap-4 px-4 shrink-0">
-            {elementPct !== null && (
-              <div className="flex items-center gap-2">
-                <span className="text-[9px] font-bold uppercase text-muted-foreground">Element Score</span>
-                <span className="text-[14px] font-bold font-mono" style={{ color: elementColor }}>{elementPct}%</span>
-              </div>
-            )}
-            <span className="text-[10px] px-2 py-0.5 font-bold uppercase tracking-wider rounded" style={{ background: `${hc.color}15`, color: hc.color }}>
-              {station.health === 'green' ? 'CONFORM' : station.health === 'amber' ? 'DEVIATION' : station.health === 'red' ? 'NON-CONFORM' : 'N/A'}
-            </span>
-          </div>
-        </div>
 
-        <div className="border-x border-b border-border rounded-b-lg bg-card">
           {/* Observation */}
-          <div className="px-4 py-3 border-b border-border/50">
-            <div className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground mb-1">Auditor Observation</div>
-            <p className="text-[11px] leading-relaxed text-foreground/80">{station.observation}</p>
+          <div className="px-5 py-3 border-b border-border/30">
+            <p className="text-[12px] leading-relaxed text-muted-foreground">{station.observation}</p>
           </div>
 
-          {/* Audit question scoring table — VDA 6.3 format */}
+          {/* Audit question scoring table */}
           {hasQuestions && (
             <div>
-              <div className="px-4 py-1.5 bg-muted/30">
-                <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">Audit Questions — Scoring per VDA 6.3 (0/4/6/8/10)</span>
-              </div>
               <table className="w-full border-collapse text-left">
                 <thead>
-                   <tr className="bg-muted/20">
-                    <th className="px-3 py-1.5 text-[8px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border w-[50px]">Ref.</th>
-                    <th className="px-3 py-1.5 text-[8px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l">Clause</th>
-                    <th className="px-3 py-1.5 text-[8px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l">Question</th>
-                    <th className="px-3 py-1.5 text-[8px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l w-[50px] text-center">Score</th>
-                    <th className="px-3 py-1.5 text-[8px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l">Notes</th>
+                  <tr>
+                    <th className="px-3 py-2 text-[11px] font-medium text-muted-foreground border-b border-border/30 w-[50px]">Ref.</th>
+                    <th className="px-3 py-2 text-[11px] font-medium text-muted-foreground border-b border-border/30">Clause</th>
+                    <th className="px-3 py-2 text-[11px] font-medium text-muted-foreground border-b border-border/30">Question</th>
+                    <th className="px-3 py-2 text-[11px] font-medium text-muted-foreground border-b border-border/30 w-[50px] text-center">Score</th>
+                    <th className="px-3 py-2 text-[11px] font-medium text-muted-foreground border-b border-border/30">Notes</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -227,28 +218,28 @@ export default function StationCard({ station, depth, totalStations }: StationCa
                     const s = q.score || 0;
                     const qColor = s >= 8 ? 'hsl(155, 24%, 40%)' : s >= 6 ? 'hsl(24, 72%, 53%)' : 'hsl(0, 48%, 46%)';
                     return (
-                      <tr key={q.id} className="border-b border-border/30 hover:bg-muted/20">
-                        <td className="px-3 py-1.5 text-[10px] font-mono font-bold text-primary">{q.id}</td>
-                        <td className="px-3 py-1.5 text-[10px] font-mono text-muted-foreground border-l border-border/30">§{q.clause}</td>
-                        <td className="px-3 py-1.5 text-[10px] text-foreground border-l border-border/30 max-w-[400px]">{q.question}</td>
-                        <td className="px-3 py-1.5 border-l border-border/30 text-center">
-                          <span className="text-[12px] font-bold font-mono" style={{ color: qColor }}>{s}</span>
-                          <span className="text-[9px] text-muted-foreground">/10</span>
+                      <tr key={q.id} className="border-b border-border/20 hover:bg-muted/10">
+                        <td className="px-3 py-2 text-[11px] font-mono text-primary">{q.id}</td>
+                        <td className="px-3 py-2 text-[11px] font-mono text-muted-foreground">§{q.clause}</td>
+                        <td className="px-3 py-2 text-[11px] text-foreground max-w-[400px]">{q.question}</td>
+                        <td className="px-3 py-2 text-center">
+                          <span className="text-[12px] font-semibold font-mono" style={{ color: qColor }}>{s}</span>
+                          <span className="text-[10px] text-muted-foreground">/10</span>
                         </td>
-                        <td className="px-3 py-1.5 text-[10px] text-muted-foreground border-l border-border/30">{q.notes}</td>
+                        <td className="px-3 py-2 text-[11px] text-muted-foreground">{q.notes}</td>
                       </tr>
                     );
                   })}
                 </tbody>
                 <tfoot>
-                  <tr className="bg-muted/30">
-                    <td colSpan={3} className="px-3 py-1.5 text-[10px] font-bold uppercase text-foreground border-t border-border">
+                  <tr className="border-t border-border/30">
+                    <td colSpan={3} className="px-3 py-2 text-[11px] font-semibold text-foreground">
                       Element Result
                     </td>
-                    <td className="px-3 py-1.5 text-center border-t border-border border-l">
-                      <span className="text-[13px] font-bold font-mono" style={{ color: elementColor }}>{elementPct}%</span>
+                    <td className="px-3 py-2 text-center">
+                      <span className="text-[13px] font-semibold font-mono" style={{ color: elementColor }}>{elementPct}%</span>
                     </td>
-                    <td className="px-3 py-1.5 text-[10px] font-bold border-t border-border border-l" style={{ color: elementColor }}>
+                    <td className="px-3 py-2 text-[11px] font-medium" style={{ color: elementColor }}>
                       {elementPct !== null && elementPct >= 80 ? 'Qualified' : elementPct !== null && elementPct >= 60 ? 'Conditionally Qualified' : 'Not Qualified'}
                     </td>
                   </tr>
@@ -259,38 +250,35 @@ export default function StationCard({ station, depth, totalStations }: StationCa
 
           {/* Findings as formal table */}
           {station.findings.length > 0 && (
-            <div className="border-t border-border/50">
-              <div className="px-4 py-1.5 bg-muted/30">
-                <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">Findings</span>
-              </div>
+            <div className="border-t border-border/30">
               <table className="w-full border-collapse text-left">
                 <thead>
-                  <tr className="bg-muted/20">
-                    <th className="px-3 py-1 text-[8px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border w-[80px]">Type</th>
-                    <th className="px-3 py-1 text-[8px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l">Finding</th>
-                    <th className="px-3 py-1 text-[8px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l w-[70px]">Clause</th>
-                    <th className="px-3 py-1 text-[8px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border border-l w-[80px]">NCR Ref.</th>
+                  <tr>
+                    <th className="px-3 py-2 text-[11px] font-medium text-muted-foreground border-b border-border/30 w-[80px]">Type</th>
+                    <th className="px-3 py-2 text-[11px] font-medium text-muted-foreground border-b border-border/30">Finding</th>
+                    <th className="px-3 py-2 text-[11px] font-medium text-muted-foreground border-b border-border/30 w-[70px]">Clause</th>
+                    <th className="px-3 py-2 text-[11px] font-medium text-muted-foreground border-b border-border/30 w-[80px]">NCR Ref.</th>
                   </tr>
                 </thead>
                 <tbody>
                   {station.findings.map((finding, i) => {
                     const Icon = findingIcon[finding.type];
                     return (
-                      <tr key={i} className="border-b border-border/30">
-                        <td className="px-3 py-1.5">
+                      <tr key={i} className="border-b border-border/20">
+                        <td className="px-3 py-2">
                           <div className="flex items-center gap-1.5">
                             <Icon className={cn("w-3 h-3 shrink-0", findingColor[finding.type])} />
-                            <span className={cn("text-[9px] font-bold uppercase", findingColor[finding.type])}>
+                            <span className={cn("text-[10px] font-medium", findingColor[finding.type])}>
                               {finding.type === 'major-ncr' ? 'Major' : finding.type === 'minor-ncr' ? 'Minor' : finding.type === 'pass' ? 'Pass' : finding.type === 'concern' ? 'Concern' : finding.type === 'observation' ? 'Obs.' : 'N/A'}
                             </span>
                           </div>
                         </td>
-                        <td className="px-3 py-1.5 text-[10px] text-foreground border-l border-border/30">{finding.title}</td>
-                        <td className="px-3 py-1.5 text-[10px] font-mono text-primary border-l border-border/30">{finding.isoClause ? `§${finding.isoClause}` : '—'}</td>
-                        <td className="px-3 py-1.5 border-l border-border/30">
+                        <td className="px-3 py-2 text-[11px] text-foreground">{finding.title}</td>
+                        <td className="px-3 py-2 text-[11px] font-mono text-primary">{finding.isoClause ? `§${finding.isoClause}` : '—'}</td>
+                        <td className="px-3 py-2">
                           {finding.ncrId ? (
-                            <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 text-destructive bg-destructive/10">{finding.ncrId}</span>
-                          ) : <span className="text-[10px] text-muted-foreground">—</span>}
+                            <span className="text-[10px] font-mono font-medium px-1.5 py-0.5 rounded text-destructive bg-destructive/8">{finding.ncrId}</span>
+                          ) : <span className="text-[11px] text-muted-foreground">—</span>}
                         </td>
                       </tr>
                     );
@@ -302,10 +290,10 @@ export default function StationCard({ station, depth, totalStations }: StationCa
 
           {/* NCR summary */}
           {(majorNCRs.length > 0 || minorNCRs.length > 0) && (
-            <div className="px-4 py-2 flex items-center gap-4 text-[10px] border-t border-border" style={{ background: 'hsl(0, 48%, 46%, 0.05)' }}>
-              {majorNCRs.length > 0 && <span className="font-bold text-destructive">▪ {majorNCRs.length} Major NCR — Corrective action required per §10.2</span>}
-              {minorNCRs.length > 0 && <span className="font-bold text-warning">▪ {minorNCRs.length} Minor NCR — Action within 90 days</span>}
-              <span className="text-muted-foreground ml-auto">{totalFindings} findings total</span>
+            <div className="px-5 py-2.5 flex items-center gap-4 text-[11px] border-t border-border/30">
+              {majorNCRs.length > 0 && <span className="font-medium text-destructive">{majorNCRs.length} Major NCR</span>}
+              {minorNCRs.length > 0 && <span className="font-medium text-warning">{minorNCRs.length} Minor NCR</span>}
+              <span className="text-muted-foreground ml-auto">{totalFindings} findings</span>
             </div>
           )}
         </div>
