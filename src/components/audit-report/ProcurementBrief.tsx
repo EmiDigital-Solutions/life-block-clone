@@ -3,7 +3,7 @@
  * One-click AI-generated brief: cost exposure, delivery risk, go/no-go
  */
 import { useState, useCallback } from "react";
-import { X, FileBarChart, Sparkles, Loader2, Copy, Check } from "lucide-react";
+import { X, FileBarChart, Sparkles, Loader2, Copy, Check, Volume2, VolumeX } from "lucide-react";
 
 const SW = 1.5;
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
@@ -47,6 +47,39 @@ export default function ProcurementBrief({ open, onClose }: ProcurementBriefProp
   const [brief, setBrief] = useState<string>("");
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [speaking, setSpeaking] = useState(false);
+
+  const toggleVoice = useCallback(() => {
+    if (speaking) {
+      speechSynthesis.cancel();
+      setSpeaking(false);
+      return;
+    }
+    if (!brief) return;
+
+    // Strip markdown formatting for cleaner speech
+    const plainText = brief
+      .replace(/#{1,3}\s/g, '')
+      .replace(/\*\*/g, '')
+      .replace(/- /g, '')
+      .replace(/\n+/g, '. ')
+      .replace(/\s{2,}/g, ' ')
+      .trim();
+
+    const utterance = new SpeechSynthesisUtterance(plainText);
+    utterance.lang = 'en-US';
+    const voices = speechSynthesis.getVoices();
+    const enVoice = voices.find(v => v.lang === 'en-US' && v.name.includes('Google'))
+      || voices.find(v => v.lang === 'en-US')
+      || voices.find(v => v.lang.startsWith('en'));
+    if (enVoice) utterance.voice = enVoice;
+    utterance.rate = 0.92;
+    utterance.pitch = 1;
+    utterance.onend = () => setSpeaking(false);
+    utterance.onerror = () => setSpeaking(false);
+    setSpeaking(true);
+    speechSynthesis.speak(utterance);
+  }, [speaking, brief]);
 
   const generateBrief = useCallback(async () => {
     setLoading(true);
@@ -231,6 +264,15 @@ CRITICAL: Do NOT use any emoji, icons, or special characters in headings or text
         {/* Footer */}
         {brief && !loading && (
           <div className="px-10 py-5 border-t border-border flex gap-3 shrink-0">
+            <button
+              onClick={toggleVoice}
+              className={`flex items-center gap-2 px-6 py-3 text-[13px] font-semibold uppercase tracking-wider rounded-lg cursor-pointer ${
+                speaking ? 'bg-primary text-white' : 'bg-primary/10 text-primary hover:bg-primary/20'
+              }`}
+            >
+              {speaking ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+              {speaking ? 'Stop' : 'Read Aloud'}
+            </button>
             <button
               onClick={copyBrief}
               className="flex items-center gap-2 px-6 py-3 bg-muted text-[13px] font-semibold uppercase tracking-wider rounded-lg hover:bg-muted/80 cursor-pointer"
