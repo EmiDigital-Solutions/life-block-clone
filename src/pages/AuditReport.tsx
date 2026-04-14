@@ -166,7 +166,7 @@ function AuditReportInner() {
         case 'd':
         case 'D':
           e.preventDefault();
-          setDepth(prev => prev === 'executive' ? 'standard' : prev === 'standard' ? 'full' : 'executive');
+          setDepth(prev => prev === 'executive' ? 'standard' : 'executive');
           break;
         case 'n':
         case 'N':
