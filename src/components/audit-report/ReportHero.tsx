@@ -57,75 +57,79 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
       : { grade: 'C', color: 'hsl(0, 48%, 46%)', bg: 'hsl(0, 48%, 46%, 0.12)' };
 
     return (
-      <section id="station-1" className="scroll-mt-20 pt-6 pb-2">
-        {/* ══════ FORMAL AUDIT REPORT COVER SHEET ══════ */}
-        <div className="border border-border rounded-lg overflow-hidden bg-card">
-          {/* Document title block */}
-          <div className="px-6 py-5 text-center border-b border-border bg-muted/40">
-            <div className="text-[9px] font-bold tracking-[0.2em] uppercase text-muted-foreground mb-1">Confidential — For Authorized Recipients Only</div>
-            <h1 className="text-[20px] font-bold tracking-[0.08em] uppercase text-foreground leading-tight">
+      <section id="station-1" className="scroll-mt-20 pt-6 pb-2 space-y-4">
+        {/* Cover sheet */}
+        <div className="bg-card rounded-lg border border-border/60 overflow-hidden">
+          {/* Title */}
+          <div className="px-6 py-6 text-center">
+            <div className="text-[11px] text-muted-foreground mb-1">Confidential</div>
+            <h1 className="text-[22px] font-semibold text-foreground leading-tight">
               Process Audit Report
             </h1>
-            <div className="text-[12px] font-medium text-muted-foreground mt-1">
-              per VDA 6.3:2023 / ISO 9001:2015 / IATF 16949:2016
+            <div className="text-[13px] text-muted-foreground mt-1">
+              VDA 6.3:2023 · ISO 9001:2015 · IATF 16949:2016
             </div>
           </div>
 
-          {/* Report identification table */}
-          <table className="w-full border-collapse text-left">
-            <tbody>
+          {/* Report identification — clean key-value grid */}
+          <div className="border-t border-border/40 px-6 py-4">
+            <div className="grid grid-cols-2 gap-x-8 gap-y-2">
               {[
-                ['Report No.', `PA-${date.replace(/-/g, '')}-001`, 'Revision', '1.0'],
-                ['Supplier', supplier, 'DUNS No.', '36-421-8847'],
-                ['Client / OEM', reportMeta.client, 'End Customer', 'BMW AG'],
-                ['Site Address', location, 'Production Area', '4,200 m²'],
-                ['Audit Date', new Date(date).toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' }), 'Audit Duration', '2.0 days'],
-                ['Audit Type', reportMeta.auditType, 'Previous Audit', reportMeta.previousAuditDate],
-                ['Lead Auditor', 'I. Petrović, IRCA #A21849', 'Co-Auditor', 'M. Kovačević (VDA 6.3)'],
-                ['Cert. Body', reportMeta.certBody, 'Cert. No.', reportMeta.certNumber],
-                ['PO Reference', po, 'Cert. Expiry', reportMeta.certExpiry],
-              ].map(([k1, v1, k2, v2], i) => (
-                <tr key={i} className="border-b border-border/40">
-                  <td className="px-4 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground w-[130px] bg-muted/30">{k1}</td>
-                  <td className="px-4 py-2 text-[12px] font-medium text-foreground">{v1}</td>
-                  <td className="px-4 py-2 text-[9px] font-bold uppercase tracking-wider text-muted-foreground w-[130px] border-l border-border/40 bg-muted/30">{k2}</td>
-                  <td className="px-4 py-2 text-[12px] font-medium text-foreground border-l border-border/40">{v2}</td>
-                </tr>
+                ['Report No.', `PA-${date.replace(/-/g, '')}-001`],
+                ['Revision', '1.0'],
+                ['Supplier', supplier],
+                ['DUNS No.', '36-421-8847'],
+                ['Client / OEM', reportMeta.client],
+                ['End Customer', 'BMW AG'],
+                ['Site Address', location],
+                ['Production Area', '4,200 m²'],
+                ['Audit Date', new Date(date).toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' })],
+                ['Audit Duration', '2.0 days'],
+                ['Lead Auditor', 'I. Petrović, IRCA #A21849'],
+                ['Co-Auditor', 'M. Kovačević (VDA 6.3)'],
+                ['PO Reference', po],
+                ['Cert. Expiry', reportMeta.certExpiry],
+              ].map(([k, v], i) => (
+                <div key={i} className="flex justify-between py-1 border-b border-border/20">
+                  <span className="text-[11px] text-muted-foreground">{k}</span>
+                  <span className="text-[12px] font-medium text-foreground">{v}</span>
+                </div>
               ))}
-            </tbody>
-          </table>
-
-          {/* ── AUDIT RESULT ── */}
-          <div className="border-t border-border">
-            <div className="px-4 py-2.5 bg-muted/40">
-              <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-muted-foreground">§10 — Audit Result</span>
             </div>
-            <div className="grid grid-cols-5 divide-x divide-border">
+          </div>
+        </div>
+
+        {/* Audit Result */}
+        <div className="bg-card rounded-lg border border-border/60 overflow-hidden">
+          <div className="px-5 py-3 border-b border-border/40">
+            <span className="text-[13px] font-semibold text-foreground">Audit Result</span>
+          </div>
+          <div className="grid grid-cols-5 divide-x divide-border/30">
               {/* VDA Score */}
               <div className="px-4 py-4 text-center">
-                <div className="text-[8px] font-bold uppercase tracking-wider text-muted-foreground mb-1">VDA 6.3 Score</div>
-                <div className="text-[28px] font-bold font-mono tabular-nums leading-none" style={{ color: overallCls.color }}>{Math.round(iatfWeightedScore)}%</div>
+                <div className="text-[10px] text-muted-foreground mb-1">VDA 6.3 Score</div>
+                <div className="text-[28px] font-semibold font-mono tabular-nums leading-none" style={{ color: overallCls.color }}>{Math.round(iatfWeightedScore)}%</div>
                 <div className="text-[11px] font-bold px-2 py-0.5 mt-1.5 inline-block" style={{ background: overallCls.bg, color: overallCls.color }}>
                   Grade {overallCls.grade}
                 </div>
               </div>
               {/* Verdict */}
               <div className="px-4 py-4 text-center">
-                <div className="text-[8px] font-bold uppercase tracking-wider text-muted-foreground mb-1">Verdict</div>
+                <div className="text-[10px] text-muted-foreground mb-1">Verdict</div>
                 <div className="text-[22px] font-bold leading-none" style={{ color: config.color }}>{verdictLabel}</div>
                 <div className="text-[10px] mt-1.5 text-muted-foreground">{verdict === 'conditional' ? 'With Conditions' : verdict === 'go' ? 'Without Conditions' : 'Rejected'}</div>
               </div>
               {/* Previous */}
               <div className="px-4 py-4 text-center">
-                <div className="text-[8px] font-bold uppercase tracking-wider text-muted-foreground mb-1">Previous Score</div>
-                <div className="text-[28px] font-bold font-mono tabular-nums leading-none text-foreground">{reportMeta.previousScore}%</div>
+                <div className="text-[10px] text-muted-foreground mb-1">Previous Score</div>
+                <div className="text-[28px] font-semibold font-mono tabular-nums leading-none text-foreground">{reportMeta.previousScore}%</div>
                 <div className="text-[10px] mt-1.5 font-mono" style={{ color: iatfWeightedScore < reportMeta.previousScore ? 'hsl(0,48%,46%)' : 'hsl(155,24%,45%)' }}>
                   {iatfWeightedScore >= reportMeta.previousScore ? '▲' : '▼'} {Math.abs(Math.round(iatfWeightedScore) - reportMeta.previousScore)}pts
                 </div>
               </div>
               {/* NCRs */}
               <div className="px-4 py-4 text-center">
-                <div className="text-[8px] font-bold uppercase tracking-wider text-muted-foreground mb-1">Non-Conformities</div>
+                <div className="text-[10px] text-muted-foreground mb-1">Non-Conformities</div>
                 <div className="flex items-center justify-center gap-3">
                   <div>
                     <div className="text-[22px] font-bold font-mono text-destructive leading-none">{majorNCRs}</div>
@@ -140,64 +144,51 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
               </div>
               {/* Cost */}
               <div className="px-4 py-4 text-center">
-                <div className="text-[8px] font-bold uppercase tracking-wider text-muted-foreground mb-1">Risk Exposure</div>
-                <div className="text-[22px] font-bold font-mono tabular-nums leading-none text-destructive">€{(reportMeta.totalCostExposure / 1000).toFixed(0)}K</div>
-                <div className="text-[10px] mt-1.5 text-muted-foreground">Mitigatable to €{(reportMeta.mitigatedCostExposure / 1000).toFixed(0)}K</div>
+                <div className="text-[10px] text-muted-foreground mb-1">Risk Exposure</div>
+                <div className="text-[22px] font-semibold font-mono tabular-nums leading-none text-destructive">€{(reportMeta.totalCostExposure / 1000).toFixed(0)}K</div>
+                <div className="text-[11px] mt-1.5 text-muted-foreground">Mitigatable to €{(reportMeta.mitigatedCostExposure / 1000).toFixed(0)}K</div>
               </div>
             </div>
-          </div>
+        </div>
 
-          {/* ── EXECUTIVE SUMMARY ── */}
-          <div className="border-t border-border">
-            <div className="px-4 py-2.5 bg-muted/40">
-              <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-muted-foreground">§1 — Executive Summary</span>
-            </div>
-            <div className="px-6 py-4 bg-card">
-              <table className="w-full border-collapse">
-                <tbody>
-                  <tr className="border-b border-border/40">
-                    <td className="py-2 pr-4 align-top w-[24px]"><div className="w-3 h-3 bg-destructive mt-0.5" /></td>
-                    <td className="py-2 pr-3 text-[10px] font-bold uppercase text-destructive w-[80px] align-top">Critical</td>
-                    <td className="py-2 text-[12px] leading-snug text-foreground">Bore ID Cpk 0.98 — below BMW minimum 1.33 (§8.5.1). CNC machines #2 & #4 calibration overdue. Process capability not demonstrated per IATF 16949 §9.1.1.1.</td>
-                  </tr>
-                  <tr className="border-b border-border/40">
-                    <td className="py-2 pr-4 align-top"><div className="w-3 h-3 bg-warning mt-0.5" /></td>
-                    <td className="py-2 pr-3 text-[10px] font-bold uppercase text-warning align-top">Warning</td>
-                    <td className="py-2 text-[12px] leading-snug text-foreground">DPPM 410 vs. target 50. Accelerating trend since Oct 2025. 6/42 supplier re-evaluations overdue (§8.4.1). CAPA closure rate 62.5% — below 90% threshold.</td>
-                  </tr>
-                  <tr className="border-b border-border/40">
-                    <td className="py-2 pr-4 align-top"><div className="w-3 h-3 bg-accent mt-0.5" /></td>
-                    <td className="py-2 pr-3 text-[10px] font-bold uppercase text-accent align-top">Strength</td>
-                    <td className="py-2 text-[12px] leading-snug text-foreground">Workforce competency above benchmark (P6 score 88%). CEO engagement confirmed (§5.1). Customer care score highest across all process elements.</td>
-                  </tr>
-                  <tr>
-                    <td className="py-2 pr-4 align-top"><div className="w-3 h-3 bg-primary mt-0.5" /></td>
-                    <td className="py-2 pr-3 text-[10px] font-bold uppercase text-primary align-top">Action Req.</td>
-                    <td className="py-2 text-[12px] leading-snug text-foreground">2 major NCRs require assigned owners + corrective action deadlines before PO release. Re-audit within 90 days per VDA 6.3 §10.3.</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+        {/* Executive Summary */}
+        <div className="bg-card rounded-lg border border-border/60 overflow-hidden">
+          <div className="px-5 py-3 border-b border-border/40">
+            <span className="text-[13px] font-semibold text-foreground">Executive Summary</span>
           </div>
-
-          {/* ── §9 — GAP ANALYSIS RADAR CHARTS ── */}
-          <div className="border-t border-border">
-            <ExecutiveRadarCharts depth="executive" />
+          <div className="px-5 py-4 space-y-3">
+            {[
+              { color: 'bg-destructive', label: 'Critical', text: 'Bore ID Cpk 0.98 — below BMW minimum 1.33 (§8.5.1). CNC machines #2 & #4 calibration overdue.' },
+              { color: 'bg-warning', label: 'Warning', text: 'DPPM 410 vs. target 50. Accelerating trend since Oct 2025. CAPA closure rate 62.5% — below 90% threshold.' },
+              { color: 'bg-accent', label: 'Strength', text: 'Workforce competency above benchmark (P6 score 88%). CEO engagement confirmed.' },
+              { color: 'bg-primary', label: 'Action', text: '2 major NCRs require assigned owners + deadlines before PO release. Re-audit within 90 days.' },
+            ].map((item, i) => (
+              <div key={i} className="flex items-start gap-3">
+                <div className={`w-2 h-2 rounded-full ${item.color} mt-1.5 shrink-0`} />
+                <div>
+                  <span className="text-[12px] font-semibold text-foreground">{item.label}</span>
+                  <p className="text-[12px] text-muted-foreground leading-relaxed mt-0.5">{item.text}</p>
+                </div>
+              </div>
+            ))}
           </div>
+        </div>
 
-          {/* Actions */}
-          <div className="flex items-center justify-between px-6 py-3 border-t border-border bg-card">
-            <div className="text-[9px] text-muted-foreground">
-              Document generated: {new Date().toLocaleDateString('de-DE')} · Distribution: Restricted
-            </div>
-            <div className="flex items-center gap-2">
-              <button onClick={onWalk} className="px-4 py-1.5 text-[10px] font-bold uppercase tracking-wider cursor-pointer bg-muted text-foreground hover:bg-muted/80">
-                Detailed Findings ↓
-              </button>
-              <button onClick={onDecide} className="px-4 py-1.5 text-[10px] font-bold text-white uppercase tracking-wider bg-primary hover:bg-primary/90 cursor-pointer">
-                Review & Sign Off →
-              </button>
-            </div>
+        {/* Gap Analysis Radar Charts */}
+        <ExecutiveRadarCharts depth="executive" />
+
+        {/* Actions */}
+        <div className="flex items-center justify-between py-3">
+          <div className="text-[11px] text-muted-foreground">
+            Generated: {new Date().toLocaleDateString('de-DE')} · Restricted
+          </div>
+          <div className="flex items-center gap-2">
+            <button onClick={onWalk} className="px-4 py-2 text-[11px] font-medium rounded-lg cursor-pointer border border-border text-foreground hover:bg-muted/50 transition-colors">
+              Detailed Findings
+            </button>
+            <button onClick={onDecide} className="px-4 py-2 text-[11px] font-medium text-white rounded-lg bg-primary hover:bg-primary/90 cursor-pointer transition-colors">
+              Review & Sign Off
+            </button>
           </div>
         </div>
       </section>

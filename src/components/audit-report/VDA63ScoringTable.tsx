@@ -67,23 +67,16 @@ export default function VDA63ScoringTable() {
 
   return (
     <section className="scroll-mt-20 mt-4">
-      <div className="border border-border rounded-lg overflow-hidden">
+      <div className="bg-card rounded-lg border border-border/60 overflow-hidden">
         {/* Header */}
-        <div className="px-4 py-3 flex items-center justify-between bg-muted/40 border-b border-border">
+        <div className="flex items-center justify-between px-5 py-3 border-b border-border/40">
+          <span className="text-[13px] font-semibold text-foreground">VDA 6.3 Element Scoring</span>
           <div className="flex items-center gap-3">
-            <span className="text-[11px] font-bold tracking-[0.12em] uppercase text-foreground">
-              VDA 6.3 Process Audit — Element Scoring
+            <span className="text-[12px] text-muted-foreground">VDA 6.3:2023</span>
+            <span className="text-[18px] font-semibold font-mono" style={{ color: overall.color }}>{Math.round(iatfWeightedScore)}%</span>
+            <span className="text-[12px] font-medium px-2 py-0.5 rounded-md" style={{ background: overall.bg, color: overall.color }}>
+              Grade {overall.grade}
             </span>
-          </div>
-          <div className="flex items-center gap-4">
-            <span className="text-[10px] font-mono text-muted-foreground">VDA 6.3:2023</span>
-            <div className="flex items-center gap-2">
-              <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Overall:</span>
-              <span className="text-[18px] font-bold font-mono" style={{ color: overall.color }}>{Math.round(iatfWeightedScore)}%</span>
-              <span className="text-[14px] font-bold px-2 py-0.5 rounded" style={{ background: overall.bg, color: overall.color }}>
-                Grade {overall.grade}
-              </span>
-            </div>
           </div>
         </div>
 
