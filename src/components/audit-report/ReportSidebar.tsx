@@ -218,7 +218,7 @@ export default function ReportSidebar({ activeStation, onStationClick, onScrollT
     >
 
       <div className="mb-1">
-        <div className="pt-5 pb-2" />
+        <div className="pt-8 pb-2" />
         {frontItems.map(renderItem)}
       </div>
 
