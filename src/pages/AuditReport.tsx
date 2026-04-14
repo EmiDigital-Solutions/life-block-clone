@@ -203,6 +203,93 @@ function AuditReportInner() {
     <Navigation />
     <div className="audit-report h-[100dvh] flex flex-col font-sans pt-16" style={{ background: 'var(--ar-bg-page)', color: 'var(--ar-tx-1)' }}>
 
+      {/* ━━━ FULL-WIDTH STICKY HEADER — Rows 1 & 2 ━━━ */}
+      <div className="sticky top-16 z-40">
+        {/* Row 1: Brand strip — dark */}
+        <div className="ar-header flex items-center justify-between px-5 h-12">
+          <div className="flex items-center gap-3">
+            {isMobile && (
+              <button onClick={() => setSidebarOpen(true)} className="p-2 hover:bg-white/10 rounded-md transition-colors">
+                <Menu className="w-5 h-5 text-white/70" />
+              </button>
+            )}
+            <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/50" style={{ fontFamily: "'Space Mono', monospace" }}>YVOO+</span>
+            <span className="text-white/20">›</span>
+            <span className="text-[12px] text-white/60">Audits</span>
+            <span className="text-white/20">›</span>
+            <span className="text-[12px] text-white/60">2026 Q2</span>
+            <span className="text-white/20">›</span>
+            <span className="text-[12px] text-white/90 font-medium">{reportMeta.supplier}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')}
+              className="p-1.5 hover:bg-white/10 rounded-md transition-colors cursor-pointer"
+              title={theme === 'light' ? 'Dark mode' : 'Light mode'}
+            >
+              {theme === 'light' ? <Moon className="w-4 h-4 text-white/50" /> : <Sun className="w-4 h-4 text-white/50" />}
+            </button>
+            <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center">
+              <User className="w-3.5 h-3.5 text-white/60" />
+            </div>
+          </div>
+        </div>
+
+        {/* Row 2: Document control strip */}
+        <div className="ar-header-2 flex items-center justify-between px-5 h-14">
+          <div className="flex items-center gap-6">
+            {[
+              { label: 'Document', value: reportMeta.po || 'SCP-26-0412' },
+              { label: 'Rev.', value: '1.0' },
+              { label: 'Standard', value: reportMeta.standard || 'VDA 6.3 · ISO 9001' },
+              { label: 'Supplier', value: reportMeta.supplier },
+              { label: 'Customer', value: reportMeta.client || 'BMW AG' },
+            ].map(cell => (
+              <div key={cell.label} className="hidden md:flex flex-col">
+                <span className="ar-mono-label" style={{ color: 'rgba(255,255,255,0.35)' }}>{cell.label}</span>
+                <span className="text-[12px] text-white/85 font-medium mt-0.5">{cell.value}</span>
+              </div>
+            ))}
+            <div className="flex flex-col">
+              <span className="ar-mono-label" style={{ color: 'rgba(255,255,255,0.35)' }}>Verdict</span>
+              <span className="text-[12px] font-semibold mt-0.5" style={{
+                color: reportMeta.verdict === 'go' ? 'var(--ar-pass)' : reportMeta.verdict === 'conditional' ? 'var(--ar-warn)' : 'var(--ar-fail)'
+              }}>
+                {reportMeta.verdictLabel}
+              </span>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => {}}
+              className="p-2 rounded-md hover:bg-white/10 transition-colors cursor-pointer"
+              title="Share"
+            >
+              <Share2 className="w-4 h-4 text-white/50" />
+            </button>
+            <button
+              onClick={() => {}}
+              className="p-2 rounded-md hover:bg-white/10 transition-colors cursor-pointer"
+              title="Export"
+            >
+              <FileDown className="w-4 h-4 text-white/50" />
+            </button>
+            <button
+              onClick={() => setInspectorOpen(!inspectorOpen)}
+              disabled={openNCRs === 0}
+              className="px-4 py-1.5 text-[12px] font-semibold rounded-md cursor-pointer transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+              style={{
+                background: 'var(--ar-cta)',
+                color: '#FFFFFF',
+              }}
+            >
+              Sign off {openNCRs > 0 && `(${openNCRs})`}
+            </button>
+          </div>
+        </div>
+      </div>
+
       {/* Main content area */}
       <div className="flex-1 flex overflow-hidden">
         {/* Mobile sidebar overlay */}
@@ -232,93 +319,8 @@ function AuditReportInner() {
         {/* Center content column */}
         <div className="flex-1 flex flex-col min-w-0 relative">
 
-          {/* ━━━ STICKY HEADER — Two-tier clean design ━━━ */}
-          <div className="sticky top-0 z-40">
-            {/* Row 1: Brand strip — dark */}
-            <div className="ar-header flex items-center justify-between px-5 h-12">
-              <div className="flex items-center gap-3">
-                {isMobile && (
-                  <button onClick={() => setSidebarOpen(true)} className="p-2 hover:bg-white/10 rounded-md transition-colors">
-                    <Menu className="w-5 h-5 text-white/70" />
-                  </button>
-                )}
-                <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/50" style={{ fontFamily: "'Space Mono', monospace" }}>YVOO+</span>
-                <span className="text-white/20">›</span>
-                <span className="text-[12px] text-white/60">Audits</span>
-                <span className="text-white/20">›</span>
-                <span className="text-[12px] text-white/60">2026 Q2</span>
-                <span className="text-white/20">›</span>
-                <span className="text-[12px] text-white/90 font-medium">{reportMeta.supplier}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => setTheme(t => t === 'light' ? 'dark' : 'light')}
-                  className="p-1.5 hover:bg-white/10 rounded-md transition-colors cursor-pointer"
-                  title={theme === 'light' ? 'Dark mode' : 'Light mode'}
-                >
-                  {theme === 'light' ? <Moon className="w-4 h-4 text-white/50" /> : <Sun className="w-4 h-4 text-white/50" />}
-                </button>
-                <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center">
-                  <User className="w-3.5 h-3.5 text-white/60" />
-                </div>
-              </div>
-            </div>
-
-            {/* Row 2: Document control strip */}
-            <div className="ar-header-2 flex items-center justify-between px-5 h-14">
-              <div className="flex items-center gap-6">
-                {[
-                  { label: 'Document', value: reportMeta.po || 'SCP-26-0412' },
-                  { label: 'Rev.', value: '1.0' },
-                  { label: 'Standard', value: reportMeta.standard || 'VDA 6.3 · ISO 9001' },
-                  { label: 'Supplier', value: reportMeta.supplier },
-                  { label: 'Customer', value: reportMeta.client || 'BMW AG' },
-                ].map(cell => (
-                  <div key={cell.label} className="hidden md:flex flex-col">
-                    <span className="ar-mono-label" style={{ color: 'rgba(255,255,255,0.35)' }}>{cell.label}</span>
-                    <span className="text-[12px] text-white/85 font-medium mt-0.5">{cell.value}</span>
-                  </div>
-                ))}
-                <div className="flex flex-col">
-                  <span className="ar-mono-label" style={{ color: 'rgba(255,255,255,0.35)' }}>Verdict</span>
-                  <span className="text-[12px] font-semibold mt-0.5" style={{
-                    color: reportMeta.verdict === 'go' ? 'var(--ar-pass)' : reportMeta.verdict === 'conditional' ? 'var(--ar-warn)' : 'var(--ar-fail)'
-                  }}>
-                    {reportMeta.verdictLabel}
-                  </span>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => {}}
-                  className="p-2 rounded-md hover:bg-white/10 transition-colors cursor-pointer"
-                  title="Share"
-                >
-                  <Share2 className="w-4 h-4 text-white/50" />
-                </button>
-                <button
-                  onClick={() => {}}
-                  className="p-2 rounded-md hover:bg-white/10 transition-colors cursor-pointer"
-                  title="Export"
-                >
-                  <FileDown className="w-4 h-4 text-white/50" />
-                </button>
-                <button
-                  onClick={() => setInspectorOpen(!inspectorOpen)}
-                  disabled={openNCRs === 0}
-                  className="px-4 py-1.5 text-[12px] font-semibold rounded-md cursor-pointer transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-                  style={{
-                    background: 'var(--ar-cta)',
-                    color: '#FFFFFF',
-                  }}
-                >
-                  Sign off {openNCRs > 0 && `(${openNCRs})`}
-                </button>
-              </div>
-            </div>
-
-            {/* Row 3: Toolbar */}
+          {/* Row 3: Toolbar */}
+          <div className="sticky top-[168px] z-30">
             <div className="flex items-center justify-between px-5 h-11" style={{ background: 'var(--ar-bg-surface)', borderBottom: '1px solid var(--ar-bd-hair)' }}>
               <div className="flex items-center gap-1">
                 {/* Depth toggle */}
