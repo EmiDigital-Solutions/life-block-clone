@@ -2,7 +2,8 @@ import { cn } from "@/lib/utils";
 import ExecutiveRadarCharts from "@/components/audit-report/ExecutiveRadarCharts";
 import type { VerdictType, DepthLevel } from "@/data/auditReportData";
 import { useAuditReportContext } from "@/contexts/AuditReportContext";
-import { AlertTriangle, CheckCircle2, Clock, TrendingDown, ChevronDown, FileCheck } from "lucide-react";
+import { AlertTriangle, CheckCircle2, Clock, TrendingDown, ChevronDown, FileCheck, Star, Shield } from "lucide-react";
+import logoNew from "@/assets/logo-new.svg";
 
 const SW = 1.5;
 
