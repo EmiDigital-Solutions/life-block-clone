@@ -73,12 +73,12 @@ export default function AuditScopeSection({ depth = 'standard' }: { depth?: impo
 
           {/* Product scope table */}
           <div className="border-t border-border">
-            <div className="px-4 py-1.5" style={{ background: 'hsl(220,14%,92%)' }}>
+            <div className="px-4 py-1.5 bg-muted/30">
               <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">Product Scope</span>
             </div>
             <table className="w-full border-collapse text-left">
               <thead>
-                <tr style={{ background: 'hsl(220,14%,94%)' }}>
+                <tr className="bg-muted/20">
                   {['Part No.', 'Description', 'Volume', 'Customer'].map(h => (
                     <th key={h} className="px-4 py-1.5 text-[9px] font-bold uppercase tracking-wider text-muted-foreground border-b border-border">{h}</th>
                   ))}
@@ -100,7 +100,7 @@ export default function AuditScopeSection({ depth = 'standard' }: { depth?: impo
           {/* Site details + previous findings */}
           <div className="grid grid-cols-2 divide-x divide-border border-t border-border">
             <div>
-              <div className="px-4 py-1.5" style={{ background: 'hsl(220,14%,92%)' }}>
+              <div className="px-4 py-1.5 bg-muted/30">
                 <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">Site Details</span>
               </div>
               <div className="px-4 py-2 bg-card space-y-1">
@@ -118,7 +118,7 @@ export default function AuditScopeSection({ depth = 'standard' }: { depth?: impo
               </div>
             </div>
             <div>
-              <div className="px-4 py-1.5" style={{ background: 'hsl(220,14%,92%)' }}>
+              <div className="px-4 py-1.5 bg-muted/30">
                 <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">Previous Audit Carry-Forward</span>
               </div>
               <div className="px-4 py-2 bg-card space-y-1">

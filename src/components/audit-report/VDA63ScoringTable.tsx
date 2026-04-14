@@ -169,7 +169,7 @@ export default function VDA63ScoringTable() {
             })}
           </tbody>
           <tfoot>
-            <tr style={{ background: 'hsl(220,14%,92%)' }}>
+            <tr className="bg-muted/30">
               <td className="px-4 py-2.5 text-[11px] font-bold uppercase tracking-wider text-foreground border-t border-border">
                 Overall Result
               </td>
