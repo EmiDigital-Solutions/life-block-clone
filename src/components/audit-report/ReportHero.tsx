@@ -74,27 +74,40 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
             </div>
           </div>
 
-          {/* Auditor Firm */}
+          {/* Supplier with Audit Rating */}
           <div className="border-t border-border/40 px-6 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center overflow-hidden">
-                  <img src={logoNew} alt="YVOO" className="w-7 h-7 object-contain" />
+                <div className="w-12 h-12 rounded-lg bg-muted border border-border/60 flex items-center justify-center">
+                  <span className="text-[18px] font-bold text-foreground">{supplier.charAt(0)}{supplier.split(' ')[1]?.charAt(0) || ''}</span>
                 </div>
                 <div>
-                  <div className="text-[15px] font-semibold text-foreground">YVOO GmbH</div>
-                  <div className="text-[12px] text-muted-foreground">Accredited Audit Firm · IRCA Certified Body</div>
+                  <div className="text-[16px] font-semibold text-foreground">{supplier}</div>
+                  <div className="text-[12px] text-muted-foreground">{location} · {reportMeta.standard}</div>
                 </div>
               </div>
               <div className="flex items-center gap-3">
                 <div className="flex items-center gap-1">
-                  {[1, 2, 3, 4, 5].map(s => (
-                    <Star key={s} className={cn("w-4 h-4", s <= 5 ? "text-warning fill-warning" : "text-muted-foreground/30")} />
+                  {[1, 2, 3, 4].map(s => (
+                    <Star key={s} className="w-4 h-4 text-warning fill-warning" />
                   ))}
+                  <Star className="w-4 h-4 text-muted-foreground/30" />
                 </div>
-                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-primary/10 border border-primary/20">
-                  <Shield className="w-3.5 h-3.5 text-primary" />
-                  <span className="text-[12px] font-bold text-primary">A+ Rated</span>
+                <div className="text-[13px] font-mono font-semibold text-muted-foreground">4.0 / 5</div>
+                <div className={cn(
+                  "flex items-center gap-1.5 px-2.5 py-1 rounded",
+                  verdict === 'go' ? "bg-accent/10 border border-accent/20" :
+                  verdict === 'conditional' ? "bg-warning/10 border border-warning/20" :
+                  "bg-destructive/10 border border-destructive/20"
+                )}>
+                  <Shield className={cn("w-3.5 h-3.5",
+                    verdict === 'go' ? "text-accent" : verdict === 'conditional' ? "text-warning" : "text-destructive"
+                  )} />
+                  <span className={cn("text-[12px] font-bold",
+                    verdict === 'go' ? "text-accent" : verdict === 'conditional' ? "text-warning" : "text-destructive"
+                  )}>
+                    {verdict === 'go' ? 'A Rated' : verdict === 'conditional' ? 'B Rated' : 'C Rated'}
+                  </span>
                 </div>
               </div>
             </div>
