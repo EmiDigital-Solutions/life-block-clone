@@ -420,31 +420,31 @@ All colors MUST be HSL.
   color: var(--ar-tx-1);
 }
 
-/* Dark Mode (YVOO Dark Mode Style Guide) */
+/* Dark Mode (YVOO Dark Mode Style Guide — green-tinted darks) */
 [data-theme="dark"] .audit-report {
-  --ar-bg-page:    #0A0A0A;       /* Deep Black */
-  --ar-bg-surface: #141414;       /* Charcoal */
-  --ar-bg-elevated:#1E1E1E;       /* Slate */
-  --ar-bg-soft:    #1E1E1E;
-  --ar-bg-header:  #0A0A0A;
-  --ar-bg-header-2:#141414;
+  --ar-bg-page:    #171C1B;       /* Dark base with green tint */
+  --ar-bg-surface: #1E2423;       /* Card/sidebar surfaces */
+  --ar-bg-elevated:#252B2A;       /* Elevated cards, modals */
+  --ar-bg-soft:    #2A302F;       /* Soft backgrounds, code blocks */
+  --ar-bg-header:  #111514;       /* Header strip — deepest */
+  --ar-bg-header-2:#1A1F1E;      /* Second header row */
 
-  --ar-bd-hair:    rgba(255,255,255,0.06);
-  --ar-bd-line:    rgba(255,255,255,0.11);
-  --ar-bd-strong:  rgba(255,255,255,0.16);
+  --ar-bd-hair:    rgba(255,255,255,0.07);
+  --ar-bd-line:    rgba(255,255,255,0.12);
+  --ar-bd-strong:  rgba(255,255,255,0.18);
 
   /* Text — Dark Mode */
-  --ar-tx-1: #F5F5F5;             /* Primary Text */
-  --ar-tx-2: #C0C0C0;             /* Secondary Text */
-  --ar-tx-3: #7B8E80;             /* Muted Text */
-  --ar-tx-4: #3E4348;
+  --ar-tx-1: #F0F0F0;             /* Primary Text */
+  --ar-tx-2: #B5BCB8;             /* Secondary Text */
+  --ar-tx-3: #7B8E80;             /* Muted Text — green tint */
+  --ar-tx-4: #3D4845;             /* Faintest labels */
 
   /* Brand — Dark Mode Adapted */
   --ar-accent:       #7CC2A7;     /* Hero Green Brightened */
-  --ar-accent-dim:   #89A48D;
+  --ar-accent-dim:   #5FA88E;
   --ar-accent-light: #CBE2D1;     /* Mint Fresh */
-  --ar-accent-bg:    rgba(124,194,167,0.08);
-  --ar-accent-bg-2:  rgba(124,194,167,0.14);
+  --ar-accent-bg:    rgba(124,194,167,0.10);
+  --ar-accent-bg-2:  rgba(124,194,167,0.16);
 
   /* CTA — Dark Mode */
   --ar-cta:          #1391BF;     /* CTA Blue-Teal Brightened */
@@ -452,11 +452,11 @@ All colors MUST be HSL.
 
   /* Status — Dark Mode */
   --ar-pass:    #7CC2A7;          /* Hero Green Brightened */
-  --ar-pass-bg: rgba(124,194,167,0.08);
+  --ar-pass-bg: rgba(124,194,167,0.10);
   --ar-warn:    #D8A860;          /* Warm Accent */
-  --ar-warn-bg: rgba(216,168,96,0.10);
+  --ar-warn-bg: rgba(216,168,96,0.12);
   --ar-fail:    #C4564F;          /* Audit Red Brightened */
-  --ar-fail-bg: rgba(196,86,79,0.08);
+  --ar-fail-bg: rgba(196,86,79,0.10);
 
   /* Secondary */
   --ar-blue-grey: #C7E4E4;       /* Aqua Light */
