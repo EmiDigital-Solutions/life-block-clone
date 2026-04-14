@@ -230,32 +230,37 @@ export default function SectionInspector({ activeStation, isOpen, onClose }: Sec
     <aside className={cn(
       "flex flex-col transition-all duration-300 overflow-hidden",
       isOpen ? "w-[340px] xl:w-[380px] opacity-100" : "w-0 opacity-0"
-    )} style={{ background: 'hsl(0,0%,98%)', borderLeft: '1px solid hsl(0,0%,90%)' }}>
+    )} style={{ background: 'var(--ar-bg-surface)', borderLeft: '1px solid var(--ar-bd-hair)' }}>
       
       {/* Header */}
-      <div className="px-4 pt-3 pb-2 flex items-center justify-between" style={{ borderBottom: '1px solid hsl(0,0%,90%)' }}>
+      <div className="px-4 pt-3 pb-2 flex items-center justify-between" style={{ borderBottom: '1px solid var(--ar-bd-hair)' }}>
         <div className="flex items-center gap-2">
-          <span className="text-[14px] font-semibold tracking-wide text-foreground">YVOO ATLAS</span>
+          <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: 'var(--ar-accent)' }} />
+          <span className="text-[13px] font-semibold" style={{ color: 'var(--ar-tx-1)' }}>Atlas · inspector</span>
         </div>
-        <button onClick={onClose} className="p-1.5 rounded-lg hover:bg-muted transition-colors cursor-pointer" style={{ color: 'hsl(0,0%,55%)' }}>
+        <button onClick={onClose} className="p-1.5 rounded-lg hover:bg-muted transition-colors cursor-pointer" style={{ color: 'var(--ar-tx-3)' }}>
           <X className="w-4 h-4" />
         </button>
       </div>
 
       {/* Tabs */}
-      <div className="flex border-b" style={{ borderColor: 'hsl(0,0%,90%)' }}>
+      <div className="flex" style={{ borderBottom: '1px solid var(--ar-bd-hair)', height: '36px' }}>
         {tabs.map(tab => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={cn(
-              "flex-1 flex flex-col items-center gap-1 py-2.5 text-[11px] font-medium transition-colors cursor-pointer",
+              "flex-1 flex flex-col items-center justify-center gap-0.5 text-[10px] font-medium transition-colors cursor-pointer uppercase tracking-[0.08em]",
               activeTab === tab.id 
-                ? "text-primary border-b-2 border-primary" 
-                : "text-muted-foreground hover:text-foreground"
+                ? "border-b-2"
+                : "hover:text-foreground"
             )}
+            style={{
+              fontFamily: "'Space Mono', monospace",
+              color: activeTab === tab.id ? 'var(--ar-accent)' : 'var(--ar-tx-3)',
+              borderColor: activeTab === tab.id ? 'var(--ar-accent)' : 'transparent',
+            }}
           >
-            {tab.icon}
             <span>{tab.label}</span>
           </button>
         ))}
