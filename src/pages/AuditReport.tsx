@@ -75,7 +75,7 @@ function AuditReportInner() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [inspectorOpen, setInspectorOpen] = useState(true);
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
-  const [askAtlasInput, setAskAtlasInput] = useState('');
+  
   const [readingProgress, setReadingProgress] = useState(0);
   const [reviewedStations, setReviewedStations] = useState<Set<number>>(new Set());
   const contentRef = useRef<HTMLDivElement>(null);
