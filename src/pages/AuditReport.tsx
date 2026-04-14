@@ -427,10 +427,10 @@ function AuditReportInner() {
 
                     {/* §1 Audit Scope */}
                     <section>
-                      <div className="mb-8 pb-4 border-b border-border">
-                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§1</span>
-                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">Audit Scope & VDA Scoring</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Assessment framework, process element definitions, and weighted scoring methodology</p>
+                      <div className="mb-8 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <span className="ar-eyebrow">§1</span>
+                        <h2 className="ar-h2">Audit Scope & VDA Scoring</h2>
+                        <p className="ar-lede">Assessment framework, process element definitions, and weighted scoring methodology</p>
                       </div>
                       <div className="space-y-10">
                         <AuditScopeSection depth={depth} />
@@ -440,10 +440,10 @@ function AuditReportInner() {
 
                     {/* §2 Key Performance Indicators */}
                     <section>
-                      <div className="mb-8 pb-4 border-b border-border">
-                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§2</span>
-                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">Key Performance Indicators</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Quantitative metrics derived from station audits and NCR analysis</p>
+                      <div className="mb-8 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <span className="ar-eyebrow">§2</span>
+                        <h2 className="ar-h2">Key Performance Indicators</h2>
+                        <p className="ar-lede">Quantitative metrics derived from station audits and NCR analysis</p>
                       </div>
                       <KPIBand kpis={kpis} depth={depth} />
                       <div className="mt-10">
@@ -453,20 +453,20 @@ function AuditReportInner() {
 
                     {/* §3 CSR Compliance */}
                     <section>
-                      <div className="mb-8 pb-4 border-b border-border">
-                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§3</span>
-                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">CSR Compliance Mapping</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Customer-specific requirements traceability and conformance status</p>
+                      <div className="mb-8 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <span className="ar-eyebrow">§3</span>
+                        <h2 className="ar-h2">CSR Compliance Mapping</h2>
+                        <p className="ar-lede">Customer-specific requirements traceability and conformance status</p>
                       </div>
                       <CSRComplianceMapping depth="executive" />
                     </section>
 
                     {/* §4 Process Audit Findings */}
                     <section>
-                      <div className="mb-10 pb-4 border-b border-border">
-                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§4 – §11</span>
-                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">Process Audit Findings</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">{displayStations.length} stations audited per VDA 6.3 process element structure</p>
+                      <div className="mb-10 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <span className="ar-eyebrow">§4 – §11</span>
+                        <h2 className="ar-h2">Process Audit Findings</h2>
+                        <p className="ar-lede">{displayStations.length} stations audited per VDA 6.3 process element structure</p>
                       </div>
                       <div className="space-y-14">
                         {displayStations.map((station) => (
@@ -477,30 +477,30 @@ function AuditReportInner() {
 
                     {/* §12 NCR Register */}
                     <section id="station-10">
-                      <div className="mb-8 pb-4 border-b border-border">
-                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§12</span>
-                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">Non-Conformance Register</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Complete NCR listing with severity, ownership, and resolution status</p>
+                      <div className="mb-8 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <span className="ar-eyebrow">§12</span>
+                        <h2 className="ar-h2">Non-Conformance Register</h2>
+                        <p className="ar-lede">Complete NCR listing with severity, ownership, and resolution status</p>
                       </div>
                       <NCRRegister ncrs={allNCRs} depth={depth} />
                     </section>
 
                     {/* §13 Evidence Traceability */}
                     <section id="evidence-matrix">
-                      <div className="mb-8 pb-4 border-b border-border">
-                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§13</span>
-                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">Evidence Traceability</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Audit trail linking findings to photographic, documentary, and measurement evidence</p>
+                      <div className="mb-8 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <span className="ar-eyebrow">§13</span>
+                        <h2 className="ar-h2">Evidence Traceability</h2>
+                        <p className="ar-lede">Audit trail linking findings to photographic, documentary, and measurement evidence</p>
                       </div>
                       <EvidenceTraceabilityMatrix depth="executive" />
                     </section>
 
                     {/* §14 Analytics & Appendices */}
                     <section id="station-11">
-                      <div className="mb-8 pb-4 border-b border-border">
-                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§14</span>
-                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">Analytics & Cost Analysis</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Resolution pipeline, cost waterfall, and operational efficiency metrics</p>
+                      <div className="mb-8 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <span className="ar-eyebrow">§14</span>
+                        <h2 className="ar-h2">Analytics & Cost Analysis</h2>
+                        <p className="ar-lede">Resolution pipeline, cost waterfall, and operational efficiency metrics</p>
                       </div>
                       <div className="space-y-14">
                         <FindingSankeyDiagram depth="executive" />
@@ -511,30 +511,30 @@ function AuditReportInner() {
 
                     {/* §15 CAPA Timeline */}
                     <section id="station-12">
-                      <div className="mb-8 pb-4 border-b border-border">
-                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§15</span>
-                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">CAPA Action Plan</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Corrective and preventive action timeline with ownership tracking</p>
+                      <div className="mb-8 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <span className="ar-eyebrow">§15</span>
+                        <h2 className="ar-h2">CAPA Action Plan</h2>
+                        <p className="ar-lede">Corrective and preventive action timeline with ownership tracking</p>
                       </div>
                       <CAPAGantt />
                     </section>
 
                     {/* §16 Delay Forecast */}
                     <section id="station-13">
-                      <div className="mb-8 pb-4 border-b border-border">
-                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§16</span>
-                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">Delay & Risk Forecast</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Predictive analysis of delivery timeline risks and mitigation scenarios</p>
+                      <div className="mb-8 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <span className="ar-eyebrow">§16</span>
+                        <h2 className="ar-h2">Delay & Risk Forecast</h2>
+                        <p className="ar-lede">Predictive analysis of delivery timeline risks and mitigation scenarios</p>
                       </div>
                       <DelayForecast />
                     </section>
 
                     {/* §17 Approval & Sign-Off */}
                     <section id="signatures" className="pb-24">
-                      <div className="mb-8 pb-4 border-b border-border">
-                        <span className="text-[12px] font-mono text-primary/60 tracking-widest uppercase">§17</span>
-                        <h2 className="text-[24px] font-bold text-foreground mt-1.5 tracking-tight">Approval & Digital Sign-Off</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Multi-party approval workflow with digital signature verification</p>
+                      <div className="mb-8 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
+                        <span className="ar-eyebrow">§17</span>
+                        <h2 className="ar-h2">Approval & Digital Sign-Off</h2>
+                        <p className="ar-lede">Multi-party approval workflow with digital signature verification</p>
                       </div>
                       <DigitalSignatureBlock />
                     </section>
@@ -548,27 +548,27 @@ function AuditReportInner() {
 
                     {/* KPIs */}
                     <section>
-                      <div className="mb-10 pb-4 border-b border-border">
+                      <div className="mb-10 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
                         <h2 className="text-[26px] font-bold text-foreground tracking-tight">Key Performance Indicators</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Quantitative metrics from station audits and NCR analysis</p>
+                        <p className="ar-lede">Quantitative metrics from station audits and NCR analysis</p>
                       </div>
                       <KPIBand kpis={kpis} depth={depth} />
                     </section>
 
                     {/* Radar Charts */}
                     <section>
-                      <div className="mb-10 pb-4 border-b border-border">
+                      <div className="mb-10 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
                         <h2 className="text-[26px] font-bold text-foreground tracking-tight">Gap Analysis</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Manufacturing capability and commercial readiness assessment</p>
+                        <p className="ar-lede">Manufacturing capability and commercial readiness assessment</p>
                       </div>
                       <ExecutiveRadarCharts depth={depth} />
                     </section>
 
                     {/* Scope */}
                     <section>
-                      <div className="mb-10 pb-4 border-b border-border">
+                      <div className="mb-10 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
                         <h2 className="text-[26px] font-bold text-foreground tracking-tight">Audit Scope</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Assessment boundaries, standards applied, and sampling methodology</p>
+                        <p className="ar-lede">Assessment boundaries, standards applied, and sampling methodology</p>
                       </div>
                       <AuditScopeSection depth={depth} />
                       <div className="mt-12">
@@ -580,7 +580,7 @@ function AuditReportInner() {
                     <section>
                       <div className="mb-12 pb-4 border-b border-border">
                         <h2 className="text-[26px] font-bold text-foreground tracking-tight">Process Audit Findings</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">{displayStations.length} stations · VDA 6.3 process element scoring</p>
+                        <p className="ar-lede">{displayStations.length} stations · VDA 6.3 process element scoring</p>
                       </div>
                       <div className="space-y-16 md:space-y-20">
                         {displayStations.map((station) => (
@@ -591,36 +591,36 @@ function AuditReportInner() {
 
                     {/* NCR Register */}
                     <section>
-                      <div className="mb-10 pb-4 border-b border-border">
+                      <div className="mb-10 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
                         <h2 className="text-[26px] font-bold text-foreground tracking-tight">Non-Conformance Register</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Complete NCR listing with severity classification and resolution tracking</p>
+                        <p className="ar-lede">Complete NCR listing with severity classification and resolution tracking</p>
                       </div>
                       <NCRRegister ncrs={allNCRs} depth={depth} />
                     </section>
 
                     {/* Evidence */}
                     <section>
-                      <div className="mb-10 pb-4 border-b border-border">
+                      <div className="mb-10 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
                         <h2 className="text-[26px] font-bold text-foreground tracking-tight">Evidence Traceability</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Finding-to-evidence chain with photographic and documentary references</p>
+                        <p className="ar-lede">Finding-to-evidence chain with photographic and documentary references</p>
                       </div>
                       <EvidenceTraceabilityMatrix depth={depth} />
                     </section>
 
                     {/* CSR Compliance */}
                     <section>
-                      <div className="mb-10 pb-4 border-b border-border">
+                      <div className="mb-10 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
                         <h2 className="text-[26px] font-bold text-foreground tracking-tight">CSR Compliance</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Customer-specific requirements mapping and conformance assessment</p>
+                        <p className="ar-lede">Customer-specific requirements mapping and conformance assessment</p>
                       </div>
                       <CSRComplianceMapping depth={depth} />
                     </section>
 
                     {/* Analytics */}
                     <section>
-                      <div className="mb-10 pb-4 border-b border-border">
+                      <div className="mb-10 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
                         <h2 className="text-[26px] font-bold text-foreground tracking-tight">Analytics & Cost Analysis</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Resolution pipeline, cost exposure waterfall, and financial risk quantification</p>
+                        <p className="ar-lede">Resolution pipeline, cost exposure waterfall, and financial risk quantification</p>
                       </div>
                       <div className="space-y-16">
                         <FindingSankeyDiagram />
@@ -630,9 +630,9 @@ function AuditReportInner() {
 
                     {/* CAPA & Intelligence */}
                     <section>
-                      <div className="mb-10 pb-4 border-b border-border">
+                      <div className="mb-10 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
                         <h2 className="text-[26px] font-bold text-foreground tracking-tight">CAPA & Atlas Intelligence</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Corrective actions, AI-powered risk scoring, and predictive analytics</p>
+                        <p className="ar-lede">Corrective actions, AI-powered risk scoring, and predictive analytics</p>
                       </div>
                       <div className="space-y-16">
                         <CAPAGantt />
@@ -642,9 +642,9 @@ function AuditReportInner() {
 
                     {/* Machine Park */}
                     <section id="machine-park">
-                      <div className="mb-10 pb-4 border-b border-border">
+                      <div className="mb-10 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
                         <h2 className="text-[26px] font-bold text-foreground tracking-tight">Machine Park Intelligence</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Equipment capability, OEE analysis, and maintenance posture</p>
+                        <p className="ar-lede">Equipment capability, OEE analysis, and maintenance posture</p>
                       </div>
                       <div className="space-y-16">
                         <OEEGaugeCluster />
@@ -654,9 +654,9 @@ function AuditReportInner() {
 
                     {/* Forecast & Recommendations */}
                     <section>
-                      <div className="mb-10 pb-4 border-b border-border">
+                      <div className="mb-10 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
                         <h2 className="text-[26px] font-bold text-foreground tracking-tight">Risk Forecast & Recommendations</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Delivery timeline predictions, expert recommendations, and evidence vault</p>
+                        <p className="ar-lede">Delivery timeline predictions, expert recommendations, and evidence vault</p>
                       </div>
                       <div className="space-y-16">
                         <DelayForecast />
@@ -667,9 +667,9 @@ function AuditReportInner() {
 
                     {/* Sign-Off */}
                     <section className="pb-24">
-                      <div className="mb-10 pb-4 border-b border-border">
+                      <div className="mb-10 pb-4" style={{ borderBottom: "1px solid var(--ar-bd-hair)" }}>
                         <h2 className="text-[26px] font-bold text-foreground tracking-tight">Approval & Digital Sign-Off</h2>
-                        <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">Multi-party approval workflow with digital signature verification</p>
+                        <p className="ar-lede">Multi-party approval workflow with digital signature verification</p>
                       </div>
                       <DigitalSignatureBlock />
                     </section>
