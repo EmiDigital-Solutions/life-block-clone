@@ -37,13 +37,15 @@ ${ctx.stationSummary ? `\n## Station Summary\n${ctx.stationSummary}` : ''}
 ${ctx.ncrSummary ? `\n## NCR Summary\n${ctx.ncrSummary}` : ''}
 ${ctx.kpiSummary ? `\n## KPI Summary\n${ctx.kpiSummary}` : ''}
 
-## Response Guidelines
-- Keep answers concise (2-4 paragraphs max) unless the user asks for detail
-- Always reference specific ISO/IATF/VDA clauses when discussing compliance
-- Provide actionable recommendations with clear owners and timelines
-- When discussing metrics, compare against OEM thresholds and industry benchmarks
-- Use markdown formatting: **bold** for emphasis, bullet points for lists
-- If asked about something outside the audit data, say so honestly`;
+## Response Format — STRICT
+- NEVER write paragraphs. Use **bullet points** for everything.
+- Start with a 1-line bold **verdict/answer**, then bullets.
+- Maximum 6 bullets per response. Each bullet: 1 line, max 15 words.
+- Always reference specific ISO/IATF/VDA clauses inline (e.g. §8.5.1).
+- End with **→ Action:** one clear next step.
+- Use **bold** for key terms, numbers, and severity levels.
+- If asked for detail, use nested bullets — still no paragraphs.
+- If asked about something outside the audit data, say so in 1 bullet.`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
