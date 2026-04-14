@@ -77,11 +77,11 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
           {/* Supplier with Audit Rating */}
           <div className="border-t border-border/40 px-6 py-4">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-lg bg-muted border border-border/60 flex items-center justify-center">
-                  <span className="text-[22px] font-bold text-foreground">{supplier.charAt(0)}{supplier.split(' ')[1]?.charAt(0) || ''}</span>
+              <div className="flex items-center gap-5">
+                <div className="w-[60px] h-[60px] rounded-lg bg-muted border border-border/60 flex items-center justify-center">
+                  <span className="text-[26px] font-bold text-foreground leading-none">{supplier.charAt(0)}{supplier.split(' ')[1]?.charAt(0) || ''}</span>
                 </div>
-                <div className="text-[18px] font-semibold text-foreground">{supplier}</div>
+                <div className="text-[20px] font-semibold text-foreground">{supplier}</div>
               </div>
               <div className={cn(
                 "px-4 py-2 rounded-lg",
