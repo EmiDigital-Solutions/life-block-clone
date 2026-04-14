@@ -86,21 +86,21 @@ export default function ReportHero({ verdict, verdictLabel, heroReason, supplier
                   <div className="text-[12px] text-muted-foreground">{location} · {reportMeta.standard}</div>
                 </div>
               </div>
-              <div className="flex items-center gap-3">
-                <div className={cn(
-                  "flex items-center gap-1.5 px-2.5 py-1 rounded",
-                  verdict === 'go' ? "bg-accent/10 border border-accent/20" :
-                  verdict === 'conditional' ? "bg-warning/10 border border-warning/20" :
-                  "bg-destructive/10 border border-destructive/20"
+              <div className={cn(
+                "px-4 py-2 rounded-lg",
+                verdict === 'go' ? "bg-accent/10 border border-accent/20" :
+                verdict === 'conditional' ? "bg-warning/10 border border-warning/20" :
+                "bg-destructive/10 border border-destructive/20"
+              )}>
+                <div className={cn("text-[28px] font-bold font-mono tabular-nums leading-none",
+                  verdict === 'go' ? "text-accent" : verdict === 'conditional' ? "text-warning" : "text-destructive"
                 )}>
-                  <Shield className={cn("w-3.5 h-3.5",
-                    verdict === 'go' ? "text-accent" : verdict === 'conditional' ? "text-warning" : "text-destructive"
-                  )} />
-                  <span className={cn("text-[12px] font-bold",
-                    verdict === 'go' ? "text-accent" : verdict === 'conditional' ? "text-warning" : "text-destructive"
-                  )}>
-                    {verdict === 'go' ? 'A Rated' : verdict === 'conditional' ? 'B Rated' : 'C Rated'}
-                  </span>
+                  {Math.round(iatfWeightedScore)}%
+                </div>
+                <div className={cn("text-[12px] font-bold mt-1 text-center",
+                  verdict === 'go' ? "text-accent" : verdict === 'conditional' ? "text-warning" : "text-destructive"
+                )}>
+                  Grade {verdict === 'go' ? 'A' : verdict === 'conditional' ? 'B' : 'C'}
                 </div>
               </div>
             </div>
