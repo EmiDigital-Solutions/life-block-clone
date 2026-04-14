@@ -31,6 +31,7 @@ import NormativeReferences from "@/components/audit-report/NormativeReferences";
 import EvidenceTraceabilityMatrix from "@/components/audit-report/EvidenceTraceabilityMatrix";
 import CSRComplianceMapping from "@/components/audit-report/CSRComplianceMapping";
 import DigitalSignatureBlock from "@/components/audit-report/DigitalSignatureBlock";
+import AskAtlasBar from "@/components/audit-report/AskAtlasBar";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Navigation from "@/components/Navigation";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -74,7 +75,7 @@ function AuditReportInner() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [inspectorOpen, setInspectorOpen] = useState(true);
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
-  const [askAtlasInput, setAskAtlasInput] = useState('');
+  
   const [readingProgress, setReadingProgress] = useState(0);
   const [reviewedStations, setReviewedStations] = useState<Set<number>>(new Set());
   const contentRef = useRef<HTMLDivElement>(null);
@@ -444,21 +445,8 @@ function AuditReportInner() {
                   </>
                 )}
 
-                {/* Ask Atlas — toolbar style */}
-                <div className="sticky bottom-4 z-30 mb-8">
-                  <div className="max-w-[640px] mx-auto flex items-center gap-2 px-3 py-2 bg-card border border-border shadow-sm">
-                    <Sparkles className="w-4 h-4 text-primary shrink-0" />
-                    <input
-                      value={askAtlasInput}
-                      onChange={e => setAskAtlasInput(e.target.value)}
-                      placeholder="Ask Atlas about this audit..."
-                      className="flex-1 bg-transparent text-[14px] text-foreground placeholder:text-muted-foreground outline-none"
-                    />
-                    <button className="px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider bg-primary text-white cursor-pointer hover:bg-primary/90 transition-colors">
-                      Ask
-                    </button>
-                  </div>
-                </div>
+                {/* Ask Atlas — Live AI Copilot */}
+                <AskAtlasBar activeStation={activeStation} />
               </div>
             </div>
 

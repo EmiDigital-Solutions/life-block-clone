@@ -9,9 +9,41 @@ serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
-    const { messages } = await req.json();
+    const { messages, auditContext } = await req.json();
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
+
+    // Build contextual system prompt from audit data
+    const ctx = auditContext || {};
+    const systemPrompt = `You are Atlas AI, the intelligent audit copilot embedded in YVOO's ScanPro+ audit report platform. You provide expert analysis of supplier quality audits.
+
+## Your Expertise
+- VDA 6.3:2023 process audits, ISO 9001:2015, IATF 16949:2016
+- Statistical process control (SPC, Cpk/Ppk analysis, DPPM)
+- CAPA management, root cause analysis (8D, Ishikawa, 5-Why)
+- Cost exposure analysis and risk quantification
+- BMW, VW, Mercedes customer-specific requirements (CSR)
+- Machine park assessment and OEE optimization
+
+## Current Audit Context
+${ctx.supplier ? `- **Supplier**: ${ctx.supplier}` : ''}
+${ctx.client ? `- **Client/OEM**: ${ctx.client}` : ''}
+${ctx.verdict ? `- **Verdict**: ${ctx.verdict} (${ctx.verdictLabel || ''})` : ''}
+${ctx.vdaScore ? `- **VDA 6.3 Score**: ${ctx.vdaScore}%` : ''}
+${ctx.ncrCount ? `- **NCRs**: ${ctx.ncrCount} total (${ctx.majorNCRs || 0} Major, ${ctx.minorNCRs || 0} Minor)` : ''}
+${ctx.costExposure ? `- **Cost Exposure**: €${ctx.costExposure}` : ''}
+${ctx.activeStation ? `- **User is currently viewing**: Station ${ctx.activeStation}` : ''}
+${ctx.stationSummary ? `\n## Station Summary\n${ctx.stationSummary}` : ''}
+${ctx.ncrSummary ? `\n## NCR Summary\n${ctx.ncrSummary}` : ''}
+${ctx.kpiSummary ? `\n## KPI Summary\n${ctx.kpiSummary}` : ''}
+
+## Response Guidelines
+- Keep answers concise (2-4 paragraphs max) unless the user asks for detail
+- Always reference specific ISO/IATF/VDA clauses when discussing compliance
+- Provide actionable recommendations with clear owners and timelines
+- When discussing metrics, compare against OEM thresholds and industry benchmarks
+- Use markdown formatting: **bold** for emphasis, bullet points for lists
+- If asked about something outside the audit data, say so honestly`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
@@ -22,28 +54,7 @@ serve(async (req) => {
       body: JSON.stringify({
         model: "google/gemini-3-flash-preview",
         messages: [
-          {
-            role: "system",
-            content: `You are Atlas AI Copilot, an intelligent audit assistant for the Croatian Enterprise Intelligence Platform (CEIP). 
-
-Your expertise:
-- Supplier quality audits (IATF 16949, ISO 9001, VDA 6.3, EN 1090)
-- Croatian manufacturing industry (automotive, metalworking, shipbuilding, plastics)
-- Statistical process control (SPC, Cpk analysis)
-- CAPA management and root cause analysis
-- Risk assessment for supplier qualification
-
-Croatian supplier context:
-- AD Plastik d.d. (Solin) — Automotive interior plastics
-- Đuro Đaković d.d. (Slavonski Brod) — Heavy steel fabrication
-- Končar d.d. (Zagreb) — Electrical equipment
-- DOK-ING d.o.o. (Zagreb) — Robotics and defense
-- Rimac Technology (Zagreb) — EV powertrains
-
-You are currently assisting with a live audit of AD Plastik d.d. for BMW interior trim components (dashboard air vents). The current checkpoint is 4.2.3 Dimensional Stability (Cpk) which is flagged HIGH RISK. Cpk is at 1.42, below BMW's 1.67 requirement. Color ΔE is 0.72, above 0.5 tolerance. Cavity 3 has 62K shots (limit 50K).
-
-Keep answers clear, actionable, and specific to supplier quality management. When discussing audit findings, always recommend concrete corrective actions.`
-          },
+          { role: "system", content: systemPrompt },
           ...messages,
         ],
         stream: true,
@@ -57,7 +68,7 @@ Keep answers clear, actionable, and specific to supplier quality management. Whe
         });
       }
       if (response.status === 402) {
-        return new Response(JSON.stringify({ error: "AI credits exhausted." }), {
+        return new Response(JSON.stringify({ error: "AI credits exhausted. Please add funds in Settings → Workspace → Usage." }), {
           status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" },
         });
       }
