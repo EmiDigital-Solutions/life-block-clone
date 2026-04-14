@@ -648,6 +648,7 @@ function AuditReportInner() {
     <SmartReadingGuide open={guideOpen} onClose={() => setGuideOpen(false)} onScrollToId={scrollToId} />
     <TrendComparison open={trendOpen} onClose={() => setTrendOpen(false)} />
     <PFMEADrilldown ncr={pfmeaNCR} onClose={() => setPfmeaNCR(null)} />
+    <AskAtlasBar activeStation={activeStation} />
     </>
   );
 }
