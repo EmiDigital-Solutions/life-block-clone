@@ -1663,7 +1663,7 @@ const fallbackAuditors = [
   { image: auditorFemaleAsian, location: "Asia", region: "Southeast Asia", gradient: "from-gray-800 via-gray-900 to-black", gender: "female" },
 ];
 
-// How Does YVOO Work Carousel - Card Design with Original Visuals
+// How Does CEIP Work Carousel - Card Design with Original Visuals
 const HowItWorksCarousel = () => {
   const [currentStep, setCurrentStep] = useState(0);
   
@@ -2132,15 +2132,15 @@ const ScanProPlus = () => {
   return (
     <div className="min-h-screen relative">
       <PageSEO
-        title="ScanPro+ — AI-Powered Audit Execution Platform | YVOO"
-        description="Conduct on-site supplier audits with AI copilot guidance, equipment intelligence, dynamic scoring, and real-time progress tracking. From €700 per audit with certified experts."
+        title="ScanPro+ — AI-Powered Audits of Croatian Manufacturers | CEIP"
+        description="CEIP ScanPro+ runs on-site audits of Đuro Đaković, Končar, Brodosplit, Rimac, AD Plastik, Dalekovod and 162,000+ FINA-registered Croatian suppliers. AI copilot, equipment intelligence, dynamic VDA 6.3 / EN 1090-2 / IATF 16949 scoring. From €700 per audit with HGK-certified Croatian lead auditors."
         canonical="/scanpro-plus"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "SoftwareApplication",
-          "name": "YVOO ScanPro+",
+          "name": "CEIP ScanPro+",
           "applicationCategory": "BusinessApplication",
-          "description": "AI-powered audit execution platform with flexible templates, equipment intelligence, and predictive risk scoring."
+          "description": "AI-powered audit execution platform for verifying Croatian manufacturers — VDA 6.3, IATF 16949, EN 1090-2, EN ISO 3834-2 templates, equipment intelligence, predictive risk scoring."
         }}
       />
       <PageGridOverlay />
@@ -2169,7 +2169,7 @@ const ScanProPlus = () => {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="text-sm text-foreground/50 font-mono tracking-wide mb-4 md:mb-6"
               >
-                Supplier Quality Platform
+                Audits of Croatian Suppliers · CEIP ScanPro+
               </motion.p>
 
               {/* Headline */}
@@ -2179,8 +2179,8 @@ const ScanProPlus = () => {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
               >
-                Transform how<br />
-                your team audits.
+                Audit any Croatian<br />
+                supplier in 48h.
               </motion.h1>
 
               {/* Subtitle + CTA - right-offset like Homepage */}
@@ -2191,9 +2191,9 @@ const ScanProPlus = () => {
                   transition={{ duration: 0.8, delay: 0.3 }}
                   className="text-foreground/60 text-base md:text-lg lg:text-xl mb-6 md:mb-8"
                 >
-                  Cut audit costs by 60% <span className="mx-3 text-foreground/30">|</span> Audit-ready in 48h.<br />
-                  Free your engineers from coordination tasks.<br />
-                  AI-powered quality audits at enterprise scale.
+                  Cut sourcing-trip costs by 78% <span className="mx-3 text-foreground/30">|</span> Audit-ready in 48h from Slavonski Brod to Split.<br />
+                  HGK-registered Croatian lead auditors, NDT Level III inspectors.<br />
+                  VDA 6.3 · IATF 16949 · EN 1090-2 · EN ISO 3834-2 — from €700 per audit.
                 </motion.p>
 
                 <motion.div
@@ -2204,7 +2204,7 @@ const ScanProPlus = () => {
                 >
                   <Button asChild size="lg" className="w-full sm:w-auto text-lg">
                     <a
-                      href="https://calendly.com/yvoo/demo-yvoo"
+                      href="https://ceip.hr/demo"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -2330,7 +2330,7 @@ const ScanProPlus = () => {
         </div>
       </section>
 
-      {/* How Does YVOO Work Carousel */}
+      {/* How Does CEIP Work Carousel */}
       <HowItWorksCarousel />
 
 
@@ -2750,7 +2750,7 @@ const ScanProPlus = () => {
               className="bg-white text-foreground hover:bg-white/90"
             >
               <a 
-                href="https://calendly.com/yvoo/demo-yvoo"
+                href="https://ceip.hr/demo"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -2780,7 +2780,7 @@ const ScanProPlus = () => {
             </h2>
             
             <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto">
-              Leading OEMs and Tier-1 suppliers use YVOO to audit faster, cheaper, and smarter. See how we can transform your supplier quality operations.
+              EU OEM buyers — BMW, Linde Engineering, Siemens Energy, Rimac Group — already use CEIP to audit Croatian suppliers faster, cheaper, and with stronger evidence chains. See how CEIP transforms your Croatian sourcing.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -2791,7 +2791,7 @@ const ScanProPlus = () => {
               <Button 
                 variant="outline"
                 size="lg"
-                onClick={() => window.open('https://calendly.com/yvoo/demo-yvoo', '_blank')}
+                onClick={() => window.open('https://ceip.hr/demo', '_blank')}
               >
                 Book a Demo
               </Button>
