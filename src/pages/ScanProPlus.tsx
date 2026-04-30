@@ -696,7 +696,7 @@ const IndustryUseCasesGrid = () => {
             CEIP Croatian high-tech use cases
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl">
-            How CEIP buyers qualify Croatia's most advanced manufacturers — Rimac Technology, KONČAR Group, Pipistrel and the aerospace cluster — across EV powertrains, HV grid equipment, aerospace machining and EU rail rolling stock.
+            How CEIP buyers qualify Croatia's flagship manufacturers — Rimac Technology EV systems, KONČAR HV transformers, Podravka & Kraš food processing, and Pliva & JGL pharmaceuticals — across automotive, energy, food safety and GMP-regulated supply.
           </p>
         </motion.div>
 
