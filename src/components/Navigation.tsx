@@ -90,12 +90,20 @@ const Navigation = () => {
                 <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">{t.nav.lngInspectionDesc}</span>
               </Link>
               <Link to="/ground-intelligence" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
-                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">{t.nav.groundIntelligence}</span>
-                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">{t.nav.groundIntelligenceDesc}</span>
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">Ground Intelligence</span>
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">On-site audits of Croatian manufacturers in 48–72h</span>
+              </Link>
+              <Link to="/scanpro-plus" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">ScanPro+</span>
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">AI audit platform for VDA 6.3 / EN 1090-2 / IATF 16949</span>
               </Link>
               <Link to="/audit-report" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
                 <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">ScanPro+ Report</span>
                 <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">AI-powered ISO 9001 audit report with factory walkthrough</span>
+              </Link>
+              <Link to="/about-us" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">About CEIP</span>
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">Croatian Enterprise Intelligence Platform — government-backed export initiative</span>
               </Link>
               <Link to="/atlas/login" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
                 <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">Atlas AI</span>
