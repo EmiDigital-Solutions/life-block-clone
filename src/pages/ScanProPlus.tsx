@@ -1469,7 +1469,7 @@ const ScanProPlus = () => {
                 className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
               >
                 Audit any partner<br />
-                in Croatia..
+                in Croatia.
               </motion.h1>
 
               {/* Subtitle + CTA - right-offset like Homepage */}
