@@ -47,9 +47,11 @@ const Navigation = () => {
           {/* Logo Text */}
           <Link 
             to="/" 
-            className="flex items-center hover:opacity-80 transition-opacity"
+            className="flex items-center gap-2 hover:opacity-80 transition-opacity"
             onClick={() => setIsMenuOpen(false)}
           >
+            <img src={yvooLogo} alt="YVOO" className="h-5 md:h-6 w-auto [filter:brightness(0)]" />
+            <span className="text-foreground/30 text-lg md:text-xl font-light">|</span>
             <span className="text-xl md:text-2xl font-black tracking-tight text-foreground">CEIP</span>
           </Link>
 
