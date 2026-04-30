@@ -625,42 +625,42 @@ const IndustryUseCasesGrid = () => {
   const useCases: IndustryUseCase[] = [
     {
       image: industryRailBwGreen,
-      title: "Rail & Rolling Stock: EN 15085 Welding Qualification & ÖBB / ÖBB-RCG Supplier Audits",
-      useCase: "Qualify a Kazakh rail-component supplier for an Austrian operator on EN 15085 CL1 welding within days, not months.",
+      title: "Rail & Rolling Stock: EN 15085 Welding Qualification & EU Rail / Rolling Stock Supplier Audits",
+      useCase: "Qualify a Croatian rail-component supplier for an Austrian operator on EN 15085 CL1 welding within days, not months.",
       solutions: [
         "Welder, WPQR and WPS verification per EN 15085-2 / EN ISO 3834-2",
         "Bogie and wheelset weld inspection with VT/PT/MT evidence capture",
         "Traceability of S355J2+N / S690QL plates and filler material certificates (3.1 / 3.2)",
-        "ÖBB and ČD/ZSSK acceptance package generated automatically"
+        "Končar, HŽ Cargo and EU rail acceptance package generated automatically"
       ],
-      result: "Result: AKCP-vetted welding supplier qualified in 3 days instead of 8 weeks, full EN 15085 dossier corridor-ready."
+      result: "Result: CEIP-vetted welding supplier qualified in 3 days instead of 8 weeks, full EN 15085 dossier export-ready."
     },
     {
       image: industryEnergyBwGreen,
       title: "Energy & Pipelines: API Q1 / EN ISO 3834 Fabrication & FAT Witness",
-      useCase: "Witness Factory Acceptance Test of a pressure vessel and pipeline spool for a Kazakh oil & gas operator.",
+      useCase: "Witness Factory Acceptance Test of a pressure vessel and pipeline spool for a Croatian energy operator.",
       solutions: [
         "API Q1 / API 6A / API 6D fabrication and supplier surveillance",
         "PED 2014/68/EU and EN 13480 / EN 13445 conformity verification",
         "NDT package — RT/UT/PT — witnessed by EN 9712 Level 2 inspectors",
-        "FAT/SAT report aligned with KazMunayGas, OMV and Uniper expectations"
+        "FAT/SAT report aligned with INA, JANAF, OMV and EU operator expectations"
       ]
     },
     {
       image: industryMiningBwGreen,
       title: "Mining & Minerals: Heavy Equipment Capability & HSE Audits",
-      useCase: "Capability audit of a Kazakh fabricator producing crusher liners and conveyor structures for a European mining operator.",
+      useCase: "Capability audit of a Croatian fabricator producing crusher liners and conveyor structures for a European mining operator.",
       solutions: [
         "ISO 9001 + ISO 45001 capability and HSE assessment on-site",
         "Heat-treatment, hardness and wear-plate metallurgy verification",
         "Lifting gear, structural welds and load-test records reviewed",
-        "Conflict-mineral and Kazakh subsoil-use licensing checks"
+        "Conflict-mineral and Croatian and EU mining-permit checks"
       ]
     },
     {
       image: industryHeavySteelBwGreen,
       title: "Heavy Steel Fabrication & EPC: EN 1090 EXC3/4 & VDA 6.3 Process Audits",
-      useCase: "Pre-award process audit of an Austrian EPC contractor's Kazakh steel fabrication partner for a corridor industrial-park project.",
+      useCase: "Pre-award process audit of an EU OEM's Croatian steel fabrication partner for a corridor industrial-park project.",
       solutions: [
         "EN 1090-2 EXC3/EXC4 fabrication readiness and FPC assessment",
         "VDA 6.3 P1–P7 process scoring for project-driven manufacturing",
@@ -690,10 +690,10 @@ const IndustryUseCasesGrid = () => {
             <span className="section-eyebrow">Projects</span>
           </div>
           <h2 className="section-headline text-foreground max-w-3xl">
-            AKCP corridor use cases
+            CEIP corridor use cases
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl">
-            How AKCP members procure and qualify partners across regulated corridor sectors — rail, energy, mining and heavy steel fabrication, between Austria and Kazakhstan.
+            How CEIP buyers procure and qualify partners across regulated Croatian export sectors — rail, energy, mining and heavy steel fabrication, between Croatia and EU export markets.
           </p>
         </motion.div>
 
@@ -1421,15 +1421,15 @@ const ScanProPlus = () => {
   return (
     <div className="min-h-screen relative">
       <PageSEO
-        title="ScanPro+ for AKCP — Corridor Audit Platform"
-        description="AI-guided AKCP member audits across the Austrian–Kazakh corridor. Dispatch vetted engineers, auditors and inspectors with evidence-backed reports."
+        title="ScanPro+ for CEIP — Corridor Audit Platform"
+        description="AI-guided CEIP buyer audits across the Croatian export corridor. Dispatch vetted engineers, auditors and inspectors with evidence-backed reports."
         canonical="/scanpro-plus"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "SoftwareApplication",
-          "name": "YVOO ScanPro+ for AKCP",
+          "name": "CEIP ScanPro+",
           "applicationCategory": "BusinessApplication",
-          "description": "AI-powered audit execution platform for AKCP members, bilateral partner verification and on-demand expert dispatch across the Middle Corridor."
+          "description": "AI-powered audit execution platform for CEIP buyers, cross-border partner verification and on-demand expert dispatch across the Croatian export corridor."
         }}
       />
       <PageGridOverlay />
@@ -1458,7 +1458,7 @@ const ScanProPlus = () => {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="text-sm text-foreground/50 font-mono tracking-wide mb-4 md:mb-6"
               >
-                ScanPro+ · AKCP Member Audit Platform
+                ScanPro+ · CEIP Buyer Audit Platform
               </motion.p>
 
               {/* Headline */}
@@ -1469,7 +1469,7 @@ const ScanProPlus = () => {
                 className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
               >
                 Audit any partner<br />
-                on the corridor.
+                in Croatia..
               </motion.h1>
 
               {/* Subtitle + CTA - right-offset like Homepage */}
@@ -1480,8 +1480,8 @@ const ScanProPlus = () => {
                   transition={{ duration: 0.8, delay: 0.3 }}
                   className="text-foreground/60 text-base md:text-lg lg:text-xl mb-6 md:mb-8"
                 >
-                  Dispatch AKCP-vetted engineers, auditors and inspectors to Austrian or Kazakh sites.<br />
-                  Atlas AI structures every audit. Local experts verify. AKCP members decide with evidence.
+                  Dispatch CEIP-vetted engineers, auditors and inspectors to Croatian supplier sites.<br />
+                  Atlas AI structures every audit. Local experts verify. CEIP buyers decide with evidence.
                 </motion.p>
 
                 {/* Hero CTAs removed — presentation, not website */}
@@ -1499,12 +1499,12 @@ const ScanProPlus = () => {
         >
           <div className="flex animate-marquee whitespace-nowrap">
             {[...[
-              "Built for the Austrian–Kazakh Connectivity Platform",
+              "Built for the Croatian Enterprise Intelligence Platform",
               "Rail & Rolling Stock", "Energy & Pipelines", "Logistics & Terminals",
               "Heavy Steel Fabrication", "Industrial Manufacturing", "Mining & Minerals",
               "EPC & Industrial Parks", "Automotive Tier-1/2", "Hydropower", "Agri & Food Processing",
             ], ...[
-              "Built for the Austrian–Kazakh Connectivity Platform",
+              "Built for the Croatian Enterprise Intelligence Platform",
               "Rail & Rolling Stock", "Energy & Pipelines", "Logistics & Terminals",
               "Heavy Steel Fabrication", "Industrial Manufacturing", "Mining & Minerals",
               "EPC & Industrial Parks", "Automotive Tier-1/2", "Hydropower", "Agri & Food Processing",
@@ -1531,14 +1531,14 @@ const ScanProPlus = () => {
           {/* Row 1 — industry fit */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-center">
             <p className="md:col-span-4 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-              Made for AKCP member teams in
+              Made for CEIP buyer teams in
             </p>
             <div className="md:col-span-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-foreground/70">
-              <span>Austrian machinery &amp; OEM suppliers</span>
+              <span>DACH OEMs sourcing in Croatia</span>
               <span className="text-foreground/20">·</span>
-              <span>Kazakh industrial operators</span>
+              <span>Croatian industrial suppliers</span>
               <span className="text-foreground/20">·</span>
-              <span>Middle Corridor logistics</span>
+              <span>Adriatic and EU logistics</span>
               <span className="text-foreground/20">·</span>
               <span>Energy, rail and steel fabrication</span>
             </div>
@@ -1548,11 +1548,11 @@ const ScanProPlus = () => {
           {/* Row 2 — procurement trust strip */}
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
             {[
-              "AKCP member access",
+              "CEIP buyer access",
               "NDA before dispatch",
               "Conflict-of-interest declared",
               "GPS/time-stamped evidence chain",
-              "Corridor-ready report format",
+              "Export-ready report format",
             ].map((item, i) => (
               <span key={item} className="flex items-center gap-4">
                 {i > 0 && <span className="text-muted-foreground/30">·</span>}
@@ -1589,7 +1589,7 @@ const ScanProPlus = () => {
               <span className="section-eyebrow">The difference</span>
             </div>
             <h2 className="section-headline text-foreground max-w-3xl">
-              Traditional delegation vs. AKCP ScanPro+
+              Traditional delegation vs. CEIP ScanPro+
             </h2>
           </motion.div>
 
@@ -1602,14 +1602,14 @@ const ScanProPlus = () => {
             </div>
 
             {[
-              { dim: "Time to on-site", trad: "Bilateral travel planning, visas and calendars", yvoo: "AKCP-vetted local expert dispatched in 48–72h" },
+              { dim: "Time to on-site", trad: "Cross-border travel planning, visas and calendars", yvoo: "CEIP-vetted local expert dispatched in 48–72h" },
               { dim: "Time to signed report", trad: "Weeks after the visit", yvoo: "Decision-ready report within 3 days" },
               { dim: "Expert profile", trad: "General consultant or internal delegation", yvoo: "Engineer, auditor or inspector matched to scope" },
-              { dim: "Corridor reach", trad: "Limited to who can travel", yvoo: "Austria, Kazakhstan and Middle Corridor coverage" },
+              { dim: "Corridor reach", trad: "Limited to who can travel", yvoo: "Croatia, DACH and EU supply-chain coverage" },
               { dim: "Evidence", trad: "Photos in email threads", yvoo: "GPS/time-stamped, structured, signed evidence" },
               { dim: "Standards", trad: "Different templates per country", yvoo: "ISO, IATF, VDA, EN 15085 and API-ready workflows" },
-              { dim: "Member value", trad: "One-off mission cost", yvoo: "Reusable AKCP intelligence layer" },
-              { dim: "Parallel work", trad: "One visit at a time", yvoo: "Multiple corridor audits scheduled in parallel" },
+              { dim: "Buyer value", trad: "One-off mission cost", yvoo: "Reusable CEIP intelligence layer" },
+              { dim: "Parallel work", trad: "One visit at a time", yvoo: "Multiple Croatian supplier audits scheduled in parallel" },
             ].map((row, i) => (
               <div
                 key={row.dim}
@@ -1672,7 +1672,7 @@ const ScanProPlus = () => {
               See the platform in action
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl">
-              Equipment intelligence: machines, welding stations and site assets are identified on site and matched against AKCP member scope, certification and qualification records.
+              Equipment intelligence: machines, welding stations and site assets are identified on site and matched against CEIP buyer scope, certification and qualification records.
             </p>
           </motion.div>
 
@@ -1717,7 +1717,7 @@ const ScanProPlus = () => {
             viewport={{ once: true }}
             className="section-headline text-foreground mb-12"
           >
-            Built for AKCP corridor sectors with regulated quality requirements
+            Built for CEIP Croatian export sectors with regulated quality requirements
           </motion.h2>
 
           <div className="grid lg:grid-cols-3 gap-0 items-stretch">
@@ -1782,15 +1782,15 @@ const ScanProPlus = () => {
                 <p className="text-lg font-bold text-foreground tracking-wide">
                   Heavy Steel Fabrication & Energy Equipment
                 </p>
-                <p className="text-sm text-foreground/60 mt-1">Austria ↔ Kazakhstan · Corridor multi-site</p>
+                <p className="text-sm text-foreground/60 mt-1">Croatia ↔ DACH / EU · Multi-site qualification</p>
               </div>
 
               <blockquote className="text-lg text-foreground leading-relaxed border-l-2 border-primary pl-4">
-                "AKCP members can verify a fabrication partner, review evidence and align corrective actions without sending a full delegation across the corridor."
+                "CEIP buyers can verify a fabrication partner, review evidence and align corrective actions without sending a full delegation across Croatia and EU export chains."
               </blockquote>
 
               <p className="text-xs text-foreground/40 font-mono uppercase tracking-wider">
-                Representative AKCP scenario based on bilateral industrial qualification · Member references available under NDA
+                Representative CEIP scenario based on cross-border industrial qualification · Buyer references available under NDA
               </p>
             </motion.div>
           </div>
@@ -1814,10 +1814,10 @@ const ScanProPlus = () => {
             className="mb-16 md:mb-20"
           >
             <h2 className="section-headline text-foreground max-w-2xl mb-6">
-              The standards AKCP member projects require
+              The standards CEIP buyer projects require
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl">
-              Audits aligned to bilateral corridor projects — including VDA 6.3, IATF 16949, ISO 9001, ISO 14001, EN 15085, EN ISO 3834 and API Q1.
+              Audits aligned to cross-border Croatian export projects — including VDA 6.3, IATF 16949, ISO 9001, ISO 14001, EN 15085, EN ISO 3834 and API Q1.
             </p>
           </motion.div>
 
@@ -1828,7 +1828,7 @@ const ScanProPlus = () => {
             className="mb-12"
           >
             <p className="text-base font-medium text-foreground mb-3">
-              AKCP-vetted engineers, auditors and inspectors are matched against the standards your project requires:
+              CEIP-vetted engineers, auditors and inspectors are matched against the standards your project requires:
             </p>
             <div className="flex flex-wrap items-center gap-4 text-muted-foreground">
               <span>VDA 6.3</span>

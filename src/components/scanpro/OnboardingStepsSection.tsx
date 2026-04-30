@@ -14,17 +14,17 @@ const steps = [
   {
     n: "01",
     title: "Demo",
-    body: "30 minutes with the AKCP team. We map your corridor opportunity and show ScanPro+ on a live bilateral example.",
+    body: "30 minutes with the CEIP team. We map your Croatian supplier opportunity and show ScanPro+ on a live cross-border example.",
   },
   {
     n: "02",
-    title: "Member QuickScan pilot",
+    title: "Buyer QuickScan pilot",
     body: "We dispatch one vetted engineer, auditor or inspector to a real partner site. You see the report, the data and the expert workflow before rollout.",
   },
   {
     n: "03",
     title: "Corridor rollout and partner development",
-    body: "Scale across Austrian and Kazakh opportunities. Feed findings into CAPA, supplier development and member decision workflows.",
+    body: "Scale across Croatian and EU opportunities. Feed findings into CAPA, supplier development and buyer decision workflows.",
   },
 ];
 
@@ -40,7 +40,7 @@ export default function OnboardingStepsSection() {
               <span className="section-eyebrow">Get started</span>
             </div>
             <h2 className="section-headline text-foreground">
-              Same AKCP standard.
+              Same CEIP standard.
               <br />
               Three-day report.
               <br />
@@ -49,7 +49,7 @@ export default function OnboardingStepsSection() {
           </div>
           <div className="lg:col-span-4 lg:col-start-8 flex flex-col justify-end">
             <p className="text-lg text-muted-foreground">
-              Three steps. Member-first. You see a real corridor verification result before scaling.
+              Three steps. Buyer-first. You see a real Croatian supplier verification result before scaling.
             </p>
           </div>
         </div>
@@ -83,7 +83,7 @@ export default function OnboardingStepsSection() {
         <div className="border-t border-foreground pt-10 md:pt-12">
           {/* Procurement-grade trust strip */}
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground leading-relaxed">
-            AKCP member access · NDA before dispatch · Conflict-of-interest declared per assignment ·
+            CEIP buyer access · NDA before dispatch · Conflict-of-interest declared per assignment ·
             GPS/time-stamped evidence · Reports signed by vetted experts
           </p>
         </div>

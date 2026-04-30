@@ -6,7 +6,7 @@ import { motion, useInView, animate } from "framer-motion";
  */
 const kpis = [
   { value: 72, suffix: "h", label: "Expert dispatch window" },
-  { value: 3, suffix: "days", label: "Signed AKCP report" },
+  { value: 3, suffix: "days", label: "Signed CEIP report" },
   { value: 5, suffix: "+", label: "Expert profiles" },
   { value: 100, suffix: "%", label: "Evidence chain captured" },
 ];
@@ -88,7 +88,7 @@ export default function HeadlineKpiBand() {
               <span className="section-eyebrow">The numbers</span>
             </div>
             <h2 className="section-headline text-foreground">
-              AKCP ScanPro+ in figures
+              CEIP ScanPro+ in figures
             </h2>
           </motion.div>
           <motion.div
@@ -98,7 +98,7 @@ export default function HeadlineKpiBand() {
             className="lg:col-span-4 lg:col-start-8 flex flex-col justify-end"
           >
             <p className="text-lg text-muted-foreground">
-              The operating metrics AKCP members need for bilateral partner qualification, project readiness and claims-safe evidence.
+              The operating metrics CEIP buyers need for cross-border partner qualification, project readiness and claims-safe evidence.
             </p>
           </motion.div>
         </div>

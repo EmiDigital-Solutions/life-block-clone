@@ -10,7 +10,7 @@ const items = [
   {
     n: "01",
     title: "Delegation delay",
-    body: "A single bilateral site visit can take weeks to coordinate across calendars, visas, travel budgets and local access.",
+    body: "A single cross-border site visit can take weeks to coordinate across calendars, visas, travel budgets and local access.",
   },
   {
     n: "02",
@@ -20,7 +20,7 @@ const items = [
   {
     n: "03",
     title: "High mission cost",
-    body: "Flights, hotels and senior-engineer time make frequent partner verification too expensive for many AKCP member opportunities.",
+    body: "Flights, hotels and senior-engineer time make frequent partner verification too expensive for many CEIP buyer opportunities.",
   },
 ];
 
@@ -48,7 +48,7 @@ export default function BrokenCompromiseSection() {
               <span className="section-eyebrow">The status quo</span>
             </div>
             <h2 className="section-headline text-foreground">
-              Corridor audits are stuck
+              Croatian supplier audits are stuck
               <br />
               in a broken compromise
             </h2>
@@ -61,7 +61,7 @@ export default function BrokenCompromiseSection() {
             className="lg:col-span-4 lg:col-start-8 flex flex-col justify-end"
           >
             <p className="text-lg text-muted-foreground max-w-xl">
-              Speed, local evidence and technical depth — AKCP members should not have to trade one against the others.
+              Speed, local evidence and technical depth — CEIP buyers should not have to trade one against the others.
             </p>
           </motion.div>
         </div>

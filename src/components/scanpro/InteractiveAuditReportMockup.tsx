@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 /**
- * Interactive ScanPro+ audit report mockup — built with the YVOO design system.
+ * Interactive ScanPro+ audit report mockup — built with the CEIP design system.
  * Squared UI, semantic tokens, Ion Blue accents, Sage Green status.
  */
 
@@ -21,17 +21,17 @@ const stations = [
 
 const ncrRows = [
   {
-    sev: "crit", label: "Critical", clause: "ISO 9001 §8.5.1", owner: "M. Schuster", due: "12 Nov 2024", status: "Open",
+    sev: "crit", label: "Critical", clause: "ISO 9001 §8.5.1", owner: "M. Kovač", due: "12 Nov 2024", status: "Open",
     aiFix: "Re-qualify CMM with traceable artifact · update PPAP §3 evidence",
     confidence: 94, fixDays: 14, investment: "High",
   },
   {
-    sev: "warn", label: "Major", clause: "VDA 6.3 P6.4", owner: "L. Becker", due: "18 Nov 2024", status: "In progress",
+    sev: "warn", label: "Major", clause: "VDA 6.3 P6.4", owner: "L. Horvat", due: "18 Nov 2024", status: "In progress",
     aiFix: "Add SPC chart on op. 40 · trigger CAPA on Cpk < 1.33",
     confidence: 88, fixDays: 21, investment: "Medium",
   },
   {
-    sev: "ok", label: "Minor", clause: "ISO 9001 §7.1.5", owner: "A. Hoffmann", due: "02 Dec 2024", status: "Closed",
+    sev: "ok", label: "Minor", clause: "ISO 9001 §7.1.5", owner: "A. Babić", due: "02 Dec 2024", status: "Closed",
     aiFix: "Verified — calibration record digitised in EvidenceVault",
     confidence: 99, fixDays: 2, investment: "Low",
   },
@@ -69,7 +69,7 @@ export default function InteractiveAuditReportMockup() {
           <span className="w-2.5 h-2.5 rounded-full bg-[hsl(155_22%_56%)]" />
         </div>
         <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground truncate">
-          YVOO · ScanPro+ · Müller Präzisionstechnik GmbH · VDA 6.3 / ISO 9001
+          CEIP · ScanPro+ · AD Plastik · Solin Plant · VDA 6.3 / ISO 9001
         </div>
         <div className="w-12" />
       </div>
@@ -103,7 +103,7 @@ export default function InteractiveAuditReportMockup() {
       {/* Footer */}
       <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-3 border-t border-border bg-muted/30 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
         <span>14 stations · 3 NCR · CAPA assigned · OEE avg 84.5%</span>
-        <span>Lead auditor: Dr. K. Weiß · Verified 08 Nov 2024</span>
+        <span>Lead auditor: Dr. I. Novak · Verified 08 Nov 2024</span>
       </div>
     </div>
   );

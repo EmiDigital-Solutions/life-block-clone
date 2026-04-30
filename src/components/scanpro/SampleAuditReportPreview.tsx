@@ -48,11 +48,11 @@ export default function SampleAuditReportPreview() {
             <span className="section-eyebrow">What you receive</span>
           </div>
           <h2 className="section-headline text-foreground mb-6">
-              A complete AKCP-ready report in 3 days
+              A complete CEIP-ready report in 3 days
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
             Every ScanPro+ mission ends with one structured, evidence-backed report —
-            covering site readiness, findings and corrective actions AKCP members need to decide.
+            covering site readiness, findings and corrective actions CEIP buyers need to decide.
           </p>
         </div>
 
@@ -121,7 +121,7 @@ export default function SampleAuditReportPreview() {
         {/* Disclaimer + CTA */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
-            Representative AKCP sample · Anonymized data
+            Representative CEIP sample · Anonymized data
           </div>
           <Link
             to="/audit-report"

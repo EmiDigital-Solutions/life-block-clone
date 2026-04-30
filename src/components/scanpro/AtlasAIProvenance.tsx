@@ -1,7 +1,7 @@
 const tiles = [
   {
     label: "Training data",
-    value: "Audit findings, NCRs, machine records and corridor partner evidence, anonymised and securely hosted.",
+    value: "Audit findings, NCRs, machine records and Croatian supplier evidence, anonymized and securely hosted.",
   },
   {
     label: "Validation",
@@ -9,7 +9,7 @@ const tiles = [
   },
   {
     label: "Boundary",
-    value: "Atlas proposes findings. The assigned AKCP-vetted expert reviews, decides and signs.",
+    value: "Atlas proposes findings. The assigned CEIP-vetted expert reviews, decides and signs.",
   },
   {
     label: "Governance",
@@ -28,7 +28,7 @@ const AtlasAIProvenance = () => {
               AI Provenance
             </p>
             <h2 className="section-headline text-foreground">
-              How Atlas supports an AKCP finding
+              How Atlas supports an CEIP finding
             </h2>
           </div>
         </div>

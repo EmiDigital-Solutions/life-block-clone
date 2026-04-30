@@ -10,9 +10,9 @@ const phases = [
   {
     n: "01",
     title: "Prepare",
-      subtitle: "Atlas prepares the corridor scope",
+      subtitle: "Atlas prepares the Croatian supplier scope",
     description:
-      "AKCP member requirements, sector standards and the partner profile are loaded into one scope. Atlas generates the question set, photo plan and on-site checklist before dispatch.",
+      "CEIP buyer requirements, sector standards and the partner profile are loaded into one scope. Atlas generates the question set, photo plan and on-site checklist before dispatch.",
   },
   {
     n: "02",
@@ -24,9 +24,9 @@ const phases = [
   {
     n: "03",
     title: "Close out",
-      subtitle: "Member-ready report and tracked CAPA",
+      subtitle: "Buyer-ready report and tracked CAPA",
     description:
-      "A signed AKCP-format report is delivered within 3 days. Findings become a corrective action or partner-development plan with owners, due dates and supporting evidence.",
+      "A signed CEIP-format report is delivered within 3 days. Findings become a corrective action or partner-development plan with owners, due dates and supporting evidence.",
   },
 ];
 
@@ -51,7 +51,7 @@ export default function ThreeLayerPlatformSection() {
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-px bg-foreground" />
-              <span className="section-eyebrow">How an AKCP ScanPro+ mission runs</span>
+              <span className="section-eyebrow">How an CEIP ScanPro+ mission runs</span>
             </div>
             <h2 className="section-headline text-foreground">
               One request. Three phases.
@@ -67,7 +67,7 @@ export default function ThreeLayerPlatformSection() {
             className="lg:col-span-4 lg:col-start-8 flex flex-col justify-end"
           >
             <p className="text-lg text-muted-foreground">
-              From member request to expert dispatch, signed evidence and tracked corrective actions — without sending your full team across the corridor.
+              From buyer request to expert dispatch, signed evidence and tracked corrective actions — without sending your full team across Croatia and EU export chains.
             </p>
           </motion.div>
         </div>
