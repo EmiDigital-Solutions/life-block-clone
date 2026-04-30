@@ -753,11 +753,11 @@ const IndustryUseCasesGrid = () => {
             <div className="absolute bottom-0 left-0 top-0 flex flex-col justify-center p-6 md:p-10 lg:p-12 max-w-xl z-10">
               {/* Badge */}
               <span className="inline-block px-3 py-1 bg-white/15 backdrop-blur-sm rounded-full text-[10px] font-medium text-white uppercase tracking-wider mb-3 w-fit">
-                Heavy Steel Fabrication & EPC
+                Pharmaceutical & Life Sciences
               </span>
 
               <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2 leading-tight">
-                EN 1090 EXC3/4 & VDA 6.3 Process Audits
+                EU GMP Annex 1 & ICH Q7 Audits — Pliva, JGL
               </h3>
               
               <p className="text-white/70 text-sm md:text-base line-clamp-2 hidden md:block">
