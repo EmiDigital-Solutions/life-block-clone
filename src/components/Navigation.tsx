@@ -2,6 +2,7 @@ import { Menu, X } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
+import yvooLogo from "@/assets/logo-new.svg";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
