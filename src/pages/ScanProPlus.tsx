@@ -626,52 +626,52 @@ const IndustryUseCasesGrid = () => {
   const useCases: IndustryUseCase[] = [
     {
       image: industryRimacUserUpload,
-      title: "Rimac Technology — HV Battery, e-Axle, Power Electronics & Infotainment Audit (IATF 16949 + ISO 26262 + ASPICE)",
-      useCase: "Qualify a Croatian Tier-1 supplier feeding Rimac Technology's full B2B portfolio — high-voltage battery systems, e-axles, inverters, power electronics and connected infotainment software — across Porsche, Hyundai-Kia, Bugatti Rimac and Automobili Pininfarina EV programs.",
+      title: "EV Powertrain Tier-1 Supplier Audit (IATF 16949 + ISO 26262 + ASPICE)",
+      useCase: "Qualify a Tier-1 supplier feeding a full EV powertrain B2B portfolio — high-voltage battery systems, e-axles, inverters, power electronics and connected infotainment software — across multiple OEM EV programs.",
       solutions: [
-        "IATF 16949 + ISO 26262 (ASIL-D) functional safety audit across hardware and software development at Sveta Nedelja",
+        "IATF 16949 + ISO 26262 (ASIL-D) functional safety audit across hardware and software development",
         "800 V battery system PPAP, cell traceability and thermal-runaway witness (UN ECE R100.02 / GB 38031)",
         "e-axle, inverter and DC/DC EMC + HV insulation testing per ISO 21498, LV 123/124 and CISPR 25",
         "Automotive SPICE (ASPICE) L2 software process assessment for infotainment and vehicle control units",
-        "VDA 6.3 P5–P7 process scoring with evidence dossier accepted by Porsche, Hyundai-Kia and Bugatti SQA"
+        "VDA 6.3 P5–P7 process scoring with evidence dossier accepted by OEM SQA teams"
       ],
-      result: "Result: Rimac-grade Tier-1 supplier qualified in 5 days with combined ASIL-D, ASPICE L2 and IATF 16949 dossier — buyer skipped a 14-week traditional OEM onboarding."
+      result: "Result: Tier-1 EV supplier qualified in 5 days with combined ASIL-D, ASPICE L2 and IATF 16949 dossier — buyer skipped a 14-week traditional OEM onboarding."
     },
     {
       image: industryEnergyBwGreen,
-      title: "KONČAR Group — HV Power Transformers & Grid Equipment FAT Witness (IEC 60076 / IEEE)",
-      useCase: "Witness Factory Acceptance Test of a 400 kV power transformer at KONČAR D&ST Zagreb for a German TSO grid-modernisation project.",
+      title: "HV Power Transformer & Grid Equipment FAT Witness (IEC 60076 / IEEE)",
+      useCase: "Witness Factory Acceptance Test of a 400 kV power transformer for a European TSO grid-modernisation project.",
       solutions: [
         "IEC 60076 routine + type tests: lightning impulse, partial discharge (<10 pC), temperature rise",
         "Active-part inspection — CRGO core stacking, winding insulation, oil quality (IEC 60296)",
-        "ISO 9001 + ISO 14001 + ISO 45001 plant-wide QMS review across KONČAR Power Plant Engineering",
-        "FAT report packaged for 50Hertz, TenneT, Amprion and Terna grid operator acceptance"
+        "ISO 9001 + ISO 14001 + ISO 45001 plant-wide QMS review across power equipment manufacturing",
+        "FAT report packaged for European TSO grid operator acceptance"
       ],
-      result: "Result: KONČAR HV transformer accepted on first FAT, full IEC 60076 dossier delivered — €4.2M asset shipped 6 weeks ahead of schedule."
+      result: "Result: HV transformer accepted on first FAT, full IEC 60076 dossier delivered — €4.2M asset shipped 6 weeks ahead of schedule."
     },
     {
       image: industryFoodBwGreen,
-      title: "Podravka & Kraš — Food Safety & Export Audit (FSSC 22000 / IFS Food / BRCGS)",
-      useCase: "Qualify a Croatian food-processing supplier delivering private-label products (Vegeta-style seasonings, confectionery, ready meals) to Lidl, REWE, Kaufland and Carrefour across the EU.",
+      title: "Food Safety & Export Audit (FSSC 22000 / IFS Food / BRCGS)",
+      useCase: "Qualify a food-processing supplier delivering private-label products (seasonings, confectionery, ready meals) to major EU retail chains.",
       solutions: [
-        "FSSC 22000 v6 + IFS Food v8 + BRCGS Issue 9 unannounced site audit at Podravka Koprivnica / Kraš Zagreb",
+        "FSSC 22000 v6 + IFS Food v8 + BRCGS Issue 9 unannounced site audit",
         "HACCP plan verification, allergen management and metal-detection / X-ray CCP validation",
         "EU Regulation 1169/2011 labelling, halal / kosher and organic (EU 2018/848) scheme conformity",
         "Microbiological lab competency review (ISO/IEC 17025) with traceability mock-recall in <2 hours"
       ],
-      result: "Result: Croatian food producer cleared for EU private-label supply in 6 days — buyer onboarded with full FSSC 22000 + IFS dossier and zero major NCs."
+      result: "Result: Food producer cleared for EU private-label supply in 6 days — buyer onboarded with full FSSC 22000 + IFS dossier and zero major NCs."
     },
     {
       image: industryPharmaBwGreen,
-      title: "Pliva & JGL — Pharmaceutical GMP Audit (EU GMP Annex 1 / ICH Q7 / ISO 13485)",
-      useCase: "Pre-qualification of a Croatian API and finished-dose manufacturer (Pliva Zagreb / JGL Rijeka) supplying generics and sterile injectables to Teva, Sandoz and EU hospital tenders.",
+      title: "Pharmaceutical GMP Audit (EU GMP Annex 1 / ICH Q7 / ISO 13485)",
+      useCase: "Pre-qualification of an API and finished-dose manufacturer supplying generics and sterile injectables to global pharma buyers and EU hospital tenders.",
       solutions: [
         "EU GMP Part I + Annex 1 (2022) sterile manufacturing audit — cleanroom Grade A/B, CCS review",
         "ICH Q7 API audit, data-integrity (ALCOA+) and computerised-system validation per Annex 11",
-        "HALMED / EMA inspection-readiness gap assessment with CAPA tracking to PIC/S standards",
+        "Regulatory inspection-readiness gap assessment with CAPA tracking to PIC/S standards",
         "Serialisation & FMD (EU 2016/161) verification, cold-chain GDP audit per EU 2013/C 343/01"
       ],
-      result: "Result: Croatian pharma site pre-qualified for EU tender supply in 8 days — full GMP + Annex 1 evidence pack accepted by Teva and Sandoz QA without re-audit."
+      result: "Result: Pharma site pre-qualified for EU tender supply in 8 days — full GMP + Annex 1 evidence pack accepted by buyer QA without re-audit."
     }
   ];
 
@@ -695,10 +695,10 @@ const IndustryUseCasesGrid = () => {
             <span className="section-eyebrow">Projects</span>
           </div>
           <h2 className="section-headline text-foreground max-w-3xl">
-            CEIP Croatian high-tech use cases
+            Industry use cases
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl">
-            How CEIP buyers qualify Croatia's flagship manufacturers — Rimac Technology EV systems, KONČAR HV transformers, Podravka & Kraš food processing, and Pliva & JGL pharmaceuticals — across automotive, energy, food safety and GMP-regulated supply.
+            How buyers qualify suppliers across automotive EV powertrain, HV grid equipment, food safety and GMP-regulated pharmaceutical supply — with a single verified, audit-grade evidence package.
           </p>
         </motion.div>
 
