@@ -21,43 +21,40 @@ import auditorMaleNorthAmerica from "@/assets/auditor-male-north-america.jpg";
 import auditorAfrican from "@/assets/auditor-real-african.jpg";
 
 const AboutUs = () => {
-  const [selectedYear] = useState(2024);
+  const [selectedYear] = useState(2023);
 
-  // Croatian audit & inspection workforce — lead auditors, NDT inspectors, welding specialists
   const heroImages = [
-    { src: auditorFemaleEuropean, alt: 'Lead Auditor — VDA 6.3, Zagreb' },
-    { src: auditorAsian, alt: 'NDT Level III Inspector — Slavonski Brod' },
-    { src: auditorFemaleAfrican, alt: 'Welding Engineer EN ISO 3834-2 — Split' },
-    { src: auditorFemaleMiddleEast, alt: 'Quality Engineer IATF 16949 — Sveta Nedelja' },
-    { src: auditorFemaleLatin, alt: 'EN 1090-2 Coordinator — Osijek' },
-    { src: auditorFemaleSouthAsian, alt: 'CMM Metrology Specialist — Rijeka' },
-    { src: auditorMaleNorthAmerica, alt: 'Lead Auditor — Heavy Steel Fabrication' },
-    { src: auditorAfrican, alt: 'HSE Inspector — Pula Shipyards' },
+    { src: auditorFemaleAfrican, alt: 'Quality Inspector' },
+    { src: auditorAsian, alt: 'Safety Manager' },
+    { src: auditorFemaleEuropean, alt: 'Compliance Auditor' },
+    { src: auditorFemaleMiddleEast, alt: 'Operations Director' },
+    { src: auditorFemaleLatin, alt: 'Factory Inspector' },
+    { src: auditorFemaleSouthAsian, alt: 'Procurement Manager' },
+    { src: auditorMaleNorthAmerica, alt: 'Supply Chain Lead' },
+    { src: auditorAfrican, alt: 'Vendor Relations' },
   ];
 
   const timelineData = [
-    { year: 2023, title: "Founded in Zagreb", desc: "CEIP — the Croatian Enterprise Intelligence Platform — established as a government-backed export initiative in partnership with FINA, HGK (Croatian Chamber of Economy) and HBOR." },
-    { year: 2024, title: "162,000+ Croatian companies onboarded", desc: "Full integration with the FINA 2024 enterprise register: 492 large, 2,157 medium, 17,228 small and 142,258 micro-enterprises across heavy steel, shipbuilding, energy, automotive and EV." },
-    { year: 2025, title: "Atlas AI on-site verification launched", desc: "Standardised supplier audits to VDA 6.3, IATF 16949, EN 1090-2 and EN ISO 3834-2 — combining AI with a network of certified Croatian lead auditors and NDT Level III inspectors." },
-    { year: 2026, title: "First international buyer programmes", desc: "Verified Croatian suppliers selected for tier-1 sourcing by BMW, Linde Engineering, Siemens Energy and Rimac Group — with €127M of new export contracts attributed to CEIP-verified profiles." },
+    { year: 2023, title: "Foundation", desc: "YVOO Technologies founded in Zagreb with a vision to transform B2B procurement through AI and verified human expertise." },
+    { year: 2024, title: "Platform Innovation", desc: "YVOO launched its supplier verification framework — connecting OEM procurement teams to verified heavy industry suppliers." },
+    { year: 2025, title: "Atlas AI", desc: "Introduced Atlas AI for on-site supplier verification with VDA 6.3 / IATF 16949 standardisation." },
   ];
 
   return (
     <div className="min-h-screen bg-background relative">
       <PageSEO
-        title="About CEIP — Verifying 162,000+ Croatian Suppliers for Global Buyers"
-        description="CEIP (Croatian Enterprise Intelligence Platform) is a government-backed export initiative connecting verified Croatian manufacturers — Đuro Đaković, Končar, Brodosplit, Rimac and 162,000+ FINA-registered companies — with international OEM buyers."
+        title="About YVOO — Verified Supplier Intelligence"
+        description="YVOO Technologies, founded in Zagreb, combines AI with a network of certified industry-specialised auditors to deliver verified supplier intelligence."
         canonical="/about-us"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "AboutPage",
           "mainEntity": {
             "@type": "Organization",
-            "name": "CEIP — Croatian Enterprise Intelligence Platform",
+            "name": "YVOO Technologies Ltd.",
             "foundingDate": "2023",
-            "foundingLocation": "Zagreb, Croatia",
-            "url": "https://ceip.hr",
-            "description": "Government-backed platform verifying Croatian manufacturers for international OEM buyers using AI and certified on-site auditors."
+            "url": "https://www.yvoo.io",
+            "description": "AI-powered supplier audit and verification platform."
           }
         }}
       />
@@ -114,24 +111,21 @@ const AboutUs = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <p className="text-xs font-mono tracking-[0.25em] uppercase text-primary/80">
-              Croatian Enterprise Intelligence Platform
-            </p>
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground">
-              Putting Croatian<br />industry on the<br />global map
+              Building the World's Largest<br />Auditor Marketplace
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-              CEIP is the government-backed platform that connects 162,000+ FINA-registered Croatian companies with international OEM buyers — verified by AI and certified on-site auditors.
+              YVOO connects clients, suppliers and local experts through innovative technology and human expertise.
             </p>
             <p className="text-sm sm:text-base text-muted-foreground/70 max-w-xl">
-              From Đuro Đaković's heavy-steel halls in Slavonski Brod to Rimac's EV powertrain lines in Sveta Nedelja, every supplier in our index is audited to VDA 6.3, EN 1090-2 and ISO 3834-2 standards.
+              Our team provides ongoing expertise and guidance to ensure your procurement process remains thorough, compliant and effective.
             </p>
           </motion.div>
         </div>
       </section>
 
       <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
-        <TechnicalAnnotation label="162.135" from={3} to={6} />
+        <TechnicalAnnotation label="1200" from={3} to={6} />
       </div>
 
       {/* MISSION & VISION */}
@@ -151,7 +145,7 @@ const AboutUs = () => {
               </div>
               <div className="lg:col-span-8">
                 <p className="text-2xl md:text-3xl lg:text-4xl text-foreground leading-[1.35] font-light">
-                  Boost Croatian exports by giving every domestic manufacturer — micro to large — a verified, internationally credible profile that procurement teams in Munich, Stuttgart and Linz can act on without flying down to inspect.
+                  Build trustworthy supplier relationships through verified intelligence — empowering procurement, suppliers and on-site experts in a culture of transparency and engineering rigor.
                 </p>
               </div>
             </div>
@@ -172,20 +166,20 @@ const AboutUs = () => {
               </div>
               <div className="lg:col-span-8 space-y-10">
                 <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] text-foreground font-semibold leading-[1.2] tracking-tight">
-                  Croatia as the EU's most transparent supplier base
+                  An AI-powered marketplace for certified industry auditors
                 </h2>
                 <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-light">
-                  Croatian manufacturers compete on quality, not on marketing budgets. CEIP gives every FINA-registered company the same level of verified visibility — so a 30-person CNC shop in Varaždin can be sourced as confidently as Končar.
+                  Globally, ISO / VDA / IATF certified auditors are fragmented and inconsistent. YVOO connects them. Atlas AI standardises their work.
                 </p>
                 <p className="text-xl md:text-2xl text-foreground leading-relaxed font-medium">
-                  Any global buyer can verify any Croatian supplier — in 72 hours.
+                  Any company can verify any supplier — fast.
                 </p>
                 <div className="border-l-2 border-foreground/15 pl-8 md:pl-10 space-y-4 py-2">
                   <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                    No sourcing trips. No language barriers. No blind spots between Zagreb and Dubrovnik.
+                    No employment overhead. No travel chaos. No geographic blind spots.
                   </p>
                   <p className="text-xl md:text-2xl font-semibold text-foreground tracking-tight">
-                    FINA data → AI match → On-site audit → Buyer decision
+                    Upload → Match → Verify → Decide
                   </p>
                 </div>
               </div>
@@ -215,17 +209,17 @@ const AboutUs = () => {
               </div>
               <div className="lg:col-span-8">
                 <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-light">
-                  Four pillars that guide every audit, every supplier profile and every export deal we help close.
+                  Four pillars that guide every decision — from product design to on-site verification.
                 </p>
               </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-px bg-border">
               {[
-                { title: "Croatian-first, global-grade", desc: "Built around the workflows of Croatian heavy industry — Đuro Đaković, Brodosplit, Končar, Rimac, AD Plastik, Dalekovod — but audited to the standards BMW, Linde and Siemens Energy require." },
-                { title: "Verified, not declared", desc: "Every CEIP supplier profile carries FINA financial provenance, certificate cross-checks (HRN EN 1090-2, ISO 3834-2, IATF 16949) and on-site evidence with timestamp and geotag." },
-                { title: "Public-private partnership", desc: "CEIP is co-funded with HGK and HBOR. Suppliers pay nothing to be listed — financing is recovered from buyer subscriptions and verification fees." },
-                { title: "Atlas AI + Croatian auditors", desc: "AI standardises the audit data; certified Croatian lead auditors (registered with HGK) and HDTZ NDT Level III inspectors validate the truth on-site." },
+                { title: "Engineering First", desc: "Built around real heavy industry workflows — VDA 6.3, IATF 16949, EN 15085 — not generic procurement templates." },
+                { title: "Verified Intelligence", desc: "Every data point in a YVOO supplier twin carries provenance: source, timestamp and on-site evidence." },
+                { title: "Industry Focus", desc: "Deep coverage of heavy steel, welding and precision machining capacity." },
+                { title: "Human in the Loop", desc: "Atlas AI standardises the data; certified on-site auditors validate the truth." },
               ].map((principle, index) => (
                 <motion.div
                   key={index}
@@ -246,7 +240,7 @@ const AboutUs = () => {
       </section>
 
       <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
-        <TechnicalAnnotation label="162.135 companies · FINA 2024" from={3} to={6} />
+        <TechnicalAnnotation label="700" from={3} to={6} />
       </div>
 
       {/* SUSTAINABILITY */}
@@ -260,7 +254,7 @@ const AboutUs = () => {
           >
             <div className="grid lg:grid-cols-2 gap-0">
               <div className="relative aspect-[4/3] lg:aspect-auto overflow-hidden bg-muted">
-                <img src={sustainabilityImage} alt="Sustainable European sourcing — replacing intercontinental supply chains with verified Croatian manufacturers" className="w-full h-full object-cover" style={{ filter: 'grayscale(100%)' }} />
+                <img src={sustainabilityImage} alt="Sustainable operations" className="w-full h-full object-cover" style={{ filter: 'grayscale(100%)' }} />
                 <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, hsl(var(--primary) / 0.4) 0%, transparent 60%)', mixBlendMode: 'multiply' }} />
                 <div className="absolute top-[5%] right-[4%] w-[10%] aspect-square bg-primary" />
                 <div className="absolute top-[5%] right-[16%] w-[10%] aspect-square bg-primary" />
@@ -271,10 +265,10 @@ const AboutUs = () => {
                 <p className="text-xs font-medium text-muted-foreground tracking-[0.25em] uppercase">Sustainability</p>
                 <div className="w-10 h-[2px] bg-primary" />
                 <h2 className="section-headline text-foreground">
-                  Nearshoring to Croatia, lower CO₂
+                  Local Sourcing, Lower Footprint
                 </h2>
                 <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                  Replacing a steel fabrication contract from Asia with one from Slavonski Brod cuts transport emissions by an average of 78% and shortens lead times from 14 to 3 weeks. CEIP makes that switch verifiable and bankable for German and Austrian OEM buyers.
+                  Verifying regional capacity reduces transport emissions and shortens the supply chain — replacing long-haul intercontinental sourcing with audited regional capability.
                 </p>
               </div>
             </div>
@@ -283,7 +277,7 @@ const AboutUs = () => {
       </section>
 
       <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-        <ToleranceNotation nominal="99.7" tolerance="0.02" unit="%" label="Audit data integrity" gridColumn={1} />
+        <ToleranceNotation nominal="99.7" tolerance="0.02" unit="%" label="Process Cpk" gridColumn={1} />
       </div>
 
       {/* TIMELINE */}
@@ -303,7 +297,7 @@ const AboutUs = () => {
               </div>
               <div className="lg:col-span-8">
                 <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-light">
-                  From a Zagreb policy paper to the verification layer for the entire Croatian export economy.
+                  From a Zagreb idea to a verification platform for heavy industry.
                 </p>
               </div>
             </div>
@@ -332,10 +326,10 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* LEADERSHIP / GOVERNANCE */}
+      {/* LEADERSHIP */}
       <section data-nav-theme="dark" className="relative min-h-[60vh] flex items-center">
         <div className="absolute inset-0 overflow-hidden">
-          <img src={leadershipTeamImage} alt="CEIP governance and steering board" className="w-full h-full object-cover" style={{ filter: 'grayscale(100%)' }} />
+          <img src={leadershipTeamImage} alt="YVOO Team" className="w-full h-full object-cover" style={{ filter: 'grayscale(100%)' }} />
           <div className="absolute inset-0 bg-foreground/70" />
         </div>
         <div className="relative z-10 mx-auto max-w-[1400px] px-4 md:px-8 py-20">
@@ -346,20 +340,20 @@ const AboutUs = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <p className="text-xs font-medium text-background/50 tracking-[0.25em] uppercase">Governance</p>
+            <p className="text-xs font-medium text-background/50 tracking-[0.25em] uppercase">Founder</p>
             <div className="w-10 h-[2px] bg-primary" />
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-background leading-[1.1] tracking-tight">
-              Engineers, exporters and economists — in one room
+              Engineering meets procurement
             </h2>
             <p className="text-lg md:text-xl text-background/70 leading-relaxed">
-              CEIP is steered by a board combining Croatian heavy-industry engineering leaders, FINA data scientists, HBOR export-finance specialists and former OEM procurement directors from BMW, Linde and Siemens — driving a single standard for verified Croatian supplier intelligence.
+              YVOO is led by founders combining heavy industry engineering know-how with deep procurement and quality systems experience — driving a new standard for verified supplier intelligence.
             </p>
           </motion.div>
         </div>
       </section>
 
       <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-        <DimensionLine from="€127M" to="2026" unit="" gridFrom={0} gridTo={3} />
+        <DimensionLine from="15.000" to="700" unit="€" gridFrom={0} gridTo={3} />
       </div>
 
       {/* CONTACT */}
@@ -379,14 +373,14 @@ const AboutUs = () => {
             </div>
             <div className="lg:col-span-8 space-y-8">
               <div className="border border-border bg-muted/30 p-10 md:p-12 space-y-4">
-                <p className="text-xs font-medium text-muted-foreground tracking-[0.25em] uppercase">Programme Director</p>
+                <p className="text-xs font-medium text-muted-foreground tracking-[0.25em] uppercase">Founder &amp; CEO</p>
                 <h3 className="text-3xl md:text-4xl font-semibold text-foreground tracking-tight">Ivo Brandić</h3>
                 <div className="space-y-1 text-lg text-muted-foreground">
-                  <p>CEIP — Croatian Enterprise Intelligence Platform</p>
-                  <p>Ulica grada Vukovara 78, 10000 Zagreb, Croatia</p>
+                  <p>Connectimus Project Ltd</p>
+                  <p>Zagreb, Croatia</p>
                   <p>
-                    <a href="mailto:ivo.brandic@ceip.hr" className="text-primary hover:underline">
-                      ivo.brandic@ceip.hr
+                    <a href="mailto:ivo.brandic@connectimus.com" className="text-primary hover:underline">
+                      ivo.brandic@connectimus.com
                     </a>
                   </p>
                 </div>
@@ -406,10 +400,10 @@ const AboutUs = () => {
             </div>
             <div className="lg:col-span-8 space-y-4">
               <p className="text-base md:text-lg text-background/70 leading-relaxed">
-                Confidential demonstration material prepared for CEIP stakeholders. Supplier names (Đuro Đaković, Končar, Brodosplit, Rimac, AD Plastik, Dalekovod) are used illustratively to show the platform's intended scope; sample profiles, NCRs, claim values and audit findings shown are synthetic and do not represent actual business relationships or quality positions. Public FINA enterprise statistics (492 large, 2,157 medium, 17,228 small, 142,258 micro) are reproduced from FINA Annual Report 2024.
+                Confidential. Prepared exclusively for the addressed recipient as a substitute for a traditional slide presentation. All data, supplier profiles, screenshots and images shown are illustrative examples for demonstration purposes only and do not represent actual business relationships. Content is provided for informational purposes only and does not constitute a binding offer.
               </p>
               <p className="text-sm text-background/40 tracking-wide">
-                CEIP · Confidential · 2026
+                Confidential · 2026
               </p>
             </div>
           </div>
