@@ -50,7 +50,7 @@ const Navigation = () => {
             className="flex items-center hover:opacity-80 transition-opacity"
             onClick={() => setIsMenuOpen(false)}
           >
-            <span className="text-xl md:text-2xl font-black tracking-tight text-foreground">YVOO</span>
+            <span className="text-xl md:text-2xl font-black tracking-tight text-foreground">CEIP</span>
           </Link>
 
           {/* Center: Hamburger + Language Switcher */}
@@ -102,8 +102,8 @@ const Navigation = () => {
                 <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">AI-powered ISO 9001 audit report with factory walkthrough</span>
               </Link>
               <Link to="/about-us" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
-                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">About Us</span>
-                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">YVOO Technologies — founder, mission and contact</span>
+                <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">About CEIP</span>
+                <span className="block text-[11px] md:text-sm text-foreground/60 mt-0.5">Croatian Enterprise Intelligence Platform — government-backed export initiative</span>
               </Link>
               <Link to="/atlas/login" className="block group py-1 md:py-2" onClick={() => setIsMenuOpen(false)}>
                 <span className="block text-lg md:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">Atlas AI</span>
