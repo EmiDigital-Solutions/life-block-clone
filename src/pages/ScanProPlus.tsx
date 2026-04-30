@@ -625,15 +625,16 @@ const IndustryUseCasesGrid = () => {
   const useCases: IndustryUseCase[] = [
     {
       image: industryAutomotiveBwGreen,
-      title: "Rimac Technology — High-Voltage Battery & e-Axle Systems Audit (IATF 16949 + ISO 26262)",
-      useCase: "Qualify a Croatian Tier-1 supplier feeding Rimac Technology's high-voltage battery packs, e-axles and power electronics for Bugatti Rimac, Porsche, Hyundai-Kia and Automobili Pininfarina EV programs.",
+      title: "Rimac Technology — HV Battery, e-Axle, Power Electronics & Infotainment Audit (IATF 16949 + ISO 26262 + ASPICE)",
+      useCase: "Qualify a Croatian Tier-1 supplier feeding Rimac Technology's full B2B portfolio — high-voltage battery systems, e-axles, inverters, power electronics and connected infotainment software — across Porsche, Hyundai-Kia, Bugatti Rimac and Automobili Pininfarina EV programs.",
       solutions: [
-        "IATF 16949 + ISO 26262 (ASIL-D) functional safety process audit at Sveta Nedelja and Tier-1 sites",
-        "800 V battery pack PPAP, cell traceability and thermal-runaway test witness (UN ECE R100.02)",
-        "Inverter / e-axle EMC and HV insulation testing per ISO 21498 and LV 123/124",
-        "VDA 6.3 P5–P7 process scoring with full evidence package accepted by Porsche & Bugatti SQA"
+        "IATF 16949 + ISO 26262 (ASIL-D) functional safety audit across hardware and software development at Sveta Nedelja",
+        "800 V battery system PPAP, cell traceability and thermal-runaway witness (UN ECE R100.02 / GB 38031)",
+        "e-axle, inverter and DC/DC EMC + HV insulation testing per ISO 21498, LV 123/124 and CISPR 25",
+        "Automotive SPICE (ASPICE) L2 software process assessment for infotainment and vehicle control units",
+        "VDA 6.3 P5–P7 process scoring with evidence dossier accepted by Porsche, Hyundai-Kia and Bugatti SQA"
       ],
-      result: "Result: Rimac-grade EV powertrain supplier qualified in 5 days with ASIL-D and IATF 16949 dossier — buyer skipped a 12-week traditional onboarding."
+      result: "Result: Rimac-grade Tier-1 supplier qualified in 5 days with combined ASIL-D, ASPICE L2 and IATF 16949 dossier — buyer skipped a 14-week traditional OEM onboarding."
     },
     {
       image: industryEnergyBwGreen,
