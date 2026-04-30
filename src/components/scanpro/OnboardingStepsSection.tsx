@@ -23,7 +23,7 @@ const steps = [
   },
   {
     n: "03",
-    title: "Corridor rollout and partner development",
+    title: "Croatian rollout and supplier development",
     body: "Scale across Croatian and EU opportunities. Feed findings into CAPA, supplier development and buyer decision workflows.",
   },
 ];

@@ -626,7 +626,7 @@ const IndustryUseCasesGrid = () => {
     {
       image: industryRailBwGreen,
       title: "Rail & Rolling Stock: EN 15085 Welding Qualification & EU Rail / Rolling Stock Supplier Audits",
-      useCase: "Qualify a Croatian rail-component supplier for an Austrian operator on EN 15085 CL1 welding within days, not months.",
+      useCase: "Qualify a Croatian rail-component supplier for an DACH operator on EN 15085 CL1 welding within days, not months.",
       solutions: [
         "Welder, WPQR and WPS verification per EN 15085-2 / EN ISO 3834-2",
         "Bogie and wheelset weld inspection with VT/PT/MT evidence capture",
@@ -660,7 +660,7 @@ const IndustryUseCasesGrid = () => {
     {
       image: industryHeavySteelBwGreen,
       title: "Heavy Steel Fabrication & EPC: EN 1090 EXC3/4 & VDA 6.3 Process Audits",
-      useCase: "Pre-award process audit of an EU OEM's Croatian steel fabrication partner for a corridor industrial-park project.",
+      useCase: "Pre-award process audit of an EU OEM's Croatian steel fabrication partner for a Croatian industrial-park project.",
       solutions: [
         "EN 1090-2 EXC3/EXC4 fabrication readiness and FPC assessment",
         "VDA 6.3 P1–P7 process scoring for project-driven manufacturing",
@@ -690,7 +690,7 @@ const IndustryUseCasesGrid = () => {
             <span className="section-eyebrow">Projects</span>
           </div>
           <h2 className="section-headline text-foreground max-w-3xl">
-            CEIP corridor use cases
+            CEIP Croatian use cases
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl">
             How CEIP buyers procure and qualify partners across regulated Croatian export sectors — rail, energy, mining and heavy steel fabrication, between Croatia and EU export markets.
@@ -952,7 +952,7 @@ const fallbackAuditors = [
   { image: auditorFemaleAsian, location: "Asia", region: "Southeast Asia", gradient: "from-gray-800 via-gray-900 to-black", gender: "female" },
 ];
 
-// How Does YVOO Work Carousel - Card Design with Original Visuals
+// How ScanPro+ Works Carousel - Card Design with Original Visuals
 const HowItWorksCarousel = () => {
   const [currentStep, setCurrentStep] = useState(0);
   
@@ -1421,15 +1421,15 @@ const ScanProPlus = () => {
   return (
     <div className="min-h-screen relative">
       <PageSEO
-        title="ScanPro+ for CEIP — Corridor Audit Platform"
-        description="AI-guided CEIP buyer audits across the Croatian export corridor. Dispatch vetted engineers, auditors and inspectors with evidence-backed reports."
+        title="ScanPro+ for CEIP — Croatian Audit Platform"
+        description="AI-guided CEIP buyer audits across the Croatian export supply chain. Dispatch vetted engineers, auditors and inspectors with evidence-backed reports."
         canonical="/scanpro-plus"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "SoftwareApplication",
           "name": "CEIP ScanPro+",
           "applicationCategory": "BusinessApplication",
-          "description": "AI-powered audit execution platform for CEIP buyers, cross-border partner verification and on-demand expert dispatch across the Croatian export corridor."
+          "description": "AI-powered audit execution platform for CEIP buyers, cross-border partner verification and on-demand expert dispatch across the Croatian export supply chain."
         }}
       />
       <PageGridOverlay />
@@ -1605,7 +1605,7 @@ const ScanProPlus = () => {
               { dim: "Time to on-site", trad: "Cross-border travel planning, visas and calendars", yvoo: "CEIP-vetted local expert dispatched in 48–72h" },
               { dim: "Time to signed report", trad: "Weeks after the visit", yvoo: "Decision-ready report within 3 days" },
               { dim: "Expert profile", trad: "General consultant or internal delegation", yvoo: "Engineer, auditor or inspector matched to scope" },
-              { dim: "Corridor reach", trad: "Limited to who can travel", yvoo: "Croatia, DACH and EU supply-chain coverage" },
+              { dim: "Market reach", trad: "Limited to who can travel", yvoo: "Croatia, DACH and EU supply-chain coverage" },
               { dim: "Evidence", trad: "Photos in email threads", yvoo: "GPS/time-stamped, structured, signed evidence" },
               { dim: "Standards", trad: "Different templates per country", yvoo: "ISO, IATF, VDA, EN 15085 and API-ready workflows" },
               { dim: "Buyer value", trad: "One-off mission cost", yvoo: "Reusable CEIP intelligence layer" },
