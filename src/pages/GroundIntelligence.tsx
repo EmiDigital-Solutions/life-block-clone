@@ -35,8 +35,8 @@ const GroundIntelligence = () => {
   return (
     <div className="min-h-screen relative">
       <PageSEO
-        title="Ground Intelligence — EPC Construction Integrity Verification | RCA"
-        description="On-site fabrication integrity verification for LNG & Gas Processing Plants. Weld inspection, NDE compliance, dimensional control, pressure testing — assessed by certified inspectors per ASME, API, and EN codes."
+        title="Ground Intelligence — On-Site Audits of Croatian Manufacturers | CEIP"
+        description="CEIP deploys certified Croatian lead auditors and HDTZ NDT Level III inspectors to any FINA-registered Croatian supplier in 48–72h — Đuro Đaković, Končar, Brodosplit, Rimac, AD Plastik, Dalekovod and 162,000+ more. Audits to VDA 6.3, IATF 16949, EN 1090-2, EN ISO 3834-2."
         canonical="/ground-intelligence"
       />
       <PageGridOverlay />
