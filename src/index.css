@@ -12,7 +12,7 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 220 14% 96%; /* Warm light grey — not flat white */
+    --background: 0 0% 100%; /* Pure white */
     --foreground: 0 0% 4%; /* Deep Neutral Black #0A0A0A */
 
     --hero-background: 220 20% 7%;
@@ -64,7 +64,7 @@ All colors MUST be HSL.
     --glass-border: 0 0% 100% / 0.2;
     --glass-shadow: 220 20% 10%;
     --surface-elevated: 0 0% 100%;
-    --surface-sunken: 220 14% 94%;
+    --surface-sunken: 0 0% 100%;
 
     /* Sidebar dark theme */
     --sidebar-bg: 220 20% 7%;
