@@ -29,10 +29,10 @@ import AtlasAIProvenance from "@/components/scanpro/AtlasAIProvenance";
 import GlobalNetworkSection from "@/components/GlobalNetworkSection";
 import OnboardingStepsSection from "@/components/scanpro/OnboardingStepsSection";
 import { ArrowRight, Check, X, Play, Pause } from "lucide-react";
-import industryRailBwGreen from "@/assets/industry-rail-bw-green.jpg";
+import industryFoodBwGreen from "@/assets/industry-food-bw-green.jpg";
 import industryEnergyBwGreen from "@/assets/industry-energy-bw-green.jpg";
 import industryAutomotiveBwGreen from "@/assets/industry-automotive-bw-green.jpg";
-import industryAerospaceBwGreen from "@/assets/industry-aerospace-bw-green.jpg";
+import industryPharmaBwGreen from "@/assets/industry-pharma-bw-green.jpg";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -625,12 +625,12 @@ const IndustryUseCasesGrid = () => {
   const useCases: IndustryUseCase[] = [
     {
       image: industryAutomotiveBwGreen,
-      title: "Rimac Technology — EV Hypercar Powertrain & Battery Systems Audit (IATF 16949 + ISO 26262)",
-      useCase: "Qualify a Croatian Tier-1 supplier feeding Rimac Technology's high-voltage battery, e-axle and carbon-fibre monocoque programs for Bugatti Rimac, Porsche and Hyundai-Kia.",
+      title: "Rimac Technology — High-Voltage Battery & e-Axle Systems Audit (IATF 16949 + ISO 26262)",
+      useCase: "Qualify a Croatian Tier-1 supplier feeding Rimac Technology's high-voltage battery packs, e-axles and power electronics for Bugatti Rimac, Porsche, Hyundai-Kia and Automobili Pininfarina EV programs.",
       solutions: [
         "IATF 16949 + ISO 26262 (ASIL-D) functional safety process audit at Sveta Nedelja and Tier-1 sites",
-        "800V battery pack PPAP, cell traceability and thermal-runaway test witness (UN ECE R100.02)",
-        "Carbon-fibre monocoque autoclave cure cycle and NDT (UT/CT) verification per AS9100 standards",
+        "800 V battery pack PPAP, cell traceability and thermal-runaway test witness (UN ECE R100.02)",
+        "Inverter / e-axle EMC and HV insulation testing per ISO 21498 and LV 123/124",
         "VDA 6.3 P5–P7 process scoring with full evidence package accepted by Porsche & Bugatti SQA"
       ],
       result: "Result: Rimac-grade EV powertrain supplier qualified in 5 days with ASIL-D and IATF 16949 dossier — buyer skipped a 12-week traditional onboarding."
@@ -648,28 +648,28 @@ const IndustryUseCasesGrid = () => {
       result: "Result: KONČAR HV transformer accepted on first FAT, full IEC 60076 dossier delivered — €4.2M asset shipped 6 weeks ahead of schedule."
     },
     {
-      image: industryAerospaceBwGreen,
-      title: "Croatian Aerospace & Defence — AS9100 / NADCAP Precision Machining (Pipistrel, HSTec, DOK-ING)",
-      useCase: "Qualify a Croatian precision-machining supplier producing flight-critical aluminium and titanium parts for Pipistrel electric aircraft and EU defence primes.",
+      image: industryFoodBwGreen,
+      title: "Podravka & Kraš — Food Safety & Export Audit (FSSC 22000 / IFS Food / BRCGS)",
+      useCase: "Qualify a Croatian food-processing supplier delivering private-label products (Vegeta-style seasonings, confectionery, ready meals) to Lidl, REWE, Kaufland and Carrefour across the EU.",
       solutions: [
-        "AS9100 Rev D + NADCAP heat-treatment, NDT and chemical-processing audit",
-        "5-axis CNC first-article inspection (FAI) per AS9102 with CMM dimensional report",
-        "Material traceability — 3.1/3.2 mill certs for Ti-6Al-4V, Al 7075-T6, Inconel 718",
-        "ITAR / EU Dual-Use Regulation 2021/821 export-control screening on every shipment"
+        "FSSC 22000 v6 + IFS Food v8 + BRCGS Issue 9 unannounced site audit at Podravka Koprivnica / Kraš Zagreb",
+        "HACCP plan verification, allergen management and metal-detection / X-ray CCP validation",
+        "EU Regulation 1169/2011 labelling, halal / kosher and organic (EU 2018/848) scheme conformity",
+        "Microbiological lab competency review (ISO/IEC 17025) with traceability mock-recall in <2 hours"
       ],
-      result: "Result: AS9100-compliant Croatian aerospace supplier onboarded in 7 days — Pipistrel and Airbus Tier-2 program kick-off accelerated by one full quarter."
+      result: "Result: Croatian food producer cleared for EU private-label supply in 6 days — buyer onboarded with full FSSC 22000 + IFS dossier and zero major NCs."
     },
     {
-      image: industryRailBwGreen,
-      title: "KONČAR Electric Vehicles — EMU Trains & EN 15085 CL1 Welding for EU Rail Operators",
-      useCase: "Pre-award qualification of KONČAR Electric Vehicles for a DACH operator's regional EMU fleet (ÖBB, DB Regio, SBB) under EN 15085 and TSI LOC&PAS.",
+      image: industryPharmaBwGreen,
+      title: "Pliva & JGL — Pharmaceutical GMP Audit (EU GMP Annex 1 / ICH Q7 / ISO 13485)",
+      useCase: "Pre-qualification of a Croatian API and finished-dose manufacturer (Pliva Zagreb / JGL Rijeka) supplying generics and sterile injectables to Teva, Sandoz and EU hospital tenders.",
       solutions: [
-        "EN 15085-2 CL1 welding qualification — bogies, carbody shells, coupler interfaces",
-        "TSI LOC&PAS + ERA conformity assessment with NoBo coordination",
-        "EN 50155 / EN 50121 traction-electronics and EMC verification at KONČAR Electronics Sesvete",
-        "IRIS Rev 03 (ISO/TS 22163) process audit + filler-material 3.1/3.2 traceability"
+        "EU GMP Part I + Annex 1 (2022) sterile manufacturing audit — cleanroom Grade A/B, CCS review",
+        "ICH Q7 API audit, data-integrity (ALCOA+) and computerised-system validation per Annex 11",
+        "HALMED / EMA inspection-readiness gap assessment with CAPA tracking to PIC/S standards",
+        "Serialisation & FMD (EU 2016/161) verification, cold-chain GDP audit per EU 2013/C 343/01"
       ],
-      result: "Result: KONČAR EMU platform accepted by EU rail operator with full EN 15085 CL1 + IRIS dossier — €180M tender awarded on the strength of the CEIP audit pack."
+      result: "Result: Croatian pharma site pre-qualified for EU tender supply in 8 days — full GMP + Annex 1 evidence pack accepted by Teva and Sandoz QA without re-audit."
     }
   ];
 
@@ -696,7 +696,7 @@ const IndustryUseCasesGrid = () => {
             CEIP Croatian high-tech use cases
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl">
-            How CEIP buyers qualify Croatia's most advanced manufacturers — Rimac Technology, KONČAR Group, Pipistrel and the aerospace cluster — across EV powertrains, HV grid equipment, aerospace machining and EU rail rolling stock.
+            How CEIP buyers qualify Croatia's flagship manufacturers — Rimac Technology EV systems, KONČAR HV transformers, Podravka & Kraš food processing, and Pliva & JGL pharmaceuticals — across automotive, energy, food safety and GMP-regulated supply.
           </p>
         </motion.div>
 
@@ -706,24 +706,24 @@ const IndustryUseCasesGrid = () => {
           <IndustryShowcaseCard
             useCase={useCases[0]}
             onClick={() => setSelectedUseCase(useCases[0])}
-            badge="Rail & Rolling Stock"
+            badge="EV Powertrain & Battery"
             isLarge={true}
             delay={0}
           />
 
-          {/* Top right - Energy & Pipelines */}
+          {/* Top right - HV Grid Equipment */}
           <IndustryShowcaseCard
             useCase={useCases[1]}
             onClick={() => setSelectedUseCase(useCases[1])}
-            badge="Energy & Pipelines"
+            badge="HV Grid Equipment"
             delay={0.1}
           />
 
-          {/* Bottom right - Mining & Minerals */}
+          {/* Bottom right - Food & Beverage */}
           <IndustryShowcaseCard
             useCase={useCases[2]}
             onClick={() => setSelectedUseCase(useCases[2])}
-            badge="Mining & Minerals"
+            badge="Food & Beverage"
             delay={0.2}
           />
         </div>
@@ -753,11 +753,11 @@ const IndustryUseCasesGrid = () => {
             <div className="absolute bottom-0 left-0 top-0 flex flex-col justify-center p-6 md:p-10 lg:p-12 max-w-xl z-10">
               {/* Badge */}
               <span className="inline-block px-3 py-1 bg-white/15 backdrop-blur-sm rounded-full text-[10px] font-medium text-white uppercase tracking-wider mb-3 w-fit">
-                Heavy Steel Fabrication & EPC
+                Pharmaceutical & Life Sciences
               </span>
 
               <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2 leading-tight">
-                EN 1090 EXC3/4 & VDA 6.3 Process Audits
+                EU GMP Annex 1 & ICH Q7 Audits — Pliva, JGL
               </h3>
               
               <p className="text-white/70 text-sm md:text-base line-clamp-2 hidden md:block">
