@@ -32,7 +32,7 @@ import { ArrowRight, Check, X, Play, Pause } from "lucide-react";
 import industryFoodBwGreen from "@/assets/industry-food-bw-green.jpg";
 import industryEnergyBwGreen from "@/assets/industry-energy-bw-green.jpg";
 import industryAutomotiveBwGreen from "@/assets/industry-automotive-bw-green.jpg";
-import industryRimacEaxle from "@/assets/industry-rimac-eaxle.png";
+import industryRimacUserUpload from "@/assets/industry-rimac-user-upload.png";
 import industryPharmaBwGreen from "@/assets/industry-pharma-bw-green.jpg";
 import { Button } from "@/components/ui/button";
 import {
@@ -625,7 +625,7 @@ const IndustryUseCasesGrid = () => {
 
   const useCases: IndustryUseCase[] = [
     {
-      image: industryRimacEaxle,
+      image: industryRimacUserUpload,
       title: "Rimac Technology — HV Battery, e-Axle, Power Electronics & Infotainment Audit (IATF 16949 + ISO 26262 + ASPICE)",
       useCase: "Qualify a Croatian Tier-1 supplier feeding Rimac Technology's full B2B portfolio — high-voltage battery systems, e-axles, inverters, power electronics and connected infotainment software — across Porsche, Hyundai-Kia, Bugatti Rimac and Automobili Pininfarina EV programs.",
       solutions: [
