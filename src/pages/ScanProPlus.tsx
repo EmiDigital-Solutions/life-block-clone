@@ -31,8 +31,8 @@ import OnboardingStepsSection from "@/components/scanpro/OnboardingStepsSection"
 import { ArrowRight, Check, X, Play, Pause } from "lucide-react";
 import industryRailBwGreen from "@/assets/industry-rail-bw-green.jpg";
 import industryEnergyBwGreen from "@/assets/industry-energy-bw-green.jpg";
-import industryMiningBwGreen from "@/assets/industry-mining-bw-green.jpg";
-import industryHeavySteelBwGreen from "@/assets/industry-heavysteel-bw-green.jpg";
+import industryAutomotiveBwGreen from "@/assets/industry-automotive-bw-green.jpg";
+import industryAerospaceBwGreen from "@/assets/industry-aerospace-bw-green.jpg";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -624,49 +624,52 @@ const IndustryUseCasesGrid = () => {
 
   const useCases: IndustryUseCase[] = [
     {
-      image: industryRailBwGreen,
-      title: "Rail & Rolling Stock: EN 15085 Welding Qualification & EU Rail / Rolling Stock Supplier Audits",
-      useCase: "Qualify a Croatian rail-component supplier for an DACH operator on EN 15085 CL1 welding within days, not months.",
+      image: industryAutomotiveBwGreen,
+      title: "Rimac Technology — EV Hypercar Powertrain & Battery Systems Audit (IATF 16949 + ISO 26262)",
+      useCase: "Qualify a Croatian Tier-1 supplier feeding Rimac Technology's high-voltage battery, e-axle and carbon-fibre monocoque programs for Bugatti Rimac, Porsche and Hyundai-Kia.",
       solutions: [
-        "Welder, WPQR and WPS verification per EN 15085-2 / EN ISO 3834-2",
-        "Bogie and wheelset weld inspection with VT/PT/MT evidence capture",
-        "Traceability of S355J2+N / S690QL plates and filler material certificates (3.1 / 3.2)",
-        "Končar, HŽ Cargo and EU rail acceptance package generated automatically"
+        "IATF 16949 + ISO 26262 (ASIL-D) functional safety process audit at Sveta Nedelja and Tier-1 sites",
+        "800V battery pack PPAP, cell traceability and thermal-runaway test witness (UN ECE R100.02)",
+        "Carbon-fibre monocoque autoclave cure cycle and NDT (UT/CT) verification per AS9100 standards",
+        "VDA 6.3 P5–P7 process scoring with full evidence package accepted by Porsche & Bugatti SQA"
       ],
-      result: "Result: CEIP-vetted welding supplier qualified in 3 days instead of 8 weeks, full EN 15085 dossier export-ready."
+      result: "Result: Rimac-grade EV powertrain supplier qualified in 5 days with ASIL-D and IATF 16949 dossier — buyer skipped a 12-week traditional onboarding."
     },
     {
       image: industryEnergyBwGreen,
-      title: "Energy & Pipelines: API Q1 / EN ISO 3834 Fabrication & FAT Witness",
-      useCase: "Witness Factory Acceptance Test of a pressure vessel and pipeline spool for a Croatian energy operator.",
+      title: "KONČAR Group — HV Power Transformers & Grid Equipment FAT Witness (IEC 60076 / IEEE)",
+      useCase: "Witness Factory Acceptance Test of a 400 kV power transformer at KONČAR D&ST Zagreb for a German TSO grid-modernisation project.",
       solutions: [
-        "API Q1 / API 6A / API 6D fabrication and supplier surveillance",
-        "PED 2014/68/EU and EN 13480 / EN 13445 conformity verification",
-        "NDT package — RT/UT/PT — witnessed by EN 9712 Level 2 inspectors",
-        "FAT/SAT report aligned with INA, JANAF, OMV and EU operator expectations"
-      ]
+        "IEC 60076 routine + type tests: lightning impulse, partial discharge (<10 pC), temperature rise",
+        "Active-part inspection — CRGO core stacking, winding insulation, oil quality (IEC 60296)",
+        "ISO 9001 + ISO 14001 + ISO 45001 plant-wide QMS review across KONČAR Power Plant Engineering",
+        "FAT report packaged for 50Hertz, TenneT, Amprion and Terna grid operator acceptance"
+      ],
+      result: "Result: KONČAR HV transformer accepted on first FAT, full IEC 60076 dossier delivered — €4.2M asset shipped 6 weeks ahead of schedule."
     },
     {
-      image: industryMiningBwGreen,
-      title: "Mining & Minerals: Heavy Equipment Capability & HSE Audits",
-      useCase: "Capability audit of a Croatian fabricator producing crusher liners and conveyor structures for a European mining operator.",
+      image: industryAerospaceBwGreen,
+      title: "Croatian Aerospace & Defence — AS9100 / NADCAP Precision Machining (Pipistrel, HSTec, DOK-ING)",
+      useCase: "Qualify a Croatian precision-machining supplier producing flight-critical aluminium and titanium parts for Pipistrel electric aircraft and EU defence primes.",
       solutions: [
-        "ISO 9001 + ISO 45001 capability and HSE assessment on-site",
-        "Heat-treatment, hardness and wear-plate metallurgy verification",
-        "Lifting gear, structural welds and load-test records reviewed",
-        "Conflict-mineral and Croatian and EU mining-permit checks"
-      ]
+        "AS9100 Rev D + NADCAP heat-treatment, NDT and chemical-processing audit",
+        "5-axis CNC first-article inspection (FAI) per AS9102 with CMM dimensional report",
+        "Material traceability — 3.1/3.2 mill certs for Ti-6Al-4V, Al 7075-T6, Inconel 718",
+        "ITAR / EU Dual-Use Regulation 2021/821 export-control screening on every shipment"
+      ],
+      result: "Result: AS9100-compliant Croatian aerospace supplier onboarded in 7 days — Pipistrel and Airbus Tier-2 program kick-off accelerated by one full quarter."
     },
     {
-      image: industryHeavySteelBwGreen,
-      title: "Heavy Steel Fabrication & EPC: EN 1090 EXC3/4 & VDA 6.3 Process Audits",
-      useCase: "Pre-award process audit of an EU OEM's Croatian steel fabrication partner for a Croatian industrial-park project.",
+      image: industryRailBwGreen,
+      title: "KONČAR Electric Vehicles — EMU Trains & EN 15085 CL1 Welding for EU Rail Operators",
+      useCase: "Pre-award qualification of KONČAR Electric Vehicles for a DACH operator's regional EMU fleet (ÖBB, DB Regio, SBB) under EN 15085 and TSI LOC&PAS.",
       solutions: [
-        "EN 1090-2 EXC3/EXC4 fabrication readiness and FPC assessment",
-        "VDA 6.3 P1–P7 process scoring for project-driven manufacturing",
-        "Welding coordinator (EN ISO 14731) and IWE/IWT verification",
-        "Corrective-action and CAPA tracking until close-out under NDA"
-      ]
+        "EN 15085-2 CL1 welding qualification — bogies, carbody shells, coupler interfaces",
+        "TSI LOC&PAS + ERA conformity assessment with NoBo coordination",
+        "EN 50155 / EN 50121 traction-electronics and EMC verification at KONČAR Electronics Sesvete",
+        "IRIS Rev 03 (ISO/TS 22163) process audit + filler-material 3.1/3.2 traceability"
+      ],
+      result: "Result: KONČAR EMU platform accepted by EU rail operator with full EN 15085 CL1 + IRIS dossier — €180M tender awarded on the strength of the CEIP audit pack."
     }
   ];
 
@@ -690,10 +693,10 @@ const IndustryUseCasesGrid = () => {
             <span className="section-eyebrow">Projects</span>
           </div>
           <h2 className="section-headline text-foreground max-w-3xl">
-            CEIP Croatian use cases
+            CEIP Croatian high-tech use cases
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl">
-            How CEIP buyers procure and qualify partners across regulated Croatian export sectors — rail, energy, mining and heavy steel fabrication, between Croatia and EU export markets.
+            How CEIP buyers qualify Croatia's most advanced manufacturers — Rimac Technology, KONČAR Group, Pipistrel and the aerospace cluster — across EV powertrains, HV grid equipment, aerospace machining and EU rail rolling stock.
           </p>
         </motion.div>
 
