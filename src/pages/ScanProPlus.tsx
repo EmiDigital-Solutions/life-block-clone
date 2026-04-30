@@ -706,24 +706,24 @@ const IndustryUseCasesGrid = () => {
           <IndustryShowcaseCard
             useCase={useCases[0]}
             onClick={() => setSelectedUseCase(useCases[0])}
-            badge="Rail & Rolling Stock"
+            badge="EV Powertrain & Battery"
             isLarge={true}
             delay={0}
           />
 
-          {/* Top right - Energy & Pipelines */}
+          {/* Top right - HV Grid Equipment */}
           <IndustryShowcaseCard
             useCase={useCases[1]}
             onClick={() => setSelectedUseCase(useCases[1])}
-            badge="Energy & Pipelines"
+            badge="HV Grid Equipment"
             delay={0.1}
           />
 
-          {/* Bottom right - Mining & Minerals */}
+          {/* Bottom right - Food & Beverage */}
           <IndustryShowcaseCard
             useCase={useCases[2]}
             onClick={() => setSelectedUseCase(useCases[2])}
-            badge="Mining & Minerals"
+            badge="Food & Beverage"
             delay={0.2}
           />
         </div>
