@@ -8,9 +8,8 @@ import DimensionLine from "@/components/DimensionLine";
 import SectionCutMarker from "@/components/SectionCutMarker";
 import ToleranceNotation from "@/components/ToleranceNotation";
 import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
 import ROICalculator from "@/components/ROICalculator";
-import HeroROICalculator from "@/components/HeroROICalculator";
+
 import Earth3D from "@/components/Earth3D";
 import BusinessImpactChart from "@/components/charts/BusinessImpactChart";
 import ROITimelineChart from "@/components/charts/ROITimelineChart";
@@ -20,12 +19,20 @@ import { ComplianceModal } from "@/components/ComplianceModal";
 import { IndustryUseCaseModal, IndustryUseCase } from "@/components/IndustryUseCaseModal";
 import HeroSquaresAnimation from "@/components/HeroSquaresAnimation";
 import { EquipmentIntelligenceDemo } from "@/components/EquipmentIntelligenceDemo";
+import ResponsiveDemoFrame from "@/components/ResponsiveDemoFrame";
+import SampleAuditReportPreview from "@/components/scanpro/SampleAuditReportPreview";
+import BrokenCompromiseSection from "@/components/scanpro/BrokenCompromiseSection";
+import ThreeLayerPlatformSection from "@/components/scanpro/ThreeLayerPlatformSection";
+import HeadlineKpiBand from "@/components/scanpro/HeadlineKpiBand";
+import AuditDifferenceSection from "@/components/AuditDifferenceSection";
+import AtlasAIProvenance from "@/components/scanpro/AtlasAIProvenance";
+import GlobalNetworkSection from "@/components/GlobalNetworkSection";
+import OnboardingStepsSection from "@/components/scanpro/OnboardingStepsSection";
 import { ArrowRight, Check, X, Play, Pause } from "lucide-react";
-import industryAutomotiveBwGreen from "@/assets/industry-automotive-bw-green.jpg";
-import industryAerospaceBwGreen from "@/assets/industry-aerospace-bw-green.jpg";
-import industryPharmaBwGreen from "@/assets/industry-pharma-bw-green.jpg";
-import industryElectronics from "@/assets/industry-electronics.jpg";
-import industryValveBwGreen from "@/assets/industry-valve-bw-green.jpg";
+import industryRailBwGreen from "@/assets/industry-rail-bw-green.jpg";
+import industryEnergyBwGreen from "@/assets/industry-energy-bw-green.jpg";
+import industryMiningBwGreen from "@/assets/industry-mining-bw-green.jpg";
+import industryHeavySteelBwGreen from "@/assets/industry-heavysteel-bw-green.jpg";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -66,717 +73,9 @@ import auditorEuropeanBwGreen from "@/assets/auditor-european-bw-green.jpg";
 import auditorMiddleEastBwGreen from "@/assets/auditor-middle-east-bw-green.jpg";
 import auditorSouthAsianBwGreen from "@/assets/auditor-south-asian-bw-green.jpg";
 import auditorAfricanBwGreen from "@/assets/auditor-african-bw-green.jpg";
-import procurementFemaleEuropean from "@/assets/procurement-female-european.jpg";
+import blueprintIndustrialGas from "@/assets/blueprint-industrial-gas.png";
 import { useContentByType, getMediaPublicUrl } from "@/hooks/useContentQuery";
 import { supabase } from "@/integrations/supabase/client";
-
-// Desktop Technology Section with Scroll Effect - Auditor Network Only
-const DesktopFeaturesSection = ({ auditors, scrollToSection }: { auditors: any[], scrollToSection: (id: string) => void }) => {
-  const [visibleCards, setVisibleCards] = useState<number[]>([0, 1]);
-  const [hidingCards, setHidingCards] = useState<number[]>([]);
-  const sectionRef = useRef<HTMLElement>(null);
-  const isInView = useInView(sectionRef, { amount: 0.3 });
-
-  // Professional sequential card animation - Always keep 2 cards visible
-  useEffect(() => {
-    if (!isInView) {
-      setVisibleCards([0, 1]); // Keep first 2 cards visible
-      setHidingCards([]);
-      return;
-    }
-
-    const totalCards = 7; // Updated to 7 cards
-    const showDelay = 1200; // Slower, more professional timing
-    const displayTime = 4000; // How long all cards stay visible
-    const hideDelay = 800;
-
-    // Initialize with first 2 cards visible
-    setVisibleCards([0, 1]);
-
-    const runSequence = () => {
-      // Show remaining cards one by one (starting from card 2)
-      for (let i = 2; i < totalCards; i++) {
-        setTimeout(() => {
-          setVisibleCards(prev => [...prev, i]);
-        }, (i - 2) * showDelay);
-      }
-
-      // After display time, hide cards one by one, but keep first 2
-      setTimeout(() => {
-        for (let i = totalCards - 1; i >= 2; i--) {
-          setTimeout(() => {
-            setHidingCards(prev => [...prev, i]);
-          }, (totalCards - 1 - i) * hideDelay);
-        }
-
-        // Clear hiding cards and reset to show first 2
-        setTimeout(() => {
-          setVisibleCards([0, 1]);
-          setHidingCards([]);
-        }, (totalCards - 2) * hideDelay + 500);
-      }, (totalCards - 2) * showDelay + displayTime);
-    };
-
-    // Initial run
-    setTimeout(runSequence, 1000);
-
-    // Repeat the sequence
-    const cycleTime = ((totalCards - 2) * showDelay) + displayTime + ((totalCards - 2) * hideDelay) + 2000;
-    const interval = setInterval(runSequence, cycleTime);
-
-    return () => clearInterval(interval);
-  }, [isInView]);
-
-  const handleCardClick = (index: number) => {
-    // Remove from hiding list and add to visible if not already visible
-    setHidingCards(prev => prev.filter(i => i !== index));
-    if (!visibleCards.includes(index)) {
-      setVisibleCards(prev => [...prev, index]);
-    }
-  };
-
-  return (
-    <section 
-      ref={sectionRef}
-      data-nav-theme="light"
-      className="relative py-12 sm:py-16 md:py-20 bg-white"
-    >
-        <div className="mx-auto max-w-[1400px] px-8">
-        
-        {/* Headline Above Globe */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-8 md:mb-12"
-        >
-          <h2 className="section-headline text-foreground">
-            Your auditor, anywhere, anytime
-          </h2>
-        </motion.div>
-        
-        {/* Auditor Network Section - Horizontal Layout */}
-        <div className="relative min-h-[500px] sm:min-h-[600px] md:min-h-[700px]">
-          
-          {/* Modern 3D Globe with Enhanced Effects */}
-          <motion.div 
-            className="absolute flex items-center justify-center pointer-events-none" 
-            style={{ 
-              zIndex: 0,
-              width: '100%',
-              height: '100%',
-              top: '20%',
-              left: 0,
-              right: 0,
-              bottom: '-20%'
-            }}
-          >
-            {/* Globe with gradient and depth */}
-            <div className="relative w-full h-full flex items-center justify-center">
-              {/* Glow effect behind globe */}
-              <motion.div
-                className="absolute w-[600px] h-[600px] rounded-full"
-                style={{
-                  background: 'radial-gradient(circle, rgba(168, 197, 184, 0.1) 0%, transparent 70%)',
-                  filter: 'blur(40px)'
-                }}
-                animate={{
-                  scale: [1, 1.1, 1],
-                  opacity: [0.2, 0.4, 0.2]
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-              
-              {/* Main dotted map with reduced opacity */}
-              <motion.div
-                className="absolute w-full h-full"
-                style={{ 
-                  background: `url(${dottedWorldMap}) center center / contain no-repeat`,
-                  opacity: 0.35,
-                }}
-                animate={{ 
-                  rotateY: [0, 5, 0, -5, 0],
-                  scale: [1, 1.02, 1, 1.02, 1]
-                }}
-                transition={{
-                  duration: 20,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-              
-              {/* Animated connection lines overlay */}
-              <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ opacity: 0.2 }}>
-                <defs>
-                  <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style={{ stopColor: 'hsl(var(--primary))', stopOpacity: 0 }} />
-                    <stop offset="50%" style={{ stopColor: 'hsl(var(--primary))', stopOpacity: 0.8 }} />
-                    <stop offset="100%" style={{ stopColor: 'hsl(var(--primary))', stopOpacity: 0 }} />
-                  </linearGradient>
-                </defs>
-                
-                {/* Animated pulse lines across globe */}
-                {[...Array(6)].map((_, i) => (
-                  <motion.line
-                    key={i}
-                    x1="20%"
-                    y1={`${20 + i * 12}%`}
-                    x2="80%"
-                    y2={`${25 + i * 12}%`}
-                    stroke="url(#lineGradient)"
-                    strokeWidth="2"
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    animate={{ 
-                      pathLength: [0, 1, 0],
-                      opacity: [0, 0.6, 0]
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      delay: i * 0.5,
-                      ease: "easeInOut"
-                    }}
-                  />
-                ))}
-              </svg>
-            </div>
-          </motion.div>
-
-          {/* Auditor Cards - Professional Sequential Animation */}
-          <AnimatePresence>
-{[
-              { 
-                name: "Sarah Chen", 
-                title: "Lead Auditor VDA 6.3",
-                location: "Shanghai, China",
-                continent: "Asia",
-                region: "East Asia",
-                availability: "Available Now",
-                rating: 4.9,
-                image: auditorFemaleAsianBwGreen,
-                top: "38%", 
-                left: "78%", 
-              },
-              { 
-                name: "Marcus Silva", 
-                title: "ISO 9001 Specialist",
-                location: "São Paulo, Brazil",
-                continent: "South America",
-                region: "Latin America",
-                availability: "Available in 24h",
-                rating: 4.8,
-                image: auditorLatinBwGreen,
-                top: "70%", 
-                left: "34%", 
-              },
-              { 
-                name: "Anna Schmidt", 
-                title: "Lead Auditor IATF 16949",
-                location: "Berlin, Germany",
-                continent: "Europe",
-                region: "Central Europe",
-                availability: "Available Now",
-                rating: 5.0,
-                image: auditorFemaleEuropeanBwGreen,
-                top: "12%", 
-                left: "54%", 
-              },
-              { 
-                name: "James Wilson", 
-                title: "Quality Systems Expert",
-                location: "Chicago, USA",
-                continent: "North America",
-                region: "United States",
-                availability: "Available in 48h",
-                rating: 4.7,
-                image: auditorEuropeanBwGreen,
-                top: "68%", 
-                left: "18%", 
-              },
-              { 
-                name: "Omar Hassan", 
-                title: "Lead Auditor ISO 14001",
-                location: "Dubai, UAE",
-                continent: "Middle East",
-                region: "Gulf Region",
-                availability: "Available Now",
-                rating: 4.9,
-                image: auditorMiddleEastBwGreen,
-                top: "30%", 
-                left: "60%", 
-              },
-              { 
-                name: "Priya Sharma", 
-                title: "Automotive QA Specialist",
-                location: "Mumbai, India",
-                continent: "Asia",
-                region: "South Asia",
-                availability: "Available in 24h",
-                rating: 4.8,
-                image: auditorSouthAsianBwGreen,
-                top: "46%", 
-                left: "70%", 
-              },
-              { 
-                name: "Kwame Mensah", 
-                title: "Lead Auditor ISO 9001",
-                location: "Lagos, Nigeria",
-                continent: "Africa",
-                region: "West Africa",
-                availability: "Available Now",
-                rating: 4.9,
-                image: auditorAfricanBwGreen,
-                top: "56%", 
-                left: "48%", 
-              },
-            ].map((auditor, index) => {
-              const isVisible = visibleCards.includes(index);
-              const isHiding = hidingCards.includes(index);
-              const shouldShow = isVisible && !isHiding;
-              
-              return shouldShow ? (
-                <motion.div
-                  key={auditor.name}
-                  className="absolute z-20 cursor-pointer"
-                  style={{ top: auditor.top, left: auditor.left }}
-                  initial={{ 
-                    scale: 0, 
-                    opacity: 0, 
-                    y: 40,
-                    rotateX: -15 
-                  }}
-                  animate={{ 
-                    scale: 1, 
-                    opacity: 1, 
-                    y: 0,
-                    rotateX: 0
-                  }}
-                  exit={{ 
-                    scale: 0.8, 
-                    opacity: 0, 
-                    y: -20,
-                    rotateX: 15,
-                    transition: {
-                      duration: 0.6,
-                      ease: [0.43, 0.13, 0.23, 0.96]
-                    }
-                  }}
-                  transition={{
-                    duration: 0.8,
-                    ease: [0.22, 1, 0.36, 1],
-                    type: "spring",
-                    stiffness: 100,
-                    damping: 15
-                  }}
-                  whileHover={{ 
-                    scale: 1.05, 
-                    y: -5,
-                    transition: { duration: 0.3 }
-                  }}
-                  onClick={() => handleCardClick(index)}
-                >
-                <motion.div 
-                    className="group relative overflow-hidden w-[160px] bg-white border border-border/30 shadow-sm"
-                    whileHover={{
-                      boxShadow: "0 20px 40px rgba(0, 0, 0, 0.12)",
-                      borderColor: "hsl(var(--primary) / 0.3)",
-                    }}
-                  >
-                    {/* Image container with gradient overlay like industry cards */}
-                    <div className="relative h-[140px] overflow-hidden">
-                      <motion.img 
-                        src={auditor.image} 
-                        alt={auditor.name}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      {/* Gradient overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-90" />
-                      
-                      {/* Content on image */}
-                      <div className="absolute bottom-0 left-0 right-0 p-3 z-10">
-                        <h4 className="font-bold text-sm text-white mb-0.5 leading-tight">{auditor.name}</h4>
-                        <p className="text-[10px] text-white/80 leading-tight">{auditor.title}</p>
-                      </div>
-                      
-                      {/* Availability badge */}
-                      <div className="absolute top-2 right-2">
-                        <motion.span 
-                          className={`px-2 py-0.5 rounded-full text-[9px] font-medium backdrop-blur-sm ${
-                            auditor.availability === "Available Now" 
-                              ? "bg-primary/90 text-primary-foreground" 
-                              : "bg-white/20 text-white"
-                          }`}
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          transition={{ delay: 0.3, type: "spring" }}
-                        >
-                          {auditor.availability === "Available Now" ? "Available" : "24h"}
-                        </motion.span>
-                      </div>
-                    </div>
-                    
-                    {/* Bottom info bar */}
-                    <div className="p-2.5 bg-white border-t border-border/20">
-                      <div className="flex items-center justify-between">
-                        <span className="text-[10px] text-muted-foreground">{auditor.location.split(',')[0]}</span>
-                        <div className="flex items-center gap-1">
-                          <span className="text-[10px] font-semibold text-primary">★</span>
-                          <span className="text-[10px] font-semibold text-foreground">{auditor.rating}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                </motion.div>
-              ) : null;
-            })}
-          </AnimatePresence>
-
-        </div>
-        
-        {/* Description below the globe - refined */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          className="max-w-3xl mx-auto text-center mt-12 px-4"
-        >
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
-            Access local experts certified in{" "}
-            <span className="text-foreground font-medium">VDA 6.3</span>,{" "}
-            <span className="text-foreground font-medium">IATF 16949</span>, or{" "}
-            <span className="text-foreground font-medium">ISO standards</span>
-            —already on the ground where your suppliers operate.
-          </p>
-          
-          {/* Stats row */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6, duration: 0.5 }}
-            className="flex flex-wrap items-center justify-center gap-8 md:gap-16 mt-10"
-          >
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-primary">500+</div>
-              <div className="text-xs sm:text-sm text-muted-foreground mt-1">Certified Auditors</div>
-            </div>
-            <div className="w-px h-10 bg-border hidden sm:block" />
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-primary">45+</div>
-              <div className="text-xs sm:text-sm text-muted-foreground mt-1">Countries Covered</div>
-            </div>
-            <div className="w-px h-10 bg-border hidden sm:block" />
-            <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-primary">24h</div>
-              <div className="text-xs sm:text-sm text-muted-foreground mt-1">Average Response</div>
-            </div>
-          </motion.div>
-        </motion.div>
-      </div>
-    </section>
-  );
-};
-
-// Map Location Marker Component with Tooltip
-const MapLocationMarker = ({ 
-  name, 
-  availability, 
-  left, 
-  top, 
-  delay 
-}: { 
-  name: string; 
-  availability: string; 
-  left: string; 
-  top: string; 
-  delay: number;
-}) => {
-  const [isHovered, setIsHovered] = useState(false);
-
-  return (
-    <motion.div
-      initial={{ scale: 0, opacity: 0 }}
-      whileInView={{ scale: 1, opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ delay, duration: 0.4, type: "spring" }}
-      className="absolute cursor-pointer group z-20"
-      style={{ left, top, transform: 'translate(-50%, -50%)' }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {/* Pulsing ring animation */}
-      <motion.div
-        className="absolute inset-0 rounded-full bg-primary"
-        animate={{
-          scale: [1, 2.2, 1],
-          opacity: [0.7, 0, 0.7],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        style={{ width: '32px', height: '32px', left: '-16px', top: '-16px' }}
-      />
-      
-      {/* Main marker dot */}
-      <motion.div
-        className="w-5 h-5 rounded-full bg-primary border-3 border-white shadow-xl relative z-10"
-        whileHover={{ scale: 1.4 }}
-        transition={{ duration: 0.2 }}
-        style={{
-          boxShadow: '0 4px 12px hsl(var(--primary) / 0.6)'
-        }}
-      />
-
-      {/* Tooltip */}
-      <AnimatePresence>
-        {isHovered && (
-          <motion.div
-            initial={{ opacity: 0, y: 10, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.9 }}
-            transition={{ duration: 0.2 }}
-            className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 pointer-events-none z-30"
-          >
-            <div className="bg-[#1a1a1a] text-white px-5 py-3 rounded-xl shadow-2xl min-w-[180px] border border-white/10">
-              <p className="font-bold text-sm whitespace-nowrap">{name}</p>
-              <div className="flex items-center gap-2 mt-1.5">
-                <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                <p className="text-xs text-white/60 font-medium">{availability}</p>
-              </div>
-            </div>
-            {/* Tooltip arrow */}
-            <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-[1px]">
-              <div className="w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-[#1a1a1a]" />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
-  );
-};
-
-// Mobile Features Section - Auditor Network Only
-const MobileFeaturesSection = ({ auditors }: { auditors: any[] }) => {
-  const [isFanned, setIsFanned] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const visibleAuditors = auditors.slice(0, 3);
-
-  useEffect(() => {
-    const cycle = () => {
-      setTimeout(() => setIsFanned(true), 2000);
-      setTimeout(() => setIsFanned(false), 12000);
-    };
-
-    cycle();
-    const interval = setInterval(cycle, 16000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const handleCardClick = () => {
-    setActiveIndex((prev) => (prev + 1) % auditors.slice(0, 3).length);
-  };
-
-  const getCardStyle = (index: number, totalCards: number) => {
-    const centerIndex = (totalCards - 1) / 2;
-    const adjustedIndex = (index - activeIndex + totalCards) % totalCards;
-    const offset = adjustedIndex - centerIndex;
-    
-    if (isFanned) {
-      return {
-        x: offset * 110,
-        y: Math.abs(offset) * -20,
-        rotateY: offset * -8,
-        rotateZ: offset * 6,
-        scale: 1,
-        opacity: 1,
-        zIndex: totalCards - Math.abs(offset),
-      };
-    } else {
-      return {
-        x: 0,
-        y: 0,
-        rotateY: 0,
-        rotateZ: 0,
-        scale: 0.98,
-        opacity: adjustedIndex === 0 ? 1 : 0,
-        zIndex: totalCards - adjustedIndex,
-      };
-    }
-  };
-
-  return (
-    <section
-      id="auditor-network"
-      data-nav-theme="light"
-      className="relative py-12 sm:py-16 md:py-20 pb-20 sm:pb-24 md:pb-32 overflow-visible bg-white"
-    >
-      <div className="mx-auto max-w-[1400px] px-8">
-        {/* Auditor Network Section - Horizontal Layout */}
-        <div className="relative min-h-[500px] sm:min-h-[600px] md:min-h-[700px]">
-          
-          {/* Dotted World Map Background - HIGHLY VISIBLE */}
-          <div 
-            className="absolute inset-0 flex items-center justify-center pointer-events-none" 
-            style={{ 
-              zIndex: 0,
-              background: `url(${dottedWorldMap}) center center / contain no-repeat`,
-              opacity: 0.4,
-              width: '100%',
-              height: '100%'
-            }}
-          />
-
-          <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-8 sm:gap-10 md:gap-12 xl:gap-20 2xl:gap-28 items-center relative z-10">
-            
-            {/* Left Column: Text Content */}
-            <div className="flex flex-col space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8 text-left">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="flex items-center gap-3"
-              >
-                <div className="w-2.5 h-2.5 rounded-full bg-primary"></div>
-                <span className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">01 Feature</span>
-              </motion.div>
-
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="section-headline text-foreground max-w-xl"
-              >
-                Global On-Demand Auditor Network
-              </motion.h2>
-
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-                className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed"
-              >
-                Certified auditors in 90+ countries. On-site within 48 hours. €700 flat rate.
-              </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-              >
-              <button className="bg-white border-2 border-primary text-primary px-6 sm:px-8 py-2.5 sm:py-3 font-semibold text-sm sm:text-base transition-all duration-300 hover:bg-primary hover:text-white flex items-center gap-2 sm:gap-3 group">
-                  <span>Learn more</span>
-                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
-                </button>
-              </motion.div>
-            </div>
-
-            {/* Right Column: Auditor Cards Animation */}
-            <div className="flex justify-start">
-              <div 
-                className="relative w-full max-w-md"
-                style={{ perspective: "2000px" }}
-              >
-                <div className="relative h-[450px] flex items-center justify-start pl-8">
-                  {visibleAuditors.map((auditor, auditorIndex) => {
-                    const style = getCardStyle(auditorIndex, visibleAuditors.length);
-                    
-                    return (
-                      <motion.div
-                        key={auditor.location + auditor.region}
-                        className="absolute cursor-pointer"
-                        onClick={handleCardClick}
-                        initial={false}
-                        whileHover={{ scale: isFanned ? 1.05 : 1 }}
-                        animate={{
-                          x: style.x,
-                          y: style.y,
-                          rotateY: style.rotateY,
-                          rotateZ: style.rotateZ,
-                          scale: style.scale,
-                          opacity: style.opacity,
-                          zIndex: style.zIndex,
-                        }}
-                        transition={{
-                          duration: 2.5,
-                          delay: isFanned ? auditorIndex * 0.25 : (visibleAuditors.length - auditorIndex) * 0.08,
-                          ease: [0.33, 1, 0.68, 1],
-                          type: "tween",
-                        }}
-                        style={{
-                          transformStyle: "preserve-3d",
-                          willChange: "transform, opacity",
-                        }}
-                      >
-                        <div
-                          className={`relative w-[220px] h-[280px] sm:w-[260px] sm:h-[320px] lg:w-[105px] lg:h-[135px] xl:w-[300px] xl:h-[390px] 2xl:w-[360px] 2xl:h-[460px] 3xl:w-[400px] 3xl:h-[520px] overflow-hidden bg-gradient-to-br ${auditor.gradient}`}
-                          style={{
-                            boxShadow: `
-                              0 25px 50px -12px rgba(0, 0, 0, 0.5),
-                              0 0 30px rgba(236, 72, 153, 0.2)
-                            `,
-                          }}
-                        >
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                          
-                          <div className="absolute inset-0 flex items-center justify-center pt-6 sm:pt-8 lg:pt-3 xl:pt-9 2xl:pt-11 3xl:pt-14">
-                            <div className="relative w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] lg:w-[90px] lg:h-[90px] xl:w-[185px] xl:h-[185px] 2xl:w-[215px] 2xl:h-[215px] 3xl:w-[240px] 3xl:h-[240px] rounded-full overflow-hidden border-2 border-white/10">
-                              <img
-                                src={auditor.image}
-                                alt={`Professional auditor from ${auditor.location}`}
-                                className="w-full h-full object-cover mix-blend-luminosity opacity-90"
-                              />
-                              <div 
-                                className="absolute inset-0 rounded-full pointer-events-none mix-blend-overlay"
-                                style={{
-                                  background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%)",
-                                }}
-                              />
-                            </div>
-                          </div>
-
-                          <div className="absolute bottom-4 sm:bottom-6 lg:bottom-2 xl:bottom-7 2xl:bottom-9 3xl:bottom-14 left-0 right-0 flex justify-center px-4 sm:px-6 lg:px-2">
-                            <div className="bg-black/30 backdrop-blur-md border border-white/20 rounded-full px-4 sm:px-6 lg:px-2 xl:px-8 2xl:px-10 py-2 sm:py-3 lg:py-1 xl:py-3.5 2xl:py-4 w-full">
-                              <p className="text-white font-sans font-bold text-sm sm:text-base lg:text-[9px] xl:text-lg 2xl:text-2xl 3xl:text-3xl text-center">
-                                {auditor.location}
-                              </p>
-                              <p className="text-white/80 font-sans text-xs sm:text-sm lg:text-[8px] xl:text-base 2xl:text-xl 3xl:text-2xl text-center">
-                                {auditor.region}
-                              </p>
-                            </div>
-                          </div>
-
-                          <div 
-                            className="absolute inset-0 pointer-events-none"
-                            style={{
-                              background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)",
-                            }}
-                          />
-                        </div>
-                      </motion.div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
 
 // Compliance Standards Grid with Modal
 const ComplianceStandardsGrid = () => {
@@ -1325,48 +624,48 @@ const IndustryUseCasesGrid = () => {
 
   const useCases: IndustryUseCase[] = [
     {
-      image: industryAutomotiveBwGreen,
-      title: "Automotive: PPAP Validation & Tool Audits",
-      useCase: "Qualify a new Tier-2 supplier for precision parts in days, not weeks.",
+      image: industryRailBwGreen,
+      title: "Rail & Rolling Stock: EN 15085 Welding Qualification & ÖBB / ÖBB-RCG Supplier Audits",
+      useCase: "Qualify a Kazakh rail-component supplier for an Austrian operator on EN 15085 CL1 welding within days, not months.",
       solutions: [
-        "Complete First Article Inspection with automatic document creation",
-        "Supplier development according to IATF 16949",
-        "Automatic release process with ERP integration",
-        "VDA 6.3 compliant process assessment"
+        "Welder, WPQR and WPS verification per EN 15085-2 / EN ISO 3834-2",
+        "Bogie and wheelset weld inspection with VT/PT/MT evidence capture",
+        "Traceability of S355J2+N / S690QL plates and filler material certificates (3.1 / 3.2)",
+        "ÖBB and ČD/ZSSK acceptance package generated automatically"
       ],
-      result: "Result: Qualification in 3 days instead of 3 weeks, complete PPAP documentation digitally available."
+      result: "Result: AKCP-vetted welding supplier qualified in 3 days instead of 8 weeks, full EN 15085 dossier corridor-ready."
     },
     {
-      image: industryAerospaceBwGreen,
-      title: "Aerospace: AS9100 Compliance & Critical Process Validation",
-      useCase: "Validate welding processes at suppliers of critical aircraft components.",
+      image: industryEnergyBwGreen,
+      title: "Energy & Pipelines: API Q1 / EN ISO 3834 Fabrication & FAT Witness",
+      useCase: "Witness Factory Acceptance Test of a pressure vessel and pipeline spool for a Kazakh oil & gas operator.",
       solutions: [
-        "Welding process qualification with complete documentation",
-        "Material tracking and certificate tracking",
-        "AS9100-compliant reporting",
-        "Critical process parameter monitoring"
+        "API Q1 / API 6A / API 6D fabrication and supplier surveillance",
+        "PED 2014/68/EU and EN 13480 / EN 13445 conformity verification",
+        "NDT package — RT/UT/PT — witnessed by EN 9712 Level 2 inspectors",
+        "FAT/SAT report aligned with KazMunayGas, OMV and Uniper expectations"
       ]
     },
     {
-      image: industryPharmaBwGreen,
-      title: "Pharma: GMP Audits & Clean Room Assessments",
-      useCase: "GMP audit of an API manufacturer before contract signing.",
+      image: industryMiningBwGreen,
+      title: "Mining & Minerals: Heavy Equipment Capability & HSE Audits",
+      useCase: "Capability audit of a Kazakh fabricator producing crusher liners and conveyor structures for a European mining operator.",
       solutions: [
-        "Sterilization process validation with FDA-compliant documentation",
-        "Clean Room assessment with automatic classification",
-        "Change Control and deviation management",
-        "Validation processes fully documented"
+        "ISO 9001 + ISO 45001 capability and HSE assessment on-site",
+        "Heat-treatment, hardness and wear-plate metallurgy verification",
+        "Lifting gear, structural welds and load-test records reviewed",
+        "Conflict-mineral and Kazakh subsoil-use licensing checks"
       ]
     },
     {
-      image: industryValveBwGreen,
-      title: "Chemical & Process Industry: REACH Compliance & Process Safety",
-      useCase: "Safety assessment of chemical plants with comprehensive risk evaluation.",
+      image: industryHeavySteelBwGreen,
+      title: "Heavy Steel Fabrication & EPC: EN 1090 EXC3/4 & VDA 6.3 Process Audits",
+      useCase: "Pre-award process audit of an Austrian EPC contractor's Kazakh steel fabrication partner for a corridor industrial-park project.",
       solutions: [
-        "Plant safety inspection with automatic risk assessment",
-        "Environmental audits and REACH compliance check",
-        "Action tracking with deadline monitoring",
-        "Process safety according to COMAH/Seveso"
+        "EN 1090-2 EXC3/EXC4 fabrication readiness and FPC assessment",
+        "VDA 6.3 P1–P7 process scoring for project-driven manufacturing",
+        "Welding coordinator (EN ISO 14731) and IWE/IWT verification",
+        "Corrective-action and CAPA tracking until close-out under NDA"
       ]
     }
   ];
@@ -1378,65 +677,55 @@ const IndustryUseCasesGrid = () => {
       className="py-24 md:py-32 bg-background"
     >
       <div className="mx-auto max-w-[1400px] px-8">
-        {/* Header - offmenu.design "Projects" Style */}
-        <div className="relative">
-          {/* Giant Background Text - positioned to sit just above the cards */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="relative flex items-end justify-center pointer-events-none overflow-visible mb-[-40px] sm:mb-[-60px] md:mb-[-100px] lg:mb-[-140px]"
-          >
-            <motion.span 
-              style={{ y: useTransform(useScroll().scrollYProgress, [0, 1], [0, -60]) }}
-              className="text-[120px] sm:text-[180px] md:text-[260px] lg:text-[340px] font-bold leading-[0.75] tracking-[-0.04em] select-none whitespace-nowrap bg-clip-text text-transparent"
-            >
-              <span
-                style={{ 
-                  fontFamily: 'Inter, system-ui, sans-serif',
-                  fontWeight: 700,
-                  backgroundImage: 'linear-gradient(180deg, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.08) 30%, rgba(0, 0, 0, 0.03) 70%, rgba(0, 0, 0, 0) 100%)',
-                  WebkitBackgroundClip: 'text',
-                  backgroundClip: 'text',
-                  color: 'transparent'
-                }}
-              >
-                Projects
-              </span>
-            </motion.span>
-          </motion.div>
-        </div>
+        {/* Header — standard project headline pattern */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-12 md:mb-16"
+        >
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-12 h-px bg-foreground" />
+            <span className="section-eyebrow">Projects</span>
+          </div>
+          <h2 className="section-headline text-foreground max-w-3xl">
+            AKCP corridor use cases
+          </h2>
+          <p className="mt-4 text-lg text-muted-foreground max-w-2xl">
+            How AKCP members procure and qualify partners across regulated corridor sectors — rail, energy, mining and heavy steel fabrication, between Austria and Kazakhstan.
+          </p>
+        </motion.div>
 
         {/* VanMoof-style Product Showcase Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-[1400px] mx-auto">
-          {/* Large card - Automotive */}
+          {/* Large card - Rail & Rolling Stock */}
           <IndustryShowcaseCard
             useCase={useCases[0]}
             onClick={() => setSelectedUseCase(useCases[0])}
-            badge="Automotive"
+            badge="Rail & Rolling Stock"
             isLarge={true}
             delay={0}
           />
 
-          {/* Top right - Aerospace */}
+          {/* Top right - Energy & Pipelines */}
           <IndustryShowcaseCard
             useCase={useCases[1]}
             onClick={() => setSelectedUseCase(useCases[1])}
-            badge="Aerospace"
+            badge="Energy & Pipelines"
             delay={0.1}
           />
 
-          {/* Bottom right - Pharma */}
+          {/* Bottom right - Mining & Minerals */}
           <IndustryShowcaseCard
             useCase={useCases[2]}
             onClick={() => setSelectedUseCase(useCases[2])}
-            badge="Pharma"
+            badge="Mining & Minerals"
             delay={0.2}
           />
         </div>
 
-        {/* Full width bottom card - Chemical */}
+        {/* Full width bottom card - Heavy Steel Fabrication & EPC */}
         <motion.button
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -1448,24 +737,24 @@ const IndustryUseCasesGrid = () => {
           {/* Full-bleed image container */}
           <div className="relative overflow-hidden aspect-[21/9] md:aspect-[3/1]">
             {/* Full-bleed image */}
-            <img 
-              src={useCases[3].image} 
+            <img
+              src={useCases[3].image}
               alt={useCases[3].title}
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            
+
             {/* Gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-500" />
-            
+
             {/* Content overlay */}
             <div className="absolute bottom-0 left-0 top-0 flex flex-col justify-center p-6 md:p-10 lg:p-12 max-w-xl z-10">
               {/* Badge */}
               <span className="inline-block px-3 py-1 bg-white/15 backdrop-blur-sm rounded-full text-[10px] font-medium text-white uppercase tracking-wider mb-3 w-fit">
-                Chemical & Process
+                Heavy Steel Fabrication & EPC
               </span>
-              
+
               <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2 leading-tight">
-                REACH Compliance & Process Safety
+                EN 1090 EXC3/4 & VDA 6.3 Process Audits
               </h3>
               
               <p className="text-white/70 text-sm md:text-base line-clamp-2 hidden md:block">
@@ -1509,28 +798,28 @@ const ChallengeToggleSection = () => {
   const withScanProContent = [
     {
       icon: "checkbox-on",
-      title: "€700 flat—budget secured",
-      description: "Finance approves instantly. No surprises."
+      title: "Predictable, scoped pricing",
+      description: "Finance approves immediately. No surprises."
     },
     {
       icon: "zap",
-      title: "Auditor on-site in 48h",
-      description: "Your supplier issues don't wait—neither should you."
+      title: "Auditor on-site in 48 hours",
+      description: "Supplier issues do not wait — and you should not wait either."
     },
     {
       icon: "calendar",
-      title: "1-3 day structured audit",
-      description: "Minimal disruption to your team and supplier."
+      title: "1–3 day structured audit",
+      description: "Minimal disruption for your team and supplier."
     },
     {
       icon: "analytics",
-      title: "Report in 24h, not weeks",
-      description: "Make decisions while the context is fresh."
+      title: "Report in 24 hours, not weeks",
+      description: "Make decisions while the context is still clear."
     },
     {
       icon: "checkbox-on",
       title: "Every audit, same standard",
-      description: "AI ensures consistency your QM team can trust."
+      description: "AI ensures consistency your QM team can rely on."
     },
     {
       icon: "camera",
@@ -1542,33 +831,33 @@ const ChallengeToggleSection = () => {
   const traditionalContent = [
     {
       icon: "coin",
-      title: "€15K-€25K per audit",
-      description: "Budget fights, travel expenses, hotel costs."
+      title: "Opaque, escalating audit cost",
+      description: "Budget discussions, travel expenses, hotel costs."
     },
     {
       icon: "clock",
-      title: "2-3 weeks just to start",
-      description: "Your quality engineer's calendar is full."
+      title: "2–3 weeks just to start",
+      description: "Your quality engineer is not available."
     },
     {
       icon: "close",
-      title: "3-5 days on-site",
-      description: "Your engineer away from their real work."
+      title: "3–5 days on-site",
+      description: "Your engineer is away from their actual work."
     },
     {
       icon: "alert",
-      title: "Report? Maybe in 10 days",
-      description: "By then, everyone forgot the details."
+      title: "Report delayed — maybe 10 days",
+      description: "By then, the details are forgotten."
     },
     {
       icon: "close",
-      title: "Quality depends on who's sent",
+      title: "Quality depends on who is sent",
       description: "Junior auditor today, expert tomorrow."
     },
     {
       icon: "alert",
-      title: "Photos? What photos?",
-      description: "Documentation gaps that hurt you later."
+      title: "Photos missing",
+      description: "Documentation gaps that cause problems later."
     },
   ];
 
@@ -1577,7 +866,7 @@ const ChallengeToggleSection = () => {
   return (
     <section 
       data-nav-theme="light"
-      className="pt-24 pb-12 md:pt-32 md:pb-16 bg-white"
+      className="pt-24 pb-12 md:pt-32 md:pb-16 bg-background"
       id="challenge"
     >
       <div className="mx-auto max-w-[1400px] px-8">
@@ -1604,7 +893,7 @@ const ChallengeToggleSection = () => {
               aria-label="Toggle comparison"
             >
               <motion.div
-                className="absolute top-0.5 left-0.5 w-7 h-7 bg-white"
+                className="absolute top-0.5 left-0.5 w-7 h-7 bg-background"
                 animate={{ x: isWithScanPro ? 32 : 0 }}
                 transition={{ type: 'spring', stiffness: 500, damping: 30 }}
               />
@@ -1623,8 +912,8 @@ const ChallengeToggleSection = () => {
 
         <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
           {isWithScanPro 
-            ? "What procurement directors, quality managers, and CFOs see when they switch."
-            : "The hidden cost of 'we've always done it this way.'"}
+            ? "What procurement directors, quality managers, and CFOs experience when they switch."
+            : "The hidden cost of 'we have always done it this way.'"}
         </p>
 
         <motion.div
@@ -1663,7 +952,7 @@ const fallbackAuditors = [
   { image: auditorFemaleAsian, location: "Asia", region: "Southeast Asia", gradient: "from-gray-800 via-gray-900 to-black", gender: "female" },
 ];
 
-// How Does CEIP Work Carousel - Card Design with Original Visuals
+// How Does YVOO Work Carousel - Card Design with Original Visuals
 const HowItWorksCarousel = () => {
   const [currentStep, setCurrentStep] = useState(0);
   
@@ -1671,7 +960,7 @@ const HowItWorksCarousel = () => {
     {
       number: "01",
       title: "One click. Audit requested.",
-      description: "Your procurement team submits via platform or ERP integration. No RFQs, no vendor negotiations, no calendar juggling. Done.",
+      description: "Your procurement team submits through the platform or ERP integration. No RFQs, no vendor negotiations, no calendar coordination.",
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
           {/* 3D Earth */}
@@ -1707,7 +996,7 @@ const HowItWorksCarousel = () => {
     {
       number: "02",
       title: "Local expert assigned instantly",
-      description: "Our AI matches a certified auditor near your supplier—no travel costs, no jet lag, no delays. They know the language and the local context.",
+      description: "Our AI matches a certified auditor near your supplier — no travel costs, no jet lag, no delays. They know the language and the local context.",
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
           <div className="relative w-full max-w-[180px] sm:max-w-[350px] md:max-w-[450px] h-[140px] sm:h-[280px] md:h-[360px]">
@@ -1719,7 +1008,7 @@ const HowItWorksCarousel = () => {
     {
       number: "03",
       title: "Watch progress live",
-      description: "Your quality manager sees real-time updates. Chat directly with the auditor. Know exactly what's happening without being there.",
+      description: "Your quality manager sees real-time updates. Chat directly with the auditor. See exactly what is happening without being there.",
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
           {/* Chat Interface */}
@@ -1791,8 +1080,8 @@ const HowItWorksCarousel = () => {
     },
     {
       number: "04",
-      title: "Report in your inbox. Tomorrow.",
-      description: "AI-structured report with photos, findings, and action items—ready for your QM system. No more waiting weeks for documentation.",
+      title: "Report in your inbox. Next day.",
+      description: "AI-structured report with photos, findings, and action items — ready for your QM system. No more waiting weeks for documentation.",
       visual: (
         <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 md:p-8">
           <div className="bg-[#ebebeb] p-4 sm:p-6 md:p-8 w-full max-w-[200px] sm:max-w-[320px] md:max-w-[380px] h-[200px] sm:h-[320px] md:h-[400px] flex flex-col justify-center gap-3">
@@ -2132,15 +1421,15 @@ const ScanProPlus = () => {
   return (
     <div className="min-h-screen relative">
       <PageSEO
-        title="ScanPro+ — AI-Powered Audits of Croatian Manufacturers | CEIP"
-        description="CEIP ScanPro+ runs on-site audits of Đuro Đaković, Končar, Brodosplit, Rimac, AD Plastik, Dalekovod and 162,000+ FINA-registered Croatian suppliers. AI copilot, equipment intelligence, dynamic VDA 6.3 / EN 1090-2 / IATF 16949 scoring. From €700 per audit with HGK-certified Croatian lead auditors."
+        title="ScanPro+ for AKCP — Corridor Audit Platform"
+        description="AI-guided AKCP member audits across the Austrian–Kazakh corridor. Dispatch vetted engineers, auditors and inspectors with evidence-backed reports."
         canonical="/scanpro-plus"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "SoftwareApplication",
-          "name": "CEIP ScanPro+",
+          "name": "YVOO ScanPro+ for AKCP",
           "applicationCategory": "BusinessApplication",
-          "description": "AI-powered audit execution platform for verifying Croatian manufacturers — VDA 6.3, IATF 16949, EN 1090-2, EN ISO 3834-2 templates, equipment intelligence, predictive risk scoring."
+          "description": "AI-powered audit execution platform for AKCP members, bilateral partner verification and on-demand expert dispatch across the Middle Corridor."
         }}
       />
       <PageGridOverlay />
@@ -2151,7 +1440,7 @@ const ScanProPlus = () => {
       <section
         data-nav-theme="light"
         id="hero"
-        className="relative min-h-[100dvh] flex flex-col bg-white"
+        className="relative min-h-[100dvh] flex flex-col bg-background"
       >
         <HeroSquaresAnimation className="top-24 right-8 md:top-28 md:right-20 lg:top-32 lg:right-24" />
         {/* Main Content */}
@@ -2169,7 +1458,7 @@ const ScanProPlus = () => {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="text-sm text-foreground/50 font-mono tracking-wide mb-4 md:mb-6"
               >
-                Audits of Croatian Suppliers · CEIP ScanPro+
+                ScanPro+ · AKCP Member Audit Platform
               </motion.p>
 
               {/* Headline */}
@@ -2179,40 +1468,23 @@ const ScanProPlus = () => {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.03em] leading-[0.95] text-foreground max-w-5xl"
               >
-                Audit any Croatian<br />
-                supplier in 48h.
+                Audit any partner<br />
+                on the corridor.
               </motion.h1>
 
               {/* Subtitle + CTA - right-offset like Homepage */}
-              <div className="mt-8 md:mt-12 lg:mt-16 ml-[28%] md:ml-[30%] lg:ml-[50%] max-w-xl">
+              <div className="mt-8 md:mt-12 lg:mt-16 md:ml-[30%] lg:ml-[50%] max-w-xl">
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.3 }}
                   className="text-foreground/60 text-base md:text-lg lg:text-xl mb-6 md:mb-8"
                 >
-                  Cut sourcing-trip costs by 78% <span className="mx-3 text-foreground/30">|</span> Audit-ready in 48h from Slavonski Brod to Split.<br />
-                  HGK-registered Croatian lead auditors, NDT Level III inspectors.<br />
-                  VDA 6.3 · IATF 16949 · EN 1090-2 · EN ISO 3834-2 — from €700 per audit.
+                  Dispatch AKCP-vetted engineers, auditors and inspectors to Austrian or Kazakh sites.<br />
+                  Atlas AI structures every audit. Local experts verify. AKCP members decide with evidence.
                 </motion.p>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.5 }}
-                  className="flex flex-col sm:flex-row gap-4"
-                >
-                  <Button asChild size="lg" className="w-full sm:w-auto text-lg">
-                    <a
-                      href="https://ceip.hr/demo"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span className="sm:hidden">See Demo</span>
-                      <span className="hidden sm:inline">See it in action</span>
-                    </a>
-                  </Button>
-                </motion.div>
+                {/* Hero CTAs removed — presentation, not website */}
               </div>
             </motion.div>
           </div>
@@ -2227,15 +1499,15 @@ const ScanProPlus = () => {
         >
           <div className="flex animate-marquee whitespace-nowrap">
             {[...[
-              "Built for high‑performance B2B Supply Chains",
-              "Automotive", "Aerospace", "Medical Devices", "Pharma",
-              "Electronics", "Energy", "Chemical", "Industrial Manufacturing",
-              "Precision Engineering", "Defense", "Rail & Transport",
+              "Built for the Austrian–Kazakh Connectivity Platform",
+              "Rail & Rolling Stock", "Energy & Pipelines", "Logistics & Terminals",
+              "Heavy Steel Fabrication", "Industrial Manufacturing", "Mining & Minerals",
+              "EPC & Industrial Parks", "Automotive Tier-1/2", "Hydropower", "Agri & Food Processing",
             ], ...[
-              "Built for high‑performance B2B Supply Chains",
-              "Automotive", "Aerospace", "Medical Devices", "Pharma",
-              "Electronics", "Energy", "Chemical", "Industrial Manufacturing",
-              "Precision Engineering", "Defense", "Rail & Transport",
+              "Built for the Austrian–Kazakh Connectivity Platform",
+              "Rail & Rolling Stock", "Energy & Pipelines", "Logistics & Terminals",
+              "Heavy Steel Fabrication", "Industrial Manufacturing", "Mining & Minerals",
+              "EPC & Industrial Parks", "Automotive Tier-1/2", "Hydropower", "Agri & Food Processing",
             ]].map((item, i) => (
               <span
                 key={i}
@@ -2253,15 +1525,141 @@ const ScanProPlus = () => {
         </motion.div>
       </section>
 
+      {/* Combined credentials band — industry fit + procurement trust signals */}
+      <section data-nav-theme="light" className="bg-background border-t border-foreground/10">
+        <div className="mx-auto max-w-[1400px] px-8 py-6 md:py-8 space-y-4 md:space-y-5">
+          {/* Row 1 — industry fit */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-center">
+            <p className="md:col-span-4 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+              Made for AKCP member teams in
+            </p>
+            <div className="md:col-span-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-foreground/70">
+              <span>Austrian machinery &amp; OEM suppliers</span>
+              <span className="text-foreground/20">·</span>
+              <span>Kazakh industrial operators</span>
+              <span className="text-foreground/20">·</span>
+              <span>Middle Corridor logistics</span>
+              <span className="text-foreground/20">·</span>
+              <span>Energy, rail and steel fabrication</span>
+            </div>
+          </div>
+          {/* Divider */}
+          <div className="h-px bg-foreground/10" />
+          {/* Row 2 — procurement trust strip */}
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+            {[
+              "AKCP member access",
+              "NDA before dispatch",
+              "Conflict-of-interest declared",
+              "GPS/time-stamped evidence chain",
+              "Corridor-ready report format",
+            ].map((item, i) => (
+              <span key={item} className="flex items-center gap-4">
+                {i > 0 && <span className="text-muted-foreground/30">·</span>}
+                <span>{item}</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* DIN annotation — grid 4→6 */}
       <div className="mx-auto max-w-[1400px] px-4 md:px-8 h-4">
-        <TechnicalAnnotation label="1200" from={4} to={6} />
+        <TechnicalAnnotation label="1200" from={3} to={6} />
       </div>
 
-      {/* Demo Section - Equipment Intelligence */}
+      {/* ============================================================ */}
+      {/* PAIN — name the enemy, then make it concrete                */}
+      {/* ============================================================ */}
+
+      {/* 04 — The broken compromise (problem narrative) */}
+      <BrokenCompromiseSection />
+
+      {/* 05 — Traditional vs ScanPro+ comparison (pain made concrete) */}
+      <section data-nav-theme="light" className="py-24 md:py-32 bg-background">
+        <div className="mx-auto max-w-[1400px] px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-12 md:mb-16"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-px bg-foreground" />
+              <span className="section-eyebrow">The difference</span>
+            </div>
+            <h2 className="section-headline text-foreground max-w-3xl">
+              Traditional delegation vs. AKCP ScanPro+
+            </h2>
+          </motion.div>
+
+          <div className="border border-foreground/15">
+            {/* Header row */}
+            <div className="grid grid-cols-3 bg-foreground/[0.03] border-b border-foreground/15">
+              <div className="p-5 md:p-6 font-mono text-xs md:text-sm uppercase tracking-wider text-foreground/50">Dimension</div>
+              <div className="p-5 md:p-6 font-mono text-xs md:text-sm uppercase tracking-wider text-foreground/50 border-l border-foreground/15">Traditional firms</div>
+              <div className="p-5 md:p-6 font-mono text-xs md:text-sm uppercase tracking-wider text-primary border-l border-foreground/15">ScanPro+</div>
+            </div>
+
+            {[
+              { dim: "Time to on-site", trad: "Bilateral travel planning, visas and calendars", yvoo: "AKCP-vetted local expert dispatched in 48–72h" },
+              { dim: "Time to signed report", trad: "Weeks after the visit", yvoo: "Decision-ready report within 3 days" },
+              { dim: "Expert profile", trad: "General consultant or internal delegation", yvoo: "Engineer, auditor or inspector matched to scope" },
+              { dim: "Corridor reach", trad: "Limited to who can travel", yvoo: "Austria, Kazakhstan and Middle Corridor coverage" },
+              { dim: "Evidence", trad: "Photos in email threads", yvoo: "GPS/time-stamped, structured, signed evidence" },
+              { dim: "Standards", trad: "Different templates per country", yvoo: "ISO, IATF, VDA, EN 15085 and API-ready workflows" },
+              { dim: "Member value", trad: "One-off mission cost", yvoo: "Reusable AKCP intelligence layer" },
+              { dim: "Parallel work", trad: "One visit at a time", yvoo: "Multiple corridor audits scheduled in parallel" },
+            ].map((row, i) => (
+              <div
+                key={row.dim}
+                className={`grid grid-cols-3 ${i !== 7 ? "border-b border-foreground/10" : ""}`}
+              >
+                <div className="p-5 md:p-6 text-sm md:text-base font-medium text-foreground">{row.dim}</div>
+                <div className="p-5 md:p-6 text-sm md:text-base text-muted-foreground border-l border-foreground/10 flex items-start gap-2">
+                  <X className="w-4 h-4 mt-1 flex-shrink-0 text-foreground/30" />
+                  <span>{row.trad}</span>
+                </div>
+                <div className="p-5 md:p-6 text-sm md:text-base text-foreground border-l border-foreground/10 flex items-start gap-2">
+                  <Check className="w-4 h-4 mt-1 flex-shrink-0 text-primary" />
+                  <span className="font-medium">{row.yvoo}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* PROMISE — the mechanism + quantified                         */}
+      {/* ============================================================ */}
+
+      {/* 06 — How ScanPro+ works (3-layer anchor diagram) */}
+      <ThreeLayerPlatformSection />
+
+      {/* 07 — Headline KPI band (promise quantified) */}
+      <HeadlineKpiBand />
+
+      {/* 08 — Global auditor network (THE INNOVATION) —
+          on-demand, accredited lead auditors in 40+ countries.
+          This is the mechanism that makes the 7-day / 3-day promise possible —
+          the "Uberization" of complex supplier audits. */}
+      <GlobalNetworkSection />
+
+      {/* ============================================================ */}
+      {/* PROOF OF MECHANISM — why & how it works, then see it run     */}
+      {/* ============================================================ */}
+
+      {/* 09 — Expert-level audits (3-phase tabbed narrative — Before / On-floor / Within 24h) */}
+      <AuditDifferenceSection />
+
+      {/* 09 — Atlas AI methodology (provenance) */}
+      <AtlasAIProvenance />
+
+      {/* 10 — Equipment Intelligence demo (see it run) */}
       <section
         data-nav-theme="light"
-        className="py-24 md:py-32 bg-white"
+        className="py-24 md:py-32 bg-background"
       >
         <div className="mx-auto max-w-[1400px] px-8">
           <motion.div
@@ -2274,7 +1672,7 @@ const ScanProPlus = () => {
               See the platform in action
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl">
-              AI-powered equipment intelligence identifies machines and assesses compliance in real-time.
+              Equipment intelligence: machines, welding stations and site assets are identified on site and matched against AKCP member scope, certification and qualification records.
             </p>
           </motion.div>
 
@@ -2285,140 +1683,32 @@ const ScanProPlus = () => {
             transition={{ duration: 0.8 }}
             className="max-w-5xl mx-auto"
           >
-            <div className="bg-[hsl(0,0%,92%)] p-6 overflow-hidden">
-              <EquipmentIntelligenceDemo />
+            <div className="bg-[hsl(0,0%,92%)] p-2 md:p-4 lg:p-6 overflow-hidden">
+              <ResponsiveDemoFrame designWidth={1280} designHeight={820}>
+                <EquipmentIntelligenceDemo />
+              </ResponsiveDemoFrame>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* ROI Calculator - Visible on Mobile */}
-      <div className="lg:hidden py-6 sm:py-8 bg-white">
-        <HeroROICalculator />
-      </div>
+      {/* 11 — Sample Audit Report (see the output) */}
+      <SampleAuditReportPreview />
 
-      {/* Challenge & Solution - Toggle Section */}
-      <ChallengeToggleSection />
-
-      {/* Auditor Network Section */}
-      {isMobile ? <MobileFeaturesSection auditors={auditors} /> : <DesktopFeaturesSection auditors={auditors} scrollToSection={scrollToSection} />}
-
-      {/* Capabilities Section */}
-      <section 
-        data-nav-theme="light" 
-        className="relative py-24 md:py-32 bg-white overflow-hidden"
-        id="capabilities"
-      >
-        
-        <div className="mx-auto max-w-[1400px] px-8 relative z-10">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-12 md:mb-16 text-center"
-          >
-            <h2 className="section-headline text-foreground max-w-3xl mx-auto mb-4">
-              Give your team superpowers
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              AI capabilities that let procurement, quality & engineering focus on decisions—not paperwork.
-            </p>
-          </motion.div>
-
-          <InfiniteScrollingGallery />
-        </div>
-      </section>
-
-      {/* How Does CEIP Work Carousel */}
-      <HowItWorksCarousel />
-
-
-      {/* Section cut marker B—B */}
+      {/* Section cut marker — proof of mechanism → proof of outcome */}
       <div className="mx-auto max-w-[1400px] px-4 md:px-8">
         <SectionCutMarker section="B" from={0} to={6} />
       </div>
 
-      {/* Results Section - Clean Minimalist */}
-      <section 
-        data-nav-theme="light" 
-        className="py-20 md:py-28 bg-white"
-        id="results"
-      >
-        <div className="mx-auto max-w-[1400px] px-8">
-          
-          {/* Simple Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="section-headline text-foreground mb-4 max-w-3xl mx-auto">
-              What CFOs and Procurement Directors see
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-              Measurable ROI from day one
-            </p>
-          </motion.div>
+      {/* Challenge & Solution toggle — kept as bridge into outcome proof */}
+      <ChallengeToggleSection />
 
-          {/* Clean Stats Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-16">
-            {[
-              { value: '60%', label: 'Lower audit spend' },
-              { value: '70%', label: 'Less coordination time' },
-              { value: '48h', label: 'Request to on-site' },
-              { value: '€0', label: 'Team travel costs' }
-            ].map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="text-center"
-              >
-                <p className="text-4xl md:text-5xl font-bold text-black mb-2">
-                  {stat.value}
-                </p>
-                <p className="text-muted-foreground text-sm">
-                  {stat.label}
-                </p>
-              </motion.div>
-            ))}
-          </div>
+      {/* ============================================================ */}
+      {/* PROOF OF OUTCOME — social proof + evidence numbers           */}
+      {/* ============================================================ */}
 
-          {/* Single Chart Row */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-[#ebebeb] hover:bg-[#e3e3e3] p-6"
-            >
-              <h3 className="text-lg font-semibold text-black mb-1">Cost per Audit</h3>
-              <p className="text-muted-foreground text-sm mb-4">Traditional vs ScanPro+</p>
-              <BusinessImpactChart />
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="bg-[#ebebeb] hover:bg-[#e3e3e3] p-6"
-            >
-              <h3 className="text-lg font-semibold text-black mb-1">12-Month Savings</h3>
-              <p className="text-muted-foreground text-sm mb-4">Based on 20 audits/year</p>
-              <ROITimelineChart />
-            </motion.div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* Testimonial Section - Be Found 3-Column Style */}
-      <section className="py-20 bg-white">
+      {/* 12 — Testimonial / Industry reference (3-col) */}
+      <section className="py-20 bg-background">
         <div className="mx-auto max-w-[1400px] px-8">
           {/* Section Headline */}
           <motion.h2
@@ -2427,186 +1717,94 @@ const ScanProPlus = () => {
             viewport={{ once: true }}
             className="section-headline text-foreground mb-12"
           >
-            Trusted by quality leaders worldwide
+            Built for AKCP corridor sectors with regulated quality requirements
           </motion.h2>
-          
+
           <div className="grid lg:grid-cols-3 gap-0 items-stretch">
-            {/* Stat Card - Primary Color Background */}
+            {/* Stat Card */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               className="bg-primary p-8 flex flex-col justify-between aspect-square"
             >
-              {/* Icon */}
               <div className="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                 </svg>
               </div>
-              
-              {/* Stat */}
               <div>
-                <p className="text-5xl md:text-6xl font-bold text-white tracking-[-0.02em]">
-                  72%
-                </p>
-                <p className="text-xl text-white/90 font-medium mt-2">
-                  faster audit cycles
-                </p>
+                <p className="text-5xl md:text-6xl font-bold text-white tracking-[-0.02em]">3 days</p>
+                <p className="text-xl text-white/90 font-medium mt-2">on-site to signed report</p>
               </div>
             </motion.div>
-            
-            {/* Portrait Photo - Square */}
+
+            {/* Industry visual */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="aspect-square bg-muted overflow-hidden"
+              className="aspect-square bg-background border border-foreground/15 shadow-sm overflow-hidden flex items-center justify-center p-3 relative"
             >
-              <img 
-                src={procurementFemaleEuropean}
-                alt="Dr. Julia Hartmann - VP Quality & Compliance"
-                className="w-full h-full object-cover"
+              {/* Corner ticks — technical-drawing frame */}
+              <span aria-hidden="true" className="absolute top-2 left-2 w-3 h-px bg-foreground/30" />
+              <span aria-hidden="true" className="absolute top-2 left-2 w-px h-3 bg-foreground/30" />
+              <span aria-hidden="true" className="absolute top-2 right-2 w-3 h-px bg-foreground/30" />
+              <span aria-hidden="true" className="absolute top-2 right-2 w-px h-3 bg-foreground/30" />
+              <span aria-hidden="true" className="absolute bottom-2 left-2 w-3 h-px bg-foreground/30" />
+              <span aria-hidden="true" className="absolute bottom-2 left-2 w-px h-3 bg-foreground/30" />
+              <span aria-hidden="true" className="absolute bottom-2 right-2 w-3 h-px bg-foreground/30" />
+              <span aria-hidden="true" className="absolute bottom-2 right-2 w-px h-3 bg-foreground/30" />
+
+              <img
+                src={blueprintIndustrialGas}
+                alt="Technical blueprint — industrial gas storage tank and precision flange assembly"
+                loading="lazy"
+                width={1024}
+                height={1024}
+                className="w-[115%] h-[115%] max-w-none object-contain"
               />
             </motion.div>
-            
-            {/* Quote Content */}
+
+            {/* Industry Reference Content */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="p-8 flex flex-col justify-center space-y-6 bg-white"
+              className="p-8 flex flex-col justify-center space-y-6 bg-background"
             >
-              {/* Company Logo */}
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-foreground flex items-center justify-center">
-                  <span className="text-background text-xs font-bold">LP</span>
-                </div>
-                <span className="text-lg font-bold text-foreground tracking-wide">LINDE PRECISION</span>
-              </div>
-              
-              {/* Quote */}
-              <blockquote className="text-lg text-foreground leading-relaxed">
-                "ScanPro+ transformed how we manage supplier audits. What used to take weeks now happens in days, with complete digital documentation and real-time visibility into every step."
-              </blockquote>
-              
-              {/* Attribution */}
               <div>
-                <p className="font-semibold text-foreground">Dr. Julia Hartmann,</p>
-                <p className="text-sm text-primary">VP Quality & Compliance</p>
+                <p className="font-mono text-xs uppercase tracking-[0.25em] text-foreground/50 mb-2">
+                  Industry reference
+                </p>
+                <p className="text-lg font-bold text-foreground tracking-wide">
+                  Heavy Steel Fabrication & Energy Equipment
+                </p>
+                <p className="text-sm text-foreground/60 mt-1">Austria ↔ Kazakhstan · Corridor multi-site</p>
               </div>
+
+              <blockquote className="text-lg text-foreground leading-relaxed border-l-2 border-primary pl-4">
+                "AKCP members can verify a fabrication partner, review evidence and align corrective actions without sending a full delegation across the corridor."
+              </blockquote>
+
+              <p className="text-xs text-foreground/40 font-mono uppercase tracking-wider">
+                Representative AKCP scenario based on bilateral industrial qualification · Member references available under NDA
+              </p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Measurable ROI Section */}
-      <section className="py-24 bg-white">
-        <div className="mx-auto max-w-[1400px] px-8">
-          {/* Headline */}
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="section-headline text-foreground max-w-2xl mb-16"
-          >
-            Measurable ROI from day one
-          </motion.h2>
+      {/* ============================================================ */}
+      {/* QUALIFICATION — fit & risk filters                           */}
+      {/* ============================================================ */}
 
-          {/* KPI Grid 2x2 — shifted one grid right */}
-          <div className="grid grid-cols-1 lg:grid-cols-6 gap-0">
-            <div className="hidden lg:block lg:col-span-1" />
-            <div className="lg:col-span-5 grid md:grid-cols-2 gap-x-12">
-              {/* KPI 1 */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="pb-12"
-              >
-                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Cost reduction</p>
-                <div className="border-t border-foreground/20 pt-4">
-                  <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
-                    60%
-                  </p>
-                  <p className="text-foreground/60 leading-relaxed text-sm">
-                    Lower cost per audit compared to traditional agencies and consultants
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* KPI 2 */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.05 }}
-                className="pb-12"
-              >
-                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Time savings</p>
-                <div className="border-t border-foreground/20 pt-4">
-                  <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
-                    5 days
-                  </p>
-                  <p className="text-foreground/60 leading-relaxed text-sm">
-                    Average time from order to completed audit report, down from 3-4 weeks
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* KPI 3 */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="pb-12"
-              >
-                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Quality assurance</p>
-                <div className="border-t border-foreground/20 pt-4">
-                  <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
-                    100%
-                  </p>
-                  <p className="text-foreground/60 leading-relaxed text-sm">
-                    Digital evidence capture with AI-verified documentation and audit trails
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* KPI 4 */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.15 }}
-                className="pb-12"
-              >
-                <p className="text-sm text-foreground/50 font-mono tracking-wide mb-2">Global coverage</p>
-                <div className="border-t border-foreground/20 pt-4">
-                  <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 tracking-[-0.02em]">
-                    50+
-                  </p>
-                  <p className="text-foreground/60 leading-relaxed text-sm">
-                    Countries with certified local auditors available within 24-48 hours
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Dimension line — audit cost reduction */}
-      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-        <DimensionLine from="15.000" to="700" unit="€" gridFrom={1} gridTo={5} />
-      </div>
-
-      {/* Compliance Standards - Homepage Style */}
-      <section 
-        data-nav-theme="light" 
-        className="py-24 md:py-32 bg-white"
+      {/* 14 — Compliance standards grid */}
+      <section
+        data-nav-theme="light"
+        className="py-24 md:py-32 bg-background"
       >
         <div className="mx-auto max-w-[1400px] px-8">
           <motion.div
@@ -2616,11 +1814,10 @@ const ScanProPlus = () => {
             className="mb-16 md:mb-20"
           >
             <h2 className="section-headline text-foreground max-w-2xl mb-6">
-              Every standard your customers require
+              The standards AKCP member projects require
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl">
-              Whether your customer is Volkswagen, Bosch, or Airbus—we speak their audit language. 
-              VDA 6.3, IATF 16949, AS9100, and 200+ more frameworks ready to deploy.
+              Audits aligned to bilateral corridor projects — including VDA 6.3, IATF 16949, ISO 9001, ISO 14001, EN 15085, EN ISO 3834 and API Q1.
             </p>
           </motion.div>
 
@@ -2631,192 +1828,67 @@ const ScanProPlus = () => {
             className="mb-12"
           >
             <p className="text-base font-medium text-foreground mb-3">
-              Our auditor network includes professionals certified by:
+              AKCP-vetted engineers, auditors and inspectors are matched against the standards your project requires:
             </p>
             <div className="flex flex-wrap items-center gap-4 text-muted-foreground">
-              <span>TÜV SÜD</span>
+              <span>VDA 6.3</span>
               <span className="text-border">•</span>
-              <span>Bureau Veritas</span>
+              <span>IATF 16949</span>
               <span className="text-border">•</span>
-              <span>SGS</span>
+              <span>ISO 9001 / 14001 / 45001</span>
               <span className="text-border">•</span>
-              <span>DNV</span>
+              <span>EN 15085 / EN ISO 3834</span>
             </div>
           </motion.div>
-          
+
           <ComplianceStandardsGrid />
         </div>
       </section>
 
-      {/* Industry Use Cases - Homepage Style */}
+      {/* 15 — Industry use cases */}
       <IndustryUseCasesGrid />
 
-      {/* Tolerance notation — deployment time */}
-      <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-        <ToleranceNotation nominal="48" tolerance="4" unit="h" label="Deployment" gridColumn={4} />
-      </div>
-
-      {/* Global Network - Homepage Style */}
-      <section 
-        data-nav-theme="light" 
-        className="py-24 md:py-32 bg-background"
-      >
-        <div className="mx-auto max-w-[1400px] px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-16 md:mb-20"
-          >
-            <h2 className="section-headline text-foreground max-w-2xl mb-4">
-              Fits into how you already work
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl">
-              Connect to SAP, Oracle, or your QMS. No rip-and-replace—just better data flowing through your existing systems.
-            </p>
-          </motion.div>
-
-          {/* Two Column Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12">
-            {/* ERP Integration Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-[#ebebeb] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
-            >
-              <h3 className="text-xl font-semibold text-foreground mb-6">ERP Integration</h3>
-              <div className="space-y-4">
-                {[
-                  { title: 'SAP Integration', desc: 'Supplier Evaluation & Release' },
-                  { title: 'Oracle', desc: 'Seamless ERP connectivity' },
-                  { title: 'Microsoft Dynamics', desc: 'Full system integration' },
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-3">
-                    <ArrowRight className="w-5 h-5 flex-shrink-0 mt-0.5 text-foreground" />
-                    <div>
-                      <h4 className="font-medium text-foreground">{item.title}</h4>
-                      <p className="text-sm text-muted-foreground">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Global Network Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="bg-[#ebebeb] p-8 hover:bg-[#e3e3e3] transition-colors duration-300"
-            >
-              <h3 className="text-xl font-semibold text-foreground mb-6">Global Network</h3>
-              <div className="space-y-4">
-                {[
-                  { title: 'On-Demand Availability', desc: 'Same-Day audits worldwide' },
-                  { title: 'Smart Matching', desc: 'Optimal auditor selection' },
-                  { title: 'Quality Assured', desc: 'Rating system & tracking' },
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-3">
-                    <ArrowRight className="w-5 h-5 flex-shrink-0 mt-0.5 text-foreground" />
-                    <div>
-                      <h4 className="font-medium text-foreground">{item.title}</h4>
-                      <p className="text-sm text-muted-foreground">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Dark Stats Banner */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="bg-[#1a1a1a] p-12 lg:p-16"
-          >
-            <h3 className="text-2xl md:text-3xl text-white mb-4">
-              <span className="font-semibold">Your auditor is already there</span>
-            </h3>
-            <p className="text-white/60 text-lg mb-8 max-w-2xl">
-              Need a VDA 6.3 audit at your supplier in Shenzhen? No flights, no hotel costs, no time lost. Book a local expert—on-site within 24 hours.
-            </p>
-            <Button 
-              asChild
-              size="lg"
-              className="bg-white text-foreground hover:bg-white/90"
-            >
-              <a 
-                href="https://ceip.hr/demo"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Book a Demo
-                <ArrowRight className="w-5 h-5" />
-              </a>
-            </Button>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Final CTA - Homepage Style */}
-      <section 
-        data-nav-theme="light" 
-        className="py-24 md:py-32 bg-background"
-        id="cta"
-      >
-        <div className="mx-auto max-w-[1400px] px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            {/* Mixed weight heading */}
-            <h2 className="section-headline text-foreground mb-6 max-w-2xl mx-auto">
-              Your competitors already switched. When will you?
-            </h2>
-            
-            <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto">
-              EU OEM buyers — BMW, Linde Engineering, Siemens Energy, Rimac Group — already use CEIP to audit Croatian suppliers faster, cheaper, and with stronger evidence chains. See how CEIP transforms your Croatian sourcing.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button size="lg">
-                Order Audit
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-              <Button 
-                variant="outline"
-                size="lg"
-                onClick={() => window.open('https://ceip.hr/demo', '_blank')}
-              >
-                Book a Demo
-              </Button>
+      {/* 17 — Security & data handling */}
+      <section data-nav-theme="light" className="bg-background border-y border-foreground/10">
+        <div className="mx-auto max-w-[1400px] px-8 py-12 md:py-16">
+          <div className="flex items-start gap-3 mb-8">
+            <div className="w-12 h-px bg-foreground mt-3" />
+            <div>
+              <p className="section-eyebrow mb-1">Security and data handling</p>
+              <p className="text-sm text-muted-foreground">Designed to pass procurement and IT security reviews. Documentation available on request.</p>
             </div>
-
-            {/* Trust indicators */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="mt-16 pt-8 border-t border-border"
-            >
-              <div className="flex flex-wrap justify-center gap-8 text-sm text-muted-foreground">
-                <span>No setup fees</span>
-                <span>Pay per audit</span>
-                <span>Dedicated account manager</span>
-                <span>Enterprise SLA available</span>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px bg-foreground/10">
+            {[
+              "ISO 27001-aligned",
+              "GDPR compliant",
+              "SOC 2 roadmap",
+              "NDA standard",
+              "EU data residency",
+              "Role-based access",
+            ].map((item) => (
+              <div key={item} className="bg-background p-5 md:p-6">
+                <div className="border-t border-foreground/20 pt-4">
+                  <div className="flex items-center gap-2">
+                    <Check className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                    <span className="text-sm font-medium text-foreground">{item}</span>
+                  </div>
+                </div>
               </div>
-            </motion.div>
-          </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      <Footer />
+      {/* ============================================================ */}
+      {/* CLOSE — make it personal, then commit                        */}
+      {/* ============================================================ */}
+
+      {/* 19 — Final CTA — 3-step onboarding (Demo → QuickScan → Rollout) */}
+      <OnboardingStepsSection />
+
+
+
       </div>
     </div>
   );
