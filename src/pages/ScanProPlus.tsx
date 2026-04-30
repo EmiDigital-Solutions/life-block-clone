@@ -32,7 +32,7 @@ import { ArrowRight, Check, X, Play, Pause } from "lucide-react";
 import industryFoodBwGreen from "@/assets/industry-food-bw-green.jpg";
 import industryEnergyBwGreen from "@/assets/industry-energy-bw-green.jpg";
 import industryAutomotiveBwGreen from "@/assets/industry-automotive-bw-green.jpg";
-import industryRimacUserUpload from "@/assets/industry-rimac-user-upload.png";
+import industryRimacUserUpload from "@/assets/industry-rimac-battery.jpg";
 import industryPharmaBwGreen from "@/assets/industry-pharma-bw-green.jpg";
 import { Button } from "@/components/ui/button";
 import {
