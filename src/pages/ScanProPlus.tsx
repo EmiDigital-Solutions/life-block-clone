@@ -29,10 +29,10 @@ import AtlasAIProvenance from "@/components/scanpro/AtlasAIProvenance";
 import GlobalNetworkSection from "@/components/GlobalNetworkSection";
 import OnboardingStepsSection from "@/components/scanpro/OnboardingStepsSection";
 import { ArrowRight, Check, X, Play, Pause } from "lucide-react";
-import industryRailBwGreen from "@/assets/industry-rail-bw-green.jpg";
+import industryFoodBwGreen from "@/assets/industry-food-bw-green.jpg";
 import industryEnergyBwGreen from "@/assets/industry-energy-bw-green.jpg";
 import industryAutomotiveBwGreen from "@/assets/industry-automotive-bw-green.jpg";
-import industryAerospaceBwGreen from "@/assets/industry-aerospace-bw-green.jpg";
+import industryPharmaBwGreen from "@/assets/industry-pharma-bw-green.jpg";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
