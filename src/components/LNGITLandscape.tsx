@@ -306,10 +306,10 @@ const LNGITLandscape = () => {
         })}
 
         {/* Zone labels */}
-        <div className="absolute top-3 left-4 text-[10px] font-mono text-foreground/20 tracking-[0.3em] uppercase">Global Client Access Zone</div>
-        <div className="absolute top-3 right-4 text-[10px] font-mono text-foreground/20 tracking-[0.3em] uppercase">24/7 Gateway</div>
-        <div className="absolute bottom-3 left-4 text-[10px] font-mono text-foreground/20 tracking-[0.3em] uppercase">Croatian Gov & Data Zone</div>
-        <div className="absolute bottom-3 right-4 text-[10px] font-mono text-foreground/20 tracking-[0.3em] uppercase">Deliverables Zone</div>
+        <div className="absolute top-3 left-4 text-xs font-mono text-foreground/40 tracking-[0.3em] uppercase">Global Client Access Zone</div>
+        <div className="absolute top-3 right-4 text-xs font-mono text-foreground/40 tracking-[0.3em] uppercase">24/7 Gateway</div>
+        <div className="absolute bottom-3 left-4 text-xs font-mono text-foreground/40 tracking-[0.3em] uppercase">Croatian Gov & Data Zone</div>
+        <div className="absolute bottom-3 right-4 text-xs font-mono text-foreground/40 tracking-[0.3em] uppercase">Deliverables Zone</div>
       </div>
 
       {/* Key Integration Points */}
