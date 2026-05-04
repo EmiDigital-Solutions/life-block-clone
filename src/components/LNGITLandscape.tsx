@@ -272,7 +272,7 @@ const LNGITLandscape = () => {
               `}>
                 {isCenter && (
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 bg-primary rounded-full">
-                    <span className="text-[10px] font-bold text-white uppercase tracking-[0.15em]">CEIP Core</span>
+                    <span className="text-[10px] font-bold text-primary-foreground uppercase tracking-[0.15em]">CEIP Core</span>
                   </div>
                 )}
                 {isAgent && (
@@ -288,7 +288,7 @@ const LNGITLandscape = () => {
                 <div className={`${isCenter ? 'text-base md:text-lg' : 'text-xs md:text-sm'} font-bold ${colors.text} leading-tight ${isAgent || node.category === "gov" ? 'mt-1' : ''}`}>
                   {node.label}
                 </div>
-                <div className={`${isCenter ? 'text-xs md:text-sm' : 'text-[11px] md:text-xs'} text-foreground/70 mt-1 leading-tight`}>
+                <div className={`${isCenter ? 'text-xs md:text-sm' : 'text-[11px] md:text-xs'} text-foreground/90 mt-1 leading-tight font-medium`}>
                   {node.sublabel}
                 </div>
                 {isCenter && (
@@ -306,10 +306,10 @@ const LNGITLandscape = () => {
         })}
 
         {/* Zone labels */}
-        <div className="absolute top-3 left-4 text-xs font-mono text-foreground/40 tracking-[0.3em] uppercase">Global Client Access Zone</div>
-        <div className="absolute top-3 right-4 text-xs font-mono text-foreground/40 tracking-[0.3em] uppercase">24/7 Gateway</div>
-        <div className="absolute bottom-3 left-4 text-xs font-mono text-foreground/40 tracking-[0.3em] uppercase">Croatian Gov & Data Zone</div>
-        <div className="absolute bottom-3 right-4 text-xs font-mono text-foreground/40 tracking-[0.3em] uppercase">Deliverables Zone</div>
+        <div className="absolute top-3 left-4 text-xs font-mono text-foreground/70 tracking-[0.3em] uppercase">Global Client Access Zone</div>
+        <div className="absolute top-3 right-4 text-xs font-mono text-foreground/70 tracking-[0.3em] uppercase">24/7 Gateway</div>
+        <div className="absolute bottom-3 left-4 text-xs font-mono text-foreground/70 tracking-[0.3em] uppercase">Croatian Gov & Data Zone</div>
+        <div className="absolute bottom-3 right-4 text-xs font-mono text-foreground/70 tracking-[0.3em] uppercase">Deliverables Zone</div>
       </div>
 
       {/* Key Integration Points */}
@@ -330,7 +330,7 @@ const LNGITLandscape = () => {
           >
             <div className="w-8 h-1 bg-primary rounded-full mb-4" />
             <h4 className="text-sm font-bold text-foreground mb-2 font-mono">{point.title}</h4>
-            <p className="text-xs text-foreground/50 leading-relaxed">{point.desc}</p>
+            <p className="text-xs text-foreground/80 leading-relaxed">{point.desc}</p>
           </motion.div>
         ))}
       </div>
