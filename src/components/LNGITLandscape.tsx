@@ -164,7 +164,7 @@ const LNGITLandscape = () => {
       </div>
 
       {/* Main Landscape */}
-      <div className="relative w-full aspect-[16/10] min-h-[520px] md:min-h-[700px] rounded-xl border border-foreground/10"
+      <div className="relative w-full aspect-[16/10] min-h-[600px] md:min-h-[800px] rounded-xl border border-foreground/10"
         style={{
           background: 'linear-gradient(160deg, hsl(195, 15%, 5%), hsl(195, 10%, 3%), hsl(195, 15%, 6%))',
           overflow: 'visible',
