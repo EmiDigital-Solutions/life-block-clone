@@ -258,7 +258,7 @@ const LNGITLandscape = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.15 + i * 0.05 }}
-              className={`absolute z-10 ${isCenter ? 'w-[200px] md:w-[250px]' : isAgent ? 'w-[150px] md:w-[180px]' : 'w-[140px] md:w-[175px]'}`}
+              className={`absolute z-10 ${isCenter ? 'w-[240px] md:w-[300px]' : isAgent ? 'w-[170px] md:w-[210px]' : 'w-[160px] md:w-[200px]'}`}
               style={{
                 left: `${node.x}%`,
                 top: `${node.y}%`,
