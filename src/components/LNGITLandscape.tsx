@@ -25,35 +25,37 @@ interface DataFlow {
 }
 
 const systems: SystemNode[] = [
-  // Global Client Access Layer (top)
-  { id: "client-eu", label: "EU Clients", sublabel: "Germany · France · Italy · Austria", category: "client", x: 14, y: 8 },
+  // Global Client Access Layer (top row — evenly spaced)
+  { id: "client-eu", label: "EU Clients", sublabel: "Germany · France · Italy · Austria", category: "client", x: 18, y: 6 },
   { id: "client-mena", label: "MENA & Asia Clients", sublabel: "UAE · Saudi Arabia · Japan · Korea", category: "client", x: 50, y: 6 },
-  { id: "client-americas", label: "Americas Clients", sublabel: "USA · Canada · Brazil · Mexico", category: "client", x: 86, y: 8 },
+  { id: "client-americas", label: "Americas Clients", sublabel: "USA · Canada · Brazil · Mexico", category: "client", x: 82, y: 6 },
 
-  // 24/7 Access Gateway
-  { id: "api-gateway", label: "24/7 Secure Gateway", sublabel: "REST API · SSO · Multi-language · Global CDN", category: "integration", x: 50, y: 22 },
+  // 24/7 Access Gateway (row 2)
+  { id: "api-gateway", label: "24/7 Secure Gateway", sublabel: "REST API · SSO · Multi-language · Global CDN", category: "integration", x: 50, y: 20 },
 
-  // CEIP AI Platform — Center
-  { id: "ceip-ai", label: "CEIP AI Platform", sublabel: "Central Intelligence · Zagreb, Croatia", category: "ai", x: 50, y: 46 },
+  // Croatian Government (left column)
+  { id: "gov-ministry", label: "Ministry of Economy", sublabel: "Republic of Croatia · Sustainability Dept.", category: "gov", x: 10, y: 44 },
+  { id: "fina-registry", label: "FINA Business Registry", sublabel: "135,000+ Croatian Enterprises · Financial Data", category: "gov", x: 10, y: 60 },
 
-  // AI Agents (surrounding the center)
+  // AI Agents (row 3 — flanking center)
   { id: "agent-matchmaking", label: "Partner Matchmaking", sublabel: "AI Supplier Search · Capability Scoring", category: "ai-agent", x: 30, y: 34 },
   { id: "agent-audit", label: "Audit Orchestrator", sublabel: "Order Audits · Schedule · Assign Auditors", category: "ai-agent", x: 70, y: 34 },
-  { id: "agent-report", label: "Report Generator", sublabel: "VDA 6.3 · IATF 16949 · ISO 9001 Reports", category: "ai-agent", x: 30, y: 60 },
-  { id: "agent-inspection", label: "Inspection Manager", sublabel: "ScanPro+ · Field Ops · Evidence Collection", category: "ai-agent", x: 70, y: 60 },
 
-  // Croatian Government & Data Sources (left)
-  { id: "gov-ministry", label: "Ministry of Economy", sublabel: "Republic of Croatia · Sustainability Dept.", category: "gov", x: 10, y: 42 },
-  { id: "fina-registry", label: "FINA Business Registry", sublabel: "135,000+ Croatian Enterprises · Financial Data", category: "gov", x: 10, y: 62 },
+  // CEIP AI Platform — Center
+  { id: "ceip-ai", label: "CEIP AI Platform", sublabel: "Central Intelligence · Zagreb, Croatia", category: "ai", x: 50, y: 48 },
 
-  // Data & Intelligence Layer (bottom)
-  { id: "supplier-db", label: "Supplier Database", sublabel: "Digital Twins · Certifications · Capability Maps", category: "data", x: 30, y: 80 },
-  { id: "auditor-network", label: "Auditor Network", sublabel: "Certified Auditors · Global Coverage · VDA/IATF", category: "data", x: 50, y: 88 },
-  { id: "evidence-vault", label: "Evidence Vault", sublabel: "Photos · Documents · Blockchain Timestamps", category: "data", x: 70, y: 80 },
+  // AI Agents (row 4 — flanking center)
+  { id: "agent-report", label: "Report Generator", sublabel: "VDA 6.3 · IATF 16949 · ISO 9001 Reports", category: "ai-agent", x: 30, y: 62 },
+  { id: "agent-inspection", label: "Inspection Manager", sublabel: "ScanPro+ · Field Ops · Evidence Collection", category: "ai-agent", x: 70, y: 62 },
 
-  // Output & Deliverables (right)
-  { id: "client-portal", label: "Client Portal", sublabel: "Dashboards · Track Orders · Download Reports", category: "output", x: 88, y: 48 },
-  { id: "compliance-engine", label: "Compliance Engine", sublabel: "EU Standards · ISO · ASME · API · PED", category: "output", x: 88, y: 66 },
+  // Output & Deliverables (right column)
+  { id: "client-portal", label: "Client Portal", sublabel: "Dashboards · Track Orders · Download Reports", category: "output", x: 90, y: 44 },
+  { id: "compliance-engine", label: "Compliance Engine", sublabel: "EU Standards · ISO · ASME · API · PED", category: "output", x: 90, y: 60 },
+
+  // Data & Intelligence Layer (bottom row)
+  { id: "supplier-db", label: "Supplier Database", sublabel: "Digital Twins · Certifications · Capability Maps", category: "data", x: 25, y: 82 },
+  { id: "auditor-network", label: "Auditor Network", sublabel: "Certified Auditors · Global Coverage · VDA/IATF", category: "data", x: 50, y: 86 },
+  { id: "evidence-vault", label: "Evidence Vault", sublabel: "Photos · Documents · Blockchain Timestamps", category: "data", x: 75, y: 82 },
 ];
 
 const dataFlows: DataFlow[] = [
