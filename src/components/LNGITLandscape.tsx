@@ -49,8 +49,8 @@ const systems: SystemNode[] = [
   { id: "agent-inspection", label: "Inspection Manager", sublabel: "ScanPro+ · Field Ops · Evidence Collection", category: "ai-agent", x: 70, y: 62 },
 
   // Output & Deliverables (right column)
-  { id: "client-portal", label: "Client Portal", sublabel: "Dashboards · Track Orders · Download Reports", category: "output", x: 90, y: 44 },
-  { id: "compliance-engine", label: "Compliance Engine", sublabel: "EU Standards · ISO · ASME · API · PED", category: "output", x: 90, y: 60 },
+  { id: "client-portal", label: "Client Portal", sublabel: "Dashboards · Track Orders · Download Reports", category: "output", x: 86, y: 44 },
+  { id: "compliance-engine", label: "Compliance Engine", sublabel: "EU Standards · ISO · ASME · API · PED", category: "output", x: 86, y: 60 },
 
   // Data & Intelligence Layer (bottom row)
   { id: "supplier-db", label: "Supplier Database", sublabel: "Digital Twins · Certifications · Capability Maps", category: "data", x: 25, y: 82 },
