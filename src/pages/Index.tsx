@@ -4,6 +4,7 @@ import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
 import PainPointsSection from "@/components/PainPointsSection";
 import AtlasAISection from "@/components/AtlasAISection";
+import LNGITLandscape from "@/components/LNGITLandscape";
 import AuditDifferenceSection from "@/components/AuditDifferenceSection";
 import CapabilityOverviewSection from "@/components/CapabilityOverviewSection";
 import LNGSearchDemo from "@/components/LNGSearchDemo";
