@@ -116,13 +116,13 @@ const FlowDot = ({ pathId, delay, duration = 3 }: { pathId: string; delay: numbe
 
 const LNGITLandscape = () => {
   return (
-    <div className="space-y-8">
+    <div className="dark space-y-8 text-foreground">
       {/* Legend */}
       <div className="flex flex-wrap gap-4 mb-4">
         {categoryLabels.map((c) => (
           <div key={c.category} className="flex items-center gap-2">
             <div className={`w-3 h-3 rounded-sm ${c.dotColor}`} />
-            <span className="text-xs font-mono text-foreground/50 tracking-wider uppercase">{c.label}</span>
+            <span className="text-xs font-mono text-foreground/75 tracking-wider uppercase">{c.label}</span>
           </div>
         ))}
       </div>
@@ -133,7 +133,7 @@ const LNGITLandscape = () => {
           <div className="absolute inset-0 rounded-full bg-primary animate-ping opacity-60" />
           <div className="absolute inset-0 rounded-full bg-primary" />
         </div>
-        <span className="text-xs font-mono text-foreground/40 tracking-wider uppercase">
+        <span className="text-xs font-mono text-foreground/75 tracking-wider uppercase">
           Live Scenario — Global client finds partner → Orders audit → Receives VDA 6.3 report → 24/7 access
         </span>
       </div>
@@ -143,7 +143,7 @@ const LNGITLandscape = () => {
         <div className="w-6 h-6 rounded-full bg-[hsl(0,55%,45%)] flex items-center justify-center flex-shrink-0">
           <span className="text-[10px] font-bold text-white">HR</span>
         </div>
-        <span className="text-xs text-foreground/60 font-mono">
+        <span className="text-xs text-foreground/80 font-mono">
           Croatian Government Project — Ministry of Economy and Sustainable Development — EU Co-funded
         </span>
       </div>
@@ -158,7 +158,7 @@ const LNGITLandscape = () => {
         ].map((stat) => (
           <div key={stat.label} className="text-center py-4 px-3 rounded-lg border border-primary/20 bg-primary/5">
             <div className="text-2xl md:text-3xl font-black text-primary tracking-tight">{stat.value}</div>
-            <div className="text-[10px] md:text-xs font-mono text-foreground/50 uppercase tracking-wider mt-1">{stat.label}</div>
+            <div className="text-[10px] md:text-xs font-mono text-foreground/80 uppercase tracking-wider mt-1">{stat.label}</div>
           </div>
         ))}
       </div>
