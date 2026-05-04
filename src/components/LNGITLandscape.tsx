@@ -236,7 +236,7 @@ const LNGITLandscape = () => {
                   transition={{ duration: 1, delay: 0.2 + i * 0.06 }}
                 />
                 {flow.label && (
-                  <text x={cx} y={cy - 7} fill="rgba(255,255,255,0.4)" fontSize="8" textAnchor="middle" fontFamily="monospace" fontWeight="600">
+                  <text x={cx} y={cy - 7} fill="rgba(255,255,255,0.65)" fontSize="10" textAnchor="middle" fontFamily="monospace" fontWeight="700">
                     {flow.label}
                   </text>
                 )}
