@@ -285,10 +285,10 @@ const LNGITLandscape = () => {
                     <span className="text-[8px] font-bold text-[hsl(0,60%,72%)] uppercase tracking-[0.15em]">Gov</span>
                   </div>
                 )}
-                <div className={`${isCenter ? 'text-sm md:text-base' : 'text-[11px] md:text-xs'} font-bold ${colors.text} leading-tight ${isAgent || node.category === "gov" ? 'mt-1' : ''}`}>
+                <div className={`${isCenter ? 'text-base md:text-lg' : 'text-xs md:text-sm'} font-bold ${colors.text} leading-tight ${isAgent || node.category === "gov" ? 'mt-1' : ''}`}>
                   {node.label}
                 </div>
-                <div className={`${isCenter ? 'text-[11px] md:text-xs' : 'text-[9px] md:text-[10px]'} text-foreground/40 mt-1 leading-tight`}>
+                <div className={`${isCenter ? 'text-xs md:text-sm' : 'text-[11px] md:text-xs'} text-foreground/70 mt-1 leading-tight`}>
                   {node.sublabel}
                 </div>
                 {isCenter && (
