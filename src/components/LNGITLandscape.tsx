@@ -294,7 +294,7 @@ const LNGITLandscape = () => {
                 {isCenter && (
                   <div className="mt-3 grid grid-cols-2 gap-1.5">
                     {["Find Partners", "Order Audits", "View Reports", "Track Inspections", "AI Matchmaking", "24/7 Access"].map(mod => (
-                      <div key={mod} className="text-[8px] md:text-[9px] text-primary bg-primary/10 border border-primary/25 rounded px-1.5 py-0.5 text-center font-mono">
+                      <div key={mod} className="text-[10px] md:text-xs text-primary bg-primary/10 border border-primary/25 rounded px-2 py-1 text-center font-mono">
                         {mod}
                       </div>
                     ))}
