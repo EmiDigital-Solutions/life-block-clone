@@ -103,6 +103,22 @@ const Index = () => {
 
         {/* RCA Full Supplier Database */}
         <SupplierDatabaseDemo />
+
+        {/* IT System Architecture */}
+        <section className="py-20 md:py-28">
+          <div className="mx-auto max-w-[1400px] px-4 md:px-8">
+            <div className="text-center mb-12">
+              <span className="text-xs font-mono tracking-[0.3em] uppercase text-primary/70 mb-3 block">System Architecture</span>
+              <h2 className="text-3xl md:text-4xl font-black text-foreground tracking-tight">
+                CEIP IT Platform Architecture
+              </h2>
+              <p className="mt-4 text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
+                Croatian Government Project — Ministry of Economy & Sustainability. Global 24/7 AI platform for partner discovery, audit ordering, reports & inspections.
+              </p>
+            </div>
+            <LNGITLandscape />
+          </div>
+        </section>
       </div>
     </div>
   );
