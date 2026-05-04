@@ -164,7 +164,7 @@ const LNGITLandscape = () => {
       </div>
 
       {/* Main Landscape */}
-      <div className="relative w-full aspect-[16/10] min-h-[520px] md:min-h-[700px] rounded-xl border border-foreground/10"
+      <div className="relative w-full aspect-[16/10] min-h-[600px] md:min-h-[800px] rounded-xl border border-foreground/10"
         style={{
           background: 'linear-gradient(160deg, hsl(195, 15%, 5%), hsl(195, 10%, 3%), hsl(195, 15%, 6%))',
           overflow: 'visible',
@@ -258,7 +258,7 @@ const LNGITLandscape = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.15 + i * 0.05 }}
-              className={`absolute z-10 ${isCenter ? 'w-[200px] md:w-[250px]' : isAgent ? 'w-[150px] md:w-[180px]' : 'w-[140px] md:w-[175px]'}`}
+              className={`absolute z-10 ${isCenter ? 'w-[240px] md:w-[300px]' : isAgent ? 'w-[170px] md:w-[210px]' : 'w-[160px] md:w-[200px]'}`}
               style={{
                 left: `${node.x}%`,
                 top: `${node.y}%`,
@@ -285,16 +285,16 @@ const LNGITLandscape = () => {
                     <span className="text-[8px] font-bold text-[hsl(0,60%,72%)] uppercase tracking-[0.15em]">Gov</span>
                   </div>
                 )}
-                <div className={`${isCenter ? 'text-sm md:text-base' : 'text-[11px] md:text-xs'} font-bold ${colors.text} leading-tight ${isAgent || node.category === "gov" ? 'mt-1' : ''}`}>
+                <div className={`${isCenter ? 'text-base md:text-lg' : 'text-xs md:text-sm'} font-bold ${colors.text} leading-tight ${isAgent || node.category === "gov" ? 'mt-1' : ''}`}>
                   {node.label}
                 </div>
-                <div className={`${isCenter ? 'text-[11px] md:text-xs' : 'text-[9px] md:text-[10px]'} text-foreground/40 mt-1 leading-tight`}>
+                <div className={`${isCenter ? 'text-xs md:text-sm' : 'text-[11px] md:text-xs'} text-foreground/70 mt-1 leading-tight`}>
                   {node.sublabel}
                 </div>
                 {isCenter && (
                   <div className="mt-3 grid grid-cols-2 gap-1.5">
                     {["Find Partners", "Order Audits", "View Reports", "Track Inspections", "AI Matchmaking", "24/7 Access"].map(mod => (
-                      <div key={mod} className="text-[8px] md:text-[9px] text-primary bg-primary/10 border border-primary/25 rounded px-1.5 py-0.5 text-center font-mono">
+                      <div key={mod} className="text-[10px] md:text-xs text-primary bg-primary/10 border border-primary/25 rounded px-2 py-1 text-center font-mono">
                         {mod}
                       </div>
                     ))}
@@ -306,10 +306,10 @@ const LNGITLandscape = () => {
         })}
 
         {/* Zone labels */}
-        <div className="absolute top-3 left-4 text-[10px] font-mono text-foreground/20 tracking-[0.3em] uppercase">Global Client Access Zone</div>
-        <div className="absolute top-3 right-4 text-[10px] font-mono text-foreground/20 tracking-[0.3em] uppercase">24/7 Gateway</div>
-        <div className="absolute bottom-3 left-4 text-[10px] font-mono text-foreground/20 tracking-[0.3em] uppercase">Croatian Gov & Data Zone</div>
-        <div className="absolute bottom-3 right-4 text-[10px] font-mono text-foreground/20 tracking-[0.3em] uppercase">Deliverables Zone</div>
+        <div className="absolute top-3 left-4 text-xs font-mono text-foreground/40 tracking-[0.3em] uppercase">Global Client Access Zone</div>
+        <div className="absolute top-3 right-4 text-xs font-mono text-foreground/40 tracking-[0.3em] uppercase">24/7 Gateway</div>
+        <div className="absolute bottom-3 left-4 text-xs font-mono text-foreground/40 tracking-[0.3em] uppercase">Croatian Gov & Data Zone</div>
+        <div className="absolute bottom-3 right-4 text-xs font-mono text-foreground/40 tracking-[0.3em] uppercase">Deliverables Zone</div>
       </div>
 
       {/* Key Integration Points */}
