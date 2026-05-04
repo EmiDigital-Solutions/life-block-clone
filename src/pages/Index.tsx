@@ -105,7 +105,7 @@ const Index = () => {
         <SupplierDatabaseDemo />
 
         {/* IT System Architecture */}
-        <section className="py-20 md:py-28">
+        <section className="py-20 md:py-28 bg-background">
           <div className="mx-auto max-w-[1400px] px-4 md:px-8">
             <div className="text-center mb-12">
               <span className="text-xs font-mono tracking-[0.3em] uppercase text-primary/70 mb-3 block">System Architecture</span>
